@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Introduction to measure theory.aux
+The style file: apalike.bst
+Database file #1: refs.bib
+You've used 3 entries,
+            1935 wiz_defined-function locations,
+            497 strings with 4182 characters,
+and the built_in function-call counts, 893 in all, are:
+= -- 84
+> -- 21
+< -- 4
++ -- 6
+- -- 6
+* -- 64
+:= -- 166
+add.period$ -- 10
+call.type$ -- 3
+change.case$ -- 18
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 43
+empty$ -- 71
+format.name$ -- 9
+if$ -- 174
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 6
+newline$ -- 19
+num.names$ -- 9
+pop$ -- 19
+preamble$ -- 1
+purify$ -- 18
+quote$ -- 0
+skip$ -- 31
+stack$ -- 0
+substring$ -- 36
+swap$ -- 5
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 12
+warning$ -- 0
+while$ -- 6
+width$ -- 0
+write$ -- 44
