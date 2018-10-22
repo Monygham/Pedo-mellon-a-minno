@@ -82,7 +82,7 @@ is an $I$-indexed family of short exact sequences. Consider a complex
 (m-1-4) edge node[auto] {$ $} (m-1-5);
 \end{tikzpicture}
 \end{center}
-where $K=\mathrm{colim}_{i\in I}K_i$, $M=\mathrm{colim}_{i\in I}M_i$, $N=\mathrm{colim}_{i\in I}N_i$, $r=\mathrm{colim}_{i\in I}r_i$ and $p=\mathrm{colim}_{i\in I}p_i$. Clearly the complex is exact from the right. It suffices to prove that $r$ is a monomorphism. For $i\in I$ denote by $v_i:K_i\ra K$, $u_i:M_i\ra M$ structural morphisms. Pick $k\in K$ such that $r(k)=0$. Since $I$ is filtered, we have
+where $K=\mathrm{colim}_{i\in I}K_i$, $M=\mathrm{colim}_{i\in I}M_i$, $N=\mathrm{colim}_{i\in I}N_i$, $r=\mathrm{colim}_{i\in I}r_i$ and $p=\mathrm{colim}_{i\in I}p_i$. Clearly the complex is right exact. It suffices to prove that $r$ is a monomorphism. For $i\in I$ denote by $v_i:K_i\ra K$, $u_i:M_i\ra M$ structural morphisms. Pick $k\in K$ such that $r(k)=0$. Since $I$ is filtered, we have
 $$K=\sum_{i\in I}v_i(K_i),\,M=\sum_{i\in I}u_i(M_i)$$
 Thus there exists $i_0\in I$ and $k_{i_0}\in K_{i_0}$ such that $v_{i_0}(k_{i_0})=k$. We have $u_{i_0}\left(r_{i_0}(k_{i_0})\right)=r(k)=0$. Again using the fact that $I$ is filtered, we deduce that there exist $i_1\in I$ and a morphism $\alpha:i_0\ra i_1$ such that $u_{\alpha}\left(r_{i_0}(k_{i_0})\right)=0$, where $u_{\alpha}:M_{i_0}\ra M_{i_1}$ is a morphism in the $I$-indexed diagram $\{M_i\}_{i\in I}$. Now let $k_{i_1}=v_{\alpha}(k_{i_0})$, where $v_{\alpha}:K_{i_0}\ra K_{i_1}$ is a morphism in the $I$-indexed diagram $\{K_i\}_{i\in I}$. Then $v_{i_1}(k_{i_1})=k$ and $r_{i_1}(k_{i_1})=0$. Since $r_{i_1}$ is a monomorphism, we derive that $k_{i_1}=0$ and hence $k=v_{i_1}(k_{i_1})=0$. Thus $r$ is a monomorphism.
 \end{proof}
@@ -104,7 +104,7 @@ of cocones.
 Let $R$ be a ring with unit.
 
 \begin{definition}
-Let $M$ be a right $R$-module. We say that $M$ \textit{is flat} if the functor $M\otimes_R(-)$ defined on the category of left $R$-modules and with values in the category of abelian groups is exact.
+Let $M$ be a right $R$-module. We say that $M$ is \textit{flat} if the functor $M\otimes_R(-)$ defined on the category of left $R$-modules and with values in the category of abelian groups is exact.
 \end{definition}
 
 \begin{proposition}\label{proposition:flatcolimits}
@@ -140,8 +140,8 @@ Now suppose that $N$ is a finitely generated left module over $R$. Then we can d
 (m-1-4) edge node[auto] {$ $} (m-1-5);
 \end{tikzpicture}
 \end{center}
-Now we have $\mathrm{Tor}^R_1(M,K)=0$ implies that $\mathrm{Tor}^R_1(M,N)=0$. Therefore, using induction on the minimal number of generators of finitely generated left $R$-module we may prove that $\mathrm{Tor}^R_1(M,N)=0$ for every finitely generated left $R$-module. Since every left $R$-module is a filtered colimit of its finitely generated left $R$-submodules, we derive by Corollary \ref{corollary:torpreservesfiltered} that $\mathrm{Tor}^R_1(M,N)=0$ for every left $R$-module $N$. Using first terms of the long exact sequence for $\mathrm{Tor}$ associated with $M\otimes_R(-)$ we deduce that \textbf{(iii)}.\\
-Now if $M$ is flat, then tensoring with $M$ is exact. This means that tensor product of a free resolution of some left $R$-module $N$ with $M$ have trivial higher homologies. Thus $\mathrm{Tor}^R_i(M,N)=0$ for $i>0$. This gives $\textbf{(iii)}\Rightarrow \textbf{(iv)}$.\\
+Now we have $\mathrm{Tor}^R_1(M,K)=0$ implies that $\mathrm{Tor}^R_1(M,N)=0$. Therefore, using induction on the minimal number of generators of finitely generated left $R$-module we may prove that $\mathrm{Tor}^R_1(M,N)=0$ for every finitely generated left $R$-module. Since every left $R$-module is a filtered colimit of its finitely generated left $R$-submodules, we derive by Corollary \ref{corollary:torpreservesfiltered} that $\mathrm{Tor}^R_1(M,N)=0$ for every left $R$-module $N$. Using first terms of the long exact sequence for $\mathrm{Tor}$ associated with $M\otimes_R(-)$ we deduce \textbf{(iii)}.\\
+Now if $M$ is flat, then tensoring with $M$ is exact. This means that tensor product of a free resolution of a left $R$-module $N$ with $M$ has trivial higher homologies. Thus $\mathrm{Tor}^R_i(M,N)=0$ for $i>0$. This proves $\textbf{(iii)}\Rightarrow \textbf{(iv)}$.\\
 Finally $\textbf{(iv)}\Rightarrow \textbf{(i)}$ is obvious.
 \end{proof}
 
@@ -153,16 +153,16 @@ Let $R$ be a ring with unit.
 Let $M$ be a right $R$-module and $N$ be a left $R$-module. Suppose that $\{y_i\}_{i\in I}$ is a set of generators for $N$ and $\{x_i\}_{i\in I}$ is a set of  elements of $M$. Suppose that all $x_i$ for $i\in I$ except of finitely many are zero. Assume that
 $$\sum_{i\in I}x_i\otimes y_i=0$$
 in tensor product $M\otimes_RN$. Then there exist $n\in \NN$, $\{a_{ik}\}_{i\in I,1\leq k\leq n}$ in $R$ and $\{z_k\}_{1\leq k\leq n}$ in $M$ such that
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
-\item $x_i=\sum^n_{k=1}z_ka_{ik}$ for every $i\in I$
-\item $0=\sum_{i\in I}a_{ik}y_i$ for every $1\leq k\leq n$
-\end{enumerate}
+$$x_i=\sum^n_{k=1}z_ka_{ki}$$
+for every $i\in I$ and 
+$$\sum_{i\in I}a_{ki}y_i= 0$$
+for every $1\leq k\leq n$.
 \end{proposition}
 \begin{proof}
 Consider a free left $R$-module $F$ on a set $I$ and a morphism $\phi:F\ra N$ given by $\phi(e_i)=y_i$, where $e_i$ is a free generator corresponding to $i\in I$. Let $K=\ker( \phi)$. Applying $M\otimes_R(-)$ we derive that $M\otimes_RK$ maps onto the kernel of $1_M\otimes_R\phi$.
-Next by assumptions $(1_M\otimes_R\phi)(\sum_{i\in I}x_i\otimes e_i)=\sum_{i\in I}x_i\otimes y_i=0$. Thus $\sum_{i\in I}x_i\otimes e_i$ is equal to $\sum^n_{k=1}z_k\otimes f_k$ for $z_k\in M$, $f_k\in K$ and $n\in \NN$. We can write $f_k=\sum_{i\in I}a_{ik}e_i$. Then we have
-$$\sum^n_{k=1}z_k\otimes f_k=\sum^n_{k=1}z_k\otimes\left(\sum_{i\in I}a_{ik}e_i\right)=\sum^n_{k=1}\sum_{i\in I}\left(z_k\otimes a_{ik}e_i\right)=\sum_{i\in I}\sum^n_{k=1}\left(z_ka_{ik}\otimes e_i\right)=\sum_{i\in I}\left(\sum^n_{k=1}z_k a_{ik}\right)\otimes e_i$$
-We deduce that $x_i=\sum^n_{k=1}z_ka_{ik}$ and $0=\sum_{i\in I}a_{ik}y_i$  for every $i\in I$ and $1\leq k\leq n$.
+Next by assumptions $(1_M\otimes_R\phi)(\sum_{i\in I}x_i\otimes e_i)=\sum_{i\in I}x_i\otimes y_i=0$. Thus $\sum_{i\in I}x_i\otimes e_i$ is equal to $\sum^n_{k=1}z_k\otimes f_k$ for $z_k\in M$, $f_k\in K$ and $n\in \NN$. We can write $f_k=\sum_{i\in I}a_{ki}e_i$. Then we have
+$$\sum^n_{k=1}z_k\otimes f_k=\sum^n_{k=1}z_k\otimes\left(\sum_{i\in I}a_{ki}e_i\right)=\sum^n_{k=1}\sum_{i\in I}\left(z_k\otimes a_{ki}e_i\right)=\sum_{i\in I}\sum^n_{k=1}\left(z_ka_{ki}\otimes e_i\right)=\sum_{i\in I}\left(\sum^n_{k=1}z_k a_{ki}\right)\otimes e_i$$
+We deduce that $x_i=\sum^n_{k=1}z_ka_{ki}$ and $0=\sum_{i\in I}a_{ki}y_i$  for every $i\in I$ and $1\leq k\leq n$.
 \end{proof}
 
 \begin{theorem}[Equational criteria for flatness]\label{theorem:equationalcriteria}
@@ -171,9 +171,9 @@ Let $M$ be a right $R$-module. Then the following are equivalent.
 \item $M$ is flat.
 \item For every set of elements $\{x_i\}_{i=1,...,n}$ in $M$ and a relation
 $$\sum^n_{i=1}x_ia_{i}=0$$
-where $a_{i}\in R$ there exist elements $z_k\in M$ and $r_{ik}\in R$ for $1\leq k\leq l$ such that
+where $a_{i}\in R$ there exist elements $z_k\in M$ and $r_{ki}\in R$ for $1\leq k\leq l$ such that
 \begin{center}
-$x_i=\sum^l_{k=1}z_kr_{ik}$, $0=\sum^n_{i=1}r_{ik}a_{i}$
+$x_i=\sum^l_{k=1}z_kr_{ki}$, $\sum^n_{i=1}r_{ki}a_{i}=0$
 \end{center}
 for every $1\leq i \leq n$ and $1\leq k\leq l$.
 \item For every finitely presented right $R$-module $N$, every morphism $\phi:N\ra M$ and every finitely generated $R$-submodule $K\subseteq \ker(\phi)$ there exists a factorization
@@ -192,22 +192,22 @@ for every $1\leq i \leq n$ and $1\leq k\leq l$.
 where $G$ is a finitely generated free right $R$-module and $K\subseteq \ker(\psi)$.
 \item For every set of elements $\{x_i\}_{i=1,...,n}$ in $M$ and a finite set of relations
 $$\sum^n_{i=1}x_ia_{ij}=0$$
-where $1\leq j\leq m$ and $a_{ij}\in R$ there exist elements $z_k\in M$ and $r_{ik}\in R$ for $1\leq k\leq l$ such that
+where $1\leq j\leq m$ and $a_{ij}\in R$ there exist elements $z_k\in M$ and $r_{ki}\in R$ for $1\leq k\leq l$ such that
 \begin{center}
-$x_i=\sum^l_{k=1}z_kr_{ik}$, $0=\sum^n_{i=1}r_{ik}a_{ij}$
+$x_i=\sum^l_{k=1}z_kr_{ki}$, $0=\sum^n_{i=1}r_{ki}a_{ij}$
 \end{center}
 for every $1\leq i \leq n$, $1\leq j\leq m$ and $1\leq k\leq l$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Suppose that $M$ is flat. We will show that $\textbf{(ii)}$ holds.. We have relation
+Suppose that $M$ is flat. We show then that $\textbf{(ii)}$ holds. We have relation
 $$\sum^n_{i=1}x_ia_{i}=0$$
 Let $I=\sum_{1\leq i\leq n}Ra_{i}\subseteq R$ be a left ideal. Since $M$ is flat, the canonical morphism $M\otimes_RI\ra M$ is a monomorphism. It sends $\sum_{i=1}^nx_i\otimes a_i$ to $\sum_{i=1}^nx_ia_i=0$. It follows that 
 $$\sum^n_{i=1}x_i\otimes a_i=0$$
-in $M\otimes_RI$. Thus by Proposition \ref{proposition:zerocriterion} there exist $\{r_{ik}\}_{1\leq i\leq n,1\leq k\leq l}$ in $R$ and $\{z_k\}_{1\leq k\leq l}$ in $M$ such that
-$$x_i=\sum^l_{k=1}z_kr_{ik},\,0=\sum^n_{i=1}r_{ik}a_i$$
+in $M\otimes_RI$. Thus by Proposition \ref{proposition:zerocriterion} there exist $\{r_{ki}\}_{1\leq i\leq n,1\leq k\leq l}$ in $R$ and $\{z_k\}_{1\leq k\leq l}$ in $M$ such that
+$$x_i=\sum^l_{k=1}z_kr_{ki},\,0=\sum^n_{i=1}r_{ki}a_i$$
 for every  $1\leq i \leq n$ and $1\leq k\leq l$.\\
-Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(iii)}$. Suppose first that $N$ is a finitely generated and free right $R$-module, $\phi:N\ra M$ is a morphism and $K\subseteq \ker(\phi)$ is finitely generated. Note that our result easily follows from \textbf{(ii)} of the theorem, if $K\subseteq \Ker(\phi)$ is generated by a single element. Now easy induction on the number of generators for $K\subseteq \Ker(\phi)$ yields the assertion $\textbf{(iii)}$ in the case of finitely generated free right $R$-module $N$.\\
+Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(iii)}$. Suppose first that $N$ is a finitely generated and free right $R$-module, $\phi:N\ra M$ is a morphism and $K\subseteq \ker(\phi)$ is finitely generated. Note that our result easily follows from \textbf{(ii)}, if $K\subseteq \Ker(\phi)$ is generated by a single element. Now easy induction on the number of generators for $K\subseteq \Ker(\phi)$ yields the assertion $\textbf{(iii)}$ in the case of finitely generated free right $R$-module $N$.\\
 Suppose now that $N$ is a finitely presented right $R$-module, $\phi:N\ra M$ is a morphism and $K\subseteq \ker(\phi)$ is a finitely generated submodule. Take an epimorphism $f:F\ra N$ where $F$ is a finitely generated free left $R$-module. Let $\phi'=\phi f$ and pick a factorization
 \begin{center}
 \begin{tikzpicture}
@@ -222,15 +222,15 @@ Suppose now that $N$ is a finitely presented right $R$-module, $\phi:N\ra M$ is 
 \end{tikzpicture}
 \end{center}
 where $G$ is a finitely generated free right $R$-module and $f^{-1}(K)\subseteq \ker(g)$. Such a factorization exists according to the fact that $f^{-1}(K)$ is a finitely generated submodule of $\ker(\phi')$. Since $\ker(f)\subseteq f^{-1}(K)$, we deduce that $g$ factorizes through $f$. This proves the implication. \\
-Assume that \textbf{(iii)} holds. Suppose that $\{x_i\}_{i=1,...,n}$ are in $M$ and we have a finite set of relations
+Assume that \textbf{(iii)} holds. Suppose that $\{x_i\}_{i=1,...,n}$ are in $M$ and that we have a finite set of relations
 $$\sum^n_{i=1}x_ia_{ij}=0$$
 where $1\leq j\leq m$ and $a_{ij}\in R$. Let $F$ be a right free $R$-module of rank $n$ with basis $e_1$,...,$e_n$. Define a morphism $\phi:F\ra M$ by $\phi(e_i)=x_i$ for $1\leq i\leq n$. Then 
 $$K=\sum_{j=1}^m\left(\sum_{i=1}^ne_ia_{ij}\right)R\subseteq \Ker(\phi)$$
-is finitely generated. Hence by \textbf{(iii)} there exist a finitely generated free right $R$-module $G$ and morphisms $\psi:F\ra G$, $\theta:G\ra M$ such that $\phi=\theta \cdot \psi$ and $K\subseteq \Ker(\psi)$. Next if $f_1$,...,$f_l$ is a basis of $G$, then we pick $z_k=\theta(f_k)$ for $1\leq k\leq l$. There exist $r_{ik}\in R$ for $1\leq k\leq l$ and $1\leq i\leq n$ such that $\psi(e_i)=\sum_{k=1}^lf_kr_{ik}$ for $1\leq i\leq n$. Now straightforward verification shows that $z_k\in M$ and $r_{ik}\in R$ for $1\leq k\leq l$ and $1\leq i\leq n$ satisfy \textbf{(iv)}.\\
-Now assume that \textbf{(iv)} holds. Let $I$ be a finitely generated left ideal in $R$. Suppose that $a_i$ for $1\leq i \leq n$ are generators of $I$. We are going to prove that the canonical morphism $M\otimes_RI\ra M$ is a monomorphism. This implies \textbf{(i)} due to Proposition \ref{proposition:homologicalflatness}. Assume that there exist $x_i$ for $1\leq i\leq n$ in $M$ such that $\sum_{i=1}^nx_i\otimes a_i\in M\otimes_RI$ is in the kernel of $M\otimes_RI\ra M$. This means that $\sum_{i=1}^nx_ia_i=0$ in $M$. According to \textbf{(iv)} there exist $z_k\in M$ and $r_{ik}\in R$ for $1\leq k\leq l$ and $1\leq i\leq n$ such that
-$$x_i=\sum^l_{k=1}z_kr_{ik},\,0=\sum^n_{i=1}r_{ik}a_{i}$$
+is finitely generated. Hence by \textbf{(iii)} there exist a finitely generated free right $R$-module $G$ and morphisms $\psi:F\ra G$, $\theta:G\ra M$ such that $\phi=\theta \cdot \psi$ and $K\subseteq \Ker(\psi)$. Next if $f_1$,...,$f_l$ is a basis of $G$, then we pick $z_k=\theta(f_k)$ for $1\leq k\leq l$. There exist $r_{ki}\in R$ for $1\leq k\leq l$ and $1\leq i\leq n$ such that $\psi(e_i)=\sum_{k=1}^lf_kr_{ki}$ for $1\leq i\leq n$. Now straightforward verification shows that $z_k\in M$ and $r_{ki}\in R$ for $1\leq k\leq l$ and $1\leq i\leq n$ satisfy \textbf{(iv)}.\\
+Now assume that \textbf{(iv)} holds. Let $I$ be a finitely generated left ideal in $R$. Suppose that $a_i$ for $1\leq i \leq n$ are generators of $I$. We are going to prove that the canonical morphism $M\otimes_RI\ra M$ is a monomorphism. This implies \textbf{(i)} due to Proposition \ref{proposition:homologicalflatness}. Assume that there exist $x_i$ for $1\leq i\leq n$ in $M$ such that $\sum_{i=1}^nx_i\otimes a_i\in M\otimes_RI$ is in the kernel of $M\otimes_RI\ra M$. This means that $\sum_{i=1}^nx_ia_i=0$ in $M$. According to \textbf{(iv)} there exist $z_k\in M$ and $r_{ki}\in R$ for $1\leq k\leq l$ and $1\leq i\leq n$ such that
+$$x_i=\sum^l_{k=1}z_kr_{ki},\,0=\sum^n_{i=1}r_{ki}a_{i}$$
 Thus
-$$\sum_{i=1}^nx_i\otimes a_i=\sum_{i=1}^n\left(\sum_{k=1}^lz_kr_{ik}\right)\otimes a_i=\sum_{i=1}^n\sum_{k=1}^l\left(z_kr_{ik}\otimes a_i\right)=\sum_{k=1}^l\sum_{i=1}^n\left(z_k\otimes r_{ik}a_i\right)=\sum_{k=1}^lz_k\otimes \left(\sum_{i=1}^nr_{ik}a_i\right)=0$$
+$$\sum_{i=1}^nx_i\otimes a_i=\sum_{i=1}^n\left(\sum_{k=1}^lz_kr_{ki}\right)\otimes a_i=\sum_{i=1}^n\sum_{k=1}^l\left(z_kr_{ki}\otimes a_i\right)=\sum_{k=1}^l\sum_{i=1}^n\left(z_k\otimes r_{ki}a_i\right)=\sum_{k=1}^lz_k\otimes \left(\sum_{i=1}^nr_{ki}a_i\right)=0$$
 Hence the kernel of the morphism $M\otimes_RI\ra M$ is trivial.
 \end{proof}
 
