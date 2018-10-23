@@ -1,0 +1,507 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Flatness in geometry}
+\date{}
+\maketitle
+
+\section{Flatness on ringed spaces}
+
+\begin{definition}
+Let $f:(X,\cO_X)\ra (Y,\cO_Y)$ be a morphism of ringed spaces and $\cF$ be a sheaf of $\cO_X$-modules. We say that $\cF$ is \textit{$f$-flat} or \textit{flat over $Y$ at point $x\in X$} if $\cF_x$ is flat as $\cO_{Y,f(x)}$-module.
+\end{definition}
+
+\begin{definition}
+We say that $\cF$ is \textit{$f$-flat} or \textit{flat over $Y$} if it is $f$-flat at every point $x\in X$ and we define $f$ to be \textit{a flat morphism} if $\cO_X$ is flat over $Y$.
+\end{definition}
+
+\begin{proposition}
+Suppose that $f:X\ra Y$ is a morphism of ringed spaces, $x\in X$ and $\cF$ is a sheaf of $\cO_X$-modules flat over $Y$ at $x$. Then for every open neighbourhood $V\subseteq Y$ of $f(x)$ the functor
+\begin{center}
+$\Mod(\cO_V)\ni \cG\mapsto (f'^*\cG\otimes_{\cO_{f^{-1}(V)}}\cF_{\mid f^{-1}(V)})_x\in \Mod(\cO_{X,x})$
+\end{center}
+is exact, where $f':f^{-1}(V)\ra V$ is the restriction of $f$.
+\end{proposition}
+\begin{proof}
+We have natural isomorphisms $\left(f'^*\cG\otimes_{\cO_{f^{-1}(V)}}\cF_{\mid f^{-1}(V)}\right)_x\cong f'^*\cG_x\otimes_{\cO_{X,x}}\cF_x$ and $f'^*\cG_x\cong \cO_{X,x}\otimes_{\cO_{Y,f(x)}}\cG_{f(x)}$. Thus
+$$\left(f'\cG\otimes_{\cO_{f^{-1}(V)}}\cF_{\mid f^{-1}(V)}\right)_x\cong  f'^*\cG_x\otimes_{\cO_{X,x}}\cF_x\cong \left(\cO_{X,x}\otimes_{\cO_{Y,f(x)}}\cG_{f(x)}\right)\otimes_{\cO_{X,x}}\cF_x\cong \cG_{f(x)}\otimes_{\cO_{Y,f(x)}}\cF_x$$
+and all isomorphisms are natural in $\cG$. Now exactness of the functor
+\begin{center}
+ $\Mod(\cO_V)\ni \cG\mapsto  \cG_{f(x)}\otimes_{\cO_{Y,f(x)}}\cF_x\in \Mod(\cO_{X,x})$
+\end{center}
+is clear by definition of $\cF$ being $f$-flat at $x\in X$.
+\end{proof}
+
+\begin{proposition}[Transitivity]
+Let $f:X\ra Y$ and $g:Y\ra Z$ be morphisms of ringed spaces, $x\in X$ and $\cF$ be a sheaf of $\cO_X$-modules. Assume that $\cF$ is $f$-flat at $x$ and $g$ is flat at $f(x)$. Then $\cF$ is $(g\cdot f)$-flat at $x$.
+\end{proposition}
+\begin{proof}
+The fact that $g$ is flat at $f(x)$ means that morphism $\cO_{Z,g(f(x))}\ra \cO_{Y,f(x)}$ is a flat morphism of rings. Since $\cF_x$ is flat $\cO_{Y,f(x)}$-module, we derive that it is also flat as $\cO_{Z,g(f(x))}$-module. Hence $\cF$ is $(g\cdot f)$-flat at $x$.
+\end{proof}
+
+\begin{proposition}
+Let $f:X\ra Y$ be a flat morphism of ringed spaces. Suppose that $\cF$ and $\cG$ are sheaves of $\cO_Y$-modules. If $\cF$ is of finite presentation, then the natural morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ f^*\shHom_{\cO_Y}(\cF,\cG) &  \shHom_{\cO_X}(f^*\cF,f^*\cG) \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\theta_{\cF,\cG} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is an isomorphism.
+\end{proposition}
+\begin{proof}
+Since the question is local, we may assume that $\cF$ is globally of finite presentation on $\cO_Y$ that is there exists an exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{\cO^{\oplus m}_Y& \cO^{\oplus n}_Y&  \cF&  0                \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+Now we have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ 0& f^*\shHom_{\cO_Y}(\cF,\cG)&  f^*\shHom_{\cO_Y}(\cO^{\oplus n}_Y,\cG)&  f^*\shHom_{\cO_Y}(\cO^{\oplus m}_Y,\cG)             \\
+0&\shHom_{\cO_X}(f^*\cF,f^*\cG)& \shHom_{\cO_X}(\cO^{\oplus n}_X,f^*\cG)&   \shHom_{\cO_X}(\cO^{\oplus m}_X,f^*\cG)                                  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-2-1) edge node[auto] {$ $} (m-2-2)
+(m-2-2) edge node[auto] {$ $} (m-2-3)
+(m-2-3) edge node[auto] {$ $} (m-2-4)
+(m-1-2) edge node[auto] {$\theta_{\cF,\cG} $} (m-2-2)
+(m-1-3) edge node[auto] {$ \cong$} (m-2-3)
+(m-1-4) edge node[auto] {$\cong $} (m-2-4);
+\end{tikzpicture}
+\end{center}
+Due to flatness of $f$ rows in the commutative diagram above are left exact. Moreover, two rightmost vertical arrows in the diagram are isomorphisms as it is denoted. Thus $\theta_{\cF,\cG}$ is an isomorphism.
+\end{proof}
+
+\section{Infinitesimal and graded criteria for flatness}
+
+In this section we are going to prove powerful criteria for flatness over noetherian commutative rings. We use them in the last section to prove two important results in the theory of locally noetherian schemes.
+
+\begin{definition}
+Suppose that $A$ is a ring, $\ideal{a}\subseteq A$ is an ideal and $M$ is an $A$-module. We say that $M$ is $\ideal{a}$-adically ideal-separated if for every finitely generated ideal $I\subseteq A$ module $I\otimes_AM$ is $\ideal{a}$-adically separated.
+\end{definition}
+
+\begin{theorem}[Infinitesimal criterion for flatness]\label{theorem:infinitesimalflatness}
+Suppose that $A$ is a ring, $\ideal{a}\subseteq A$ is an ideal and $M$ is an $A$-module. Consider the following assertions.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $M$ is flat over $A$.
+\item $M/\ideal{a}$ is flat over $A/\ideal{a}$ and $\mathrm{Tor}^A_1(M,A/\ideal{a})=0$.
+\item $\mathrm{Tor}^A_1(M,N)=0$ for every $A/\ideal{a}$-module $N$.
+\item For every $k\in \NN$ module $M/\ideal{a}^kM$ is flat over $A/\ideal{a}^k$.
+\end{enumerate}
+Then \emph{$\textbf{(i)}\Rightarrow \textbf{(ii)}\Rightarrow \textbf{(iii)}\Rightarrow \textbf{(iv)}$}.\\
+Moreover, if $\ideal{a}$ is nilpotent or $M$ is $\ideal{a}$-adically ideal-separated and $A$ is noetherian, then \emph{$\textbf{(iv)}\Rightarrow \textbf{(i)}$}. 
+\end{theorem}
+\begin{proof}
+Clearly \textbf{(i)} implies \textbf{(ii)}.\\
+Suppose that \textbf{(ii)} holds and assume that $N$ is $A/\ideal{a}$-module. Fix an exact sequence of $A/\ideal{a}$-modules
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{0&K&  F    &N&          0             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+where $F$ is a free $A/\ideal{a}$-module. Then we have an exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{\mathrm{Tor}^A_1(M,F)& \mathrm{Tor}^A_1(M,N)&M\otimes_AK&  M\otimes_AF                \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+Since $M\otimes_AK\cong M/\ideal{a}M\otimes_{A/\ideal{a}}K$, $M\otimes_AF\cong M/\ideal{a}M\otimes_{A/\ideal{a}}F$ and $M/\ideal{a}M$ is flat over $A/\ideal{a}$, we derive that $\mathrm{Tor}^A_1(M,N)\ra M\otimes_AK$ has zero image. Using the fact that $\mathrm{Tor}^A_1(M,F)=0$, we deduce that $\mathrm{Tor}^A_1(M,N)=0$.\\
+Next we shall prove $\textbf{(iii)}\Rightarrow \textbf{(iv)}$. We will show that for every $A/\ideal{a}^k$-module $N$ we have $\mathrm{Tor}^A_1(M,N)=0$. This is certainly true for $k=1$. Suppose that it holds for some $k\geq 1$ and let $N$ be an $A/\ideal{a}^{k+1}$-module. Consider an exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{0& \ideal{a}^kN& N& N/\ideal{a}^kN&  0                \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Thus we have an exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \mathrm{Tor}^A_1(M,\ideal{a}^kN)& \mathrm{Tor}^A_1(M,N)& \mathrm{Tor}^A_1(M,N/\ideal{a}^kN)              \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+Since $\ideal{a}^kN$ is an $A/\ideal{a}$-module and $N/\ideal{a}^kN$ is an $A/\ideal{a}^k$-module, we derive that $\mathrm{Tor}^A_1(M,N)=0$. Thus what we have claimed holds for all $k$. From this it easily follows that $M/\ideal{a}^kM$ is flat as $A/\ideal{a}^k$-module.\\
+It remains to prove that $\textbf{(iv)}$ implies $\textbf{(i)}$ under our extra hypotheses. If $\ideal{a}$ is nilpotent, then the assertion is trivial. Suppose that $M$ is $\ideal{a}$-adically ideal-separed and $A$ is noetherian. Fix an ideal $I\subseteq A$. In order to show that $M$ is flat over $A$ it is enough to show that the canonical morphism $\phi$ given by
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ I\otimes_AM & M\\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$a\otimes m\mapsto a\cdot m $} (m-1-2);
+\end{tikzpicture}
+\end{center} 
+is a monomorphism. According to Artin-Rees lemma filtration $I\cap \ideal{a}^k$ of $I$ is $\ideal{a}$-stable i.e. there exists $l\geq 0$ such that for every $k\geq l$ we have inclusions
+$$\ideal{a}^kI\subseteq \ideal{a}^k\cap I\subseteq \ideal{a}^{k-l}I$$
+Let $\psi_k=1_{A/\ideal{a}^k}\otimes_A\phi$ for $k\in \NN$. We will also denote by $\phi_k:I/(I\cap \ideal{a}^k)\otimes_AM\ra M/\ideal{a}^kM$ for $k\in \NN$ the morphism isomorphic to the morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{I/(\ideal{a}^k\cap I)\otimes_{A/\ideal{a}^k}M/\ideal{a}^kM & M/\ideal{a}^kM\\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center} 
+induced by the inclusion $I/(\ideal{a}^k\cap I)\ra A/\ideal{a}^k$. Observe that for $k\geq l$ we have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{I/\ideal{a}^{k}I\otimes_AM&&            M/\ideal{a}^{k}M      \\
+I/(\ideal{a}^k\cap I)\otimes_AM&&         M/\ideal{a}^{k}M            \\
+I/\ideal{a}^{k-l}I\otimes_AM&&          M/\ideal{a}^{k-l}M             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\psi_{k} $} (m-1-3)
+(m-2-1) edge node[auto] {$ \phi_k$} (m-2-3)
+(m-3-1) edge node[below] {$ \psi_{k-l}$} (m-3-3)
+(m-1-1) edge node[auto] {$ $} (m-2-1)
+(m-2-1) edge node[auto] {$ $} (m-3-1)
+(m-1-3) edge node[auto] {$= $} (m-2-3)
+(m-2-3) edge node[auto] {$$} (m-3-3);
+\end{tikzpicture}
+\end{center}
+in which the left column is induced by inclusions coming from Artin-Rees lemma. We infer that
+$$\lim_{k\in \NN}\left(I/\ideal{a}^{k}I\otimes_AM\right)=\lim_{k\in \NN}\left(I/(\ideal{a}^k\cap I)\otimes_AM\right)$$
+and 
+$$\lim_{k\in \NN}\psi_k=\lim_{k\in \NN}\phi_k$$
+Since $\phi_k$ are all monomorphisms by \textbf{(iv)}, we derive that $\lim_{k\in\NN}\psi_k$ is a monomorphism. We have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{I\otimes_AM&&            M      \\
+\lim_{k\in \NN}(I/\ideal{a}^{k}I\otimes_AM)&&        \lim_{k\in \NN }M/\ideal{a}^{k}M            \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\phi $} (m-1-3)
+(m-2-1) edge node[below] {$ \lim_{k\in \NN}\psi_k$} (m-2-3)
+(m-1-1) edge node[left] {$ i$} (m-2-1)
+(m-1-3) edge node[auto] {$ $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+in which $i$ ($M$ is $\ideal{a}$-adically ideal-separated) and $\mathrm{lim}_{k\in \NN}\psi_k$  are monomorphism. Therefore, $\phi$ is a monomorphism.
+\end{proof}
+
+\begin{theorem}[Graded criterion for flatness]\label{theorem:gradedflatness}
+Suppose that $A$ is a ring, $\ideal{a}\subseteq A$ is an ideal and $M$ is an $A$-module. Consider the following conditions.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $M$ is flat $A$-module.
+\item $M/\ideal{a}M$ is flat as $A/\ideal{a}$-module and the canonical morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \mathrm{gr}_{\ideal{a}}(A)\otimes_{A/\ideal{a}}M/\ideal{a}M &\mathrm{gr}_{\ideal{a}}(M)\\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\gamma $} (m-1-2);
+\end{tikzpicture}
+\end{center} 
+is an isomorphism.
+\end{enumerate}
+Then \emph{$\textbf{(i)}\Rightarrow \textbf{(ii)}$}. Moreover, if $\ideal{a}$ is nilpotent or $M$ is $\ideal{a}$-adically ideal-separated and $A$ is noetherian, then \emph{$\textbf{(ii)}\Rightarrow \textbf{(i)}$}.
+\end{theorem}
+\begin{proof}
+Before the proof let us clarify that for every $k\in \NN$ the $k$-th graded part of $\gamma$ is given by formula
+$$\gamma_k\left((a+\ideal{a}^{k+1})\otimes (m+\ideal{a})\right) = a\cdot m +\ideal{a}^{k+1}M$$
+We prove that $\textbf{(i)}\Rightarrow \textbf{(ii)}$. If $M$ is flat over $A$, then for every $k\in \NN$ we have an isomorphism 
+$$\ideal{a}^{k}/\ideal{a}^{k+1}\otimes_AM\ni (a+\ideal{a}^{k+1})\otimes m \mapsto am+\ideal{a}^{k+1}M \in \ideal{a}^kM/\ideal{a}^{k+1}M$$
+It is clear that this is isomorphic to $k$-th graded part of $\gamma$ for each $k\in \NN$. Hence $\gamma$ is an isomorphism. Flatness of $M/\ideal{a}M$ over $A/\ideal{a}$ is clear.\\
+Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$ under additional assumptions indicated in the statement. Assume that $\gamma$ is an isomorphism. We prove by induction that for every integer $k\geq 1$ the morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \ideal{a}/\ideal{a}^k\otimes_{A/\ideal{a}^k}M/\ideal{a}^kM & \ideal{a}M/\ideal{a}^kM\\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\alpha_k $} (m-1-2);
+\end{tikzpicture}
+\end{center} 
+given by formula $\alpha_k\left((a+\ideal{a}^k)\otimes (m+\ideal{a}^kM)\right) = a\cdot m+\ideal{a}^kM$ is a monomorphism. For $k=1$ this is clear. Fix $k\geq 1$ and assume that $\alpha_k$ is a monomorphism. Consider a commutative diagram with exact rows
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{& \ideal{a}^{k}/\ideal{a}^{k+1}\otimes_{A/\ideal{a}^{k+1}}M/\ideal{a}^{k+1}M & \ideal{a}/\ideal{a}^{k+1}\otimes_{A/\ideal{a}^{k+1}}M/\ideal{a}^{k+1}M & \ideal{a}/\ideal{a}^{k}\otimes_{A/\ideal{a}^{k+1}}M/\ideal{a}^{k+1}M &  0                \\
+0 & \ideal{a}^{k}M/\ideal{a}^{k+1}M &\ideal{a}M/\ideal{a}^{k+1}M &\ideal{a}M/\ideal{a}^{k}M &0\\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5)
+(m-2-1) edge node[auto] {$ $} (m-2-2)
+(m-2-2) edge node[auto] {$ $} (m-2-3)
+(m-2-3) edge node[auto] {$ $} (m-2-4)
+(m-2-4) edge node[auto] {$ $} (m-2-5)
+(m-1-2) edge node[left] {$\beta_{k} $} (m-2-2)
+(m-1-3) edge node[auto] {$\alpha_{k+1} $} (m-2-3)
+(m-1-4) edge node[auto] {$\alpha_k $} (m-2-4);
+\end{tikzpicture}
+\end{center}
+where $\beta_{k}\left((a+\ideal{a}^{k+1})\otimes (m+\ideal{a}^{k+1}M)\right) = a\cdot m+\ideal{a}^{k+1}M$. Then $\beta_{k}$ is isomorphic with $\gamma_{k}$ and hence is an isomorphism. By induction $\alpha_k$ is a monomorphism. Thus the diagram above implies that $\alpha_{k+1}$ is a monomorphism. This finishes proof of the induction step. The conclusion is that $\alpha_k$ is a monomorphism for every $k\geq 1$. This implies that 
+$$\mathrm{Tor}^{A/\ideal{a}^k}_1(M/\ideal{a}^kM,A/\ideal{a})=0$$
+for every $k\geq 1$. By \textbf{(ii)} module $M/\ideal{a}M$ is flat over $A/\ideal{a}$. Theorem \ref{theorem:infinitesimalflatness} applied to ring $A/\ideal{a}^k$, nilpotent ideal $\ideal{a}/\ideal{a}^k$ and $A/\ideal{a}^k$-module $M/\ideal{a}^kM$ shows that $M/\ideal{a}^kM$ is flat as $A/\ideal{a}^k$-module for every $k$. Since for every $k\in \NN$ module $M/\ideal{a}^kM$ is flat over $A/\ideal{a}^k$ and either $\ideal{a}$ is nilpotent or $M$ is $\ideal{a}$-adically ideal-separated, we derive by Theorem \ref{theorem:infinitesimalflatness} that $M$ is flat over $A$.
+\end{proof}
+\noindent
+Now we prove important implications of Theorems \ref{theorem:infinitesimalflatness} and \ref{theorem:gradedflatness}.
+
+\begin{fact}\label{fact:criterionforideal-separated}
+Let $f:A\ra B$ be a morphism of noetherian rings and $\ideal{a}\subseteq A$ be an ideal such that $f(\ideal{a})$ is contained in the Jacobson radical $\ideal{J}(B)$ of $B$. Then every finitely generated $B$-module is $\ideal{a}$-adically ideal-separated as $A$-module.
+\end{fact}
+\begin{proof}
+Let $M$ be a finitely generated $B$-module. Fix an ideal $I$ of $A$. Then $I$ is finitely generated as $A$ is noetherian. Hence $I\otimes_AM$ is finitely generated as $B$-module. It is clear that $\ideal{a}$-adic topology on $I\otimes_AM$ as the $A$-module is the same as $f(\ideal{a})B$-adic topology on $I\otimes_AM$ as the $B$-module. Since $f(\ideal{a})B\subseteq \ideal{J}(B)$, we derive that $I\otimes_AM$ equipped with $\ideal{a}$-adic topology is separated.
+\end{proof}
+
+\begin{corollary}\label{corollary:localjacobsonflatness}
+Let $f:A\ra B$ be a morphism of noetherian rings and $\ideal{a}\subseteq A$ be an ideal such that $f(\ideal{a})$ is contained in the Jacobson radical $\ideal{J}(B)$ of $B$. Then for every finitely generated $B$-module $M$ the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $M$ is flat over $A$.
+\item $M/\ideal{a}$ is flat over $A/\ideal{a}$ and $\mathrm{Tor}^A_1(M,A/\ideal{a})=0$.
+\item $M/\ideal{a}M$ is flat $A/\ideal{a}$-module and the canonical morphism
+$$\gamma:\mathrm{gr}_{\ideal{a}}(A)\otimes_{A/\ideal{a}}M/\ideal{a}M\ra \mathrm{gr}_{\ideal{a}}(M)$$
+is an isomorphism.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+This is a straightforward consequence of Fact \ref{fact:criterionforideal-separated}, Theorems \ref{theorem:infinitesimalflatness} and \ref{theorem:gradedflatness}.
+\end{proof}
+
+\begin{corollary}
+Let $f:A\ra B$ be a morphism of noetherian rings and $\ideal{a}\subseteq A$ be an ideal such that $f(\ideal{a})$ is contained in the Jacobson radical $\ideal{J}(B)$ of $B$. Suppose that $u:M\ra N$ is a morphism of finitely generated $B$-modules and assume that $N$ is flat as $A$-module. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $u$ is a monomorphism and $N/u(M)$ is flat.
+\item $u\otimes_A1_{A/\ideal{a}}$ is a monomorphism and $N/u(M)\otimes_AA/\ideal{a}$ is a flat $A/\ideal{a}$-module.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+The implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ is obvious.\\
+Assume that $\textbf{(ii)}$ holds. Consider an exact sequence of $B$-modules
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{0& u(M)&  N&  N/u(M)&  0                \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Since $u\otimes1_{A/\ideal{a}}$ is a monomorphism, we derive that the sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{0& u(M)\otimes_AA/\ideal{a}&  N\otimes_AA/\ideal{a}&  N/u(M)\otimes_AA/\ideal{a}&  0                \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is exact. Hence $\mathrm{Tor}^A_1(N/u(M),A/\ideal{a})=0$ by flatness of $N$ over $A$. Thus Corollary \ref{corollary:localjacobsonflatness} implies that $N/u(M)$ is flat over $A$. Hence $u(M)$ is flat over $A$. Consider now $K=\Ker(u)\subseteq M$. This is also the kernel of the morphism $M\ra u(M)$. Thus $K\otimes_AA/\ideal{a}=0$ by flatness of $u(M)$. Since $K$ is finitely generated over $B$ and $f(\ideal{a})\subseteq \ideal{J}(B)$, Nakayama lemma implies that $K=0$. Hence $u$ is a monomorphism.  Thus we infer \textbf{(i)}.
+\end{proof}
+
+\section{Grothendieck's lemma on generic freeness}
+
+In this section we are going to prove extremely useful result due to Grothendieck. As usual we assume that all rings and algebras are commutative.
+
+\begin{theorem}[Grothendieck's lemma on generic freeness]\label{theorem:genericfreeness}
+Let $B$ be an algebra of finite presentation over a domain $A$ and $M$ be a finitely presented $B$-module. Then there exists nonzero $s\in A$ such that $M_s$ is free $A$-module.
+\end{theorem}
+\noindent
+We now proof the theorem. First for every noetherian domain $A$ and every finitely generated $A$-algebra $B$ consider the following \textit{\textbf{statement}}.
+\begin{center}
+\textit{For every finitely generated $B$-module $M$ there exists a nonzero element $s\in A$ such that $M_s$ is free $A$-module.}
+\end{center}
+Now we prove two lemmas.
+
+\begin{lemma}\label{lemma:genericfreenessfirstlemma}
+Let $A$ be a noetherian domain.Suppose that the \textbf{statement} holds for some finitely generated $A$-algebra $B$. Then it also holds for a polynomial $B$-algebra $B[x]$ considered as an $A$-algebra.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Pick a finitely generated $B[x]$-module $M$. Let $M_0=0$ and $M_1$ be a $B$-submodule of $M$ generated by some fixed finite set of generators of $M$ over $B[x]$. Next we define
+$$M_{n+1}=M_n+xM_n$$
+Clearly $\{M_n\}_{n\in \NN}$ is an ascending family of finitely generated $B$-submodules of $M$. Moreover, $\sum_{n\in \NN}M_n=M$. For every $n\geq 1$ we have an epimorphism $\phi_n:M_n/M_{n-1}\ra M_{n+1}/M_n$ of $B$-modules given by formula
+$$\phi_n(m+M_{n-1})=xm+M_n$$
+where $m\in M_n$. Since for all $n\geq 1$ modules $M_n/M_{n-1}$ are noetherian over $B$, we derive that there exists $k\in \NN$ such that  for every $n\geq k$ morphism $\phi_n$ is an isomorphism. Now by assumption \textit{\textbf{statement}} holds for $B$. Hence there are nonzero elements $s_1$,...,$s_k\in A$ such that $(M_i/M_{i-1})_{s_i}$ is a free $A_{s_i}$-module for every $1\leq i\leq k$. If $s=\prod^k_{i=1}s_i$, then $(M_{n+1}/M_{n})_s$ is a free $A_s$-module for every $n\in \NN$. Thus $M_s$ is isomorphic as an $A_s$-module with $\bigoplus_{n\in \NN}(M_{n+1}/M_n)_s$. Therefore, $M_s$ is a free $A_s$-module.
+\end{proof}
+
+\begin{lemma}\label{lemma:genericfreenesssecondlemma}
+Let $A$ be a noetherian domain. Then for every finitely generated $A$-module $M$ there exists nonzero element $s\in A$ such that $M_s$ is free over $A_s$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $K$ be a field of fractions for $A$. Then $K\otimes_AM$ is free of finite rank. Since $M$ is finitely generated module over a noetherian ring, we deduce that $M_s$ is free over $A_s$ for some nonzero element $s\in A$.
+\end{proof}
+\noindent
+Now we prove the theorem.
+
+\begin{proof}[proof of the theorem]
+Easy induction and Lemmas \ref{lemma:genericfreenessfirstlemma} and \ref{lemma:genericfreenesssecondlemma} proved above show that the \textit{\textbf{statement}} holds for any noetherian domain $A$ and finitely generated $A$-algebra $B$.\\
+Now consider finitely presented algebra $B$ over a domain $A$ and a finitely presented $B$-module $M$. Let
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ B &  &  B'                         \\
+  A & &   A'               \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-3) edge node[above] {$g' $} (m-1-1)
+(m-2-3) edge node[below]{$g$} (m-2-1)
+(m-2-3) edge node[right] {$f' $} (m-1-3)
+(m-2-1) edge node[left] {$ f$} (m-1-1);
+\end{tikzpicture}
+\end{center}
+be a cocartesian diagram of rings, where $A'$ is finitely generated subring of $A$ and $g$ is the inclusion of $A'$ into $A$ and $f':A'\ra B'$ is of finite type. We may assume that there exists finitely generated $B'$-module $M'$ such that $M=M'\otimes_{A'}A=M'\otimes_{B'}B$. Since \textit{\textbf{statement}} holds for $A'$-algebra $B'$, there exists nonzero $s'\in A'$ such that $(M')_{s'}$ is free ${A'}_{s'}$-module. Let $s=g(s')$. Then $M_s=(M'\otimes_{A'}A)_s=(M')_{s'}\otimes_{A'_{s'}}A_s$ is a free $A_s$-module.
+\end{proof}
+
+\section{Flatness on schemes}
+
+\begin{proposition}[Base change]
+Let
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ X' &  &  X                         \\
+  Y' & &   Y               \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$g' $} (m-1-3)
+(m-2-1) edge node[below]{$g$} (m-2-3)
+(m-1-3) edge node[right] {$f $} (m-2-3)
+(m-1-1) edge node[left] {$ f'$} (m-2-1);
+\end{tikzpicture}
+\end{center}
+be a cartesian diagram in the category of schemes. Assume that $\cF$ is a quasi-coherent module on $X$, which is flat over $Y$ at some point $x\in X$. Suppose that $x'$ is a point in $X'$ such that $g'(x')=x$. Then $g'^*\cF$ is flat over $Y'$ at $x'$.
+\end{proposition}
+\begin{proof}
+Since the question is local we may assume that all schemes are affine. In this case this is proved by an easy argument in commutative algebra.
+\end{proof}
+
+\begin{theorem}[Generic flatness]\label{theorem:genericflatness}
+Let $f:X\ra Y$ be a morphism of schemes of finite presentation. Suppose that $\cF$ is quasi-coherent module on $X$ of finite presentation and $Y$ is integral. Then there exists an open nonempty subset $V\subseteq Y$ such that $\cF$ is $f$-flat at every point of $f^{-1}(V)$.
+\end{theorem}
+\begin{proof}
+The question is local. We assume that $Y=\Spec A$ for some domain $A$. We pick an open cover $X=\bigcup^n_{i=1}U_i$, where $U_i\subseteq X$ are open affines. By Theorem \ref{theorem:genericfreeness} we deduce that there exist $s_1,...,s_n\in A$ such that $\cF$ is flat at each point of $f^{-1}\left(D(s_i)\right)\cap U_i$. If $s=\prod^n_{i=1}s_i$, then $f^{-1}\left(D(s)\right)\cap U_i\subseteq f^{-1}\left(D(s_i)\right)\cap U_i$ for every $1\leq i\leq n$ and hence $f^{-1}(D(s))$ is contained in flat locus of $\cF$.
+\end{proof}
+
+\begin{theorem}[Openess of flat locus]
+Let $f:X\ra Y$ be a locally of finite type morphism between locally noetherian schemes. For every coherent module $\cF$ on $X$ the set of points at which $\cF$ is $f$-flat is open.
+\end{theorem}
+\begin{proof}
+Clearly the result is local. Thus we may assume that $g:A\ra B$ is a finite type morphism of noetherian rings and $M$ is a finitely generated $B$-module. Let $E\subseteq \Spec B$ be the set of all points at which $\widetilde{M}$ is $\Spec g$-flat. Obviously $E$ is closed under generization. Moreover, we will show that for every $x\in E$ there exists an open neighbourhood $U$ of $x$ such that $U\cap \bd{cl}\{x\}\subseteq E$. Suppose that for some prime ideal $\ideal{q}\subseteq B$ module $M_{\ideal{q}}$ is flat over $A_{\ideal{p}}$, where $\ideal{p}=g^{-1}(\ideal{p})$. We are going to prove that there exists $b\in B\setminus \ideal{q}$ such that for every prime ideal $\ideal{q}'\in D(b)\cap V(\ideal{q})\subseteq \Spec B$ the following two conditions
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item $M_{\ideal{q}'}/\ideal{p}M_{\ideal{q}'}$ is flat $A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'}$-module
+\item $\mathrm{Tor}^{A_{\ideal{p}'}}_1(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'})=0$
+\end{enumerate}
+where $\ideal{p}'=g^{-1}(\ideal{q}')$ are satisifed.
+Observe that Theorem \ref{theorem:genericfreeness} shows that there exists nonzero $s\in A/\ideal{p}$ such that $(M/\ideal{p}M)_s$ is a free $(A/\ideal{p})_s$-module. Let $a\in A$ be an element with the property that
+$$s=a\,\mathrm{mod}\,\ideal{p}$$
+Then $a\not \in \ideal{p}$. Now for every $\ideal{q}'\in D(g(a))\cap V(\ideal{q})$ we have a flat $A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'}$-module $M_{\ideal{q}'}/\ideal{p}M_{\ideal{q}'}$, where $\ideal{p}'=g^{-1}(\ideal{q}')$. Hence \textbf{(1)} holds for $\ideal{q}'\in D(g(a))\cap V(\ideal{q})$. Next observe that $\mathrm{Tor}^{A_{\ideal{p}}}_1(M_{\ideal{q}},A_{\ideal{p}}/\ideal{p}A_{\ideal{p}})=0$ according to flatness of $M_{\ideal{q}}$ over $A_{\ideal{p}}$. Moreover, the existence of the following isomorphism is straightforward
+$$\mathrm{Tor}_1^{A_{\ideal{p}'}}(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'})=B_{\ideal{q}'}\otimes _B\mathrm{Tor}_1^A(M,A/\ideal{p})$$
+for every $\ideal{q}'\in \Spec B$ and $\ideal{p}'=g^{-1}(\ideal{q}')$. Thus finitely generated $B$-module $\mathrm{Tor}^A_1(M,A/\ideal{p})$ vanishes at $\ideal{q}$. Hence it also vanishes at some neighborhood of $\ideal{q}$. This means that there exists $c\in B$ such that $c\not \in \ideal{q}$ and for every $\ideal{q}'\in D(c)\subseteq \Spec B$ we have
+$$\mathrm{Tor}_1^{A_{\ideal{p}'}}(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'})=0$$
+where $\ideal{p}'=g^{-1}(\ideal{p}')$. Thus the condition \textbf{(2)} holds for $\ideal{q}'\in D(c)$. Therefore, if $\ideal{q}'\in D(b)$ and $b=g(a)c$, then both conditions are satisfied. Now for every $\ideal{q}'\in D(b)\cap V(\ideal{q})$ flatness of $M_{\ideal{q}'}$ over $A_{\ideal{p}'}$ follows from Corollary \ref{corollary:localjacobsonflatness}. Indeed, $g(\ideal{p})B_{\ideal{q}'}$ is contained in the Jacobson radical of $B_{\ideal{q}'}$.\\
+Now by the standard argument $E$ is constructible and closed under generization. Therefore, $E$ is an open subset of $\Spec B$.
+\end{proof}
+
+\begin{theorem}[Fiberwise criterion for flatness]
+Let $Z$ be a locally noetherian scheme, $f:Y\ra Z$ and $h:X\ra Z$ be locally noetherian $Z$-schemes and $\cF$ be a coherent module on $X$. Suppose that $g:X\ra Y$ is a morphism of $Z$-schemes. Assume that $x\in X$ is such that $\cF(x)\neq 0$ and $g(x)=y$, $h(x)=z=f(y)$. Then the following conditions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item $\cF$ is $g$-flat at $x$ and $f$ is flat at $y$.
+\item $\cF$ is $h$-flat at $x$ and $\cF_{\mid X_z}$ is flat with respect to $g_z=g\times_Z1_{\Spec k(z)}$ at $x$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Suppose that
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ (B,\ideal{n}) &  &  (C,\ideal{k})                         \\
+   &(A,\ideal{m}) &             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-3)
+(m-2-2) edge node[below]{$$} (m-1-1)
+(m-2-2) edge node[right] {$$} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a commutative diagram of local morphisms between local noetherian rings. Let $k=A/\ideal{m}$. For a $C$-module $M$ such that $M/\ideal{k}M\neq 0$ consider the following two statements
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item $M$ is flat $B$-module and $B$ is flat $A$-module
+\item $M$ is flat $A$-module and $M\otimes_Ak$ is flat $B\otimes_Ak$-module
+\end{enumerate}
+The implication $\textbf{(1)}\Rightarrow \textbf{(2)}$ is clear. We are going to prove that $\textbf{(2)}\Rightarrow \textbf{(1)}$ so let us assume \textbf{(2)}. We are free to use graded criterion for flatness of Theorem \ref{theorem:gradedflatness}. We have the following commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=6em,text height=1.5ex, text depth=0.25ex] 
+{ \mathrm{gr}_{\ideal{m}}(A)\otimes_{A/\ideal{m}}M/\ideal{m}M &    \mathrm{gr}_{\ideal{m}}(M)                   \\
+  \mathrm{gr}_{\ideal{m}}(A)\otimes_{A/\ideal{m}}B/\ideal{m}B\otimes_{B/\ideal{m}B}M/\ideal{m}M &  \mathrm{gr}_{\ideal{m}B}(B)\otimes_{B/\ideal{m}B}M/\ideal{m}M           \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\gamma $} (m-1-2)
+(m-2-1) edge node[left]{$=$} (m-1-1)
+(m-2-2) edge node[right] {$\delta$} (m-1-2)
+(m-2-1) edge node[below=4pt] {$\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $\gamma$, $\delta$ and $\sigma$ are the canonical morphisms. According to $\textbf{(2)}$ we have that $\gamma$ is an isomorphism. Clearly $\delta$ and $\sigma$ are epimorphisms. Thus $\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}$ and $\delta$ are isomorphisms. Hence we deduce that \textit{\textbf{$M$ is flat as $B$-module}}. Next we are going to show that $\sigma$ is a monomorphism. Note  that $M/\ideal{m}M$ is a flat $B/\ideal{m}B$-module. From this we derive that $M/\ideal{m}M\otimes_{B/\ideal{m}B}\Ker(\sigma)=
+\ker\left(\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}\right)=0$. If $L\subseteq \ker(\sigma)$ is a finitely generated $B/\ideal{m}B$-module, then $M/\ideal{m}M\otimes_{B/\ideal{m}B}L=0$ according to flatness of $M/\ideal{m}M$ over $B/\ideal{m}B$. Hence $$0=B/\ideal{n}B\otimes_{B/\ideal{m}B}\left(M/\ideal{m}M\otimes_{B/\ideal{m}B}L\right)=
+M/\ideal{n}M\otimes_{B/\ideal{m}B}L$$
+Now there exists an epimorphism of $C$-modules $M/\ideal{n}M\ra M/\ideal{k}M$ and $M/\ideal{k}M\neq 0$. Hence $M/\ideal{n}M\neq 0$. Utilizing the fact that $L$ was chosen to be a finitely generated module over $B/\ideal{m}B$, we deduce by Nakayama lemma that $L=0$. As $L$ was arbitrarily finitely generated $B/\ideal{m}B$-submodule of $\ker(\sigma)$, we infer that $\ker(\sigma)=0$.
+Thus indeed $\sigma$ is a monomorphism and hence it is an isomorphism. By Theorem \ref{theorem:gradedflatness} we deduce that \textit{\textbf{$B$ is flat over $A$}}. Now \textbf{(1)} is proved.\\
+Finally the geometric statement reduces to the algebraic one studied above.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
