@@ -16,23 +16,6 @@ Let $f:(X,\cO_X)\ra (Y,\cO_Y)$ be a morphism of ringed spaces and $\cF$ be a she
 We say that $\cF$ is \textit{$f$-flat} or \textit{flat over $Y$} if it is $f$-flat at every point $x\in X$ and we define $f$ to be \textit{a flat morphism} if $\cO_X$ is flat over $Y$.
 \end{definition}
 
-\begin{proposition}
-Suppose that $f:X\ra Y$ is a morphism of ringed spaces, $x\in X$ and $\cF$ is a sheaf of $\cO_X$-modules flat over $Y$ at $x$. Then for every open neighbourhood $V\subseteq Y$ of $f(x)$ the functor
-\begin{center}
-$\Mod(\cO_V)\ni \cG\mapsto (f'^*\cG\otimes_{\cO_{f^{-1}(V)}}\cF_{\mid f^{-1}(V)})_x\in \Mod(\cO_{X,x})$
-\end{center}
-is exact, where $f':f^{-1}(V)\ra V$ is the restriction of $f$.
-\end{proposition}
-\begin{proof}
-We have natural isomorphisms $\left(f'^*\cG\otimes_{\cO_{f^{-1}(V)}}\cF_{\mid f^{-1}(V)}\right)_x\cong f'^*\cG_x\otimes_{\cO_{X,x}}\cF_x$ and $f'^*\cG_x\cong \cO_{X,x}\otimes_{\cO_{Y,f(x)}}\cG_{f(x)}$. Thus
-$$\left(f'\cG\otimes_{\cO_{f^{-1}(V)}}\cF_{\mid f^{-1}(V)}\right)_x\cong  f'^*\cG_x\otimes_{\cO_{X,x}}\cF_x\cong \left(\cO_{X,x}\otimes_{\cO_{Y,f(x)}}\cG_{f(x)}\right)\otimes_{\cO_{X,x}}\cF_x\cong \cG_{f(x)}\otimes_{\cO_{Y,f(x)}}\cF_x$$
-and all isomorphisms are natural in $\cG$. Now exactness of the functor
-\begin{center}
- $\Mod(\cO_V)\ni \cG\mapsto  \cG_{f(x)}\otimes_{\cO_{Y,f(x)}}\cF_x\in \Mod(\cO_{X,x})$
-\end{center}
-is clear by definition of $\cF$ being $f$-flat at $x\in X$.
-\end{proof}
-
 \begin{proposition}[Transitivity]
 Let $f:X\ra Y$ and $g:Y\ra Z$ be morphisms of ringed spaces, $x\in X$ and $\cF$ be a sheaf of $\cO_X$-modules. Assume that $\cF$ is $f$-flat at $x$ and $g$ is flat at $f(x)$. Then $\cF$ is $(g\cdot f)$-flat at $x$.
 \end{proposition}
@@ -428,7 +411,7 @@ The question is local. We assume that $Y=\Spec A$ for some domain $A$. We pick a
 Let $f:X\ra Y$ be a locally of finite type morphism between locally noetherian schemes. For every coherent module $\cF$ on $X$ the set of points at which $\cF$ is $f$-flat is open.
 \end{theorem}
 \begin{proof}
-Clearly the result is local. Thus we may assume that $g:A\ra B$ is a finite type morphism of noetherian rings and $M$ is a finitely generated $B$-module. Let $E\subseteq \Spec B$ be the set of all points at which $\widetilde{M}$ is $\Spec g$-flat. Obviously $E$ is closed under generization. Moreover, we will show that for every $x\in E$ there exists an open neighbourhood $U$ of $x$ such that $U\cap \bd{cl}\{x\}\subseteq E$. Suppose that for some prime ideal $\ideal{q}\subseteq B$ module $M_{\ideal{q}}$ is flat over $A_{\ideal{p}}$, where $\ideal{p}=g^{-1}(\ideal{p})$. We are going to prove that there exists $b\in B\setminus \ideal{q}$ such that for every prime ideal $\ideal{q}'\in D(b)\cap V(\ideal{q})\subseteq \Spec B$ the following two conditions
+Clearly the result is local. Thus we may assume that $g:A\ra B$ is a finite type morphism of noetherian rings and $M$ is a finitely generated $B$-module. Let $E\subseteq \Spec B$ be the set of all points at which $\widetilde{M}$ is $\Spec g$-flat. We show that for every $x\in E$ there exists an open neighbourhood $U$ of $x$ such that $U\cap \bd{cl}\{x\}\subseteq E$. Suppose that for some prime ideal $\ideal{q}\subseteq B$ module $M_{\ideal{q}}$ is flat over $A_{\ideal{p}}$, where $\ideal{p}=g^{-1}(\ideal{p})$. We are going to prove that there exists $b\in B\setminus \ideal{q}$ such that for every prime ideal $\ideal{q}'\in D(b)\cap V(\ideal{q})\subseteq \Spec B$ the following two conditions
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
 \item $M_{\ideal{q}'}/\ideal{p}M_{\ideal{q}'}$ is flat $A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'}$-module
 \item $\mathrm{Tor}^{A_{\ideal{p}'}}_1(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'})=0$
@@ -441,11 +424,11 @@ $$\mathrm{Tor}_1^{A_{\ideal{p}'}}(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ide
 for every $\ideal{q}'\in \Spec B$ and $\ideal{p}'=g^{-1}(\ideal{q}')$. Thus finitely generated $B$-module $\mathrm{Tor}^A_1(M,A/\ideal{p})$ vanishes at $\ideal{q}$. Hence it also vanishes at some neighborhood of $\ideal{q}$. This means that there exists $c\in B$ such that $c\not \in \ideal{q}$ and for every $\ideal{q}'\in D(c)\subseteq \Spec B$ we have
 $$\mathrm{Tor}_1^{A_{\ideal{p}'}}(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'})=0$$
 where $\ideal{p}'=g^{-1}(\ideal{p}')$. Thus the condition \textbf{(2)} holds for $\ideal{q}'\in D(c)$. Therefore, if $\ideal{q}'\in D(b)$ and $b=g(a)c$, then both conditions are satisfied. Now for every $\ideal{q}'\in D(b)\cap V(\ideal{q})$ flatness of $M_{\ideal{q}'}$ over $A_{\ideal{p}'}$ follows from Corollary \ref{corollary:localjacobsonflatness}. Indeed, $g(\ideal{p})B_{\ideal{q}'}$ is contained in the Jacobson radical of $B_{\ideal{q}'}$.\\
-Now by the standard argument $E$ is constructible and closed under generization. Therefore, $E$ is an open subset of $\Spec B$.
+Now by the standard argument $E$ is constructible. Clearly $E$ is closed under generization. Therefore, $E$ is an open subset of $\Spec B$.
 \end{proof}
 
 \begin{theorem}[Fiberwise criterion for flatness]
-Let $Z$ be a locally noetherian scheme, $f:Y\ra Z$ and $h:X\ra Z$ be locally noetherian $Z$-schemes and $\cF$ be a coherent module on $X$. Suppose that $g:X\ra Y$ is a morphism of $Z$-schemes. Assume that $x\in X$ is such that $\cF(x)\neq 0$ and $g(x)=y$, $h(x)=z=f(y)$. Then the following conditions are equivalent.
+Let $Z$ be a locally noetherian scheme, $f:Y\ra Z$ and $h:X\ra Z$ be locally noetherian $Z$-schemes and $\cF$ be a sheaf of $\cO_X$-modules. Suppose that $g:X\ra Y$ is a morphism of $Z$-schemes. Assume that $x$ is a point of $X$ such that $\cF_x$ is a nontrivial finitely generated $\cO_{X,x}$-module. Denote $g(x)=y$ and $h(x)=z=f(y)$. Then the following conditions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
 \item $\cF$ is $g$-flat at $x$ and $f$ is flat at $y$.
 \item $\cF$ is $h$-flat at $x$ and $\cF_{\mid X_z}$ is flat with respect to $g_z=g\times_Z1_{\Spec k(z)}$ at $x$.
@@ -465,12 +448,12 @@ Suppose that
 (m-2-2) edge node[right] {$$} (m-1-3);
 \end{tikzpicture}
 \end{center}
-is a commutative diagram of local morphisms between local noetherian rings. Let $k=A/\ideal{m}$. For a $C$-module $M$ such that $M/\ideal{k}M\neq 0$ consider the following two statements
+is a commutative diagram of local morphisms between local noetherian rings. Fix a finitely generated $C$-module $M$ such that $M\neq 0$ and consider the following two statements
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
 \item $M$ is flat $B$-module and $B$ is flat $A$-module
-\item $M$ is flat $A$-module and $M\otimes_Ak$ is flat $B\otimes_Ak$-module
+\item $M$ is flat $A$-module and $M/\ideal{m}M$ is flat $B/\ideal{m}B$-module
 \end{enumerate}
-The implication $\textbf{(1)}\Rightarrow \textbf{(2)}$ is clear. We are going to prove that $\textbf{(2)}\Rightarrow \textbf{(1)}$ so let us assume \textbf{(2)}. We are free to use graded criterion for flatness of Theorem \ref{theorem:gradedflatness}. We have the following commutative diagram
+The implication $\textbf{(1)}\Rightarrow \textbf{(2)}$ is easy. We now prove that $\textbf{(2)}\Rightarrow \textbf{(1)}$ so let us assume \textbf{(2)}. We are free to use graded criterion for flatness of Theorem \ref{theorem:gradedflatness}. We have the following commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -484,10 +467,10 @@ The implication $\textbf{(1)}\Rightarrow \textbf{(2)}$ is clear. We are going to
 (m-2-1) edge node[below=4pt] {$\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}$} (m-2-2);
 \end{tikzpicture}
 \end{center}
-where $\gamma$, $\delta$ and $\sigma$ are the canonical morphisms. According to $\textbf{(2)}$ we have that $\gamma$ is an isomorphism. Clearly $\delta$ and $\sigma$ are epimorphisms. Thus $\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}$ and $\delta$ are isomorphisms. Hence we deduce that \textit{\textbf{$M$ is flat as $B$-module}}. Next we are going to show that $\sigma$ is a monomorphism. Note  that $M/\ideal{m}M$ is a flat $B/\ideal{m}B$-module. From this we derive that $M/\ideal{m}M\otimes_{B/\ideal{m}B}\Ker(\sigma)=
-\ker\left(\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}\right)=0$. If $L\subseteq \ker(\sigma)$ is a finitely generated $B/\ideal{m}B$-module, then $M/\ideal{m}M\otimes_{B/\ideal{m}B}L=0$ according to flatness of $M/\ideal{m}M$ over $B/\ideal{m}B$. Hence $$0=B/\ideal{n}B\otimes_{B/\ideal{m}B}\left(M/\ideal{m}M\otimes_{B/\ideal{m}B}L\right)=
-M/\ideal{n}M\otimes_{B/\ideal{m}B}L$$
-Now there exists an epimorphism of $C$-modules $M/\ideal{n}M\ra M/\ideal{k}M$ and $M/\ideal{k}M\neq 0$. Hence $M/\ideal{n}M\neq 0$. Utilizing the fact that $L$ was chosen to be a finitely generated module over $B/\ideal{m}B$, we deduce by Nakayama lemma that $L=0$. As $L$ was arbitrarily finitely generated $B/\ideal{m}B$-submodule of $\ker(\sigma)$, we infer that $\ker(\sigma)=0$.
+where $\gamma$, $\delta$ and $\sigma$ are the canonical morphisms. According to $\textbf{(2)}$ the morphism $\gamma$ is an isomorphism. Clearly $\delta$ and $\sigma$ are epimorphisms. Thus $\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}$ and $\delta$ are isomorphisms. Hence we deduce that \textit{\textbf{$M$ is flat as $B$-module}}. Next we are going to show that $\sigma$ is a monomorphism. Note  that $M/\ideal{m}M$ is a flat $B/\ideal{m}B$-module. From this we derive that $\Ker(\sigma)\otimes_{B/\ideal{m}B}M/\ideal{m}M=
+\ker\left(\sigma \otimes_{B/\ideal{m}B}1_{M/\ideal{m}M}\right)=0$. If $L\subseteq \ker(\sigma)$ is a finitely generated $B/\ideal{m}B$-module, then $L\otimes_{B/\ideal{m}B}M/\ideal{m}M=0$ according to flatness of $M/\ideal{m}M$ over $B/\ideal{m}B$. Hence 
+$$0=\left(L\otimes_{B/\ideal{m}B}M/\ideal{m}M\right)\otimes_{B/\ideal{m}B}B/\ideal{n}B= L\otimes_{B/\ideal{m}B}M/\ideal{n}M$$
+Now there exists an epimorphism of $C$-modules $M/\ideal{n}M\ra M/\ideal{k}M$ and $M/\ideal{k}M\neq 0$ because $M\neq 0$ and $M$ is finitely generated over $C$. Hence $M/\ideal{n}M\neq 0$. Utilizing the fact that $L$ was chosen to be a finitely generated module over $B/\ideal{m}B$, we deduce by Nakayama lemma that $L=0$. As $L$ was arbitrarily finitely generated $B/\ideal{m}B$-submodule of $\ker(\sigma)$, we infer that $\ker(\sigma)=0$.
 Thus indeed $\sigma$ is a monomorphism and hence it is an isomorphism. By Theorem \ref{theorem:gradedflatness} we deduce that \textit{\textbf{$B$ is flat over $A$}}. Now \textbf{(1)} is proved.\\
 Finally the geometric statement reduces to the algebraic one studied above.
 \end{proof}
