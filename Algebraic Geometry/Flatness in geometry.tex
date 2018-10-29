@@ -6,6 +6,10 @@
 \date{}
 \maketitle
 
+\section{Introduction}
+\noindent
+In this notes we study flatness for morphism of ringed spaces with special emphasis on flatness in scheme theory. We use frequently and without any further mention the homological criterion for flatness {\cite[Proposition 3.3]{Flatness}}.
+
 \section{Flatness on ringed spaces}
 
 \begin{definition}
@@ -407,7 +411,7 @@ Let $f:X\ra Y$ be a morphism of schemes of finite presentation. Suppose that $\c
 The question is local. We assume that $Y=\Spec A$ for some domain $A$. We pick an open cover $X=\bigcup^n_{i=1}U_i$, where $U_i\subseteq X$ are open affines. By Theorem \ref{theorem:genericfreeness} we deduce that there exist $s_1,...,s_n\in A$ such that $\cF$ is flat at each point of $f^{-1}\left(D(s_i)\right)\cap U_i$. If $s=\prod^n_{i=1}s_i$, then $f^{-1}\left(D(s)\right)\cap U_i\subseteq f^{-1}\left(D(s_i)\right)\cap U_i$ for every $1\leq i\leq n$ and hence $f^{-1}(D(s))$ is contained in flat locus of $\cF$.
 \end{proof}
 
-\begin{theorem}[Openess of flat locus]
+\begin{theorem}[Openess of flat locus]\label{theorem:openessofflatlocus}
 Let $f:X\ra Y$ be a locally of finite type morphism between locally noetherian schemes. For every coherent module $\cF$ on $X$ the set of points at which $\cF$ is $f$-flat is open.
 \end{theorem}
 \begin{proof}
@@ -424,7 +428,7 @@ $$\mathrm{Tor}_1^{A_{\ideal{p}'}}(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ide
 for every $\ideal{q}'\in \Spec B$ and $\ideal{p}'=g^{-1}(\ideal{q}')$. Thus finitely generated $B$-module $\mathrm{Tor}^A_1(M,A/\ideal{p})$ vanishes at $\ideal{q}$. Hence it also vanishes at some neighborhood of $\ideal{q}$. This means that there exists $c\in B$ such that $c\not \in \ideal{q}$ and for every $\ideal{q}'\in D(c)\subseteq \Spec B$ we have
 $$\mathrm{Tor}_1^{A_{\ideal{p}'}}(M_{\ideal{q}'},A_{\ideal{p}'}/\ideal{p}A_{\ideal{p}'})=0$$
 where $\ideal{p}'=g^{-1}(\ideal{p}')$. Thus the condition \textbf{(2)} holds for $\ideal{q}'\in D(c)$. Therefore, if $\ideal{q}'\in D(b)$ and $b=g(a)c$, then both conditions are satisfied. Now for every $\ideal{q}'\in D(b)\cap V(\ideal{q})$ flatness of $M_{\ideal{q}'}$ over $A_{\ideal{p}'}$ follows from Corollary \ref{corollary:localjacobsonflatness}. Indeed, $g(\ideal{p})B_{\ideal{q}'}$ is contained in the Jacobson radical of $B_{\ideal{q}'}$.\\
-Now by the standard argument $E$ is constructible. Clearly $E$ is closed under generization. Therefore, $E$ is an open subset of $\Spec B$.
+This proves that for every $x\in E$ there exists an open neighbourhood $U$ of $x$ such that $U\cap \bd{cl}\{x\}\subseteq E$. Clearly $E$ is closed under generization. In particular, if $x\not \in E$ then $E\cap \bd{cl}(\{x\}) = \emptyset$. By {\cite[Proposition 1.7]{Constructibleandlocallyconstructiblesets}} we derive that $E$ is constructible. By {\cite[Corollary 4.6]{Proconstructiblesets}} we deduce that $E$ is an open subset of $\Spec B$.
 \end{proof}
 
 \begin{theorem}[Fiberwise criterion for flatness]
@@ -486,5 +490,8 @@ Finally the geometric statement reduces to the algebraic one studied above.
 
 
 
+\small
+\bibliographystyle{apalike}
+\bibliography{refs}
 
 \end{document}

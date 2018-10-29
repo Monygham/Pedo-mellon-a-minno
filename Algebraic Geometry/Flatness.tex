@@ -5,6 +5,9 @@
 \title{Flatness}
 \date{}
 \maketitle
+\section{Introduction}
+\noindent
+In this notes we do not assume that rings unital but possibly noncommutative. For homological algebra (exact sequences, the notion of projective module, properties of $\mathrm{Tor}$ etc.) the reader should consult \cite{weibel1995introduction}.
 
 \section{Filtered colimits in the category of modules}
 
@@ -114,7 +117,7 @@ Let $I$ be a filtered category and $\{M_i\}_{i\in I}$ be an $I$-indexed diagram 
 Proposition \ref{proposition:filteredexact} implies that filtered colimits of short exact sequences of abelian groups are short exact seqeunces. Thus filtered colimits of flat right $R$-modules are flat.
 \end{proof}
 
-\begin{proposition}\label{proposition:homologicalflatness}
+\begin{proposition}[Homological criterion for flatness]\label{proposition:homologicalflatness}
 Let $M$ be a right $R$-module. Then the following are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
 \item For every finitely generated left ideal $I\subseteq R$ morphism $M\otimes_RI\ra M$ induced by the inclusion of $I$ in $R$ is a monomorphism.
@@ -304,5 +307,14 @@ by finite presentation of $M$. Thus there exists an $\alpha\in I$ and a morphism
 
 
 
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{refs}
 
 \end{document}

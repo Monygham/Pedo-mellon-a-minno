@@ -1,0 +1,272 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Pro-constructible sets}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+This is a continuation of \cite{Constructibleandlocallyconstructiblesets}.
+
+\section{Prime spectrum and colimits of commutative algebras}
+
+\begin{proposition}\label{proposition:imageofacolimitisanintersection}
+Let $A$ be a ring and $\{B_i\}_{i\in I}$ be a filtered diagram of $A$-algebras. Then the image of
+$$\Spec \left(\mathrm{colim}_{i\in I}B_i\right)\ra \Spec A$$
+is equal to the intersection of images $\big\{\Spec B_i\ra \Spec A\big\}_{i\in I}$.
+\end{proposition}
+
+\begin{lemma}\label{lemma:colimitiszerosometermiszero}
+Let $A$ be a ring and $\{B_i\}_{i\in I}$ be a filtered diagram of $A$-algebras. Then $\mathrm{colim}_{i\in I}B_i = 0$ if and only if there exists $i_0$ in $I$ such that $B_{i_0} = 0$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every $i\in I$ let $f_i:B_i\ra \mathrm{colim}_{i\in I}B_i$ be the canonical morphism. If $\mathrm{colim}_{i\in I}B_i = 0$, then $f_i(1) = 0$ for every $i\in I$. Since $I$ is filtered category, this implies that there exists $i_0\in I$ such that $1 = 0$ in $B_{i_0}$. Hence $B_{i_0}=0$. The converse holds, because if $B_{i_0} = 0$ for some $i_0\in I$, then 
+$$0 = f_{i_0}(0) = f_{i_0}(1) = 1$$
+in $\mathrm{colim}_{i\in I}B_i$.
+\end{proof}
+
+\begin{proof}[Proof of the proposition]
+Consider $\ideal{p}\in \Spec A$ and let $k(\ideal{p}) = A_{\ideal{p}}/\ideal{p}A_{\ideal{p}}$ be its residue field. For every $A$-algebra $B$ we denote $k(\ideal{p})\otimes_AB$ by $B(\ideal{p})$. We have
+$$k(\ideal{p})\otimes_A \left(\mathrm{colim}_{i\in I}B_i\right) \cong \mathrm{colim}_{i\in I}\left(k(\ideal{p})\otimes_AB_i\right)\cong \mathrm{colim}_{i\in I}B_i(\ideal{p})$$
+According to Lemma \ref{lemma:colimitiszerosometermiszero} we have 
+$$k(\ideal{p})\otimes_A \left(\mathrm{colim}_{i\in I}B_i\right) = 0\, \Leftrightarrow \exists_{i\in I}\,\,B_{i}(\ideal{p}) = 0$$
+This implies that 
+$$\Spec \bigg(k(\ideal{p})\otimes_A \left(\mathrm{colim}_{i\in I}B_i\right)\bigg) = \emptyset\,\Leftrightarrow\,\exists_{i\in I}\,\,B_{i}(\ideal{p}) = 0$$
+Since the prime spectrum on the left hand side is the fiber of $\ideal{p}$ under the morphism 
+$$\Spec \left(\mathrm{colim}_{i\in I}B_i\right)\ra \Spec A$$
+we deduce that $\ideal{p}$ is not in the image of this map if and only if there exists $i\in I$ such that $B_i(\ideal{p}) = 0$. Hence $\ideal{p}$ is not in the image of 
+$$\Spec \left(\mathrm{colim}_{i\in I}B_i\right)\ra \Spec A$$
+if and only if it is not in the image of some $\Spec B_i\ra \Spec A$. This finishes the proof.
+\end{proof}
+
+\begin{corollary}\label{corollary:intersectionsofimages}
+Let $A$ be a ring and $\{B_i\}_{i\in I}$ be a family of $A$-algebras. We set
+$$\bigotimes_{i\in I}B_i = \mathrm{colim}_{n\in \NN,\,\{i_1,...,i_n\}\subseteq I}\left(B_{i_1}\otimes_A...\otimes_AB_{i_n}\right)$$
+Then the image of the map
+$$\Spec \left(\bigotimes_{i\in I}B_i\right)\ra \Spec A$$
+is the intersection of images of maps $\big\{\Spec B_i\ra \Spec A\big\}_{i\in I}$.
+\end{corollary}
+\begin{proof}
+For $\{i_1,...,i_n\}\subseteq I$ the image of the map
+$$\Spec \left(B_{i_1}\otimes_A...\otimes_AB_{i_n}\right)\ra \Spec A$$
+is the intersection of images of maps $\big\{\Spec B_i \ra \Spec A\big\}_{i\in I}$. Hence the assertion is an immediate consequence of Proposition \ref{proposition:imageofacolimitisanintersection}. 
+\end{proof}
+
+\begin{corollary}\label{corollary:intersectionofconstructibleisimage}
+Let $X$ be a quasi-compact scheme and $E$ be a subset of $X$. Suppose that $E$ is an intersection of constructible subsets of $X$. Then there exists an affine scheme $Z$ and a morphism $f:Z\ra X$ such that $f(Z) = E$.
+\end{corollary}
+\begin{proof}
+Let $X = \bigcup_{j=1}^mU_j$ be an affine open cover. By {\cite[Corollary 3.4]{Constructibleandlocallyconstructiblesets}} and Corollary \ref{corollary:intersectionsofimages} for every $1\leq j\leq m$ there exists an affine scheme $Z_j$ and a morphism $f_j:Z_j\ra U_j$ such that $f_j(Z_j) = E\cap U_j$. Define affine scheme $Z = \coprod_{j=1}^m Z_j$ and let $f:Z\ra X$ be a morphism such that $f_{\mid Z_j}$ is the composition of $f_j$ with the inclusion $U_j\hookrightarrow Z$. Then 
+$$f(Z) = \bigcup_{j=1}^m f_j(Z_j) = \bigcup_{j=1}^m \left(E\cap U_j\right) = E$$
+\end{proof}
+
+\section{Pro-constructible sets}
+
+\begin{definition}
+Let $X$ be a topological space. A subset $E$ of $X$ is called  \textit{pro-constructible in $X$} if for every point $x$ in $X$ there exists an open neighbourhood $U$ of $x$ in $X$ such that $U\cap E$ is an intersection of locally constructible subsets of $U$.
+\end{definition}
+
+\begin{fact}\label{fact:proconstructiblepreimage}
+Let $f:X\ra Y$ be a morphism of schemes and $E$ be a pro-constructible subset of $Y$. Then $f^{-1}(E)$ is a pro-constructible subset of $X$.
+\end{fact}
+\begin{proof}
+This is an immediate consequence of {\cite[Fact 3.5]{Constructibleandlocallyconstructiblesets}} and the definition of pro-constructible sets.
+\end{proof}
+
+\begin{corollary}\label{corollary:proconstructibleonschemes}
+Let $X$ be a scheme and $E$ be a subset of $X$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $E$ is pro-constructible.
+\item $E\cap U$ is an intersection of constructible sets in $U$ for every open quasi-compact and quasi-separated subset $U$ of $X$.
+\item $E\cap U$ is an intersection of constructible sets in $U$ for every affine open subset $U$ of $X$.
+\end{enumerate} 
+\end{corollary}
+\begin{proof}
+This is a consequence of {\cite[Theorem 3.2]{Constructibleandlocallyconstructiblesets}} and the fact that union of sets is distributive over (arbitrary) intersection.
+\end{proof}
+\noindent
+The next theorem is a version of Chevalley's theorem on images for pro-constructible sets.
+
+\begin{theorem}\label{theorem:Chevalleysforproconstructible}
+Let $f:X\ra Y$ be a quasi-compact morphism of schemes and $E$ be a pro-constructible subset of $X$. Then $f(E)$ is pro-constructible in $Y$.
+\end{theorem}
+
+\begin{lemma}\label{lemma:everyalgebraisacolimitoffinitelypresented}
+Let $A$ be a ring and $B$ be an $A$-algebra. Then $B$ is a filtered colimit of finitely presented $A$-algebras.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Left as an exercise.
+\end{proof}
+\noindent
+The next result is very simple but useful.
+
+\begin{lemma}\label{lemma:affinecoveringofqc}
+Let $X$ be a quasi-compact scheme. Then there exists an affine scheme $W$ and a surjective morphism $W\ra X$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $X = \bigcup_{j=1}^mU_j$ be an open affine cover of $X$. Pick $W = \coprod_{j=1}^mU_j$ with the canonical morphism $W\ra X$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+According to Corollary \ref{corollary:proconstructibleonschemes}, we may assume that $Y$ is affine. Then $X$ is quasi-compact. Lemma \ref{lemma:affinecoveringofqc} yields affine scheme $W$ and a surjective morphism $g:W\ra X$. By Fact \ref{fact:proconstructiblepreimage} we derive that $g^{-1}(E)$ is pro-constructible subset of $W$. Thus replacing $f$ by $f\cdot g$ we may assume that $X$ is affine. In this case $E$ is an intersection of constructible subsets of $X$ according to Corollary \ref{corollary:proconstructibleonschemes}. Corollary \ref{corollary:intersectionofconstructibleisimage} implies that we can further assume that $E = X$. Hence it suffices to show that the image of a morphism $f:X\ra Y$ of affine schemes is an intersection of constructible sets. By Lemma \ref{lemma:everyalgebraisacolimitoffinitelypresented} there exists a filtered diagram $\big\{f_i:X_i\ra Y\big\}_{i\in I}$ of morphisms of finite presentation such that 
+$$\mathrm{colim}_{i\in I}\Gamma(X_i,\cO_{X_i}) = \Gamma(X,\cO_X)$$
+in the category of $\Gamma(Y,\cO_Y)$-algebras. By {\cite[Corollary 3.4]{Constructibleandlocallyconstructiblesets}} we deduce that $f_i(X_i)$ is constructible in $Y$ for each $i\in I$. Proposition \ref{proposition:imageofacolimitisanintersection} implies that
+$$f(X) = \bigcap_{i\in I}f_i(X_i)$$
+This finishes the proof.
+\end{proof}
+
+\begin{corollary}[Characterization of pro-constructible sets on qcqs schemes]\label{corollary:proconstructibelonqcqs}
+Let $X$ be a quasi-compact and quasi-separated scheme. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $E$ is pro-constructible.
+\item $E$ is an intersection constructible subsets in $X$.
+\item There exists an affine scheme $Z$ and a morphism $f:Z\ra X$ such that $E = f(Z)$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Assume that $E$ is pro-constructible subset of $X$. Corollary \ref{corollary:proconstructibleonschemes} implies $E$ is an intersection of constructible subsets of $X$. Thus $\textbf{(i)}\Rightarrow \textbf{(ii)}$ is true.\\
+If \textbf{(i)} holds, then Corollary \ref{corollary:intersectionofconstructibleisimage} gives an affine scheme $Z$ and a morphism $f:Z\ra X$ such that $E = f(Z)$. This implies that $\textbf{(ii)}\Rightarrow \textbf{(iii)}$.\\
+For the proof of $\textbf{(iii)}\Rightarrow \textbf{(i)}$ note that such $f$ is quasi-compact (this follows because $X$ is quasi-separated) and hence the implication follows from Theorem \ref{theorem:Chevalleysforproconstructible}.
+\end{proof}
+
+\section{Open and closed subsets of schemes}
+
+\begin{definition}
+Let $X$ be a topological space and let $\eta$ be a point of $X$. Every point $x$ in $\bd{cl}\left(\{\eta \}\right)$ is called \textit{a specialization of $\eta$}. If $x$ is a specialization of $\eta$, then $\eta$ is called \textit{a generization of $x$}.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a topological space and $Z$ be its subset. We say that $Z$ is \textit{closed under specialization (generization)} if $Z$ contains all specializations (generizations) of its points.
+\end{definition}
+
+\begin{theorem}\label{theorem:specializationimpliesclosed}
+Let $X$ be a scheme and $f:Z\ra X$ be a quasi-compact morphism of schemes. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $f(Z)$ is a closed subset of $X$.
+\item $f(Z)$ is closed under specialization.
+\end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need the following result.
+\begin{lemma}\label{lemma:specializationandaffineimages}
+Let $f:A\ra B$ be a morphism of rings. If the image of $\Spec f:\Spec B\ra \Spec A$ is closed under specialization, then it is closed.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+The image of $\Spec f$ is equal to the image of its factor $\Spec B\ra \Spec \left(A/\ker(f)\right)$. Therefore, we may additionally assume that $f$ is injective. We prove that under this extra assumption $\Spec f$ is surjective. For this assume that $\ideal{p}\in \Spec A$ is a prime ideal. Then $f$ induces an injective map $A_{\ideal{p}}\ra B_{\ideal{p}}$. Thus $B_{\ideal{p}}$ is nonzero. Hence $\Spec B_{\ideal{p}}$ is nonempty. We also have a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\emptyset\neq \Spec B_{\ideal{p}} &      \Spec A_{\ideal{p}}\\
+ \Spec B&    \Spec A  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$\Spec f $} (m-2-2);
+\path[right hook->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ $} (m-2-1)
+(m-1-2) edge node[right] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+of topological spaces. This imply that there exists a prime ideal $\ideal{q}\in \Spec B$ such that $\ideal{p}$ is a specialization of $\left(\Spec f\right)(\ideal{q})$. Since the image of $\Spec f$ is closed under specialization, we derive that $\ideal{p}$ is contained in the image of $\Spec f$.
+\end{proof}
+
+\begin{proof}
+Closed subsets are closed under specialization. Hence $\textbf{(i)}\Rightarrow \textbf{(ii)}$ holds.\\
+Now assume \textbf{(ii)} i.e. $f(Z)$ is closed under specialization. Fix open affine $U$ in $X$. Since $f$ is quasi-compact, we derive that $f^{-1}(U)$ is quasi-compact. Write $f^{-1}(U) = \bigcup_{j=1}^mW_j$ for open affine subsets $W_j$ of $f^{-1}(U)$. Let $W = \coprod_{j=1}^mW_j$ and consider a morphism $g:W\ra U$ given as the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \coprod_{j=1}^m W_j &  f^{-1}(U)& U\\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where the first arrow is induced by inclusions $\big\{W_j\hookrightarrow f^{-1}(U)\big\}_{1\leq j\leq m}$ and the second is the restriction of $f$. Note that $g(W) = f(Z)\cap U$ and hence $g(W)$ is closed under specialization in $U$. By Lemma \ref{lemma:specializationandaffineimages} we deduce that $g(W)$ is closed in $U$ and hence $f(X)\cap U$ is closed in $U$. Since this holds for every open affine $U$ in $X$, we infer that $f(X)$ is closed in $X$. This proves \textbf{(i)}.
+\end{proof}
+
+\begin{corollary}\label{corollary:characterizationofclosedsets}
+Let $X$ be a scheme and $E$ be its subset. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $E$ is a closed subset of $X$.
+\item $E$ is pro-constructible and closed under specialization.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Suppose that $E$ is closed subset of $X$ and let $U$ be an open affine subset of $X$. Then $E\cap U$ is the image of some closed affine subscheme of $U$. By Corollary \ref{corollary:proconstructibelonqcqs} we deduce that $E\cap U$ is an intersection of constructible subsets of $U$. Thus $E$ is pro-constructible. Since $E$ is closed, it is also closed under specialization. Hence $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Assume that \textbf{(ii)} holds. Then for every open affine subset $U$ of $X$ set $E\cap U$ is pro-constructible and closed under specialization in $U$. By Corollary \ref{corollary:proconstructibelonqcqs} and Theorem \ref{theorem:specializationimpliesclosed} we derive that $E\cap U$ is closed subset of $U$. Since $U$ is arbitrary, we derive that $E$ is closed. This is \textbf{(i)}.
+\end{proof}
+
+\begin{definition}
+Let $X$ be a topological space. A subset $E$ of $X$ is called  \textit{ind-constructible in $X$} if $X\setminus E$ is pro-constructible in $X$.
+\end{definition}
+
+\begin{corollary}
+Let $X$ be a scheme and $E$ be its subset. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $E$ is an open subset of $X$.
+\item $E$ is ind-constructible and closed under generization.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+This is a consequence of Corollary \ref{corollary:characterizationofclosedsets}. Details are left to the reader.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{refs}
+
+
+
+
+\end{document}
