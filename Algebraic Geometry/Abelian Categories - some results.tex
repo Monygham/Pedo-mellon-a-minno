@@ -1,0 +1,598 @@
+\input pree.tex
+
+\begin{document}
+\title{Abelian categories - some results}
+\date{}
+\maketitle
+
+\section{Directed classes and filtered categories}
+\noindent
+In this section we introduce the notion of directed class and then we generalize it to the categorical setting.
+
+\begin{definition}
+Let $I$ be a class equipped with a reflexive and transitive relation $\leq$. We say that $I$ is \textit{a directed class} if for any $i$, $j\in I$ there exists $k\in I$ such that $i\leq k$ and $j\leq k$.
+\end{definition}
+\noindent
+Let $I$ be a class equipped with a reflexive and transitive relation $\leq$. It is standard {\cite[page 11]{Maclane}} to view $I$ as a category with at most one arrow between any two objects.
+
+\begin{definition}
+Let $I$ be a category. Suppose that the following conditions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item For any objects $i$, $j\in I$ there exists an object $k\in I$ and a diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     &   k &                    \\
+      i &  &  j                       \\} ;
+\path[->,font=\scriptsize]  
+(m-2-1) edge node[auto] {$ $} (m-1-2)
+(m-2-3) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+\item For any pair of parallel morphisms in $I$
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  i &    j                       \\} ;
+\path[->,font=\scriptsize]  
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[auto] {$ $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}]  node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+there exist an object $k\in I$ and a morphism $j\ra k$ such that, the diagram 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  i &    j                   & k     \\} ;
+\path[->,font=\scriptsize]  
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[auto] {$ $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}]  node[auto] {$ $} (m-1-2)
+(m-1-2) edge  node[auto] {$ $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{enumerate}
+Then we say that $I$ is \textit{a filtered category}.
+\end{definition}
+
+\begin{fact}\label{fact:filteredisgeneralizationofdirected}
+Let $I$ be a class equipped with a reflexive and transitive relation. Then $I$ is a directed class if and only if $I$ viewed as a category is filtered.
+\end{fact}
+\begin{proof}
+Left to the reader.
+\end{proof}
+
+\begin{fact}\label{fact:imageoffilteredinclass}
+Let $I$ be a filtered category and $J$ be a class equipped with a reflexive and transitive relation $\leq$. Suppose that $F:I\ra J$ is a functor. Then the image of $I$ under $F$ is a directed subclass of $J$.
+\end{fact}
+\begin{proof}
+Left to the reader.
+\end{proof}
+
+\begin{definition}
+Let $\cC$ be a category and $I$ be a filtered category (directed class). A colimit of an $I$-indexed some diagram $I\ra \cC$ is called \textit{a filtered (directed) colimit}.
+\end{definition}
+
+
+
+\section{Subobjects and objects of finite type}
+
+\begin{definition}
+Let $\cC$ be a category and $X$ be an object in $\cC$. Monomorphisms $X_1\hookrightarrow X$ and $X_2\hookrightarrow X$ are \textit{equivalent} if there exists a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{     X_1     &  &  X_2        \\
+              & X&  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize] 
+(m-1-1) edge node[above] {$\cong $} (m-1-3);
+\path[right hook->,line width=0.8pt,font=\scriptsize] 
+(m-1-1) edge node[below] {$ $} (m-2-2)
+(m-1-3) edge node[left] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which horizontal arrow is an isomorphism. The collection $\mathrm{Sub}(X)$ of equivalence classes of monomorphisms having $X$ as a target is called \textit{the class of subobjects of $X$}.
+\end{definition}
+\noindent
+Let $X$ be an object of a category $\cC$ and $X'\hookrightarrow X$ be a monomorphism. By abuse of notation we say that $X'$ is an subobject of $X$ and by this we understand the subobject of $X$ represented by a monomorphism $X'\hookrightarrow X$. We also write $X'\subseteq X$. Next suppose that $X_1\subseteq X$ and $X_2\subseteq X$ are subobjects of $X$. We write $X_1\subseteq X_2$ if there exists a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{     X_1     &  &  X_2        \\
+              & X&  \\} ;
+\path[right hook->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ $} (m-1-3) 
+(m-1-1) edge node[below] {$ $} (m-2-2)
+(m-1-3) edge node[left] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+This defines a partial order on the class $\mathrm{Sub}(X)$.\\
+Now we investigate important notion of well-powered categories. For this we introduce this it with a company of several other significant concepts. 
+
+\begin{definition}
+A category $\cC$ is called \textit{well-powered} if $\mathrm{Sub}(X)$ is a set for every object $X$ in $\cC$.
+\end{definition}
+
+\begin{definition}
+Let $\cC$ be a category such that a morphism in $\cC$ that is simultaneously a monomorphism and an epimorphism is an isomorphism. Then we say that $\cC$ is \textit{balanced}.
+\end{definition}
+
+\begin{definition}
+Let $\cC$ be a category. A class $\cG$ of objects of $\cC$ is called \textit{a class of generators for $\cC$} if for any pair of distinct and parallel arrows 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ X&  Y  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ f$} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ g$} (m-1-2);
+\end{tikzpicture}
+\end{center}
+there exists $G\in \cG$ and a morphism $h:G\ra X$ such that $f\cdot h\neq g\cdot h$.
+\end{definition}
+
+\begin{proposition}\label{proposition:criterionforwellpoweredcategories}
+Let $\cC$ be a balanced, locally small category that admits fiber products. Assume that $\cG$ is a \textbf{set} of generators for $\cC$. Then $\cC$ is well-powered. 
+\end{proposition}
+\begin{proof}
+Fix an object $X$ of $\cC$. Then every subobject $X'$ of $X$ gives rise to a set
+$$\mathrm{Factor}(X') = \big\{f\in \Mor(\cC)\,\big|\,\mathrm{dom}(f)\in \cG,\,\mathrm{cod}(f) = X\mbox{ and }f\mbox{ factors through }X'\big\}\subseteq \prod_{G\in \cG}\Mor_{\cC}(G,X)$$
+It suffices to prove that 
+$$\mathrm{Sub}(X)\ni X'\mapsto \mathrm{Factor}(X')\in \cP\left(\prod_{G\in \cG}\Mor_{\cC}(G,X)\right)$$
+is injective (because a class bijective with a set is a set itself). For this assume that $X_1$ and $X_2$ are subobjects of $X$ such that $\mathrm{Factor}(X_1) = \mathrm{Factor}(X_2)$. Since $\cC$ admits fiber products, we derive that there exists a fiber product of $X_1\hookrightarrow X$ and $X_2\hookrightarrow X$. We denote it by $X_1\cap X_2$ and consider it as a subobject of $X$ via the canonical map $X_1\cap X_2 \hookrightarrow X$. By universal property of fiber product we deduce that $\mathrm{Factor}(X_1) = \mathrm{Factor}(X_1\cap X_2) = \mathrm{Factor}(X_2)$. This implies that for every object $Y$ of $\cC$ maps
+$$\Mor_{\cC}(X_1,Y)\ra \Mor_{\cC}(X_1\cap X_2,Y),\,\Mor_{\cC}(X_2,Y)\ra \Mor_{\cC}(X_1\cap X_2,Y)$$
+induced by $X_1\cap X_2\hookrightarrow X_1$ and $X_1\cap X_2\hookrightarrow X_2$ are injective. Therefore, morphisms $X_1\cap X_2\hookrightarrow X_1$ and $X_1\cap X_2\hookrightarrow X_2$ are epimorphisms. Since they are also monomorphisms and $\cC$ is balanced, they are isomorphisms. Thus $X_1$, $X_1\cap X_2$, $X_2$ represent the same subobject of $X$.
+\end{proof}
+
+\begin{definition}
+Let $\cC$ be a category and $X$ be an object in $\cC$. \textit{A filtered (directed) family of subobjects of $X$} is a functor $I\ra \mathrm{Sub}(X)$ from a small filtered category (directed set) $I$.
+\end{definition}
+\noindent
+Suppose that $\cC$ is a category, $X$ is an object of $\cC$ and $I$ is a filtered category. Let $I\ra \mathrm{Sub}(X)$ be a filtered family of subobjects of $X$. Then it can be described as a map $I\ni i \mapsto X_i\in \mathrm{Sub}(X)$ such that for every morphism $i\ra j$ in $I$ we have $X_i\subseteq X_j$. For pragmatical reasons we usually use this more explicit description and we view filtered families of subobjects as an indexed families of the form $\{X_i\}_{i\in I}$.
+
+\begin{definition}
+Let $\cC$ be a category and $X$ be an object in $\cC$. A filtered family of subobjects $\{X_i\}_{i\in I}$ of $X$ is \textit{complete} if $X = \mathrm{colim}_{i\in I}X_i$
+\end{definition}
+
+\begin{definition}
+Let $\cC$ be a category and $X$ be an object in $\cC$. Suppose that for every complete filtered family $\{X_i\}_{i\in I}$ of subobjects of $X$ there exists $i_0\in I$ such that $X_{i_0} = X$ for every $i\in I$. Then we say that $X$ is \textit{of finite type}.
+\end{definition}
+
+\begin{definition}
+Let $\cC$ be a category. We say that $\cC$ is \textit{locally finite} if for every object $X$ there exists a complete filtered family $\{X_i\}_{i \in I}$ of subobjects of $X$ such that $X_i$ is of finite type for every $i\in I$.
+\end{definition}
+
+\section{\textbf{Ab}-conditions in categories}
+\noindent
+First it has to be said that the notion of abelian category can be described without  any mention of abelian group structure on classes of morphisms and this is carefully explained in \cite{freyd1962abelian}. In this section we discuss Grothendieck's $\bd{Ab}$-conditions in categories. The original source of the discussion below is the seminal work \cite{grothendieck1957}. First let us explain that Grothendieck introduces \textit{$\bd{Ab}0$-categories} as additive categories, \textit{$\bd{Ab}1$-categories} as preabelian categories and \textit{$\bd{Ab}2$-categories} as the usual abelian categories. Then he continues with more specific classes of abelian categories and recapitulation of parts of his work is our main task here.
+
+\begin{definition}
+A category $\cC$ is \textit{an $\bd{Ab}3$-category} if it is an abelian category and small direct sums in $\cC$ exists.
+\end{definition}
+\noindent
+Let $\cC$ be an $\bd{Ab}3$-category, $\{X_i\}_{i\in I}$ be a family of objects of $\cC$ and let $\big\{f_i:X_i\ra Y\big\}_{i\in I}$ be a family of morphisms in $\cC$. Then we denote by 
+$$\sum_{i\in I}f_i:\bigoplus_{i\in I}X_i\ra Y$$
+a unique morphism determined by requirement $\left(\sum_{i\in I}f_i\right)\cdot v_i = f_i$ for each $i\in I$, where $v_i:X_i\ra \bigoplus_{i\in I}X_i$ is the canonical inclusion.
+
+\begin{theorem}\label{theorem:descriptionofcolimitsinab3categories}
+Let $\cC$ be an $\bd{Ab}3$-category and let $\left(\{X_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ be a diagram indexed by a small category $I$. Consider a right exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \bigoplus_{\alpha \in \Mor(I)}X_{\mathrm{dom}(\alpha)} & & & & & &  \bigoplus_{i\in I}X_i & & & X  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$\sum_{\alpha \in \Mor(I)}\left(v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)$} (m-1-7)
+(m-1-7) edge node[above] {$q $} (m-1-10);
+\end{tikzpicture}
+\end{center}
+where for each $i$ morphism $v_i:X_i \ra \bigoplus_{i\in I}X_i$ is canonical. Define $u_i = q\cdot v_i$ for every $i\in I$. Then $\left(X,\{u_i\}_{i\in I}\right)$ is a colimiting cone of $\left(\{X_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$.
+\end{theorem}
+\begin{proof}
+This is a reformulation of the dual statement to {\cite[page 113, Theorem 1]{Maclane}} and we left it to the reader.
+\end{proof}
+
+\begin{definition}
+A category $\cC$ is \textit{an $\bd{Ab}4$-category} if it is $\bd{Ab}3$-category and small direct sums in $\cC$ are exact.
+\end{definition}
+
+\begin{fact}\label{fact:filteredcolimitsexactisab4}
+Let $\cC$ be an $\bd{Ab}3$-category and assume that small filtered colimits in $\cC$ are exact. Then $\cC$ is an $\bd{Ab}4$-category.
+\end{fact}
+\begin{proof}
+Finite direct sums are exact in arbitrary abelian categories and a small direct sum is a filtered colimit of finite direct sums (taken over finite subsets of a set indexing objects in the direct sum). Thus the result follows.
+\end{proof}
+
+\begin{definition}
+Let $\cC$ be an $\bd{Ab}3$-category. If for every object $X$ of $\cC$, every subobject $Y\subseteq X$ and every directed family $\big\{X_i\}_{i\in I}$ of subobjects of $X$ the following formula holds
+$$Y\cap \sum_{i\in I}X_i = \sum_{i\in I}Y\cap X_i$$
+then we say that $\cC$ is an $\bd{Ab}5$-category.
+\end{definition}
+\noindent
+The next result is very useful and we utilize it in the very next section.
+
+\begin{theorem}\label{theorem:kernelofastructuremapinab5}
+Let $\cC$ be an $\bd{Ab}5$-category and let $\left(\{X_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ be a diagram indexed by a small filtered category $I$. Suppose that $\left(X,\{u_i\}_{i\in I}\right)$ is a colimiting cone of $\left(\{X_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$. Then
+$$\ker(u_j) = \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j}\ker(u_{\alpha})$$
+for every $j\in I$.
+\end{theorem}
+\noindent
+The following result is useful in proving next theorem so we decide to separate it from the main proof.
+
+\begin{lemma}\label{lemma:ab5refinement}
+Let $\cC$ be an $\bd{Ab}5$-category, $X$ be its object and $\{X_i\}_{i\in I}$ be a filtered family of subobjects of $X$. Assume also that $f:Y\ra X$ is a monomorphism. Then
+$$f^{-1}\left(\sum_{i\in I}X_i\right) = \sum_{i\in I}f^{-1}(X_i)$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+It suffices to prove that 
+$$f(Y)\cap \sum_{i\in I}X_i = \sum_{i\in I}f(Y)\cap X_i$$
+From Fact \ref{fact:imageoffilteredinclass} applying factorization of $I\ra \mathrm{Sub}(X)$ through its image we can view $\{X_i\}_{i\in I}$ as a directed family of subobjects of $X$. Thus the result follows from the fact that $\cC$ is $\bd{Ab}5$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Obviously
+$$\sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j}\ker(u_{\alpha})\subseteq \ker(u_j)$$
+It suffices to prove that the reverse inclusion holds. For every $i$ in $I$ denote by $v_i:X_i\ra \bigoplus_{i\in I}X_i$ the canonical morphism. By Theorem \ref{theorem:descriptionofcolimitsinab3categories} we have 
+$$\ker(u_j) = v_j^{-1}\left(\Image\left(\sum_{\alpha \in \Mor(I)}v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right) = v_j^{-1}\left(\Image\left(\sum_{F\subseteq \Mor(I),\,|F|\in \NN}\sum_{\alpha \in F}\left(v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\right)$$
+Since $\cC$ is $\bd{Ab}5$-category and by Lemma \ref{lemma:ab5refinement}, we deduce that
+$$\ker(u_j) = \sum_{F\subseteq \Mor(I),\,|F|\in \NN}v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)$$
+Thus it suffices to verify that 
+$$v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right) \subseteq \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j}\ker(u_{\alpha})$$
+for every finite subset $F$ of $\Mor(I)$. Fix such $F$ and suppose that $\{i_1,...,i_n\}$ are all objects of $I$, which are either domains or codomains of arrows in $F$. If $j\not \in \{i_1,...,i_n\}$, then 
+$$v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)=0$$
+So we may assume that $j\in \{i_1,...,i_n\}$. Consider a finite diagram in $I$ that consists of $\{i_1,...,i_n\}$ and all arrows in $F$. Since $I$ is filtered, there exists a cocone over this diagram. Hence there exist $i_0$ in $I$ and a family of morphisms $\beta_{i_k}:i_k\ra i_0$ for $1\leq k\leq n$ in $I$ such that $\beta_{\mathrm{dom}(\alpha)} = \beta_{\mathrm{cod}(\alpha)}\cdot \alpha$ for every $\alpha \in F$. Define $f_i = 0$ for $i \in I\setminus \{i_1,...,i_n\}$ and $f_i = u_{\beta_i}$ for $i\in \{i_1,...,i_n\}$. Let $f = \sum_{i\in I}f_i$. We have a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{      \bigoplus_{i\in I}X_i   &  \bigoplus_{i\in I}X_i      \\
+     X_j       &  X_{i_0} \\} ;
+\path[->,line width=0.8pt,font=\scriptsize] 
+(m-1-1) edge node[above] {$f $} (m-1-2)
+(m-2-1) edge node[below] {$u_{\beta_j} $} (m-2-2)
+(m-2-1) edge node[left] {$v_j $} (m-1-1)
+(m-2-2) edge node[right] {$v_{i_0} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+and hence it follows that
+$$u_{\beta_j}\left(v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\right)= v_{i_0}^{-1}\left(f\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\right)=$$
+$$= v_{i_0}^{-1}\left(\sum_{\alpha \in F}v_{i_0}\cdot \left(u_{\beta_{\mathrm{cod}(\alpha)}}\cdot u_{\alpha}- u_{\beta_{\mathrm{dom}(\alpha)}}\right)\right)=0$$
+and thus
+$$v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\subseteq \ker(u_{\beta_j})$$
+This finishes the proof.
+\end{proof}
+
+\begin{theorem}\label{theorem:ab5isthesameasexactnessoffilteredcolimits}
+Let $\cC$ be an $\bd{Ab}3$-category. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $\cC$ is an $\bd{Ab}5$-category.
+\item Small filtered colimits are exact in $\cC$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The nontrivial part is $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Let $I$ be a small filtered category and 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\bigg\{0 &X_i' &  X_i   &X_i''  &          0\bigg\}_{i\in I}         \\} ;
+\path[->,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$r_i $} (m-1-3)
+(m-1-3) edge node[auto] {$p_i $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+be a diagram of exact sequences indexed by $I$. We denote by $\left(\{X_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ and $\left(\{X'_i\}_{i\in I},\{v_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ appropriate slices of this $I$-indexed diagram. Consider a complex
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{0&X'&  X  &X''&          0           \\} ;
+\path[->,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$r $} (m-1-3)
+(m-1-3) edge node[auto] {$p $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+where $X'=\mathrm{colim}_{i\in I}X'_i$, $X=\mathrm{colim}_{i\in I}X_i$, $X''=\mathrm{colim}_{i\in I}X''_i$, $r=\mathrm{colim}_{i\in I}r_i$ and $p=\mathrm{colim}_{i\in I}p_i$. Clearly the complex is right exact. It suffices to prove that $r$ is a monomorphism. For $i\in I$ denote by $v_i:X'_i\ra X$, $u_i:X_i\ra X$ structural morphisms. Fix $j\in I$ and consider $Z = v_j^{-1}(\ker(r))$. Then $r_j(Z)\subseteq \ker(u_j)$ and hence by Theorem \ref{theorem:kernelofastructuremapinab5} we derive that
+$$r_j(Z) \subseteq \sum_{\alpha \in \Mor(I),\, \mathrm{dom}(\alpha)=j}\ker(u_{\alpha})$$
+Note that for every $\alpha \in \Mor(I)$ with $\mathrm{dom}(\alpha) = j$ we have $r_j^{-1}\left(\ker(u_{\alpha})\right)\subseteq \ker(v_{\alpha})$. Indeed, this follows easily from the fact that $r_{\mathrm{cod}(\alpha)}$ is an monomorphism. Thus by Lemma \ref{lemma:ab5refinement}, Theorem \ref{theorem:kernelofastructuremapinab5} and the fact that preimages preserve intersections we deduce that
+$$Z = r_{j}^{-1}\left(r_j(Z)\right) =r_j^{-1}\left(\sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j}r_j(Z)\cap \ker(u_{\alpha})\right)=\sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j}Z\cap r_j^{-1}\left(\ker(u_{\alpha})\right)\subseteq $$
+$$\subseteq \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j} Z\cap \ker(v_{\alpha}) = Z\cap \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j} \ker(v_{\alpha}) = Z\cap \ker(v_j)$$
+and this implies that $Z\subseteq \ker(v_j)$. Since $Z = v_j^{-1}(\ker(r))$, we deduce that 
+$$0 = v_j(Z) = \ker(r)\cap \ker(v_j)$$
+Now $\{\Image(v_i)\}_{i\in I}$ is a filtered complete family of subobjects of $X'$. Hence by Lemma \ref{lemma:ab5refinement} we deduce that
+$$\ker(r) = \ker(r)\cap \sum_{i\in I}\Image(v_i) = \sum_{i\in I}\ker(r)\cap \Image(v_i) = 0$$
+and thus $r$ is a monomorphism.
+\end{proof}
+
+\begin{corollary}
+Every $\bd{Ab}5$-category is $\bd{Ab}4$-category.
+\end{corollary}
+\begin{proof}
+This is a consequence of Fact \ref{fact:filteredcolimitsexactisab4} and Theorem \ref{theorem:ab5isthesameasexactnessoffilteredcolimits}.
+\end{proof}
+
+\section{Finite type and finite presentation objects in $\bd{Ab}5$-categories}
+\noindent
+In this section we investigate properties of finite type objects and related notion of finitely presented objects in $\bd{Ab}5$-categories.
+
+\begin{proposition}\label{proposition:finitetypeandextensions}
+Let $\cC$ be an $\bd{Ab}5$-category and consider a short exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  0&  X''  & X & X' &0 \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge  node[above] {$ $} (m-1-2)
+(m-1-2) edge  node[above] {$ $} (m-1-3)
+(m-1-3) edge  node[above] {$f$} (m-1-4)
+(m-1-4) edge  node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item If $X$ is of finite type, then $X'$ is of finite type.
+\item If $X''$ and $X'$ are of finite type, then $X$ is of finite type.
+\end{enumerate} 
+\end{proposition}
+\begin{proof}
+For the proof of \textbf{(1)} consider a complete filtered family $\{X'_i\}_{i\in I}$ of subobjects of $X'$. Then $\{f^{-1}(X'_i)\}_{i\in I}$ is a complete filtered family of subobjects of $X$. Now $X$ is of finite type. Thus there exists $i_0\in I$ such that $f^{-1}(X'_{i_0})=X$. Hence $X' = X'_{i_0}$. This shows that $X'$ is of finite type.\\
+Now we prove \textbf{(2)}. Let $\{X_i\}_{i\in I}$ be a complete filtered family of subobjects of $X$. Since $\cC$ is an $\bd{Ab}5$-category, we derive that $\{X''\cap X_i\}_{i \in I}$ is a complete filtered family of subobjects of $X''$. Moreover, $\{f(X_i)\}_{i\in I}$ is a complete filtered family of subobjects of $X'$. Since both $X'$ and $X''$ are of finite type, there exists $i_0$ and $i_1$ in $I$ such that $X''=X''\cap X_{i_0}$ and $X' =f(X_{i_1})$. Suppose that there are morphisms $i_0\ra i_2$ and $i_1\ra i_2$ for some $i_2\in I$. Then $X'' = X''\cap X_{i_2}$ and $X' = f(X_{i_2})$. This implies that $X = X_{i_2}$ and hence $X$ is of finite type.
+\end{proof}
+
+\begin{proposition}\label{proposition:filteredcolimitsandfinitetype}
+Let $\cC$ be an $\bd{Ab}5$-category and $X$ be a finite type object of $\cC$. Then for every diagram $\left(\{X'_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ indexed by a small filtered category the canonical morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \mathrm{colim}_{i\in I}\Mor_{\cC}\left(X,X'_i\right) &  \Mor_{\cC}\left(X,\mathrm{colim}_{i\in I}X'_i\right) \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a monomorphism of abelian groups.
+\end{proposition}
+\begin{proof}
+Denote $\mathrm{colim}_{i\in I}X'_i$ by $X'$ and by $u_i:X'_i\ra X'$ the canonical morphism for every $i\in I$. Fix morphisms $g:X\ra X'_{i}$ for some $i\in I$. Assume that $u_{i}\cdot g = 0$. Then $g(X)\subseteq \ker(u_{i})$ and in addition $g(X)$ is of finite type as the image of $X$ (Proposition \ref{proposition:finitetypeandextensions}). We have
+$$\ker(u_{i}) = \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha)=i}\ker(u_{\alpha})$$
+by Theorem \ref{theorem:kernelofastructuremapinab5}. We use the fact that $\cC$ is $\bd{Ab}5$ to derive that
+$$g(X)= g(X)\cap \ker(u_{i}) = \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha)=i}g(X)\cap \ker(u_{\alpha})$$
+Since $g(X)$ is of finite type and $\{g(X)\cap \ker(u_{\alpha})\}_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha)=i}$ is a complete filtered family of subobjects of finite type object $g(X)$, we derive that there exists morphism $\alpha:i\ra i_0$ such that 
+$$g(X) = g(X)\cap \ker(u_{\alpha})\subseteq \ker(u_{\alpha})$$
+Then $u_{\alpha}\cdot g = 0$ and his implies that $g$ represents zero class in $\mathrm{colim}_{i\in I}\Mor_{\cC}\left(X,X'_i\right)$.
+\end{proof}
+
+\begin{definition}
+Let $\cC$ be an abelian category and $X$ be an object of $\cC$. Suppose that the following two conditions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $X$ is of finite type.
+\item If $f:X'\ra X$ is an epimorphism in $\cC$ and $X'$ is of finite type, then $\ker(f)$ is of finite type.
+\end{enumerate}
+Then we say that $X$ is \textit{of finite presentation}.
+\end{definition}
+
+\begin{proposition}\label{proposition:finitelypresentedinab5}
+Let $\cC$ be an $\bd{Ab}5$-category and $X$ be an object of $\cC$. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $X$ is of finite presentation.
+\item There exists an object of finite presentation $X'$ in $\cC$ and an epimorphism $f:X'\ra X$ with kernel of finite type.
+\end{enumerate} 
+\end{proposition}
+\begin{proof}
+For the proof of $\textbf{(i)}\Rightarrow\textbf{(ii)}$ it suffices to consider an epimorphism $1_X:X\ra X$ with trivial kernel.\\
+Assume that \textbf{(ii)} holds. Fix an epimorphism $f:X'\ra X$ such that $X'$ is of finite presentation and $\ker(f)$ is of finite type. By Proposition \ref{proposition:finitetypeandextensions} object $X$ is of finite type. Next suppose that $g:X''\ra X$ is an epimorphism with $X''$ of finite type. Consider a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{{}       &\ker(f')   &  \ker(f)   \\
+\ker(g')  &Z          &  X'       \\
+\ker(g)   &X''        &  X        \\} ;
+\path[->,line width=0.8pt,font=\scriptsize] 
+(m-1-2) edge node[above] {$\cong$} (m-1-3)
+(m-2-1) edge node[left] {$\cong$} (m-3-1)
+(m-2-2) edge node[above] {$g'$} (m-2-3)
+(m-3-2) edge node[below] {$g$} (m-3-3)
+(m-2-2) edge node[left] {$f'$} (m-3-2)
+(m-2-3) edge node[right] {$f$} (m-3-3);
+\path[right hook->,line width=0.8pt,font=\scriptsize]
+(m-1-2) edge node[left] {$ $} (m-2-2)
+(m-1-3) edge node[right] {$ $} (m-2-3) 
+(m-2-1) edge node[left] {$ $} (m-2-2)
+(m-3-1) edge node[left] {$ $} (m-3-2);
+\end{tikzpicture}
+\end{center}
+in which bottom right square is cartesian. The fact that canonical morphisms between kernels in the diagram are isomorphisms follows because $\cC$ is an abelian category. Note also that every row and column of the diagram is a short exact sequence in $\cC$. Since $\ker(f)$ is of finite type, we derive that $\ker(f')$ is of finite type and hence by Proposition \ref{proposition:finitetypeandextensions} object $Z$ is of finite type as an extension of finite type objects $\ker(f')$ and $X''$. Next according to the fact that $X'$ is of finite presentation and $g':Z\ra X'$ is an epimorphism with $Z$ of finite type, we deduce that $\ker(g')$ is of finite type. But $\ker(g')\cong \ker(g)$ and hence $\ker(g)$ is of finite type. This implies that $X$ is of finite presentation. Thus $\textbf{(ii)}\Rightarrow\textbf{(i)}$.
+\end{proof}
+
+\begin{theorem}\label{theorem:finitelypresentedandfilteredcolimits}
+Let $\cC$ be an $\bd{Ab}5$-category and $X$ be an object of $\cC$. Consider the following statements.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $X$ is of finite presentation.
+\item For every diagram $\left(\{X'_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ indexed by a small filtered category the canonical morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \mathrm{colim}_{i\in I}\Mor_{\cC}\left(X,X'_i\right) &  \Mor_{\cC}\left(X,\mathrm{colim}_{i\in I}X'_i\right) \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is an isomorphism of abelian groups.
+\end{enumerate} 
+\end{theorem}
+\begin{proof}
+We prove that $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Denote $\mathrm{colim}_{i\in I}X'_i$ by $X'$ and suppose that $u_i:X'_i\ra X'$ is the canonical morphism for every $i\in I$. Fix a morphism $f:X\ra X'$ in $\cC$. Let $\left(\{X_i\}_{i\in I},\{v_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ be a diagram obtained by pulling back diagram $\left(\{X'_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ along $f$. This means that for every $i\in I$ we have a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{     X_i     &  X'_i        \\
+     X       &  X'  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize] 
+(m-1-1) edge node[above] {$f_i $} (m-1-2)
+(m-2-1) edge node[below] {$f $} (m-2-2)
+(m-1-1) edge node[left] {$v_i $} (m-2-1)
+(m-1-2) edge node[right] {$u_i$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+and if $\alpha:i\ra j$ is a morphism in $I$, then $f_j\cdot v_{\alpha} = u_{\alpha}\cdot f_i$. In $\bd{Ab}5$-category filtered colimits commute with pullbacks (Theorem \ref{theorem:ab5isthesameasexactnessoffilteredcolimits}). Hence $X = \mathrm{colim}_{i\in I}X_i$.  In particular, we have $X = \sum_{i\in I}v_i(X_i)$ and $\{v_i(X_i)\}_{i\in I}$ is a filtered family of subobjects of $X$. Next as $X$ is of finite type, we deduce that there exists $i_0\in I$ such that $X = v_{i_0}(X_{i_0})$. Let $\{Z_k\}_{k\in K}$ be a complete filtered family of subobjects of $X_{i_0}$ that consists of objects of finite type ($\cC$ is locally finite). Then $\{v_{i_0}(Z_k)\}_{k\in K}$ is a complete filtered family of subobjects of $X$. Thus there exists $k_0\in K$ such that $v_{i_0}(Z_{k_0})=X$. This implies that there exists finite type subobject $X''$ of $X_{i_0}$ such that $X= v_{i_0}(X'')$. Since $X$ is of finite presentation, we derive that $X''\cap \ker(v_{i_0})$ is of finite type. On the other hand
+$$\ker(v_{i_0}) = \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha)=i_0}\ker(v_{\alpha})$$
+by Theorem \ref{theorem:kernelofastructuremapinab5}. Again we use the fact that $\cC$ is $\bd{Ab}5$ to derive that
+$$X''\cap \ker(v_{i_0}) = \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha)=i_0}X''\cap \ker(v_{\alpha})$$
+Since $X''\cap \ker(v_{i_0})$ is of finite type and $\{X''\cap \ker(v_{\alpha})\}_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha)=i_0}$ is a complete filtered family of subobjects of $X''\cap \ker(v_{i_0})$, we derive that there exists morphism $\alpha:i_0\ra i_1$ such that 
+$$X''\cap \ker(v_{i_0}) = X''\cap \ker(v_{\alpha})$$
+Let $X''' = v_{\alpha}(X'')$ be a subobject of $X_{i_1}$. Since $v_{i_0} = v_{i_1}\cdot v_{\alpha}$, we derive that $v_{i_1}$ induces an isomorphism $X'''\cong X$. Therefore, $v_{i_1}:X_{i_1}\ra X$ admits a section $s:X\ra X_{i_1}$. Let $g = f_{i_1}\cdot s$. Then $g:X\ra X'_{i_1}$ is a morphism such that $u_{i_1}\cdot g = f$ and this implies that the canonical morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \mathrm{colim}_{i\in I}\Mor_{\cC}\left(X,X'_i\right) &  \Mor_{\cC}\left(X,X'\right) \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is surjective. The injectivity follows from Proposition \ref{proposition:filteredcolimitsandfinitetype}.\\
+Now let us prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Since $\cC$ is locally finite, there exists a complete filtered family $\{X_i\}_{i\in I}$ of subobjects of $X$ and these family consists of objects of finite type in $\cC$. Applying \textbf{(ii)} to this particular filtered diagram we deduce that there exists $i_0$ in $I$ and a morphism $g:X\ra X_{i_0}$ such that $g$ composed with $X_{i_0}\hookrightarrow X$ is $1_X$. This implies that $g$ is an isomorphism and $X = X_{i_0}$. Hence $X$ is of finite type. Thus in order to prove that $X$ is of finite presentation it suffices to check that an epimorphism $f:X'\ra X$ with $X'$ of finite type has the kernel of finite type. For this let $\{K_i\}_{i\in I}$ be a complete filtered family of subobjects of $\ker(f)$ that consists of objects of finite type in $\cC$. We define $X_i = X'/K_i$ for every $i\in I$. Then $\{X_i\}_{i\in I}$ gives rise to a canonical $I$-indexed diagram such that we have an identification
+$$X'/\ker(f) = \mathrm{colim}_{i\in I}X_i$$
+We apply \textbf{(ii)} to this $I$-indexed diagram and obtain $i_0$ in $I$ together with a morphism $s:X\ra X_{i_0}$ such that $s$ composed with the canonical epimorphism $X_{i_0}\ra X'/\ker(f)$ yields and isomorphism $X \cong X'/\ker(f)$ induced by $f$. This implies that $X_{i_0} \cong X \oplus \left(\ker(f)/K_{i_0}\right)$. Since both $X_{i_0}$ and $X$ are of finite type, we deduce that $\ker(f)/K_{i_0}$ is of finite type. Moreover, $K_{i_0}$ is of finite type. This proves that $\ker(f)$ is of finite type.
+\end{proof}
+
+\section{Applications to modules over a ring}
+\noindent
+Let $R$ be a ring. We denote by $\Mod(R)$ the category of left $R$-modules.
+
+\begin{fact}\label{fact:sumsaredirectedunionsforsubmodules}
+Let $M$ be a left $R$-module and $\{M_i\}_{i\in I}$ be a filtered family of submodules of $M$. Then
+$$\sum_{i\in I}M_i = \bigcup_{i\in I}M_i$$
+\end{fact}
+\begin{proof}
+Left to the reader.
+\end{proof}
+
+\begin{proposition}\label{proposition:modulesarelocallyfinite}
+$\Mod(R)$ is a locally finite category and an object $M$ of $\Mod(R)$ is of finite type if and only if $M$ is finitely generated left $R$-module.
+\end{proposition}
+\begin{proof}
+Suppose that $M$ is a finitely generated left $R$-module and $\{M_i\}_{i\in I}$ is a complete filtered family of submodules of $M$. By Fact \ref{fact:sumsaredirectedunionsforsubmodules} we derive that $$M = \bigcup_{i\in I}M_i$$
+Let $m_1$,...,$m_n$ be generators of $M$. Then for every $1\leq j\leq n$ there exists $i_j\in I$ such that $m_j\in M_{i_j}$. According to the fact that $I$ is filtered there exists $i_0\in I$ and morphisms $i_j\ra i_0$ for every $1\leq j\leq n$. This implies that $m_j\in M_{i_0}$ for every $1\leq j\leq n$ and hence $M = M_{i_0}$. Therefore, $M$ is an object of finite type in $\Mod(R)$.\\ 
+Let $M$ be an arbitrary left $R$-module and $\cF$ be a family of its finitely generated submodules. Since sum of two finitely generated submodules of a given module is finitely generated, we deduce that $\cF$ is directed. Moreover, $M$ together with embeddings $N\hookrightarrow M$ for $N\in \cF$ is the colimit of $\cF$. Therefore, every object in $\Mod(R)$ admits a complete filtered family of subobjects of finite type. Now suppose that $M$ itself is of finite type in $\Mod(R)$. Then $M = N$ for some $N\in \cF$ and hence $M$ is finitely generated.
+\end{proof}
+
+\begin{proposition}\label{proposition:modulesformab5category}
+$\Mod(R)$ is an $\bd{Ab}5$-category.
+\end{proposition}
+\begin{proof}
+Fix an $R$-module $M$. Let $\{M_i\}_{i\in I}$ be a directed family of its submodules and $N\subseteq M$ be a submodule. By Fact \ref{fact:sumsaredirectedunionsforsubmodules} we have
+$$N\cap \sum_{i\in I}M_i = N\cap \bigcup_{i\in I}M_i = \bigcup_{i\in I}\left(N\cap M_i\right) = \sum_{i\in I}N\cap M_i$$ 
+\end{proof}
+
+\begin{corollary}\label{corollary:characterizationoffinitelypresentedmodules}
+Let $M$ be a left $R$-module. Then the following statements are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item There exist $n$, $m\in \NN$ and a right exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{   R^{\oplus m}  & R^{\oplus n} & M &0 \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge  node[above] {$ $} (m-1-2)
+(m-1-2) edge  node[above] {$ $} (m-1-3)
+(m-1-3) edge  node[above] {$ $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+\item $M$ is a finitely presented object of $\Mod(R)$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Note that $\Hom_R(R^{\oplus n},-):\Mod(R)\ra \Ab$ is naturally isomorphic with the functor $|-|^{\oplus n}:\Mod(R)\ra \Ab$ that sends each left $R$-module to a direct sum of $n$-copies of its underlying abelian group. By Propositions \ref{proposition:modulesarelocallyfinite} and \ref{proposition:modulesformab5category}, Theorem \ref{theorem:finitelypresentedandfilteredcolimits} and the fact that $|-|^{\oplus n}$ preserves all colimits, we derive that left $R$-module $R^{\oplus n}$ is finitely presented in $\Mod(R)$. Now according to Propositions \ref{proposition:modulesformab5category} and \ref{proposition:finitelypresentedinab5} we deduce that $\textbf{(i)}\Leftrightarrow \textbf{(ii)}$. The converse $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds by Proposition \ref{proposition:modulesarelocallyfinite} and definition of finitely presented object in abelian category. 
+\end{proof}
+
+\begin{example}[Finitely generated module that is not finitely presented]
+Let $A$ be a commutative ring and $R = A[x_0,x_1,...]$ be a polynomial $A$-algebra with infinitely many free variables. Denote by $\ideal{a}$ the ideal $\sum_{i\in \NN}R\cdot x_i$ of $R$. Then $M = R/\ideal{a}$ is a finitely generated (even cyclic) $R$-module. On the other hand the kernel of the canonical epimorphism $R\ra R/\ideal{a}=M$ is $\ideal{a}$ and hence it is not a finitely generated $R$-module. Thus $M$ is not finitely presented but finitely generated.
+\end{example}
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{zzz}
+
+\end{document}

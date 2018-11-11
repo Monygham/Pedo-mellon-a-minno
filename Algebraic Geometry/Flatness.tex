@@ -7,96 +7,19 @@
 \maketitle
 \section{Introduction}
 \noindent
-In this notes we assume that rings are unital but possibly noncommutative. For homological algebra (exact sequences, the notion of projective module, properties of $\mathrm{Tor}$ etc.) the reader should consult \cite{weibel1995introduction}.
+In this notes we assume that rings are unital but possibly noncommutative. For homological algebra (exact sequences, the notion of projective module, properties of $\mathrm{Tor}$ etc.) the reader should consult \cite{weibel1995introduction}. For more advanced notions on abelian categories we suggest \cite{AbelianCategoriesresults}. In particular, that notes contain notions of filtered colimits and prove that $\Mod(R)$ is an $\bd{Ab}5$-category.
 
-\section{Filtered colimits in the category of modules}
+\section{Tor commutes with filtered colimits}
+Let $R$ be a ring. This short section is devoted to a proof of simple yet useful result.
 
-\begin{definition}
-Let $I$ be a category. Suppose that the following conditions are satisfied.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item For any objects $i$, $j\in I$ there exists an object $k\in I$ and a diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{     &   k &                    \\
-      i &  &  j                       \\} ;
-\path[->,font=\scriptsize]  
-(m-2-1) edge node[auto] {$ $} (m-1-2)
-(m-2-3) edge node[auto] {$ $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-\item For any pair of parallel morphisms in $I$
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{  i &    j                       \\} ;
-\path[->,font=\scriptsize]  
-(m-1-1) edge[transform canvas={yshift=0.5ex}] node[auto] {$ $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift=-0.5ex}]  node[auto] {$ $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-there exist an object $k\in I$ and a morphism $j\ra k$ such that, the following diagram is commutative
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{  i &    j                   & k     \\} ;
-\path[->,font=\scriptsize]  
-(m-1-1) edge[transform canvas={yshift=0.5ex}] node[auto] {$ $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift=-0.5ex}]  node[auto] {$ $} (m-1-2)
-(m-1-2) edge  node[auto] {$ $} (m-1-3);
-\end{tikzpicture}
-\end{center}
-\end{enumerate}
-Then we say that $I$ is \textit{a filtered category}.
-\end{definition}
-\noindent
-Let $R$ be a ring.
 
-\begin{proposition}\label{proposition:filteredexact}
-Let $I$ be a small filtered category. Then the functor sending $I$-indexed diagram of left $R$-modules to its colimit is exact.
-\end{proposition}
-\begin{proof}
-Suppose that 
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{\bigg\{0 &K_i &  M_i   &N_i  &          0\bigg\}_{i\in I}         \\} ;
-\path[->,font=\scriptsize]  
-(m-1-1) edge node[auto] {$ $} (m-1-2)
-(m-1-2) edge node[auto] {$r_i $} (m-1-3)
-(m-1-3) edge node[auto] {$p_i $} (m-1-4)
-(m-1-4) edge node[auto] {$ $} (m-1-5);
-\end{tikzpicture}
-\end{center}
-is an $I$-indexed family of short exact sequences. Consider a complex
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{0&K&  M  &N&          0           \\} ;
-\path[->,font=\scriptsize]  
-(m-1-1) edge node[auto] {$ $} (m-1-2)
-(m-1-2) edge node[auto] {$r $} (m-1-3)
-(m-1-3) edge node[auto] {$p $} (m-1-4)
-(m-1-4) edge node[auto] {$ $} (m-1-5);
-\end{tikzpicture}
-\end{center}
-where $K=\mathrm{colim}_{i\in I}K_i$, $M=\mathrm{colim}_{i\in I}M_i$, $N=\mathrm{colim}_{i\in I}N_i$, $r=\mathrm{colim}_{i\in I}r_i$ and $p=\mathrm{colim}_{i\in I}p_i$. Clearly the complex is right exact. It suffices to prove that $r$ is a monomorphism. For $i\in I$ denote by $v_i:K_i\ra K$, $u_i:M_i\ra M$ structural morphisms. Pick $k\in K$ such that $r(k)=0$. Since $I$ is filtered, we have
-$$K=\sum_{i\in I}v_i(K_i),\,M=\sum_{i\in I}u_i(M_i)$$
-Thus there exists $i_0\in I$ and $k_{i_0}\in K_{i_0}$ such that $v_{i_0}(k_{i_0})=k$. We have $u_{i_0}\left(r_{i_0}(k_{i_0})\right)=r(k)=0$. Again using the fact that $I$ is filtered, we deduce that there exist $i_1\in I$ and a morphism $\alpha:i_0\ra i_1$ such that $u_{\alpha}\left(r_{i_0}(k_{i_0})\right)=0$, where $u_{\alpha}:M_{i_0}\ra M_{i_1}$ is a morphism in the $I$-indexed diagram $\{M_i\}_{i\in I}$. Now let $k_{i_1}=v_{\alpha}(k_{i_0})$, where $v_{\alpha}:K_{i_0}\ra K_{i_1}$ is a morphism in the $I$-indexed diagram $\{K_i\}_{i\in I}$. Then $v_{i_1}(k_{i_1})=k$ and $r_{i_1}(k_{i_1})=0$. Since $r_{i_1}$ is a monomorphism, we derive that $k_{i_1}=0$ and hence $k=v_{i_1}(k_{i_1})=0$. Thus $r$ is a monomorphism.
-\end{proof}
-
-\begin{corollary}\label{corollary:torpreservesfiltered}
+\begin{proposition}\label{proposition:torpreservesfiltered}
 Let $M$ be a right $R$-module. Then for every $i\in \NN$ functor $\mathrm{Tor}^R_i(M,-)$ defined on the category of left $R$-modules and with values in the category of abelian groups preserves filtered colimits.
-\end{corollary}
+\end{proposition}
 \begin{proof}
 Let $I$ be a small filtered category and $\{N_i\}_{i\in I}$ be an $I$-indexed diagram of left $R$-modules. Fix a projective resolution $P_{\bullet}\ra M$ of $M$. Since tensor product commutes with colimits, we have 
 $$\mathrm{colim}_{i\in I}\left(P_{\bullet}\otimes_RN_i\right)=P_{\bullet}\otimes_R\mathrm{colim}_{i\in I}N_i$$
-in the category of complexes of abelian groups. Since exact functors preserve kernels, cokernels and images, we derive by Proposition \ref{proposition:filteredexact} that for every $n\in \NN$ there is an identification
+in the category of complexes of abelian groups. Since exact functors preserve kernels, cokernels and images, by the fact that $\Mod(R)$ is $\bd{Ab}5$-category we derive that for every $n\in \NN$ there is an identification
 $$\mathrm{Tor}^R_n\left(M,\mathrm{colim}_{i\in I}N_i\right)=H_n\left(P_{\bullet}\otimes_R\mathrm{colim}_{i\in I}N_i\right)=H_n\left(\mathrm{colim}_{i\in I}\left(P_{\bullet}\otimes_RN_i\right)\right)=$$
 $$=\mathrm{colim}_{i\in I}H_n\left(P_{\bullet}\otimes_RN_i\right)=\mathrm{colim}_{i\in I}\mathrm{Tor}^R_n\left(M,N_i\right)$$
 of cocones.
@@ -114,7 +37,7 @@ Let $M$ be a right $R$-module. We say that $M$ is \textit{flat} if the functor $
 Let $I$ be a filtered category and $\{M_i\}_{i\in I}$ be an $I$-indexed diagram of flat right $R$-modules. Then $\mathrm{colim}_{i\in I}M_i$ is a flat right $R$-module.
 \end{proposition}
 \begin{proof}
-Proposition \ref{proposition:filteredexact} implies that filtered colimits of short exact sequences of abelian groups are short exact seqeunces. Thus filtered colimits of flat right $R$-modules are flat.
+The fact that $\Mod(R)$ is $\bd{Ab}5$-category implies that filtered colimits of short exact sequences of abelian groups are short exact seqeunces. Thus filtered colimits of flat right $R$-modules are flat.
 \end{proof}
 
 \begin{proposition}[Homological criterion for flatness]\label{proposition:homologicalflatness}
@@ -128,7 +51,7 @@ Let $M$ be a right $R$-module. Then the following are equivalent.
 \end{proposition}
 \begin{proof}
 The implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ is straightforward.\\
-Suppose that $\textbf{(ii)}$ holds. Then for every left ideal $I\subseteq R$ we can write $I=\mathrm{colim}_{\lambda\in \Lambda}I_{\lambda}$, where $\{I_{\lambda}\}_{\lambda\in \Lambda}$ is a filtered set of all finitely generated left ideals of $R$ contained in $I$. This induces a presentation of $R/I$ as a filtered colimit of the system $\{R/I_{\lambda}\}_{\lambda\in \Lambda}$ and thus by Corollary \ref{corollary:torpreservesfiltered} we have
+Suppose that $\textbf{(ii)}$ holds. Then for every left ideal $I\subseteq R$ we can write $I=\mathrm{colim}_{\lambda\in \Lambda}I_{\lambda}$, where $\{I_{\lambda}\}_{\lambda\in \Lambda}$ is a filtered set of all finitely generated left ideals of $R$ contained in $I$. This induces a presentation of $R/I$ as a filtered colimit of the system $\{R/I_{\lambda}\}_{\lambda\in \Lambda}$ and thus by Corollary \ref{proposition:torpreservesfiltered} we have
 $$\mathrm{Tor}^R_1(M,R/I)=\mathrm{colim}_{\lambda\in \Lambda}\mathrm{Tor}^R_1(M,R/I_{\lambda})=0$$
 Now suppose that $N$ is a finitely generated left module over $R$. Then we can decompose $N$ such that it fits in an exact sequence
 \begin{center}
@@ -143,7 +66,7 @@ Now suppose that $N$ is a finitely generated left module over $R$. Then we can d
 (m-1-4) edge node[auto] {$ $} (m-1-5);
 \end{tikzpicture}
 \end{center}
-Now we have $\mathrm{Tor}^R_1(M,K)=0$ implies that $\mathrm{Tor}^R_1(M,N)=0$. Therefore, using induction on the minimal number of generators of finitely generated left $R$-module we may prove that $\mathrm{Tor}^R_1(M,N)=0$ for every finitely generated left $R$-module. Since every left $R$-module is a filtered colimit of its finitely generated left $R$-submodules, we derive by Corollary \ref{corollary:torpreservesfiltered} that $\mathrm{Tor}^R_1(M,N)=0$ for every left $R$-module $N$. Using first terms of the long exact sequence for $\mathrm{Tor}$ associated with $M\otimes_R(-)$ we deduce \textbf{(iii)}.\\
+Now we have $\mathrm{Tor}^R_1(M,K)=0$ implies that $\mathrm{Tor}^R_1(M,N)=0$. Therefore, using induction on the minimal number of generators of finitely generated left $R$-module we may prove that $\mathrm{Tor}^R_1(M,N)=0$ for every finitely generated left $R$-module. Since every left $R$-module is a filtered colimit of its finitely generated left $R$-submodules, we derive by Corollary \ref{proposition:torpreservesfiltered} that $\mathrm{Tor}^R_1(M,N)=0$ for every left $R$-module $N$. Using first terms of the long exact sequence for $\mathrm{Tor}$ associated with $M\otimes_R(-)$ we deduce \textbf{(iii)}.\\
 Now if $M$ is flat, then tensoring with $M$ is exact. This means that tensor product of a free resolution of a left $R$-module $N$ with $M$ has trivial higher homologies. Thus $\mathrm{Tor}^R_i(M,N)=0$ for $i>0$. This proves $\textbf{(iii)}\Rightarrow \textbf{(iv)}$.\\
 Finally $\textbf{(iv)}\Rightarrow \textbf{(i)}$ is obvious.
 \end{proof}
@@ -315,6 +238,6 @@ by finite presentation of $M$. Thus there exists an $\alpha\in I$ and a morphism
 
 \small
 \bibliographystyle{apalike}
-\bibliography{refs}
+\bibliography{zzz}
 
 \end{document}
