@@ -4,7 +4,7 @@ IMPORTANT
 Compilation of latex files requires file "pree.tex" in your working directory. The file is located at the top of the repository.
 
 REFERENCES
-Each directory contains "refs.bib" with bibtex formats required for creating bibliography for latex files located inside directory.
+Each directory contains "zzz.bib" with bibtex formats required for creating bibliography for latex files located inside directory.
 
 PREREQUISITES
 Each directory contains file "<direcory name> - prerequisites.pdf", which contains references for material that is assumed to know in the notes located in the directory.
