@@ -1,7 +1,7 @@
 The repository contains mathematical notes in latex and pdf formats. Feel free to modify them for your own purposes.
 
-IMPORTANT
-Compilation of latex files requires file "pree.tex" in your working directory. The file is located at the top of the repository.
+PREAMBLE
+Compilation of each latex file requires file "pree.tex" in your working directory. The file is located at the top of the repository.
 
 REFERENCES
 Each directory contains "zzz.bib" with bibtex formats required for creating bibliography for latex files located inside directory.
