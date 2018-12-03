@@ -1,0 +1,152 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Conditional Expectations}
+\date{}
+\maketitle
+
+\section{Existence of conditional expectations}
+\noindent
+Fix a probability space $(\Omega, \cF, P)$.
+
+\begin{theorem}\label{theorem:existenceofconditionalexpectationforintegrable}
+Let $X:\Omega \ra \RR$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. Then there exists $\cG$-measurable and integrable function $f:\Omega \ra \RR$ such that
+$$\int_GXdP = \int_G f dP$$
+for every $G$ in $\cG$. Moreover, the set of all $\cG$-measurable functions having the property described by the system of equations above is
+$$\big\{g:\Omega \ra \RR\,\big|\,g\mbox{ is }\cG\mbox{-measurable and }f(\omega)=g(\omega)\mbox{ almost surely}\big\}$$
+\end{theorem}
+\begin{proof}
+We define a real measure $\nu:\cG\ra \RR$ by formula
+$$\nu(G) = \int_G XdP$$
+for $G\in \cG$. Since $\nu \ll P_{\mid \cG}$ and by {\cite[Theorem 5.3]{RadonNikodymHahnJordanLebesguedecomposition}}, we derive that there exists a $\cG$-measurable function $f:\Omega \ra \RR$ such that
+$$\nu(G) = \int_G f dP$$
+The last statement is clear and is left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+Let $X:\Omega \ra \RR$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. Suppose that $f:\Omega \ra \RR$ is a $\cG$-measurable and integrable function $f:\Omega \ra \RR$ such that 
+$$\int_GXdP = \int_G f dP$$
+for every $G$ in $\cG$. Then $f$ is called \textit{a version of the conditional expectation of $X$ with respect to $\cG$}.
+\end{definition}
+\noindent
+No we define important special case.
+
+\begin{definition}
+Let $\cG$ be a $\sigma$-subalgebra of $\cF$. Let $f:\Omega \ra \RR$ be a $\cG$-measurable, integrable and nonnegative function such that
+$$P(A\cap G) = \int_G f dP$$
+for every $G\in \cG$. Then $f$ is called \textit{a version of conditional probability of $A$ with respect to $\cG$}.
+\end{definition}
+\noindent
+Now that we discuss basic existence and uniqueness results concerning conditional expectation let us introduce some notation. Let $(\Omega, \cF, P)$ be a probability space, $X:\Omega \ra \RR$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. We denote any version of the conditional expectation of $X$ with respect to $\cG$ by a symbol
+$$\mathbb{E}[X\,|\,\cG]$$
+
+\section{Statistical models and sufficiency}
+
+\begin{definition}
+Let $(\Omega, \cF)$ be a measurable space and $\cP$ be a family of probability distributions on $(\Omega, \cF)$. Then a triple $(\Omega, \cF, \cP)$ is called \textit{a statistical model}.
+\end{definition}
+\noindent
+From now on we fix a statistical model $(\Omega, \cF, \cP)$.
+
+\begin{definition}
+A $\sigma$-subalgebra $\cG$ of $\cF$ is \textit{sufficient with respect to the model $(\Omega, \cF, \cP)$} if there exists a function $h:\cF \times \Omega \ra \RR$ such that for any $A\in \cF$ and $P \in \cP$ the map
+$$\Omega \ni \omega \mapsto h(A, \omega)\in \RR$$
+is a version of the conditional probability $P$ of $A$ with respect to $\cG$.
+\end{definition}
+
+\begin{proposition}
+Suppose that there exists $Q$ in $\cP$ such that $P \ll Q$ for every $P\in \cP$. Then every $\sigma$-subalgebra of $\cF$ is sufficient with respect to $(\Omega, \cF, \cP)$.
+\end{proposition}
+\begin{proof}
+Let $\cG$ be an arbitrary $\sigma$-subalgebra of $\cF$. Suppose that $h_{P}:\Omega \ra \RR$ is a Radon-Nikodym derivative of $P$ with respect to $Q$. Fix $A$ in $\cF$ and $G$ in $\cG$. We have
+$$\int_GQ[A\,|\,\cG]\,dP = \int_G\mathbb{E}_{Q}[\chi_A\,|\cG]\cdot h_{P}\,dQ = \int_G \mathbb{E}_{Q}[\chi_A\,|\cG]\cdot \mathbb{E}_{Q}[h_{P}\,|\,\cG]\,dQ =$$
+$$=\int_G\mathbb{E}_{Q}[\chi_A\cdot h_{P}\,|\,\cG]\,dQ= \int_G\chi_A\cdot h_{P}\,dQ = \int_{A\cap G}h_{P}\,dQ=P(A\cap G)$$
+This implies that 
+$$Q[A\,|\,\cG] = P[A\,|\,\cG]$$
+for any $A\in \cF$ and $P\in \cP$. Hence $\cG$ is a sufficient $\sigma$-subalgebra of $\cF$ with respect to $(\Omega, \cF, \cP)$.
+\end{proof}
+
+
+\begin{theorem}
+Let $(\Omega, \cF)$ be a measurable space and $\big\{P_{\theta}\big\}_{\theta \in \Theta}$ be a family of probability measures on $(\Omega, \cF)$. Assume that there exists a $\sigma$-finite measure $\mu$ such that $P_{\theta} \ll \mu$ for every $\theta \in \Theta$. Suppose that $\cG$ is a $\sigma$-subalgebra of $\cF$. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item There exists $\cF$-measurable function $h:\Omega \ra \RR$ such that 
+$$f_{\theta}= g_{\theta}\cdot h$$
+for every $\theta \in \Theta$, where $f_{\theta}$ is a Radon-Nikodym derivative of $P_{\theta}$ with respect to $\mu$ and $g_{\theta}:\Omega \ra \RR$ is $\cG$-measurable.
+\item $\cG$ is a sufficient $\sigma$-subalgebra with respect to $\big\{P_{\theta}\big\}_{\theta\in \Theta}$.
+\end{enumerate}
+\end{theorem}
+\noindent 
+The proof relies on the following results. 
+
+\begin{proposition}
+Let $(\Omega, \cF, \cP)$ be a statistical model and assume that there exists a $\sigma$-finite measure $\mu:\cF\ra [0,+\infty]$ such that $P \ll \mu$ for every $P\in \cP$. Then there exists a probability measure $Q$ on $(\Omega, \cF)$ such that for every $A\in \cF$ we have $P(A) = 0$ for each $P\in \cP$ if and only if $Q(A)=0$.
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{zzz}
+
+\end{document}
