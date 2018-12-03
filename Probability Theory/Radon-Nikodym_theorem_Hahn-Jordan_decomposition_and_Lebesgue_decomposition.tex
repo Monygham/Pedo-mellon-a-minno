@@ -1,0 +1,338 @@
+\input pree.tex
+
+\begin{document}
+
+
+\title{Radon-Nikodym theorem, Hahn-Jordan decomposition and Lebesgue decomposition}
+\date{}
+\maketitle
+\section{Introduction}
+\noindent
+This notes are devoted to some more advanced notions in measure theory. Tools presented here are indispensable in probability theory and statistics. We refer to \cite{Introductiontomeasuretheory} for extensive introduction to measure theory. 
+
+\section{Signed and Complex Measures}
+\noindent
+In this section we define extension of the usual notion of nonnegative measure. Denote by $\ol{\RR}=\RR\cup \{-\infty,+\infty\}$ the topological space obtained as a two-point compactification of the line $\RR$. Addition is partially defined operation on $\ol{\RR}$ given by the following rules
+$$(+\infty)+r=+\infty=r+(+\infty),\,(-\infty)+r=-\infty=r+(-\infty)$$
+for every $r\in \RR$
+
+\begin{definition}
+Let $\left(X,\Sigma\right)$ be a measurable space. \textit{A signed measure on $(X,\Sigma)$} is a function $\nu:\Sigma\ra \ol{\RR}$ such that $\nu(\emptyset)=0$ and 
+$$\nu\left(\bigcup_{n\in \NN}A_n\right)=\sum_{n\in \NN}\nu(A_n)$$
+for every family $\{A_n\}_{n\in \NN}$ of pairwise disjoint subsets of $\Sigma$. We also say that $\nu$ is \textit{a real measure on $(X,\Sigma)$} if it is signed measure and takes values in $\RR$.
+\end{definition}
+
+\begin{definition}
+Let $\left(X,\Sigma\right)$ be a measurable space. \textit{A complex measure} is a function $\nu:\Sigma\ra \CC$ such that $\nu(\emptyset)=0$ and 
+$$\nu\left(\bigcup_{n\in \NN}A_n\right)=\sum_{n\in \NN}\nu(A_n)$$
+for every family $\{A_n\}_{n\in \NN}$ of pairwise disjoint subsets of $\Sigma$. 
+\end{definition}
+
+\begin{definition}
+Let $(X,\Sigma)$ be a measurable space and let $\mu,\nu$ be two measures (either complex or signed) on $(X,\Sigma)$. Suppose that for every set $A$ in $\Sigma$ we have
+$$\mu(A) = 0\,\Rightarrow \nu(A)=0$$
+Then we write $\nu \ll \mu$ and say that $\nu$ is \textit{absolutely continuous with respect to $\mu$}.
+\end{definition}
+
+\begin{definition}
+Let $(X,\Sigma)$ be a measurable space and let $\mu$, $\nu$ be two measures (either complex or signed) on $(X,\Sigma)$. Suppose that there exists a set $S\in \Sigma$ such that
+$$\mu(A\cap S) = 0,\,\nu(A\setminus S) = 0$$
+for every $A \in \Sigma$. Then we write $\nu \perp \mu$ and say that $\nu$ is \textit{singular with respect to $\mu$}.
+\end{definition}
+
+\section{Functional analytic proof of Lebesgue decomposition and Radon-Nikodym theorem}
+
+\begin{theorem}\label{theorem:radonnikodymbasic}
+Let $(X,\Sigma)$ be a measurable space and let $\mu$, $\nu$ be a finite, nonnegative measures. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item There exists a unique decomposition 
+$$\nu = \nu_s + \nu_a$$
+of measure $\nu$ such that $\nu_s \perp \mu$ and $\nu_a \ll \mu$.
+\item There exists a unique up to a set of measure $\mu$ zero nonnegative and measurable function $f:X\ra\RR$ such that
+$$\nu_a(A) = \int_A fd\mu$$
+for every $A\in \Sigma$.
+\end{enumerate} 
+\end{theorem}
+\noindent
+The proof presented here is due to John von Neumman and it uses theory of Hilbert spaces. There are also measure-theoretic proofs available.
+\begin{proof}
+Consider a measure $\xi = \mu + \nu$. Then for every set $A$ in $\Sigma$ we have $\nu(A)\leq \xi(A)$ and $\mu(A)\leq \xi(A)$. We refer to these facts by notation $\nu\leq \xi$, $\mu \leq \xi$. Define $\CC$-linear functional 
+$$L^2(\xi,\CC)\ni f \mapsto \int_X f d\nu \in \CC$$
+From $\nu \leq \xi$ it follows that the functional is continuous. By representation of continuous functionals on Hilbert spaces, we derive that there exists $g\in L^2(\xi,\CC)$ such that
+$$\int f d\nu = \int f\cdot g\,d\xi$$
+for every $f\in L^2(\xi,\CC)$. We may assume that $g$ is measurable by modifying it on a set of measure $\xi$ (and hence also $\mu$ according to $\mu \leq \nu$) equal to zero. Pick $k\in \NN$ and $A\in \Sigma$ and in the above equation set $f = \chi_A\cdot g^k$. Then
+\begin{equation}
+\int_Ag^k\, d\nu = \int_A g^{k+1}\,d\xi\tag{*}
+\end{equation}
+and hence we have
+$$\int_A\left(g^k - g^{k+1}\right)\,d\nu = \int_A g^{k+1}d\mu$$
+for every $A\in \Sigma$. Summing these equalities for $0\leq k\leq n$ we derive that
+\begin{equation}
+\int_A\left(1 - g^{n+1}\right)\,d\nu = \int_A\left(g+g^2+...+g^{n+1}\right)\,d\mu\tag{**}
+\end{equation}
+Now we let $k = 0$ in (*) and obtain
+$$\nu(A)  = \int_Ag\,d\xi $$
+Together with $\nu \leq \xi$ this implies that the inequality $0\leq g(x) \leq 1$ holds $\xi$-almost everywhere and thus by simple modification of $g$ we may assume that it holds everywhere. Define a set $Q = \big\{x\in X\,\big|\,g(x) = 1\,\big\}$. Then we have $\nu(Q) = \xi(Q)$ and hence $\mu(Q) = 0$. Now for every $A\in \Sigma$ we define
+$$\nu_s(A)= \nu(A\cap Q),\,\nu_a(A) = \nu(A\setminus Q)$$
+Then we have $\nu_s \perp \mu$ and $0\leq g(x) < 1$ for $x\not \in Q$. Next by (**) and monotone convergence theorem we deduce that 
+$$\nu_a(A) = \nu(A\setminus Q) =  \lim_{n\ra +\infty}\int_{A\setminus Q}\left(1 - g^{n+1}\right)\,d\nu = $$
+$$=\lim_{n\ra +\infty}\int_{A\setminus Q}\left(g+g^2+...+g^{n+1}\right)\,d\mu = \int_{A} \chi_{X\setminus Q}\cdot \sum_{n\in \NN}g^{n+1}\,d\mu$$
+for every $A\in \Sigma$. Thus $\nu = \nu_s + \nu_a$, $\nu_s\perp \mu$ and for 
+$$f = \chi_{X\setminus Q}\cdot \sum_{n\in \NN}g^{n+1}$$
+we have 
+$$\nu_a(A) = \int_A fd\mu$$
+for every $A\in \Sigma$. We proved \textbf{(1)} and \textbf{(2)} without uniqueness statements. We left them for the reader.
+\end{proof}
+
+
+
+\section{Hahn-Jordan Decomposition}
+
+\begin{theorem}[Hahn-Jordan decomposition]\label{theorem:jordansdecomposition}
+Let $\left(X,\Sigma\right)$ be a measurable space and $\nu:\Sigma\ra \ol{\RR}$ be a signed measure. Then there exists the unique pair of measures $\nu_+,\nu_-:\Sigma \ra [0,+\infty]$ such that  
+$$\nu = \nu_+ - \nu_-$$
+and $\nu_+ \perp \nu_-$.
+\end{theorem}
+\noindent
+For the proof we need the following notion.
+
+\begin{definition}
+Let $(X,\Sigma,\nu)$ be a space with signed measure. A set $A\in \Sigma$ is \textit{positive} if for every subset $B$ of $A$ such that $B\in \Sigma$ we have inequality $\nu(B)\geq 0$. 
+\end{definition}
+
+\begin{lemma}\label{lemma:positiveexist}
+Let $B\in \Sigma$ be a set such that $\nu(B)\in [0,+\infty)$. Then there exists a positive set $C\subseteq B$ such that $\nu(B)\leq \nu(C)$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+First note that all sets $A\in \Sigma$ contained in $B$ have finite measure (we left the proof as an exercise for the reader). We define partial order $\preceq$ on the set $\cP(B)\cap \Sigma$ by declaring $A_1 \preceq A_2$ if and only if $A_2\subseteq A_1$ and $\nu(A_1)\leq \nu(A_2)$. Suppose now that $\ideal{I}$ is a chain (linearly ordered subset) in $\left(\cP(B)\cap \Sigma,\preceq \right)$. Then the function $\ideal{I}\ni A\mapsto \nu(A)\in \RR$ is strictly increasing. Hence there exists a sequence $\{A_n\}_{n\in \NN}$ of elements in $\ideal{I}$ such that $A_n\preceq A_{n+1}$ for every $n\in \NN$ and 
+$$\lim_{n\ra +\infty}\nu(A_n)= \sup_{A\in \ideal{I}}\nu(A)$$
+Then 
+$$\bigcap_{n\in \NN}A_n\in \cP(B)\cap \Sigma$$
+is the least upper bound of $\ideal{I}$. Thus every chain in $\left(\cP(B)\cap \Sigma,\preceq\right)$ has the least upper bound. Zorn's lemma implies that the ordered subset
+$$\big\{A\in \cP(B)\cap \Sigma\,\big|\,B\preceq A\big\}$$
+of $\left(\cP(B)\cap \Sigma,\preceq \right)$ admits a maximal element $C$. We deduce that $C$ is a positive subset of $B$ and since $B\preceq C$ we have $\nu(B)\leq \nu(C)$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Assume that for every $A\in \Sigma$ we have $\nu(A) \in \RR\cup \{-\infty\}$. Now consider 
+$$\alpha=\sup \big\{\nu(C)\,\big|\,C\mbox{ is positive}\big\}$$
+We can find a nondecreasing sequence $\{\alpha_n\}_{n\in \NN}$ of nonnegative real numbers that converges to $\alpha$ and such that for every $n\in \NN$ there exists a positive set $C_n$ with $\nu(C_n)=\alpha_n$. Now pick $P=\bigcup_{n\in \NN}C_n$. Obviously $P$ is positive and $\nu(P)=\alpha$. In particular, $\alpha \in \RR$. Assume that there exists $B\in \Sigma$ such that $B\subseteq X\setminus P$ and $\nu(B)>0$. According to Lemma \ref{lemma:positiveexist} we deduce that there exists a positive set $C$ inside $B$ such that $\nu(B)\leq \nu(C)$. Then we get
+$$\alpha=\nu(P)<\nu(P)+\nu(C)=\nu(P\cup C)$$
+and $P\cup C$ is positive. This contradicts the definition of $\alpha$. Hence for every $B\subseteq X\setminus P$ such that $B\in \Sigma$ we have $\nu(B)\leq 0$. Thus measures
+$$\nu_+(A) = \nu(A\cap P),\,\nu_-(A) = -\nu(A\setminus P)$$
+defined for $A\in \Sigma$ satisfy the assertion of the theorem. This finishes the proof of the Hahn-Jordan decomposition under the assumption that $\nu(A)\in \RR\cup \{-\infty\}$ for all $A\in \Sigma$.\\
+If $\nu(A)\in \RR\cup \{+\infty\}$ for every $A\in \Sigma$, then we apply the result above for $-\nu$. Finally the case $\nu(A_1)=-\infty$ and $\nu(A_2)=+\infty$ for some $A_1$, $A_2\in \Sigma$ yields to the contradiction. Hence Hahn-Jordan decomposition is proved.
+\end{proof}
+
+
+
+\begin{corollary}\label{corollary:oneisfinite}
+Let $\left(X,\Sigma\right)$ be a measurable space and $\nu:\Sigma\ra \ol{\RR}$ be a signed measure. Then either $\nu_+$ or $\nu_-$ is finite.
+\end{corollary}
+\begin{proof}
+According to Theorem \ref{theorem:jordansdecomposition} we have $\nu = \nu_+-\nu_-$ and both $\nu_+$, $\nu_-$ are nonnegative measures such that $\nu_+\perp \nu_-$. We cannot have $\nu_+(X)=\nu_-(X)=+\infty$, because then $\nu(X)$ would be undefined in $\ol{\RR}$. This implies that either $\nu_+(X)\in \RR$ or $\nu_-(X)\in \RR$.
+\end{proof}
+
+\section{Lebesgue decomposition and general form of Radon-Nikodym theorem}
+
+\begin{definition}
+Let $(X,\Sigma)$ be a measurable space and $\mu:\Sigma \ra \ol{\RR}$ be a signed measure. We say that $\mu$ is $\sigma$-finite if there exists a decomposition
+$$X = \bigcup_{n\in \NN}X_n$$
+onto pairwise disjoint elements of $\Sigma$ such that $\mu(X_n)\in \RR$ for every $n\in \NN$.
+\end{definition}
+
+\begin{theorem}[Lebesgue decomposition]\label{theorem:lebesguedecomposition}
+Let $(X,\Sigma)$ be a measurable space and let $\mu$ be an $\sigma$-finite, nonnegative measure on $(X,\Sigma)$. Suppose that $\nu$ is either a signed and $\sigma$-finite measure or a complex measure on $(X,\Sigma)$. Then there exists a unique decomposition 
+$$\nu = \nu_s + \nu_a$$
+of measure $\nu$ such that $\nu_s \perp \mu$ and $\nu_a \ll \mu$.
+\end{theorem}
+\noindent
+The uniqueness is left for the reader. The existence is a consequence of Theorem \ref{theorem:radonnikodymbasic} and the following elementary observation.
+
+\begin{lemma}\label{lemma:linearspaceforsingularandabsolutecontinuous}
+Let $(X,\Sigma)$ be a measurable space and let $\nu_1$, $\nu_2$, $\mu$ be measures (either signed or complex) on $(X,\Sigma)$. Assume that $\nu_1+\nu_2$ exists. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item If $\nu_1 \ll \mu$ and $\nu_2 \ll \mu$, then $(\nu_1+\nu_2) \ll \mu$.
+\item If $\nu_1\perp \mu$ and $\nu_2 \perp \mu$, then $(\nu_1+\nu_2) \perp \mu$.
+\end{enumerate} 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+We left the proof of \textbf{(1)} for the reader.\\
+We prove \textbf{(2)}. For this assume that $S_1$, $S_2\in \Sigma$ are sets such that
+$$\mu(A\cap S_1)=0,\,\nu_1(A\setminus S_1)=0,\,\mu(A\cap S_2)=0,\,\nu_2(A\setminus S_2)=0$$
+for every $A\in \Sigma$. Hence also 
+$$\mu\left(A\cap (S_1\cup S_2)\right) = \mu(A\cap S_1)+\mu\left((A\setminus S_1)\cap S_2\right) = 0$$
+and this implies that $(\nu_1+\nu_2)\perp \mu$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Suppose first that $\nu$ is $\sigma$-finite and nonnegative. Since $\mu$ is a $\sigma$-finite and nonnegative by assumption of the theorem, there exist
+$$X = \bigcup_{n\in \NN}X_n$$
+a decompositon onto a sum of parwise disjoint elements of $\Sigma$ such that $\mu(X_n)\in \RR$ and $\mu(X_n)\in \RR$. We define measures $\nu_n:\Sigma \ra \RR$ and $\mu_n:\Sigma \ra [0,+\infty)$ by formulas $\mu_n(A) = \mu(A\cap X_n), \nu_n(A) = \nu(A\cap X_n)$ for every $A\in \Sigma$ and $n\in \NN$. By \textbf{(1)} of Theorem \ref{theorem:radonnikodymbasic} for every $n\in \NN$ we have a decomposition $\nu_n = \nu_{ns}+\nu_{na}$, where $\nu_{ns} \perp \mu_n$ and $\nu_{na} \ll \mu_n$. Since $X_n\cap X_m = \emptyset$ for $n\neq m$, we derive that 
+$$\nu_s = \sum_{n\in \NN}\nu_{ns},\,\nu_{a}=\sum_{n\in \NN}\nu_{na}$$
+are well defined $\sigma$-finite, nonnegative measures on $(X, \Sigma)$ and $\nu = \nu_s + \nu_a$. Moreover, $\nu_s \perp \mu$ and $\nu_a \ll \mu$.\\
+Next assume that $\nu$ is a $\sigma$-finite, signed measure. By Theorem \ref{theorem:jordansdecomposition} we write $\nu = \nu_+-\nu_-$, where measures $\nu_+$ and $\nu_-$ are nonnegative and $\sigma$-finite. Moreover, by Corollary \ref{corollary:oneisfinite} at least one of $\nu_+$, $\nu_-$ is finite. By the above considerations we can write
+$$\nu_+ = \nu_{+s}+\nu_{+a},\,\nu_- = \nu_{-s}+\nu_{-a}$$
+where $\nu_{+s}\perp \mu$, $\nu_{-s}\perp \mu$, $\nu_{+a}\ll \mu$, $\nu_{-a} \ll \mu$. Note that measures $\nu_{+s}-\nu_{-s}$ and $\nu_{+a}-\nu_{-a}$ exist, because at least one measure $\nu_+$, $\nu_-$ is finite and hence either $\nu_{+s}$, $\nu_{+a}$ or $\nu_{-s}$, $\nu_{-a}$ are finite. By Lemma \ref{lemma:linearspaceforsingularandabsolutecontinuous} we deduce that 
+$$\nu_{+s}-\nu_{-s} \perp \mu,\,\nu_{+a}-\nu_{-a} \ll \mu$$
+and hence $\nu_s = \nu_{+s}-\nu_{-s}$, $\nu_{a} = \nu_{+a}-\nu_{-a}$ satisfy 
+$$\nu = \nu_s+\nu_a$$
+with $\nu_s \perp \mu$, $\nu_a \ll \mu$.\\
+Finally assume that $\nu$ is complex. Then $\nu = \nu^r+i\cdot \nu^i$, where $\nu^r$ and $\nu^i$ are finite, signed measures. Form the case above we have decompositions
+$$\nu^r = \nu^r_s+\nu^r_a,\,\nu^i=\nu^i_s+\nu^i_s$$
+and $\nu^r_s \perp \mu$, $\nu^i_s \perp \mu$, $\nu^r_a \ll\mu$, $\nu^i_a \ll \mu$. Now Lemma \ref{lemma:linearspaceforsingularandabsolutecontinuous} implies that 
+$$\nu_s = \nu^r_s+i\cdot \nu^i_s,\,\nu_a = \nu^r_a+i\cdot \nu^i_a$$
+satisfy $\nu_s \perp \mu$, $\nu_a \ll \mu$.
+\end{proof}
+
+\begin{theorem}[Radon-Nikodym]\label{theorem:radonnikodymmain}
+Let $(X,\Sigma)$ be a measurable space and let $\mu$, $\nu$ be either signed or complex measures on $(X,\Sigma)$. Suppose that $\nu \ll \mu$ and assume that every signed measure in the set $\{\nu, \mu\}$ is $\sigma$-finite. Then there exists a measurable function $f:X\ra \CC$ such that
+$$\nu(A) = \int_A f d\mu$$
+for every $A\in \Sigma$.
+\end{theorem}
+\begin{proof}
+Assume first that $\nu$, $\mu$ are $\sigma$-finite nonegative measures. There exist
+$$X = \bigcup_{n\in \NN}X_n$$
+a decompositon onto a sum of parwise disjoint elements of $\Sigma$ such that $\mu(X_n)\in \RR$ and $\mu(X_n)\in \RR$. We define a measures $\nu_n:\Sigma \ra \RR$ and $\mu_n:\Sigma \ra [0,+\infty)$ by formulas $\mu_n(A) = \mu(A\cap X_n), \nu_n(A) = \nu(A\cap X_n)$ for every $A\in \Sigma$ and $n\in \NN$. Clearly $\nu_n \ll \mu_n$ for every $n\in \NN$. By \textbf{(2)} of Theorem \ref{theorem:radonnikodymbasic} for every $n\in \NN$ there exists nonnegative, measurable function $f_n:X\ra \RR$ such that
+$$\nu_n(A) = \int_A f_nd\mu_n = \int_A f_nd\mu$$
+for every $A\in \Sigma$. Then $f =\sum_{n\in \NN}f_n$ satisfies
+$$\nu(A) =\int_A fd\mu$$
+for every $A\in \Sigma$.\\
+Now suppose that $\nu$ is nonnegative, $\sigma$-finite measure and $\mu$ is signed, $\sigma$-finite measure. Then by Theorem \ref{theorem:jordansdecomposition} we deduce that $\mu = \mu_+-\mu_-$ where $\mu_+\perp \mu_-$ and $\mu_+$, $\mu_-$ are both $\sigma$-finite and nonnegative. There exists a subset $P\in \Sigma$ such that
+$$\mu_+(A) = \mu(A\cap P),\,\mu_-(A) = \mu(A\setminus P)$$
+for every $A\in \Sigma$. For every $A\in \Sigma$ we define 
+$$\nu_{\mid P}(A) = \nu(A\cap P),\,\nu_{\mid X\setminus P}(A) = \nu(A\setminus P)$$
+We have $\nu_{\mid P} \ll \mu_+$ and $\nu_{\mid X\setminus P}\ll \mu_-$. By previous considerations there exist nonnegative, measurable functions $f_P, f_{X\setminus P}:X\ra \RR$ such that
+$$\nu_{\mid P}(A)  = \int_A f_P d\mu_+,\,\nu_{\mid X\setminus P}(A) = \int_A f_{X\setminus P}d\mu_-$$
+Modifying $f_P$ on a set of measure $\mu_+$ zero and modifying $f_{X\setminus P}$ on a set of measure $\mu_-$ zero we may assume $f_P(x)=0$ for $x\not \in P$ and $f_{X\setminus P}(x) = 0$ for $x\in P$. We have
+$$\nu(A) = \nu_{\mid P}(A)+\nu_{\mid X\setminus P}(A) = \int_Af_{P} d\mu_+ + \int_A f_{X\setminus P}d\mu_- = \int_A f_P d\mu +\int_A(-f_{X\setminus P})d\mu = \int_A(f_{P}-f_{X\setminus P})d\mu$$
+Next we assume that $\nu$ is $\sigma$-finite, signed measure and $\mu$ is $\sigma$-finite, signed measure. By Theorem \ref{theorem:jordansdecomposition} we write $\nu = \nu_+ - \nu_-$ where $\nu_+ \perp \nu_-$ and $\nu_+$, $\nu_-$ are nonnegative and $\sigma$-finite measures. We have $\nu_+ \ll \mu$ and $\nu_- \ll \mu$. So by the case considered previously there exist a measurable functions $f_+:X\ra \RR$ and $f_-:X\ra \RR$ such that
+$$\nu_+(A) = \int_A f_+d\mu,\,\nu_-(A) = \int_A f_-d\mu$$
+for every $A\in \Sigma$. In addition, since one of measures $\nu_+$, $\nu_-$ is finite by Corollary \ref{corollary:oneisfinite}, we deduce that one of functions $f_+$, $f_-$ is $\mu$-integrable. Hence $f = f_+ - f_-$ is a well defined measurable function and
+$$\nu(A) = \nu_+(A) - \nu_-(A) = \int_A f_+d\mu-\int_A f_-d\mu= \int_A(f_+-f_-)d\mu$$
+Finally it suffices to prove the result if one (or both) of measures $\nu$, $\mu$ is complex. This follows easily from the proof for signed case by decomposing complex measure into real and imaginary parts.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{zzz}
+
+\end{document}
