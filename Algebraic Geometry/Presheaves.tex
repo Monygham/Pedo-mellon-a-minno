@@ -1,0 +1,248 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Presheaves}
+\date{}
+\maketitle
+
+
+\section{Creation of limits and colimits}
+\noindent
+
+\begin{definition}
+Let $F:\cC\ra \cX$, $D:I\ra \cC$ be functors. Suppose that $\left(X,\{f_i\}_{i\in I}\right)$ is a cone in $\cX$ for the composition $F\cdot D$. We say that a cone $\left(Z,\{g_i\}_{i\in I}\right)$ in $\cC$ for $D$ is \textit{a lift of $\left(X,\{f_i\}_{i\in I}\right)$} if $F(Z)=X$ and $F(g_i)=f_i$ for every $i\in I$.
+\end{definition}
+
+\begin{definition}
+Let $F:\cC\ra \cX$, $D:I\ra \cC$ be functors. We say that \textit{$F$ creates limits for $D$} if every limiting cone for $F\cdot D$ has a unique lift to a cone for $D$ and this lift is a limiting cone for $D$.
+\end{definition}
+
+\begin{definition}
+Let $F:\cC\ra \cX$ be a functor. We say that:
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item \textit{$F$ creates limits} if $F$ creates limits for all functors $D:I\ra \cC$.
+\item \textit{$F$ creates small limits} if $F$ creates limits for all functors $D:I\ra \cC$ with $I$ being small category.
+\item \textit{$F$ creates finite limits} if $F$ creates limits for all functors $D:I\ra \cC$ with $I$ being category with finitely many objects and arrows.
+\end{enumerate}
+\end{definition}
+\noindent
+Some extra material on creation of limits can be found in {\cite[V.1]{Maclane}}. By the usual arrow inverting one defines the notion of creation of colimits.\\
+Now we prove an important result. First we need to introduce some notation. Suppose that $\cC$ and $\cX$ are categories. Then we denote by $\Fun\left(\cC,\cX\right)$ the category with functors $\cC\ra \cX$ as objects and natural transformations between them as morphisms. We also denote by $|\cC|$ the category having the same objects as $\cC$ but with only identities as a morphism. There exists the canonical functor $|\cC|\ra \cC$ that induces identity map on objects. The next result describes limits and colimits in functor categories.
+
+\begin{theorem}\label{theorem:limitsinfunctorcategories}
+Let $\cC$, $\cX$ be a categories. Then the functor $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ induced by the precomposition with the functor $|\cC|\ra \cC$ creates all limits and colimits. 
+\end{theorem}
+\begin{proof}
+We prove that this functor creates limits. Creation of colimits can be handled similarly. Let $I$ be a category. For every object $i$ in $I$ consider a functor $F_i:\cC\ra \cX$ and for every arrow $\alpha:i\ra j$ in $I$ consider a natural transformation $F_{\alpha}:F_i\ra F_j$. Suppose that these data gives rise to a functor $I\ra \Fun(\cC,\cX)$. Each limiting cone over the composition of $I\ra \Fun(\cC,\cX)$ and $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ consists of a family of objects $\big\{F(X)\big\}_{X\in \cC}$ of $\cX$ parametrized by objects of $\cC$ and a family $\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}$ of arrows in $\cX$ parametrized by objects of $I \times \cC$ such that the following assertion hold.
+\begin{enumerate}[label=\textbf{($\star$)}, leftmargin=1.5em]
+\item For every $X\in \cC$ a pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone for a functor $I\ra \cX$ given by $i\mapsto F_i(X)$ and $\alpha\mapsto F_{\alpha}(X)$ for any object $i$ and arrow $\alpha$ in $I$.
+\end{enumerate}
+We now show that there exists a unique lift of a pair $\left(\big\{F(X)\big\}_{X\in \cC},\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}\right)$ to a cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over the functor $I\ra \Fun(\cC,\cX)$ described by data $\left(\big\{F_i\big\}_{i\in I},\big\{F_{\alpha}\big\}_{\alpha \in \bd{Mor}(I)}\right)$. For this pick an arrow $f:X\ra Y$. Then by \textbf{($\star$)} there exists a unique arrow $F(f):F(X)\ra F(Y)$ such that every square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{F(Y)&   F_i(Y)   \\
+ F(X)&    F_i(X)  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$f_{i,Y} $} (m-1-2)
+(m-2-1) edge node[below] {$f_{i,X} $} (m-2-2)
+(m-2-2) edge node[right] {$F_i(f) $} (m-1-2);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[left] {$F(f) $} (m-1-1);
+\end{tikzpicture}
+\end{center}
+for every $i\in I$ is commutative. Suppose that $f:X\ra Y$ and $g:Y\ra Z$ are arrows in $\cC$. Then
+$$f_{i,Z}\cdot F(g\cdot f)=F_i(g\cdot f)\cdot f_{i,X}=F_i(g)\cdot F_i(f)\cdot f_{i,X}=F_i(g)\cdot f_{i,Y}\cdot F(f)=f_{i,Z}\cdot F(g)\cdot F(f)$$
+According to \textbf{($\star$)} we deduce that $F(g\cdot f)=F(g)\cdot F(f)$. Similarly we prove that $F(1_X)=1_{F(X)}$. Hence there exists a unique functor $F:\cC\ra \cX$ that extends object mapping $\big\{F(X)\big\}_{X\in \cC}$ and such that $\big\{f_i:F\ra F_i\big\}_{i\in I}$ becomes a collection of natural transformations of functors. Therefore, $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a unique lift of $\left(\big\{F(X)\big\}_{X\in \cC},\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}\right)$ to a cone over the functor $I\ra \Fun(\cC,\cX)$ described by data $\left(\big\{F_i\big\}_{i\in I},\big\{F_{\alpha}\big\}_{\alpha \in \bd{Mor}(I)}\right)$. Now we prove that the cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is limiting. For this assume that $\left(G,\big\{g_i\big\}_{i\in I}\right)$ is a cone over the functor $I\ra \Fun(\cC,\cX)$ described by data $\left(\big\{F_i\big\}_{i\in I},\big\{F_{\alpha}\big\}_{\alpha \in \bd{Mor}(I)}\right)$. By \textbf{($\star$)} we derive that for every $X\in \cC$ there exists a unique morphism $\tau_X:G(X)\ra F(X)$ such that 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ G(X)&      &  F(X)   \\
+      &F_i(X)&          \\} ;
+\path[densely dotted, ->,line width=0.8pt, font=\scriptsize]
+(m-1-1) edge node[above] {$ \tau_X $} (m-1-3);
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[below = 3pt, left = 1pt] {$ g_{i,X} $} (m-2-2)
+(m-1-3) edge node[below = 3pt, right = 1pt] {$ f_{i,X} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+It suffices to verify that a collection $\big\{\tau_X\big\}_{X\in \cC}$ is a natural transformation of functors $G\ra F$. For this pick $f:X\ra Y$. Then 
+$$f_{i,Y}\cdot F(f)\cdot \tau_X=F_i(f)\cdot f_{i,X}\cdot \tau_X=F_i(f)\cdot g_{i,X}=g_{i,Y}\cdot G(f)=f_{i,Y}\cdot \tau_Y\cdot G(f)$$
+for every $i\in I$. According to \textbf{($\star$)} we deduce that $F(f)\cdot \tau_X=\tau_Y\cdot G(f)$. Since $f$ is arbitrary, we derive that $\big\{\tau_X\big\}_{X\in \cC}$ is a natural transformation of functors $G\ra F$.
+\end{proof}
+\noindent
+Let $\cC$, $\cX$ be categories. For every object $X\in \cC$ we denote by $\mathrm{ev}_X:\Fun(\cC,\cX)\ra \cX$ the functor that sends $F\in \Fun(\cC,\cX)$ to $F(X)$ and $f:F\ra G$ in $\Fun(\cC,\cX)$ to $f_X:F(X)\ra G(X)$. 
+
+\begin{corollary}\label{corollary:limitsaretakenpointwiseinfuncorcategories}
+Let $\cC$, $\cX$ and $I$ be categories and let $D:I\ra \Fun(\cC,\cX)$ be a functor. Suppose that for every $X\in \cC$ the functor $\mathrm{ev}_X\cdot D:I\ra \cX$ admits a limit (colimit). Then $D$ admits a limit (colimit). Moreover, suppose that $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$.
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+The assumption that for every $X\in \cC$ the functor $\mathrm{ev}_X\cdot D:I\ra \cX$ admits a limit (colimit) implies that the composition of $D$ with the functor $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ induced by the canonical functor $|\cC|\ra \cC$ admits a limit (colimit). Now by Theorem \ref{theorem:limitsinfunctorcategories} we derive that the functor $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ creates limits and colimits. Hence $D$ admits a limit (colimit). More precisely there exists a limiting cone (colimiting cocone) $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over $D$ such that for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$. Since any two limiting cones (colimiting cocones) over given functor are isomorphic, we deduce that $\textbf{(i)} \Rightarrow \textbf{(ii)}$. On the other hand if $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$, then, according to the fact that $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ creates limits and colimits, we derive that $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$. Thus $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
+\end{proof}
+
+\section{Presheaves}
+\noindent
+In this section we fix a category $\cC$.
+
+\begin{definition}
+We denote by $\widehat{\cC}$ the category $\Fun(\cC^{\mathrm{op}},\Set)$ and we call it \textit{the category of presheaves on $\cC$}.
+\end{definition}
+
+\begin{definition}
+For every object $X\in \cC$ we define $h_X=\Mor_{\cC}(-,X)$. We call it \textit{the presheaf represented by $X$}. Next for every morphism $f:X\ra Y$ we define a natural transformation by $h_f:h_X\ra h_Y$ given by formula 
+$$\Mor_{\cC}(Z,X)\ni g \mapsto f\cdot g \in \Mor_{\cC}(Z,Y)$$
+This defines a functor $h:\cC\ra \widehat{\cC}$. The functor $h$ is called \textit{the Yoneda embedding of $\cC$}.
+\end{definition}
+
+\begin{theorem}[Yoneda lemma]\label{theorem:yoneda}
+For every object $X\in \cC$ and a presheaf $F\in \widehat{\cC}$ map
+$$\Mor_{\widehat{\cC}}\left(h_X,F\right)\ra F(X)$$ 
+given by formula $p \mapsto p(1_X)$ is a bijection natural in both $X$ and $F$.
+\end{theorem}
+\begin{proof}
+Fix $p:h_X\ra F$ for some $X\in \cC$ and $F\in \widehat{\cC}$. Denote $x=p(1_X)$. Next let $f:Y\ra X$ be a morphism in $\cC$.  Since $p$ is natural transformation, we derive that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ h_X(Y) &   F(Y)           \\
+ h_X(X)&    F(X)             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$p_Y$} (m-1-2)
+(m-2-1) edge node[below] {$p_X$} (m-2-2)
+(m-2-1) edge node[left] {$h_X(f) $} (m-1-1)
+(m-2-2) edge node[right] {$F(f) $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Thus $p_Y\left(f\right)=p_Y\left( h_X(f)(1_X)\right)=F(f)(x)$. This shows that for every object $Y\in \cC$ and every morphism $f:Y\ra X$ we have $p_Y(f)=F(f)(x)$. Hence $p$ is uniquely determined by $x$. This proves that the map described in the statement is injective. Now we prove that it is surjective. For this fix an element $x\in F(X)$ and define $p:h_X\ra F$ by formula $p_Y(f)=F(f)(x)$ for every morphism $f:Y\ra X$ in $\cC$. Consider morphisms $g:Z\ra Y$ and $f:Y\ra X$ in $\cC$ and note that
+$$F(g)\left( p_{Y}(f)\right)=F(g)\cdot F(f)\left(x\right)=F(f\cdot g)(x)=p_{Z}(f\cdot g)=p_{Z}\left(h_X(g)(f)\right)$$
+Thus $p$ is a morphism of presheaves and $p(1_X)=x$.\\
+It remains to prove that the map in the statement is natural with respect to $X$ and $F$. This is left to the reader as an exercise.
+\end{proof}
+
+\begin{corollary}\label{corollary:yonedaembedding}
+The functor $h:\cC\ra \widehat{\cC}$ is full and faithful. 
+\end{corollary}
+\begin{proof}
+Fully faithfulness follows from Theorem \ref{theorem:yoneda}. 
+\end{proof}
+\noindent
+Now we investigate small limits and colimits in presheaf categories. For this fix a category $\cC$ and $X\in \cC$. We denote by $\mathrm{ev}_X:\widehat{\cC}\ra \Set$ the functor that sends a presheaf $F$ to $F(X)$ and a morphism $f:F\ra G$ to $f_X$.
+
+\begin{corollary}\label{corollary:limitsinpresheaves}
+Let $I$ be a small category and let $D:I\ra \widehat{\cC}$ be a functor. Then $D$ admits a limit (colimit). Moreover, for a cone (cocone) $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over $D$ the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$.
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+By {\cite[V.1, Theorem 1 and Exercise 8]{Maclane}} we know that the category $\Set$ admits both small limits and small colimits. Now it suffices to use Corollary \ref{corollary:limitsaretakenpointwiseinfuncorcategories}.
+\end{proof}
+
+\section{Internal hom in the category of presheaves}
+\noindent
+In this section we fix a category $\cC$.
+
+\begin{definition}
+Let $X$ be an object of $\cC$. \textit{An object of $\cC$ over $X$} is a morphism $f:Y\ra X$ in $\cC$. If $f_1:Y_1\ra X$, $f_2:Y_2\ra X$ are objects of $\cC$ over $X$, then \textit{a morphism over $X$} between these objects consists of a morphism $f:Y_1\ra Y_2$ in $\cC$ such that the following triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ Y_1 &    & Y_2         \\
+   &  X  &             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ f $} (m-1-3)
+(m-1-1) edge node[below = 3pt, left = 1pt] {$ f_1 $} (m-2-2)
+(m-1-3) edge node[below = 3pt, right = 1pt] {$ f_2 $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. This defines \textit{the category of objects of $\cC$ over $X$}.
+\end{definition}
+\noindent
+For every object $X$ of $\cC$ we denote by $\cC/X$ the category of objects over $X$. 
+
+\begin{definition}
+Let $F$ be a presheaf on $\cC$. We define \textit{the category of objects of $\cC$ over $F$} as a full subcategory of $\widehat{\cC}/F$ consisting of morphisms of tthe form $h_X\ra F$, where $X$ is an object of $\cC$.
+\end{definition}
+\noindent
+For every presheaf $F$ on $\cC$ we denote by $\cC/F$ the category of objects of $\cC$ over $F$.
+
+\begin{fact}
+Let $X$ be an object of $\cC$. Then the Yoneda embedding $h:\cC\ra \widehat{\cC}$ induces an isomorphism $\cC/X \cong \cC/h_X$ of categories.
+\end{fact}
+\noindent
+Note that 
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{zzz}
+
+\end{document}
