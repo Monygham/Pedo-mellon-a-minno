@@ -76,8 +76,6 @@ Left to the reader.
 Let $\cC$ be a category and $I$ be a filtered category (directed class). A colimit of an $I$-indexed some diagram $I\ra \cC$ is called \textit{a filtered (directed) colimit}.
 \end{definition}
 
-
-
 \section{Subobjects and objects of finite type}
 
 \begin{definition}
@@ -86,8 +84,8 @@ Let $\cC$ be a category and $X$ be an object in $\cC$. Monomorphisms $X_1\hookri
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
-{     X_1     &  &  X_2        \\
-              & X&  \\} ;
+{     X_1     &   &  X_2        \\
+              & X &  \\} ;
 \path[->,line width=0.8pt,font=\scriptsize] 
 (m-1-1) edge node[above] {$\cong $} (m-1-3);
 \path[right hook->,line width=0.8pt,font=\scriptsize] 
@@ -270,7 +268,7 @@ This finishes the proof.
 
 \begin{theorem}\label{theorem:ab5isthesameasexactnessoffilteredcolimits}
 Let $\cC$ be an $\bd{Ab}3$-category. Then the following are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
 \item $\cC$ is an $\bd{Ab}5$-category.
 \item Small filtered colimits are exact in $\cC$.
 \end{enumerate}

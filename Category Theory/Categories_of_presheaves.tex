@@ -1,0 +1,378 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Categories of presheaves}
+\date{}
+\maketitle
+
+\section{Introduction}\label{section:introduction}
+\noindent
+For some arguments in this notes we use Grothendieck universes {\cite[page 22]{Maclane}}. In particular, some arguments in this notes rely on some nonstandard set-theoretical assumptions (and hence our arguments use assumptions beyond usual Zermelo-Frankel axioms). Let $U$ be a Grothendieck universe. We denote by $\Set_U$ a category whose objects are elements of $U$ and whose morphisms are maps of sets. 
+
+\begin{definition}
+Let $U$ be a Grothendieck universe. A category $\cC$ \textit{is $U$-small} if classes of objects and morphisms of $\cC$ are members of $U$.
+\end{definition}
+
+\begin{definition}
+Let $U$ be a Grothendieck universe. A category $\cC$ \textit{is locally $U$-small} if for any pair $X$, $Y$ of objects of $\cC$ we have $\Mor_{\cC}(X,Y)\in U$.
+\end{definition}
+\noindent
+Throughout this notes we fix a Grothendieck universe $U$. Elements of $U$ are called sets. We use term \textit{class} for arbitrary sets (also these ones outside $U$). We denote $\Set_U$ by $\Set$.  By (locally) small category we mean (locally) $U$-small category.
+
+\section{Creation of limits and colimits}
+
+\begin{definition}
+Let $F:\cC\ra \cX$, $D:I\ra \cC$ be functors. Suppose that $\left(X,\{f_i\}_{i\in I}\right)$ is a cone in $\cX$ for the composition $F\cdot D$. We say that a cone $\left(Z,\{g_i\}_{i\in I}\right)$ in $\cC$ for $D$ is \textit{a lift of $\left(X,\{f_i\}_{i\in I}\right)$} if $F(Z)=X$ and $F(g_i)=f_i$ for every $i\in I$.
+\end{definition}
+
+\begin{definition}
+Let $F:\cC\ra \cX$, $D:I\ra \cC$ be functors. We say that \textit{$F$ creates limits for $D$} if every limiting cone for $F\cdot D$ has a unique lift to a cone for $D$ and this lift is a limiting cone for $D$.
+\end{definition}
+
+\begin{definition}
+Let $F:\cC\ra \cX$ be a functor. We say that:
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item \textit{$F$ creates limits} if $F$ creates limits for all functors $D:I\ra \cC$.
+\item \textit{$F$ creates small limits} if $F$ creates limits for all functors $D:I\ra \cC$ with $I$ being small category.
+\item \textit{$F$ creates finite limits} if $F$ creates limits for all functors $D:I\ra \cC$ with $I$ being category with finitely many objects and arrows.
+\end{enumerate}
+\end{definition}
+\noindent
+Some extra material on creation of limits can be found in {\cite[V.1]{Maclane}}. By the usual arrow inverting one defines the notion of creation of colimits.\\
+Now we prove an important result. First we need to introduce some notation. Suppose that $\cC$ and $\cX$ are categories. Then we denote by $\Fun\left(\cC,\cX\right)$ the category with functors $\cC\ra \cX$ as objects and natural transformations between them as morphisms. We also denote by $|\cC|$ the category having the same objects as $\cC$ but with only identities as a morphism. There exists the canonical functor $|\cC|\ra \cC$ that induces identity map on objects. The next result describes limits and colimits in functor categories.
+
+\begin{theorem}\label{theorem:limitsinfunctorcategories}
+Let $\cC$, $\cX$ be a categories. Then the functor $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ induced by the precomposition with the functor $|\cC|\ra \cC$ creates all limits and colimits. 
+\end{theorem}
+\begin{proof}
+We prove that this functor creates limits. Creation of colimits can be handled similarly. Let $I$ be a category. For every object $i$ in $I$ consider a functor $F_i:\cC\ra \cX$ and for every arrow $\alpha:i\ra j$ in $I$ consider a natural transformation $F_{\alpha}:F_i\ra F_j$. Suppose that these data gives rise to a functor $I\ra \Fun(\cC,\cX)$. Each limiting cone over the composition of $I\ra \Fun(\cC,\cX)$ and $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ consists of a family of objects $\big\{F(X)\big\}_{X\in \cC}$ of $\cX$ parametrized by objects of $\cC$ and a family $\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}$ of arrows in $\cX$ parametrized by objects of $I \times \cC$ such that the following assertion hold.
+\begin{enumerate}[label=\textbf{($\star$)}, leftmargin=1.5em]
+\item For every $X\in \cC$ a pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone for a functor $I\ra \cX$ given by $i\mapsto F_i(X)$ and $\alpha\mapsto F_{\alpha}(X)$ for any object $i$ and arrow $\alpha$ in $I$.
+\end{enumerate}
+We now show that there exists a unique lift of a pair $\left(\big\{F(X)\big\}_{X\in \cC},\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}\right)$ to a cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over the functor $I\ra \Fun(\cC,\cX)$ described by data $\left(\big\{F_i\big\}_{i\in I},\big\{F_{\alpha}\big\}_{\alpha \in \bd{Mor}(I)}\right)$. For this pick an arrow $f:X\ra Y$. Then by \textbf{($\star$)} there exists a unique arrow $F(f):F(X)\ra F(Y)$ such that every square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{F(Y)&   F_i(Y)   \\
+ F(X)&    F_i(X)  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$f_{i,Y} $} (m-1-2)
+(m-2-1) edge node[below] {$f_{i,X} $} (m-2-2)
+(m-2-2) edge node[right] {$F_i(f) $} (m-1-2);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[left] {$F(f) $} (m-1-1);
+\end{tikzpicture}
+\end{center}
+for every $i\in I$ is commutative. Suppose that $f:X\ra Y$ and $g:Y\ra Z$ are arrows in $\cC$. Then
+$$f_{i,Z}\cdot F(g\cdot f)=F_i(g\cdot f)\cdot f_{i,X}=F_i(g)\cdot F_i(f)\cdot f_{i,X}=F_i(g)\cdot f_{i,Y}\cdot F(f)=f_{i,Z}\cdot F(g)\cdot F(f)$$
+According to \textbf{($\star$)} we deduce that $F(g\cdot f)=F(g)\cdot F(f)$. Similarly we prove that $F(1_X)=1_{F(X)}$. Hence there exists a unique functor $F:\cC\ra \cX$ that extends object mapping $\big\{F(X)\big\}_{X\in \cC}$ and such that $\big\{f_i:F\ra F_i\big\}_{i\in I}$ becomes a collection of natural transformations of functors. Therefore, $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a unique lift of $\left(\big\{F(X)\big\}_{X\in \cC},\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}\right)$ to a cone over the functor $I\ra \Fun(\cC,\cX)$ described by data $\left(\big\{F_i\big\}_{i\in I},\big\{F_{\alpha}\big\}_{\alpha \in \bd{Mor}(I)}\right)$. Now we prove that the cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is limiting. For this assume that $\left(G,\big\{g_i\big\}_{i\in I}\right)$ is a cone over the functor $I\ra \Fun(\cC,\cX)$ described by data $\left(\big\{F_i\big\}_{i\in I},\big\{F_{\alpha}\big\}_{\alpha \in \bd{Mor}(I)}\right)$. By \textbf{($\star$)} we derive that for every $X\in \cC$ there exists a unique morphism $\tau_X:G(X)\ra F(X)$ such that
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ G(X)&      &  F(X)   \\
+     &F_i(X)&          \\} ;
+\path[densely dotted, ->,line width=0.8pt, font=\scriptsize]
+(m-1-1) edge node[above] {$ \tau_X $} (m-1-3);
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[below = 3pt, left = 1pt] {$ g_{i,X} $} (m-2-2)
+(m-1-3) edge node[below = 3pt, right = 1pt] {$ f_{i,X} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+It suffices to verify that a collection $\big\{\tau_X\big\}_{X\in \cC}$ is a natural transformation of functors $G\ra F$. For this pick $f:X\ra Y$. Then 
+$$f_{i,Y}\cdot F(f)\cdot \tau_X=F_i(f)\cdot f_{i,X}\cdot \tau_X=F_i(f)\cdot g_{i,X}=g_{i,Y}\cdot G(f)=f_{i,Y}\cdot \tau_Y\cdot G(f)$$
+for every $i\in I$. According to \textbf{($\star$)} we deduce that $F(f)\cdot \tau_X=\tau_Y\cdot G(f)$. Since $f$ is arbitrary, we derive that $\big\{\tau_X\big\}_{X\in \cC}$ is a natural transformation of functors $G\ra F$.
+\end{proof}
+\noindent
+Let $\cC$, $\cX$ be categories. For every object $X\in \cC$ we denote by $\mathrm{ev}_X:\Fun(\cC,\cX)\ra \cX$ the functor that sends $F\in \Fun(\cC,\cX)$ to $F(X)$ and $f:F\ra G$ in $\Fun(\cC,\cX)$ to $f_X:F(X)\ra G(X)$. 
+
+\begin{corollary}\label{corollary:limitsaretakenpointwiseinfuncorcategories}
+Let $\cC$, $\cX$ and $I$ be categories and let $D:I\ra \Fun(\cC,\cX)$ be a functor. Suppose that for every $X\in \cC$ the functor $\mathrm{ev}_X\cdot D:I\ra \cX$ admits a limit (colimit). Then $D$ admits a limit (colimit). Moreover, suppose that $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$.
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+The assumption that for every $X\in \cC$ the functor $\mathrm{ev}_X\cdot D:I\ra \cX$ admits a limit (colimit) implies that the composition of $D$ with the functor $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ induced by the canonical functor $|\cC|\ra \cC$ admits a limit (colimit). Now by Theorem \ref{theorem:limitsinfunctorcategories} we derive that the functor $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ creates limits and colimits. Hence $D$ admits a limit (colimit). More precisely there exists a limiting cone (colimiting cocone) $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over $D$ such that for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$. Since any two limiting cones (colimiting cocones) over given functor are isomorphic, we deduce that $\textbf{(i)} \Rightarrow \textbf{(ii)}$. On the other hand if $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$, then, according to the fact that $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ creates limits and colimits, we derive that $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$. Thus $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
+\end{proof}
+
+\section{Presheaves}
+
+\begin{definition}
+Let $\cC$ be a locally small category. We denote by $\widehat{\cC}$ the category $\Fun(\cC^{\mathrm{op}},\Set)$ and we call it \textit{the category of presheaves on $\cC$}.
+\end{definition}
+
+\begin{definition}
+Let $\cC$ be a locally small category. For every object $X\in \cC$ we define $h_X=\Mor_{\cC}(-,X)$. We call it \textit{the presheaf represented by $X$}. Next for every morphism $f:X\ra Y$ in $\cC$ we define a natural transformation $h_f:h_X\ra h_Y$ given by formula 
+$$\Mor_{\cC}(Z,X)\ni g \mapsto f\cdot g \in \Mor_{\cC}(Z,Y)$$
+This defines a functor $h:\cC\ra \widehat{\cC}$ called \textit{the Yoneda embedding of $\cC$}.
+\end{definition}
+
+\begin{theorem}[Yoneda lemma]\label{theorem:yoneda}
+Let $\cC$ be a locally small category. For every object $X\in \cC$ and a presheaf $F\in \widehat{\cC}$ map
+$$\Mor_{\widehat{\cC}}\left(h_X,F\right)\ra F(X)$$ 
+given by formula $p \mapsto p(1_X)$ is a bijection natural in both $X$ and $F$.
+\end{theorem}
+\begin{proof}
+Fix $p:h_X\ra F$ for some $X\in \cC$ and $F\in \widehat{\cC}$. Denote $x=p(1_X)$. Next let $f:Y\ra X$ be a morphism in $\cC$.  Since $p$ is natural transformation, we derive that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+{ h_X(Y) &   F(Y)           \\
+  h_X(X)&    F(X)             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[auto] {$p_Y$} (m-1-2)
+(m-2-1) edge node[below] {$p_X$} (m-2-2)
+(m-2-1) edge node[left] {$h_X(f) $} (m-1-1)
+(m-2-2) edge node[right] {$F(f) $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Thus $p_Y\left(f\right)=p_Y\left( h_X(f)(1_X)\right)=F(f)(x)$. This shows that for every object $Y\in \cC$ and every morphism $f:Y\ra X$ we have $p_Y(f)=F(f)(x)$. Hence $p$ is uniquely determined by $x$. This proves that the map described in the statement is injective. Now we prove that it is surjective. For this fix an element $x\in F(X)$ and define $p:h_X\ra F$ by formula $p_Y(f)=F(f)(x)$ for every morphism $f:Y\ra X$ in $\cC$. Consider morphisms $g:Z\ra Y$ and $f:Y\ra X$ in $\cC$ and note that
+$$F(g)\left( p_{Y}(f)\right)=F(g)\cdot F(f)\left(x\right)=F(f\cdot g)(x)=p_{Z}(f\cdot g)=p_{Z}\left(h_X(g)(f)\right)$$
+Thus $p$ is a morphism of presheaves and $p(1_X)=x$.\\
+It remains to prove that the map in the statement is natural with respect to $X$ and $F$. This is left to the reader as an exercise.
+\end{proof}
+
+\begin{corollary}\label{corollary:yonedaembedding}
+Let $\cC$ be a locally small category. The functor $h:\cC\ra \widehat{\cC}$ is full and faithful. 
+\end{corollary}
+\begin{proof}
+Fully faithfulness follows from Theorem \ref{theorem:yoneda}. 
+\end{proof}
+\noindent
+Now we investigate small limits and colimits in presheaf categories. For this fix a locally small category $\cC$ and $X\in \cC$. We denote by $\mathrm{ev}_X:\widehat{\cC}\ra \Set$ the functor that sends a presheaf $F$ to $F(X)$ and a morphism $f:F\ra G$ to $f_X$.
+
+\begin{corollary}\label{corollary:limitsinpresheaves}
+Fix a locally small category $\cC$. Let $I$ be a category and let $D:I\ra \widehat{\cC}$ be a functor. If $I$ is a small category, then $D$ admits a limit (colimit). Moreover, for a cone (cocone) $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over $D$ the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$.
+\item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+By {\cite[V.1, Theorem 1 and Exercise 8]{Maclane}} we know that the category $\Set$ admits both small limits and small colimits. Now it suffices to use Corollary \ref{corollary:limitsaretakenpointwiseinfuncorcategories}.
+\end{proof}
+\noindent
+Finally we add one notational remark. Let $\cC$ be a locally small category and $F$, $G$ be presheaves on $\cC$. Then we denote by $\Mor_{\cC}(F,G)$ the class of morphisms of presheaves with domain $F$ and codomain $G$.
+
+\section{Classes of generators}
+
+\begin{definition}
+Let $\cC$ be a category. A class $\cK$ of objects of $\cC$ is called \textit{a class of generators for $\cC$} if for any pair of distinct and parallel arrows 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ X&  Y  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ f$} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ g$} (m-1-2);
+\end{tikzpicture}
+\end{center}
+there exists $Z\in \cK$ and a morphism $h:Z\ra X$ such that $f\cdot h\neq g\cdot h$.
+\end{definition}
+\noindent
+Now we introduce special case of the notion of the class of generators of category. For this we need one more definition.
+
+\begin{definition}
+Let $\cC$ be a category and $X$ be an object of $\cC$. \textit{An object of $\cC$ over $X$} is a morphism $f:Y\ra X$ in $\cC$. If $f_1:Y_1\ra X$, $f_2:Y_2\ra X$ are objects of $\cC$ over $X$, then \textit{a morphism over $X$} between these objects consists of a morphism $f:Y_1\ra Y_2$ in $\cC$ such that the following triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ Y_1 &    & Y_2         \\
+      &  X  &             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ f $} (m-1-3)
+(m-1-1) edge node[below = 3pt, left = 1pt] {$ f_1 $} (m-2-2)
+(m-1-3) edge node[below = 3pt, right = 1pt] {$ f_2 $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. This defines \textit{the category of objects of $\cC$ over $X$}.
+\end{definition}
+\noindent
+For every object $X$ of a category $\cC$ we denote by $\cC/X$ the category of objects over $X$. Next suppose that $X$ is an object of $\cC$ and $\cK$ is a subclass of the class of  objects of $\cC$. We denote by $\cK/X$ the full subcategory of $\cC/X$ that consists of morphisms $f:K\ra X$ such that $K$ is in $\cK$. For every such class we denote by $\pi_X$ the canonical functor $\cK/X\ra \cK$ that sends every arrow $f:K\ra X$ in $\cK/X$ to $K$. In the case of considerations in which multiple distinct classes are involved we specify more precise notation. Next suppose that $f:X\ra Y$ is a morphism in a category $\cC$. Then the composition with $f$ induces a functor $\cC/X\ra \cC/Y$. We denote this functor by $\cC/f$. Now if $\cK$ is a class of objects of $\cC$, then we denote by $\cK/f$ the functor $\cK/X\ra \cK/Y$ induced by $\cC/f$.
+
+\begin{definition}
+Let $\cC$ be a category and $\cK$ be a class of objects of $\cC$. Suppose that for every object $X$ of $\cC$ a pair
+$$\left(X,\{f\}_{f\in \cK/X}\right)$$
+is a colimiting cocone of a functor given as the composition of $\pi_X:\cK/X\ra \cK$ with the inclusion functor $\cK \hookrightarrow \cC$. Then we call \textit{$\cK$ a dense class of generators for $\cC$}.
+\end{definition}
+\noindent
+Let $\cC$ be a locally small category and $\cK$ be a class of objects of $\cC$. We also denote by $\cK$ the corresponding full subcategory of $\cC$. We define a functor $\Gamma_{\cK}:\cC\ra \widehat{\cK}$ as the composition of the Yoneda embedding $\cC\ra \widehat{\cC}$ with the restriction functor $\widehat{\cC}\ra \widehat{\cK}$.
+
+\begin{theorem}\label{theorem:generatorclassesdescribedcategorically}
+Let $\cC$ be a locally small category and $\cK$ be a class of objects of $\cC$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $\cK$ is a (dense) class of generators for $\cC$.
+\item The functor
+$$\Gamma_{\cK}:\cC\ra \widehat{\cK}$$
+is (full and) faithful.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+First we need to introduce some notation. For every object $X$ of $\cC$ we denote by $F_X:\cK/X\ra \cC$ the functor obtained as the compositon of $\pi_X:\cK/X\ra \cK$ with the inclusion functor $\cK\hookrightarrow \cC$. We also denote by $\Gamma_X$ the value of $\Gamma$ on $X$ and for every object $Y$ of $\cC$ we denote by  $\mathrm{Cocone}_Y(F_X)$ the class of cocones with $Y$ as the vertex over the functor $F_X$. Finally if $g:X\ra Y$ is a morphism of $\cC$, then we denote by $\Gamma_g$ a natural morphism $\Gamma_X\ra \Gamma_Y$ induced by $g$.\\
+Suppose now that $X$ and $Y$ are objects of $\cC$. Let $\sigma:\Gamma_X\ra \Gamma_Y$ be a natural transformation. Then one can show that $\{\sigma(f)\}_{f\in \cK/X}$ is a cocone of $F_Y$ with vertex in $Y$ and moreover, the map
+$$\Mor_{\cK}\left(\Gamma_X,\Gamma_Y\right)\ni \sigma \mapsto \{\sigma(f)\}_{f\in \cK/X}\in \mathrm{Cocone}_{Y}(F_X)$$
+is bijective. We have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
+{ \Mor_{\cK}\left(\Gamma_X,\Gamma_Y\right) &     & \mathrm{Cocone}_Y\left(F_X\right) \\
+                                           & \Mor_{\cC}(X,Y) &             \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[auto] {$\sigma \mapsto \{\sigma(f)\}_{f\in \cK/X} $} (m-1-3)
+(m-2-2) edge node[below = 4pt, left = 1pt] {$ g\mapsto \Gamma_g $} (m-1-1)
+(m-2-2) edge node[below = 4pt, right = 1pt] {$ g \mapsto \{g\cdot f\}_{f\in \cK/X} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+From this we derive that $\Gamma$ is (full and) faithful if and only if 
+$$\Mor_{\cC}(X,Y)\ni g\mapsto \{g\cdot f\}_{f\in \cK/X}\in \mathrm{Cocone}_Y(F_X)$$
+ is (bijective) injective for any pair $X$, $Y$ of objects in $\cC$. This map is (bijective) injective for any pair $X$, $Y$ of objects in $\cC$ if and only if $\cK$ is a class of (dense) generators for $\cC$. This proves theorem.
+\end{proof}
+
+\begin{corollary}\label{corollary:representablesaredensegenerators}
+Let $\cC$ be a locally category. Then the class of representable presheaves $\{h_X\}_{X\in \cC}$ is a dense class of generators for $\widehat{\cC}$.
+\end{corollary}
+\begin{proof}
+We want to apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to $\widehat{\cC}$. Our issue is that in general $\widehat{\cC}$ is not a locally small category. To fix this we must be specific and work with Grothendieck universes {\cite[page 22]{Maclane}}.\\
+We assume (c.f. Section \ref{section:introduction}) that our base Grothendieck universe is $U$. Then $\Set = \Set_{U}$ is the category of $U$-small sets and $\cC$ is a locally $U$-small category. Next $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_{U})$ is a presheaf category. Now we fix another universe $V$ that contains $U$ and such that $\widehat{\cC}$ is $V$-small. We denote by $\Set_V$ the category of $V$-small sets. We can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$. Consider the composition of the Yoneda embedding $h:\widehat{\cC}\ra \Fun(\widehat{\cC}^{\mathrm{op}},\Set_V)$ with the restriction $\Fun(\widehat{\cC}^{\mathrm{op}},\Set_V)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the usual Yoneda embedding $h:\cC\ra \widehat{\cC}$. The composition is isomorphic with the functor $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_U)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the inclusion $\Set_U\hookrightarrow \Set_V$. Hence it is full and faithful. Now (replacing our base universe $U$ by $V$) we can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$ and derive the statement.
+\end{proof}
+
+\section{Internal homs}
+\noindent
+We start by making few remarks. Let $\cC$ be a locally small category and let $X$ be an object of $\cC$. Recall that $\pi_X:\cC/X\ra \cC$ is a functor that sends morphism $f:Y\ra X$ to $Y$. For every presheaf $F$ on $\cC$ we denote by $F_{\mid X}$ the functor
+$$F\cdot \left(\pi_X\right)^{\mathrm{op}}:\left(\cC/X\right)^{\mathrm{op}}\ra \Set$$
+The map $F\mapsto F_{\mid X}$ extends to a functor $\widehat{\cC}\ra \widehat{\cC/X}$.  Let $\bd{1}_{\mid X}$ denote a presheaf on $\cC/X$ that assigns to every object over $X$ a set with one element. According to Corollary \ref{corollary:limitsinpresheaves} we derive that $\bd{1}_{\mid X}$ is a terminal object in $\widehat{\cC/X}$. 
+
+\begin{fact}\label{fact:globalsections}
+Let $\cC$ be a category and let $F$ be a presheaf on $\cC$. Suppose that $x\in F(X)$ for some $X$ in $\cC$. Then $x$ determines a morphism $\bd{1}_{\mid X}\ra F_{\mid X}$ that for every object $f$ in $\cC/X$ sends a unique element of $\bd{1}_{\mid X}(f)$ to $F(f)(x)\in F_{\mid X}(f)$. This gives rise to a bijection
+$$F(X)\cong \Mor_{\cC/X}\left(\bd{1}_{\mid X},F_{\mid X}\right)$$
+\end{fact}
+\begin{proof}
+We left to the reader as an exercise.
+\end{proof}
+\noindent
+Let $\cC$ be a locally small category. If $f:X\ra Y$ is a morphism in $\cC$, then we have a functor $\widehat{\cC/Y}\ra \widehat{\cC/X}$ induced by the precomposition with $\left(\cC/f\right)^{\mathrm{op}}$.
+
+\begin{definition}
+Let $\cC$ be a locally small category and let $F$, $G$ be presheaves on $\cC$. Assume that for every object $X$ in $\cC$ the class $\Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$ is a set. We define by formula
+$$\iMor_{\cC}\left(F,G\right)(X) = \Mor_{\cC/X}(F_{\mid X},G_{\mid X})$$
+for every $X$ in $\cC$. This is a presheaf on $\cC$, since for every morphism $f:X\ra Y$, we can compose a morphism $\sigma:F_{\mid Y}\ra G_{\mid Y}$ of presheaves with $\left(\cC/f\right)^{\mathrm{op}}$ i.e. we have a map 
+$$\iMor_{\cC}(F,G)(Y)\ni \sigma \mapsto \sigma_{\left(\cC/f\right)^{\mathrm{op}}}\in \iMor_{\cC}(F,G)(X)$$
+and these make $\iMor_{\cC}(F,G)$ a functor. The presheaf $\iMor_{\cC}(F,G)$ is called \textit{an internal hom of $F$ and $G$}.
+\end{definition}
+\noindent
+Let $F$, $G$ and $H$ be presheaves on a locally small category $\cC$ and assume that $\iMor_{\cC}(F,G)$ exists. Fix a morphism of presheaves $\sigma:H\times F\ra G$. Pick an object $X$ in $\cC$ and $x\in H(X)$. Let $i_x:\bd{1}_{\mid X}\ra H_{\mid X}$ be a morphism determined by $x\in H(X)$ as in Fact \ref{fact:globalsections}. Then $\sigma_{\mid X}\cdot \left(i_x\times 1_{F_{\mid X}}\right)$ yields a morphism $\tau_x:F_{\mid X}\ra G_{\mid X}$. Suppose now that $f:Y\ra X$ is a morphism in $\cC$. We have 
+$$\left(\sigma_{\mid X}\cdot \left(i_{x}\times 1_{F_{\mid X}}\right)\right)_{\left(\cC/f\right)^{\mathrm{op}}} = \left(\sigma_{\mid X}\right)_{\left(\cC/f\right)^{\mathrm{op}}}\cdot \left(\left(i_x\right)_{\left(\cC/f\right)^{\mathrm{op}}}\times \left(1_{F_{\mid X}}\right)_{\left(\cC/f\right)^{\mathrm{op}}}\right) = \sigma_{\mid Y}\cdot \left(i_{F(f)(x)}\times 1_{F_{\mid Y}}\right)$$
+because $\left(i_x\right)_{\left(\cC/f\right)^{\mathrm{op}}} = i_{F(f)(x)}$. This implies that $\left(\tau_x\right)_{\left(\cC/f\right)^{\mathrm{op}}} = \tau_{F(f)(x)}$. Hence $\tau:H\ra \iMor_{\cC}\left(F,G\right)$ given by 
+$$H(X)\ni x\mapsto \tau_x\in \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$$
+is a morphism of presheaves. This defines a map of classes
+$$\Mor_{\cC}\left(H\times F, G\right)\in \sigma \mapsto \tau \in \Mor_{\cC}\left(H,\iMor_{\cC}\left(F,G\right)\right)$$
+
+\begin{theorem}\label{theorem:internalhomforpresheaves}
+Let $\cC$ be a locally small category and $F$, $G$ be presheaves on $\cC$. Assume that for every object $X$ in $\cC$ the class $\Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$ is a set. Then the map 
+$$\Mor_{\cC}\left(H\times F,G\right)\ra  \Mor_{\cC}\left(H,\iMor_{\cC}\left(F,G\right)\right)$$
+described above is a bijection natural in $H$. 
+\end{theorem}
+\begin{proof}
+The fact that the map in the statement is natural in $H$ is left to the reader as an exercise.\\
+Pick an object $X$ in $\cC$. We verify now that the map
+$$\Mor_{\cC}\left(h_X\times F,G\right)\ra  \Mor_{\cC}\left(h_X,\iMor_{\cC}\left(F,G\right)\right)$$
+is a bijection. Pick a morphism $\sigma:h_X\times F\ra G$ of presheaves and suppose that $\tau:h_X\ra \iMor_{\cC}(F,G)$ is its value under the discussed map. According to Yoneda lemma (Theorem \ref{theorem:yoneda}) $\tau$ is uniquely determined by its value on $1_X$. We denote this value by $\rho$. Thus it suffices to prove that 
+$$\Mor_{\cC}\left(h_X\times F,G\right)\ni \sigma \mapsto \rho \in \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$$
+is bijective. We retrieve $\rho$ by means of procedure described before the statement of this theorem. Firstly $1_X$ according to Fact \ref{fact:globalsections} determines a morphism $i:\bd{1}_{\mid X}\ra \left(h_X\right)_{\mid X}$. Now $\rho\in \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$ is isomorphic with $\sigma_{\mid X}\cdot \left(i\times 1_{F_{\mid X}}\right)$. Hence for every $f:Y\ra X$ and $y\in F(Y)$ we have 
+$$\rho_f(y) = \sigma_Y(f,y)$$
+This implies that $\sigma$ and $\rho$ are mutually determined and thus
+$$\Mor_{\cC}\left(h_X\times F,G\right)\ra  \Mor_{\cC}\left(h_X,\iMor_{\cC}\left(F,G\right)\right)$$
+is a bijection.\\
+Now we prove the general case. We know that the map
+$$\Mor_{\cC}\left(H\times F,G\right)\ra  \Mor_{\cC}\left(H,\iMor_{\cC}\left(F,G\right)\right)$$
+is natural in $H$ and is bijective for $H$ representable presheaves. Now the following statements hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item Every presheaf is canonically the colimit of representable presheaves by Corollary \ref{corollary:representablesaredensegenerators}.
+\item The functor $(-)\times F:\widehat{\cC}\ra \widehat{\cC}$ preserves colimits (this follows from cartesian closedness of $\Set$ {\cite[page 98]{Maclane}} and Corollary \ref{corollary:limitsinpresheaves}).
+\item Suppose that $V$ is a Grothendieck universe that contains the base universe $U$ and such that $\widehat{\cC}$ is $V$-locally small. Then the functor
+$$\Mor_{\cC}(-,\iMor_{\cC}(F,G)):\widehat{\cC}\ra \Set_V$$
+preserves colimits {\cite[V.4, Theorem 1]{Maclane}}.
+\end{enumerate}
+Therefore, we derive that the map in the question is bijective for every presheaf $H$.
+\end{proof}
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{zzz}
+
+\end{document}
