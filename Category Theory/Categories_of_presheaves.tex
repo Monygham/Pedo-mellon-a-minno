@@ -6,19 +6,35 @@
 \date{}
 \maketitle
 
-\section{Introduction}\label{section:introduction}
+\section{Introduction -- set theoretical background}\label{section:introduction}
 \noindent
-For some arguments in this notes we use Grothendieck universes {\cite[page 22]{Maclane}}. In particular, some arguments in this notes rely on some nonstandard set-theoretical assumptions (and hence our arguments use assumptions beyond usual Zermelo-Frankel axioms). Let $U$ be a Grothendieck universe. We denote by $\Set_U$ a category whose objects are elements of $U$ and whose morphisms are maps of sets. 
+These notes deal with categories of presheaves. For some arguments and also for the underlying set-theoretic setup we use Grothendieck universes {\cite[page 22]{Maclane}}. This implies that our arguments rely on tools that go beyond the usual Zermelo-Frankel axioms. Grothendieck universes can be defined within Zermelo-Frankel set theory as follows.
 
 \begin{definition}
-Let $U$ be a Grothendieck universe. A category $\cC$ \textit{is $U$-small} if classes of objects and morphisms of $\cC$ are members of $U$.
+Let $U$ be a set. We say that $U$ is \textit{Grothendieck universe} if the following conditions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item The set $\omega$ of finite ordinals in the sense of von Neumann is an element of $U$.
+\item If $y\in U$ and $x\in y$, then $y\in U$.
+\item If $x\in U$, then $\cP(x)\in U$ and $\bigcup x\in U$.
+\item If $x\in U$, $y\subseteq U$ and $f:x\ra y$ is surjective, then $y\in U$.
+\end{enumerate}
+\end{definition}
+\noindent
+If $U$ is a Grothendieck universe, then the pair $(U,\in)$ forms a model for Zermelo-Frankel theory. This implies that the existence of Grothendieck universes is independent from Zermelo-Frankel axioms. In this notes we extend the usual Zermelo-Frankel system by adding the following Tarski axiom.
+\begin{center}
+\textit{Every set is an element of some Grothendieck universe.}
+\end{center}
+Let $U$ be a Grothendieck universe. We denote by $\Set_U$ a category whose objects are elements of $U$ and whose morphisms are maps of sets. 
+
+\begin{definition}
+Let $U$ be a Grothendieck universe. A category $\cC$ is \textit{$U$-small} if classes of objects and morphisms of $\cC$ are members of $U$.
 \end{definition}
 
 \begin{definition}
-Let $U$ be a Grothendieck universe. A category $\cC$ \textit{is locally $U$-small} if for any pair $X$, $Y$ of objects of $\cC$ we have $\Mor_{\cC}(X,Y)\in U$.
+Let $U$ be a Grothendieck universe. A category $\cC$ is \textit{locally $U$-small} if for any pair $X$, $Y$ of objects of $\cC$ we have $\Mor_{\cC}(X,Y)\in U$.
 \end{definition}
 \noindent
-Throughout this notes we fix a Grothendieck universe $U$. Elements of $U$ are called sets. We use term \textit{class} for arbitrary sets (also these ones outside $U$). We denote $\Set_U$ by $\Set$.  By (locally) small category we mean (locally) $U$-small category.
+Throughout this notes we fix a Grothendieck universe $U$. Elements of $U$ are called sets. We use term \textit{class} for arbitrary sets (also these ones outside $U$). We denote $\Set_U$ by $\Set$. By (locally) small category we mean (locally) $U$-small category. 
 
 \section{Creation of limits and colimits}
 
@@ -244,7 +260,7 @@ We want to apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to
 We assume (c.f. Section \ref{section:introduction}) that our base Grothendieck universe is $U$. Then $\Set = \Set_{U}$ is the category of $U$-small sets and $\cC$ is a locally $U$-small category. Next $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_{U})$ is a presheaf category. Now we fix another universe $V$ that contains $U$ and such that $\widehat{\cC}$ is $V$-small. We denote by $\Set_V$ the category of $V$-small sets. We can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$. Consider the composition of the Yoneda embedding $h:\widehat{\cC}\ra \Fun(\widehat{\cC}^{\mathrm{op}},\Set_V)$ with the restriction $\Fun(\widehat{\cC}^{\mathrm{op}},\Set_V)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the usual Yoneda embedding $h:\cC\ra \widehat{\cC}$. The composition is isomorphic with the functor $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_U)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the inclusion $\Set_U\hookrightarrow \Set_V$. Hence it is full and faithful. Now (replacing our base universe $U$ by $V$) we can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$ and derive the statement.
 \end{proof}
 
-\section{Internal homs}
+\section{Internal hom}
 \noindent
 We start by making few remarks. Let $\cC$ be a locally small category and let $X$ be an object of $\cC$. Recall that $\pi_X:\cC/X\ra \cC$ is a functor that sends morphism $f:Y\ra X$ to $Y$. For every presheaf $F$ on $\cC$ we denote by $F_{\mid X}$ the functor
 $$F\cdot \left(\pi_X\right)^{\mathrm{op}}:\left(\cC/X\right)^{\mathrm{op}}\ra \Set$$
@@ -261,7 +277,7 @@ We left to the reader as an exercise.
 Let $\cC$ be a locally small category. If $f:X\ra Y$ is a morphism in $\cC$, then we have a functor $\widehat{\cC/Y}\ra \widehat{\cC/X}$ induced by the precomposition with $\left(\cC/f\right)^{\mathrm{op}}$.
 
 \begin{definition}
-Let $\cC$ be a locally small category and let $F$, $G$ be presheaves on $\cC$. Assume that for every object $X$ in $\cC$ the class $\Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$ is a set. We define by formula
+Let $\cC$ be a locally small category and let $F$, $G$ be presheaves on $\cC$. Assume that for every object $X$ in $\cC$ the class $\Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$ is a set. We define
 $$\iMor_{\cC}\left(F,G\right)(X) = \Mor_{\cC/X}(F_{\mid X},G_{\mid X})$$
 for every $X$ in $\cC$. This is a presheaf on $\cC$, since for every morphism $f:X\ra Y$, we can compose a morphism $\sigma:F_{\mid Y}\ra G_{\mid Y}$ of presheaves with $\left(\cC/f\right)^{\mathrm{op}}$ i.e. we have a map 
 $$\iMor_{\cC}(F,G)(Y)\ni \sigma \mapsto \sigma_{\left(\cC/f\right)^{\mathrm{op}}}\in \iMor_{\cC}(F,G)(X)$$
@@ -293,7 +309,7 @@ $$\Mor_{\cC}\left(h_X\times F,G\right)\ra  \Mor_{\cC}\left(h_X,\iMor_{\cC}\left(
 is a bijection.\\
 Now we prove the general case. We know that the map
 $$\Mor_{\cC}\left(H\times F,G\right)\ra  \Mor_{\cC}\left(H,\iMor_{\cC}\left(F,G\right)\right)$$
-is natural in $H$ and is bijective for $H$ representable presheaves. Now the following statements hold.
+is natural in $H$ and is bijective when $H$ is a representable presheaf. Now the following statements hold.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
 \item Every presheaf is canonically the colimit of representable presheaves by Corollary \ref{corollary:representablesaredensegenerators}.
 \item The functor $(-)\times F:\widehat{\cC}\ra \widehat{\cC}$ preserves colimits (this follows from cartesian closedness of $\Set$ {\cite[page 98]{Maclane}} and Corollary \ref{corollary:limitsinpresheaves}).
@@ -302,6 +318,53 @@ $$\Mor_{\cC}(-,\iMor_{\cC}(F,G)):\widehat{\cC}\ra \Set_V$$
 preserves colimits {\cite[V.4, Theorem 1]{Maclane}}.
 \end{enumerate}
 Therefore, we derive that the map in the question is bijective for every presheaf $H$.
+\end{proof}
+
+\section{Subpresheaves of internal hom}
+\noindent
+Let $\cC$ be a locally small category and let $F$, $G$ be a presheaves on $\cC$. The requirement that $\Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$ is a set for every object $X$ in $\cC$ is a serious limitation of Theorem \ref{theorem:internalhomforpresheaves}. In this section we explain a useful result which addresses this issue.
+
+\begin{definition}
+Let $\cC$ be a locally small category and let $F$, $G$, $J$ be presheaves on $\cC$. Suppose that for every object $X$ in $\cC$ there exists an inclusion of classes $J(X)\subseteq \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$ such that the square of maps (horizontal arrows in the square are inclusions) of classes
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ J(Y)   &  \Mor_{\cC/Y}\left(F_{\mid Y},G_{\mid Y}\right)           \\
+  J(X)   &  \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)           \\} ;
+\path[right hook->,line width=0.8pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ $} (m-2-2);
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ J(f) $} (m-2-1)
+(m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_{\left(\cC/f\right)^{\mathrm{op}}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative for every morphism $f:X\ra Y$ in $\cC$. Then we say that $J$ is \textit{a subpresheaf of internal hom of $F$ and $G$}.
+\end{definition}
+\noindent
+Let $\cC$ be a locally small category, $F$, $G$, $H$ be presheaves on $\cC$. Fix a morphism $\sigma:H\times F\ra G$ of presheaves. Recall form the previous section that for every object $X$ in $\cC$ and $x$ in $H(X)$ we denote by $i_x:\bd{1}_{\mid X}\ra H_{\mid X}$ a unique morphism determined by $x$ (Fact \ref{fact:globalsections}). Next we denote by $\tau_x:F_{\mid X}\ra G_{\mid X}$ a unique morphism isomorphic with $\sigma_{\mid X}\cdot \left(i_x\times 1_{F_{\mid X}}\right)$. 
+
+\begin{definition}
+Let $\cC$ be a locally small category, $F$, $G$, $H$ be presheaves on $\cC$ and assume that $J$ is a subpresheaf of internal hom of $F$ and $G$. Then a morphism of presheaves $\sigma:H\times F\ra G$ is called \textit{a family of $J$-morphisms parametrized by $H$} if for every object $X$ in $\cC$ and every $x$ in $H(X)$ we have $\tau_x\in J(X)$.
+\end{definition}
+\noindent
+We continue discussion started before the definition. Let us now assume that $\sigma:H\times F\ra G$ is a family of $J$-morphisms parametrized by $H$ for some subpresheaf $J$ of internal hom of $F$ and $G$. Then $\tau:H\ra J$ given by
+$$H(X)\ni x\mapsto \tau_x\in J(X)$$
+is a morphism of presheaves. The proof is identical to the proof of the analogous statement preceding Theorem \ref{theorem:internalhomforpresheaves}. This gives rise to a map of classes
+$$\big\{\mbox{families of $J$-morphisms parametrized by }H\big\}\ni \sigma \mapsto \tau \in \Mor_{\cC}\left(H,J\right)$$
+
+\begin{theorem}\label{theorem:subpresheavesofinternalhom}
+Let $\cC$ be a locally small category and $F$, $G$ be presheaves on $\cC$. Assume that $J$ is a subpresheaf of internal hom of $F$ and $G$. Then the map 
+$$\big\{\mbox{families of $J$-morphisms parametrized by }H\big\}\ra \Mor_{\cC}\left(H,J\right)$$
+described above is a bijection natural in $H$.
+\end{theorem}
+\begin{proof}
+We enlarge our base universe $U$ to a Grothendieck universe $V$ such that $\cC$ is $V$-small. Then $\iMor_{\cC}\left(F,G\right)\in \Fun(\cC^{\mathrm{op}},\Set_V)$ and $J$ is a legitimate subobject of $\iMor_{\cC}\left(F,G\right)$ in $\Fun(\cC^{\mathrm{op}},\Set_V)$. For every $H\in \widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_U)\subseteq \Fun(\cC^{\mathrm{op}},\Set_V)$ we have a bijection
+$$\Mor_{\cC}\left(H\times F, G\right)\ra \Mor_{\cC}\left(H,\iMor_{\cC}(F,G)\right)$$
+natural in $H$. This follows according to Theorem \ref{theorem:internalhomforpresheaves} applied to the enlarged category of presheaves $\Fun(\cC^{\mathrm{op}},\Set_V)$. Finally this bijection induces a bijection
+$$\big\{\mbox{families of $J$-morphisms parametrized by }H\big\}\ra \Mor_{\cC}\left(H,J\right)$$
+on its subclasses, which is natural in $H$ and is given by the rule described in the discussion preceding the statement of the theorem.
 \end{proof}
 
 \section{Remarks on copresheaf categories}
