@@ -2,21 +2,21 @@
 
 The repository contains mathematical notes in latex and pdf formats. Feel free to modify them for your own purposes.
 
-# Preamble
+## Preamble
 Compilation of each latex file requires file
-'<pree.tex>'
+`pree.tex`
 in your working directory. The file is located at the top of the repository.
 
-# References
+## References
 Each directory contains
-'<zzz.bib>'
+`zzz.bib`
 with bibtex formats required for creating bibliography for latex files located inside directory.
 
-# Prerequisites
+## Prerequisites
 Each directory contains file
-'<directory_name - prerequisites.pdf>'
+`<directory_name> - prerequisites.pdf`
 which contains references for material that is used in the notes located in the directory.
 
-# Contact
+## Contact
 If you have any comments or remarks do not hestitate to contact me - Chryzyp@protonmail.com 
 
