@@ -73,11 +73,11 @@ We now show that there exists a unique lift of a pair $\left(\big\{F(X)\big\}_{X
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 {F(Y)&   F_i(Y)   \\
  F(X)&    F_i(X)  \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$f_{i,Y} $} (m-1-2)
 (m-2-1) edge node[below] {$f_{i,X} $} (m-2-2)
 (m-2-2) edge node[right] {$F_i(f) $} (m-1-2);
-\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+\path[densely dotted,->,line width=1.0pt,font=\scriptsize]
 (m-2-1) edge node[left] {$F(f) $} (m-1-1);
 \end{tikzpicture}
 \end{center}
@@ -90,9 +90,9 @@ According to \textbf{($\star$)} we deduce that $F(g\cdot f)=F(g)\cdot F(f)$. Sim
 \matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
 { G(X)&      &  F(X)   \\
      &F_i(X)&          \\} ;
-\path[densely dotted, ->,line width=0.8pt, font=\scriptsize]
+\path[densely dotted, ->,line width=1.0pt, font=\scriptsize]
 (m-1-1) edge node[above] {$ \tau_X $} (m-1-3);
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[below = 3pt, left = 1pt] {$ g_{i,X} $} (m-2-2)
 (m-1-3) edge node[below = 3pt, right = 1pt] {$ f_{i,X} $} (m-2-2);
 \end{tikzpicture}
@@ -140,7 +140,7 @@ Fix $p:h_X\ra F$ for some $X\in \cC$ and $F\in \widehat{\cC}$. Denote $x=p(1_X)$
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
 { h_X(Y) &   F(Y)           \\
   h_X(X)&    F(X)             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[auto] {$p_Y$} (m-1-2)
 (m-2-1) edge node[below] {$p_X$} (m-2-2)
 (m-2-1) edge node[left] {$h_X(f) $} (m-1-1)
@@ -184,7 +184,7 @@ Let $\cC$ be a category. A class $\cK$ of objects of $\cC$ is called \textit{a c
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { X&  Y  \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ f$} (m-1-2)
 (m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ g$} (m-1-2);
 \end{tikzpicture}
@@ -202,7 +202,7 @@ Let $\cC$ be a category and $X$ be an object of $\cC$. \textit{An object of $\cC
 \matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
 { Y_1 &    & Y_2         \\
       &  X  &             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ f $} (m-1-3)
 (m-1-1) edge node[below = 3pt, left = 1pt] {$ f_1 $} (m-2-2)
 (m-1-3) edge node[below = 3pt, right = 1pt] {$ f_2 $} (m-2-2);
@@ -241,7 +241,7 @@ is bijective. We have a commutative triangle
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
 { \Mor_{\cK}\left(\Gamma_X,\Gamma_Y\right) &     & \mathrm{Cocone}_Y\left(F_X\right) \\
                                            & \Mor_{\cC}(X,Y) &             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[auto] {$\sigma \mapsto \{\sigma(f)\}_{f\in \cK/X} $} (m-1-3)
 (m-2-2) edge node[below = 4pt, left = 1pt] {$ g\mapsto \Gamma_g $} (m-1-1)
 (m-2-2) edge node[below = 4pt, right = 1pt] {$ g \mapsto \{g\cdot f\}_{f\in \cK/X} $} (m-1-3);
@@ -332,10 +332,10 @@ Let $\cC$ be a locally small category and let $F$, $G$, $J$ be presheaves on $\c
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 { J(Y)   &  \Mor_{\cC/Y}\left(F_{\mid Y},G_{\mid Y}\right)           \\
   J(X)   &  \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)           \\} ;
-\path[right hook->,line width=0.8pt,font=\scriptsize]  
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-2-1) edge node[below] {$ $} (m-2-2);
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[left] {$ J(f) $} (m-2-1)
 (m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_{\left(\cC/f\right)^{\mathrm{op}}} $} (m-2-2);
 \end{tikzpicture}

@@ -34,7 +34,7 @@ Let $f:X\ra Y$ be a flat morphism of ringed spaces. Suppose that $\cF$ and $\cG$
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 { f^*\shHom_{\cO_Y}(\cF,\cG) &  \shHom_{\cO_X}(f^*\cF,f^*\cG) \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$\theta_{\cF,\cG} $} (m-1-2);
 \end{tikzpicture}
 \end{center}
@@ -47,7 +47,7 @@ Since the question is local, we may assume that $\cF$ is globally of finite pres
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {\cO^{\oplus m}_Y& \cO^{\oplus n}_Y&  \cF&  0                \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4);
@@ -60,7 +60,7 @@ Now we have a commutative diagram
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { 0& f^*\shHom_{\cO_Y}(\cF,\cG)&  f^*\shHom_{\cO_Y}(\cO^{\oplus n}_Y,\cG)&  f^*\shHom_{\cO_Y}(\cO^{\oplus m}_Y,\cG)             \\
 0&\shHom_{\cO_X}(f^*\cF,f^*\cG)& \shHom_{\cO_X}(\cO^{\oplus n}_X,f^*\cG)&   \shHom_{\cO_X}(\cO^{\oplus m}_X,f^*\cG)                                  \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4)
@@ -102,7 +102,7 @@ Suppose that \textbf{(ii)} holds and assume that $N$ is $A/\ideal{a}$-module. Fi
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {0&K&  F    &N&          0             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4)
@@ -115,7 +115,7 @@ where $F$ is a free $A/\ideal{a}$-module. Then we have an exact sequence
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {\mathrm{Tor}^A_1(M,F)& \mathrm{Tor}^A_1(M,N)&M\otimes_AK&  M\otimes_AF                \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4);
@@ -128,7 +128,7 @@ Next we shall prove $\textbf{(iii)}\Rightarrow \textbf{(iv)}$. We will show that
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {0& \ideal{a}^kN& N& N/\ideal{a}^kN&  0                \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4)
@@ -141,7 +141,7 @@ Thus we have an exact sequence
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { \mathrm{Tor}^A_1(M,\ideal{a}^kN)& \mathrm{Tor}^A_1(M,N)& \mathrm{Tor}^A_1(M,N/\ideal{a}^kN)              \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3);
 \end{tikzpicture}
@@ -153,7 +153,7 @@ It remains to prove that $\textbf{(iv)}$ implies $\textbf{(i)}$ under our extra 
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
 { I\otimes_AM & M\\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$a\otimes m\mapsto a\cdot m $} (m-1-2);
 \end{tikzpicture}
 \end{center} 
@@ -165,7 +165,7 @@ Let $\psi_k=1_{A/\ideal{a}^k}\otimes_A\phi$ for $k\in \NN$. We will also denote 
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 {I/(\ideal{a}^k\cap I)\otimes_{A/\ideal{a}^k}M/\ideal{a}^kM & M/\ideal{a}^kM\\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$ $} (m-1-2);
 \end{tikzpicture}
 \end{center} 
@@ -177,7 +177,7 @@ induced by the inclusion $I/(\ideal{a}^k\cap I)\ra A/\ideal{a}^k$. Observe that 
 {I/\ideal{a}^{k}I\otimes_AM&&            M/\ideal{a}^{k}M      \\
 I/(\ideal{a}^k\cap I)\otimes_AM&&         M/\ideal{a}^{k}M            \\
 I/\ideal{a}^{k-l}I\otimes_AM&&          M/\ideal{a}^{k-l}M             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$\psi_{k} $} (m-1-3)
 (m-2-1) edge node[auto] {$ \phi_k$} (m-2-3)
 (m-3-1) edge node[below] {$ \psi_{k-l}$} (m-3-3)
@@ -198,7 +198,7 @@ Since $\phi_k$ are all monomorphisms by \textbf{(iv)}, we derive that $\lim_{k\i
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {I\otimes_AM&&            M      \\
 \lim_{k\in \NN}(I/\ideal{a}^{k}I\otimes_AM)&&        \lim_{k\in \NN }M/\ideal{a}^{k}M            \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$\phi $} (m-1-3)
 (m-2-1) edge node[below] {$ \lim_{k\in \NN}\psi_k$} (m-2-3)
 (m-1-1) edge node[left] {$ i$} (m-2-1)
@@ -217,7 +217,7 @@ Suppose that $A$ is a ring, $\ideal{a}\subseteq A$ is an ideal and $M$ is an $A$
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 { \mathrm{gr}_{\ideal{a}}(A)\otimes_{A/\ideal{a}}M/\ideal{a}M &\mathrm{gr}_{\ideal{a}}(M)\\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$\gamma $} (m-1-2);
 \end{tikzpicture}
 \end{center} 
@@ -237,7 +237,7 @@ Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$ under additional assum
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 { \ideal{a}/\ideal{a}^k\otimes_{A/\ideal{a}^k}M/\ideal{a}^kM & \ideal{a}M/\ideal{a}^kM\\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$\alpha_k $} (m-1-2);
 \end{tikzpicture}
 \end{center} 
@@ -248,7 +248,7 @@ given by formula $\alpha_k\left((a+\ideal{a}^k)\otimes (m+\ideal{a}^kM)\right) =
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {& \ideal{a}^{k}/\ideal{a}^{k+1}\otimes_{A/\ideal{a}^{k+1}}M/\ideal{a}^{k+1}M & \ideal{a}/\ideal{a}^{k+1}\otimes_{A/\ideal{a}^{k+1}}M/\ideal{a}^{k+1}M & \ideal{a}/\ideal{a}^{k}\otimes_{A/\ideal{a}^{k+1}}M/\ideal{a}^{k+1}M &  0                \\
 0 & \ideal{a}^{k}M/\ideal{a}^{k+1}M &\ideal{a}M/\ideal{a}^{k+1}M &\ideal{a}M/\ideal{a}^{k}M &0\\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4)
 (m-1-4) edge node[auto] {$ $} (m-1-5)
@@ -301,7 +301,7 @@ Assume that $\textbf{(ii)}$ holds. Consider an exact sequence of $B$-modules
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {0& u(M)&  N&  N/u(M)&  0                \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4)
@@ -314,7 +314,7 @@ Since $u\otimes1_{A/\ideal{a}}$ is a monomorphism, we derive that the sequence
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {0& u(M)\otimes_AA/\ideal{a}&  N\otimes_AA/\ideal{a}&  N/u(M)\otimes_AA/\ideal{a}&  0                \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-1-2) edge node[auto] {$ $} (m-1-3)
 (m-1-3) edge node[auto] {$ $} (m-1-4)
@@ -361,7 +361,7 @@ Now consider finitely presented algebra $B$ over a domain $A$ and a finitely pre
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { B &  &  B'                         \\
   A & &   A'               \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-3) edge node[above] {$g' $} (m-1-1)
 (m-2-3) edge node[below]{$g$} (m-2-1)
 (m-2-3) edge node[right] {$f' $} (m-1-3)
@@ -379,7 +379,7 @@ Let
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { X' &  &  X                         \\
   Y' & &   Y               \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$g' $} (m-1-3)
 (m-2-1) edge node[below]{$g$} (m-2-3)
 (m-1-3) edge node[right] {$f $} (m-2-3)
@@ -431,7 +431,7 @@ Suppose that
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { (B,\ideal{n}) &  &  (C,\ideal{k})                         \\
    &(A,\ideal{m}) &             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$ $} (m-1-3)
 (m-2-2) edge node[below]{$$} (m-1-1)
 (m-2-2) edge node[right] {$$} (m-1-3);
@@ -449,7 +449,7 @@ The implication $\textbf{(1)}\Rightarrow \textbf{(2)}$ is easy. We now prove tha
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=6em,text height=1.5ex, text depth=0.25ex] 
 { \mathrm{gr}_{\ideal{m}}(A)\otimes_{A/\ideal{m}}M/\ideal{m}M &    \mathrm{gr}_{\ideal{m}}(M)                   \\
   \mathrm{gr}_{\ideal{m}}(A)\otimes_{A/\ideal{m}}B/\ideal{m}B\otimes_{B/\ideal{m}B}M/\ideal{m}M &  \mathrm{gr}_{\ideal{m}B}(B)\otimes_{B/\ideal{m}B}M/\ideal{m}M           \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$\gamma $} (m-1-2)
 (m-2-1) edge node[left]{$=$} (m-1-1)
 (m-2-2) edge node[right] {$\delta$} (m-1-2)
