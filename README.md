@@ -18,6 +18,5 @@ Each directory contains file
 which contains references for material that is used in the notes located in the directory.
 
 ## Contact
-If you have any comments or remarks do not hestitate to contact me:
-Chryzyp@protonmail.com 
+If you have any comments or remarks do not hestitate to contact me via Chryzyp@protonmail.com
 
