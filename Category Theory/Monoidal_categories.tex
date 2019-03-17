@@ -8,9 +8,9 @@
 
 \section{Introduction}
 \noindent
-In this notes we study monoidal categories. The first part of the notes contains a rigorous and formal proofs of Mac Lane's coherence and strictness theorems. We also introduce symmetric monoidal categories and symmetric monoidal functors. We discuss notion of dualizable objects in the last section.\\
-Throughout the notes our foundations is Tarski-Grothendieck set theory described in {\cite[Introduction]{Presheaves}}. We indicate each usage of Tarski's axiom so that the reader is aware in which arguments Tarski's axiom is involved.\\
-We also need to explain some conventions concerning mathematical notation that we use in this notes. There are two ways of denoting values of functions. In \textit{prefix notation} a function symbol $f$ precedes its arguments $x_1,x_2,...,x_n$ and the expression is $f(x_1,x_2,...,x_n)$ (parentheses are standard part of the prefix notation, since it was introduced by Euler). On the other hand \textit{infix notation} is used when a symbol $f$ of a function is placed between each pair of arguments $x_1$, $x_2$, ...,$x_n$ and the expression is $x_1 f x_2 f...fx_n$. For real life example note that the well known expression $x_1+x_2+...+x_n$ is written in infix notation. Infix notation can be also used in the case of functors. For example let $\otimes:\cC\times \cC\ra \cC$ be a functor and let $\cC$ be a category. Then using infix notation we can write the value of $\otimes$ on objects $X$, $Y$ of $\cC$ as $X\otimes Y$. We can also consider the composition $\otimes\cdot \langle \otimes, 1_{\cC}\rangle:\cC\times \cC\times \cC\ra \cC$ and we can write its value on objects $X$, $Y$ and $Z$ of $\cC$ as $(X\otimes Y)\otimes Z$ in this notation. We hope that now the distinction between these two notations is clear.
+In this notes we study monoidal categories. After introducing monoidal categories and their basic properties in the first section we discuss monoidal functors and as an excursion (we do not use it in the rest of our notes) we present useful result about monoidal adjoint pairs (Theorem \ref{theorem:monoidaladjoint}). Third section contains rigorous and formal proofs of both Mac Lane's coherence and strictness theorems. Next we discuss notion of dual pairs and rigid objects. We also introduce symmetric monoidal categories and symmetric monoidal functors in the closing section.\\
+Throughout the notes our foundations is Tarski-Grothendieck set theory described in {\cite[Introduction]{Presheaves}}. We indicate each usage of Tarski's axiom for the reader's convenience.\\
+We explain now some conventions concerning notation that we use in this notes. There are two ways of denoting values of functions. In \textit{prefix notation} a function symbol $f$ precedes its arguments $x_1,x_2,...,x_n$ and the expression is $f(x_1,x_2,...,x_n)$ (parentheses are standard part of the prefix notation). On the other hand \textit{infix notation} is used when a symbol $f$ of a function is placed between each pair of arguments $x_1$, $x_2$, ...,$x_n$ and the expression is $x_1 f x_2 f...fx_n$. For real life example note that $x_1+x_2+...+x_n$ is written in infix notation. Infix notation can be also used in the case of functors. For example let $\otimes:\cC\times \cC\ra \cC$ be a functor and let $\cC$ be a category. Then using infix notation we can write the value of $\otimes$ on objects $X$, $Y$ of $\cC$ as $X\otimes Y$. We can also consider the composition $\otimes\cdot \langle \otimes, 1_{\cC}\rangle:\cC\times \cC\times \cC\ra \cC$ and we can write its value on objects $X$, $Y$ and $Z$ of $\cC$ as $(X\otimes Y)\otimes Z$.
 
 \section{Monoidal categories}
 
@@ -65,7 +65,7 @@ Let $(\cC,\otimes,I,\alpha,l,r)$ be a monoidal category. Then triangles
 (m-1-6) edge node[right = 7pt, below = 2pt] {$ r_{X\otimes Y}$} (m-2-5);
 \end{tikzpicture}
 \end{center}
-are commutative for any pair $X$, $Y$ of objects of $\cC$.
+are commutative for every pair $X$, $Y$ of objects of $\cC$.
 \end{proposition}
 \begin{proof}
 We prove that the first triangle commutes (commutativity of the second can be proved by the similar method). Pick objects $X$, $Y$ and consider the following diagram.
@@ -99,62 +99,63 @@ We prove that the first triangle commutes (commutativity of the second can be pr
 First note that all morphism in the diagram are isomorphisms. The outer pentagon in the diagram commutes, since it is an instance of the Mac Lane's pentagon. Moreover, the two triangles denoted by $\circlearrowleft$ commute, since one is an instance of the unit triangle and the other is an image of an instance of the unit triangle under the functor $(-)\otimes Y$. Finally, the two squares denoted by $\circlearrowleft$ are commutative according to the naturality of $\alpha$. This implies that the triangle denoted by $\color{red}{\circlearrowleft}$ is commutative. This triangle is precisely the image under the functor $I\otimes (-)$ of the first triangle in the statement. Since this $I\otimes(-)$ is an equivalence of categories, it follows that the first triangle in the statement is commutative.
 \end{proof}
 \noindent
-Let $\cC$ be a category. By abuse of language we say that $\cC$ is a monoidal category when we have certain monoidal structure on $\cC$ in mind. Also when we deal with two monoidal categories $\cC$ and $\cD$ we often use the same symbols to denote their monoidal structures by the same symbols. In these cases it should be clear from the context how to distinguish these monoidal structures.
+Let $\cC$ be a category. By abuse of language we say that $\cC$ is a monoidal category when we have a certain monoidal structure on $\cC$ in mind. Also when we deal with two (or more) monoidal categories $\cC$ and $\cD$ we often use the same symbols to denote their monoidal structures. In these cases (as usual in categorical considerations) context helps us to avoid possible confusion.
 
 \section{Monoidal functors, transformations and adjunctions}
 
 \begin{definition}
-Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a functor, $\tau_{X,Y}:F(X\otimes Y) \ra F(X)\otimes F(Y)$ is an morphism natural in objects $X$, $Y$ of $\cC$ and $\phi:F(I)\ra I$ is an isomorphism in $\cD$. Assume that the following diagrams are commutative.
+Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a functor, $\tau_{X,Y}:F(X)\otimes F(Y)\ra F(X\otimes Y)$ is an morphism natural in pairs objects $X$, $Y$ of $\cC$ and $\phi:I\ra F(I)$ is a morphism in $\cD$. Assume that the diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
-{F\left(X\otimes \left(Y\otimes Z\right)\right) & F\left(\left(X\otimes Y\right)\otimes Z\right)\\
+{ F(X)\otimes \left(F(Y)\otimes F(Z)\right)& \left(F(X)\otimes F(Y)\right)\otimes F(Z)\\
  F(X)\otimes F(Y\otimes Z)& F(X\otimes Y)\otimes F(Z)\\
- F(X)\otimes \left(F(Y)\otimes F(Z)\right)& \left(F(X)\otimes F(Y)\right)\otimes F(Z)   \\} ;
+  F\left(X\otimes \left(Y\otimes Z\right)\right) & F\left(\left(X\otimes Y\right)\otimes Z\right)   \\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge node[above] {$ F(\alpha_{X,Y,Z}) $} (m-1-2)
-(m-3-1) edge node[below] {$ \alpha_{F(X),F(Y),F(Z)} $} (m-3-2)
-(m-1-1) edge node[left] {$ \tau_{X,Y\otimes Z} $} (m-2-1)
-(m-2-1) edge node[left] {$ 1_{F(X)}\otimes \tau_{Y,Z}$} (m-3-1)
-(m-1-2) edge node[right] {$ \tau_{X\otimes Y,Z} $} (m-2-2)
-(m-2-2) edge node[right] {$ \tau_{X,Y}\otimes 1_{F(Z)} $} (m-3-2);
+(m-1-1) edge node[above] {$  \alpha_{F(X),F(Y),F(Z)} $} (m-1-2)
+(m-3-1) edge node[below] {$ F(\alpha_{X,Y,Z}) $} (m-3-2)
+(m-1-1) edge node[left] {$ 1_{F(X)}\otimes \tau_{Y,Z} $} (m-2-1)
+(m-2-1) edge node[left] {$ \tau_{X,Y\otimes Z} $} (m-3-1)
+(m-1-2) edge node[right] {$ \tau_{X,Y}\otimes 1_{F(Z)} $} (m-2-2)
+(m-2-2) edge node[right] {$ \tau_{X\otimes Y,Z} $} (m-3-2);
 \end{tikzpicture}
 \end{center}
+is commutative for any objects $X$, $Y$, $Z$ in $\cC$ and diagrams
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{F(I \otimes X)      &       & F(X \otimes I)    &       \\
+{I \otimes F(X)      &       & F(X) \otimes I    &       \\
  F(I) \otimes F(X)   &  F(X) & F(X) \otimes F(I) &  F(X) \\
- I \otimes F(X)      &       & F(X) \otimes I    &       \\};
+ F(I \otimes X)      &       & F(X \otimes I)    &       \\};
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge node[above = 3pt, right = 1pt] {$ F(l_X) $} (m-2-2)
-(m-3-1) edge node[below = 3pt, right = 1pt]  {$ l_{F(X)} $} (m-2-2)
-(m-1-1) edge node[left] {$ \tau_{I,X} $} (m-2-1)
-(m-2-1) edge node[left] {$ \phi\otimes 1_{F(X)} $} (m-3-1)
-(m-1-3) edge node[above = 3pt, right = 1pt] {$ F(r_X) $} (m-2-4)
-(m-3-3) edge node[below = 3pt, right = 1pt]  {$ r_{F(X)} $} (m-2-4)
-(m-1-3) edge node[left] {$ \tau_{X,I}$} (m-2-3)
-(m-2-3) edge node[left] {$ 1_{F(X)}\otimes \phi $} (m-3-3);
+(m-1-1) edge node[above = 3pt, right = 1pt] {$ l_{F(X)} $} (m-2-2)
+(m-3-1) edge node[below = 3pt, right = 1pt]  {$ F(l_X) $} (m-2-2)
+(m-1-1) edge node[left] {$  \phi\otimes 1_{F(X)} $} (m-2-1)
+(m-2-1) edge node[left] {$ \tau_{I,X} $} (m-3-1)
+(m-1-3) edge node[above = 3pt, right = 1pt] {$  r_{F(X)} $} (m-2-4)
+(m-3-3) edge node[below = 3pt, right = 1pt]  {$  F(r_X) $} (m-2-4)
+(m-1-3) edge node[left] {$  1_{F(X)}\otimes \phi $} (m-2-3)
+(m-2-3) edge node[left] {$ \tau_{X,I} $} (m-3-3);
 \end{tikzpicture}
 \end{center}
-Then a triple $(F,\tau,\phi)$ is called \textit{a weak monoidal functor}. Moreover, if $\tau$ is a natural isomorphism, then we say that $(F,\tau,\phi)$ is \textit{a strong monoidal functor}. Finally, we say that $(F,\tau,\phi)$ is \textit{a strict monoidal functor} if $\tau$ and $\phi$ are identities.
+are commutative for every object $X$ in $\cC$. Then a triple $(F,\tau,\phi)$ is called \textit{a weak monoidal functor}. Moreover, if $\tau$ is a natural isomorphism and $\phi$ is an isomorphism, then we say that $(F,\tau,\phi)$ is \textit{a strong monoidal functor}. Finally, we say that $(F,\tau,\phi)$ is \textit{a strict monoidal functor} if $\tau$ and $\phi$ are identities.
 \end{definition}
 \noindent
-If $\cC$ and $\cD$ are monoidal categories and $(F,\tau,\phi)$ is a (weak, strong, strict) monoidal functor where $F:\cC\ra \cD$ is the underlying functor, then by the usual abuse of language we say that $F:\cC\ra \cD$ is a (weak, strong, strict) monoidal functor.
+If $\cC$ and $\cD$ are monoidal categories and $(F,\tau,\phi)$ is a (weak, strong, strict) monoidal functor, where $F:\cC\ra \cD$ is the underlying functor, then by the usual abuse of language we say that $F:\cC\ra \cD$ is a (weak, strong, strict) monoidal functor.
 
 \begin{definition}
-Let $\cC$ and $\cD$ be monoidal categories. Suppose that $(F,\tau^F,\phi^F)$ and $(G,\tau^G,\phi^G)$ are (weak, strong, strict) monoidal functors where $F,G :\cC\ra \cD$ are underlying functors. Let $\sigma:F\ra G$ be a natural transformation. Assume that the square
+Let $\cC$ and $\cD$ be monoidal categories. Suppose that $(F,\tau^F,\phi^F)$ and $(G,\tau^G,\phi^G)$ are (weak, strong, strict) monoidal functors. Let $\sigma:F\ra G$ be a natural transformation. Assume that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ F(X\otimes Y)           &     G(X\otimes Y)             \\
-  F(X)\otimes F(Y)        &     G(X)\otimes G(Y)           \\} ;
+{  F(X)\otimes F(Y)        &     G(X)\otimes G(Y)          \\
+  F(X\otimes Y)           &     G(X\otimes Y)              \\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge node[above] {$\sigma_{X\otimes Y} $} (m-1-2)
-(m-2-1) edge node[below] {$ \sigma_X\otimes \sigma_Y $} (m-2-2)
+(m-1-1) edge node[above] {$ \sigma_X\otimes \sigma_Y $} (m-1-2)
+(m-2-1) edge node[below] {$\sigma_{X\otimes Y} $} (m-2-2)
 (m-1-2) edge node[right] {$ \tau^G_{X,Y} $} (m-2-2)  
 (m-1-1) edge node[left]  {$ \tau^F_{X,Y} $} (m-2-1);
 \end{tikzpicture}
@@ -163,30 +164,102 @@ is commutative for every pair $X$, $Y$ of objects in $\cC$ and also that the tri
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {F(I)       &            & G(I)  \\
             &      I     &             \\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
 (m-1-1) edge node[above] {$ \sigma_I $} (m-1-3)
-(m-1-1) edge node[left = 7pt, below = 2pt] {$ \phi^F $} (m-2-2)
-(m-1-3) edge node[right = 7pt, below = 2pt] {$\phi^G $} (m-2-2);
+(m-2-2) edge node[left = 3pt, below = -1pt] {$ \phi^F $} (m-1-1)
+(m-2-2) edge node[right = 3pt, below = -1pt] {$\phi^G $} (m-1-3);
 \end{tikzpicture}
 \end{center}
 commutes. Then $\sigma$ is \textit{a natural transformation of monoidal functors} or \textit{a monoidal transformation}. 
 \end{definition}
+\noindent
+The next theorem is not used in the remaining part of this notes. Therefore, we left some commutative diagram manipulations in its proof as exercises for the reader.
 
-\begin{proposition}
-Let $\cC$, $\cD$ be monoidal categories and let $F:\cC\ra \cD$ be a weak monoidal functor. Suppose that $G:\cD\ra \cC$ is a right adjoint functor to $F$ with $\eta:GF\ra 1_{\cC}$ and $\xi:FG\ra 1_{\cD}$ unit and counit of this adjunction, respectively. Then there exists a unique structure of a weak monoidal functor on $G$ such that $\eta$ and $\xi$ are monoidal transformations.
-\end{proposition}
+\begin{theorem}\label{theorem:monoidaladjoint}
+Let $\cC$, $\cD$ be monoidal categories and let $F:\cC\ra \cD$ be a strong monoidal functor. Suppose that $G:\cD\ra \cC$ is a right adjoint functor to $F$. Assume that $\eta:1_{\cC}\ra GF$ and $\xi:FG\ra 1_{\cD}$ are unit and counit of this adjunction, respectively. Then there exists a unique structure of a weak monoidal functor on $G$ such that $\eta$ and $\xi$ are monoidal transformations.
+\end{theorem}
 \begin{proof}
+Denote the strong monoidal structure on $F$ by $(\tau^F,\phi^F)$. Fix a pair $X$, $Y$ of objects of $\cD$. According to the universal property of $\xi_{X\otimes Y}$ there exists a unique morphism $\tau^G_{X,Y}:G(X)\otimes G(Y)\ra G(X\otimes Y)$ that makes the following diagram commutative.
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ F(G(X \otimes Y)) &    F(G(X)  \otimes G(Y))              \\
+  X\otimes Y        &    F(G(X)) \otimes F(G(Y))           \\} ;
+\path[->,font=\scriptsize,line width=1.0pt]
+(m-2-2) edge node[below] {$ \xi_X\otimes \xi_Y  $} (m-2-1)
+(m-1-2) edge node[right] {$ \left(\tau^F_{G(X),G(Y)}\right)^{-1}  $} (m-2-2)
+(m-1-1) edge node[left]  {$ \xi_{X\otimes Y} $} (m-2-1);
+\path[densely dotted,->,font=\scriptsize,line width=1.0pt]
+(m-1-2) edge node[above] {$ F(\tau^G_{X,Y})  $} (m-1-1);
+\end{tikzpicture}
+\end{center}
+We left to the reader verification that $\tau^G_{X,Y}$ is natural both in $X$ and $Y$. Next according to the universal property of $\xi_I$ there exists a unique morphism $\phi^G:I\ra G(I)$ such that the following triangle is commutative.  
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ F(G(I)) &   F(I)              \\
+  I       &              \\} ;
+\path[->,font=\scriptsize,line width=1.0pt]
+(m-1-2) edge node[below = 2pt, right= 2pt] {$\left(\phi^F\right)^{-1}  $} (m-2-1)
+(m-1-1) edge node[left]  {$ \xi_{I} $} (m-2-1);
+\path[densely dotted,->,font=\scriptsize,line width=1.0pt]
+(m-1-2) edge node[above] {$ F(\phi^G)  $} (m-1-1);
+\end{tikzpicture}
+\end{center}
+Now we verify that $(G,\tau^G,\phi^G)$ is a weak monoidal functor. For this we need to check that for any objects $X$, $Y$, $Z$ in $\cD$ the following diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ G(X)\otimes \left(G(Y)\otimes G(Z)\right)& \left(G(X)\otimes G(Y)\right)\otimes G(Z)\\
+ G(X)\otimes G(Y\otimes Z)& G(X\otimes Y)\otimes G(Z)\\
+  G\left(X\otimes \left(Y\otimes Z\right)\right) & G\left(\left(X\otimes Y\right)\otimes Z\right)   \\} ;
+\path[->,font=\scriptsize,line width=1.0pt]
+(m-1-1) edge node[above] {$  \alpha_{G(X),G(Y),G(Z)} $} (m-1-2)
+(m-3-1) edge node[below] {$ G(\alpha_{X,Y,Z}) $} (m-3-2)
+(m-1-1) edge node[left] {$ 1_{G(X)}\otimes \tau^G_{Y,Z} $} (m-2-1)
+(m-2-1) edge node[left] {$ \tau^G_{X,Y\otimes Z} $} (m-3-1)
+(m-1-2) edge node[right] {$ \tau^G_{X,Y}\otimes 1_{G(Z)} $} (m-2-2)
+(m-2-2) edge node[right] {$ \tau^G_{X\otimes Y,Z} $} (m-3-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Now definition of $\tau^G$ implies (details are left to the reader) that 
+$$\xi_{(X\otimes Y)\otimes Z}\cdot F\left(G(\alpha_{X,Y,Z})\cdot  \tau^G_{X,Y\otimes Z}\cdot (1_{G(X)}\otimes \tau^G_{Y,Z}) \right) =\xi_{(X\otimes Y)\otimes Z}\cdot F\left( \tau^G_{X\otimes Y,Z}\cdot (\tau^G_{X,Y}\otimes 1_{G(Z)})\cdot \alpha_{G(X),G(Y),G(Z)}  \right)$$
+By universal property of $\xi_{(X\otimes Y)\otimes Z)}$, we deduce that the hexagonal diagram above is commutative. Using exactly the same trick we show that triangles
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{I \otimes G(X)      &       & G(X) \otimes I    &       \\
+ G(I) \otimes G(X)   &  G(X) & G(X) \otimes G(I) &  G(X) \\
+ G(I \otimes X)      &       & G(X \otimes I)    &       \\};
+\path[->,font=\scriptsize,line width=1.0pt]
+(m-1-1) edge node[above = 3pt, right = 1pt] {$ l_{G(X)} $} (m-2-2)
+(m-3-1) edge node[below = 3pt, right = 1pt]  {$ G(l_X) $} (m-2-2)
+(m-1-1) edge node[left] {$  \phi^G\otimes 1_{G(X)} $} (m-2-1)
+(m-2-1) edge node[left] {$ \tau^G_{I,X} $} (m-3-1)
+(m-1-3) edge node[above = 3pt, right = 1pt] {$  r_{G(X)} $} (m-2-4)
+(m-3-3) edge node[below = 3pt, right = 1pt]  {$  G(r_X) $} (m-2-4)
+(m-1-3) edge node[left] {$  1_{G(X)}\otimes \phi^G $} (m-2-3)
+(m-2-3) edge node[left] {$ \tau^G_{X,I} $} (m-3-3);
+\end{tikzpicture}
+\end{center}
+are commutative for every object $X$ in $\cD$ (we apply $F$ and use the universal property of $\xi_X$). This shows that $(G,\tau^G,\phi^G)$ is a weak monoidal functor. Note also that $\tau^G$ and $\phi^G$ are uniquely defined in such a way that $\xi$ automatically is a monoidal transformation. This proves that $(\tau^G,\phi^G)$ is the unique structure of a weak monoidal functor on $G$ that makes $\xi$ a monoidal transformation. It remains to verify that $\eta$ is a monoidal transformation, when $G$ is considered as a monoidal functor with respect to $(\tau^G, \phi^G)$. This also can be done by the same trick (apply $F$ and use universality of $\xi$). For instance we write the complete proof of the fact that $\eta_I = G(\phi^F)\cdot \phi^G$. First we apply $F$ to the right hand side and then we compose it with $\xi_{F(I)}$. We obtain
+$$\xi_{F(I)}\cdot F(G(\phi^F))\cdot F(\phi^G)= \phi^F\cdot \xi_I\cdot F(\phi^G) = \phi^F\cdot \left(\phi^F\right)^{-1}=1_{F(I)} = \xi_{F(I)}\cdot F(\eta_{I}) $$
+Thus by universal property of $\xi_{F(I)}$, we deduce that $\eta_I = G(\phi^F)\cdot \phi^G$.
 \end{proof}
 
 \section{Coherence and strictness for monoidal categories}
 \noindent
 The idea of coherence originated in algebraic topology. We refer the reader to interesting and enlightning article \cite{maclane1963natural} for history and explanation of this important concept. Let $(\cC,\otimes, I,\alpha, l, r)$ be a monoidal category. Coherence theorem states that appropriate diagrams involving $\alpha$, $l$, $r$ and identites commute. To make this precise one needs to put considerable effort in constructing these diagrams in a formal way. This is our task in this section.\\
-A magma consists of a set $S$ equipped with binary operation (we use infix notation for it)
+A magma consists of a set $S$ equipped with a binary operation (we use infix notation for it)
 $$\square:S\times S\ra S$$
-and distinguished element $e\in S$. Morphism of magmas is a map of sets preserving binary operation and distinguished element. The category of magmas is denoted by $\bd{Mgm}$. According to {\cite[Corollary 3.7.8]{borceux1994handbook}} the forgetful functor $|-|:\bd{Mgm}\ra \Set$ admits a left adjoint. This means that for every set there exists a free magma generated by this set.\\
+and a distinguished element $e\in S$. Morphism of magmas is a map of sets preserving binary operations and distinguished elements. The category of magmas is denoted by $\bd{Mgm}$. According to {\cite[Corollary 3.7.8]{borceux1994handbook}} the forgetful functor $|-|:\bd{Mgm}\ra \Set$ admits a left adjoint. This means that for every set there exists a free magma generated by this set.\\
 Now let $S$ be any set and $\bd{M}_S$ be a free magma generated by this set with operation $\square$ and distinguished element $e$. We define a magma $\bd{A}_S$ and a directed graph
 \begin{center}
 \begin{tikzpicture}
