@@ -8,8 +8,8 @@
 
 \section{Introduction}
 \noindent
-In this notes we study monoidal categories. The first part of the notes contains a rigorous and formal proofs of Mac Lane's coherence and strictness theorems. In the second part we introduce symmetric monoidal categories and prove verions of coherence and strictness for these entities. In the last section we discuss notion of dualizable objects.\\
-Throughout the notes we use set theory described in {\cite[Introduction]{Presheaves}} as our base theory. We indicate each usage of Tarski's axiom so that the reader is aware in which parts of arguments this assumption is involved.\\
+In this notes we study monoidal categories. The first part of the notes contains a rigorous and formal proofs of Mac Lane's coherence and strictness theorems. We also introduce symmetric monoidal categories and symmetric monoidal functors. We discuss notion of dualizable objects in the last section.\\
+Throughout the notes our foundations is Tarski-Grothendieck set theory described in {\cite[Introduction]{Presheaves}}. We indicate each usage of Tarski's axiom so that the reader is aware in which arguments Tarski's axiom is involved.\\
 We also need to explain some conventions concerning mathematical notation that we use in this notes. There are two ways of denoting values of functions. In \textit{prefix notation} a function symbol $f$ precedes its arguments $x_1,x_2,...,x_n$ and the expression is $f(x_1,x_2,...,x_n)$ (parentheses are standard part of the prefix notation, since it was introduced by Euler). On the other hand \textit{infix notation} is used when a symbol $f$ of a function is placed between each pair of arguments $x_1$, $x_2$, ...,$x_n$ and the expression is $x_1 f x_2 f...fx_n$. For real life example note that the well known expression $x_1+x_2+...+x_n$ is written in infix notation. Infix notation can be also used in the case of functors. For example let $\otimes:\cC\times \cC\ra \cC$ be a functor and let $\cC$ be a category. Then using infix notation we can write the value of $\otimes$ on objects $X$, $Y$ of $\cC$ as $X\otimes Y$. We can also consider the composition $\otimes\cdot \langle \otimes, 1_{\cC}\rangle:\cC\times \cC\times \cC\ra \cC$ and we can write its value on objects $X$, $Y$ and $Z$ of $\cC$ as $(X\otimes Y)\otimes Z$ in this notation. We hope that now the distinction between these two notations is clear.
 
 \section{Monoidal categories}
@@ -101,8 +101,10 @@ First note that all morphism in the diagram are isomorphisms. The outer pentagon
 \noindent
 Let $\cC$ be a category. By abuse of language we say that $\cC$ is a monoidal category when we have certain monoidal structure on $\cC$ in mind. Also when we deal with two monoidal categories $\cC$ and $\cD$ we often use the same symbols to denote their monoidal structures by the same symbols. In these cases it should be clear from the context how to distinguish these monoidal structures.
 
+\section{Monoidal functors, transformations and adjunctions}
+
 \begin{definition}
-Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a functor, $\tau_{X,Y}:F(X\otimes Y) \ra F(X)\otimes F(Y)$ is an isomorphism natural in objects $X$, $Y$ of $\cC$ and $\phi:F(I)\ra I$ is an isomorphism in $\cD$. Assume that the following diagrams are commutative.
+Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a functor, $\tau_{X,Y}:F(X\otimes Y) \ra F(X)\otimes F(Y)$ is an morphism natural in objects $X$, $Y$ of $\cC$ and $\phi:F(I)\ra I$ is an isomorphism in $\cD$. Assume that the following diagrams are commutative.
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -123,9 +125,9 @@ Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a fun
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{F(I\otimes X)      &       & F(X\otimes I)    &       \\
- F(I)\otimes F(X)   &  F(X) & F(X)\otimes F(I) &  F(X) \\
- I\otimes F(X)      &       & F(X)\otimes I    &       \\};
+{F(I \otimes X)      &       & F(X \otimes I)    &       \\
+ F(I) \otimes F(X)   &  F(X) & F(X) \otimes F(I) &  F(X) \\
+ I \otimes F(X)      &       & F(X) \otimes I    &       \\};
 \path[->,font=\scriptsize,line width=1.0pt]
 (m-1-1) edge node[above = 3pt, right = 1pt] {$ F(l_X) $} (m-2-2)
 (m-3-1) edge node[below = 3pt, right = 1pt]  {$ l_{F(X)} $} (m-2-2)
@@ -137,10 +139,47 @@ Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a fun
 (m-2-3) edge node[left] {$ 1_{F(X)}\otimes \phi $} (m-3-3);
 \end{tikzpicture}
 \end{center}
-Then a triple $(F,\tau,\phi)$ is \textit{a monoidal functor}. We say that $(F,\tau,\phi)$ is \textit{a strict monoidal functor} if $\tau$ and $\phi$ are identities.
+Then a triple $(F,\tau,\phi)$ is called \textit{a weak monoidal functor}. Moreover, if $\tau$ is a natural isomorphism, then we say that $(F,\tau,\phi)$ is \textit{a strong monoidal functor}. Finally, we say that $(F,\tau,\phi)$ is \textit{a strict monoidal functor} if $\tau$ and $\phi$ are identities.
 \end{definition}
 \noindent
-If $\cC$ and $\cD$ are monoidal categories and $(F,\tau,\phi)$ is a monoidal functor with $F:\cC\ra \cD$, then by the usual abuse of language we say that $F:\cC\ra \cD$ is a monoidal functor.
+If $\cC$ and $\cD$ are monoidal categories and $(F,\tau,\phi)$ is a (weak, strong, strict) monoidal functor where $F:\cC\ra \cD$ is the underlying functor, then by the usual abuse of language we say that $F:\cC\ra \cD$ is a (weak, strong, strict) monoidal functor.
+
+\begin{definition}
+Let $\cC$ and $\cD$ be monoidal categories. Suppose that $(F,\tau^F,\phi^F)$ and $(G,\tau^G,\phi^G)$ are (weak, strong, strict) monoidal functors where $F,G :\cC\ra \cD$ are underlying functors. Let $\sigma:F\ra G$ be a natural transformation. Assume that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ F(X\otimes Y)           &     G(X\otimes Y)             \\
+  F(X)\otimes F(Y)        &     G(X)\otimes G(Y)           \\} ;
+\path[->,font=\scriptsize,line width=1.0pt]
+(m-1-1) edge node[above] {$\sigma_{X\otimes Y} $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma_X\otimes \sigma_Y $} (m-2-2)
+(m-1-2) edge node[right] {$ \tau^G_{X,Y} $} (m-2-2)  
+(m-1-1) edge node[left]  {$ \tau^F_{X,Y} $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+is commutative for every pair $X$, $Y$ of objects in $\cC$ and also that the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{F(I)       &            & G(I)  \\
+            &      I     &             \\} ;
+\path[->,font=\scriptsize,line width=1.0pt]
+(m-1-1) edge node[above] {$ \sigma_I $} (m-1-3)
+(m-1-1) edge node[left = 7pt, below = 2pt] {$ \phi^F $} (m-2-2)
+(m-1-3) edge node[right = 7pt, below = 2pt] {$\phi^G $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutes. Then $\sigma$ is \textit{a natural transformation of monoidal functors} or \textit{a monoidal transformation}. 
+\end{definition}
+
+\begin{proposition}
+Let $\cC$, $\cD$ be monoidal categories and let $F:\cC\ra \cD$ be a weak monoidal functor. Suppose that $G:\cD\ra \cC$ is a right adjoint functor to $F$ with $\eta:GF\ra 1_{\cC}$ and $\xi:FG\ra 1_{\cD}$ unit and counit of this adjunction, respectively. Then there exists a unique structure of a weak monoidal functor on $G$ such that $\eta$ and $\xi$ are monoidal transformations.
+\end{proposition}
+\begin{proof}
+\end{proof}
 
 \section{Coherence and strictness for monoidal categories}
 \noindent
@@ -232,7 +271,7 @@ Now we prove that for any $v,w\in \bd{M}_S$ and morphism $\eta:v\ra w$ in $\bd{S
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ F(F_S(v)) &  F(F_S(w)) \\
+{ F(F_S(v))     &     F(F_S(w))             \\
   F_f(v)        &     F_f(w)           \\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
 (m-1-1) edge node[above] {$F(F_S(\eta)) $} (m-1-2)
@@ -366,7 +405,7 @@ $$[l_X]_{\equiv_{\bd{syn}}}:[I]_{\sim_{\bd{syn}}}\diamond [X]_{\sim_{\bd{syn}}}\
 are identity morphisms in $\bd{Strict}(\cC)$. Hence $\bd{Strict}(\cC)$ is a strict monoidal category with respect to $\diamond$ and unit $[I]_{\sim_{\bd{syn}}}$. By definition of $F$ and $\diamond:\bd{Strict}(\cC)\times \bd{Strict}(\cC)\ra \bd{Strict}(\cC)$, we derive that $F$ is a strict monoidal functor.
 \end{proof}
 
-\section{Coherence and strictness for symmetric monoidal categories}
+\section{Symmetric monoidal categories}
 
 \begin{definition}
 Let $\cC$ be a monoidal category. We denote by $(\otimes, \alpha, l, r, I)$ its monoidal structure. Let
@@ -406,61 +445,32 @@ is commutative for any objects $X$, $Y$, $Z$ in $\cC$ and the triangle
 is commutative for every object $X$ in $\cC$. Then we say that $(\cC,\otimes, \alpha, l, r, I, \gamma)$ is \textit{a symmetric monoidal category} and $\gamma$ is called \textit{a symmetry}. Moreover, if $\alpha, r, l, \gamma$ are identities, then $(\cC,\otimes, \alpha, l, r, I, \gamma)$ is called \textit{a strict symmetric monoidal category}.
 \end{definition}
 \noindent
-Let $\cC$ be a category. By abuse of language we say that $\cC$ is a symmetric monoidal category when we have a certain symmetric monoidal structure on $\cC$ in mind. Also when we deal with two symmetric monoidal categories $\cC$ and $\cD$ we often use the same symbols to denote their symmetries. In these cases it should be clear from the context how to distinguish these monoidal structures.\\
-Now we repeat with some modifications substantial part of the discussion from previous section. Let $S$ be any set and as previously let $\bd{M}_S$ be a free magma generated by this set with operation $\square$ and distinguished element $e$. We define a magma $\bd{A}_S$ and a directed graph
+Let $\cC$ be a category. By abuse of language we say that $\cC$ is a symmetric monoidal category when we have a certain symmetric monoidal structure on $\cC$ in mind. Also when we deal with two or more symmetric monoidal categories we often use the same symbols to denote their symmetries. In each case it should be clear from the context how to distinguish monoidal structures that we consider.
+
+\begin{definition}
+Let $\cC$ and $\cD$ be symmetric monoidal categories. Suppose that $(F,\tau,\phi)$ is a monoidal functor where $F:\cC\ra \cD$ is the underlying functor. Assume that the following square is commutative for every pair of objects $X$, $Y$ in $\cC$.
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{\bd{A}_S & \bd{M}_S     \\} ;
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ F(X\otimes Y)           &     F(Y\otimes X)      \\
+  F(X)\otimes F(Y)        &     F(Y)\otimes F(X)   \\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge[transform canvas={yshift =  0.5ex}] node[above] {$s $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift = -0.5ex}] node[below] {$t $} (m-1-2);
+(m-1-1) edge node[above] {$F(\gamma_{X,Y}) $} (m-1-2)
+(m-2-1) edge node[below] {$ \gamma_{F(X),F(Y)} $} (m-2-2)
+(m-1-2) edge node[right] {$ \tau_{Y,X} $} (m-2-2)  
+(m-1-1) edge node[left]  {$ \tau_{X,Y} $} (m-2-1);
 \end{tikzpicture}
 \end{center}
-in which $s, t$ are morphisms of magmas. The magma $\bd{A}_S$ is a free magma generated by the set of symbols:
-\begin{center}
-$1_v$ for $v\in \bd{M}_S\setminus \{e\}$, $l_v,l^{-1}_v,r_v,r^{-1}_v$ for $v\in \bd{M}_S$, $\alpha_{v,w,u},\alpha^{-1}_{v,w,u}$ for $v,w,u\in \bd{M}_S$, $\gamma_{v,w},\gamma^{-1}_{v,w}$ for $v,w\in \bd{M}_S$.
-\end{center}
-By abuse of language we denote the binary operation of $\bd{A}_S$ by $\square$. Its distinguished element is denoted by $1_e$. We define
-$$s(1_v) = v = t(1_v),\,s(l_v) = t(l_v^{-1}) = e\square v,\,t(l_v) = s(l^{-1}_v) = v,\,s(r_v)= t(r^{-1}_v) = v\square e,\,t(r_v)= s(r^{-1}_v) = v,$$
-$$s(\alpha_{v,w,u})= t(\alpha^{-1}_{v,w,u})=v\square(w\square u),\,t(\alpha_{v,w,u})= s(\alpha^{-1}_{v,w,u})=(v\square w)\square u,$$
-$$s(\gamma_{v,w})=t(\gamma^{-1}_{v,w}) = v\square w,\,t(\gamma_{v,w}) = s(\gamma^{-1}_{v,w}) = w\square v$$
-for every $v,w,u\in \bd{M}_S$ and we extend these maps of sets to morphisms of magmas according to the fact that $\bd{A}_S$ is free. We also define an automorphism $i:\bd{A}_S\ra \bd{A}_S$ by
-$$i(1_v)=1_v,\,i(l_v)=l^{-1}_v,\,i(l^{-1}_v)=l_v,\,i(r_v)=r^{-1}_v,\,i(r^{-1}_v)=r_v,$$
-$$i(\alpha_{v,w,u})=\alpha^{-1}_{v,w,u},\,i(\alpha^{-1}_{v,w,u})=\alpha_{v,w,u},\,i(\gamma_{v,w})=\gamma^{-1}_{w,v},\,i(\gamma^{-1}_{v,w})=\gamma_{v,w}$$
-for every $v,w,u\in \bd{M}_S$ and we extend this map of sets to a magma endomorphism according to the fact that $\bd{A}_S$ is free. We have $i^2 = 1_{\bd{A}_S}$ and hence $i$ is an automorphism. Moreover, we have $s\cdot i = t$ and $t\cdot i= s$. Now we construct a groupoid $\bd{sSyn}_S$. Objects of $\bd{sSyn}_S$ are elements of $\bd{M}_S$. Morphisms of $\bd{sSyn}_S$ are paths in the directed graph defined above modulo relation that asserts that edges $1_v$ for $v\in \bd{M}_S$ in the graph are identity morphisms in $\bd{sSyn}_S$ and for every edge $\eta$ in the graph its inverse in $\bd{sSyn}_S$ is $i(\eta)$. Next $\square$ define a functor $\square:\bd{sSyn}_S\times \bd{sSyn}_S \ra \bd{sSyn}_S$ and we have distinguished object $e$ in $\bd{sSyn}_S$.
-
-\begin{proposition}\label{proposition:symmetricsyntactictensorcategory}
-Let $S$ be a set and let the graph
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{\bd{A}_S & \bd{M}_S     \\} ;
-\path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge[transform canvas={yshift =  0.5ex}] node[above] {$s $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift = -0.5ex}] node[below] {$t $} (m-1-2);
-
-\end{tikzpicture}
-\end{center}
-with the automorphism $i:\bd{A}_S\ra \bd{A}_S$ and the groupoid  $\bd{sSyn}_{S}$ be as defined above. Suppose that $\cC$ is a symmetric monoidal category. Then every function $f$ that assigns to element of $S$ an object of $\cC$ can be uniquely extended to a functor $F_f:\bd{sSyn}_{S} \ra \cC$ such that 
-$$F_f(e) = I,\,F_f(v\square w) = F_f(v)\otimes F_f(w),\,F_f(l_v) = l_{F_f(v)},\,F_f(r_v) = r_{F_f(v)},$$
-$$F_f(\alpha_{v,w,u}) = \alpha_{F_f(v),F_f(w),F_f(u)},\,F_f(\gamma_{v,w})=\gamma_{F_f(v),F_f(w)}$$
-for any $v,w,u\in \bd{M}_S$.
-\end{proposition}
-\begin{proof}
-The proof is exactly the same as for Proposition \ref{proposition:syntactictensorcategory}.
-\end{proof}
+Then $(F,\tau,\phi)$ is \textit{a symmetric monoidal functor}.
+\end{definition}
 \noindent
-Let $\cC$ be a symmetric monoidal category and $S$ be a subset of the class of its objects. We denote by $F_S:\bd{sSyn}_S\ra \cC$ the unique functor corresponding to the inclusion of $S$ into the class of objects in $\cC$ by means of Proposition \ref{proposition:symmetricsyntactictensorcategory}.
+If $\cC$ and $\cD$ are symmetric monoidal categories and $(F,\tau,\phi)$ is a symmetric monoidal functor where $F:\cC\ra \cD$ is the underlying functor, then by the usual abuse of language we say that $F:\cC\ra \cD$ is a symmetric monoidal functor.
 
-\begin{theorem}[Mac Lane's coherence result -- symmetric case]\label{theorem:coherenceforsymmetric}
-Let $\cC$ be a symmetric monoidal category and $S$ be a subset of the class its objects. Then the functor $F_S:\bd{sSyn}_S\ra \cC$ sends any two parallel arrows in $\bd{sSyn}_S$ to the same arrow in $\cC$.
-\end{theorem}
-\begin{proof}
-According to Theorem \ref{theorem:strictnesstheorem} there exists a strict monoidal category $\cD$ and a strict monoidal functor $F:\cC\ra \cD$ such that $F$ is full, faithful and surjective on objects. Suppose that $(\otimes, \alpha, l, r, I, \gamma)$ is a symmetric monoidal structure on $\cC$. Then $F(\gamma)$ introduces a symmetry in the strict monoidal category $\cD$. We first prove that $FF_S:\bd{sSyn}_S\ra \cD$ sends any two parallel arrows to the same arrow in $\cD$. Since $\bd{sSyn}_S$ is a groupoid, it suffices to prove that for every object $v$ in $\bd{sSyn}_S$ its automorphism group of $v$ in $\bd{sSyn}_S$ is mapped via $FF_S$ to identity in $\cD$. 
-\end{proof}
+
+
+
+
 
 
 
