@@ -187,7 +187,7 @@ Denote the strong monoidal structure on $F$ by $(\tau^F,\phi^F)$. Fix a pair $X$
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ F(G(X \otimes Y)) &    F(G(X)  \otimes G(Y))              \\
+{ F(G(X \otimes Y)) &    F(G(X)  \otimes G(Y))             \\
   X\otimes Y        &    F(G(X)) \otimes F(G(Y))           \\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
 (m-2-2) edge node[below] {$ \xi_X\otimes \xi_Y  $} (m-2-1)
@@ -228,9 +228,9 @@ Now we verify that $(G,\tau^G,\phi^G)$ is a weak monoidal functor. For this we n
 (m-2-2) edge node[right] {$ \tau^G_{X\otimes Y,Z} $} (m-3-2);
 \end{tikzpicture}
 \end{center}
-is commutative. Now definition of $\tau^G$ implies (details are left to the reader) that 
+is commutative. Now definition of $\tau^G$ (details are left to the reader) implies that 
 $$\xi_{(X\otimes Y)\otimes Z}\cdot F\left(G(\alpha_{X,Y,Z})\cdot  \tau^G_{X,Y\otimes Z}\cdot (1_{G(X)}\otimes \tau^G_{Y,Z}) \right) =\xi_{(X\otimes Y)\otimes Z}\cdot F\left( \tau^G_{X\otimes Y,Z}\cdot (\tau^G_{X,Y}\otimes 1_{G(Z)})\cdot \alpha_{G(X),G(Y),G(Z)}  \right)$$
-By universal property of $\xi_{(X\otimes Y)\otimes Z)}$, we deduce that the hexagonal diagram above is commutative. Using exactly the same trick we show that triangles
+By universal property of $\xi_{(X\otimes Y)\otimes Z)}$, we deduce that the hexagonal diagram above is commutative. Using exactly the same trick (we apply $F$ and use the universal property of $\xi_X$) we show that triangles
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -249,7 +249,7 @@ By universal property of $\xi_{(X\otimes Y)\otimes Z)}$, we deduce that the hexa
 (m-2-3) edge node[left] {$ \tau^G_{X,I} $} (m-3-3);
 \end{tikzpicture}
 \end{center}
-are commutative for every object $X$ in $\cD$ (we apply $F$ and use the universal property of $\xi_X$). This shows that $(G,\tau^G,\phi^G)$ is a weak monoidal functor. Note also that $\tau^G$ and $\phi^G$ are uniquely defined in such a way that $\xi$ automatically is a monoidal transformation. This proves that $(\tau^G,\phi^G)$ is the unique structure of a weak monoidal functor on $G$ that makes $\xi$ a monoidal transformation. It remains to verify that $\eta$ is a monoidal transformation, when $G$ is considered as a monoidal functor with respect to $(\tau^G, \phi^G)$. This also can be done by the same trick (apply $F$ and use universality of $\xi$). For instance we write the complete proof of the fact that $\eta_I = G(\phi^F)\cdot \phi^G$. First we apply $F$ to the right hand side and then we compose it with $\xi_{F(I)}$. We obtain
+are commutative for every object $X$ in $\cD$. This shows that $(G,\tau^G,\phi^G)$ is a weak monoidal functor. Note also that $\tau^G$ and $\phi^G$ are uniquely defined in such a way that $\xi$ automatically is a monoidal transformation. This proves that $(\tau^G,\phi^G)$ is the unique structure of a weak monoidal functor on $G$ that makes $\xi$ a monoidal transformation. It remains to verify that $\eta$ is a monoidal transformation, when $G$ is considered as a monoidal functor with respect to $(\tau^G, \phi^G)$. This also can be done by the same trick (apply $F$ and use universality of $\xi$). For instance we write the complete proof of the fact that $\eta_I = G(\phi^F)\cdot \phi^G$. First we apply $F$ to the right hand side and then we compose it with $\xi_{F(I)}$. We obtain
 $$\xi_{F(I)}\cdot F(G(\phi^F))\cdot F(\phi^G)= \phi^F\cdot \xi_I\cdot F(\phi^G) = \phi^F\cdot \left(\phi^F\right)^{-1}=1_{F(I)} = \xi_{F(I)}\cdot F(\eta_{I}) $$
 Thus by universal property of $\xi_{F(I)}$, we deduce that $\eta_I = G(\phi^F)\cdot \phi^G$.
 \end{proof}
