@@ -8,14 +8,14 @@
 
 \section{Introduction}
 \noindent
-In this notes we study monoidal categories. After introducing monoidal categories and their basic properties in the first section we discuss monoidal functors and as an excursion (we do not use it in the rest of our notes) we present useful result about monoidal adjoint pairs (Theorem \ref{theorem:monoidaladjoint}). Third section contains rigorous and formal proofs of both Mac Lane's coherence and strictness theorems. Next we discuss notion of dual pairs and rigid objects. We also introduce symmetric monoidal categories and symmetric monoidal functors in the closing section.\\
-Throughout the notes our foundations is Tarski-Grothendieck set theory described in {\cite[Introduction]{Presheaves}}. We indicate each usage of Tarski's axiom for the reader's convenience.\\
-We explain now some conventions concerning notation that we use in this notes. There are two ways of denoting values of functions. In \textit{prefix notation} a function symbol $f$ precedes its arguments $x_1,x_2,...,x_n$ and the expression is $f(x_1,x_2,...,x_n)$ (parentheses are standard part of the prefix notation). On the other hand \textit{infix notation} is used when a symbol $f$ of a function is placed between each pair of arguments $x_1$, $x_2$, ...,$x_n$ and the expression is $x_1 f x_2 f...fx_n$. For real life example note that $x_1+x_2+...+x_n$ is written in infix notation. Infix notation can be also used in the case of functors. For example let $\otimes:\cC\times \cC\ra \cC$ be a functor and let $\cC$ be a category. Then using infix notation we can write the value of $\otimes$ on objects $X$, $Y$ of $\cC$ as $X\otimes Y$. We can also consider the composition $\otimes\cdot \langle \otimes, 1_{\cC}\rangle:\cC\times \cC\times \cC\ra \cC$ and we can write its value on objects $X$, $Y$ and $Z$ of $\cC$ as $(X\otimes Y)\otimes Z$.
+In this notes we study monoidal categories. After introducing them and proving the important consequence of the axioms in the first section we discuss monoidal functors and we present useful result about monoidal adjoint pairs (Theorem \ref{theorem:monoidaladjoint}). Third section contains rigorous and formal proofs of Mac Lane's coherence and strictness theorems. Next we discuss notion of dual pairs and rigid objects. We also introduce symmetric monoidal categories and symmetric monoidal functors in the closing section.\\
+Throughout the notes our foundation is Tarski-Grothendieck system described in {\cite[Introduction]{Presheaves}}. We indicate each usage of Tarski's axiom for the reader's convenience.\\
+We explain now some conventions concerning notation that we use in this notes. There are two ways of denoting values of functions. In \textit{prefix notation} a function symbol $f$ precedes its arguments $x_1,x_2,...,x_n$ and the expression is $f(x_1,x_2,...,x_n)$ (parentheses are standard in the prefix notation). On the other hand \textit{infix notation} is used when a symbol $f$ of a function is placed between each pair of arguments $x_1$, $x_2$, ...,$x_n$ and the expression is $x_1 f x_2 f...fx_n$. For real life example note that $x_1+x_2+...+x_n$ is written in infix notation. Infix notation can be also used in the case of functors. For example let $\otimes:\cC\times \cC\ra \cC$ be a functor and let $\cC$ be a category. Then using infix notation we can write the value of $\otimes$ on objects $X$, $Y$ of $\cC$ as $X\otimes Y$. We can also consider the composition $\otimes\cdot \langle \otimes, 1_{\cC}\rangle:\cC\times \cC\times \cC\ra \cC$ and we can write its value on objects $X$, $Y$ and $Z$ of $\cC$ as $(X\otimes Y)\otimes Z$.
 
 \section{Monoidal categories}
 
 \begin{definition}
-Let $\cC$ be a category. Suppose that $\otimes:\cC\times \cC\ra \cC$ is a functor (we use infix notation for values of this functor), $I$ is an object of $\cC$, $\alpha_{X,Y,Z}:X\otimes(Y\otimes Z)\ra (X\otimes Y)\otimes Z$ is an isomorphism natural in objects $X$, $Y$, $Z$ of $\cC$ and $l_X:I\otimes X\ra X,\,r_X:X\otimes I\ra X$ are isomorphisms natural in object $X$ of $\cC$. Assume that \textit{Mac Lane's pentagon}
+Let $\cC$ be a category. Suppose that $\otimes:\cC\times \cC\ra \cC$ is a functor (we use infix notation for it), $I$ is an object of $\cC$, $\alpha_{X,Y,Z}:X\otimes(Y\otimes Z)\ra (X\otimes Y)\otimes Z$ is an isomorphism natural in objects $X$, $Y$, $Z$ of $\cC$ and $l_X:I\otimes X\ra X,\,r_X:X\otimes I\ra X$ are isomorphisms natural in object $X$ of $\cC$. Assume that \textit{Mac Lane's pentagon}
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -104,7 +104,7 @@ Let $\cC$ be a category. By abuse of language we say that $\cC$ is a monoidal ca
 \section{Monoidal functors, transformations and adjunctions}
 
 \begin{definition}
-Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a functor, $\tau_{X,Y}:F(X)\otimes F(Y)\ra F(X\otimes Y)$ is an morphism natural in pairs objects $X$, $Y$ of $\cC$ and $\phi:I\ra F(I)$ is a morphism in $\cD$. Assume that the diagram
+Let $\cC$ and $\cD$ be monoidal categories. Suppose that $F:\cC\ra \cD$ is a functor, $\tau_{X,Y}:F(X)\otimes F(Y)\ra F(X\otimes Y)$ is an morphism natural in pairs of objects $X$, $Y$ of $\cC$ and $\phi:I\ra F(I)$ is a morphism in $\cD$. Assume that the diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -176,7 +176,7 @@ is commutative for every pair $X$, $Y$ of objects in $\cC$ and also that the tri
 commutes. Then $\sigma$ is \textit{a natural transformation of monoidal functors} or \textit{a monoidal transformation}. 
 \end{definition}
 \noindent
-The next theorem is not used in the remaining part of this notes. Therefore, we left some commutative diagram manipulations in its proof as exercises for the reader.
+The next theorem is not used in the remaining part of this notes and we left some commutative diagram manipulations in its proof as exercises for the reader.
 
 \begin{theorem}\label{theorem:monoidaladjoint}
 Let $\cC$, $\cD$ be monoidal categories and let $F:\cC\ra \cD$ be a strong monoidal functor. Suppose that $G:\cD\ra \cC$ is a right adjoint functor to $F$. Assume that $\eta:1_{\cC}\ra GF$ and $\xi:FG\ra 1_{\cD}$ are unit and counit of this adjunction, respectively. Then there exists a unique structure of a weak monoidal functor on $G$ such that $\eta$ and $\xi$ are monoidal transformations.
@@ -249,18 +249,18 @@ By universal property of $\xi_{(X\otimes Y)\otimes Z)}$, we deduce that the hexa
 (m-2-3) edge node[left] {$ \tau^G_{X,I} $} (m-3-3);
 \end{tikzpicture}
 \end{center}
-are commutative for every object $X$ in $\cD$. This shows that $(G,\tau^G,\phi^G)$ is a weak monoidal functor. Note also that $\tau^G$ and $\phi^G$ are uniquely defined in such a way that $\xi$ automatically is a monoidal transformation. This proves that $(\tau^G,\phi^G)$ is the unique structure of a weak monoidal functor on $G$ that makes $\xi$ a monoidal transformation. It remains to verify that $\eta$ is a monoidal transformation, when $G$ is considered as a monoidal functor with respect to $(\tau^G, \phi^G)$. This also can be done by the same trick (apply $F$ and use universality of $\xi$). For instance we write the complete proof of the fact that $\eta_I = G(\phi^F)\cdot \phi^G$. First we apply $F$ to the right hand side and then we compose it with $\xi_{F(I)}$. We obtain
+are commutative for every object $X$ in $\cD$. This shows that $(G,\tau^G,\phi^G)$ is a weak monoidal functor. Note also that $\tau^G$ and $\phi^G$ are uniquely defined in such a way that $\xi$ automatically is a monoidal transformation. This proves that $(\tau^G,\phi^G)$ is the unique structure of a weak monoidal functor on $G$ that makes $\xi$ a monoidal transformation. It remains to verify that $\eta$ is a monoidal transformation with respect to $(G,\tau^G, \phi^G)$ and $(F,\tau^F,\phi^F)$. This also can be done by the same trick (apply $F$ and use universality of $\xi$). For instance let us write the complete proof of the fact that $\eta_I = G(\phi^F)\cdot \phi^G$. First we apply $F$ to the right hand side and then we compose it with $\xi_{F(I)}$. We obtain
 $$\xi_{F(I)}\cdot F(G(\phi^F))\cdot F(\phi^G)= \phi^F\cdot \xi_I\cdot F(\phi^G) = \phi^F\cdot \left(\phi^F\right)^{-1}=1_{F(I)} = \xi_{F(I)}\cdot F(\eta_{I}) $$
 Thus by universal property of $\xi_{F(I)}$, we deduce that $\eta_I = G(\phi^F)\cdot \phi^G$.
 \end{proof}
 
 \section{Coherence and strictness for monoidal categories}
 \noindent
-The idea of coherence originated in algebraic topology. We refer the reader to interesting and enlightning article \cite{maclane1963natural} for history and explanation of this important concept. Let $(\cC,\otimes, I,\alpha, l, r)$ be a monoidal category. Coherence theorem states that appropriate diagrams involving $\alpha$, $l$, $r$ and identites commute. To make this precise one needs to put considerable effort in constructing these diagrams in a formal way. This is our task in this section.\\
-A magma consists of a set $S$ equipped with a binary operation (we use infix notation for it)
+The idea of coherence originated in algebraic topology. We refer the reader to interesting and enlightning article \cite{maclane1963natural} for history and intuition behind this important concept. Let $(\cC,\otimes, I,\alpha, l, r)$ be a monoidal category. Coherence theorem states that appropriate diagrams involving $\alpha$, $l$, $r$, identites and their tensor products commute. To make this precise one needs to put considerable effort in constructing these diagrams in a formal way. This is our task in this section.\\
+A magma consists of a set $S$ equipped with binary operation (we use infix notation for it)
 $$\square:S\times S\ra S$$
-and a distinguished element $e\in S$. Morphism of magmas is a map of sets preserving binary operations and distinguished elements. The category of magmas is denoted by $\bd{Mgm}$. According to {\cite[Corollary 3.7.8]{borceux1994handbook}} the forgetful functor $|-|:\bd{Mgm}\ra \Set$ admits a left adjoint. This means that for every set there exists a free magma generated by this set.\\
-Now let $S$ be any set and $\bd{M}_S$ be a free magma generated by this set with operation $\square$ and distinguished element $e$. We define a magma $\bd{A}_S$ and a directed graph
+and distinguished element $e\in S$. Morphism of magmas is a map of sets preserving binary operations and distinguished elements. The category of magmas is denoted by $\bd{Mgm}$. According to {\cite[Corollary 3.7.8]{borceux1994handbook}} the forgetful functor $|-|:\bd{Mgm}\ra \Set$ admits a left adjoint. This means that for every set there exists a free magma generated by this set.\\
+Let $S$ be a set and let $\bd{M}_S$ be a free magma generated by this set with operation $\square$ and distinguished element $e$. We define a magma $\bd{A}_S$ and a directed graph
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -276,10 +276,10 @@ in which $s, t$ are morphisms of magmas. The magma $\bd{A}_S$ is a free magma ge
 $1_v$ for $v\in \bd{M}_S\setminus \{e\}$, $l_v,l^{-1}_v,r_v,r^{-1}_v$ for $v\in \bd{M}_S$ and $\alpha_{v,w,u},\alpha^{-1}_{v,w,u}$ for $v,w,u\in \bd{M}_S$.
 \end{center}
 By abuse of language we denote the binary operation of $\bd{A}_S$ by $\square$. Its distinguished element is denoted by $1_e$. Now it remains to define morphisms $s,t$. For this we define
-$$s(1_v) = v = t(1_v),\,s(l_v) = t(l_v^{-1}) = e\square v,\,t(l_v) = s(l^{-1}_v) = v,\,s(r_v)= t(r^{-1}_v) = v\square e,\,t(r_v)= s(r^{-1}_v) = v$$
+$$s(1_v) = v = t(1_v),\,s(l_v) = t(l_v^{-1}) = e\square v,\,t(l_v) = s(l^{-1}_v) = v,\,s(r_v)= t(r^{-1}_v) = v\square e,\,t(r_v)= s(r^{-1}_v) = v,$$
 $$s(\alpha_{v,w,u})= t(\alpha^{-1}_{v,w,u})=v\square(w\square u),\,t(\alpha_{v,w,u})= s(\alpha^{-1}_{v,w,u})=(v\square w)\square u$$
 for every $v,w,u\in \bd{M}_S$ and we extend these maps of sets to morphisms of magmas according to the fact that $\bd{A}_S$ is free. We also define an automorphism $i:\bd{A}_S\ra \bd{A}_S$ by
-$$i(1_v)= 1_v,\,i(l_v)=l^{-1}_v,\,i(l^{-1}_v)=l_v,\,i(r_v)=r^{-1}_v,\,i(r^{-1}_v)=r_v),\,i(\alpha_{v,w,u})=\alpha^{-1}_{v,w,u},\,i(\alpha^{-1}_{v,w,u})=\alpha_{v,w,u}$$
+$$i(1_v)= 1_v,\,i(l_v)=l^{-1}_v,\,i(l^{-1}_v)=l_v,\,i(r_v)=r^{-1}_v,\,i(r^{-1}_v)=r_v,\,i(\alpha_{v,w,u})=\alpha^{-1}_{v,w,u},\,i(\alpha^{-1}_{v,w,u})=\alpha_{v,w,u}$$
 for every $v,w,u\in \bd{M}_S$ and we extend this map of sets to a magma endomorphism according to the fact that $\bd{A}_S$ is free. We have $i^2 = 1_{\bd{A}_S}$ and hence $i$ is an automorphism. Moreover, we have $s\cdot i = t$ and $t\cdot i= s$. Now we construct a groupoid $\bd{Syn}_S$. Objects of $\bd{Syn}_S$ are elements of $\bd{M}_S$. Morphisms of $\bd{Syn}_S$ are paths in the directed graph defined above modulo relation that asserts that edges $1_v$ for $v\in \bd{M}_S$ in the graph are identity morphisms in $\bd{Syn}_S$ and for every edge $\eta$ in the graph its inverse in $\bd{Syn}_S$ is $i(\eta)$. Next $\square$ define a functor $\square:\bd{Syn}_S\times \bd{Syn}_S \ra \bd{Syn}_S$ and we have distinguished object $e$ in $\bd{Syn}_S$.
 
 \begin{proposition}\label{proposition:syntactictensorcategory}
@@ -295,18 +295,18 @@ Let $S$ be a set and let the graph
 
 \end{tikzpicture}
 \end{center}
-the automorphism $i:\bd{A}_S\ra \bd{A}_S$ and the groupoid  $\bd{Syn}_{S}$ be as defined above. Suppose that $\cC$ is a monoidal category. Then every function $f$ that assigns to element of $S$ an object of $\cC$ can be uniquely extended to a functor $F_f:\bd{Syn}_{S} \ra \cC$ such that 
+with the automorphism $i:\bd{A}_S\ra \bd{A}_S$ and the groupoid  $\bd{Syn}_{S}$ be as defined above. Suppose that $\cC$ is a monoidal category. Then every function $f$ that assigns to elements of $S$ objects of $\cC$ can be uniquely extended to a functor $F_f:\bd{Syn}_{S} \ra \cC$ such that 
 $$F_f(e) = I,\,F_f(v\square w) = F_f(v)\otimes F_f(w),\,F_f(l_v) = l_{F_f(v)},\,F_f(r_v) = r_{F_f(v)},\,F_f(\alpha_{v,w,u}) = \alpha_{F_f(v),F_f(w),F_f(u)}$$
 for any $v,w,u\in \bd{M}_S$.
 \end{proposition} 
 \begin{proof}
-First using {\cite[Introduction]{Presheaves}} we may enlarge our base universe so that $\cC$ is a small category. This does not affect construction of $\bd{Syn}_S$ so without loss of generality assume that $\cC$ is small category. Note that $\otimes$ and $I$ give rise to a magma structure on the \textbf{set} of objects of $\cC$. This implies that $f$ can be uniquely extended to a morphism $F_f:\bd{M}_S\ra \mathrm{ob}\left(\cC\right)$ of magmas. This is uniquely defined so that $F_f(e) = I$ and $F_f(v\square w) = F_f(v)\otimes F_f(w)$ for every $v, w\in \bd{M}_S$. We assign
+First using {\cite[Introduction]{Presheaves}} we may enlarge our base universe so that $\cC$ is a small category. This does not affect construction of $\bd{Syn}_S$ so without loss of generality we assume that $\cC$ is small category. Note that $\otimes$ and $I$ give rise to a magma structure on the set of objects of $\cC$. This implies that $f$ can be uniquely extended to a morphism $F_f:\bd{M}_S\ra \mathrm{ob}\left(\cC\right)$ of magmas. This is uniquely defined so that $F_f(e) = I$ and $F_f(v\square w) = F_f(v)\otimes F_f(w)$ for every $v, w\in \bd{M}_S$. We assign
 $$F_f(1_v)= 1_{F_f(v)}$$
 for $v\in \bd{M}_S\setminus \{e\}$ and
-$$F_f(l_v) = l_{F_f(v)},\,F_f(l_v^{-1})=l^{-1}_v,\,F_f(r_v) = r_{F_f(v)},\,F_f(r^{-1}_v)=r^{-1}_v$$
+$$F_f(l_v) = l_{F_f(v)},\,F_f(l_v^{-1})=l^{-1}_v,\,F_f(r_v) = r_{F_f(v)},\,F_f(r^{-1}_v)=r^{-1}_{F_f(v)},$$
 $$F_f(\alpha_{v,w,u}) = \alpha_{F_f(v),F_f(w),F_f(u)},\,F(\alpha^{-1}_{v,w,u})=\alpha^{-1}_{F_f(v),F_f(w),F_f(u)}$$
 
-for any $v,w,u\in \bd{M}_S$. One can also view the \textbf{set} of morphisms of $\cC$ as a magma with respect to binary operation $\otimes$ and $1_I$. This implies that $F_f$ can be extended to a morphism $F_f:\bd{A}_S\ra \Mor(\cC)$ of magmas. Now $F_f$ is a morphism of directed graphs
+for any $v,w,u\in \bd{M}_S$. One can also view the set of morphisms of $\cC$ as a magma with respect to binary operation $\otimes$ and $1_I$. This implies that $F_f$ can be extended to a morphism $F_f:\bd{A}_S\ra \Mor(\cC)$ of magmas. Now $F_f$ is a morphism of directed graphs
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -337,113 +337,113 @@ Let $\cC$ be a monoidal category and $S$ be a subset of the class of its objects
 Let $\cC$ be a monoidal category and $S$ be a subset of the class its objects. Then the functor $F_S:\bd{Syn}_S\ra \cC$ sends any two parallel arrows in $\bd{Syn}_S$ to the same arrow in $\cC$.
 \end{theorem}
 \begin{proof}
-Suppose that $\cD$ is a monoidal category and suppose that a triple $(F:\cC\ra \cD,\tau, \phi)$ is a monoidal functor. Let $f$ be a function given by the restriction of the functor $F$ to a set $S$. Then $f$ maps $S$ into a class of objects of $\cD$. There exists a unique functor $F_f:\bd{Syn}_S\ra \cD$ that extends $f$ and satisfies properties described in Proposition \ref{proposition:syntactictensorcategory}. Next for every $v \in \bd{M}_S$ we define an isomorphism $\sigma_v:F(F_S(v))\ra F_f(v)$. This is done by induction. We define $\sigma_e = \phi$ and $\sigma_s = 1_{F(s)}$ for every $s\in S$. Next if $\sigma_v$ and $\sigma_w$ are defined for some $v,w\in \bd{M}_S$, then we define
-$$\sigma_{v\square w} = \left(\sigma_v\otimes\sigma_w\right)\cdot \tau_{F_S(v),F_S(w)}$$
+Suppose that $\cD$ is a monoidal category and suppose that a triple $(F:\cC\ra \cD,\tau, \phi)$ is a strong monoidal functor. Let $f$ be a function given by the restriction of the functor $F$ to a set $S$. Then $f$ maps $S$ into a class of objects of $\cD$. There exists a unique functor $F_f:\bd{Syn}_S\ra \cD$ that extends $f$ and satisfies properties described in Proposition \ref{proposition:syntactictensorcategory}. Next for every $v \in \bd{M}_S$ we define an isomorphism $\sigma_v:F_f(v)\ra F(F_S(v))$. This is done by induction. We define $\sigma_e = \phi$ and $\sigma_s = 1_{F(s)}$ for every $s\in S$. Next if $\sigma_v$ and $\sigma_w$ are defined for some $v,w\in \bd{M}_S$, then we define
+$$\sigma_{v\square w} = \tau_{F_S(v),F_S(w)}\cdot \left(\sigma_v\otimes\sigma_w\right)$$
 Now we prove that for any $v,w\in \bd{M}_S$ and morphism $\eta:v\ra w$ in $\bd{Syn}_s$ the square
 \begin{equation}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ F(F_S(v))     &     F(F_S(w))             \\
-  F_f(v)        &     F_f(w)           \\} ;
+{ F_f(v)        &     F_f(w)     \\
+  F(F_S(v))     &     F(F_S(w))  \\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge node[above] {$F(F_S(\eta)) $} (m-1-2)
-(m-2-1) edge node[below] {$ F_f(\eta) $} (m-2-2)
+(m-1-1) edge node[above] {$F_f(\eta) $} (m-1-2)
+(m-2-1) edge node[below] {$ F(F_S(\eta)) $} (m-2-2)
 (m-1-2) edge node[right] {$ \sigma_w $} (m-2-2)  
 (m-1-1) edge node[left]  {$ \sigma_v $} (m-2-1);
 \end{tikzpicture}\tag{*}
 \end{equation}
-is commutative. Since each morphism in $\bd{Syn}_S$ can be decomposed into arrows in $\bd{A}_S$, we derive that it suffices to check commutativity of (*) for an arrow in $\bd{A}_S$. Now the proof goes by induction. If $\eta$ is $1_v$ for some $v\in \bd{M}_S$ then the commutativity of (*) boils down to the fact that $\sigma_v = \sigma _v$. Next assume that $\eta = l_v$ for some $v\in \bd{M}_S$, then we have a commutative diagram
+is commutative. Since each morphism in $\bd{Syn}_S$ can be decomposed into edges in $\bd{A}_S$, we derive that it suffices to check commutativity of (*) for an edge in $\bd{A}_S$. Now the proof goes by induction. If $\eta$ is $1_v$ for some $v\in \bd{M}_S$ then the commutativity of (*) boils down to the fact that $\sigma_v = \sigma _v$. Next assume that $\eta = l_v$ for some $v\in \bd{M}_S$, then we have a commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{F(F_S(e\square v))      & F(F_S(v))     \\
- F(I\otimes F_S(v))      & F(F_S(v))      \\
- I\otimes F(F_S(v))      & F(F_S(v))         \\
+{ F_f(e\square v)         & F_f(v)             \\
  I\otimes F_f(v)         & F_f(v)               \\
- F_f(e\square v)         & F_f(v)             \\};
+ I\otimes F(F_S(v))      & F(F_S(v))         \\
+ F(I\otimes F_S(v))      & F(F_S(v))      \\
+ F(F_S(e\square v))      & F(F_S(v))     \\};
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge node[above]  {$ F(F_S(l_v)) $} (m-1-2)
-(m-2-1) edge node[above] {$ F(l_{F_S(v)}) $} (m-2-2)
-(m-3-1) edge node[below]  {$ l_{F_S(v)} $} (m-3-2)
-(m-4-1) edge node[below]  {$ l_{F_f(v)} $} (m-4-2)
-(m-5-1) edge node[below]  {$ F_f(l_v) $} (m-5-2)
+(m-1-1) edge node[above]  {$F_f(l_v)  $} (m-1-2)
+(m-2-1) edge node[above] {$ l_{F_f(v)}  $} (m-2-2)
+(m-3-1) edge node[below]  {$ l_{F(F_S(v))} $} (m-3-2)
+(m-4-1) edge node[below]  {$F(l_{F_S(v)}) $} (m-4-2)
+(m-5-1) edge node[below]  {$ F(F_S(l_v)) $} (m-5-2)
 
 (m-1-1) edge node[left]  {$ = $} (m-2-1)
-(m-2-1) edge node[left] {$ \left(\phi\otimes 1_{F(F_S(v))}\right)\cdot  \tau_{I,F_S(v)} $} (m-3-1)
-(m-3-1) edge node[left] {$ 1_I\otimes \sigma_v $} (m-4-1)
+(m-2-1) edge node[left] {$ 1_I\otimes \sigma_v $} (m-3-1)
+(m-3-1) edge node[left] {$  \tau_{I,F_S(v)}\cdot \left(\phi\otimes 1_{F(F_S(v))}\right) $} (m-4-1)
 (m-4-1) edge node[left] {$ = $} (m-5-1)
 
 (m-1-2) edge node[right] {$ = $} (m-2-2)
-(m-2-2) edge node[right] {$ 1_{F(F_S(v))}$} (m-3-2)
-(m-3-2) edge node[right] {$ \sigma_v $} (m-4-2)
+(m-2-2) edge node[right] {$ \sigma_v $} (m-3-2)
+(m-3-2) edge node[right] {$ 1_{F(F_S(v))} $} (m-4-2)
 (m-4-2) edge node[right] {$ = $} (m-5-2);
 \end{tikzpicture}
 \end{center}
-Indeed, the commutativity of the top square follows by definition of $F_S$, the second square from the top commutes as $F$ is monoidal, the second square from the bottom commutes, since $l_X:I\otimes X\ra X$ is natural and finally the bottom square is commutative according to definition of $F_f$. Now the outer square in the diagram is an instance of (*) for $\eta = l_v$. This also gives the commutativity of (*) for $\eta = l^{-1}_v$. Similarly one can prove the commutativity of (*) for $\eta = r_v$ and $\eta = r^{-1}_v$. Now suppose that $\eta = \alpha_{v,w,u}$ for some $v,w,u\in \bd{M}_S$. We have a commutative diagram
+Indeed, the commutativity of the top square follows by definition of $F_f$, the second square from the top commutes, since $l_X:I\otimes X\ra X$ is natural, the second square from the bottom commutes as $F$ is monoidal and finally the bottom square is commutative according to definition of $F_S$. Now the outer square in the diagram is an instance of (*) for $\eta = l_v$. This also gives the commutativity of (*) for $\eta = l^{-1}_v$. Similarly one can prove the commutativity of (*) for $\eta = r_v$ and $\eta = r^{-1}_v$. Now suppose that $\eta = \alpha_{v,w,u}$ for some $v,w,u\in \bd{M}_S$. We have a commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=8em,text height=1.5ex, text depth=0.25ex] 
-{ F\left(F_S\left(v\square (w\square u)\right)\right) & F\left(F_S\left((v\square w)\square u\right)\right)\\
-  F\left(F_S(v)\otimes \left(F_S(w)\otimes F_S(y)\right)\right) & F\left(\left(F_S(v)\otimes F_S(w)\right)\otimes F_S(u)\right)\\
- F(F_S(v))\otimes F(F_S(w)\otimes F_S(u))& F(F_S(v)\otimes F_S(w))\otimes F(F_S(u))\\
- F(F_S(v))\otimes \left(F(F_S(w))\otimes F(F_S(u))\right)& \left(F(F_S(v))\otimes F(F_S(w))\right)\otimes F(F_S(u))   \\
+{F_f(v\square (w\square u)) & F_f((v\square w)\square u)\\
  F_f(v)\otimes \left(F_f(w)\otimes F_f(u)\right) & \left(F_f(v)\otimes F_f(w)\right)\otimes F_f(u)\\
-F_f(v\square (w\square u)) & F_f((v\square w)\square u)\\} ;
+F(F_S(v))\otimes \left(F(F_S(w))\otimes F(F_S(u))\right)& \left(F(F_S(v))\otimes F(F_S(w))\right)\otimes F(F_S(u))   \\
+F(F_S(v))\otimes F(F_S(w)\otimes F_S(u))& F(F_S(v)\otimes F_S(w))\otimes F(F_S(u))\\
+F\left(F_S(v)\otimes \left(F_S(w)\otimes F_S(y)\right)\right) & F\left(\left(F_S(v)\otimes F_S(w)\right)\otimes F_S(u)\right)\\
+F\left(F_S\left(v\square (w\square u)\right)\right) & F\left(F_S\left((v\square w)\square u\right)\right)\\} ;
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge node[above] {$ F(F_S(\alpha_{v,w,u})) $} (m-1-2)
+(m-1-1) edge node[above] {$ F_f(\alpha_{v,w,u}) $} (m-1-2)
 (m-1-1) edge node[left] {$ = $} (m-2-1)
 (m-1-2) edge node[right] {$ =  $} (m-2-2)
-(m-2-1) edge node[above] {$ F(\alpha_{F_S(v),F_S(w),F_S(u)}) $} (m-2-2)
-(m-4-1) edge node[below] {$ \alpha_{F(F_S(v)),F(F_S(w)),F(F_S(u))} $} (m-4-2)
-(m-2-1) edge node[left] {$ \tau_{F_S(v),F_S(w)\otimes F_S(u)} $} (m-3-1)
+(m-2-1) edge node[above] {$ \alpha_{F_f(v),F_f(w),F_f(u)}  $} (m-2-2)
+(m-3-1) edge node[below] {$\alpha_{F(F_S(v)),F(F_S(w)),F(F_S(u))} $} (m-3-2)
+(m-2-1) edge node[left] {$ \sigma_v\otimes (\sigma_w\otimes \sigma_u) $} (m-3-1)
 (m-3-1) edge node[left] {$ 1_{F(F_S(v))}\otimes \tau_{F_S(w),F_S(u)}$} (m-4-1)
-(m-2-2) edge node[right] {$ \tau_{F_S(v)\otimes F_S(w),F_S(u)} $} (m-3-2)
+(m-2-2) edge node[right] {$ (\sigma_v\otimes \sigma_w)\otimes \sigma_u $} (m-3-2)
 (m-3-2) edge node[right] {$ \tau_{F_S(v),F_S(w)}\otimes 1_{F(F_S(u))} $} (m-4-2)
-(m-4-1) edge node[left] {$ \sigma_v\otimes (\sigma_w\otimes \sigma_u) $} (m-5-1)
-(m-4-2) edge node[right] {$ (\sigma_v\otimes \sigma_w)\otimes \sigma_u $} (m-5-2)
-(m-5-1) edge node[below] {$ \alpha_{F_f(v),F_f(w),F_f(u)} $} (m-5-2)
+(m-4-1) edge node[left] {$ \tau_{F_S(v),F_S(w)\otimes F_S(u)} $} (m-5-1)
+(m-4-2) edge node[right] {$ \tau_{F_S(v)\otimes F_S(w),F_S(u)} $} (m-5-2)
+(m-5-1) edge node[below] {$ F(\alpha_{F_S(v),F_S(w),F_S(u)})   $} (m-5-2)
 (m-5-1) edge node[left] {$ =  $} (m-6-1)
 (m-5-2) edge node[right] {$ =  $} (m-6-2)
-(m-6-1) edge node[below] {$ F_f(\alpha_{v,w,u}) $} (m-6-2);
+(m-6-1) edge node[below] {$F(F_S(\alpha_{v,w,u})) $} (m-6-2);
 \end{tikzpicture}
 \end{center}
-Indeed, the first square from the top commutes by definition of $F_S$, the second from the top commutes according to the fact that $F$ is monoidal, the second square from the bottom is commutative, since $\alpha_{X,Y,Z}:X\otimes (Y\otimes Z)\ra (X\otimes Y)\otimes Z$ is natural and finally the bottom square is commutative by definition of $F_f$. Now the outer square is an instance of (*) for $\eta = \alpha_{v,w,u}$. This also gives the commutativity of (*) for $\eta= \alpha^{-1}_{v,w,u}$. Thus we know that (*) is commutative for $\eta$ in the generating set of $\bd{A}_S$. It remains to check that if $\eta = \beta \square \gamma$ and instances of (*) commute both for $\beta$ and $\gamma$, then the instance of (*) for $\eta$ is commutative. Suppose that $\beta:v\ra u$, $\gamma:w\ra z$ for some $v,w,u,t\in \bd{M}_S$. We have a commutative diagram
+Indeed, the first square from the top commutes by definition of $F_f$, the second square from the top is commutative, since $\alpha_{X,Y,Z}:X\otimes (Y\otimes Z)\ra (X\otimes Y)\otimes Z$ is natural, the second from the bottom commutes according to the fact that $F$ is monoidal and finally the bottom square is commutative by definition of $F_S$. Now the outer square is an instance of (*) for $\eta = \alpha_{v,w,u}$. This also gives the commutativity of (*) for $\eta= \alpha^{-1}_{v,w,u}$. Thus we know that (*) is commutative for $\eta$ in the generating set of $\bd{A}_S$. It remains to check that if $\eta = \beta \square \gamma$ and instances of (*) commute both for $\beta$ and $\gamma$, then the instance of (*) for $\eta$ is commutative. Suppose that $\beta:v\ra u$, $\gamma:w\ra z$ for some $v,w,u,z\in \bd{M}_S$. We have a commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=6em,text height=1.5ex, text depth=0.25ex] 
-{ F(F_S(v\square w)) &  F(F_S(u\square z)) \\
-  F(F_S(v)\otimes F_S(w))        &     F(F_S(u)\otimes F_S(z))           \\
-  F(F_S(v))\otimes F(F_S(w))  &      F(F_S(u))\otimes F(F_S(z))\\
+{ F_f(v\square w)   & F_f(u\square z)\\
   F_f(v)\otimes F_f(w) & F_f(u)\otimes F_f(z) \\
-F_f(v\square w)   & F_f(u\square z)\\} ;
+  F(F_S(v))\otimes F(F_S(w))  &      F(F_S(u))\otimes F(F_S(z))\\
+  F(F_S(v)\otimes F_S(w))        &     F(F_S(u)\otimes F_S(z))     \\
+  F(F_S(v\square w)) &  F(F_S(u\square z)) \\ } ;
 \path[->,font=\scriptsize,line width=1.0pt]
-(m-1-1) edge node[above] {$F(F_S(\beta\square \gamma)) $} (m-1-2)
-(m-2-1) edge node[below] {$ F(F_S(\beta)\otimes F_S(\gamma)) $} (m-2-2)
+(m-1-1) edge node[above] {$  F_f(\beta \square \gamma) $} (m-1-2)
+(m-2-1) edge node[below] {$F_f(\beta)\otimes F_f(\gamma) $} (m-2-2)
 (m-1-2) edge node[right] {$ =  $} (m-2-2)  
 (m-1-1) edge node[left]  {$ =  $} (m-2-1)
-(m-2-1) edge node[left] {$ \tau_{F_S(v),F_S(w)} $} (m-3-1)
-(m-2-2) edge node[right] {$\tau_{F_S(u),F_S(z)} $} (m-3-2)
-(m-3-1) edge node[below] {$F(F_S(\beta))\otimes F(F_S(\gamma)) $} (m-3-2)
-(m-3-1) edge node[left] {$\sigma_v\otimes \sigma_w $} (m-4-1)
-(m-3-2) edge node[right] {$\sigma_u\otimes \sigma_z $} (m-4-2)
-(m-4-1) edge node[below] {$F_f(\beta)\otimes F_f(\gamma) $} (m-4-2)
+(m-2-1) edge node[left] {$ \sigma_v\otimes \sigma_w $} (m-3-1)
+(m-2-2) edge node[right] {$\sigma_u\otimes \sigma_z $} (m-3-2)
+(m-3-1) edge node[below] {$ F(F_S(\beta))\otimes F(F_S(\gamma))  $} (m-3-2)
+(m-3-1) edge node[left] {$\tau_{F_S(v),F_S(w)} $} (m-4-1)
+(m-3-2) edge node[right] {$\tau_{F_S(u),F_S(z)} $} (m-4-2)
+(m-4-1) edge node[below] {$ F(F_S(\beta)\otimes F_S(\gamma)) $} (m-4-2)
 (m-4-1) edge node[left] {$ = $} (m-5-1)
 (m-4-2) edge node[right] {$ = $} (m-5-2)
-(m-5-1) edge node[below] {$ F_f(\beta \square \gamma) $} (m-5-2);
+(m-5-1) edge node[below] {$F(F_S(\beta\square \gamma)) $} (m-5-2);
 \end{tikzpicture}
 \end{center}
-Indeed, the first square from the top commutes by definition of $F_S$, the second square from the top is commutative according to the fact that $\tau_{X,Y}:F(X\otimes Y)\ra F(X)\otimes F(Y)$ is natural, the second square from the bottom is commutative, since instances of (*) for $\beta$ and $\gamma$ are commutative and finally the bottom square is commutative by definition of $F_f$. This proves that (*) is commutative for every morphism in $\bd{Syn}_S$.\\
+Indeed, the first square from the top commutes by definition of $F_f$, the second square from the top is commutative, since instances of (*) for $\beta$ and $\gamma$ are commutative, the second square from the bottom is commutative according to the fact that $\tau_{X,Y}:F(X\otimes Y)\ra F(X)\otimes F(Y)$ is natural, and finally the bottom square is commutative by definition of $F_S$. This proves that (*) is commutative for every morphism in $\bd{Syn}_S$.\\
 Let $\eta, \xi:v\ra w$ be parallel morphisms in $\bd{Syn}_S$. Then commutativity of (*) for both $\eta$ and $\xi$ imply that
-$$F(F_S(\eta)) = \sigma_w^{-1}\cdot F_f(\eta)\cdot \sigma_v,\,F(F_S(\xi)) = \sigma_w^{-1}\cdot F_f(\xi)\cdot \sigma_v$$
+$$F(F_S(\eta)) = \sigma_w\cdot F_f(\eta)\cdot \sigma_v^{-1},\,F(F_S(\xi)) = \sigma_w\cdot F_f(\xi)\cdot \sigma_v^{-1}$$
 If $\cD$ is a strict monoidal category, then $F_f(v) = F_f(w)$ and
 $$F_f(\eta) = 1_{F_f(v)}=1_{F_f(w)}= F_f(\xi)$$
-This last equality follows by decomposing each morphism in $\bd{Syn}_S$ into the composition of arrows in $\bd{A}_S$ and then by induction on complexity of an arrow in $\bd{A}_S$. Thus if $\cD$ is strict, we derive that $F(F_S(\eta)) = F(F_S(\xi))$. Therefore, in order to prove the theorem it suffices to construct a faithful monoidal functor $F:\cC\ra \cD$ into a strict monoidal category. For this consider the category $\bd{End}(\cC) = \Fun(\cC,\cC)$ of endofunctors of $\cC$. The functor (in infix notation)
+This last equality follows by decomposing each morphism in $\bd{Syn}_S$ into edges in $\bd{A}_S$ and then by induction on complexity of an edge in $\bd{A}_S$. Thus if $\cD$ is strict, we derive that $F(F_S(\eta)) = F(F_S(\xi))$. Therefore, in order to prove the theorem it suffices to construct a faithful, strong monoidal functor $F:\cC\ra \cD$ into a strict monoidal category. For this consider the category $\bd{End}(\cC) = \Fun(\cC,\cC)$ of endofunctors of $\cC$. The functor (in infix notation)
 $$\circ:\bd{End}(\cC)\times \bd{End}(\cC)\ra \bd{End}(\cC)$$
-that sends endofunctors $F:\cC\ra \cC$ and $G:\cC\ra \cC$ to their composition $F\circ G$ makes $\bd{End}(\cC)$ a strict monoidal category with $1_{\cC}$ serving as the unit. We define a functor $\Phi:\cC\ra \bd{End}(\cC)$ by formula $\Phi(X) = X\otimes (-)$ for object $X$ in $\cC$ and $\Phi(f) = f\otimes(-)$ for every morphism $f$ in $\cC$. Next we define $\tau_{X,Y}:\Phi(X\otimes Y)\ra \Phi(X)\circ \Phi(Y)$ for objects $X$, $Y$ in $\cC$ by formula $\tau_{X,Y} = \alpha_{X,Y,-}$. Finally we define $\phi:\Phi(I)\ra 1_{\cC}$ by formula $\phi = l$. A triple $(\Phi,\tau,\phi)$ is a monoidal functor. Indeed, commutative diagrams asserting the fact that $(\Phi,\tau,\phi)$ is monoidal are Mac Lane's pentagon, unit triangle and the first triangle in \ref{proposition:unittriangles}. The functor $\Phi$ is faithful. Indeed, if we have $\Phi(f) = \Phi(g)$ for some parallel morphisms $f, g$ in $\cC$, then this implies that $f\otimes 1_I = g\otimes 1_I$ which implies that $f=g$.
+that sends endofunctors $F:\cC\ra \cC$ and $G:\cC\ra \cC$ to their composition $F\circ G$ makes $\bd{End}(\cC)$ a strict monoidal category with $1_{\cC}$ serving as the unit. We define a functor $\Phi:\cC\ra \bd{End}(\cC)$ by formula $\Phi(X) = X\otimes (-)$ for every object $X$ in $\cC$ and $\Phi(f) = f \otimes (-)$ for every morphism $f$ in $\cC$. Next we define $\tau_{X,Y}:\Phi(X)\circ \Phi(Y)\ra \Phi(X\otimes Y)$ for objects $X$, $Y$ in $\cC$ by formula $\tau_{X,Y} = \alpha_{X,Y,-}$. Finally we define $\phi:1_{\cC}\ra \Phi(I)$ by $\phi = l^{-1}$. A triple $(\Phi,\tau,\phi)$ is a monoidal functor. Indeed, commutative diagrams asserting that $(\Phi,\tau,\phi)$ is monoidal are Mac Lane's pentagon, unit triangle and the first triangle in \ref{proposition:unittriangles}. The functor $\Phi$ is faithful. Indeed, if we have $\Phi(f) = \Phi(g)$ for some parallel morphisms $f, g$ in $\cC$, then this implies that $f\otimes 1_I = g\otimes 1_I$ and hence $f=g$.
 \end{proof}
 
 \begin{corollary}\label{corollary:unitsareequalonunit}
@@ -467,11 +467,11 @@ According to {\cite[Introduction]{Presheaves}} we may enlarge our base universe 
 \item If $X_1\sim_{\bd{syn}}X_2$ and $Y_1\sim_{\bd{syn}} Y_2$, then $X_1\otimes Y_1 \sim_{\bd{syn}} X_2\otimes Y_2$. 
 \item If $f_1\equiv_{\bd{syn}} g_1$ and $f_2\equiv_{\bd{syn}} g_2$, then $f_1\otimes f_2 \equiv_{\bd{syn}} g_1\otimes g_2$.
 \end{enumerate}
-Indeed, assertions \textbf{(1)}, \textbf{(4)} and \textbf{(5)} hold since $\bd{Syn}_S$ is a groupoid and assertions \textbf{(2)}, \textbf{(3)} are consequences of Theorem \ref{theorem:coherenceformonoidal}. Let $X$ be an object of $\cC$ and let $f$ be a morphism in $\cC$. Then we denote by $[X]_{\sim_{\bd{syn}}}$ and $[f]_{\equiv_{\bd{syn}}}$ their equivalence classes. Now we define a category $\bd{Strict}(\cC)$.  Its objects are equivalence classes of $\sim_{\bd{syn}}$ and its morphisms are equivalence classes of $\equiv_{\bd{syn}}$. Now if $f:X\ra Y$ is a morphism in $\cC$, then $[f]_{\equiv_{\bd{syn}}}$ is a morphism in $\Mor_{\bd{Strict}}([X]_{\sim_{\bd{syn}}},[Y]_{\sim_{\bd{syn}}})$. Suppose that $[f_1]_{\equiv_{\bd{syn}}}$ and $[f_2]_{\equiv_{\bd{syn}}}$ are morphisms in $\bd{Strict}(\cC)$ such that $[\mathrm{cod}(f_1)]_{\sim_{\bd{syn}}} = [\mathrm{dom}(f_2)]_{\sim_{\bd{syn}}}$ i.e. they form a composable pair of morphisms in $\bd{Strict}(\cC)$. Then we define
+Indeed, assertions \textbf{(1)}, \textbf{(4)} and \textbf{(5)} hold since $\bd{Syn}_S$ is a groupoid and assertions \textbf{(2)}, \textbf{(3)} are consequences of Theorem \ref{theorem:coherenceformonoidal}. Let $X$ be an object of $\cC$ and let $f$ be a morphism in $\cC$. Then we denote by $[X]_{\sim_{\bd{syn}}}$ and $[f]_{\equiv_{\bd{syn}}}$ their equivalence classes. Now we define a category $\bd{Strict}(\cC)$.  Its objects are equivalence classes of $\sim_{\bd{syn}}$ and its morphisms are equivalence classes of $\equiv_{\bd{syn}}$. Now if $f:X\ra Y$ is a morphism in $\cC$, then $[f]_{\equiv_{\bd{syn}}}$ is in $\Mor_{\bd{Strict}}([X]_{\sim_{\bd{syn}}},[Y]_{\sim_{\bd{syn}}})$. Suppose that $[f_1]_{\equiv_{\bd{syn}}}$ and $[f_2]_{\equiv_{\bd{syn}}}$ are morphisms in $\bd{Strict}(\cC)$ such that $[\mathrm{cod}(f_1)]_{\sim_{\bd{syn}}} = [\mathrm{dom}(f_2)]_{\sim_{\bd{syn}}}$ i.e. they form a composable pair of morphisms in $\bd{Strict}(\cC)$. Then we define
 $$[f_2]_{\equiv_{\bd{syn}}}\cdot [f_1]_{\equiv_{\bd{syn}}} = [g_2\cdot g_1]_{\equiv_{\bd{syn}}}$$
-where $g_1\equiv_{\bd{syn}} f_1$, $g_2\equiv_{\bd{syn}} f_2$ and $\mathrm{cod}(g_1) = \mathrm{dom}(g_2)$. This is always possible by \textbf{(1}) and is well defined operation according to \textbf{(2)}. Next the associativity of such defined composition follows from the associativity in $\cC$ and similarly for identities. Hence $\bd{Strict}(\cC)$ is a category. We also have a functor $F:\cC\ra \bd{Strict}(\cC)$ given by $X\mapsto [X]_{\sim_{\bd{syn}}}$ for every object $X$ in $\cC$ and $f\mapsto [f]_{\equiv_{\bd{syn}}}$ for every morphism $f$ in $\cC$. According to \textbf{(3)} functor $f$ is full and faithful. Clearly it is surjective on objects. Next according to \textbf{(4)} and \textbf{(5)} the following are well defined
+where $g_1\equiv_{\bd{syn}} f_1$, $g_2\equiv_{\bd{syn}} f_2$ and $\mathrm{cod}(g_1) = \mathrm{dom}(g_2)$. This is always possible by \textbf{(1}) and is a well defined operation according to \textbf{(2)}. Next the associativity of such defined composition follows from the associativity in $\cC$ and identities in $\bd{Strict}(\cC)$ are equivalence classes of identities in $\cC$. Hence $\bd{Strict}(\cC)$ is a category. We also have a functor $F:\cC\ra \bd{Strict}(\cC)$ given by $X\mapsto [X]_{\sim_{\bd{syn}}}$ for every object $X$ in $\cC$ and $f\mapsto [f]_{\equiv_{\bd{syn}}}$ for every morphism $f$ in $\cC$. According to \textbf{(3)} functor $f$ is full and faithful. Clearly it is surjective on objects. Next according to \textbf{(4)} and \textbf{(5)} the following are well defined
 $$[X]_{\sim_{\bd{syn}}}\diamond [Y]_{\sim_{\bd{syn}}} = [X\otimes Y]_{\sim_{\bd{syn}}},\,[f]_{\equiv_{\bd{syn}}}\diamond [g]_{\sim_{\bd{syn}}} = [f\otimes g]_{\equiv_{\bd{syn}}}$$
-and these give rise to a functor $\diamond:\bd{Strict}(\cC)\times \bd{Strict}(\cC)\ra \bd{Strict}(\cC)$. Moreover, by construction we derive that $F\cdot F_S$ sends every arrow in $\bd{Syn}_S$ to identity in $\bd{Strict}(\cC)$. This implies that
+and these give rise to a functor $\diamond:\bd{Strict}(\cC)\times \bd{Strict}(\cC)\ra \bd{Strict}(\cC)$. Moreover, by construction we derive that $F\cdot F_S$ sends every arrow in $\bd{Syn}_S$ to some identity in $\bd{Strict}(\cC)$. This implies that
 $$[\alpha_{X,Y,Z}]_{\equiv_{\bd{syn}}}:[X]_{\sim_{\bd{syn}}}\diamond \left([Y]_{\sim_{\bd{syn}}}\diamond [Z]_{\sim_{\bd{syn}}}\right)\ra \left([X]_{\sim_{\bd{syn}}}\diamond [Y]_{\sim_{\bd{syn}}}\right)\diamond [Z]_{\sim_{\bd{syn}}}$$
 as well as
 $$[l_X]_{\equiv_{\bd{syn}}}:[I]_{\sim_{\bd{syn}}}\diamond [X]_{\sim_{\bd{syn}}}\ra [X]_{\sim_{\bd{syn}}},\,[r_X]_{\equiv_{\bd{syn}}}:[X]_{\sim_{\bd{syn}}}\diamond [I]_{\sim_{\bd{syn}}}\ra [X]_{\sim_{\bd{syn}}}$$
