@@ -8,7 +8,10 @@
 
 \section{Introduction}
 \noindent
-In this notes we study Grothendieck topologies and toposes. For prerequisites we assume familiarity with \cite{Presheaves}. As usual we work in Tarski-Grothendieck set theory and we choose base universe. We do not assume that underlying categories of our sites are small. This leads to some difficulties concerning sizes, but it pays off as the theory obtained is more general. This is especially important as possible applications we have in mind are in algebraic geometry, where so called \textit{gross sites} are used. 
+In this notes we study Grothendieck topologies and toposes. For prerequisites we assume familiarity with \cite{Presheaves}. As usual we work in Tarski-Grothendieck set theory and we choose the base universe. We do not assume that underlying categories of our sites are small. This leads to some difficulties concerning sizes, but it pays off as the theory obtained is more general. This is especially important as possible applications we have in mind are in algebraic geometry, where so called \textit{gross sites} are used.\\
+To deal with size difficulties in some of arguments we make now a few remarks of technical nature. Let $\cC$ be a category. There exists a Grothendieck universe $V$ containing the base universe $U$ such that $\cC$ is locally $V$-small (c.f. {\cite[section 1]{Presheaves}}). We have full and faithful embedding
+$$\widehat{\cC} = \Fun\left(\cC^{\mathrm{op}},\Set\right) =  \Fun\left(\cC^{\mathrm{op}},\Set_U\right)\subseteq  \Fun\left(\cC^{\mathrm{op}},\Set_V\right)$$
+and the inclusion preserves all limits. Objects of $\Fun\left(\cC^{\mathrm{op}},\Set_V\right)$ are called big presheaves on $\cC$. In particular, every presheaf on $\cC$ (an object $\widehat{\cC}$) is a big presheaf on $\cC$. Since $\cC$ is locally $V$-small, for every object $X$ in $\cC$ there exists big representable presheaf $h_X$ on $\cC$ and if $f:X\ra Y$ is a morphism in $\cC$, then $h_f:h_X\ra h_Y$ is a morphism of big presheaves on $\cC$.
 
 \section{Sites and sheaves}
 \noindent
@@ -18,8 +21,8 @@ In this section we fix a category $\cC$.
 Let $X$ be an object of $\cC$. \textit{A sieve on $X$} is a family $S$ of arrows of $\cC$ with $X$ as a target such that for every $f:Y\ra X$ in $S$ and every morphisms $g:Z\ra Y$ their composition $f\cdot g$ is in $S$.
 \end{definition}
 \noindent
-Suppose now that $\cC$ is locally small. Then every sieve $S$ on object $X$ of $\cC$ corresponds to a subpresheaf of $h_X$ given by
-$$\cC\ni Y\mapsto \{f:Y\ra X\,\big|\,f\in S\}\in \Set$$
+Every sieve $S$ on object $X$ of $\cC$ corresponds to a big subpresheaf of a big presheaf $h_X$ given by
+$$\cC\ni Y\mapsto \{f:Y\ra X\,\big|\,f\in S\}\in \Set_V$$
 This identifies the collection of sieves on $X$ with the collection of subpresheaves of $h_X$.
 
 \begin{fact}\label{fact:propertiesofsieves}
@@ -87,7 +90,7 @@ We say that an element $x\in F(X)$ is \textit{an amalgamation for the matching f
 \end{definition}
 \noindent
 Let $S$ be an arbitrary sieve on object $X$ in $\cC$ and $F$ be a presheaf on $\cC$. In this notes we denote by $F(S)$ the class of matching families for $S$ of elements of $F$.\\
-Suppose that $\cC$ is locally small. Note that if $S$ is a sieve on $X$ viewed as a subpresheaf of $h_X$, then a matching family for $S$ of elements of $F$ can be viewed as a morphisms of presheaves $S\ra F$. This identifies the collection of matching families for $S$ of elements of $F$ with a collection of morphisms $S\ra F$ of presheaves. Next suppose that $\{x_f\}_{f\in S}$ is a matching family for $S$ of elements of $F$. Then amalgamations of $\{x_f\}_{f\in S}$ can be identified by means of Yoneda lemma {\cite[Theorem 3.3]{Presheaves}} with morphisms $h_X\ra F$ making the following triangle
+Note that if $S$ is a sieve on $X$ viewed as a big subpresheaf of $h_X$, then a matching family for $S$ of elements of $F$ can be viewed as a morphisms of big presheaves $S\ra F$. This identifies the collection of matching families for $S$ of elements of $F$ with a collection of morphisms $S\ra F$ of big presheaves. Next suppose that $\{x_f\}_{f\in S}$ is a matching family for $S$ of elements of $F$. Then amalgamations of $\{x_f\}_{f\in S}$ can be identified by means of Yoneda lemma {\cite[Theorem 3.3]{Presheaves}} with morphisms $h_X\ra F$ making the following triangle
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -112,7 +115,7 @@ Let $\cJ$ be a Grothendieck topology on $\cC$ and $F$ be a presheaf on $\cC$. We
 Let $\cJ$ be a Grothendieck topology on $\cC$ and $F$ be a presheaf on $\cC$. We say that $F$ is \textit{a sheaf with respect to $\cJ$} if for any object $X$ in $\cC$, covering sieve $S\in \cJ(X)$ and for every matching family $\{x_f\}_{f\in S}$ for $S$ of elements of $F$ there exists a unique amalgamation $x\in F(X)$.
 \end{definition}
 \noindent
-In other words $F\in \widehat{\cC}$ is a separated presheaf (sheaf) with respect to a Grothendieck topology $\cJ$ on a locally small category $\cC$ if for any $X\in \cC$, sieve $S\in \cJ(X)$ and morphism $S\ra F$ of presheaves there exists at most one (a unique) morphism $h_X\ra F$ making the triangle 
+In other words $F\in \widehat{\cC}$ is a separated presheaf (sheaf) with respect to a Grothendieck topology $\cJ$ on $\cC$ if for any $X\in \cC$, sieve $S\in \cJ(X)$ and morphism $S\ra F$ of big presheaves there exists at most one (a unique) morphism $h_X\ra F$ of big presheaves making the triangle 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -134,8 +137,8 @@ Let $\cJ$ be a Grothendieck topology on $\cC$. We denote by $\PrSh_s(\cC,\cJ)$, 
 Let $\cJ$ be a Grothendieck topology on $\cC$. Then inclusion functors $\PrSh_s(\cC,\cJ)\ra \widehat{\cC}$, $\Sh(\cC,\cJ)\ra \widehat{\cC}$ create limits.
 \end{theorem}
 \begin{proof}
-There exists a Grothendieck universe $V$ containing the base universe (of our choice) $U$ such that $\cC$ is locally $V$-small. The functor $\widehat{\cC} = \Fun\left(\cC,\Set_U\right) \hookrightarrow \Fun\left(\cC,\Set_V\right)$ preserves all limits. We embed $\PrSh_s(\cC,\cJ)$, $\Sh(\cC,\cJ)$ and $\widehat{\cC}$ in $\Fun\left(\cC,\Set_V\right)$. In $\Fun(\cC,\Set_V)$ we have representables $h_X$ for $X$ in $\cC$ and also we identify matching families for a sieve $S$ of elements of a presheaf $F$ in $\widehat{\cC}$ with morphisms $m:S\ra F$ in $\Fun(\cC,\Set_V)$. Let $D:I\ra \PrSh_s(\cC,\cJ)$ be a functor and assume that $\left(F,\big\{f_i:F\ra D(i)\big\}_{i\in I}\right)$ is a limiting cone over the composition of the functor $D:I\ra \PrSh_s(\cC,\cJ)$ with the inclusion $\PrSh_s(\cC,\cJ)\ra \widehat{\cC}$. We show that $F$ is a separated presheaf with respect to $\cJ$. Suppose that $S$ is a covering sieve on $X$ and $m:S\ra F$ is a morphism  that represents certain matching family for $S$ of elements of $F$. Let $u:S\ra h_X$ be the inclusion . Suppose that morphism $p:h_X\ra F$  is an amalgamation for $m$. We need to show that this amalgamation is unique. For this it suffices to observe that from equality $p\cdot u = m$ we derive that $(f_i\cdot p)\cdot u = (f_i\cdot m)$ for $i\in I$. Hence for every $i\in I$ morphism $f_i\cdot p$ is an amalgamation of $f_i\cdot m$. Since $D(i)$ is a separated presheaf for every $i\in I$, this makes $f_i\cdot p$ uniquely determined for $i\in I$. Thus $p$ is uniquely determined itself according to the fact that the cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is limiting in $\widehat{\cC}$. Therefore, $F$ is a separated presheaf with respect to $\cJ$ and hence $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone for $D$ in the category of separated presheaves.\\
-Now assume that $D:I\ra \Sh(\cC,\cJ)$ is a functor and $\left(F,\big\{f_i:F\ra D(i)\big\}_{i\in I}\right)$ is a limiting cone over the composition of the functor $D:I\ra \Sh(\cC,\cJ)$ with the inclusion $\Sh(\cC,\cJ)\ra \widehat{\cC}$. We show that $F$ is sheaf with respect to $\cJ$. From what we prove above we know that $F$ is a separated presheaf with respect to $\cJ$. Suppose that $S$ is a covering sieve on $X$ and $m:S\ra F$ is a morphism  that represents certain matching family for $S$ of elements of $F$. Let $u:S\ra h_X$ be the inclusion . It suffices to construct an amalgamation $p:h_X\ra F$  for $m$. We define $m_i = f_i \cdot m$ for $i\in I$. Now fix $i\in I$ for a moment. Then $m_i:S\ra D(i)$ is a matching family for $S$ of elements of a sheaf $D(i)$. Hence there exists a unique morphism $p_i:h_X\ra D(i)$  such that the triangle
+Let $D:I\ra \PrSh_s(\cC,\cJ)$ be a functor and assume that $\left(F,\big\{f_i:F\ra D(i)\big\}_{i\in I}\right)$ is a limiting cone over the composition of the functor $D:I\ra \PrSh_s(\cC,\cJ)$ with the inclusion $\PrSh_s(\cC,\cJ)\ra \widehat{\cC}$. We show that $F$ is a separated presheaf with respect to $\cJ$. Suppose that $S$ is a covering sieve on $X$ and $m:S\ra F$ is a morphism of big presheaves that represents certain matching family for $S$ of elements of $F$. Let $u:S\ra h_X$ be the inclusion. Suppose that morphism $p:h_X\ra F$ of big presheaves is an amalgamation for $m$. We need to show that this amalgamation is unique. For this it suffices to observe that from equality $p\cdot u = m$ we derive that $(f_i\cdot p)\cdot u = (f_i\cdot m)$ for $i\in I$. Hence for every $i\in I$ morphism $f_i\cdot p$ is an amalgamation of $f_i\cdot m$. Since $D(i)$ is a separated presheaf for every $i\in I$, this makes $f_i\cdot p$ uniquely determined for $i\in I$. Thus $p$ is uniquely determined itself according to the fact that the cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is limiting in $\widehat{\cC}$ and the inclusion of presheaves in big presheaves preserves limits. Therefore, $F$ is a separated presheaf with respect to $\cJ$ and hence $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone for $D$ in the category of separated presheaves.\\
+Now assume that $D:I\ra \Sh(\cC,\cJ)$ is a functor and $\left(F,\big\{f_i:F\ra D(i)\big\}_{i\in I}\right)$ is a limiting cone over the composition of the functor $D:I\ra \Sh(\cC,\cJ)$ with the inclusion $\Sh(\cC,\cJ)\ra \widehat{\cC}$. We show that $F$ is sheaf with respect to $\cJ$. From what we prove above we know that $F$ is a separated presheaf with respect to $\cJ$. Suppose that $S$ is a covering sieve on $X$ and $m:S\ra F$ is a morphism of big presheaves that represents certain matching family for $S$ of elements of $F$. Let $u:S\ra h_X$ be the inclusion. It suffices to construct an amalgamation $p:h_X\ra F$ for $m$. We define $m_i = f_i \cdot m$ for $i\in I$. Now fix $i\in I$ for a moment. Then $m_i:S\ra D(i)$ is a matching family for $S$ of elements of a sheaf $D(i)$. Hence there exists a unique morphism $p_i:h_X\ra D(i)$ such that the triangle
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -152,7 +155,7 @@ Now assume that $D:I\ra \Sh(\cC,\cJ)$ is a functor and $\left(F,\big\{f_i:F\ra D
 \end{center}
 is commutative. Now pick a morphism $\alpha:i\ra j$ in $I$. Then 
 $$D(\alpha)\cdot p_i\cdot u = D(\alpha)\cdot m_i = m_j = p_j\cdot u$$
-According to uniqueness of $p_j$ we deduce that $D(\alpha)\cdot p_i = p_j$. Hence $\left(h_X,\big\{p_i\big\}_{i\in I}\right)$ is a cone over $D$. Therefore, there exists a unique morphism $p:h_X\ra F$  such that $f_i\cdot p = p_i$ for every $i\in I$. Hence 
+According to uniqueness of $p_j$ we deduce that $D(\alpha)\cdot p_i = p_j$. Hence $\left(h_X,\big\{p_i\big\}_{i\in I}\right)$ is a cone over $D$ in the category of big presheaves. Therefore, there exists a unique morphism $p:h_X\ra F$ of big presheaves such that $f_i\cdot p = p_i$ for every $i\in I$. Hence 
 $$f_i\cdot p\cdot u=p_i\cdot u= m_i = f_i\cdot m$$
 for every $i\in I$. Thus $p\cdot u = m$ because the cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is limiting. Therefore, matching family $m$ for $S$ of elements of $F$ admits an amalgamation $p$ and hence $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone for $D$ in the category of sheaves. 
 \end{proof}
@@ -441,7 +444,7 @@ $$F(R_{\mid \cK})\ni \{x_h\}_{h\in R_{\mid \cK}}\mapsto \{y_g\}_{g\in \left(f^*R
 where $y_g = x_{f\cdot g}$ for $g\in \left(f^*R\right)_{\mid \cK}$ and analogically we define right hand side vertical arrow with no label in the diagram. This diagram implies that $\tau_X\cdot F(f) = F(f)\cdot \tau_Y$ by Proposition \ref{proposition:matchingfamiliesaskernels}. This extends $\tau:F_{\mid \cK}\ra G_{\mid \cK}$ to a morphism of sheaves $F\ra G$. This extension is unique by its definition.
 \end{proof}
 \noindent
-In our argument below we apply the usual trick of enlarging the universe. This was used in the proof of Theorem \ref{theorem:limitsinsheavesandseparatedpresheaves}. This makes possible to speak about representables $h_X$ for $X$ in $\cC$ and $k_X$ for $X$ in $\cK$. Suppose that $X$ is an object of $\cC$. Since a sieve $S$ on $X$ in $\cC$ can be identified with a subpresheaf (in the sens of enlarged universe) of $h_X$, the restriction $S_{\mid \cK}$ makes sense (it also has the same meaning as the one introduced in the proof of Lemma \ref{lemma:fullandfatiful}). Note also that if $X$ is an object of $\cK$, then $\left(h_X\right)_{\mid \cK} = k_X$. 
+Suppose that $X$ is an object of $\cC$. Since a sieve $S$ on $X$ in $\cC$ can be identified with a big subpresheaf of big presheaf $h_X$, the restriction $S_{\mid \cK}$ makes sense (it also has the same meaning as the one introduced in the proof of Lemma \ref{lemma:fullandfatiful}). Note also that if $X$ is an object of $\cK$, then $\left(h_X\right)_{\mid \cK} = k_X$, where $k_X$ denotes big representable presheaf on $\cK$. 
 
 \begin{lemma}\label{lemma:extensionofmorphismsforsheavesinsubcategory}
 Let $F$ be a sheaf on $(\cK,\cJ_{\cK})$. Consider an object $X$ of $\cC$ and a covering sieve $S$ in $\cJ(X)$. Then for every morphism $\sigma:S_{\mid \cK}\ra F$ there exists a unique morphism $\tilde{\sigma}:\left(h_X\right)_{\mid \cK}\ra F$ making the following diagram commutative.
@@ -482,12 +485,12 @@ the triangle
 is commutative. We define $\tilde{\sigma}:\left(h_X\right)_{\mid \cK}\ra F$ by formula $\tilde{\sigma}(f) = \tilde{\sigma}_f(1_Y)$. Then $\tilde{\sigma}$ satisfies conditions in the statement.
 \end{proof}
 \noindent
-Let $F$ be a presheaf on $\cK$. Suppose that for every object $X$ in $\cC$ the class $\Mor_{\cK}\left(\left(h_X\right)_{\mid \cK},F\right)$ is a set. Then we denote the presheaf $X\mapsto \Mor_{\cK}\left(\left(h_X\right)_{\mid \cK},F\right)$ on $\cC$ by $\tilde{F}$. If $X$ is in $\cK$, then we have a bijection
+Let $F$ be a presheaf on $\cK$. Suppose that for every object $X$ in $\cC$ the class $\Mor_{\cK}\left(\left(h_X\right)_{\mid \cK},F\right)$ (of morphisms of big presheaves) is a set. Then we denote the presheaf $X\mapsto \Mor_{\cK}\left(\left(h_X\right)_{\mid \cK},F\right)$ on $\cC$ by $\tilde{F}$. If $X$ is in $\cK$, then we have a bijection
 $$\Mor_{\cK}\left(\left(h_X\right)_{\mid \cK},F\right) = \Mor_{\cK}\left(k_X , F\right)\ni \tau \mapsto \tau(1_X)\in F(X)$$
 This bijection is natural in object $X$ of $\cK$ and hence $\tilde{F}_{\mid \cK}$ can be identified with $F$. This defines an isomorphism $\xi_F:\tilde{F}_{\mid \cK}\ra F$.
 
 \begin{lemma}\label{lemma:counitandsection}
-Let $F$ be a presheaf on $\cK$ and let $X$ be an object of $\cK$. Suppose that for every object $X$ in $\cC$ the class $\Mor_{\cK}\left(\left(h_X\right)_{\mid \cK},F\right)$ is a set. Fix a morphism $\phi:k_X\ra \tilde{F}_{\mid \cK}$ of presheaves. Then $\xi_F\cdot \phi = \phi(1_X)$.
+Let $F$ be a presheaf on $\cK$ and let $X$ be an object of $\cK$. Suppose that for every object $X$ in $\cC$ the class $\Mor_{\cK}\left(\left(h_X\right)_{\mid \cK},F\right)$ is a set. Fix a morphism $\phi:k_X\ra \tilde{F}_{\mid \cK}$ of big presheaves. Then $\xi_F\cdot \phi = \phi(1_X)$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
 We denote $\phi(1_X)$ by $\tau$. Then for every morphism $f:Y\ra X$ in $\cK$ we have
@@ -515,7 +518,7 @@ Now we proceed as in the proof of Theorem \ref{theorem:sheavesintermsofkernels}.
 (m-2-2) edge node[below = 3pt, right = 1pt] {$ \mathrm{res}_{S} $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-where $\mathrm{res}_{R,S}$ is the restriction of matching families, $\mathrm{res}_{R}$ and $\mathrm{res}_{S}$ send elements of $\tilde{F}(X)$ to matching families on $R$ and $S$, respectively. By what we prove above, we deduce that $\mathrm{res}_S$ is a bijection. Hence $\mathrm{res}_R$ is injective. Thus $\tilde{F}$ is a separated presheaf with respect to $\cJ$. By Proposition \ref{proposition:separatdpresheavesinduceinjections} the map $\mathrm{res}_{R,S}$ is injective. Therefore, $\mathrm{res}_{R,S}$, $\mathrm{res}_R$ are injective and $\mathrm{res}_S$ is bijective and they form a commutative triangle. Hence they are all bijective maps of classes. In particular, $\mathrm{res}_R$ is bijective. We deduce that $\tilde{F}$ is a sheaf with respect to $\cJ$.
+where $\mathrm{res}_{R,S}$ is the restriction of matching families, $\mathrm{res}_{R}$ and $\mathrm{res}_{S}$ send elements of $\tilde{F}(X)$ to matching families on $R$ and $S$, respectively. By what we prove above we deduce that $\mathrm{res}_S$ is a bijection. Hence $\mathrm{res}_R$ is injective. Thus $\tilde{F}$ is a separated presheaf with respect to $\cJ$. By Proposition \ref{proposition:separatdpresheavesinduceinjections} the map $\mathrm{res}_{R,S}$ is injective. Therefore, $\mathrm{res}_{R,S}$, $\mathrm{res}_R$ are injective and $\mathrm{res}_S$ is bijective and they form a commutative triangle. Hence they are all bijective maps of classes. In particular, $\mathrm{res}_R$ is bijective. We deduce that $\tilde{F}$ is a sheaf with respect to $\cJ$.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
@@ -524,34 +527,21 @@ $$\Sh(\cC,\cJ)\ra \Sh(\cK,\cJ_{\cK})$$
 is essentially surjective. Since it is full and faithful as it was previously established, we deduce that it is an equivalence of categories.
 \end{proof}
 
-\section{Something stupid}
-\noindent
-The next result deals with certain set-theoretic issues and is important from the point of view of the next section.
-
-\begin{proposition}
-Let $\cK$ be a Grothendieck pretopology on $\cC$ and let $\cJ$ be a Grothendieck topology generated by $\cK$. Assume that the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
-\item For every object $X$ in $\cC$ the class $\cK(X)$ is a set.
-\item For every object $X$ in $\cC$ every collection $\{f_i:X_i\ra X\}_{i\in I}\in \cK(X)$ is a set.
-\end{enumerate}
-Then for every presheaf $F\in \widehat{\cC}$ and every object $X$ in $\cC$ a colimit 
-$$F^+(X) = \mathrm{colim}_{S\in \cJ(X)}F(S)$$
-is a set.
-\end{proposition}
-
-
-
 \section{Sheaf associated to a presheaf}
-\noindent
-Let $\cC$ be a category. 
-\noindent
-Let $\cJ$ be a Grothendieck topology on $\cC$. Let us formulate certain technical set-theoretic assumption on $\cJ$.
-\begin{enumerate}[label=\textbf{($\star$)}, leftmargin=1.5em]
-\item For any presheaf $F$ on $\cC$, object $X$ in $\cC$ and a covering sieve $S$ there the class $F(S)$ of matching families for $S$ of elements of $F$ form a set and the class 
-\end{enumerate}
+
+\begin{definition}
+Let $\cC$ be a category and let $\cJ$ be a Grothendieck topology on $\cC$. Suppose that for every object $X$ of $\cC$ there exists a set $\cS$ of covering sieves on $X$ such that for every covering sieve $R$ in $\cJ(X)$ there exists $S$ in $\cS$ contained in $R$ and every $S$ in $\cS$ is generated by some set of morphisms. Then $\cJ$ is called \textit{a small Grothendieck topology on $\cC$}.
+\end{definition}
+
+\begin{fact}
+Let $\cC$ be a category and $\cK$ be a Grothendieck pretopology on $\cC$. Suppose that for every $X$ in $\cC$ the class $\cK(X)$ is a set and every member of $\cK(X)$ consists of a set of arrows. Then the Grothendieck topology generated by $\cK$ is small.
+\end{fact}
+\begin{proof}
+Left to the reader.
+\end{proof}
 
 \begin{theorem}\label{theorem:associatedsheaf}
-Let $F$ be a presheaf on a Grothendieck site $(\cC,\cJ)$. There exists a sheaf $a(F)$ and a morphism $\eta_F:F \ra a(F)$ of presheaves such that for every sheaf $G$ and every morphism of presheaves $p:F \ra G$ there exists a unique morphism $r:a(F)\ra G$ making the diagram
+Let $F$ be a presheaf on a Grothendieck site $(\cC,\cJ)$ and assume that $\cJ$ is a small Grothendieck topology. There exists a sheaf $a(F)$ and a morphism $\eta_F:F \ra a(F)$ of presheaves such that for every sheaf $G$ and every morphism of presheaves $p:F \ra G$ there exists a unique morphism $r:a(F)\ra G$ making the diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -571,7 +561,7 @@ First we construct a separated presheaf $F^+$ out of $F$. Fix an object $X$ of $
 $$F^+(X)=\mathrm{colim}_{S\in \cJ(X)}F(S)$$
 Note that for every morphism $f:X_1\ra X_2$ in $\cC$ and for every sieve $S\in \cJ(X_2)$ we have a function $F(S)\ra F(f^*S)$ given by $F(S)\ni \{s_g\}_{g\in S}\mapsto \{s_{f\cdot g}\}_{g\in f^*S}\in F(f^*S)$. These functions for all $S\in \cJ(X_2)$ induce a map
 $$F^+(X_2)\ra F^+(X_1)$$
-and this defines a presheaf $F^+$. We also have a morphism of presheaves $i_F^+:F\ra F^+$ that sends $x\in F(X)$ to a class in $F^+(X)$ represented by a matching family of the form $\{F(f)(x)\}_{f\in S}$ for every covering sieve $S$ on $X$.
+and this defines a presheaf $F^+$ according to the fact that $\cJ$ is small. We also have a morphism of presheaves $i_F^+:F\ra F^+$ that sends $x\in F(X)$ to a class in $F^+(X)$ represented by a matching family of the form $\{F(f)(x)\}_{f\in S}$ for every covering sieve $S$ on $X$.
 \begin{lemma}\label{lemma:plusconstruction}
 The following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
