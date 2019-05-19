@@ -1,0 +1,860 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Linearly Reductive Groups}
+\date{}
+\maketitle
+
+\section{Motivation -- linear representations of compact topological groups}
+\noindent
+In this section we fix a compact topological group $\bd{G}$.
+Assume that $\rho:\bd{G}\ra \mathrm{GL}_n(\CC)$ is a continuous homomorphism i.e. a complex, $n$-dimensional linear representation of $\bd{G}$. For every $g\in \bd{G}$ we get a matrix
+$$\rho(g)=\left[c_{ij}(g)\right]_{1\leq i, j \leq n}$$
+For $i$, $j$ function $c_{ij}:\bd{G}\ra \CC$ is a continuous complex valued function. Alternatively suppose that $\{e_1,e_2,...,e_n\}$ is the standard basis of $\CC^n$ on which $\mathrm{GL}_n(\CC)$ act. Then $c_{ij}$ is equal to a function 
+$$\bd{G}\ni g \mapsto \langle g\cdot e_i, e_j\rangle \in \CC$$
+Fix now $g_1$, $g_2\in \bd{G}$ and note that
+$$\left[c_{ij}(g_2\cdot g_1)\right]_{1\leq i,j\leq n}  = \rho(g_2\cdot g_1) = \rho(g_2)\cdot \rho(g_1) = \left[\sum_{k=1}^nc_{ik}(g_2)\cdot c_{kj}(g_1)\right]_{1\leq i,j\leq n}$$
+Hence 
+$$c_{ij}(g_2\cdot g_1) = \sum_{k=1}^nc_{ik}(g_2)\cdot c_{kj}(g_1)$$
+for every $1\leq i,j\leq n$. This implies that $\sum_{1\leq i,j\leq n}\CC\cdot c_{ij}\subseteq \cL^2(\bd{G},\CC)$ is a linear $\bd{G}\times \bd{G}^{\mathrm{op}}$-subrepresentation of the regular representation $\cL^2(\bd{G},\CC)$. We call it \textit{the matrix coefficients of $\rho$}. 
+
+\section{Characterization of representable presheaves on the category of schemes}
+
+\begin{fact}\label{fact:zariskitopologysubcanonical}
+For every $k$-scheme $X$ representable presheaf $h_X$ is a Zariski sheaf.
+\end{fact}
+\begin{proof}
+Let $\big\{f_i:U_i\ra U\big\}_{i\in I}$ be a Zariski covering of a $k$-scheme $U$. For every $(i,j)\in I\times I$ we denote by $f'_i:U_i\times_UU_j\ra U_i$ and $f''_j:U_i\times_UU_j\ra U_j$ the canonical projections. Suppose now that $\big\{g_i:U_i\ra X\big\}_{i\in I}$ are morphisms of $k$-schemes such that $g_i\cdot f'_i=g_j\cdot f''_j$ for every $(i,j)\in I\times I$. Then one can glue morphism $\{g_i\}_{i\in I}$ to a unique morphism $g:U\ra X$. This translates to the Zariski sheaf condition for $h_X$.
+\end{proof}
+
+\begin{definition}
+Let $F$, $G$ be presheaves on $\Sch_k$ and let $f:F\ra G$ be their morphism. Suppose that $x\in G(X)$ for some $k$-scheme $X$. To every $x$ of this type one can associate the cartesian square of presheaves
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{h_X\times_GF&  F   \\
+h_X&    G  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi_x$} (m-2-1)
+(m-1-2) edge node[right] {$f$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which bottom vertical morphism $h_X\ra G$ is canonically identified with $x$. We say that $f$ is:
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item \textit{an open immersion} if for every $k$-scheme $X$ and $x\in G(X)$ morphism $\pi_x$ is isomorphic to the image under Yoneda embedding of some open immersion of $k$-schemes. 
+\item \textit{a closed immersion} if for every $k$-scheme $X$ and $x\in G(X)$ morphism $\pi_x$ is isomorphic to the image under Yoneda embedding of some closed immersion of $k$-schemes.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}\label{proposition:openclosedimmersionsaremonomorphisms}
+Let $f:F\ra G$ be a morphism of presheaves on $\Sch_k$. Suppose that $f$ is either open or closed immersion. Then $f$ is a monomorphism of presheaves.
+\end{proposition}
+\begin{proof}
+Fix an element $y\in G(X)$. Consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{h_X\times_GF&  F   \\
+h_X&    G  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi_y$} (m-2-1)
+(m-1-2) edge node[right] {$f$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which $y$ determines a morphism $h_X\ra G$. Morphism $f$ is either open or closed immersion. Hence there exists a monomorphism $j:Y\ra X$ of $k$-schemes such that $\pi_y$ is isomorphic with $h_j$. Yoneda embedding preserves monomorphisms. Thus $h_j$ is a monomorphism of presheaves. This implies that $\pi_y$ is a monomorphism of presheaves for every $k$-scheme $X$ and $y\in G(X)$. In particular, there exists at most one element $x\in F(X)$ such that $f(x)=y$. Since $y\in G(X)$ is arbitrary, we deduce that $f$ is a monomorphism of presheaves.
+\end{proof}
+
+\begin{definition}
+Let $F$ be a presheaf on $\Sch_k$ and $\big\{f_i:F_i\ra F\big\}_{i\in I}$ be a family of open immersions. Then for every $k$-scheme $X$ and $x\in F(X)$ we have a family of open immersions $\big\{f_{i,x}:U_{i,x}\ra X\big\}_{i\in I}$ defined by cartesian squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{h_{U_{i,x}}&   F_i   \\
+h_X&    F  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-1) edge node[left] {$ h_{f_{i,x}}$} (m-2-1)
+(m-1-2) edge node[right] {$f_i$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which bottom vertical morphism $h_X\ra G$ is canonically identified with $x$. We say that $\{f_i\}_{i\in I}$ is \textit{an open cover of $F$} if for every $k$-scheme $X$ and $x\in F(X)$ we have
+$$X=\bigcup_{i\in I}f_{i,x}\left(U_{i,x}\right)$$
+\end{definition}
+
+\begin{theorem}
+Let $F$ be a presheaf on $\Sch_k$. Then the following are equivalent. 
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $F\cong h_X$ for some $k$-scheme $X$.
+\item $F$ is a Zariski sheaf and there exists an open cover $\big\{v_i:h_{V_i}\ra F\big\}_{i\in I}$ such that $\{V_i\}_{i\in I}$ are affine $k$-schemes.
+\item $F$ is a Zariski sheaf and there exists an open cover $\big\{v_i:h_{V_i}\ra F\big\}_{i\in I}$ such that $\{V_i\}_{i\in I}$ are $k$-schemes.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Since $F\cong h_X$ and properties in \textbf{(ii)} are stable under isomorphism, we deduce that we can replace $F$ by $h_X$. So it suffices to show that $h_X$ satisfies \textbf{(ii)}. By definition every $k$-scheme $X$ admits an open cover $\big\{v_i:V_i\ra X\big\}_{i\in I}$ by affine $k$-schemes. Since Yoneda embedding $h:\Sch_k\ra \widehat{\Sch_k}$ preserves fiber-products, we derive that $\big\{h_{v_i}\big\}_{i\in I}$ is an open cover in the category of presheaves. Thus $h_X$ admits an open cover by presheaves representable by affine $k$-schemes. Next suppose that $\big\{f_i:U_i\ra U\big\}_{i\in I}$ is a Zariski covering of a $k$-scheme $U$ and $\big\{g_i:U_i\ra X\big\}_{i\in I}$ is a family of morphisms of $k$-schemes such that ${g_i}_{\mid U_i\times_UU_j}={g_j}_{\mid U_i\times_UU_j}$ for every pair $(i,j)\in I\times I$. Then we can glue $\{g_i\}_{i\in I}$ into a unique morphism of $k$-schemes $g:U\ra X$ such that $g\cdot f_i=g_i$ for every $i\in I$. This shows that $h_X$ is a Zariski sheaf.\\
+The implication $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ is a consequence of the fact that every affine $k$-scheme is a $k$-scheme.\\
+Assume now that \textbf{(iii)} holds. Fix elements $i$, $j\in I$ and consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{h_{V_i}\times_Fh_{V_j}  & h_{V_j}   \\
+h_{V_i}&    F  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$v'_j $} (m-1-2)
+(m-2-1) edge node[below] {$v_i $} (m-2-2)
+(m-1-1) edge node[left] {$v'_i $} (m-2-1)
+(m-1-2) edge node[right] {$v_j$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in the category $\widehat{\Sch_k}$. Since $v_i$ is an open immersion, we derive that there exists an open subscheme $V_{ij}\subseteq V_i$ and an isomorphism $p_{ij}:h_{V_{ij}}\ra h_{V_i}\times_Fh_{V_j}$ such that the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{h_{V_{ij}}&  & h_{V_i}\times_Fh_{V_j}   \\
+&  h_{V_i} &  \\} ;
+\path[->,line width=1.0pt, font=\scriptsize]  
+(m-1-1) edge node[above] {$p_{ij} $} (m-1-3)
+(m-1-3) edge node[auto] {$v'_i $} (m-2-2);
+\path[right hook ->,line width=1.0pt, font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Similarly since $v_j$ is an open immersion, we derive that there exists an open subscheme $V_{ji}\subseteq V_j$ and an isomorphism $p_{ji}:h_{V_{ij}}\ra h_{V_i}\times_Fh_{V_j}$ such that the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{h_{V_{ji}}&  & h_{V_i}\times_Fh_{V_j}   \\
+&  h_{V_j} &  \\} ;
+\path[->,line width=1.0pt, font=\scriptsize]  
+(m-1-1) edge node[above] {$p_{ji} $} (m-1-3)
+(m-1-3) edge node[auto] {$v'_j $} (m-2-2);
+\path[right hook ->,line width=1.0pt, font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Now we define an isomorphism of $k$-schemes $\phi_{ij}:V_{ij}\ra V_{ji}$ by requirement $h_{\phi_{ij}}=p^{-1}_{ji}\cdot p_{ij}$. Then the data consisting of families $\big\{V_i\big\}_{i\in I}$ , $\big\{V_{ij}\big\}_{(i,j)\in I\times I}$ and $\big\{ \phi_{ij}\big\}_{(i,j)\in I\times I}$ satisfy the following assertions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $V_{ij}\subseteq V_i$ is an open subscheme for every $i\in I$ and $j\in J$.
+\item $V_{ii}=V_i$ and $\phi_{ii}=1_{V_i}$ for every $i\in I$.
+\item $\phi_{ij}:V_{ij}\ra V_{ji}$ is an isomorphism of $k$-schemes for every $(i,j)\in I\times I$.
+\item For every pair $(i,j)\in I\times I$ and $k\in I$ isomorphism $\phi_{ij}$ restricts to an isomorphism 
+$$\phi'_{ij,k}:V_{ij}\cap V_{ik}\ra V_{ji}\cap V_{jk}$$
+of $k$-schemes.
+\item For every triple $(i,j,k)\in I\times I\times I$ we have
+$$\phi'_{ik,j}=\phi'_{jk,i}\cdot \phi'_{ij,k}$$
+\end{enumerate}
+Thus by {\cite[Chapitre 0, 4.1.7]{EGA1new}} family $\big\{V_i\big\}_{i\in I}$ can be considered as an open cover of a ringed $k$-space $X$ in such a way that for any elements $i$, $j\in I$ the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{h_{V_i\cap V_j}  & h_{V_j}   \\
+h_{V_i}&    F \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$v_i $} (m-2-2)
+(m-1-2) edge node[right] {$v_j$} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[left] {$ $} (m-2-1)
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is cartesian (the intersection $V_i\cap V_j$ in the diagram is taken inside $X$). Since $X$ admits an open cover by a $k$-schemes, it is itself a $k$-scheme. Next we construct a morphism $f:h_X\ra F$. For this note that for each $i\in I$ morphism $v_i$ gives rise to an element $x_i\in F(V_i)$. Since ${v_i}_{\mid h_{V_i\cap V_j}}={v_j}_{\mid h_{V_i\cap V_j}}$ for any two $i$, $j\in I$, we deduce that ${x_i}_{\mid V_i\cap V_j}={x_j}_{\mid V_i\cap V_j}$. Next we apply the fact that $F$ is a Zariski sheaf to construct an element $x\in F(X)$ such that $x_{\mid V_i}=x_i$ for every $i\in I$. Now $x$ determines a morphism $f:h_X\ra F$ such that the following square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ &  h_{V_i} &  \\
+h_X&  & F \\} ;
+\path[->,line width=1.0pt, font=\scriptsize]  
+(m-2-1) edge node[below] {$g $} (m-2-3)
+(m-1-2) edge node[auto] {$v_i $} (m-2-3);
+\path[right hook ->,line width=1.0pt, font=\scriptsize]  
+(m-1-2) edge node[auto] {$ $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+Now let $Y$ be a $k$-scheme and pick $y\in F(Y)$. Suppose that $g:h_Y\ra F$ is a morphism corresponding to $y$. Pick $i\in I$. Since $v_i:h_{V_i}\ra F$ is an open immersion, there exists open subscheme $W_i\subseteq Y$ that fits in a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{h_{W_i}  & h_{V_i}   \\
+h_Y&    F \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$g_i $} (m-1-2)  
+(m-2-1) edge node[below] {$g $} (m-2-2)
+(m-1-2) edge node[right] {$v_i$} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[left] {$ $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+By Yoneda lemma $g_i$ corresponds to $k_i \in h_{V_i}(W_i)$. By definition $k_i:W_i\ra V_i$ is a morphism of $k$-schemes. Next for $i\in I$ and $j\in I$ we have 
+
+
+\end{proof}
+
+\section{Matrix coefficients of a representation}
+
+\begin{proposition}\label{proposition:matrixcoefficients}
+Let $\fX$ be a monoid $k$-functor and let $V$ be a finitely generated, projective $k$-module. Fix a morphism of monoids $\rho:\fX \ra \cL_V$. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. For every $A$-algebra $B$ and $x\in \fX_A(B)$ we consider the formula
+$$c_{v,w}(x) = \langle \rho_A(x) \cdot v_B, w_B \rangle$$
+Then $c_{v,w}$ defines a regular function on $\fX_A$ for every $k$-algebra $A$.
+\end{proposition}
+\begin{proof}
+Suppose that $f:B\ra C$ is a morphism of $A$-algebras and pick $x\in \fX_A(B)$. Since $\rho_A$ is natural and $w:A\otimes_kV\ra A$ is a morphism of $A$-modules, we derive that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{V_B & V_B & B \\
+ V_C & V_C & C\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$\rho_A\big(\fX_A(f)(x)\big) $} (m-2-2)
+(m-1-2) edge node[right] {$1_{V_A}\otimes_Af $} (m-2-2) 
+(m-1-1) edge node[left]  {$1_{V_A}\otimes_Af $} (m-2-1)
+(m-1-1) edge node[above] {$\rho_A(x) $} (m-1-2)
+(m-1-2) edge node[above] {$w_B $} (m-1-3)
+(m-2-2) edge node[below] {$w_C $} (m-2-3)
+(m-1-3) edge node[right] {$f $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+is commutative. Hence 
+$$c_{v,w}\big(\fX_A(f)(x)\big)=\langle \rho_A\big(\fX_A(f)(x)\big)\cdot v_C,w_C\rangle=f\big(\langle \rho_A(x)\cdot v_B, w_B\rangle \big)=f\big(c_{v,w}(x)\big)$$
+and this implies that $c_{v,w}:\fX_A\ra \mathbb{A}^1_A$ is natural.
+\end{proof}
+
+\begin{definition}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated, projective underlying $k$-module $V$. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Then the regular function $c_{v,w}$ on $\fX_A$ is called \textit{the matrix coefficient of $v$ and $w$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:matrixcoefficientsnatural}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Then the following assertions holds.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item For every $k$-algebra $A$ map
+$$\left(A\otimes_kV\right)\times \left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)$$
+is $A$-bilinear.
+\item The collection of maps
+$$\big\{\left(A\otimes_kV\right)\times \left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)\big\}_{A\in \Alg_k}$$
+gives rise to a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ V_{\mathrm{a}}\times V^{\vee}_{\mathrm{a}} &  \iMor_k\left(\fX,\mathbb{A}^1_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We left the proof of \textbf{(1)} to the reader.\\
+We prove \textbf{(2)}. Consider $k$-algebra $A$ and an $A$-algebra $B$ with structural morphism $f:A\ra B$. Fix $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. We prove that restriction of $c_{v,w}:\fX_A\ra \mathbb{A}^1_A$ to the category $\Alg_B$ is $c_{v_B,w_B}$. For this pick a $B$-algebra $C$ and an element $x\in \fX_A(C)=\fX_B(C)$. Note that
+$$c_{v,w}(x)= \langle \rho_A(x)\cdot v_C,w_C \rangle =  \langle \rho_B(x)\cdot v_C,w_C\rangle = \langle \rho_B(x)\cdot (v_B)_C,(w_B)_C\rangle = c_{v_B,w_B}(x)$$
+and hence ${c_{v,w}}_{\mid \Alg_B}=c_{v_B,w_B}$. Consider the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{V_{\mathrm{a}}(A)\times V^{\vee}_{\mathrm{a}}(A) & \iMor_k\left(\fX,\mathbb{A}^1\right)(A)  \\
+ V_{\mathrm{a}}(B)\times V^{\vee}_{\mathrm{a}}(B) & \iMor_k\left(\fX,\mathbb{A}^1\right)(B)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-2) edge node[right] {$\iMor_k(\fX,\mathbb{A}^1)(f) $} (m-2-2) 
+(m-1-1) edge node[left]  {$V_a(f)\times V^{\vee}_a(f)$} (m-2-1)
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+in which both horizontal arrows are given by formula $(v,w)\mapsto c_{v,w}$. We proved that the square commutes. Since $f$ is an arbitrary morphism of $k$-algebras, we conclude the assertion.
+\end{proof}
+
+\begin{corollary}\label{corollary:matrixcoefficientsnatural}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Then there exists a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \left(V \otimes_k V^{\vee}\right)_{\mathrm{a}} &  \iMor_k\left(\fX,\mathbb{A}^1_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$c $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+given by formula
+$$\left(A\otimes_kV\right)\otimes_A\left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)$$
+Moreover, $c$ is a morphism of $k$-functors equipped with $\fX \times \fX^{\mathrm{op}}$-actions.
+\end{corollary}
+\begin{proof}
+The first part is an immediate consequence of Proposition \ref{proposition:matrixcoefficientsnatural}. We prove that $c$ is a morphism of $k$-functors equipped with $\fX\times \fX^{\mathrm{op}}$-actions. For this we fix a $k$-algebra $k$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Pick a morphism of $k$-algebras $f:A\ra B$, $(y,z)\in \fX(A)\times \fX(A)^{\mathrm{op}}$ and $x\in \fX_A(B)$. Then we have 
+$$c_{\rho(y)\cdot v,w\cdot \rho(z)}(x) = \big\langle \rho_A(x)\cdot \left(\rho(y)\cdot v\right)_B, \left(w\cdot \rho(z)\right)_B \big\rangle =$$
+$$= \big\langle \rho_A(x)\cdot \rho_A(\left(\fX_A(f)(y)\right))\cdot v_B, w_B\cdot \rho_A\left(\fX_A(f)(z)\right) \big\rangle = w_B\big(\rho_A\left(\fX_A(f)(z)\right)\cdot \rho_A(x)\cdot \rho_A\left(\fX_A(f)(y)\right)\cdot v_B \big)=$$
+$$= w_B\big(\rho_A\left(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\right)\cdot v_B \big) = \big\langle \rho_A\left(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\right)\cdot v_B, w_B \big\rangle =  $$
+$$= c_{v,w}\big(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\big)$$
+and hence $c$ is a morphism of $k$-functors equipped with actions of $\fX\times \fX^{\mathrm{op}}$.
+\end{proof}
+
+
+
+
+
+
+\section{Algebra of regular functions of a \textit{k}-functor}
+
+\begin{example}
+For every $k$-algebra $A$ we denote by $|A|$ its underlying set. We denote by $\mathbb{A}^1_k$ a $k$-functor given by assignment $\mathbb{A}^1_k(A)=|A|$ for every $A$. We call $\mathbb{A}^1_k$ \textit{the affine line over $k$}. Let $k[x]$ be a polynomial $k$-algebra with variable $x$. For every $k$-algebra $A$ map of sets 
+$$\Mor_{k}\left(k[x],A\right)\ni f \mapsto f(x)\in |A|$$
+is a bijection. The family of such maps gives rise to an isomorphism of $k$-functors 
+$$\Mor_k\left(\Spec(-),\Spec k[x]\right)\cong \Mor_k\left(k[x],-\right)\cong \mathbb{A}^1_k$$
+and hence $\mathbb{A}^1_k$ is representable by an affine $k$-scheme $\Spec k[x]$.
+\end{example}
+
+\begin{definition}
+Let $\fX$ be a $k$-functor. Consider $\alpha \in k$ and $f$, $g\in \Mor_k\left(\fX, \mathbb{A}^1_k\right)$. Then for every $k$-algebra $A$ and $x\in \fX(A)$ formulas
+$$\left(f+g\right)(x) = f(x)+g(x),\,\left(f\cdot g\right)(x) = f(x)\cdot g(x),\,\left(\alpha \cdot f\right)(x) = \alpha \cdot f(x)$$
+define $k$-algebra operations on the class $\Mor_k\left(\fX,\mathbb{A}^1_k\right)$. We call them \textit{pointwise $k$-algebra operations}. In particular, if $\Mor_k\left(\fX,\mathbb{A}^1_k\right)$ is a set, then pointwise $k$-algebras operations on this set give rise to \textit{the $k$-algebra of regular functions on $\fX$}.
+\end{definition}
+
+\section{\textit{k}-functors}
+
+\begin{definition}
+The category $\Fun(\Alg_k,\Set)$ of copresheaves on $\Alg_k$ is called \textit{the category of $k$-functors}.
+\end{definition}
+\noindent
+If $\fX$ and $\fY$ are $k$-functors, then we denote by $\Mor_k(\fX,\fY)$ the class of morphisms $\fX\ra \fY$ of $k$-functors.\\
+Since the category of $k$-functors is a category of copresheaves, under assumptions specified in {\cite[section 5]{Presheaves}} for given $k$-functors $\fX$, $\fY$ there exists an internal hom $\iMor_k(\fX,\fY)$. Let us discuss this important notion and also related ones. For details and proofs for general case we refer to {\cite[section 5]{Presheaves}}.\\
+Let $\fX$ and $\fY$ be $A$-functors for some $k$-algebra $A$. Then we denote by $\Mor_A\left(\fX,\fY\right)$ the class of morphisms of $A$-functors $\fX\ra \fY$. For every $A$-algebra $B$ and a morphism $\sigma:\fX\ra \fY$ of $A$-functors we denote by $\fX_{B}$, $\fY_{B}$, $\sigma_{B}$ the restrictions $\fX_{\mid \Alg_B}$, $\fY_{\mid \Alg_B}$, $\sigma_{\mid \Alg_B}$ of these entities to the category of $B$-algebras. 
+
+\begin{fact}\label{fact:restrictionsworkasexpected}
+Let $\fX$ and $\fY$ be $k$-functors. Assume that $A$ is a $k$-algebra, $B$ is an $A$-algebra, $C$ is an $B$-algebra. Then the composition of maps of classes
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor_A\left(\fX_A,\fY_A\right) &  \Mor_B\left(\fX_B,\fY_B\right) & \Mor_C\left(\fX_C,\fY_C\right)\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\sigma\mapsto \sigma_{B} $} (m-1-2)
+(m-1-2) edge node[above] {$\sigma\mapsto \sigma_{B} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+equals
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor_A\left(\fX_A,\fY_A\right) &  \Mor_C\left(\fX_C,\fY_C\right)\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\sigma\mapsto \sigma_C $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+\end{fact}
+\begin{proof}
+Left to the reader.
+\end{proof}
+
+\begin{definition}
+Let $\fX$ and $\fY$ be $k$-functors and suppose that for every $k$-algebra $A$ the class $\Mor_A\left(\fX_A,\fY_A\right)$ is a set. We define
+$$\iMor_k(\fX,\fY)(A)=\Mor_A\left(\fX_A,\fY_A\right)$$
+for every $k$-algebra $A$. This is a $k$-functor, since for every $k$-algebra $A$ and $A$-algebra $B$, we can compose a morphism $\sigma:\fX_A\ra \fY_A$ of $k$-functors with the forgetful functor $\Alg_B \ra \Alg_A$ i.e. we have a map 
+$$\iMor_{k}(\fX,\fY)(A)\ni \sigma \mapsto \sigma_{B}\in \iMor_{k}(\fX,\fY)(B)$$
+and these according to Fact \ref{fact:restrictionsworkasexpected} make $\iMor_{k}(\fX,\fY)$ a $k$-functor. The $k$-functor $\iMor_{\cC}(\fX,\fY)$ is called \textit{a hom $k$-functor of $\fX$ and $\fY$}.
+\end{definition}
+\noindent
+We define a $k$-functor $\bd{1}$ that assigns to every $k$-algebra a set with one element. For every $k$-algebra $A$ the restriction $\bd{1}_A$ is a terminal object in the category of $A$-functors.
+
+\begin{fact}\label{fact:points}
+Let $\fX$ be a $k$-functor. Suppose $A$ is a $k$-algebra and $x\in \fX(A)$. Then $x$ determines a morphism $\bd{1}_{A}\ra \fX_A$ that for every $A$-algebra $B$ with structural morphism $f:A\ra B$ sends a unique element of $\bd{1}_{A}(B)$ to $\fX(f)(x)\in \fX_A(B)$. This gives rise to a bijection
+$$\fX(A)\cong \Mor_{A}\left(\bd{1}_{A},\fX_A\right)$$
+\end{fact}
+\begin{proof}
+We left to the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+Let $\fX$ be a $k$-functor and $A$ be a $k$-algebra. The set $\fX(A)$ is called \textit{the set of $A$-points of $\fX$}.
+\end{definition}
+\noindent
+Now let $\fX$, $\fY$ be $k$-functors such that for every $k$-algebra $A$ the class $\Mor_A\left(\fX_A,\fY_A\right)$ is a set. Suppose next that $\fU$ is a $k$-functor and $\sigma:\fU\times \fX\ra \fY$ is a morphism of $k$-functors. Fix $x\in \fU(A)$. We denote by $i_x:\bd{1}_A\ra \fU_A$ the morphism of $A$-functors corresponding to $x$ by means of Fact \ref{fact:points}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\sigma_A\cdot \left(1_{\fX_A}\times i_x\right)$ is isomorphic to a morphism $\tau_x:\fX_A\ra \fY_A$ of $A$-functors. Next $x\mapsto \tau_x$ gives rise to a morphism $\tau:\fU\ra \iMor_k\left(\fX,\fY\right)$ of $k$-functors and hence we have a map of classes
+$$\Mor_k(\fU\times \fX,\fY)\ni \sigma\mapsto \tau\in \Mor_k\left(\fU,\iMor_k(\fX,\fY)\right)$$
+Now we have the following result {\cite[Theorem 5.3]{Presheaves}}.
+
+\begin{theorem}\label{theorem:homforkfunctors}
+Let $\fX$, $\fY$ be $k$-functors. Assume that for every $k$-algebra $A$ the class $\Mor_{A}\left(\fX_A,\fY_A\right)$ is a set. Then the map 
+$$\Mor_{k}\left(\fU\times \fX,\fY\right)\ra  \Mor_{k}\left(\fU,\iMor_{k}\left(\fX,\fY\right)\right)$$
+described above is a bijection natural in $\fU$. 
+\end{theorem}
+\noindent
+In the remaining part of this section we introduce some notions of geometric flavour. For every $k$-algebra $A$ we denote by $k_A$ the $k$-functor given by
+$$k_A(B) = \Hom_k(A,B),\,k_A(g) = \Hom_k(1_A,f)$$
+for every $k$-algebra $B$ and for every morphism $g:B\ra C$ of $k$-algebras. Note that if $f:A\ra B$ is a morphism of $k$-algebras, then there exists a morphism of $k$-functors $k_f:k_B\ra k_A$ given by formula
+$$k_f(C) = \Hom_k(f,1_C)$$
+where $C$ is a $k$-algebra. These are general definitions that make sense in any category of copresheaves c.f. {\cite[section 7]{Presheaves}}.
+
+\begin{definition}
+Let $\fX$ be a $k$-functor. We say that $\fX$ is \textit{corepresentable} if $\fX$ is isomorphic to $k_A$ for some $k$-algebra $A$. 
+\end{definition}
+
+\begin{definition}
+Let $\sigma:\fX\ra \fY$ be a morphism of $k$-functors. Fix a $k$-algebra $A$ and a morphism $\tau:k_A\ra \fY$ of $k$-functors. Consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \fU  & \fX           \\
+   k_A  & \fY           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ \tau $} (m-2-2)
+(m-1-1) edge node[left] {$  $} (m-2-1)
+(m-1-2) edge node[right] {$ \sigma $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Suppose now that $\fU$ is corepresentable for all choices of $k$-algebra $A$ and morphism $\tau$ of $k$-functors. Then we say that $\sigma$ is  \textit{a corepresentable morphism of $k$-functors}.
+\end{definition}
+
+\begin{definition}
+Let $\sigma:\fX\ra \fY$ be a corepresentable morphism of $k$-functors. Fix a $k$-algebra $A$ and a morphism $\tau:k_A\ra \fY$ of $k$-functors. Then there exists a cartesian square of the form
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  k_B  & \fX           \\
+   k_A  & \fY           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ \tau $} (m-2-2)
+(m-1-1) edge node[left] {$ k_f  $} (m-2-1)
+(m-1-2) edge node[right] {$ \sigma $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $f:A\ra B$ is a morphism of $k$-algebras. Suppose now that $\Spec f:\Spec B\ra \Spec A$ is an open (closed) immersion of affine schemes for all choices of $k$-algebra $A$ and morphism $\tau$ of $k$-functors. Then we say that $\sigma$ is  \textit{an open (closed) immersion of $k$-functors}.
+\end{definition}
+
+\begin{fact}\label{fact:openclosedimmersionsclosedunderbasechange}
+The class of open (closed) immersions of $k$-functors is closed under base change.
+\end{fact}
+\begin{proof}
+This follows since open (closed) immersions of affine $k$-schemes are closed under base change.
+\end{proof}
+
+\section{$k$-functors of monoids and their linear representations}
+\noindent
+In the sequel we assume that the reader is familiar with notions of a monoid, group etc. in arbitrary category with finite products. For definitions and some discussion related to these notions cf. {\cite[pages 2-5]{Maclane}}.
+
+\begin{definition}
+\textit{A monoid (group) $k$-functor} is a monoid (group) object in the category of $k$-functors.
+\end{definition}
+\noindent
+Next we introduce an important notion of a linear representation of a monoid $k$-functor. For this we define $k$-functors associated with modules over $k$ and discuss their properties.
+
+\begin{example}\label{example:additivekfunctor}
+Let $V$ be a $k$-module. We define a $k$-functor $V_{\mathrm{a}}$. We set
+$$V_{\mathrm{a}}(A) = A\otimes_kV,\,V_{\mathrm{a}}(f) = f\otimes_k1_V$$
+for every $k$-algebra $A$ and every morphism $f:A\ra B$ of $k$-algebras. Moreover, $V_{\mathrm{a}}$ admits a structure of a commutative group $k$-functor. Indeed, $V_{\mathrm{a}}(A)$ is a commutative group with respect to addition induced by its structure of $A$-module and $V_{\mathrm{a}}(f):V_{\mathrm{a}}(A)\ra V_{\mathrm{a}}(B)$ preserves the addition.
+\end{example}
+\noindent
+Suppose now that $V$, $W$ are $k$-modules and $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ is a morphism of $A$-functors. Then for every $A$-algebra $B$ we denote by $\sigma^B:B\otimes_kV\ra B\otimes_kW$ the component of $\sigma$ for $B$.
+
+\begin{definition}
+Let $V,W$ be $k$-modules and let $A$ be a $k$-algebra. A morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors is \textit{linear} if for every $A$-algebra $B$ the component $\sigma^B:B\otimes_kV\ra B\otimes_kW$ is a morphism of $B$-modules.
+\end{definition}
+\noindent
+Next Fact characterizes linear morphism.
+
+\begin{fact}\label{fact:frommorphismsofmodulestolinear}
+Let $V$, $W$ be $k$-modules and let $A$ be a $k$-algebra. Suppose that  $\phi:A\otimes_kV\ra A\otimes_kW$ is a morphism of $A$-modules. Then there exists a unique linear morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors such that $\sigma^A = \phi$.
+\end{fact}
+\begin{proof}
+Note that if such $\sigma$ exists, then by requirement $\sigma^A = \phi$ for every morphism $f:A\ra B$ of $k$-algebras the following diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_kV  & A\otimes_kW           \\
+   B\otimes_kV  & B\otimes_kW           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-2-1) edge node[below] {$\sigma^B $} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_W $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+must commute. We make this into a definition of a morphism $\sigma^B$ of $B$-modules. It is a matter of linear algebra that this diagram uniquely determines $\sigma^B$ and also that $\sigma^A = \phi$. It remains to verify that $\sigma = \{\sigma^B\}_{B\in \Alg_A}$ defined in such a way is a morphism of $A$-functors. For this suppose that $f:A\ra B$ and $g:B\ra C$ are morphisms of $k$-algebras. Then we have
+$$\sigma_C \cdot (g \otimes_k 1_V) \cdot (f\otimes_k 1_V) = \sigma_C \cdot (\left (g\cdot f) \otimes_k 1_V\right) = \left((g\cdot f) \otimes_k 1_W \right) \cdot \phi = $$
+$$ = (g \otimes_k 1_W) \cdot (f \otimes_k 1_V)\cdot \phi= (g \otimes_k 1_W)\cdot \sigma_B \cdot (f \otimes_k 1_V)$$
+and hence $\sigma_C \cdot (g \otimes_k 1_V) = (g \otimes_k 1_W) \cdot \sigma_B$. Thus $\sigma$ is a linear morphism of $A$-functors.
+\end{proof}
+\noindent
+We restate Fact \ref{fact:frommorphismsofmodulestolinear} in the form of the following result.
+
+\begin{corollary}\label{corollary:idenitificationoflinearmorphismsoffunctors}
+Let $V, W$ be $k$-modules and $A$ be a $k$-algebra. Consider the map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Hom_A(A\otimes_kV,A\otimes_kW) & \Mor_{A}\left(\left(V_{\mathrm{a}}\right)_A,\left(W_{\mathrm{a}}\right)_A\right) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+that sends morphism $\phi$ to a unique linear morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors such that $\sigma^A = \phi$. Then this map is injective and its image consists of all linear morphisms of $A$-functors.
+\end{corollary}
+
+\begin{example}
+Let $V$ be a $k$-module. We define a $k$-functor $\cL_V$. We set
+$$\cL_V(A) = \Hom_A(A\otimes_kV,A\otimes_kV)$$
+for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras and a morphism $\phi:A\otimes_kV\ra A\otimes_kV$ of $A$-modules we define $\cL_V(f)(\phi)$ as a unique morphism of $B$-modules such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_kV  & A\otimes_kW           \\
+   B\otimes_kV  & B\otimes_kW           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-2-1) edge node[below] {$\cL_V(\phi)  $} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_W $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Note also that $\cL_v(A)$ is a monoid $k$-functor with respect to the usual composition of morphism of $A$-modules and $\cL_V(f):\cL_V(A)\ra \cL_V(B)$ preserves this composition.
+\end{example}
+
+\begin{remark}\label{remark:generallinearmonoid}
+Corollary \ref{corollary:idenitificationoflinearmorphismsoffunctors} implies that there are injective maps that make the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cL_V(A)   &  \Mor_{A}\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)_A\right)           \\
+  \cL_V(B)   &  \Mor_{B}\left(\left(V_{\mathrm{a}}\right)_B,\left(V_{\mathrm{a}}\right)_B\right)           \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ $} (m-2-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ \cL_V(f) $} (m-2-1)
+(m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_B $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutative for every morphism $f:A\ra B$ of $k$-algebras. Also Corollary \ref{corollary:idenitificationoflinearmorphismsoffunctors} shows that for every $k$-algebra $A$ this identifies $\cL_V(A)$ with a subset of the class $\Mor_A\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)\right)$ consisting of all linear morphism of $A$-functor.
+\end{remark}
+\noindent
+The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}} (Remark \ref{remark:generallinearmonoid} shows that $\cL_V$ is a subcopresheaf of internal endomorphisms of $V_{\mathrm{a}}$ and hence the machinery developed in the citation above can be applied), but for the reader's convenience we decide to include all essential details even if this requires repetition.\\
+Let $\fX$ be a monoid $k$-functor and let be $V$ be a $k$-module. Suppose that $\alpha:\fX\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ is an action of $\fX$ on $V_{\mathrm{a}}$. Assume that $A$ is a $k$-algebra and $x\in \fX(A)$. We denote by $i_x:\bd{1}_A\ra \fX_A$ the morphism of $A$-functors corresponding to $x$ by means of Fact \ref{fact:points}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\alpha_A\cdot \left(i_x \times 1_{\left(V_{\mathrm{a}}\right)_A}\right)$ is isomorphic to a morphism $\alpha_x:\left(V_{\mathrm{a}}\right)_A\ra \left(V_{\mathrm{a}}\right)_A$ of $A$-functors. Suppose now that for any $k$-algebra $A$ and point $x\in \fX(A)$ morphism $\alpha_x$ is linear. Then we define a morphism $\rho:\fX\ra \cL_V$ of $k$-functors by formula $\rho(x) = \alpha_x^A$. We first check that $\rho$ really is a morphism of $k$-functors. For this fix morphism $f:A\ra B$ of $k$-algebras and $x\in \fX(A)$. Then $\alpha_{\fX(f)(x)}$ is a morphism of $B$-functors isomorphic with $\alpha_B\cdot \left(i_{\fX(f)(x)}\times 1_{\left(V_{\mathrm{a}}\right)_B}\right)$ and since 
+$$\alpha_B\cdot \left(i_{\fX(f)(x)}\times 1_{\left(V_{\mathrm{a}}\right)_B}\right) = \alpha_B\cdot \left(i_{x}\times 1_{\left(V_{\mathrm{a}}\right)_A}\right)_B = \left(\alpha_A\cdot \left(i_{x}\times 1_{\left(V_{\mathrm{a}}\right)_A}\right)\right)_B$$
+we derive that $\alpha_{\fX(f)(x)} = \left(\alpha_x\right)_B$. This implies that
+$$\rho\left(\fX(f)(x)\right) = \alpha_{\fX(f)(x)}^B = \left(\left(\alpha_x\right)_B\right)^B= \alpha_x^B = \cL_V(f)(\rho(x))$$
+and thus $\rho$ is a morphism of $k$-functors. Now we show that $\rho$ is a morphism of monoids. For this pick $k$-algebra $A$ and $x, y\in \fX(A)$. Since $\alpha$ is an action, we deduce that $\alpha_{x \cdot y} = \alpha_x\cdot \alpha_y$ and hence also
+$$\rho(x\cdot y) = \alpha^A_{x \cdot y} = \alpha^A_x\cdot \alpha^A_y = \rho(x)\cdot \rho(y)$$
+Therefore, $\rho$ is a morphism of monoid $k$-functors.
+
+\begin{theorem}\label{theorem:characterizationsoflinearrepresentations}
+Let $\fX$ be a monoid $k$-functor and let $V$ be a $k$-module. Consider the following classes. 
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item The class of actions $\alpha:\fX\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ of $\fX$ such that for any $k$-algebra $A$ and point $x\in \fX(A)$ morphism $\alpha_x$ is linear.
+\item The class of morphisms $\rho:\fX\ra \cL_V$ of monoid $k$-functors.
+\end{enumerate}
+Let $\alpha$ be an element of \emph{\textbf{(1)}} and $\rho:\fX\ra \cL_V$ be the element of \emph{\textbf{(2)}} such that $\rho(x) = \alpha_x^A$ for any $k$-algebra $A$ and $x\in \fX(A)$. Then the correspondence $\alpha \mapsto \rho$ is a bijection between these classes.
+\end{theorem}
+\begin{proof}
+We may refer to {\cite[Theorem 6.3]{Presheaves}}, but for self-containment of the presentation let us give a direct proof of this important result.
+\end{proof}
+
+\section{Transporters}
+
+\begin{definition}
+Let $X$ be a $k$-scheme. Suppose that there exists an open affine cover $X = \bigcup_{i\in I}X_i$ such that $k$-algebra $\Gamma(X_i,\cO_{X_i})$ is free as a $k$-module. Then we say that $X$ is \textit{a locally free $k$-scheme}.
+\end{definition}
+\noindent
+Next theorem is the main result of this section.
+
+\begin{theorem}\label{theorem:closedimmersionsandinternalhom}
+Let $j:\fY'\ra \fY$ be a closed immersion of $k$-functors and $X$ be a locally free $k$-scheme. Suppose that classes $\Mor_A\left(X_A,\fY_A\right)$ are sets for every $k$-algebra $A$. Then classes $\Mor_A\left(X_A,\fY'_A\right)$ are sets for every $k$-algebra $A$ and the morphism
+$$\iMor_k\left(1_X,j\right):\iMor_k\left(X,\fY'\right)\ra \iMor_k\left(X,\fY\right)$$
+is a closed immersion of $k$-functors.
+\end{theorem}
+\noindent
+It is useful to isolate crucial steps in the argument. For this we proceed by proving some lemmas.
+
+\begin{lemma}\label{lemma:foraffinelocalfactorization}
+Suppose that $A$ is a commutative ring. Let $j:\fY'\ra \fY$ be a closed immersion of $A$-functors and $X$ be an affine $A$-scheme such that $\Gamma(X,\cO_X)$ is a free $A$-module. Assume that $\tau:X\ra \fY$ is a morphism of $A$-functors. Then there exists an ideal $\ideal{a}\subseteq A$ such that for every $A$-algebra $B$ the restriction $\tau_B$ factors through $j_B$ if and only if the structure morphism $f:A\ra B$ of $B$ satisfies $\ideal{a}\subseteq \ker(f)$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  X' & \fY' \\
+   X  & \fY           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$\tau  $} (m-2-2)
+(m-1-1) edge node[left] {$ j' $} (m-2-1)
+(m-1-2) edge node[right] {$ j $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Since $j$ is a closed immersion of $A$-functors, we derive by Fact \ref{fact:openclosedimmersionsclosedunderbasechange} that $j'$ is a closed immersion. By assumption $X$ is affine. Hence $X'$ is a functor of points of some $A$-scheme and $j':X'\ra X$ is (induced by) a closed immersion of $A$-schemes. Next let $B$ be an $A$-algebra with the structure morphism $f:A\ra B$. Then $\tau_B$ factors through $j_B$ if and only if the projection $\Spec B\times_{\Spec A}X\ra X$ induced by $f$ factors through $X'$. Let $A[X]$ be the $A$-algebra of global regular functions on $X$ and let $\ideal{J}$ be an ideal in $A[X]$ such that $A[X]/\ideal{J} = A[X']$ is the $A$-algebra of global regular functions of $X'$. With this notation we derive that the projection $\Spec B\times_{\Spec A}X\ra X$ induced by $f$ factors through $X'$ if and only if the morphism $A[X]\ra B\otimes_AA[X]$ induced by $f$ sends every element of $\ideal{J}$ to zero. Since $A[X]$ is a free $A$-module, we write $A[X] = A^{\oplus I}$ for some index set $I$. Then the morphism $A[X]\ra B\otimes_AA[X]$ induced by $f$ is just $f^{\oplus I}:A^{\oplus I}\ra B^{\oplus I}$. We have $f^{\oplus I}\left(\ideal{J}\right)=0$ if and only if $\left(pr^B_i\cdot f^{\oplus I}\right)\left(\ideal{J}\right)=$ for every $i\in I$, where $pr^B_i:B^{\oplus I}\ra B$ is the projection on $i$-th component. Pick $i\in I$ and consider the commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  A^{\oplus I} & B^{\oplus I}  \\
+   A  & B           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ f^{\oplus I} $} (m-1-2)
+(m-2-1) edge node[below] {$ f  $} (m-2-2)
+(m-1-1) edge node[left] {$ pr^A_i $} (m-2-1)
+(m-1-2) edge node[right] {$ pr^B_i $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+In the diagram $pr^A_i$ is the projection on $i$-th component. Diagram implies that $\left(pr^B_i\cdot f^{\oplus I}\right)\left(\ideal{J}\right)=$ for every $i\in I$ if and only if $\left(f\cdot pr_i^A\right)(\ideal{J}) = 0$ for every $i\in I$. This is equivalent with the condition that $f(\ideal{a})=0$ for ideal $\ideal{a}$ in $A$ generated by $\sum_{i\in I}pr_i^A(\ideal{J})$. Thus the lemma is proved.
+\end{proof}
+
+
+\begin{lemma}\label{lemma:coveringsandfactorizations}
+Suppose that $A$ is a commutative ring. Let $j:\fY'\ra \fY$ be a closed immersion of $A$-functors and $X$ be an $A$-scheme with open cover
+$$X=\bigcup_{i\in I}X_i$$
+Assume that $\tau:X\ra \fY$ is a morphism of $A$-functors. Fix an $A$-algebra $B$. Then $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+If $\tau_B$ factors through $j_B$, then also $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. It suffices to prove the converse. So suppose that $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Since $j$ is a closed immersion of $A$-functors and $X$ is an $A$-scheme, there exists a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  X' & \fY' \\
+   X  & \fY           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$\tau  $} (m-2-2)
+(m-1-1) edge node[left] {$ j' $} (m-2-1)
+(m-1-2) edge node[right] {$ j $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $j':X'\ra X$ is (induced by) a closed immersion of $A$-schemes (this follows from Fact \ref{fact:openclosedimmersionsclosedunderbasechange}  and Fact \ref{fact:kschemesandkfunctors}). For each $i\in I$ let $j'_i:j'^{-1}(X_i)\ra X_i$ be the restriction of $j'$. We have the induced cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  j'^{-1}(X_i) & \fY' \\
+   X_i  & \fY           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$\tau_{\mid X_i}  $} (m-2-2)
+(m-1-1) edge node[left] {$j'_i  $} (m-2-1)
+(m-1-2) edge node[right] {$ j $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Now $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$. Together with Fact \ref{fact:kschemesandkfunctors} this shows that $\left(j'_i\right)_B$ is an isomorphism of $B$-schemes. This holds for every $i\in I$. Hence $j'_B$ is an isomorphism of $B$-schemes (again by application of Fact \ref{fact:kschemesandkfunctors}). Therefore, $\tau_B$ factors through $j_B$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Let $A$ be a $k$-algebra. The restriction functor $(-)_{\mid \Alg_A} = (-)_A$ preserves all closed immersions. Thus $j_A$ is a closed immersion of $A$-functors and hence we derive that $j_A:\fY'_A\ra \fY_A$ is a monomorphism of $A$-functors. Thus we have an injective  map of classes
+$$\Mor_A\left(1_{X_A},j_A\right):\Mor_A\left(X_A,\fY'_A\right)\hookrightarrow \Mor_A\left(X_A,\fY_A\right)$$
+Hence if $\Mor_A\left(X_A,\fY_A\right)$ is a set, then $\Mor_A\left(X_A,\fY'_A\right)$ is a set. All these facts imply that both internal homs
+$$\iMor_k\left(X,\fY'\right),\,\iMor_k\left(X,\fY\right)$$
+exist and morphism $\iMor_k(1_X,j)$ of $k$-functors is a monomorphism. Our task is to prove that it is a closed immersion. For this consider a $k$-algebra $A$ and a morphism $\sigma:k_A\ra \iMor_k\left(X,\fY\right)$ of $k$-functors that sends $1_A$ to some morphism $\tau:X_A\ra \fY_A$ of $A$-functors. Consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \fU  & \iMor_k\left(X,\fY'\right) \\
+   k_A  & \iMor_k\left(X,\fY\right)           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma $} (m-2-2)
+(m-1-1) edge node[left] {$  $} (m-2-1)
+(m-1-2) edge node[right] {$ \iMor_k\left(1_X,j\right) $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Since $\iMor_k\left(1_X,j\right)$ is a monomorphism, we may consider $\fU$ as a $k$-subfunctor of $k_A$. For every $k$-algebra $B$ subset $\fU(B)\subseteq \Mor_k(A,B)= k_A(B)$ consists of $A$-algebras $B$ with structure morphisms $f:A\ra B$ such that $\tau_B$ factors through $j_B:\fY'_B\ra \fY_B$. Since $X$ is a locally free $k$-scheme, we deduce that $X_A$ is (a functor of points of) a locally free $A$-scheme. Pick an open affine cover $X_A = \bigcup_{i\in I}X_i$ such that $\Gamma(X_i,\cO_X)$ is a free $A$-module. Now Lemma \ref{lemma:coveringsandfactorizations} implies that $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Next by Lemma \ref{lemma:foraffinelocalfactorization} we deduce that $\left(\tau_{\mid X_i}\right)_B$  factors through $j_B$ for given $i\in I$ if and only if $f(\ideal{a}_i)=0$ for some ideal $\ideal{a}_i\subseteq A$ independent of $f$. Thus $\fU$ consists of all morphisms $f:A\ra B$ of $k$-algebras such that $f(\ideal{a})=0$ where $\ideal{a} = \sum_{i\in I}\ideal{a}_i$. Therefore, $\fU\hookrightarrow k_A$ is isomorphic with $k_{A/\ideal{a}}\hookrightarrow k_A$ and hence $\iMor_k(1_X,j)$ is a closed immersion of $k$-functors.
+\end{proof}
+\noindent
+The Theorem \ref{theorem:closedimmersionsandinternalhom} is a simple yet powerful result. Before giving any interesting applications we state its immediate consequence.
+
+\section{Zariski local $k$-functors and $k$-schemes}
+
+\begin{definition}
+Let $X$ be a $k$-scheme. We define a $k$-functor out of $X$. First let $A$ be a $k$-algebra. The set
+$$X(A) = \big\{\mbox{morphisms }\Spec A\ra X\mbox{ of }k\mbox{-schemes }\big\}$$
+is called \textit{the set of $A$-points of $X$}. Also if $f:A\ra B$ is a morphism of $k$-algebras, then $X(f)$ is defined as the precomposition with $\Spec f$. This makes $X$ into a $k$-functor called \textit{the $k$-functor of points of $X$}.
+\end{definition}
+\noindent
+For every $k$-scheme $X$ we denote its $k$-functor of points just by $X$. Consider a functor defined on the category of $k$-schemes with values in the category of $k$-functors that sends a $k$-scheme $X$ to its functor of points and also sends a morphism $f:X\ra Y$ of $k$-schemes to a map that is given by composition with $f$.
+
+\begin{fact}\label{fact:kschemesandkfunctors}
+The functor described above is full and faithful.
+\end{fact}
+\begin{proof}
+This follows from the fact that morphisms of $k$-schemes are defined locally with respect to Zariski topology.
+\end{proof}
+\noindent
+In particular, we may consider the category $\Sch_k$ as a full subcategory of the category of $k$-functors.
+
+\begin{definition}
+Let $\big\{f_i:X_i\ra X\big\}_{i\in I}$ be a family of morphisms of $k$-schemes. We say that $\{f_i\}_{i\in I}$ is \textit{a Zariski covering of $X$} if the following conditions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item For every $i\in I$ morphism $f_i$ is an open immersion of schemes.
+\item Morphism $\coprod_{i\in I}X_i\ra X$ induced by $\big\{f_i\big\}_{i\in I}$ is surjective.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $\fX$ be a presheaf on the category of $k$-schemes. Suppose that for every $k$-scheme $X$ and for every Zariski covering $\big\{f_i:X_i\ra X\big\}$ of $X$ the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=6em,text height=1.5ex, text depth=0.25ex] 
+{\fX(X) &   \prod_{i\in I}\fX(X_i)&  \prod_{(i,j)\in I\times I} \fX(X_i\times_XX_j)  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \langle \fX(f_i) \rangle_{i\in I} $} (m-1-2)
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \langle \fX(f'_{ij}) \cdot pr_i\rangle_{(i,j)}$} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \langle \fX(f''_{ij}) \cdot pr_j\rangle_{(i,j)}$} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a kernel of a pair of arrows, where for every $(i,j)\in I\times I$ morphisms $f'_{ij}$ and $f'_{ji}$ form a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{X_i\times_XX_j   &   X_j   \\
+ X_i  & X   \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f''_{ij}$} (m-1-2)
+(m-2-1) edge node[below] {$ f_i $} (m-2-2)
+(m-1-1) edge node[left] {$ f'_{ij} $} (m-2-1)
+(m-1-2) edge node[right] {$ f_j  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Then we call $\fX$ \textit{a Zariski sheaf on $\Sch_k$}.
+\end{definition}
+\noindent
+Now we repeat this definitions for $k$-algebras and $k$-functors.
+
+\begin{definition}
+Let $\big\{f_i:A\ra A_i\big\}_{i\in I}$ be a family of morphisms of $k$-algebras. We say that $\{f_i\}_{i\in I}$ is \textit{a Zariski covering of $A$} if the following conditions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item For every $i\in I$ morphism $\Spec f_i$ is an open immersion of schemes.
+\item Morphism $\coprod_{i\in I}\Spec A_i\ra \Spec A$ induced by $\big\{\Spec f_i\big\}_{i\in I}$ is surjective.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $\fX$ be a $k$-functor. Suppose that for every $k$-algebra $A$ and for every Zariski covering $\big\{f_i:A\ra A_i\big\}$ of $A$ the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=6em,text height=1.5ex, text depth=0.25ex] 
+{\fX(A) &   \prod_{i\in I}\fX(A_i)&  \prod_{(i,j)\in I\times I} \fX(A_i\otimes_AA_j)  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \langle \fX(f_i) \rangle_{i\in I} $} (m-1-2)
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \langle \fX(f'_{ij}) \cdot pr_i\rangle_{(i,j)}$} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \langle \fX(f''_{ij}) \cdot pr_j\rangle_{(i,j)}$} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a kernel of a pair of arrows, where for every $(i,j)\in I\times I$ morphisms $f'_{ij}$ and $f'_{ji}$ form a cocartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{A &  A_j   \\
+ A_i&  A_i\otimes_AA_j   \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f_j $} (m-1-2)
+(m-2-1) edge node[below] {$ f'_{ij} $} (m-2-2)
+(m-1-1) edge node[left] {$ f_i $} (m-2-1)
+(m-1-2) edge node[right] {$ f'_{ji}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Then we call $\fX$ \textit{a Zariski local $k$-functor}.
+\end{definition}
+
+\begin{theorem}
+Let
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \widehat{\Sch_k}  & \mbox{the category of $k$-functors} \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+be the restriction of presheaves on $\Sch_k$ to copresheaves on $\Alg_k$ ($k$-functors) induced by the contravariant functor $\Spec:\Alg_k\ra \Sch_k$. Then it induces an equivalence of categories between Zariski sheaves on $\Sch_k$ and Zariski local $k$-functors.
+\end{theorem}
+\noindent
+Let $\fX$ be a $k$-functor. Then using the fact that $\Spec$ induces an equivalence between $\Alg_k$ and dual category of $\Aff_k$, we may consider $\fX$ as a presheaf on $\Aff_k$. Suppose that $X$ is a $k$-scheme. Let $\cU_X$ be the set of all open affine subsets of $X$. For each element $U$ in $\cU_X$ we denote by $f_U:U\ra X$ the corresponding open immersion. Now the collection $\big\{f_U:U\ra X\big\}_{U \in \cU_X}$ is a Zariski cover of $X$. Next let $\cU\subseteq \cU_X$ be any subset that is also a Zariski cover of $X$. We define
+
+\begin{lemma}
+Let $\fX$ be a Zariski sheaf on $\Sch_k$. Fix a $k$-scheme $X$ and let 
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{zzz}
+
+
+\end{document}
