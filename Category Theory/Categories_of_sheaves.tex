@@ -8,10 +8,11 @@
 
 \section{Introduction}
 \noindent
-In this notes we study Grothendieck topologies and toposes. For prerequisites we assume familiarity with \cite{Presheaves}. We work in Tarski-Grothendieck set theory and we choose the base universe. We do not assume that underlying categories of Grothendieck sites are small. This leads to some difficulties concerning sizes, but it pays off as the theory is more general. This is especially important as possible applications we have in mind are in algebraic geometry, where so called \textit{big sites} are important.\\
+In this notes we study Grothendieck topologies and sheaves. For prerequisites we assume familiarity with \cite{Presheaves}. We work in Tarski-Grothendieck set theory and we choose the base universe. We do not assume that underlying categories of Grothendieck sites are small. This leads to some difficulties concerning sizes, but it pays off as the theory is more general. This is especially important as possible applications we have in mind are in algebraic geometry, where so called \textit{big sites} are important.\\
 To deal with size difficulties in some of arguments we make now a few remarks of technical nature. Let $\cC$ be a category. There exists a Grothendieck universe $V$ containing the base universe $U$ such that $\cC$ is locally $V$-small (c.f. {\cite[section 1]{Presheaves}}). We have full and faithful embedding
 $$\widehat{\cC} = \Fun\left(\cC^{\mathrm{op}},\Set\right) =  \Fun\left(\cC^{\mathrm{op}},\Set_U\right)\subseteq  \Fun\left(\cC^{\mathrm{op}},\Set_V\right)$$
-and the inclusion preserves all limits and colimits. Objects of $\Fun\left(\cC^{\mathrm{op}},\Set_V\right)$ are called big presheaves on $\cC$. In particular, every presheaf on $\cC$ (an object $\widehat{\cC}$) is a big presheaf on $\cC$. Since $\cC$ is locally $V$-small, for every object $X$ in $\cC$ there exists big presheaf $h_X$ on $\cC$ of morphisms into $X$ and if $f:X\ra Y$ is a morphism in $\cC$, then $h_f:h_X\ra h_Y$ is a morphism of big presheaves on $\cC$. Finally, if $F$ and $G$ are big presheaves on $\cC$, then we denote by $\Mor_{\cC}(F,G)$ the class of all morphisms $F\ra G$ of big presheaves. 
+and the inclusion preserves all limits and colimits. Objects of $\Fun\left(\cC^{\mathrm{op}},\Set_V\right)$ are called big presheaves on $\cC$. In particular, every presheaf on $\cC$ (an object $\widehat{\cC}$) is a big presheaf on $\cC$. Since $\cC$ is locally $V$-small, for every object $X$ in $\cC$ there exists big presheaf $h_X$ on $\cC$ of morphisms into $X$ and if $f:X\ra Y$ is a morphism in $\cC$, then $h_f:h_X\ra h_Y$ is a morphism of big presheaves on $\cC$. Finally, if $F$ and $G$ are big presheaves on $\cC$, then we denote by $\Mor_{\cC}(F,G)$ the class of all morphisms $F\ra G$ of big presheaves.\\
+Finally let us attract reader's attention to the excellent book concerning the topic \cite{maclane1994sheaves}.
 
 \section{Sites and sheaves}
 \noindent
@@ -664,7 +665,7 @@ By Fact \ref{fact:propertiesofsieves} the intersection of any collection of siev
 Let $(\cC,\cJ)$ be a Grothendieck site. First note that if $f:X\ra Y$ is a morphism in $\cC$ and $S$ is a closed sieve on $Y$, then $f^*S$ is a closed sieve on $X$. Using this remark we describe now a construction of certain big presheaf on $\cC$ associated with the Grothendieck topology $\cJ$. For every object $X$ in $\cC$ we define $\Omega(X)$ as a class of all closed sieves on $X$. If $f:X\ra Y$ is a morphism in $\cC$, then we define a map $\Omega(f):\Omega(Y)\ra \Omega(X)$ by formula $\Omega(Y)\ni S\mapsto f^*S\in \Omega(X)$. Finally note that if $\bd{1}$ is a terminal presheaf on $\cC$ (that is any presheaf that takes singleton as a value for every object of $\cC$), then there exists a morphism $t:\bd{1}\ra \Omega$ of big presheaves that for every $X$ in $\cC$ picks the maximal sieve $t_X$ on $X$ in $\Omega(X)$ (the maximal sieve is closed with respect to any Grothendieck topology).\\
 Next theorem states important properties of $\Omega$.
 
-\begin{theorem}\label{theorem:propertiesofsubobjectclassifier}
+\begin{theorem}\label{theorem:subobjectclassifierissheaf}
 Let $(\cC,\cJ)$ be a Grothendieck site and let $\Omega$ be a big presheaf defined above. Then for every object $X$ of $\cC$, every covering sieve $S$ on $X$ (viewed below as a big presheaf on $\cC$) and for every morphism of big presheaves $m:S\ra \Omega$ there exists a unique morphism $p:h_X\ra \Omega$ such that the following triangle is commutative.
 \begin{center}
 \begin{tikzpicture}
@@ -680,22 +681,6 @@ Let $(\cC,\cJ)$ be a Grothendieck site and let $\Omega$ be a big presheaf define
 (m-2-1) edge node[below = 5pt, right = -2pt] {$m $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-Moreover, if $G$ is a sheaf on $(\cC,\cJ)$ and $A\subseteq G$ is a subsheaf (a subpresheaf which is a sheaf), then there exists a unique morphism $\chi_A:G\ra \Omega$ such that there exists cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ A & \bd{1}  \\
-  G   & \Omega   \\} ;
-\path[->,line width=0.8pt, font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2) 
-(m-2-1) edge node[below]  {$\chi_A  $} (m-2-2)
-(m-1-2) edge node[right]  {$t $} (m-2-2);
-\path[right hook ->,line width=0.8pt, font=\scriptsize]  
-(m-1-1) edge node[left]  {$  $} (m-2-1);
-\end{tikzpicture}
-\end{center}
-in the category of big presheaves.
 \end{theorem}
 \noindent
 Let $(\cC,\cJ)$ be a Grothendieck site. According to Fact \ref{fact:closedsievesarestableunderintersection} we derive that for every sieve $T$ on some object $X$ of $\cC$ there exists the smallest (with respect to inclusion) closed sieve on $X$ that contains $T$. We call it the closure of $T$ and denote by $\bd{cl}(T)$.
@@ -744,8 +729,29 @@ Therefore, the closure $T$ of $R$ is an element of $\Omega(X)$ and the morphism 
 (m-2-1) edge node[below = 5pt, right = -2pt] {$m $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-commutative.\\
-Now we prove the second part of the statement. Let $G$ be a sheaf on $(\cC,\cJ)$ and let $A\subseteq G$ be a subsheaf. Our goal is to construct and show uniqueness of $\chi_A$ such that the following square is cartesian in the category of big presheaves.
+commutative.
+\end{proof}
+
+\begin{proposition}\label{proposition:universalpropertyofsubobjectclassifier}
+Let $(\cC,\cJ)$ be a Grothendieck site and let $\Omega$ be a big presheaf defined above. If $G$ is a sheaf on $(\cC,\cJ)$ and $A\subseteq G$ is a subsheaf (a subpresheaf which is a sheaf), then there exists a unique morphism $\chi_A:G\ra \Omega$ such that there exists cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ A & \bd{1}  \\
+  G   & \Omega   \\} ;
+\path[->,line width=0.8pt, font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2) 
+(m-2-1) edge node[below]  {$\chi_A  $} (m-2-2)
+(m-1-2) edge node[right]  {$t $} (m-2-2);
+\path[right hook ->,line width=0.8pt, font=\scriptsize]  
+(m-1-1) edge node[left]  {$  $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+in the category of big presheaves.
+\end{proposition}
+\begin{proof}
+Let $G$ be a sheaf on $(\cC,\cJ)$ and let $A\subseteq G$ be a subsheaf. Our goal is to construct and show uniqueness of $\chi_A$ such that the following square is cartesian in the category of big presheaves.
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -789,7 +795,7 @@ is called \textit{a subobject classifier of $\cC$}.
 Let $(\cC,\cJ)$ be a Grothendieck site such that $\cC$ is a small category. Then $\Sh(\cC,\cJ)$ admits a subobject classifier.
 \end{corollary}
 \begin{proof}
-Since $\cC$ is small, we derive that big presheaf $\Omega$ described before statement of Theorem \ref{theorem:propertiesofsubobjectclassifier} is a presheaf on $\cC$. Next Theorem \ref{theorem:propertiesofsubobjectclassifier} states that $\Omega$ is a sheaf with respect to $\cJ$ and that the pair $(\Omega, t)$ is a subobject classifier in $\Sh(\cC,\cJ)$.
+Since $\cC$ is small, we derive that big presheaf $\Omega$ described before statement of Theorem \ref{theorem:subobjectclassifierissheaf} is a presheaf on $\cC$. Next Theorem \ref{theorem:subobjectclassifierissheaf} and Proposition \ref{proposition:universalpropertyofsubobjectclassifier} state that $\Omega$ is a sheaf with respect to $\cJ$ and that the pair $(\Omega, t)$ is a subobject classifier in $\Sh(\cC,\cJ)$.
 \end{proof}
 
 \section{Local surjections and epimorphisms}
@@ -799,11 +805,12 @@ Let $(\cC,\cJ)$ be a Grothendieck site. A morphism $\sigma:F\ra G$ of sheaves on
 \end{definition}
 
 \begin{theorem}\label{theorem:epimorphismsinthecategoryofsheaves}
-Let $\cC$ be a category and $\cJ$ be a locally small topology on $\cC$. Suppose that $\sigma:F\ra G$ is a morphism of sheaves on $\left(\cC,\cJ\right)$. Then the following assertions are equivalent.
+Let $(\cC,\cJ)$ be a Grothendieck site. Suppose that $\sigma:F\ra G$ is a morphism of sheaves on $\left(\cC,\cJ\right)$. Consider the following assertions.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
-\item $\sigma$ is an epimorphism in $\Sh\left(\cC,\cJ\right)$.
 \item $\sigma$ is locally surjective.
+\item $\sigma$ is an epimorphism in $\Sh\left(\cC,\cJ\right)$.
 \end{enumerate}
+Then $\emph{\textbf{(i)}}\Rightarrow \emph{\textbf{(ii)}}$ and if $\cJ$ is locall small, then $\emph{\textbf{(ii)}}\Rightarrow \emph{\textbf{(i)}}$.
 \end{theorem}
 \noindent
 We need the following observation.
@@ -816,9 +823,10 @@ Left to the reader.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-Assume \textbf{(i)}. For every morphism $\tau:H\ra K$ of big presheaves we denote by $\Image(\tau)$ a big subpresheaf of $K$ given by $X\mapsto \tau_X\left(H(X)\right)$. Note that if $H$ is a presheaf, then $\Image(\tau)$ is a presheaf. Now let us prove that \textbf{(ii)} holds. Let $A$ be a subpresheaf of $G$ given by
+The implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ is easy and the proof in {\cite[page 143, Corollary 5]{maclane1994sheaves}} holds in general case.\\
+Assume \textbf{(ii)} and that $\cJ$ is locally small. For every morphism $\tau:H\ra K$ of big presheaves we denote by $\Image(\tau)$ a big subpresheaf of $K$ given by $X\mapsto \tau_X\left(H(X)\right)$. Note that if $H$ is a presheaf, then $\Image(\tau)$ is a presheaf. Now let us prove that \textbf{(i)} holds. Let $A$ be a subpresheaf of $G$ given by
 $$A(X) = \big\{x\in G(X)\,\big|\,\mbox{ there exists }S\in \cJ(X)\mbox{ such that }G(f)(x)\in \Image(\sigma)(Y)\mbox{ for every }f:Y\ra X\mbox{ in } S\big\}$$
-for every $X$ in $\cC$. By Lemma \ref{lemma:sheafcriterionforsubpresheaves} we derive that $A$ is a sheaf with respect to $\cJ$. In order to prove \textbf{(ii)} it suffices to check that $A = G$. Let $\Omega$ be a big presheaf described before statement of Theorem \ref{theorem:propertiesofsubobjectclassifier}. Since $A$ is a subsheaf of $G$ there exists a unique morphism $\chi_A:G\ra \Omega$ of big presheaves such that the square
+for every $X$ in $\cC$. By Lemma \ref{lemma:sheafcriterionforsubpresheaves} we derive that $A$ is a sheaf with respect to $\cJ$. In order to prove \textbf{(i)} it suffices to check that $A = G$. Let $\Omega$ be a big presheaf described before statement of Theorem \ref{theorem:subobjectclassifierissheaf}. Since $A$ is a subsheaf of $G$ there exists a unique morphism $\chi_A:G\ra \Omega$ of big presheaves such that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -833,13 +841,67 @@ for every $X$ in $\cC$. By Lemma \ref{lemma:sheafcriterionforsubpresheaves} we d
 (m-1-1) edge node[left]  {$  $} (m-2-1);
 \end{tikzpicture}
 \end{center}
-is cartesian in the category of big presheaves. This follows by Theorem \ref{theorem:propertiesofsubobjectclassifier}. Let $G\coprod \bd{1}$ be a coproduct in the category of presheaves and consider a morphism $\rho:G\coprod \bd{1}\ra \Omega$ such that $\rho\cdot i = \chi_A$ and $\rho\cdot j = t$, where $i:G\hookrightarrow G\coprod \bd{1}$ and $j:\bd{1}\hookrightarrow G\coprod \bd{1}$ are structural arrows. Then $\Image(\rho)$ is a subpresheaf of $\Omega$ (see the remark at the beginning of the proof) and by Theorem \ref{theorem:propertiesofsubobjectclassifier} it is a separated presheaf on $(\cC,\cJ)$. We also consider the restriction $\delta:G\coprod \bd{1}\ra \Image(\rho)$ of $\rho$ to its image and the unique morphism $u:G\ra \bd{1}$. Let $H$ together with morphism $\eta:\Image(\rho)\ra H$ be a sheaf associated with $\Image(\rho)$. It exists since $\cJ$ is locally small (Theorem \ref{theorem:associatedsheaf}). Since
+is cartesian in the category of big presheaves. This follows by Proposition \ref{proposition:universalpropertyofsubobjectclassifier}. Let $G\coprod \bd{1}$ be a coproduct in the category of presheaves and consider a morphism $\rho:G\coprod \bd{1}\ra \Omega$ such that $\rho\cdot i = \chi_A$ and $\rho\cdot j = t$, where $i:G\hookrightarrow G\coprod \bd{1}$ and $j:\bd{1}\hookrightarrow G\coprod \bd{1}$ are structural arrows. Then $\Image(\rho)$ is a subpresheaf of $\Omega$ (see the remark at the beginning of the proof) and by Theorem \ref{theorem:subobjectclassifierissheaf} it is a separated presheaf on $(\cC,\cJ)$. We also consider the restriction $\delta:G\coprod \bd{1}\ra \Image(\rho)$ of $\rho$ to its image and the unique morphism $u:G\ra \bd{1}$. Let $H$ together with morphism $\eta:\Image(\rho)\ra H$ be a sheaf associated with $\Image(\rho)$. It exists since $\cJ$ is locally small (Theorem \ref{theorem:associatedsheaf}). Since
 $$\rho\cdot i\cdot \sigma = \chi_A\cdot \sigma = t\cdot u\cdot \sigma = \rho\cdot j\cdot u\cdot \sigma$$
 we deduce that $\delta \cdot i\cdot \sigma = \delta\cdot j\cdot u\cdot \sigma$ and hence
 $$\eta\cdot \delta\cdot i \cdot \sigma = \eta\cdot \delta\cdot j\cdot u\cdot \sigma$$
-Since $\sigma$ is an epimorphism in the category of sheaves, we derive that $\eta\cdot \delta \cdot i = \eta\cdot \delta\cdot j\cdot u$. Since $\eta$ is a monomorphism of presheaves (Theorem \ref{theorem:associatedsheaf} and the fact that $\Image(\rho)$ is separated), we deduce that $\delta\cdot i = \delta \cdot j\cdot u$. Thus $\rho \cdot i = \rho\cdot j\cdot u$ and hence $\chi_A = t\cdot u$. From this last equality using Theorem \ref{theorem:propertiesofsubobjectclassifier} we deduce that $A = G$.\\
-Now assume \textbf{(ii)}.
+Since $\sigma$ is an epimorphism in the category of sheaves, we derive that $\eta\cdot \delta \cdot i = \eta\cdot \delta\cdot j\cdot u$. Since $\eta$ is a monomorphism of presheaves (Theorem \ref{theorem:associatedsheaf} and the fact that $\Image(\rho)$ is separated), we deduce that $\delta\cdot i = \delta \cdot j\cdot u$. Thus $\rho \cdot i = \rho\cdot j\cdot u$ and hence $\chi_A = t\cdot u$. From this last equality using Proposition \ref{proposition:universalpropertyofsubobjectclassifier} we deduce that $A = G$.
 \end{proof}
+
+\begin{theorem}
+Let $(\cC,\cJ)$ be a Grothendieck site and suppose that $\sigma:F\ra G$ is a locally surjective morphism of sheaves with respect to $\cJ$. Consider the fork diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{F\times_GF &  F & G  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p_1  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ p_2 $} (m-1-2)
+(m-1-2) edge node[above] {$ \sigma  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{F\times_G F     &   & F   \\
+ F              &   & G   \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ p_1 $} (m-1-3)
+(m-2-1) edge node[below] {$ \sigma $} (m-2-3)
+(m-1-1) edge node[left] {$ p_2 $} (m-2-1)
+(m-1-3) edge node[right] {$ \sigma $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+is a cartesian square of presheaves. Then the fork diagram is a cokernel in the category $\Sh(\cC,\cJ)$.
+\end{theorem}
+
+\begin{lemma}\label{lemma:familythatismatchingifsatisfiesarelation}
+Let $H$ be a sheaf on $(\cC,\cJ)$ and assume that $\tau:F\ra H$ is a morphism such that $\tau\cdot p_1 = \tau \cdot p_2$. Let $X$ be an object of $\cC$ and $y$ be an element in $G(X)$ and pick a covering sieve $S$ on $X$ such that for every $f$ in $S$ there exists an element $x_f\in F\left(\mathrm{dom}(f)\right)$ with $\sigma(x_f) = G(f)(y)$. Then $\{\tau(x_f)\}_{f\in S}$ is a matching family for $S$ of elements of $H$ and its amalgamation depends on $y$ and not on choices of $S$ and $\{x_f\}_{f\in S}$. 
+\end{lemma}
+\begin{proof}
+Let $g$ be a morphism in $\cC$ and $f$ be a morphism in $S$ such that $f\cdot g$ exists in $\cC$. Then we have
+$$\sigma\left(F(g)(x_f)\right)= G(g)\left(\sigma(x_f)\right) = \left(G(g)\cdot G(f)\right)(y) = \sigma(x_{f\cdot g})$$
+Thus there exists $u\in \left(F\times_G F\right)(\mathrm{dom}(f))$ such that $p_1(u) = F(g)(x_f)$ and $p_2(u) = x_{f\cdot g}$. Thus
+$$H(g)\left(\tau(x_f)\right) = \tau\left(F(g)(x_f)\right) = \tau\left(p_1(u)\right) = \tau\left(p_2(u)\right) = \tau\left(x_{f\cdot g}\right)$$
+and hence $\{\tau(x_f)\}_{f\in S}$ is a matching family for $S$ of elements of $H$.\\
+Now suppose that $T$ is another covering sieve on $X$ and for every $f$ in $T$ there exists $z_f\in F(\mathrm{dom}(f))$ with $\sigma(z_f) = G(f)(y)$. Assume that $f\in S\cap T$. Note that in this case $\sigma(z_f) = \sigma(x_f)$. Thus there exists $u\in \left(F\times_G F\right)(\mathrm{dom}(f))$ such that $p_1(u) = x_f$ and $p_2(u) = z_f$. Then
+$$\tau(x_f) = \tau\left(p_1(u)\right) = \tau\left(p_2(u)\right) = \tau(z_f)$$
+From this and from what we proved before, we derive that
+$$\{\tau(x_f)\}_{f\in S},\,\{\tau(z_f)\}_{f\in T},\,\{\tau(x_f)\}_{f\in S}\cup \{\tau(z_f)\}_{f\in T}$$
+are matching families of elements of $H$. Therefore, they must have the same amalgamation. Hence the amalgamation of $\{\tau(x_f)\}_{f\in S}$ depends only on $y$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Let $\tau:G\ra H$ be a morphism of sheaves with respect to $\cJ$ and assume that $\tau\cdot p_1 = \tau \cdot p_2$. Our goal is to define and prove uniqueness of a morphism $\rho:G\ra H$ such that $\rho\cdot \sigma = \tau$. Fix object $X$ in $\cC$ and $y\in G(X)$. Let $S$ be a covering sieve on $X$ such that for each $f$ in $S$ there exists $x_f\in F(\mathrm{dom}(f))$ with $\sigma(x_f) = G(f)(y)$. Such a sieve $S$ and a collection $\{x_f\}_{f\in S}$ exist according to the fact that $\sigma$ is locally surjective. By Lemma \ref{lemma:familythatismatchingifsatisfiesarelation} we deduce that $\{\tau(x_f)\}_{f\in S}$ is a matching family for $S$ of elements of $H$. Since we want to define morphism $\rho$ such that $\rho\cdot \sigma =\tau$, we are forced to define $\rho(y)$ as the amalgamation of $\{\tau(x_f)\}_{f\in S}$. Thus there exists at most one morphism $\rho$ with $\rho\cdot \sigma =\tau$. Again by Lemma \ref{lemma:familythatismatchingifsatisfiesarelation} element $\rho(y)$ does not depend on choices of $S$ and $\{x_f\}_{f\in S}$. Hence $\rho(y)$ is well defined. It remains to prove that $y\mapsto \rho(y)$ is a morphism of presheaves. Let $g$ be a morphism in $\cC$ having $X$ as the codomain. Then $\{\tau(x_{g\cdot h})\}_{h\in g^*S}$ is a matching family and it has $\rho\left(G(g)(y)\right)$ and $H(g)\left(\rho(y)\right)$ as amalgamations. Since $H$ is a sheaf, we derive that
+$$\rho\left(G(g)(y)\right) = H(g)\left(\rho(y)\right)$$
+This proves that $\rho:G\ra H$ is a morphism of sheaves. By definition of $\rho$ we have $\rho\cdot \sigma = \tau$ and this finishes the proof.
+\end{proof}
+
+
+
 
 
 \small
