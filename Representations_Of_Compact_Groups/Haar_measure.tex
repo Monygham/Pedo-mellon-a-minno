@@ -1,0 +1,147 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Haar Measure}
+\date{}
+\maketitle
+
+\section{Existence of Haar measure}
+\noindent
+For a topological space $X$ we denote by $\cB(X)$ the $\sigma$-algebra of all open subsets of $X$.
+
+\begin{definition}
+Let $X$ be a locally compact space and let $\mu:\cB(X)\ra [0,+\infty]$ be a measure. If $\mu(K)\in \RR$ for every compact subset $K$ of $X$, then $\mu$ is \textit{finite on compact sets}. Suppose that for every open subset $U$ of $X$ we have
+$$\mu(U) = \sup \big\{\mu(K)\,\big|\,K\mbox{ compact subset of }X\mbox{ contained in }U\big\}$$
+then $\mu$ is \textit{inner regular}. We say that $\mu$ is \textit{outer regular} if for every $A$ in $\cB(X)$ we have
+$$\mu(A) = \inf \big\{\mu(U)\,\big|\,U\mbox{ is open in }X\mbox{ and contains }A\big\}$$
+Finally $\mu$ is \textit{a Radon measure} if it is finite on compact sets, inner regular and outer regular. 
+\end{definition}
+
+\begin{definition}
+Let $G$ be a topological group and let $\mu:\cB(G)\ra [0,+\infty]$ be a measure. Then $\mu$ is \textit{left-invariant} if $\mu(xA) = \mu(A)$ for every $A$ in $\cB(G)$. Similarly $\mu$ is right-invariant if $\mu(Ax) = \mu(A)$ for every $A$ in $\cB(G)$.
+\end{definition}
+
+\begin{theorem}
+Let $G$ be a locally compact topological group. Then there exists a nonzero, left-invariant Radon measure $\mu$ on $G$.
+\end{theorem}
+\noindent
+We denote by $\cK$ the set of all compact subsets of $G$ and by $\cU$ the set of all open neighborhoods of identity in $G$. Let $U$ be an open nonempty subset of $G$ and $K$ be a compact subset of $G$. We define
+$$(K:U) = \inf \big\{n\in \NN\,\big|\mbox{ there exist }x_1,...,x_n\in G\mbox{ such that }K\subseteq \bigcup_{i=1}^nx_iU\big\}$$
+Throughout the proof we fix a compact subset $Q$ of $G$ such that $\bd{int}(Q) \neq \emptyset$.
+
+\begin{lemma}\label{lemma:approximationoncompactsets}
+Fix $U\in \cU$. There exists a real valued function $h_U$ on $\cK$ such that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item For every compact subset $K$ in $\cK$ we have $h_U(K)\geq 0$, $h_U(\emptyset) = 0$ and $h_U(Q)=1$.
+\item For every compact subset $K$ in $\cK$ and for every element $x$ in $G$ we have $h_U(xK) = h_U(K)$.
+\item If $K\subseteq L$ are compact subsets in $\cK$, then $h_U(K)\subseteq h_U(L)$.
+\item For every compact subset $K$ in $\cK$ we have $h_U(K) \leq \left(K:\bd{int}(Q)\right)$.
+\item If $K, L$ are compact subsets in $\cK$, then
+$$h_U(K\cup L) \leq h_U(K) + h_U(L)$$
+and if $K\cdot U^{-1}\cap L\cdot U^{-1} = \emptyset$, then the equality holds.
+\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every compact subset $K$ of $G$ we define
+$$h_U(K) = \frac{(K:U)}{(Q:U)}$$
+Now we check that $h_U$ admits the properties above. Properties \textbf{(1)}, \textbf{(2)} and \textbf{(3)} are clear. For \textbf{(4)} note that
+$$(K:U) \leq (Q:U)\cdot\left(K:\bd{int}(Q)\right)$$
+Indeed, if $K\subseteq \bigcup_{i=1}^ny_i\cdot \bd{int}(Q)$ and $Q\subseteq \bigcup_{j=1}^mz_jU$, then $K\subseteq \bigcup_{i=1}^n\bigcup_{j=1}^my_iz_jU$ and this implies the inequality above. Observe that $xU \cap K \neq \emptyset$ implies that $x\in K\cdot U^{-1}$ and similarly $xU\cap L\neq \emptyset$ implies that $x\in L\cdot U^{-1}$. Assuming that for compact subsets $K, L$ in $G$ we have $ K\cdot U^{-1}\cap L\cdot U^{-1} = \emptyset$ we derive from this that for every $x\in G$ we have $xU\cap \left(K\cap L\right) = \emptyset$. Thus if $K\cdot U^{-1}\cap L\cdot U^{-1} = \emptyset$, then we have $(K\cup L:U) = (K:U)+(K:L)$ and hence $h_U(K\cup L) = h_U(K)+h_U(L)$. Note that in general case we have $(K\cup L:U) \leq (K:U)+(K:L)$ and hence also \textbf{(5)} holds for $h_U$.
+\end{proof}
+
+\begin{lemma}\label{lemma:compactsetsareseparablebyopens}
+Let $K, L$ in $\cK$ and suppose that $K\cap L =\emptyset$. Then there exists $U\in \cU$ such that $K\cdot U^{-1}\cap L\cdot U^{-1} = \emptyset$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+\end{proof}
+
+\begin{lemma}\label{lemma:definitiononcompactsets}
+There exists a real valued function $h$ on $\cK$ such that
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item For every compact subset $K$ in $\cK$ we have $h(K)\geq 0$, $h(\emptyset) = 0$ and $h(Q)=1$.
+\item For every compact subset $K$ in $\cK$ and for every element $x$ in $G$ we have $h(xK) = h(K)$.
+\item If $K\subseteq L$ are compact subsets in $\cK$, then $h(K)\subseteq h(L)$.
+\item For every compact subset $K$ in $\cK$ we have $h(K) \leq \left(K:\bd{int}(Q)\right)$.
+\item If $K, L$ are compact subsets in $\cK$, then
+$$h(K\cup L) \leq h(K) + h(L)$$
+and if $K \cap L = \emptyset$, then the equality holds.
+\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Consider a topological space
+$$X = \prod_{K\in \cK}\big[0,(K:\bd{int}(Q)\big]$$
+By Tichonoff's theorem $X$ is compact. For every $U\in \cU$ we define a subset $F_U\subseteq X$ that consists of tuples $\{a_K\}_{K\in \cK}$ such that $a_{\emptyset} = 0$, $a_{Q}=1$, $a_{xK}= a_K$ for $x\in G$ and $K$ in $\cK$, $a_K\leq a_L$ for $K\subseteq L$ in $\cK$, $a_{K\cup L}\leq a_K + a_L$ for $K,L$ in $\cK$ and the equality holds if $K\cdot U^{-1} \cap L\cdot U^{-1} = \emptyset$. Conditions imposed on tuples in $F_U$ imply that $F_U$ is a closed subset. Note that $\{h_U(K)\}_{K\in \cK}\in F_U$ for every $U\in \cU$. Moreover, we have
+$$F_{U_1\cap U_2\cap ...\cap U_n} \subseteq F_{U_1}\cap F_{U_2}\cap ...\cap F_{U_n}$$
+for $U_1, U_2,...,U_n\in \cU$. This implies that $\big\{F_U\big\}_{U\in \cU}$ is a centered family of nonempty closed subsets of a compact space $X$. Thus
+$$\bigcap_{U\in \cU}F_U \neq \emptyset$$
+by compactness of $X$. Hence there exists $\{c_K\}_{K\in \cK}$ in the intersection. We define a real function $h$ on $\cK$ by $h(K) = c_K$ for $K$ in $\cK$. The fact that properties \textbf{(1)}, \textbf{(2)}, \textbf{(3)} and \textbf{(4)} hold for $h$ follows by definition of $F_U$ for $U\in \cU$. Since $\{c_K\}_{K\in \cK}$ is an element in $F_U$ for every $U\in \cU$ we derive that
+$$c_{K\cup L} \leq c_K+c_L$$
+for $K, L$ in $\cK$. This implies $h(K\cup L) \leq h(K) + h(L)$ for $K, L\in \cK$. Moreover, $c_{K\cup L} = c_K + c_L$ if $K\cdot U^{-1}\cap L\cdot U^{-1} = \emptyset$ for some $U\in \cU$. This implies that $c_{K\cup L} = c_K + c_L$ if $K \cap L = \emptyset$ by Lemma \ref{lemma:compactsetsareseparablebyopens}. Thus $h$ admits \textbf{(4)}.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+We fix $h$ as in Lemma \ref{lemma:definitiononcompactsets} and we define $\mu^*:\cP(G)\ra [0,+\infty]$. First if $U$ is an open subset of $G$, then we define
+$$\mu^*(U) = \sup_{K\in \cK,\,K\subseteq U}h(K)$$
+Note that if $U, V$ are open subsets of $G$ and $U\subseteq V$, then $\mu^*(U)\leq \mu^*(V)$. Thus it makes sense to define
+$$\mu^*(A) = \inf \big\{\mu^*(U)\,\big|\,U\mbox{ is an open subset of }G\mbox{ containing }A\big\}$$
+for arbitrary subset $A\subseteq G$. Note that $\mu^*(xA) = \mu^*(A)$ by definition of $\mu^*$ and the corresponding property of $h$. We check that $\mu^*$ is an outer measure. By definition and corresponding properties of $h$ we have $\mu^*(\emptyset) = 0$ and $\mu^*$ is monotone. Let $\{A_n\}_{n\in \NN}$ be a sequence of subsets of $G$ such that $\mu^*(A_n) \in \RR$ for every $n\in \NN$. Fix $\epsilon > 0$ and for each $n\in \NN$ we pick an open subset $U_n$ such that $A_n\subseteq U_n$ and
+$$\mu^*(U_n)\leq \mu^*(A_n)+\frac{\epsilon}{2^{n+1}}$$
+There exists a compact subset $K$ of $\bigcup_{n\in \NN}U_n$ such that
+$$\mu^*\left(\bigcup_{n\in \NN}U_n\right) \leq h(K) + \frac{\epsilon}{2}$$
+Since $K$ is compact, there exists $k\in \NN$ such that $K\subseteq \bigcup_{n=0}^kU_n$. Since $G$ is locally compact, there exist compact sets $K_0,K_1,...,K_k$ such that $K_n\subseteq U_n$ and $K = \bigcup_{n=0}^kK_n$. Thus we have
+$$\mu^*\left(\bigcup_{n\in \NN}A_n\right) \leq \mu^*\left(\bigcup_{n\in \NN}U_n\right) \leq h(K) + \frac{\epsilon}{2} \leq \frac{\epsilon}{2} + \sum_{n=0}^kh(K_n) \leq$$
+$$\leq \frac{\epsilon}{2} + \sum_{n\in \NN}\mu^*(U_n)\leq \sum_{n\in \NN}\mu^*(A_n) + \frac{\epsilon}{2}+ \sum_{n\in \NN}\frac{\epsilon}{2^n} =  \sum_{n\in \NN}\mu^*(A_n) + \epsilon $$
+Since $\epsilon$ is an arbitrary positive number, we derive that
+$$\mu^*\left(\bigcup_{n\in \NN}A_n\right) \leq \sum_{n\in \NN}\mu^*(A_n)$$
+Note that this inequality is obvious when there exists $n\in \NN$ such that $\mu^*(A_n) = +\infty$. Thus the inequality above holds for arbitrary countable family of subsets of $G$. Therefore, $\mu^*$ is an outer measure. Now we use Carath{\'e}odory construction {\cite[Theorem 3.2]{Measures}} in order to obtain a $\sigma$-algebra $\Sigma_{\mu^*}$ such that $\mu^*_{\mid \Sigma_{\mu^*}}$ is a measure. Now we show that $\sigma$-algebra of Borel sets $\cB(G)$ is contained in $\Sigma_{\mu^*}$. For this consider a set $E$ of $G$ and let $U$ be an open subset of $G$. We show that
+$$\mu^*(E) = \mu^*(E\cap U) + \mu^*(E\setminus U)$$
+Clearly the inequality $\leq$ holds and hence if $\mu^*(E) = +\infty$, then the equality holds regardless of $U$. Thus we may assume that $\mu^*(E) \in \RR$. Fix $\epsilon > 0$ and consider open subset $V$ such that $E\subseteq V$ and $\mu^*(V) \leq \mu^*(E)+\frac{\epsilon}{2}$. Next let $K\subseteq U\cap V$ be a compact subset such that $\mu^*(U\cap V) \leq h(K) +\frac{\epsilon}{4}$. Let $L$ be a compact subset of $V\setminus K$ such that $\mu^*(V\setminus K) \leq \mu^*(L) + \frac{\epsilon}{4}$. We have
+$$\mu^*(E) \leq \mu^*(E\cap U) + \mu^*(E\setminus U) \leq \mu^*(V\cap U) + \mu^*(V\setminus U) \leq \mu^*(V\cap U) + \mu^*(V\setminus K)\leq $$
+$$\leq \left(h(K)+\frac{\epsilon}{4}\right) + \left(h(L) + \frac{\epsilon}{4}\right)= h(K) + h(L) + \frac{\epsilon}{2} = h(K\cap L) + \frac{\epsilon}{2}\leq \mu^*(V) +\frac{\epsilon}{2} \leq \mu^*(E) + \epsilon$$
+and since $\epsilon > 0$ was arbitrary, we derive that
+$$\mu^*(E) = \mu^*(E\cap U) + \mu^*(E\setminus U)$$
+Hence this equality holds for every subset $E$ of $G$ and every open subset $U$ of $G$. Thus open subsets of $G$ are members of $\Sigma_{\mu^*}$. Hence $\cB(G)\subseteq \Sigma_{\mu^*}$. Let $\mu$ be a restriction of $\mu^*$ to $\cB(G)$. Then $\mu$ is a left-invariant measure on $\cB(G)$. By definition of $\mu^*$ we derive that $\mu$ is outer regular. Now we show that $\mu(K) \in \RR$ for every compact subset of $G$. We pick an open subset $U$ of $G$ containing $K$ and such that $\bd{cl}(U)$ is compact. Then we have $h(L)\leq h(\bd{cl}(U))$ for every compact $L\subseteq U$ and hence $\mu(U)\leq h(\bd{cl}(U))$. Thus $\mu(U)\in \RR$ and hence also $\mu(K) \in \RR$. Thus $\mu$ is finite on compact subsets of $G$. Moreover, $1 = h(Q) \leq \mu(Q)$. This implies that $\mu$ is nontrivial. Finally for every open subset $U$ of $G$ we have
+$$\mu(U) = \sup_{K\in \cK,K\subseteq U}h(K)\leq \sup_{K\in \cK,K\subseteq U}\mu(K)\leq \mu(U)$$
+and thus $\mu$ is inner regular.\\
+We proved that $\mu$ is nonzero, left-invariant Radon measure on $G$. This finishes the proof.
+\end{proof}
+
+\begin{definition}
+Let $G$ be a locally compact group and $\mu:\cB(G)\ra [0,+\infty]$ be a measure. If $\mu$ is left-invariant, nontrivial Radon measure on $G$, then we say that $\mu$ is \textit{a (left) Haar measure on $G$}. Similarly if $\mu$ is right-invariant, nontrivial Radon measure on $G$, then we say that $\mu$ is \textit{a (right) Haar measure on $G$} 
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{zzz}
+
+\end{document}
