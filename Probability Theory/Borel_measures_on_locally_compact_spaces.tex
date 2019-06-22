@@ -1,0 +1,111 @@
+\input pree.tex
+
+\begin{document}
+
+\title{Borel measures on locally compact spaces}
+\date{}
+\maketitle
+
+\section{Borel measures on locally compact spaces}
+\noindent
+For a topological space $X$ we denote by $\cB(X)$ the $\sigma$-algebra of all open subsets of $X$.
+
+\begin{definition}
+Let $X$ be a Hausdorff topological space and let $\mu:\cB(X)\ra [0,+\infty]$ be a measure.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item If $\mu(K)\in \RR$ for every compact subset $K$ of $X$, then $\mu$ is \textit{finite on compact sets}.
+\item Suppose that for every open subset $U$ of $X$ we have
+$$\mu(U) = \sup \big\{\mu(K)\,\big|\,K\mbox{ compact subset of }X\mbox{ contained in }U\big\}$$
+then $\mu$ is \textit{inner regular on open sets}.
+\item Suppose that for every Borel subset $A$ of $X$ we have
+$$\mu(A) = \sup \big\{\mu(K)\,\big|\,K\mbox{ compact subset of }X\mbox{ contained in }A\big\}$$
+then $\mu$ is \textit{inner regular}.
+\item  We say that $\mu$ is \textit{outer regular} if for every $A$ in $\cB(X)$ we have
+$$\mu(A) = \inf \big\{\mu(U)\,\big|\,U\mbox{ is open in }X\mbox{ and contains }A\big\}$$
+\end{enumerate}
+Finally $\mu$ is \textit{a regular Borel measure} if it is finite on compact sets, inner regular on open sets and outer regular. 
+\end{definition}
+
+\begin{definition}
+Let $X$ be a locally compact space. Then $X$ is $\sigma$-compact if there exists a family $\{K_n\}_{n\in \NN}$ of compact subsets such that $X =\bigcup_{n\in \NN}K_n$.
+\end{definition}
+
+\begin{theorem}\label{theorem:extensionofmeasureoncompactclass}
+Let $X$ be a locally compact space. Let $\cK$ be a family of compact subsets of $X$ satisfying the following conditions.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $\cK$ contains empty set.
+\item If $K$ in $\cK$ and $U_0,U_1,...,U_n$ are open subsets of $X$ such that
+$$K\subseteq \bigcup_{n=0}^kU_n$$
+then there exist $K_0,K_1,...,K_n$ in $\cK$ such that $K_n\subseteq U_n$ for every $n\leq k$ and
+$$K = \bigcup_{n=0}^kK_n$$
+\item If $K$ is a compact subset of $X$, then there exists a compact subset $L$ of $\cK$ such that $K\subseteq L$.
+\end{enumerate}
+Suppose next that $h$ is a real valued function on $\cK$ such that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item For every subset $K$ in $\cK$ we have $h(K)\geq 0$, $h(\emptyset) = 0$.
+\item If $K\subseteq L$ are compact subsets in $\cK$, then $h(K)\subseteq h(L)$.
+\item If $K, L$ are subsets in $\cK$, then
+$$h(K\cup L) \leq h(K) + h(L)$$
+and if $K \cap L = \emptyset$, then the equality holds.
+\end{enumerate}
+For an open subset $U$ of $X$ we define
+$$\mu^*(U) = \sup_{K\in \cK,\,K\subseteq U}h(K)$$
+and for arbitrary subset $A$ of $X$ we define
+$$\mu^*(A) = \inf \big\{\mu^*(U)\,\big|\,U\mbox{ is an open subset of }X\mbox{ containing }A\big\}$$
+Then $\mu^*$ is a well defined outer measure on $X$, Borel subsets are $\mu^*$-measurable and $\mu = \mu^*_{\mid \cB(X)}$ is a regular Borel measure. Moreover, if $X$ is $\sigma$-compact, then $\mu$ is inner regular.
+\end{theorem}
+\begin{proof}[Proof of the theorem]
+Note that $\mu^*$ is well defined. Indeed, if $U$ and $V$ are open subsets of $X$ such that $U\subseteq V$, then $\sup_{K\in \cK,\,K\subseteq U}h(K) \leq \sup_{K\in \cK,\,K\subseteq V}h(K)$ and hence it makes sense to define
+$$\mu^*(U) = \sup_{K\in \cK,\,K\subseteq U}h(K)$$
+and
+$$\mu^*(A) = \inf \big\{\mu^*(U)\,\big|\,U\mbox{ is an open subset of }X\mbox{ containing }A\big\}$$
+for arbitrary subset $A$ of $X$. Now we check that $\mu^*$ is an outer measure. By definition and corresponding properties of $h$ we have $\mu^*(\emptyset) = 0$ and $\mu^*$ is monotone. Let $\{A_n\}_{n\in \NN}$ be a sequence of subsets of $X$ such that $\mu^*(A_n) \in \RR$ for every $n\in \NN$. Fix $\epsilon > 0$ and for each $n\in \NN$ we pick an open subset $U_n$ such that $A_n\subseteq U_n$ and
+$$\mu^*(U_n)\leq \mu^*(A_n)+\frac{\epsilon}{2^{n+2}}$$
+There exists a compact subset $K\in \cK$ of $\bigcup_{n\in \NN}U_n$ such that
+$$\mu^*\left(\bigcup_{n\in \NN}U_n\right) \leq h(K) + \frac{\epsilon}{2}$$
+Since $K$ is compact, there exists $k\in \NN$ such that $K\subseteq \bigcup_{n=0}^kU_n$. By property of $\cK$ there exist compact sets $K_0,K_1,...,K_k$ such that $K_n\subseteq U_n$ and $K = \bigcup_{n=0}^kK_n$. Thus we have
+$$\mu^*\left(\bigcup_{n\in \NN}A_n\right) \leq \mu^*\left(\bigcup_{n\in \NN}U_n\right) \leq h(K) + \frac{\epsilon}{2} \leq \frac{\epsilon}{2} + \sum_{n=0}^kh(K_n) \leq$$
+$$\leq \frac{\epsilon}{2} + \sum_{n\in \NN}\mu^*(U_n)\leq \sum_{n\in \NN}\mu^*(A_n) + \frac{\epsilon}{2}+ \sum_{n\in \NN}\frac{\epsilon}{2^{n+2}} =  \sum_{n\in \NN}\mu^*(A_n) + \epsilon $$
+Since $\epsilon$ is an arbitrary positive number, we derive that
+$$\mu^*\left(\bigcup_{n\in \NN}A_n\right) \leq \sum_{n\in \NN}\mu^*(A_n)$$
+Note that this inequality is obvious when there exists $n\in \NN$ such that $\mu^*(A_n) = +\infty$. Thus the inequality above holds for arbitrary countable family of subsets of $X$. Therefore, $\mu^*$ is an outer measure. Next we use Carath{\'e}odory construction {\cite[Theorem 3.2]{Measures}} and check that Borel sets are $\mu^*$-measurable. For this consider a subset $E$ of $X$ and let $U$ be an open subset of $X$. We show that
+$$\mu^*(E) = \mu^*(E\cap U) + \mu^*(E\setminus U)$$
+Clearly the inequality $\leq$ holds and hence if $\mu^*(E) = +\infty$, then the equality holds regardless of $U$. Thus we may assume that $\mu^*(E) \in \RR$. Fix $\epsilon > 0$ and consider open subset $V$ such that $E\subseteq V$ and $\mu^*(V) \leq \mu^*(E)+\frac{\epsilon}{2}$. Next let $K\subseteq U\cap V$ be an element of $\cK$ such that $\mu^*(U\cap V) \leq h(K) +\frac{\epsilon}{4}$. Let $L\in \cK$ be subset of $V\setminus K$ such that $\mu^*(V\setminus K) \leq \mu^*(L) + \frac{\epsilon}{4}$. We have
+$$\mu^*(E) \leq \mu^*(E\cap U) + \mu^*(E\setminus U) \leq \mu^*(V\cap U) + \mu^*(V\setminus U) \leq \mu^*(V\cap U) + \mu^*(V\setminus K)\leq $$
+$$\leq \left(h(K)+\frac{\epsilon}{4}\right) + \left(h(L) + \frac{\epsilon}{4}\right)= h(K) + h(L) + \frac{\epsilon}{2} = h(K\cup L) + \frac{\epsilon}{2}\leq \mu^*(V) +\frac{\epsilon}{2} \leq \mu^*(E) + \epsilon$$
+and since $\epsilon > 0$ was arbitrary, we derive that
+$$\mu^*(E) = \mu^*(E\cap U) + \mu^*(E\setminus U)$$
+Hence this equality holds for every subset $E$ of $X$ and every open subset $U$ of $X$. Thus open subsets of $X$ are $\mu^*$-measurable. Hence $\cB(X)$ consists of $\mu^*$-measurable subsets. Next we denote $\mu = \mu^*_{\mid \cB(X)}$. This is a measure. By definition of $\mu^*$ measure $\mu$ is outer regular. Moreover, for every $K\in \cK$ if $U$ is an open subset containing $K$, then
+$$h(K)\leq \mu(K)\leq \mu(U)$$
+Thus $\mu(U) = \sup_{K\in \cK,\,K\subseteq U}\mu(K)$ and $\mu$ is inner regular on open sets. Consider open subset $U$ of $X$ such that $\bd{cl}(U)$ is compact. Then there exists $L$ in $\cK$ such that $\bd{cl}(U)\subseteq L$. For every subset $K\subseteq U$ in $\cK$ we have $h(K) \leq h(L)$ and hence
+$$\mu(U) = \sup_{K\in \cK,\,K\subseteq U}h(K) \leq h(L)\in \RR$$
+This proves that every open subset $U$ with compact closure satisfies $\mu(U)\in \RR$. Since $X$ is locally compact, this implies that $\mu$ is finite on compact sets. Thus $\mu$ is a regular Borel measure.\\
+Now we assume that $X$ is $\sigma$-compact. Let $X = \bigcup_{n\in \NN}K_n$, where $K_n$ is compact for $n\in \NN$. We may assume that sequence $\{K_n\}_{n\in \NN}$ is nondecreasing. Pick Borel subset $A$ of $X$. Since $\mu$ is outer regular, we derive that
+$$\mu(K_n\setminus A) = \inf \big\{\mu\left(U\cap K_n\right)\,\big|\,U\mbox{ is an open subset of }X\mbox{ containing }K_n\setminus A\big\}$$
+Thus
+$$\mu(K_n\cap A) = \sup  \big\{\mu(K)\,\big|\,K\mbox{ is a compact subset of }X\mbox{ contained in }K_n\cap  A\big\}$$
+We have
+$$\mu(A) = \sup_{n\in \NN}\mu(K_n\cap A) = \sup_{n\in \NN}\big(\sup \big\{\mu(K)\,\big|\,K\mbox{ is a compact subset of }X\mbox{ contained in }K_n\cap  A\big\}\big) = $$
+$$=\sup  \big\{\mu(K)\,\big|\,K\mbox{ is a compact subset of }X\mbox{ contained in }A\big\}$$
+Therefore, $\mu$ is inner regular.
+\end{proof}
+
+\begin{corollary}\label{corollary:extensionofmeasureoncompactsubsets}
+Let $X$ be a locally compact space. Suppose next that $\cK$ is the family of all compact subsets of $X$ and $h:\cK\ra \RR$ is a function as in Theorem \ref{theorem:extensionofmeasureoncompactclass}. Then the thesis of Theorem \ref{theorem:extensionofmeasureoncompactclass} holds.
+\end{corollary}
+\begin{proof}
+It suffices to prove if $K$ is a compact subset of a sum $\bigcup_{n=0}^kU_n$ of open subsets of $X$, then there exist compact subsets $K_0,K_1,...,K_k$ of $X$ such that $K_n\subseteq U_n$ for every $n\leq k$ and $K = \bigcup_{n=0}^kK_n$. Let $x$ be a point of $K$ and pick an open neighbourhood $U_x$ of this point such that $\bd{cl}(U_x)$ is compact and $U_x\subseteq U_n$ for some $n$. Since $K$ is compact, there exist $x_1,...,x_m$ in $K$ such that
+$$K\subseteq \bigcup_{i=1}^mU_{x_i}$$
+Define
+$$K_n = K\cap \bigcup_{\big\{i\in \{1,...,m\}\,|\,\bd{cl}(U_{x_i})\subseteq U_n\big\}} \bd{cl}(U_{x_i})$$
+By definition $K_n\subseteq U_n$ for every $n\leq k$ and $K = \bigcup_{n=0}^kK_n$.
+\end{proof}
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{zzz}
+
+\end{document}

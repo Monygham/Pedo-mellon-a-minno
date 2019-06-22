@@ -6,24 +6,22 @@
 \date{}
 \maketitle
 
-\section{Existence of Haar measure}
+\section{Introduction}
 \noindent
-For a topological space $X$ we denote by $\cB(X)$ the $\sigma$-algebra of all open subsets of $X$.
+In this notes we introduce Haar measure. Haar measure is a fundamental technical tool in representation theory of locally compact topological groups. There are many excellent sources concerning this topic. We send the interested reader to
+
+\section{Existence of Haar measure}
 
 \begin{definition}
-Let $X$ be a locally compact space and let $\mu:\cB(X)\ra [0,+\infty]$ be a measure. If $\mu(K)\in \RR$ for every compact subset $K$ of $X$, then $\mu$ is \textit{finite on compact sets}. Suppose that for every open subset $U$ of $X$ we have
-$$\mu(U) = \sup \big\{\mu(K)\,\big|\,K\mbox{ compact subset of }X\mbox{ contained in }U\big\}$$
-then $\mu$ is \textit{inner regular}. We say that $\mu$ is \textit{outer regular} if for every $A$ in $\cB(X)$ we have
-$$\mu(A) = \inf \big\{\mu(U)\,\big|\,U\mbox{ is open in }X\mbox{ and contains }A\big\}$$
-Finally $\mu$ is \textit{a Radon measure} if it is finite on compact sets, inner regular and outer regular. 
+Let $G$ be a topological group and let $\mu$ be a Borel measure. Then $\mu$ is \textit{left-invariant} if $\mu(xA) = \mu(A)$ for every $A$ in $\cB(G)$. Similarly $\mu$ is right-invariant if $\mu(Ax) = \mu(A)$ for every $A$ in $\cB(G)$.
 \end{definition}
 
 \begin{definition}
-Let $G$ be a topological group and let $\mu:\cB(G)\ra [0,+\infty]$ be a measure. Then $\mu$ is \textit{left-invariant} if $\mu(xA) = \mu(A)$ for every $A$ in $\cB(G)$. Similarly $\mu$ is right-invariant if $\mu(Ax) = \mu(A)$ for every $A$ in $\cB(G)$.
+Let $G$ be a locally compact group and $\mu$ be a Borel measure. If $\mu$ is a nonzero, left-invariant, regular Borel measure on $G$, then we say that $\mu$ is \textit{a left Haar measure on $G$}. Similarly if $\mu$ is a nonzero, right-invariant, regular Borel measure on $G$, then we say that $\mu$ is \textit{a right Haar measure on $G$} 
 \end{definition}
 
 \begin{theorem}
-Let $G$ be a locally compact topological group. Then there exists a nonzero, left-invariant Radon measure $\mu$ on $G$.
+Let $G$ be a locally compact topological group. Then there exists a left (right) Haar measure $\mu$ on $G$. If in addition $G$ is $\sigma$-compact, then $\mu$ is inner regular.
 \end{theorem}
 \noindent
 We denote by $\cK$ the set of all compact subsets of $G$ and by $\cU$ the set of all open neighborhoods of identity in $G$. Let $U$ be an open nonempty subset of $G$ and $K$ be a compact subset of $G$. We define
@@ -51,13 +49,15 @@ Indeed, if $K\subseteq \bigcup_{i=1}^ny_i\cdot \bd{int}(Q)$ and $Q\subseteq \big
 \end{proof}
 
 \begin{lemma}\label{lemma:compactsetsareseparablebyopens}
-Let $K, L$ in $\cK$ and suppose that $K\cap L =\emptyset$. Then there exists $U\in \cU$ such that $K\cdot U^{-1}\cap L\cdot U^{-1} = \emptyset$.
+Let $K, L$ in $\cK$ and suppose that $K\cap L =\emptyset$. Then there exists $U\in \cU$ such that
+$$K\cdot U^{-1}\cap L\cdot U^{-1} = \emptyset$$
 \end{lemma}
 \begin{proof}[Proof of the lemma]
+Left as an exercise.
 \end{proof}
 
 \begin{lemma}\label{lemma:definitiononcompactsets}
-There exists a real valued function $h$ on $\cK$ such that
+There exists a real valued function $h$ on $\cK$ such that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
 \item For every compact subset $K$ in $\cK$ we have $h(K)\geq 0$, $h(\emptyset) = 0$ and $h(Q)=1$.
 \item For every compact subset $K$ in $\cK$ and for every element $x$ in $G$ we have $h(xK) = h(K)$.
@@ -85,55 +85,52 @@ We fix $h$ as in Lemma \ref{lemma:definitiononcompactsets} and we define $\mu^*:
 $$\mu^*(U) = \sup_{K\in \cK,\,K\subseteq U}h(K)$$
 Note that if $U, V$ are open subsets of $G$ and $U\subseteq V$, then $\mu^*(U)\leq \mu^*(V)$. Thus it makes sense to define
 $$\mu^*(A) = \inf \big\{\mu^*(U)\,\big|\,U\mbox{ is an open subset of }G\mbox{ containing }A\big\}$$
-for arbitrary subset $A\subseteq G$. Note that $\mu^*(xA) = \mu^*(A)$ by definition of $\mu^*$ and the corresponding property of $h$. We check that $\mu^*$ is an outer measure. By definition and corresponding properties of $h$ we have $\mu^*(\emptyset) = 0$ and $\mu^*$ is monotone. Let $\{A_n\}_{n\in \NN}$ be a sequence of subsets of $G$ such that $\mu^*(A_n) \in \RR$ for every $n\in \NN$. Fix $\epsilon > 0$ and for each $n\in \NN$ we pick an open subset $U_n$ such that $A_n\subseteq U_n$ and
-$$\mu^*(U_n)\leq \mu^*(A_n)+\frac{\epsilon}{2^{n+1}}$$
-There exists a compact subset $K$ of $\bigcup_{n\in \NN}U_n$ such that
-$$\mu^*\left(\bigcup_{n\in \NN}U_n\right) \leq h(K) + \frac{\epsilon}{2}$$
-Since $K$ is compact, there exists $k\in \NN$ such that $K\subseteq \bigcup_{n=0}^kU_n$. Since $G$ is locally compact, there exist compact sets $K_0,K_1,...,K_k$ such that $K_n\subseteq U_n$ and $K = \bigcup_{n=0}^kK_n$. Thus we have
-$$\mu^*\left(\bigcup_{n\in \NN}A_n\right) \leq \mu^*\left(\bigcup_{n\in \NN}U_n\right) \leq h(K) + \frac{\epsilon}{2} \leq \frac{\epsilon}{2} + \sum_{n=0}^kh(K_n) \leq$$
-$$\leq \frac{\epsilon}{2} + \sum_{n\in \NN}\mu^*(U_n)\leq \sum_{n\in \NN}\mu^*(A_n) + \frac{\epsilon}{2}+ \sum_{n\in \NN}\frac{\epsilon}{2^n} =  \sum_{n\in \NN}\mu^*(A_n) + \epsilon $$
-Since $\epsilon$ is an arbitrary positive number, we derive that
-$$\mu^*\left(\bigcup_{n\in \NN}A_n\right) \leq \sum_{n\in \NN}\mu^*(A_n)$$
-Note that this inequality is obvious when there exists $n\in \NN$ such that $\mu^*(A_n) = +\infty$. Thus the inequality above holds for arbitrary countable family of subsets of $G$. Therefore, $\mu^*$ is an outer measure. Now we use Carath{\'e}odory construction {\cite[Theorem 3.2]{Measures}} in order to obtain a $\sigma$-algebra $\Sigma_{\mu^*}$ such that $\mu^*_{\mid \Sigma_{\mu^*}}$ is a measure. Now we show that $\sigma$-algebra of Borel sets $\cB(G)$ is contained in $\Sigma_{\mu^*}$. For this consider a set $E$ of $G$ and let $U$ be an open subset of $G$. We show that
-$$\mu^*(E) = \mu^*(E\cap U) + \mu^*(E\setminus U)$$
-Clearly the inequality $\leq$ holds and hence if $\mu^*(E) = +\infty$, then the equality holds regardless of $U$. Thus we may assume that $\mu^*(E) \in \RR$. Fix $\epsilon > 0$ and consider open subset $V$ such that $E\subseteq V$ and $\mu^*(V) \leq \mu^*(E)+\frac{\epsilon}{2}$. Next let $K\subseteq U\cap V$ be a compact subset such that $\mu^*(U\cap V) \leq h(K) +\frac{\epsilon}{4}$. Let $L$ be a compact subset of $V\setminus K$ such that $\mu^*(V\setminus K) \leq \mu^*(L) + \frac{\epsilon}{4}$. We have
-$$\mu^*(E) \leq \mu^*(E\cap U) + \mu^*(E\setminus U) \leq \mu^*(V\cap U) + \mu^*(V\setminus U) \leq \mu^*(V\cap U) + \mu^*(V\setminus K)\leq $$
-$$\leq \left(h(K)+\frac{\epsilon}{4}\right) + \left(h(L) + \frac{\epsilon}{4}\right)= h(K) + h(L) + \frac{\epsilon}{2} = h(K\cap L) + \frac{\epsilon}{2}\leq \mu^*(V) +\frac{\epsilon}{2} \leq \mu^*(E) + \epsilon$$
-and since $\epsilon > 0$ was arbitrary, we derive that
-$$\mu^*(E) = \mu^*(E\cap U) + \mu^*(E\setminus U)$$
-Hence this equality holds for every subset $E$ of $G$ and every open subset $U$ of $G$. Thus open subsets of $G$ are members of $\Sigma_{\mu^*}$. Hence $\cB(G)\subseteq \Sigma_{\mu^*}$. Let $\mu$ be a restriction of $\mu^*$ to $\cB(G)$. Then $\mu$ is a left-invariant measure on $\cB(G)$. By definition of $\mu^*$ we derive that $\mu$ is outer regular. Now we show that $\mu(K) \in \RR$ for every compact subset of $G$. We pick an open subset $U$ of $G$ containing $K$ and such that $\bd{cl}(U)$ is compact. Then we have $h(L)\leq h(\bd{cl}(U))$ for every compact $L\subseteq U$ and hence $\mu(U)\leq h(\bd{cl}(U))$. Thus $\mu(U)\in \RR$ and hence also $\mu(K) \in \RR$. Thus $\mu$ is finite on compact subsets of $G$. Moreover, $1 = h(Q) \leq \mu(Q)$. This implies that $\mu$ is nontrivial. Finally for every open subset $U$ of $G$ we have
-$$\mu(U) = \sup_{K\in \cK,K\subseteq U}h(K)\leq \sup_{K\in \cK,K\subseteq U}\mu(K)\leq \mu(U)$$
-and thus $\mu$ is inner regular.\\
-We proved that $\mu$ is nonzero, left-invariant Radon measure on $G$. This finishes the proof.
+for arbitrary subset $A\subseteq G$. Note that $\mu^*(xA) = \mu^*(A)$ by definition of $\mu^*$ and the corresponding property of $h$. By {\cite[Theorem 1.3]{BorelMeasuresonLCS}} we have that Borel sets $\cB(G)$ are $\mu^*$-measurable, $\mu^*_{\mid \cB(G)} = \mu$ is a regular Borel measure on $G$. According to this result if $G$ is $\sigma$-compact, then $\mu$ is inner regular. Clearly $\mu$ is left-invariant and since
+$$1 = h(Q)\leq \mu(Q)$$
+we derive that it is nonzero measure.
 \end{proof}
 
-\begin{definition}
-Let $G$ be a locally compact group and $\mu:\cB(G)\ra [0,+\infty]$ be a measure. If $\mu$ is left-invariant, nontrivial Radon measure on $G$, then we say that $\mu$ is \textit{a (left) Haar measure on $G$}. Similarly if $\mu$ is right-invariant, nontrivial Radon measure on $G$, then we say that $\mu$ is \textit{a (right) Haar measure on $G$} 
-\end{definition}
+\section{Uniqueness of Haar measure}
 
+\begin{theorem}\label{theorem:}
+Let $G$ be a locally compact group. If $\mu_1$ and $\mu_2$ are left (right) Haar measures on $G$, then there exists positive constant $a\in \RR$ such that
+$$\mu_1 = a\cdot \mu_2$$
+\end{theorem}
+\noindent
+For the proof we need the following result.
 
+\begin{lemma}\label{lemma:sigmacompactopensubgroup}
+Let $G$ be a locally compact group. Then there exists a $\sigma$-compact, open subgroup $H$ of $G$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $U$ be an open neighborhood of identity in $G$ such that $\bd{cl}(U)$ is compact. Consider $V = U\cap U^{-1}$. Then $V$ is open neighborhood of identity in $G$ such that $V = V^{-1}$ and $\bd{cl}(V)$ is compact. We define $H = \bigcup_{n\in \NN}V^n$. Then $H$ is an open subgroup of $G$. We have
+$$H= G\setminus \left(\bigcup_{g \in G\setminus H}gH\right)$$
+and hence $H$ is also a closed subgroup of $G$. Moreover, for every $n\in \NN$ set $\bd{cl}\left(V^n\right)$ is compact in $G$. Since
+$$H = \bigcup_{n\in \NN}\left(H\cap \bd{cl}\left(V^n\right)\right)$$
+we derive that $H$ is $\sigma$-compact.
+\end{proof}
 
+\begin{proof}[Proof of the theorem]
+By Lemma \ref{lemma:sigmacompactopensubgroup} there exists an open subgroup $H$ of $G$ that is $\sigma$-compact. We prove now that there exists $a\in \RR$ such that
+$${\mu_1}_{\mid \cB(H)} = a\cdot {\mu_2}_{\mid \cB(H)}$$
+For this consider $\mu = {\mu_1}_{\mid \cB(H)} + {\mu_2}_{\mid \cB(H)}$ and denote ${\mu_2}_{\mid \cB(H)}$ by $\nu$. Measures $\mu, \nu$ are $\sigma$-finite as they are finite on compact subsets of $H$ and $H$ is $\sigma$-compact space. Moreover, $\nu \ll \mu$ and hence by {\cite[Theorem 5.3]{RadonNikodym}} there exists a Borel function $f:H\ra \CC$ such that
+$$\nu(A) = \int_Afd\mu$$
+for every Borel subset $A$ in $H$. Since $\mu$ and $\nu$ are nonnegative measures, we derive that $f$ is real and nonnegative $\mu$-almost everywhere. Hence we may assume that $f$ takes only nonnegative real values. Next as $\nu, \mu$ are left-invariant, we deduce that
+$$0 = \int_{xA}fd\mu -\int_Afd\mu = \int_A\left(f\cdot l_x - f\right)d\mu$$
+for every $x\in H$, where $l_x:H\ra H$ is a continuous map given by left multiplication by $x$. This implies that for given $x\in H$ the set
+$$A_x = \big\{y\in H\,\big|\,f(xy) - f(y) = 0\big\}$$
+has measure $\mu$ zero. By Fubini's theorem applied to measure $\mu\otimes \mu$ on $H\times H$, we deduce that there exists $y\in H$ such that the set
+$$B = \big\{x\in H\,\big|\,f(xy) -f(y) = 0\big\}$$
+has measure $\mu$ zero. This implies that $f$ is constant almost everywhere with respect to $\mu$ and thus there exists nonzero $b\in \RR$ such that $\nu = b\cdot \mu$. Hence we have
+$${\mu_1}_{\mid \cB(H)} = a\cdot {\mu_2}_{\mid \cB(H)}$$
+for $a = (1-b)b^{-1}$. Let $K$ be a compact subset of $G$. Since $H$ is an open subgroup of $G$, there exists $x_1,...,x_n\in G$ such that
+$$K\subseteq x_1H\cup ...\cup x_nH$$
+and the sum is disjoint. Therefore, we have
+$$\mu_1(K) = \sum_{i=1}^n\mu_1\left(K\cap x_iH\right) = \sum_{i=1}^n\mu_1\left(x_i^{-1}K\cap H\right) =a\cdot \sum_{i=1}^n\mu_2\left(x_i^{-1}K\cap H\right) = a\cdot \sum_{i=1}^n\mu_2\left(K\cap x_iH\right) = a\cdot \mu_2(K)$$
+This implies that $\mu_1 = a\cdot \mu_2$ because $\mu_1,\mu_2$ are regular Borel measures.
+\end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\section{Modular function and invariance of Haar measure on compact groups}
 
 
 
