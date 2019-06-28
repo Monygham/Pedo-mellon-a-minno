@@ -1,4 +1,4 @@
-\input pree.tex
+\input ../pree.tex
 
 \begin{document}
 
@@ -541,70 +541,6 @@ Then $(F,\tau,\phi)$ is \textit{a symmetric monoidal functor}.
 If $\cC$ and $\cD$ are symmetric monoidal categories and $(F,\tau,\phi)$ is a symmetric monoidal functor where $F:\cC\ra \cD$ is the underlying functor, then by the usual abuse of language we say that $F:\cC\ra \cD$ is a symmetric monoidal functor.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Algebraic structures in categories of presheaves}
-\noindent
-Notions like  monoid, group, ring, actions of monoid etc. make sense in arbitrary category with finite products. The idea is that each of these algebraic structures can be described in terms of commutativity of certain sets of diagrams involving finite products. For reader's convenience and self-containment we discuss the case of a monoid in detail below. We indicate that our discussion can be effortlessly adapted to arbitrary finitary algebraic theory as defined in BOURCAUX.
-
-
-
-\begin{remark}
-Let $\cC$ be a category with finite products and $(M,\mu,\eta)$ be a monoid in $\cC$. Then actions of $(M,\mu,\eta)$ and their morphisms constitute a category. 
-\end{remark}
-
-\begin{remark}
-By imposing commutativity of certain diagrams we can similarly define modules over a ring in a category $\cC$ with finite products.
-\end{remark}
-\noindent
-Let $(M,\mu,\eta)$ be a monoid in a category $\cC$ with finite products. By the usual abuse of notation we often omit part of the data and say that $M$ is a monoid in $\cC$. Similar notational convention for groups, rings etc. in $\cC$.\\
-The category $\widehat{\cC}$ of presheaves on a locally small category $\cC$ is an example of a category with finite products by Corollary . However, for such categories the notion of a monoid can rephrased differently. This is the content of the next result.
-
-\begin{fact}\label{fact:finitaryalgebraictheoriesinpresheaves}
-Let $\cC$ be a locally small category. Then there exists an isomorphism (identification) of categories
-$$\Mon(\widehat{\cC}) = \Fun(\cC^{\mathrm{op}},\Mon)$$
-that sends each monoid $(M,\mu,\eta)$ in $\widehat{\cC}$ to a contravariant functor given by formula 
-$$\cC\ni X\mapsto (M(X),\mu_X,\eta_X)\in \Mon$$
-\end{fact}
-\begin{proof}
-Note that in order for triple $(M,\mu,\eta)$ to be a monoid in $\widehat{\cC}$ certain diagrams (specified in the definition above) have to commute. This is equivalent with the fact that $M$ is a presheaf, $\mu$, $\eta$ are morphisms of presheaves and for every object $X$ in $\cC$ the corresponding diagrams in $\Set$ for $(M(X),\mu_X,\eta_X)$ commutes. But these conditions are equivalent with the fact that 
-$$\cC\ni X\mapsto (M(X),\mu_X,\eta_X)\in \Mon$$
-defines a contravariant functor. Next if $(M_1,\mu_1,\eta_1)$ and $(M_2,\mu_2,\eta_2)$ are monoids in $\widehat{\cC}$ and $f:M_1\ra M_2$ is a morphism of presheaves, then $f$ is a morphism of monoids in $\widehat{\cC}$ if and only if for every object $X$ of $\cC$ map $f_X:M_1(X)\ra M_2(X)$ is a morphism of monoids $(M_1(X),{\mu_1}_X,{\eta_1}_X)$ and $(M_2(X),{\mu_2}_X,{\eta_2}_X)$.
-\end{proof}
-
-\begin{remark}\label{remark:finitaryalgebraictheoriesinpresheaves}
-Actually the proof of Fact \ref{fact:finitaryalgebraictheoriesinpresheaves} works without any substantial modifications for any finitary algebraic theory and hence analogical identifications yields isomorphisms of categories
-$$\cD(\widehat{\cC}) = \Fun(\cC^{\mathrm{op}},\cD)$$
-for $\cD = \Grp,\,\Ab,\,\Ring,\,\CRing$.
-By virtue of this identifications we interchangeably use terms: monoid (group, ring etc.) in $\widehat{\cC}$ and a presheaf of monoids (groups, rings etc.) on $\cC$.
-\end{remark}
-
-
-
-
 \section{Monoids and actions}\label{section:monoidsandtheiractions}
 
 \begin{definition}
@@ -997,7 +933,7 @@ are identities for every object $Z$ in $\cC$. Hence we have $\xi_{X\otimes Z}\cd
 
 \small
 \bibliographystyle{alpha}
-\bibliography{zzz}
+\bibliography{../zzz}
 
 
 \end{document}
