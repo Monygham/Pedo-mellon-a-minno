@@ -196,12 +196,18 @@ for every $A\in \Sigma$ and $|f(x)|=1$ for every $x$ in $X$.
 For the proof we need the following result.
 
 \begin{lemma}\label{lemma:convexvaluesofintegral}
-Let $\mu$ be a measure on $(X,\Sigma)$. Suppose that $f:X\ra \CC$ is a measurable function and $S$ is a convex subset of $\CC$. Assume that for every $A\in \Sigma$ such that $\mu(A)>0$, we have
-$$\frac{1}{\mu(A)}\int_A f\,d\mu \in S$$
-Then $f(x)\in S$ 
+Let $\mu$ be a measure on $(X,\Sigma)$. Suppose that $f:X\ra \CC$ is a measurable function and $F$ is a closed subset of $\CC$. Assume that for every $A\in \Sigma$ such that $\mu(A)>0$, we have
+$$\frac{1}{\mu(A)}\int_A f\,d\mu \in F$$
+Then $\mu\left(X\setminus f^{-1}(F)\right)=0$.
 \end{lemma}
-\begin{proof}
+\begin{proof}[Proof of the lemma]
+Let $D$ be a closed disc in $\CC$ such that $D\cap F = \emptyset$. If $\mu\left(f^{-1}(D)\right) > 0$, then
+$$\frac{1}{\mu\left(f^{-1}(D)\right)}\int_{f^{-1}(D)}f\,d\mu \in D$$
+by convexity of $D$. This implies that for every closed disc in $\CC$ disjoint from $F$ we have $\mu\left(f^{-1}(D)\right) = 0$. Since $\CC\setminus F$ can be covered by such discs, we derive that $\mu\left(X\setminus f^{-1}(F)\right)=0$.
+\end{proof}
 
+\begin{proof}[Proof of the theorem]
+Consider Radon-Nikodym derivative 
 \end{proof}
 
 \small
