@@ -124,7 +124,7 @@ satisfy $\nu_s \perp \mu$, $\nu_a \ll \mu$.
 In this section we prove famous result of Radon and Nikodym.
 
 \begin{theorem}[Radon-Nikodym]\label{theorem:radonnikodymmain}
-Let $(X,\Sigma)$ be a measurable space and let $\mu$ be a $\sigma$-finite, signed measure on $(X,\Sigma)$. Suppose that $\nu \ll \mu$ for $\nu$ that is either complex measure or $\sigma$-finite, signed measure. Then there exists a measurable function $f:X\ra \CC$ such that
+Let $(X,\Sigma)$ be a measurable space and let $\mu$ be a $\sigma$-finite measure on $(X,\Sigma)$. Suppose that $\nu \ll \mu$ for $\nu$ that is either complex measure or $\sigma$-finite, signed measure. Then there exists a measurable function $f:X\ra \CC$ such that
 $$\nu(A) = \int_A f d\mu$$
 for every $A\in \Sigma$.
 \end{theorem}
@@ -160,16 +160,10 @@ $$\nu_n(A) = \int_A f_n\,d\mu_n = \int_A f_n\,d\mu$$
 for every $A\in \Sigma$. Therefore, we deduce that
 $$\nu(A) = \sum_{n\in \NN}\nu(A\cap X_n) = \sum_{n\in \NN}\nu_n(A) =\sum_{n\in \NN}\int_Af_n\,d\mu = \int_A \left(\sum_{n\in \NN}f_n\right)\,d\mu$$
 by monotone convergence theorem.\\
-Next suppose that $\mu$ is a $\sigma$-finite, signed measure and $\nu$ is a $\sigma$-finite measure. According to Theorem \ref{theorem:jordansdecomposition} we may write $\mu = \mu_+ - \mu_-$ for measures $\mu_+,\mu_-$ such that $\mu_+\perp \mu_-$. There exists a set $P\in \Sigma$ such that $\mu_-(P)=\mu_+(X\setminus P)=0$. We define $\nu_1(A) = \nu(A\cap P)$ and $\nu_2(A) = \nu(A\setminus P)$ for every $A\in \Sigma$. Then $\nu_1, \nu_2$ are $\sigma$-finite measures and $\nu_1 \ll \mu_+$, $\nu_2\ll \mu_-$. By the case considered above there exist measurable functions $f_+:X\ra \CC$, $f_-:X\ra \CC$ such that
-$$\nu_1(A) = \int_Af_+\,d\mu_+,\,\nu_2(A) = \int_Af_-\,d\mu_-$$
-for every $A\in \Sigma$. Moreover, we may assume that  $f_+$ is equal to zero outside $P$ and $f_-$ is equal to zero outside $X\setminus P$. From this we have
-$$\nu(A) = \nu(A\cap P) + \nu(A\setminus P) = \nu_1(A) + \nu_2(A) = \int_Af_+\,d\mu_+ + \int_Af_-\,d\mu_- =$$
-$$=\int_Af_+\,d\mu - \int_Af_-\,d\mu = \int_A\left(f_+-f_-\right)\,d\mu $$
-for every $A\in \Sigma$.\\
-Assume now that both $\mu, \nu$ are $\sigma$-finite, signed measures. In this situation we may write $\nu = \nu_+-\nu_-$ for measures $\nu_+, \nu_-$ such that $\nu_+\perp \nu_-$. There exists a set $Q\in \Sigma$ such that $\nu_-(Q)=\nu_+(X\setminus Q)=0$. We define $\mu_1(A) = \mu(A\cap Q)$ and $\mu_2(A) = \mu(A\setminus P)$ for every $A\in \Sigma$. Then $\mu_1, \mu_2$ are $\sigma$-finite measures and $\nu_+ \ll \mu_1$, $\nu_-\ll \mu_2$. By the case considered previously there exist measurable functions $f_+:X\ra \CC$, $f_-:X\ra \CC$ such that
-$$\nu_+(A) = \int_Af_+\,d\mu_1,\,\nu_-(A) = \int_Af_-\,d\mu_2$$
-for every $A\in \Sigma$. Moreover, we may assume that $f_+$ is equal to zero outside $Q$ and $f_-$ is equal to zero outside $X\setminus Q$. From this we have
-$$\nu(A) = \nu_+(A) + \nu_-(A) = \int_Af_+\,d\mu_1 + \int_Af_-\,d\mu_2 =\int_Af_+\,d\mu - \int_Af_-\,d\mu = \int_A\left(f_+-f_-\right)\,d\mu $$
+Assume now that both $ \nu$ is $\sigma$-finite, signed measure. In this situation we may write $\nu = \nu_+-\nu_-$ for measures $\nu_+, \nu_-$ such that $\nu_+\perp \nu_-$. There exists a set $P\in \Sigma$ such that $\nu_-(P)=\nu_+(X\setminus P)=0$. Then $\nu_+ \ll \mu$ and $\nu_-\ll \mu$. By the case considered previously there exist measurable functions $f_+:X\ra \CC$, $f_-:X\ra \CC$ such that
+$$\nu_+(A) = \int_Af_+\,d\mu,\,\nu_-(A) = \int_Af_-\,d\mu$$
+for every $A\in \Sigma$. Moreover, we may assume that $f_+$ is equal to zero outside $P$ and $f_-$ is equal to zero outside $X\setminus P$. From this we have
+$$\nu(A) = \nu_+(A) + \nu_-(A) = \int_Af_+\,d\mu + \int_Af_-\,d\mu = \int_A\left(f_+-f_-\right)\,d\mu $$
 for every $A\in \Sigma$.\\
 Suppose that $\nu$ is complex measure. Write $\nu = \nu_r - i\cdot \nu_i$. Then both $\nu_r, \nu_-$ are finite, signed measures. Moreover, we have $\nu_r\ll\mu,\nu_i\ll \mu$. There exist measurable functions $f_r:X\ra \CC$ and $f_i:X\ra \CC$ that are real valued and satisfy
 $$\nu_r(A) = \int_Af_r\,d\mu,\,\nu_i(A) = \int_Af_i\,d\mu$$
@@ -178,31 +172,91 @@ $$\nu(A) = \nu_r(A) + i\cdot \nu_i(A) = \int_Af_r\,d\mu + i\cdot \int_Af_i\,d\mu
 for every $A\in \Sigma$.
 \end{proof}
 
-\begin{definition}
-Let $(X,\Sigma)$ be a measurable space and let $\mu$, $\nu$ be either signed or complex measures on $(X,\Sigma)$. Suppose that $\nu \ll \mu$. Then a measurable function $f:X\ra \CC$ that for every $A\in \Sigma$ satisfies
-$$\nu(A) = \int_A f d\mu$$
-is called \textit{a Radon-Nikodym derivative of $\nu$ with respect to $\mu$}. It is sometimes denoted by 
-$$\frac{d\nu}{d\mu}$$
-\end{definition}
+\section{Applications of Radon-Nikodyn theorem}
 
-\section{Applications of Radon-Nikodyn, Banach spaces of measures}
+\begin{proposition}\label{proposition:derivativeandintegration}
+Let $\mu$ be a measure on $(X,\Sigma)$ and $f:X\ra \CC$ be a measurable function taking nonnegative values. We define
+$$\nu(A) = \int_Ag\,d\mu$$
+for every $A\in \Sigma$. Then $\nu$ is a measure on $(X,\Sigma)$ and the equality
+$$\int_X g\,d\nu =\int_Xg\cdot f\,d\mu$$
+holds for every measurable function $g:X\ra \CC$ that is either $\nu$-integrable or takes nonnegative values.
+\end{proposition}
+\begin{proof}
+Suppose that $A = \bigcup_{n\in \NN}A_n$ for $A\in \Sigma$ and $A_n\in \Sigma$ for every $n\in \NN$. Assume also that $\{A_n\}_{n\in \NN}$ are pairwise disjoint. Then by monotone convergence theorem
+$$\nu(A) = \int_A f\,d\mu = \int_X\chi_A\cdot f\,d\mu = \int_X\left(\sum_{n\in \NN}\chi_{A_n}\cdot f\right)\,d\mu = \sum_{n\in \NN}\int_X\chi_{A_n}\cdot f\,d\mu = \sum_{n\in \NN}\int_{A_n}f\,d\mu = \sum_{n\in \NN}\nu(A_n)$$
+Moreover, we have $\nu(\emptyset) = 0$. Thus $\nu$ is a measure on $(X,\Sigma)$.\\
+For the second part of the statement note that the family of measurable functions $g:X\ra \CC$ satisfying equality
+$$\int_Xg\,d\nu = \int_Xg\cdot f\,d\mu$$
+contains $\{\chi_A\}_{A\in \Sigma}$, is closed under $\RR_{\geq 0}$-linear combinations of measurable functions taking nonnegative values, if it contains nondecreasing sequence $\{g_n:X\ra \CC\}_{n\in \NN}$ of measurable functions taking only nonnegative values, then it also contains its limit. Thus this family contains all measurable functions $g:X\ra \CC$ taking nonnegative values. Since every real valued, $\nu$-integrable function $g:X\ra \CC$ is a difference of a two $\nu$-integrable functions taking nonnegative values, we deduce that this family contains all real, $\nu$-integrable functions. Finally, if it contains two $\nu$-integrable, real valued functions, then it contains its $\CC$-linear combination. Thus it contains all $\nu$-integrable functions.
+\end{proof}
 
-\begin{theorem}
-Let $\mu$ be a complex measure on $(X,\Sigma)$. Then there exists a measurable function $f:X\ra \CC$ such that
+\begin{theorem}\label{theorem:structureofcomplexmeasures}
+Let $\mu$ be a complex measure on $(X,\Sigma)$. There exists a measurable function $f:X\ra \CC$ such that
 $$\mu(A) = \int_Af\,d|\mu|$$
 for every $A\in \Sigma$ and $|f(x)|=1$ for every $x$ in $X$.
 \end{theorem}
 \noindent
 For the proof we need the following result.
-
 \begin{lemma}\label{lemma:convexvaluesofintegral}
-Let $\mu$ be a measure on $(X,\Sigma)$. Suppose that $f:X\ra \CC$ is a measurable function and $S$ is a convex subset of $\CC$. Assume that for every $A\in \Sigma$ such that $\mu(A)>0$, we have
-$$\frac{1}{\mu(A)}\int_A f\,d\mu \in S$$
-Then $f(x)\in S$ 
+Let $\mu$ be a measure on $(X,\Sigma)$. Suppose that $f:X\ra \CC$ is a measurable function and $F$ is a closed subset of $\CC$. Assume that for every $A\in \Sigma$ such that $\mu(A)>0$, we have
+$$\frac{1}{\mu(A)}\int_A f\,d\mu \in F$$
+Then $\mu\left(X\setminus f^{-1}(F)\right)=0$.
 \end{lemma}
-\begin{proof}
-
+\begin{proof}[Proof of the lemma]
+Let $D$ be a closed disc in $\CC$ such that $D\cap F = \emptyset$. If $\mu\left(f^{-1}(D)\right) > 0$, then
+$$\frac{1}{\mu\left(f^{-1}(D)\right)}\int_{f^{-1}(D)}f\,d\mu \in D$$
+by convexity of $D$. This implies that for every closed disc in $\CC$ disjoint from $F$ we have $\mu\left(f^{-1}(D)\right) = 0$. Since $\CC\setminus F$ can be covered by such discs, we derive that $\mu\left(X\setminus f^{-1}(F)\right)=0$.
 \end{proof}
+
+\begin{proof}[Proof of the theorem]
+Consider Radon-Nikodym derivative $f:X\ra \CC$ of $\mu$ with respect to $|\mu|$. It exists according to Theorem \ref{theorem:radonnikodymmain}. Since
+$$\frac{1}{\mu(A)}\bigg|\int_Af\,d|\mu|\bigg| \leq \frac{1}{\mu(A)}\int_A|f|\,d|\mu| = \frac{|\mu|(A)}{\mu(A)}\leq 1$$
+for every $A\in \Sigma$ such that $A\in \Sigma$, we derive by Lemma \ref{lemma:convexvaluesofintegral} that $f(x)\in D$ almost everywhere with respect to measure $|\mu|$, where $D$ is a closed unit disc in $\CC$. Changing values of $f$ on a set of measure $|\mu|$ equal to zero, we may assume that $f(x)\in D$ for every $x$ in $X$.\\
+Suppose next that  $0<\alpha < 1$ and denote $A_{\alpha} = f^{-1}\left(\{z\in \CC\mid|f(z)|\leq \alpha \}\right)$. Let
+$$A_{\alpha} = \bigcup_{n\in \NN}A_n$$
+be a decomposition on disjoint subsets in $\Sigma$. Then
+$$\sum_{n\in \NN}|\mu(A_n)| = \sum_{n\in \NN}\bigg|\int_{A_n}f\,d|\mu|\bigg|\leq  \sum_{n\in \NN}\int_{A_n}|f|\,d|\mu| \leq \alpha \cdot \sum_{n\in \NN} |\mu|(A_n) = \alpha\cdot |\mu|(A_{\alpha})$$
+Hence
+$$|\mu|(A_{\alpha}) \leq \alpha\cdot |\mu|(A_{\alpha})$$
+Therefore, $|\mu|(A_{\alpha})=0$. Since $\alpha$ is arbitrary number in $(0,1)$, we deduce that
+$$|\mu|\bigg(\big\{z\in \CC\,\big|\,|f(z)| < 1\big\}\bigg) = 0$$
+Thus changing values of $f$ on a set of measure $|\mu|$ equal to zero, we may assume that $|f(x)|=1$ for every $x$ in $X$.
+\end{proof}
+
+\begin{corollary}\label{corollary:totalvariationofcontinuousmeasure}
+Let $\mu$ be a measure on $(X,\Sigma)$ and $f:X\ra \CC$ be a $\mu$-integrable function. Define
+$$\nu(A) = \int_Af\,d\mu$$
+for every $A\in \CC$. Then $\nu$ is a complex measure on $(X,\Sigma)$ and
+$$|\nu|(A) = \int_A|f|\,d\mu$$
+for every $A\in \Sigma$.
+\end{corollary}
+\begin{proof}
+Clearly $\nu(A)\in \CC$ for every $A\in \Sigma$. Suppose that $A = \bigcup_{n\in \NN}A_n$ for $A\in \Sigma$ and $A_n\in \Sigma$ for every $n\in \NN$. Assume also that $\{A_n\}_{n\in \NN}$ are pairwise disjoint. Then by dominated convergence theorem
+$$\nu(A) = \int_A f\,d\mu = \int_X\chi_A\cdot f\,d\mu = \int_X\left(\sum_{n\in \NN}\chi_{A_n}\cdot f\right)\,d\mu = \sum_{n\in \NN}\int_X\chi_{A_n}\cdot f\,d\mu = \sum_{n\in \NN}\int_{A_n}f\,d\mu = \sum_{n\in \NN}\nu(A_n)$$
+Moreover, we have $\nu(\emptyset) = 0$. Thus $\nu$ is a complex measure on $(X,\Sigma)$. Since $f$ is $\mu$-integrable, there exists a $\sigma$-finite subset $\Omega\in \Sigma$ such that $|f(x)|= 0$ for $x\not \in \Omega$. We define $\tilde{\mu}(A) = \mu(A\cap \Omega)$ for every $A\in \Sigma$. Clearly
+$$\nu(A) = \int_Af\,d\mu = \int_Af\,d\tilde{\mu}$$
+for every $A\in \Sigma$. Hence we have $|\nu|\ll\tilde{\mu}$ by definition of $\nu$ and $|\nu|$. Note that $\tilde{\mu}$ is a $\sigma$-finite measure. By Theorem \ref{theorem:radonnikodymmain} there exists a measurable function $g:X\ra \CC$ equal to zero outside $\Omega$ such that
+$$|\nu|(A) = \int_Ag\,d\tilde{\mu} = \int_Ag\,d\mu$$
+for every $A\in \Sigma$. We may assume that $g$ takes only nonnegative values. By Theorem \ref{theorem:structureofcomplexmeasures} there exists a function $h:X\ra \CC$ such that
+$$\nu(A) = \int_Ah\,d|\nu|$$
+for every $A\in \Sigma$ and $|h(x)|=1$ for all $x$ in $X$. By Proposition \ref{proposition:derivativeandintegration} we deduce that
+$$\int_Af\,d\mu = \nu(A) = \int_Ah\,d|\nu| = \int_Ah\cdot g\,d\mu$$
+for every $A\in \Sigma$. Therefore, $f = h\cdot g$ almost everywhere with respect to $\mu$. Thus
+$$g(x) = |h(x)|\cdot g(x) = |f(x)|$$
+almost everywhere with respect to $\mu$.
+\end{proof}
+
+\section{Banach space of complex and real measures}
+
+\begin{proposition}
+Let $\mu$ be a complex measure on $(X,\Sigma)$. For every $A\in \Sigma$ we define
+$$|\mu|(A) = \sup \bigg\{\sum_{n\in \NN}|\mu(A_n)|\,\bigg|\,A = \bigcup_{n\in \NN}A_n\mbox{ is a partition of }A\mbox{ onto subsets in }\Sigma\bigg\}$$
+Then $|\mu|$ is a finite measure on $(X,\Sigma)$.
+\end{proposition}
+
+
+
+
 
 \small
 \bibliographystyle{apalike}
