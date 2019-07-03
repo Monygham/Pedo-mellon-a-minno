@@ -6,42 +6,42 @@
 \date{}
 \maketitle
 \section{Introduction}
-These notes introduce notion of conditional expectation of a random variable and discuss its properties. Aside basic measure-theoretic and probabilistic tools we use here also Radon-Nikodym theorem formulated as in {\cite[Theorem 5.3]{RadonNikodymHahnJordanLebesguedecomposition}}. Next we define sufficiency in mathematical statistics and prove factorization result of Fisher-Neyman. In the last section we prove Rao-Blackwell theorem in theory of statistical decisions. 
+These notes introduce notion of conditional expectation of a random variable and discuss its properties. Aside basic measure-theoretic and probabilistic tools we use here Radon-Nikodym theorem {\cite[Theorem 5.1]{RadonNikodymHahnJordanLebesguedecomposition}}.
 
 \section{Existence of conditional expectations}
 \noindent
 Fix a probability space $(\Omega, \cF, P)$.
 
 \begin{theorem}\label{theorem:existenceofconditionalexpectationforintegrable}
-Let $X:\Omega \ra \RR$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. Then there exists $\cG$-measurable and integrable function $f:\Omega \ra \RR$ such that
+Let $X:\Omega \ra \CC$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. Then there exists $\cG$-measurable and integrable function $f:\Omega \ra \CC$ such that
 $$\int_GXdP = \int_G f dP$$
 for every $G$ in $\cG$. Moreover, the set of all $\cG$-measurable functions having the property described by the system of equations above is
-$$\big\{g:\Omega \ra \RR\,\big|\,g\mbox{ is }\cG\mbox{-measurable and }f(\omega)=g(\omega)\mbox{ almost surely}\big\}$$
+$$\big\{g:\Omega \ra \CC\,\big|\,g\mbox{ is }\cG\mbox{-measurable and }f(\omega)=g(\omega)\mbox{ almost surely}\big\}$$
 \end{theorem}
 \begin{proof}
-We define a real measure $\nu:\cG\ra \RR$ by formula
-$$\nu(G) = \int_G XdP$$
-for $G\in \cG$. Since $\nu \ll P_{\mid \cG}$ and by Radon-Nikodym theorem, we derive that there exists a $\cG$-measurable function $f:\Omega \ra \RR$ such that
-$$\nu(G) = \int_G f dP$$
+We define a complex measure $\nu:\cG\ra \CC$ by formula
+$$\nu(G) = \int_G X\,dP$$
+for $G\in \cG$. Since $\nu \ll P_{\mid \cG}$ and by Radon-Nikodym theorem, we derive that there exists a $\cG$-measurable function $f:\Omega \ra \CC$ such that
+$$\nu(G) = \int_G f\,dP$$
 The last statement is clear and is left for the reader as an exercise.
 \end{proof}
 
 \begin{definition}
-Let $X:\Omega \ra \RR$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. Suppose that $f:\Omega \ra \RR$ is a $\cG$-measurable and integrable function $f:\Omega \ra \RR$ such that 
-$$\int_GXdP = \int_G f dP$$
+Let $X:\Omega \ra \CC$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. Suppose that $f:\Omega \ra \CC$ is a $\cG$-measurable and integrable function $f:\Omega \ra \CC$ such that 
+$$\int_GX\,dP = \int_G f\, dP$$
 for every $G$ in $\cG$. Then $f$ is called \textit{a version of the conditional expectation of $X$ with respect to $\cG$}.
 \end{definition}
 \noindent
 No we define important special case.
 
 \begin{definition}
-Let $\cG$ be a $\sigma$-subalgebra of $\cF$. Let $f:\Omega \ra \RR$ be a $\cG$-measurable, integrable and nonnegative function such that
-$$P(A\cap G) = \int_G f dP$$
+Let $\cG$ be a $\sigma$-subalgebra of $\cF$. Let $f:\Omega \ra \CC$ be a $\cG$-measurable, integrable function such that
+$$P(A\cap G) = \int_G f\, dP$$
 for every $G\in \cG$. Then $f$ is called \textit{a version of conditional probability of $A$ with respect to $\cG$}.
 \end{definition}
 \noindent
-Now that we discuss basic existence and uniqueness results concerning conditional expectation let us introduce some notation. Let $(\Omega, \cF, P)$ be a probability space, $X:\Omega \ra \RR$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. We denote any version of the conditional expectation of $X$ with respect to $\cG$ by a symbol
-$$\mathbb{E}[X\,|\,\cG]$$ 
+Now that we discuss basic existence and uniqueness results concerning conditional expectation let us introduce some notation. Let $(\Omega, \cF, P)$ be a probability space, $X:\Omega \ra \CC$ be an integrable random variable and $\cG$ be a $\sigma$-subalgebra of $\cF$. We denote any version of the conditional expectation of $X$ with respect to $\cG$ by a symbol
+$$\EE[X\,|\,\cG]$$ 
 and for every set $A\in \cF$ we denote by
 $$P[A\,|\,\cG]$$
 any version of conditional probability of $A$ with respect to $\cG$. We also often omit the word version and speak about conditional expectation and conditional probabilities. Nevertheless one should always keep in mind that these are $\cG$-measurable and integrable functions defined up to sets in $\cG$ of probability zero.
@@ -51,74 +51,75 @@ any version of conditional probability of $A$ with respect to $\cG$. We also oft
 Let $(\Omega, \cF, P)$ be a probability space and $\cG$ be a $\sigma$-sublagebra of $\cF$.
 
 \begin{theorem}\label{theorem:mainpropertiesofconditionalexpectation}
-Let $Y$, $X$, $\{X_n\}_{n\in \NN}$ be integrable random variables $\Omega \ra \RR$. Then the following results hold.
+Let $Y$, $X$, $\{X_n\}_{n\in \NN}$ be integrable random variables $\Omega \ra \CC$. Then the following results hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item If $X \leq Y$ almost surely, then $\mathbb{E}[X\,|\,\cG] \leq \mathbb{E}[Y\,|\,\cG]$.
-\item $\mathbb{E}[a\cdot X+b\cdot Y\,|\,\cG] = a\cdot \mathbb{E}[X\,|\,\cG]+b\cdot \mathbb{E}[Y\,|\,\cG]$ for $a$, $b\in \RR$.
-\item $\big|\mathbb{E}[X\,|\,\cG]\big|\leq \mathbb{E}[|X|\,|\,\cG]$
-
+\item If $X,Y$ have real values and $X \leq Y$ almost surely, then $\EE[X\,|\,\cG] \leq \EE[Y\,|\,\cG]$ almost surely.
+\item $\EE[a\cdot X+b\cdot Y\,|\,\cG] = a\cdot \EE[X\,|\,\cG]+b\cdot \EE[Y\,|\,\cG]$ almost surely for $a$, $b\in \CC$.
+\item $\big|\EE[X\,|\,\cG]\big|\leq \EE[|X|\,|\,\cG]$ almost surely.
 \item If $\{X_n\}_{n\in \NN}$ converges almost surely to $X$ and 
 $$|X_n|\leq Y,\,|X|\leq Y$$
-almost surely for every $n\in \NN$, then $\big\{\mathbb{E}[X_n\,|\,\cG]\big\}_{n\in \NN}$ converges almost surely to $\mathbb{E}[X\,|\,\cG]$.
+almost surely for every $n\in \NN$, then $\big\{\EE[X_n\,|\,\cG]\big\}_{n\in \NN}$ converges almost surely to $\EE[X\,|\,\cG]$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 For the proof of \textbf{(1)}. We have 
-$$\int_G\mathbb{E}[X\,|\,\cG]\,dP = \int_GX\,dP \leq \int_GY\,dP = \int_G\mathbb{E}[Y\,|\,\cG]\,dP$$
-Since conditional expectations with respect to $\cG$ are $\cG$-measurable, we deduce that $\mathbb{E}[X\,|\,\cG] \leq \mathbb{E}[Y\,|\,\cG]$.\\
-Next we prove \textbf{(2)}. Pick $a$, $b\in \RR$. We have
-$$\int_G\mathbb{E}[a\cdot X+b\cdot Y\,|\,\cG]\,dP = \int_G(a\cdot X+b\cdot Y)\,dP = a\cdot \int_GX\,dP+b\cdot \int_GY\,dP =$$
-$$= a\cdot \int_G\mathbb{E}[X\,|\,\cG]\,dP+b\cdot \int_G\mathbb{E}[Y\,|\,\cG]\,dP =\int_G\left(a\cdot \mathbb{E}[X\,|\,\cG]+b\cdot \mathbb{E}[Y\,|\,\cG]\right)\,dP$$
-for every $G\in \cG$. Since conditional expectations with respect to $\cG$ is $\cG$-measurable, we derive that $\mathbb{E}[a\cdot X+b\cdot Y\,|\,\cG] = a\cdot \mathbb{E}[X\,|\,\cG]+b\cdot \mathbb{E}[Y\,|\,\cG]$.\\
-For \textbf{(3)} write $X = X_+-X_-$, where $X_+$, $X_-$ are nonnegative functions with disjoint supports. We have
-$$\big|\mathbb{E}[X\,|\,\cG]\big| = \big|\mathbb{E}[X_+\,|\,\cG]-\mathbb{E}[X_-\,|\,\cG]\big| \leq \big|\mathbb{E}[X_+\,|\,\cG]\big|+\big|\mathbb{E}[X_-\,|\,\cG]\big|$$
-Now we use \textbf{(1)} to show that $0\leq \mathbb{E}[Y\,|\,\cG]$ almost surely for integrable random variable $Y$ that is nonnegative. Thus
-$$\big|\mathbb{E}[X_+\,|\,\cG]\big|+\big|\mathbb{E}[X_-\,|\,\cG]\big| = \mathbb{E}[X_+\,|\,\cG]+\mathbb{E}[X_-\,|\,\cG] = \mathbb{E}[|X|\,|\,\cG]$$ 
-Thus \textbf{(3)} holds.\\
+$$\int_G\EE[X\,|\,\cG]\,dP = \int_GX\,dP \leq \int_GY\,dP = \int_G\EE[Y\,|\,\cG]\,dP$$
+Since conditional expectations with respect to $\cG$ are $\cG$-measurable, we deduce that $\EE[X\,|\,\cG] \leq \EE[Y\,|\,\cG]$.\\
+Next we prove \textbf{(2)}. Pick $a, b\in \CC$. We have
+$$\int_G\EE[a\cdot X+b\cdot Y\,|\,\cG]\,dP = \int_G(a\cdot X+b\cdot Y)\,dP = a\cdot \int_GX\,dP+b\cdot \int_GY\,dP =$$
+$$= a\cdot \int_G\EE[X\,|\,\cG]\,dP+b\cdot \int_G\EE[Y\,|\,\cG]\,dP =\int_G\big(a\cdot \EE[X\,|\,\cG]+b\cdot \EE[Y\,|\,\cG]\big)\,dP$$
+for every $G\in \cG$. Since conditional expectations with respect to $\cG$ is $\cG$-measurable, we derive that $\EE[a\cdot X+b\cdot Y\,|\,\cG] = a\cdot \EE[X\,|\,\cG]+b\cdot \EE[Y\,|\,\cG]$.\\
+For \textbf{(3)} assume pick $\alpha \in \CC$ such that $|\alpha| = 1$ and
+$$\alpha \cdot \EE[X\,|\,\cG] = \big|\EE[X\,|\,\cG]\big|$$
+Then
+$$\big|\EE[X\,|\,\cG]\big| = \alpha \cdot \EE[X\,|\,\cG] = \EE[\alpha \cdot X\,|\,\cG] =  \EE[\mathrm{re}\left(\alpha \cdot X\right)\,|\,\cG] \leq \EE[|\alpha \cdot X|\,|\,\cG] = \EE[|X|\,|\,\cG]$$
+almost surely. Thus \textbf{(3)} holds.\\
 Finally we prove that \textbf{(4)}. Set $Z_n = \sup_{k\leq n}|X_k-X|$. Then $Z_n$ is nonnegative measurable function and $\lim_{n\ra +\infty}Z_n = 0$. Moreover, $\big\{Z_n\big\}_{n\in \NN}$ is pointwise decreasing and dominated by $2\cdot |Y|$. Thus by dominated convergence theorem
-$$\lim_{n\ra +\infty}\int Z_n \,dP= 0$$
-Next $\big\{\mathbb{E}[Z_n\,|\,\cG]\big\}_{n\in \NN}$ are measurable, almost surely pointwise decreasing and nonnegative functions. Moreover, we derive that
-$$\lim_{n\ra +\infty}\int \mathbb{E}[Z_n\,|\,\cG]\,dP =\lim_{n\ra +\infty}\int Z_n\,dP = 0$$
+$$\lim_{n\ra +\infty}\int_{\Omega} Z_n \,dP= 0$$
+Next $\big\{\EE[Z_n\,|\,\cG]\big\}_{n\in \NN}$ are measurable, almost surely pointwise decreasing and nonnegative functions. Moreover, we derive that
+$$\lim_{n\ra +\infty}\int_{\Omega} \EE[Z_n\,|\,\cG]\,dP =\lim_{n\ra +\infty}\int_{\Omega} Z_n\,dP = 0$$
 and hence 
-$$\int \left(\lim_{n\ra +\infty}\mathbb{E}[Z_n\,|\,\cG]\right)\,dP = 0$$
-This implies that $\lim_{n\ra +\infty}\mathbb{E}[Z_n\,|\,\cG]=0$ almost surely. By \textbf{(1)} and \textbf{(3)} we have
-$$\sup_{k\geq n}\big|\mathbb{E}[X_k\,|\,\cG]-\mathbb{E}[X\,|\,\cG]\big|= \sup_{k\geq n}\mathbb{E}[|X_k-X|\,\big|\,\cG] \leq \mathbb{E}[Z_n\,|\,\cG] $$
+$$\int_{\Omega} \left(\lim_{n\ra +\infty}\EE[Z_n\,|\,\cG]\right)\,dP = 0$$
+This implies that $\lim_{n\ra +\infty}\EE[Z_n\,|\,\cG]=0$ almost surely. By \textbf{(1)} and \textbf{(3)} we have
+$$\sup_{k\geq n}\big|\EE[X_k\,|\,\cG]-\EE[X\,|\,\cG]\big|= \sup_{k\geq n}\EE[|X_k-X|\,\big|\,\cG] \leq \EE[Z_n\,|\,\cG] $$
 Therefore
-$$\lim_{n\ra +\infty}\sup_{k\geq n}\big|\mathbb{E}[X_k\,|\,\cG]-\mathbb{E}[X\,|\,\cG]\big| = 0$$
-and hence $\lim_{n\ra +\infty}\mathbb{E}[X_n\,|\,\cG] = \mathbb{E}[X\,|\,\cG]$.
+$$\lim_{n\ra +\infty}\sup_{k\geq n}\big|\EE[X_k\,|\,\cG]-\EE[X\,|\,\cG]\big| = 0$$
+and hence $\lim_{n\ra +\infty}\EE[X_n\,|\,\cG] = \EE[X\,|\,\cG]$.
 \end{proof}
 
 \begin{theorem}\label{theorem:multiplicationofconditionalexpectation}
-Let $X$, $Y:\Omega \ra \RR$ be random variables such that $X$, $Y\cdot X$ are integrable and $Y$ is $\cG$-measurable. Then
-$$\mathbb{E}[Y\cdot X\,|\,\cG] = Y\cdot \mathbb{E}[X\,|\,\cG]$$
+Let $X$, $Y:\Omega \ra \CC$ be random variables such that $X$, $Y\cdot X$ are integrable and $Y$ is $\cG$-measurable. Then
+$$\EE[Y\cdot X\,|\,\cG] = Y\cdot \EE[X\,|\,\cG]$$
 \end{theorem}
 \begin{proof}
-First note that the result is clear for $Y = \chi_G$ where $G\in \cG$ and also for positive linear combination of such functions. Next suppose that $Y:\Omega \ra \RR$ is nonnegative and integrable $\cG$-measurable function. Then there exists an nondecreasing sequence $\{Y_n\}_{n\in \NN}$ of positive combinations of indicator functions of sets in $\cG$ that converges to $Y$. Note that $|Y_n\cdot X|\leq |Y_n|\cdot |X|$ and $|Y_n\cdot \mathbb{E}[X\,|\,\cG]|\leq Y\cdot |\mathbb{E}[X\,|\,\cG]|$ for $n\in \NN$. Then by dominated convergence theorem
-$$\int_G \mathbb{E}[Y\cdot X\,|\,\cG]\,dP = \int_G Y\cdot X\,dP = \lim_{n\ra +\infty}\int_G Y_n\cdot X\,dP = \lim_{n\ra +\infty} \int_G Y_n\cdot \mathbb{E}[X\,|\,\cG]\,dP = \int_G Y\cdot \mathbb{E}[X\,|\,\cG]\,dP$$
-for every $G\in \cG$. This implies that $\mathbb{E}[Y\cdot X\,|\,\cG] = Y\cdot \mathbb{E}[X\,|\,\cG]$. Suppose now that $Y:\Omega \ra \RR$ is a $\cG$-measurable and integrable random variable. We write $Y_+ = \max\{0,Y\}$ and $Y_- = \min\{0,Y\}$. Then
-$$\mathbb{E}[Y\cdot X\,|\,\cG] = \mathbb{E}[Y_+\cdot X\,|\,\cG]+\mathbb{E}[Y_-\cdot X\,|\,\cG]= Y_+\cdot\mathbb{E}[ X\,|\,\cG] + Y_-\cdot\mathbb{E}[ X\,|\,\cG] = Y\cdot \mathbb{E}[X\,|\,\cG]$$
-This proves the assertion for integrable and $\cG$-measurable random variable $Y$. Suppose now that $Y$ is $\cG$-measurable and $Y\cdot X$, $X$ are integrable. Define $W_n=\{\omega \in \Omega\,|\,Y(\omega)\in [-n, n]\}$ and $Y_n = \chi_{W_n}\cdot Y$. Then $\{Y_n\}_{n\in \NN}$ is a sequence of integrable $\cG$-measurable random variables convergent to $Y$ and $|Y_n\cdot X|\leq |Y\cdot X|$ for every $n\in \NN$. Hence
-$$Y\cdot \mathbb{E}[X\,|\,\cG] = \lim_{n\ra +\infty}Y_n\cdot \mathbb{E}[X\,|\,\cG] = \lim_{n\ra +\infty}\mathbb{E}[Y_n\cdot X\,|\,\cG] = \mathbb{E}[Y\cdot X\,|\,\cG]$$
+First note that the result is clear for $Y = \chi_G$ where $G\in \cG$ and also for $\RR_{>0}$-linear combination of such functions. Next suppose that $Y:\Omega \ra \CC$ is integrable $\cG$-measurable function with nonnegative real values. Then there exists an nondecreasing sequence $\{Y_n\}_{n\in \NN}$ of positive combinations of indicator functions of sets in $\cG$ that converges to $Y$. Note that $|Y_n\cdot X|\leq |Y_n|\cdot |X|$ and $|Y_n\cdot \EE[X\,|\,\cG]|\leq Y\cdot |\EE[X\,|\,\cG]|$ for $n\in \NN$. Then by dominated convergence theorem
+$$\int_G \EE[Y\cdot X\,|\,\cG]\,dP = \int_G Y\cdot X\,dP = \lim_{n\ra +\infty}\int_G Y_n\cdot X\,dP = \lim_{n\ra +\infty} \int_G Y_n\cdot \EE[X\,|\,\cG]\,dP = \int_G Y\cdot \EE[X\,|\,\cG]\,dP$$
+for every $G\in \cG$. This implies that $\EE[Y\cdot X\,|\,\cG] = Y\cdot \EE[X\,|\,\cG]$. Suppose now that $Y:\Omega \ra \CC$ is a $\cG$-measurable and integrable random variable taking real values. We write $Y_+ = \max\{0,Y\}$ and $Y_- = \min\{0,Y\}$. Then
+$$\EE[Y\cdot X\,|\,\cG] = \EE[Y_+\cdot X\,|\,\cG]+\EE[Y_-\cdot X\,|\,\cG]= Y_+\cdot\EE[ X\,|\,\cG] + Y_-\cdot\EE[ X\,|\,\cG] = Y\cdot \EE[X\,|\,\cG]$$
+This proves the assertion for every real-valued, integrable and $\cG$-measurable random variable $Y$. Finally suppose that $Y$ is complex valued, $\cG$-measurable and integrable. Write $Y = Y_r + i\cdot Y_i$ for real valued $Y_r, Y_i$ random variables. Then $Y_r, Y_i$ are $\cG$-measurable and integrable. Hence
+$$\EE[Y\cdot X\,|\,\cG] = \EE[Y_r\cdot X\,|\,\cG]+i\cdot \EE[Y_i\cdot X\,|\,\cG]= Y_r\cdot\EE[ X\,|\,\cG] +i\cdot Y_i\cdot\EE[ X\,|\,\cG] = Y\cdot \EE[X\,|\,\cG]$$
+Thus assertion holds for any $\cG$-measurable, integrable random variable $Y:\Omega \ra \CC$. Suppose now that $Y$ is $\cG$-measurable and $Y\cdot X$, $X$ are integrable. Define $W_n=\{\omega \in \Omega\,|\,|Y(\omega)|\leq n\}$ and $Y_n = \chi_{W_n}\cdot Y$. Then $\{Y_n\}_{n\in \NN}$ is a sequence of integrable $\cG$-measurable random variables convergent to $Y$ and $|Y_n\cdot X|\leq |Y\cdot X|$ for every $n\in \NN$. Hence
+$$Y\cdot \EE[X\,|\,\cG] = \lim_{n\ra +\infty}Y_n\cdot \EE[X\,|\,\cG] = \lim_{n\ra +\infty}\EE[Y_n\cdot X\,|\,\cG] = \EE[Y\cdot X\,|\,\cG]$$
 and the last equality follow from \textbf{(4)} of Theorem \ref{theorem:mainpropertiesofconditionalexpectation}
 \end{proof}
 
 \begin{theorem}[Tower Property]\label{theorem:towerproperty}
-Let $\cG_2\subseteq \cG_1\subseteq \cF$ be $\sigma$-algebras and $X:\Omega \ra \RR$ be an integrable random variable. Then
-$$\mathbb{E}[\mathbb{E}[X\,|\,\cG_1]\,|\,\cG_2] = \mathbb{E}[X\,|\,\cG_2]$$
+Let $\cG_2\subseteq \cG_1\subseteq \cF$ be $\sigma$-algebras and $X:\Omega \ra \CC$ be an integrable random variable. Then
+$$\EE[\EE[X\,|\,\cG_1]\,|\,\cG_2] = \EE[X\,|\,\cG_2]$$
 \end{theorem}
 \begin{proof}
 Fix $G\in \cG_2$. Then also $G\in \cG_1$ and
-$$\int_G\mathbb{E}[\mathbb{E}[X\,|\,\cG_1]\,|\,\cG_2]\,dP = \int_G \mathbb{E}[X\,|\,\cG_1]\,dP = \int_G X\,dP = \int_G \mathbb{E}[X\,|\,\cG_2]\,dP$$ 
-Therefore, we derive that $\mathbb{E}[\mathbb{E}[X\,|\,\cG_1]\,|\,\cG_2] = \mathbb{E}[X\,|\,\cG_2]$.
+$$\int_G\EE[\EE[X\,|\,\cG_1]\,|\,\cG_2]\,dP = \int_G \EE[X\,|\,\cG_1]\,dP = \int_G X\,dP = \int_G \EE[X\,|\,\cG_2]\,dP$$ 
+Therefore, we derive that $\EE[\EE[X\,|\,\cG_1]\,|\,\cG_2] = \EE[X\,|\,\cG_2]$.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:Jenseninequality}
 Let $\cG$ be a $\sigma$-subalgebra of $\cF$, $X:\Omega \ra \RR$ be an integrable random variable and $\phi:\RR\ra \RR$ be a convex function. Suppose that $\phi(X)$ is integrable. Then
-$$\phi\left(\mathbb{E}[X\,|\,\cG]\right)\leq \mathbb{E}[\phi(X)\,|\,\cG]$$
+$$\phi\left(\EE[X\,|\,\cG]\right)\leq \EE[\phi(X)\,|\,\cG]$$
 \end{theorem}
 \begin{proof}
 Let $L_{\phi}$ be a set of functions $\RR\ni x\mapsto a\cdot x+b\in \RR$ for $a$, $b\in \RR$ such that $a\cdot x+b\leq \phi(x)$ for every $x\in \RR$. Since $\phi$ is convex, we derive that for every $x\in \RR$ we have $\phi(x) = \sup_{l\in L_{\phi}}l(x)$. Hence
-$$\phi\left(\mathbb{E}[X\,|\,\cG]\right)=\sup_{l\in L_{\phi}} l\left(\mathbb{E}[X\,|\,\cG]\right) = \sup_{l\in L_{\phi}}\mathbb{E}[l(X)\,|\,\cG]\leq \mathbb{E}[\phi(X)\,|\,\cG]$$
+$$\phi\left(\EE[X\,|\,\cG]\right)=\sup_{l\in L_{\phi}} l\left(\EE[X\,|\,\cG]\right) = \sup_{l\in L_{\phi}}\EE[l(X)\,|\,\cG]\leq \EE[\phi(X)\,|\,\cG]$$
 \end{proof}
 
 
