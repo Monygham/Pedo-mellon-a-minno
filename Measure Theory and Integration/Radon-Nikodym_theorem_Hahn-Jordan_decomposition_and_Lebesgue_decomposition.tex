@@ -119,7 +119,7 @@ $$\nu_s = \nu^r_s+i\cdot \nu^i_s,\,\nu_a = \nu^r_a+i\cdot \nu^i_a$$
 satisfy $\nu_s \perp \mu$, $\nu_a \ll \mu$.
 \end{proof}
 
-\section{Radon-Nikodym theorem and derivatives}
+\section{Radon-Nikodym theorem}
 \noindent
 In this section we prove famous result of Radon and Nikodym.
 
@@ -246,16 +246,85 @@ $$g(x) = |h(x)|\cdot g(x) = |f(x)|$$
 almost everywhere with respect to $\mu$.
 \end{proof}
 
-\section{Banach space of complex and real measures}
+\section{Banach spaces of complex and real measures}
 
-\begin{proposition}
+\begin{proposition}\label{proposition:variationismeasure}
 Let $\mu$ be a complex measure on $(X,\Sigma)$. For every $A\in \Sigma$ we define
 $$|\mu|(A) = \sup \bigg\{\sum_{n\in \NN}|\mu(A_n)|\,\bigg|\,A = \bigcup_{n\in \NN}A_n\mbox{ is a partition of }A\mbox{ onto subsets in }\Sigma\bigg\}$$
 Then $|\mu|$ is a finite measure on $(X,\Sigma)$.
 \end{proposition}
+\begin{proof}
+Let $\mu = \mu^r + i\cdot \mu^i$ be decomposition onto real and imaginary part. Then $\mu^r,\mu^i$ are finite, signed measures. By Theorem \ref{theorem:jordansdecomposition} we derive that there exist decompositions $\mu^r = \mu^r_+ - \mu^r_-$, $\mu^i = \mu^i_+ - \mu^i_-$ such that $\mu^r_+,\mu^r_-,\mu^i_+,\mu^i_-$ are finite measures and $\mu^r_+\perp \mu^r_-,\mu^i_+\perp \mu^i_-$. Then for every partition
+$$A = \bigcup_{n\in \NN}A_n$$
+of $A \in \Sigma$ onto sets in $\Sigma$ we have
+$$\sum_{n\in \NN}|\mu(A_n)| = \sum_{n\in \NN}\sqrt{\left(\mu^r(A_n)\right)^2 + \left(\mu^i(A_n)\right)^2} \leq \sum_{n\in \NN}\left(|\mu^r(A_n)| + |\mu^i(A_n)|\right) \leq$$
+$$\leq \sum_{n\in \NN}\left(\mu^r_+(A_n)+\mu^r_-(A_n) + \mu^i_+(A_n) + \mu^i_-(A_n)\right) =\mu^r_+(A)+\mu^r_-(A) + \mu^i_+(A) + \mu^i_-(A)$$
+Left hand side of the inequality does not depend on the partition and hence
+$$|\mu|(A) \leq \mu^r_+(A)+\mu^r_-(A) + \mu^i_+(A) + \mu^i_-(A)$$
+This implies that $|\mu|(A)\in \RR$ for every $A\in \Sigma$. Note also that $|\mu|(\emptyset)=0$. Suppose now that $A\in \Sigma$ and we have partitions
+$$A = \bigcup_{n\in \NN}A_{n} = \bigcup_{n\in \NN}C_n,\,A_n = \bigcup_{m\in \NN}A_{n,m}\mbox{ for every }n\in \NN$$
+onto subsets in $\Sigma$. Then
+$$\sum_{n\in \NN}|\mu(C_n)| \leq \sum_{n\in \NN}\sum_{m\in \NN}|\mu(A_n\cap C_m)|\leq \sum_{n\in \NN}|\mu|(A_n)$$
+and
+$$\sum_{n\in \NN}\left(\sum_{m\in \NN}|\mu(A_{n,m})|\right)\leq |\mu|(A)$$
+These inequalities imply that
+$$|\mu|(A) \leq \sum_{n\in \NN}|\mu|(A_n)\leq |\mu|(A)$$
+Therefore, $|\mu|$ is a finite measure.
+\end{proof}
 
+\begin{definition}
+Let $\mu$ be a complex measure on $(X,\Sigma)$. Then we define
+$$||\mu|| = |\mu|(X)$$
+and call it \textit{the total variation of $\mu$}.
+\end{definition}
 
+\begin{theorem}\label{theorem:Banachspaceofmeasures}
+Let $(X,\Sigma)$ be a measurable space and $\cM(X,\Sigma)$ be a space of all complex measures on $(X,\Sigma)$. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $\cM(X,\Sigma)$ is a $\CC$-linear space.
+\item The mapping
+$$\cM(X,\Sigma)\ni \mu \mapsto ||\mu||\in [0,+\infty)$$
+is a norm on that space.
+\item Suppose that $\{\mu_n\}_{n\in \NN}$ is a sequence of complex measures on $(X,\Sigma)$ that is a Cauchy sequence with respect to total variation. Then there exists a complex measure $\mu$ such that
+$$\lim_{n\ra +\infty}\mu_n = \mu$$
+Moreover, for every $A\in \Sigma$ we have
+$$\lim_{n\ra +\infty}\mu_n(A) = \mu(A)$$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We left \textbf{(1)} and \textbf{(2)} for the reader as an exercise. Fix $A\in \Sigma$. Then
+$$|\mu_n(A) - \mu_m(A)| \leq |\mu_n - \mu_m|(A) \leq ||\mu_n - \mu_m||$$
+for every $n,m\in \NN$. Since $\{\mu_n\}_{n\in \NN}$ is a Cauchy sequence with respect to total variation, we derive that there exists the limit of $\{\mu_n(A)\}_{n\in \NN}$. We denote
+$$\mu(A) = \lim_{n\ra +\infty}\mu_n(A)$$
+Suppose that
+$$A = \bigcup_{k\in \NN}A_k$$
+for $A\in \Sigma$ and $A_k\in \Sigma$ for $k\in \NN$. Assume that sets $\{A_k\}_{k \in \NN}$ are disjoint. Pick $N\in \NN$. Then
+$$\sum_{k=0}^N|\mu_n(A_k) - \mu(A_k)| = \lim_{m\ra +\infty}\sum_{k=0}^N|\mu_n(A_k) - \mu_m(A_k)| \leq$$
+$$\leq \limsup_{m\ra +\infty}\sum_{k\in \NN}|\mu_n(A_k) - \mu_m(A_k)|\leq \limsup_{m\ra +\infty}|\mu_n - \mu_m|(A) = \limsup_{m\ra +\infty}||\mu_n - \mu_m||$$
+This implies that
+$$\sum_{k\in \NN}|\mu_n(A_k) - \mu(A_k)| \leq  \limsup_{m\ra +\infty}||\mu_n - \mu_m||$$
+regardless of set $A$ and partition $\{A_k\}_{k\in \NN}$. Thus we deduce that there exists a sequence $\{a_n\}_{n\in \NN}$ of real numbers, convergent to zero such that
+$$\sum_{k\in \NN}|\mu_n(A_k) - \mu(A_k)| \leq a_n$$
+for every $n\in \NN$, $A\in \Sigma$ and partition $\{A_k\}_{k\in \NN}$ as above. Therefore, for fixed $N\in \NN$ we have
+$$\big|\mu(A) - \sum_{k=0}^N\mu(A_k)\big| \leq |\mu(A) - \mu_n(A)| + \big|\mu_n(A) - \sum_{k=0}^N\mu_n(A_k)\big| + \sum_{k=0}^N |\mu_n(A_k) - \mu(A_k)\big| \leq $$
+$$\leq |\mu(A) - \mu_n(A)| + \big|\mu_n(A) - \sum_{k=0}^N\mu_n(A_k)\big| + \sum_{k\in \NN} |\mu_n(A_k) - \mu(A_k)\big| \leq  2a_n +  \big|\mu_n(A) - \sum_{k=0}^N\mu_n(A_k)\big|$$
+Hence we derive that 
+$$\mu(A) = \sum_{k\in \NN}\mu(A_k)$$
+thus $\mu$ is a complex measure and according to
+$$\sum_{k\in \NN}|\mu_n(A_k) - \mu(A_k)| \leq a_n$$
+for every $n\in \NN$ we deduce that
+$$\lim_{n\ra +\infty}|\mu_n - \mu|(A) = 0$$
+for every $A\in \Sigma$. Hence also $\lim_{n\ra +\infty}||\mu_n-\mu|| = 0$. This finishes the proof of \textbf{(3)}.
+\end{proof}
 
+\begin{corollary}
+Let $(X,\Sigma)$ be a measurable space and $\mu$ be a measure on $\Sigma$. Then there exists an isometrical embedding
+$$L^1(X,\mu)\ni f\mapsto \left(\Sigma \ni A \mapsto \int_Af\,d\mu\in \CC\right)\in \cM(X,\Sigma)$$
+of Banach spaces. If in addition $\mu$ is $\sigma$-finite, then it is surjective map onto the subspace of $\cM(X,\Sigma)$ consisting of complex measures which are absolutely continous with respect to $\mu$.
+\end{corollary}
+\begin{proof}
+The first assertion follows from Corollary \ref{corollary:totalvariationofcontinuousmeasure} and Theorem \ref{theorem:Banachspaceofmeasures}. The second is a recapitulation of Theorem \ref{theorem:radonnikodymmain}.
+\end{proof}
 
 
 \small
