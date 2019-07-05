@@ -29,7 +29,7 @@ for every family $\{A_n\}_{n\in \NN}$ of pairwise disjoint subsets of $\Sigma$.
 \end{definition}
 
 \begin{definition}
-Let $(X,\Sigma)$ be a measurable space and let $\mu,\nu$ be two measures (either complex or signed) on $(X,\Sigma)$. Suppose that for every set $A$ in $\Sigma$ we have
+Let $(X,\Sigma)$ be a measurable space and let $\mu$ be a measure on $(X,\Sigma)$. Assume that $\nu$ is either complex or signed measure on $(X,\Sigma)$. Suppose that for every set $A$ in $\Sigma$ we have
 $$\mu(A) = 0\,\Rightarrow \nu(A)=0$$
 Then we write $\nu \ll \mu$ and say that $\nu$ is \textit{absolutely continuous with respect to $\mu$}.
 \end{definition}
@@ -86,7 +86,7 @@ If $\nu(A)\in \RR\cup \{+\infty\}$ for every $A\in \Sigma$, then we apply the re
 Let $\left(X,\Sigma\right)$ be a measurable space and $\nu:\Sigma\ra \ol{\RR}$ be a signed measure. Then either $\nu_+$ or $\nu_-$ is finite.
 \end{corollary}
 \begin{proof}
-According to Theorem \ref{theorem:jordansdecomposition} we have $\nu = \nu_+-\nu_-$ and both $\nu_+$, $\nu_-$ are nonnegative measures such that $\nu_+\perp \nu_-$. We cannot have $\nu_+(X)=\nu_-(X)=+\infty$, because then $\nu(X)$ would be undefined in $\ol{\RR}$. This implies that either $\nu_+(X)\in \RR$ or $\nu_-(X)\in \RR$.
+According to Theorem \ref{theorem:jordansdecomposition} we have $\nu = \nu_+-\nu_-$ and both $\nu_+$, $\nu_-$ are measures such that $\nu_+\perp \nu_-$. We cannot have $\nu_+(X)=\nu_-(X)=+\infty$, because then $\nu(X)$ would be undefined. This implies that either $\nu_+(X)\in \RR$ or $\nu_-(X)\in \RR$.
 \end{proof}
 
 \section{Lebesgue decomposition}
@@ -98,17 +98,17 @@ onto pairwise disjoint elements of $\Sigma$ such that $\mu(X_n)\in \RR$ for ever
 \end{definition}
 
 \begin{theorem}[Lebesgue decomposition]\label{theorem:lebesguedecomposition}
-Let $(X,\Sigma)$ be a measurable space and let $\mu$ be a $\sigma$-finite, measure on $(X,\Sigma)$. Suppose that $\nu$ is either a signed and $\sigma$-finite measure or a complex measure on $(X,\Sigma)$. Then there exists a unique decomposition 
+Let $(X,\Sigma)$ be a measurable space and let $\mu$ be a measure on $(X,\Sigma)$. Suppose that $\nu$ is either a signed and $\sigma$-finite measure or a complex measure on $(X,\Sigma)$. Then there exists a unique decomposition 
 $$\nu = \nu_s + \nu_a$$
 of measure $\nu$ such that $\nu_s \perp \mu$ and $\nu_a \ll \mu$.
 \end{theorem}
 \begin{proof}
-Suppose first that $\nu$ is finite measure. Consider
+Suppose first that $\nu$ is a finite measure. Consider
 $$\alpha = \sup_{A\in \Sigma,\,\mu(A)=0}\nu(A)$$
 Since $\nu$ is finite, we derive that $\alpha \in \RR$. Consider a sequence $\{A_n\}_{n\in \NN}$ such that $A_n\in \Sigma$, $\mu(A_n)=0$ for every $n\in \NN$ and $\lim_{n\ra +\infty}\nu(A_n)=\alpha$. Define $S = \bigcup_{n\in \NN}A_n$. Then $\mu(S) = 0$ and $\nu(S) = \alpha$. Moreover, if $A\in \Sigma$ and $A\cap S = \emptyset$, then $\mu(A) = 0$ implies $\nu(A) = 0$. Now we define $\nu_s(A) = \nu(A\cap S)$ and $\nu_a(A) = \nu(A\setminus S)$ for every $A\in \Sigma$. Then $\nu = \nu_s+\nu_a$ and $\nu_s \perp \mu$, $\nu_a \ll \mu$.\\
 Now assume that $\nu$ is $\sigma$-finite measure. There exists a decomposition
 $$X = \bigcup_{n\in \NN}X_n$$
-onto pairwise disjoint elements of $\Sigma$ such that $\mu(X_n)\in \RR$ for every $n\in \NN$. We define $\nu_n(A) = \nu(A\cap X_n)$ for each $n\in \NN$ and $A\in \Sigma$. Then $\nu_n$ is a finite measure. By the case above we find $\nu_n = \nu_{ns}+ \nu_{na}$ and $\nu_{ns}\perp \mu$, $\nu_{na} \ll \mu$ for some measures on $\Sigma$. Now we define
+onto pairwise disjoint elements of $\Sigma$ such that $\nu(X_n)\in \RR$ for every $n\in \NN$. We define $\nu_n(A) = \nu(A\cap X_n)$ for each $n\in \NN$ and $A\in \Sigma$. Then $\nu_n$ is a finite measure. By the case above we find $\nu_n = \nu_{ns}+ \nu_{na}$ and $\nu_{ns}\perp \mu$, $\nu_{na} \ll \mu$ for some measures on $\Sigma$. Now we define
 $$\nu_s = \sum_{n\in \NN}\nu_{ns},\,\nu_a=\sum_{n\in \NN}\nu_{an}$$
 Then $\nu = \nu_s+\nu_a$ and $\nu_s \perp \mu$, $\nu_a \ll \mu$.\\
 Now consider the case when $\nu$ is $\sigma$-finite and signed measure. According to Theorem \ref{theorem:jordansdecomposition} we write $\nu = \nu_+-\nu_-$ for measures $\nu_+,\nu_-$ such that $\nu_+\perp \nu_-$. Then $\nu_+,\nu_-$ are $\sigma$-finite measures. According to previous case we can write $\nu_+ = \nu_{+s}+\nu_{+a}$, $\nu_- = \nu_{-s} + \nu_{-a}$ for measures such that $\nu_{+s} \perp \mu,\nu_{-s} \perp \mu,\nu_{+a}\ll \mu,\nu_{-a}\ll\mu$. Then $\nu_s = \nu_{+s} - \nu_{-s}, \nu_a=\nu_{+a}-\nu_{-a}$ are signed measures and $\nu_s \perp \mu, \nu_a\ll\mu$.\\
@@ -135,7 +135,7 @@ for every $A\in \Sigma$. We may assume that $P_{n,0}=X$, $P_{n,k+1}\subseteq P_{
 $$\mu\left(\bigcap_{k\in \NN}P_{n,k}\right) = \nu\left(\bigcap_{k\in \NN}P_{n,k}\right)=0$$
 and may assume that this set is empty for every $n\in \NN$. Pick $n\in \NN$. We define a function $f_n:X\ra \CC$ by formula
 $$f_n(x) =\sum_{k\in \NN} \frac{k}{2^n}\cdot \chi_{P_{n,k}\setminus P_{n,k+1}}(x)$$
-Clearly $f_n$ is a measurable function with real nonnegative values. If $m,n\in \NN$ and $n\leq m$, then we have
+Clearly $f_n$ is a measurable function with real, nonnegative values. If $m,n\in \NN$ and $n\leq m$, then we have
 $$f_n(x)\leq f_m(x)\leq f_n(x)+\frac{1}{2^n}$$
 Thus $\{f_n\}_{n\in \NN}$ is a nondecreasing sequence of measurable functions convergent uniformly to a measurable function $f:X\ra \CC$. Moreover, for every $A\in \Sigma$ and $n\in \NN$ we have
 $$\nu(A)-\frac{1}{2^n}\mu(A) = \sum_{k\in \NN}\nu\left(A\cap \left(P_{n,k}\setminus P_{n,k+1}\right)\right)-\frac{1}{2^n}\mu(A)  \leq$$
@@ -155,12 +155,12 @@ Assume now that $\nu$ and $\mu$ are $\sigma$-finite measures on $(X,\Sigma)$. Th
 $$X= \bigcup_{n\in \NN}X_n$$
 onto disjoint subsets in $\Sigma$ such that $\nu(X_n)\in \RR$ and $\mu(X_n)\in \RR$ for every $n\in \NN$. For every $n\in \NN$ we define $\nu_n(A) = \nu(A\cap X_n)$ and $\mu_n(A) = \mu(A\cap X_n)$ for $A\in \Sigma$. Since $\nu \ll \mu$, we derive that $\nu_n\ll \mu_n$ for every $n\in \NN$. Measures $\{\nu_n\}_{n\in \NN}$ and $\{\mu_n\}_{n\in \NN}$ are finite. By finite case of the theorem we deduce that for each $n\in \NN$ there exists a measurable function $f_n:X\ra \CC$ such that
 $$\nu_n(A) = \int_A f_n\,d\mu_n$$
-for every $A\in \Sigma$. Note that $f_n$ is real nonnegative and can be set equal to zero outside $X_n$. Thus
+for every $A\in \Sigma$. Note that $f_n$ admits real, nonnegative values $\mu$-almost everywhere and can be set equal to zero outside $X_n$. Thus
 $$\nu_n(A) = \int_A f_n\,d\mu_n = \int_A f_n\,d\mu$$
 for every $A\in \Sigma$. Therefore, we deduce that
 $$\nu(A) = \sum_{n\in \NN}\nu(A\cap X_n) = \sum_{n\in \NN}\nu_n(A) =\sum_{n\in \NN}\int_Af_n\,d\mu = \int_A \left(\sum_{n\in \NN}f_n\right)\,d\mu$$
 by monotone convergence theorem.\\
-Assume now that both $ \nu$ is $\sigma$-finite, signed measure. In this situation we may write $\nu = \nu_+-\nu_-$ for measures $\nu_+, \nu_-$ such that $\nu_+\perp \nu_-$. There exists a set $P\in \Sigma$ such that $\nu_-(P)=\nu_+(X\setminus P)=0$. Then $\nu_+ \ll \mu$ and $\nu_-\ll \mu$. By the case considered previously there exist measurable functions $f_+:X\ra \CC$, $f_-:X\ra \CC$ such that
+Assume now that both $ \nu$ is $\sigma$-finite, signed measure. In this situation we may write $\nu = \nu_+-\nu_-$ for measures $\nu_+, \nu_-$ such that $\nu_+\perp \nu_-$. Then $\nu_+ \ll \mu$ and $\nu_-\ll \mu$.  There exists a set $P\in \Sigma$ such that $\nu_-(P)=\nu_+(X\setminus P)=0$. By the case considered previously there exist measurable functions $f_+:X\ra \CC$, $f_-:X\ra \CC$ such that
 $$\nu_+(A) = \int_Af_+\,d\mu,\,\nu_-(A) = \int_Af_-\,d\mu$$
 for every $A\in \Sigma$. Moreover, we may assume that $f_+$ is equal to zero outside $P$ and $f_-$ is equal to zero outside $X\setminus P$. From this we have
 $$\nu(A) = \nu_+(A) + \nu_-(A) = \int_Af_+\,d\mu + \int_Af_-\,d\mu = \int_A\left(f_+-f_-\right)\,d\mu $$
@@ -175,7 +175,7 @@ for every $A\in \Sigma$.
 \section{Banach space of complex measures}
 
 \begin{proposition}\label{proposition:variationismeasure}
-Let $\mu$ be a complex measure on $(X,\Sigma)$. For every $A\in \Sigma$ we define
+Let $\mu$ be a complex measure on a measurable space $(X,\Sigma)$. For every $A\in \Sigma$ we define
 $$|\mu|(A) = \sup \bigg\{\sum_{n\in \NN}|\mu(A_n)|\,\bigg|\,A = \bigcup_{n\in \NN}A_n\mbox{ is a partition of }A\mbox{ onto subsets in }\Sigma\bigg\}$$
 Then $|\mu|$ is a finite measure on $(X,\Sigma)$.
 \end{proposition}
@@ -185,7 +185,7 @@ $$A = \bigcup_{n\in \NN}A_n$$
 of $A \in \Sigma$ onto sets in $\Sigma$ we have
 $$\sum_{n\in \NN}|\mu(A_n)| = \sum_{n\in \NN}\sqrt{\left(\mu^r(A_n)\right)^2 + \left(\mu^i(A_n)\right)^2} \leq \sum_{n\in \NN}\left(|\mu^r(A_n)| + |\mu^i(A_n)|\right) \leq$$
 $$\leq \sum_{n\in \NN}\left(\mu^r_+(A_n)+\mu^r_-(A_n) + \mu^i_+(A_n) + \mu^i_-(A_n)\right) =\mu^r_+(A)+\mu^r_-(A) + \mu^i_+(A) + \mu^i_-(A)$$
-Left hand side of the inequality does not depend on the partition and hence
+Right hand side of the inequality does not depend on the partition and hence
 $$|\mu|(A) \leq \mu^r_+(A)+\mu^r_-(A) + \mu^i_+(A) + \mu^i_-(A)$$
 This implies that $|\mu|(A)\in \RR$ for every $A\in \Sigma$. Note also that $|\mu|(\emptyset)=0$. Suppose now that $A\in \Sigma$ and we have partitions
 $$A = \bigcup_{n\in \NN}A_{n} = \bigcup_{n\in \NN}C_n,\,A_n = \bigcup_{m\in \NN}A_{n,m}\mbox{ for every }n\in \NN$$
@@ -210,7 +210,7 @@ Let $(X,\Sigma)$ be a measurable space and $\cM(X,\Sigma)$ be a space of all com
 \item $\cM(X,\Sigma)$ is a $\CC$-linear space.
 \item The mapping
 $$\cM(X,\Sigma)\ni \mu \mapsto ||\mu||\in [0,+\infty)$$
-is a norm on that space.
+is a norm.
 \item Suppose that $\{\mu_n\}_{n\in \NN}$ is a sequence of complex measures on $(X,\Sigma)$ that is a Cauchy sequence with respect to total variation. Then there exists a complex measure $\mu$ such that
 $$\lim_{n\ra +\infty}\mu_n = \mu$$
 Moreover, for every $A\in \Sigma$ we have
@@ -220,9 +220,7 @@ $$\lim_{n\ra +\infty}\mu_n(A) = \mu(A)$$
 \begin{proof}
 We left \textbf{(1)} and \textbf{(2)} for the reader as an exercise. Fix $A\in \Sigma$. Then
 $$|\mu_n(A) - \mu_m(A)| \leq |\mu_n - \mu_m|(A) \leq ||\mu_n - \mu_m||$$
-for every $n,m\in \NN$. Since $\{\mu_n\}_{n\in \NN}$ is a Cauchy sequence with respect to total variation, we derive that there exists the limit of $\{\mu_n(A)\}_{n\in \NN}$. We denote
-$$\mu(A) = \lim_{n\ra +\infty}\mu_n(A)$$
-Suppose that
+for every $n,m\in \NN$. Since $\{\mu_n\}_{n\in \NN}$ is a Cauchy sequence with respect to total variation, we derive that there exists the limit $\mu(A)$ of $\{\mu_n(A)\}_{n\in \NN}$. Suppose that
 $$A = \bigcup_{k\in \NN}A_k$$
 for $A\in \Sigma$ and $A_k\in \Sigma$ for $k\in \NN$. Assume that sets $\{A_k\}_{k \in \NN}$ are disjoint. Pick $N\in \NN$. Then
 $$\sum_{k=0}^N|\mu_n(A_k) - \mu(A_k)| = \lim_{m\ra +\infty}\sum_{k=0}^N|\mu_n(A_k) - \mu_m(A_k)| \leq$$
@@ -246,11 +244,11 @@ for every $A\in \Sigma$. Hence also $\lim_{n\ra +\infty}||\mu_n-\mu|| = 0$. This
 \section{Applications of Radon-Nikodyn theorem}
 
 \begin{proposition}\label{proposition:derivativeandintegration}
-Let $\mu$ be a measure on $(X,\Sigma)$ and $f:X\ra \CC$ be a measurable function taking nonnegative values. We define
-$$\nu(A) = \int_Ag\,d\mu$$
+Let $\mu$ be a measure on a measurable space $(X,\Sigma)$ and $f:X\ra \CC$ be a measurable function taking real, nonnegative values. We define
+$$\nu(A) = \int_Af\,d\mu$$
 for every $A\in \Sigma$. Then $\nu$ is a measure on $(X,\Sigma)$ and the equality
 $$\int_X g\,d\nu =\int_Xg\cdot f\,d\mu$$
-holds for every measurable function $g:X\ra \CC$ that is either $\nu$-integrable or takes nonnegative values.
+holds for every measurable function $g:X\ra \CC$ that is either $\nu$-integrable or takes real, nonnegative values.
 \end{proposition}
 \begin{proof}
 Suppose that $A = \bigcup_{n\in \NN}A_n$ for $A\in \Sigma$ and $A_n\in \Sigma$ for every $n\in \NN$. Assume also that $\{A_n\}_{n\in \NN}$ are pairwise disjoint. Then by monotone convergence theorem
@@ -262,7 +260,7 @@ contains $\{\chi_A\}_{A\in \Sigma}$, is closed under $\RR_{\geq 0}$-linear combi
 \end{proof}
 
 \begin{theorem}\label{theorem:structureofcomplexmeasures}
-Let $\mu$ be a complex measure on $(X,\Sigma)$. There exists a measurable function $f:X\ra \CC$ such that
+Let $\mu$ be a complex measure on a measurable space $(X,\Sigma)$. There exists a measurable function $f:X\ra \CC$ such that
 $$\mu(A) = \int_Af\,d|\mu|$$
 for every $A\in \Sigma$ and $|f(x)|=1$ for every $x$ in $X$.
 \end{theorem}
@@ -295,7 +293,7 @@ Thus changing values of $f$ on a set of measure $|\mu|$ equal to zero, we may as
 \end{proof}
 
 \begin{corollary}\label{corollary:totalvariationofcontinuousmeasure}
-Let $\mu$ be a measure on $(X,\Sigma)$ and $f:X\ra \CC$ be a $\mu$-integrable function. Define
+Let $\mu$ be a measure on a measurable space $(X,\Sigma)$ and $f:X\ra \CC$ be a $\mu$-integrable function. Define
 $$\nu(A) = \int_Af\,d\mu$$
 for every $A\in \CC$. Then $\nu$ is a complex measure on $(X,\Sigma)$ and
 $$|\nu|(A) = \int_A|f|\,d\mu$$
