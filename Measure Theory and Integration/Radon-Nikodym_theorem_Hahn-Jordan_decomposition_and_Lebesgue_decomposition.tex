@@ -8,11 +8,11 @@
 
 \section{Introduction}
 \noindent
-This notes are devoted to more advanced notions in measure theory. Tools presented here are indispensable in probability theory and statistics. We refer to \cite{Introductiontomeasuretheory} for extensive introduction to measure theory. 
+This notes are devoted to advanced notions in measure theory. Tools presented here are indispensable in probability theory, statistics and applications to geometry. We refer to \cite{Introductiontomeasuretheory} for basic measure theory and to \cite{Integration} for integration theory.
 
 \section{Signed and Complex Measures}
 \noindent
-In this section we define extension of the usual notion of measure. 
+In this section we define extensions of the notion of measure. 
 
 \begin{definition}
 Let $\left(X,\Sigma\right)$ be a measurable space. \textit{A signed measure on $(X,\Sigma)$} is a function $\nu:\Sigma\ra \ol{\RR}$ such that $\nu(\emptyset)=0$ and 
@@ -33,7 +33,7 @@ Then we write $\nu \ll \mu$ and say that $\nu$ is \textit{absolutely continuous 
 \end{definition}
 
 \begin{definition}
-Let $(X,\Sigma)$ be a measurable space and let $\mu$, $\nu$ be two measures (either complex or signed) on $(X,\Sigma)$. Suppose that there exists a set $S\in \Sigma$ such that
+Let $(X,\Sigma)$ be a measurable space and let $\mu$, $\nu$ be two measures either complex or signed on $(X,\Sigma)$. Suppose that there exists a set $S\in \Sigma$ such that
 $$\mu(A\cap S) = 0,\,\nu(A\setminus S) = 0$$
 for every $A \in \Sigma$. Then we write $\nu \perp \mu$ and say that $\nu$ is \textit{singular with respect to $\mu$}.
 \end{definition}
@@ -133,7 +133,7 @@ for every $A\in \Sigma$. We may assume that $P_{n,0}=X$, $P_{n,k+1}\subseteq P_{
 $$\mu\left(\bigcap_{k\in \NN}P_{n,k}\right) = \nu\left(\bigcap_{k\in \NN}P_{n,k}\right)=0$$
 and may assume that this set is empty for every $n\in \NN$. Pick $n\in \NN$. We define a function $f_n:X\ra \CC$ by formula
 $$f_n(x) =\sum_{k\in \NN} \frac{k}{2^n}\cdot \chi_{P_{n,k}\setminus P_{n,k+1}}(x)$$
-Clearly $f_n$ is a measurable function with real, nonnegative values. If $m,n\in \NN$ and $n\leq m$, then we have
+Clearly $f_n$ is a measurable, nonnegative function. If $m,n\in \NN$ and $n\leq m$, then we have
 $$f_n(x)\leq f_m(x)\leq f_n(x)+\frac{1}{2^n}$$
 Thus $\{f_n\}_{n\in \NN}$ is a nondecreasing sequence of measurable functions convergent uniformly to a measurable function $f:X\ra \CC$. Moreover, for every $A\in \Sigma$ and $n\in \NN$ we have
 $$\nu(A)-\frac{1}{2^n}\mu(A) = \sum_{k\in \NN}\nu\left(A\cap \left(P_{n,k}\setminus P_{n,k+1}\right)\right)-\frac{1}{2^n}\mu(A)  \leq$$
@@ -153,7 +153,7 @@ Assume now that $\nu$ and $\mu$ are $\sigma$-finite measures on $(X,\Sigma)$. Th
 $$X= \bigcup_{n\in \NN}X_n$$
 onto disjoint subsets in $\Sigma$ such that $\nu(X_n)\in \RR$ and $\mu(X_n)\in \RR$ for every $n\in \NN$. For every $n\in \NN$ we define $\nu_n(A) = \nu(A\cap X_n)$ and $\mu_n(A) = \mu(A\cap X_n)$ for $A\in \Sigma$. Since $\nu \ll \mu$, we derive that $\nu_n\ll \mu_n$ for every $n\in \NN$. Measures $\{\nu_n\}_{n\in \NN}$ and $\{\mu_n\}_{n\in \NN}$ are finite. By finite case of the theorem we deduce that for each $n\in \NN$ there exists a measurable function $f_n:X\ra \CC$ such that
 $$\nu_n(A) = \int_A f_n\,d\mu_n$$
-for every $A\in \Sigma$. Note that $f_n$ admits real, nonnegative values $\mu$-almost everywhere and can be set equal to zero outside $X_n$. Thus
+for every $A\in \Sigma$. Note that $f_n$ has nonnegative values $\mu$-almost everywhere and can be set equal to zero outside $X_n$. Thus
 $$\nu_n(A) = \int_A f_n\,d\mu_n = \int_A f_n\,d\mu$$
 for every $A\in \Sigma$. Therefore, we deduce that
 $$\nu(A) = \sum_{n\in \NN}\nu(A\cap X_n) = \sum_{n\in \NN}\nu_n(A) =\sum_{n\in \NN}\int_Af_n\,d\mu = \int_A \left(\sum_{n\in \NN}f_n\right)\,d\mu$$
@@ -242,23 +242,23 @@ for every $A\in \Sigma$. Hence also $\lim_{n\ra +\infty}||\mu_n-\mu|| = 0$. This
 \section{Applications of Radon-Nikodyn theorem}
 
 \begin{proposition}\label{proposition:derivativeandintegration}
-Let $\mu$ be a measure on a measurable space $(X,\Sigma)$ and $f:X\ra \CC$ be a measurable function taking real, nonnegative values. We define
+Let $\mu$ be a measure on a measurable space $(X,\Sigma)$ and $f:X\ra \ol{\RR}$ be a measurable, nonnegative function. We define
 $$\nu(A) = \int_Af\,d\mu$$
 for every $A\in \Sigma$. Then $\nu$ is a measure on $(X,\Sigma)$ and the equality
 $$\int_X g\,d\nu =\int_Xg\cdot f\,d\mu$$
-holds for every measurable function $g:X\ra \CC$ that is either $\nu$-integrable or takes real, nonnegative values.
+holds if $g$ is either $\mu$-integrable function $g:X\ra \CC$ of a measurable, nonnegative function $g:X\ra \ol{\RR}$.
 \end{proposition}
 \begin{proof}
 Suppose that $A = \bigcup_{n\in \NN}A_n$ for $A\in \Sigma$ and $A_n\in \Sigma$ for every $n\in \NN$. Assume also that $\{A_n\}_{n\in \NN}$ are pairwise disjoint. Then by monotone convergence theorem
 $$\nu(A) = \int_A f\,d\mu = \int_X\chi_A\cdot f\,d\mu = \int_X\left(\sum_{n\in \NN}\chi_{A_n}\cdot f\right)\,d\mu = \sum_{n\in \NN}\int_X\chi_{A_n}\cdot f\,d\mu = \sum_{n\in \NN}\int_{A_n}f\,d\mu = \sum_{n\in \NN}\nu(A_n)$$
 Moreover, we have $\nu(\emptyset) = 0$. Thus $\nu$ is a measure on $(X,\Sigma)$.\\
-For the second part of the statement note that the family of measurable functions $g:X\ra \CC$ satisfying equality
+For the second part of the statement note that the family of measurable, nonnegative functions $g:X\ra \ol{\RR}$ satisfying equality
 $$\int_Xg\,d\nu = \int_Xg\cdot f\,d\mu$$
-contains $\{\chi_A\}_{A\in \Sigma}$, is closed under $\RR_{\geq 0}$-linear combinations of measurable functions taking nonnegative values, if it contains nondecreasing sequence $\{g_n:X\ra \CC\}_{n\in \NN}$ of measurable functions taking only nonnegative values, then it also contains its limit. Thus this family contains all measurable functions $g:X\ra \CC$ taking nonnegative values. Since every real valued, $\nu$-integrable function $g:X\ra \CC$ is a difference of a two $\nu$-integrable functions taking nonnegative values, we deduce that this family contains all real, $\nu$-integrable functions. Finally, if it contains two $\nu$-integrable, real valued functions, then it contains its $\CC$-linear combination. Thus it contains all $\nu$-integrable functions.
+contains $\{\chi_A\}_{A\in \Sigma}$, is closed under linear combinationss with nonnegative coefficients, if it contains nondecreasing sequence $\{g_n:X\ra \ol{\RR}\}_{n\in \NN}$, then it also contains its pointwise limit. Thus this family contains all measurable, nonnegative functions $g:X\ra \ol{\RR}$. Since every real valued, $\nu$-integrable function $g:X\ra \CC$ is a difference of a two $\nu$-integrable, nonnegative functions, we deduce that this family contains all real, $\nu$-integrable functions. Finally, if it contains two $\nu$-integrable, real valued functions, then it contains its $\CC$-linear combination. Thus it contains all $\nu$-integrable functions.
 \end{proof}
 
 \begin{theorem}\label{theorem:structureofcomplexmeasures}
-Let $\mu$ be a complex measure on a measurable space $(X,\Sigma)$. There exists a measurable function $f:X\ra \CC$ such that
+Let $\mu$ be a complex measure on a measurable space $(X,\Sigma)$. There exists an $|\mu|$-integrable function $f:X\ra \CC$ such that
 $$\mu(A) = \int_Af\,d|\mu|$$
 for every $A\in \Sigma$ and $|f(x)|=1$ for every $x$ in $X$.
 \end{theorem}
@@ -276,7 +276,7 @@ by convexity of $D$. This implies that for every closed disc in $\CC$ disjoint f
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-Consider Radon-Nikodym derivative $f:X\ra \CC$ of $\mu$ with respect to $|\mu|$. It exists according to Theorem \ref{theorem:radonnikodymmain}. Since
+Consider Radon-Nikodym derivative $f:X\ra \CC$ of $\mu$ with respect to $|\mu|$. It exists according to Theorem \ref{theorem:radonnikodymmain} and is $|\mu|$-integrable because $\mu$ is complex measure. Since
 $$\frac{1}{\mu(A)}\bigg|\int_Af\,d|\mu|\bigg| \leq \frac{1}{\mu(A)}\int_A|f|\,d|\mu| = \frac{|\mu|(A)}{\mu(A)}\leq 1$$
 for every $A\in \Sigma$ such that $A\in \Sigma$, we derive by Lemma \ref{lemma:convexvaluesofintegral} that $f(x)\in D$ almost everywhere with respect to measure $|\mu|$, where $D$ is a closed unit disc in $\CC$. Changing values of $f$ on a set of measure $|\mu|$ equal to zero, we may assume that $f(x)\in D$ for every $x$ in $X$.\\
 Suppose next that  $0<\alpha < 1$ and denote $A_{\alpha} = f^{-1}\left(\{z\in \CC\mid|f(z)|\leq \alpha \}\right)$. Let
