@@ -115,12 +115,14 @@ By Lemma \ref{lemma:sigmacompactopensubgroup} there exists an open subgroup $H$ 
 $${\mu_1}_{\mid \cB(H)} = a\cdot {\mu_2}_{\mid \cB(H)}$$
 For this consider $\mu = {\mu_1}_{\mid \cB(H)} + {\mu_2}_{\mid \cB(H)}$ and denote ${\mu_2}_{\mid \cB(H)}$ by $\nu$. Measures $\mu, \nu$ are $\sigma$-finite as they are finite on compact subsets of $H$ and $H$ is $\sigma$-compact space. Moreover, $\nu \ll \mu$ and hence by {\cite[Theorem 5.3]{RadonNikodymHahnJordanLebesguedecomposition}} there exists a Borel function $f:H\ra \CC$ such that
 $$\nu(A) = \int_Afd\mu$$
-for every Borel subset $A$ in $H$. Since $\mu$ and $\nu$ are nonnegative measures, we derive that $f$ is real and nonnegative $\mu$-almost everywhere. Hence we may assume that $f$ takes only nonnegative real values. Next as $\nu, \mu$ are left-invariant, we deduce that
-$$0 = \int_{xA}fd\mu -\int_Afd\mu = \int_A\left(f\cdot l_x - f\right)d\mu$$
-for every $x\in H$, where $l_x:H\ra H$ is a continuous map given by left multiplication by $x$. This implies that for given $x\in H$ the set
-$$A_x = \big\{y\in H\,\big|\,f(xy) - f(y) \neq 0\big\}$$
-has measure $\mu$ zero. By Fubini's theorem applied to measure $\mu\otimes \mu$ on $H\times H$, we deduce that there exists $y\in H$ such that the set
-$$B = \big\{x\in H\,\big|\,f(xy) -f(y) \neq 0\big\}$$
+for every Borel subset $A$ in $H$. Since $\mu$ and $\nu$ are nonnegative measures, we derive that $f$ is real and nonnegative $\mu$-almost everywhere. Hence we may assume that $f$ takes only nonnegative real values. We define
+$$E = \big\{(x,y)\in H\times H\,\big|\,f(xy) - f(y) \neq 0\big\}$$
+Next as $\nu, \mu$ are left-invariant, we deduce that 
+$$0 = \nu\big(l_x(A)\big) - \nu(A) = \int_{l_x(A)}fd\mu -\int_{A}fd\mu = \int_{A}\left(f\cdot l_x - f\right)d\mu$$
+for every $x\in H$ and $A\in \cB(H)$, where $l_x:H\ra H$ is a continuous map given by left multiplication by $x$. This implies that for all $x\in H$ we have
+$$\mu(E_x) = 0$$
+By {\cite[Theorem 7.5]{Integration}} applied to measure $\mu\otimes \mu$ on $H\times H$, we deduce that there exists $y\in H$ such that the set
+$$E_y = \big\{x\in H\,\big|\,f(xy) -f(y) \neq 0\big\}$$
 has measure $\mu$ zero. This implies that $f$ is constant almost everywhere with respect to $\mu$ and thus there exists nonzero $b\in \RR$ such that $\nu = b\cdot \mu$. Hence we have
 $${\mu_1}_{\mid \cB(H)} = a\cdot {\mu_2}_{\mid \cB(H)}$$
 for $a = (1-b)b^{-1}$. Let $K$ be a compact subset of $G$. Since $H$ is an open subgroup of $G$, there exists $x_1,...,x_n\in G$ such that
