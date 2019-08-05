@@ -7,7 +7,7 @@
 
 \section{Introduction}
 \noindent
-In this notes we present functorial approach to algebraic geometry. Our aim is to show that functorial and geometrical techniques are interrelated in a very efficient way.
+In this notes we introduce functorial approach to algebraic geometry. Our aim is to show that functorial and geometrical techniques are interrelated in a very efficient way.
 
 \section{\textit{k}-functors}
 
@@ -28,7 +28,7 @@ Let $\fX$ and $\fY$ be $k$-functors. Assume that $A$ is a $k$-algebra, $B$ is an
 { \Mor_A\left(\fX_A,\fY_A\right) &  \Mor_B\left(\fX_B,\fY_B\right) & \Mor_C\left(\fX_C,\fY_C\right)\\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$\sigma\mapsto \sigma_{B} $} (m-1-2)
-(m-1-2) edge node[above] {$\sigma\mapsto \sigma_{B} $} (m-1-3);
+(m-1-2) edge node[above] {$\sigma\mapsto \sigma_{C} $} (m-1-3);
 \end{tikzpicture}
 \end{center}
 equals
@@ -61,14 +61,14 @@ Let $\fX$ be a $k$-functor. Suppose $A$ is a $k$-algebra and $x\in \fX(A)$. Then
 $$\fX(A)\cong \Mor_{A}\left(\bd{1}_{A},\fX_A\right)$$
 \end{fact}
 \begin{proof}
-We left to the reader as an exercise.
+Left to the reader as an exercise.
 \end{proof}
 
 \begin{definition}
 Let $\fX$ be a $k$-functor and $A$ be a $k$-algebra. The set $\fX(A)$ is called \textit{the set of $A$-points of $\fX$}.
 \end{definition}
 \noindent
-Now let $\fX$, $\fY$ be $k$-functors such that for every $k$-algebra $A$ the class $\Mor_A\left(\fX_A,\fY_A\right)$ is a set. Suppose next that $\fU$ is a $k$-functor and $\sigma:\fU\times \fX\ra \fY$ is a morphism of $k$-functors. Fix $x\in \fU(A)$. We denote by $i_x:\bd{1}_A\ra \fU_A$ the morphism of $A$-functors corresponding to $x$ by means of Fact \ref{fact:points}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\sigma_A\cdot \left(1_{\fX_A}\times i_x\right)$ is isomorphic to a morphism $\tau_x:\fX_A\ra \fY_A$ of $A$-functors. Next $x\mapsto \tau_x$ gives rise to a morphism $\tau:\fU\ra \iMor_k\left(\fX,\fY\right)$ of $k$-functors and hence we have a map of classes
+Now let $\fX$, $\fY$ be $k$-functors such that for every $k$-algebra $A$ the class $\Mor_A\left(\fX_A,\fY_A\right)$ is a set. Suppose next that $\fU$ is a $k$-functor and $\sigma:\fU\times \fX\ra \fY$ is a morphism of $k$-functors. Fix $x\in \fU(A)$. We denote by $i_x:\bd{1}_A\ra \fU_A$ the morphism of $A$-functors corresponding to $x$ by means of Fact \ref{fact:points}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\sigma_A\cdot \left(i_x\times 1_{\fX_A}\right)$ is isomorphic to a morphism $\tau_x:\fX_A\ra \fY_A$ of $A$-functors. Next $x\mapsto \tau_x$ gives rise to a morphism $\tau:\fU\ra \iMor_k\left(\fX,\fY\right)$ of $k$-functors and hence we have a map of classes
 $$\Mor_k(\fU\times \fX,\fY)\ni \sigma\mapsto \tau\in \Mor_k\left(\fU,\iMor_k(\fX,\fY)\right)$$
 Now we have the following result {\cite[Theorem 5.3]{Presheaves}}.
 
@@ -108,7 +108,7 @@ Let $\fX$ be a presheaf on the category of $k$-schemes. Recall that by {\cite[Th
 (m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \langle \fX(f''_{ij}) \cdot pr_j\rangle_{(i,j)}$} (m-1-3);
 \end{tikzpicture}
 \end{center}
-is a kernel of a pair of arrows, where for every $(i,j)\in I\times I$ morphisms $f'_{ij}$ and $f'_{ji}$ form a cartesian square
+is a kernel of a pair of arrows, where for every $(i,j)\in I\times I$ morphisms $f'_{ij}$ and $f''_{ij}$ form a cartesian square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -151,7 +151,7 @@ Let $\fX$ be a $k$-functor. Again by {\cite[Theorem 3.5]{Sheaves}} $\fX$ is a Za
 (m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \langle \fX(f''_{ij}) \cdot pr_j\rangle_{(i,j)}$} (m-1-3);
 \end{tikzpicture}
 \end{center}
-is a kernel of a pair of arrows, where for every $(i,j)\in I\times I$ morphisms $f'_{ij}$ and $f'_{ji}$ form a cocartesian square
+is a kernel of a pair of arrows, where for every $(i,j)\in I\times I$ morphisms $f'_{ij}$ and $f''_{ij}$ form a cocartesian square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -227,7 +227,7 @@ of $k$-functors. By universal property of cartesian squares there exists a uniqu
  {} & \fB_{\Spec A} &  \fY       \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node [right= 2pt, below= 2pt] {$ n $} (m-2-2)
-(m-2-2) edge node [right=2pt, below= 2pt] {$\tau' $} (m-2-3)
+(m-2-2) edge node [above = 2pt] {$\tau' $} (m-2-3)
 (m-2-2) edge node [left= 2pt] {$\sigma' $} (m-3-2)
 (m-2-3) edge node [right] {$\sigma $} (m-3-3)
 (m-3-2) edge node [below] {$\tau $} (m-3-3);
@@ -244,7 +244,7 @@ is commutative. Since $\fZ$ is Zariski local, there exists a morphism $\rho:\fB_
 \noindent
 Let $X$ be a $k$-scheme. We define a $k$-functor $\fP_X$ by formula
 $$\fP_X(A) = \Mor_k\left(\Spec A,X\right)$$
-That is $\fP_X$ is the restriction of the presheaf on $\Sch_k$ represented by $X$ to the category $Alg_k$ along the functor $\Spec:\Alg_k\ra \Sch_k$. Next if $f:X\ra Y$ is a morphism of $k$-schemes, then $\fP_f$ is the restriction of a morphism of presheaves on $\Sch_k$ represented by $f$ to the category of $k$-algebras along $\Spec:\Alg_k\ra \Sch_k$. Thus we have a functor
+That is $\fP_X$ is the restriction of the presheaf on $\Sch_k$ represented by $X$ to the category $\Alg_k$ along the functor $\Spec:\Alg_k\ra \Sch_k$. Next if $f:X\ra Y$ is a morphism of $k$-schemes, then $\fP_f$ is the restriction of a morphism of presheaves on $\Sch_k$ represented by $f$ to the category of $k$-algebras along $\Spec:\Alg_k\ra \Sch_k$. Thus we have a functor
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -269,7 +269,7 @@ Functor
 is full, faithful and its image consists of Zariski local $k$-functors. Moreover, $\fB$ preserves limits.
 \end{fact}
 \begin{proof}
-Note that the presheaf $h_X$ on $\Sch_k$ represented by $X$ is a Zariski sheaf. Indeed, this just rephrase standard fact that morphism of schemes can be glued in Zariski topology. Next according to Theorem \ref{theorem:sheavesonschemesarelocalkfunctors} the functor $\Spec:\Alg_k\ra \Sch_k$ induces an equivalence between the category of Zariski sheaves and the category of local Zariski $k$-functors. Thus $\fP_X$ is a local Zariski $k$-functor and $\fB$ it is full and faithful. Note that Yoneda embedding $h:\Sch_k\ra \widehat{\Sch_k}$ and the functor
+Note that the presheaf $h_X$ on $\Sch_k$ represented by $X$ is a Zariski sheaf. Indeed, this just rephrases standard fact that morphism of schemes can be glued in Zariski topology. Next according to Theorem \ref{theorem:sheavesonschemesarelocalkfunctors} the functor $\Spec:\Alg_k\ra \Sch_k$ induces an equivalence between the category of Zariski sheaves and the category of local Zariski $k$-functors. Thus $\fP_X$ is a local Zariski $k$-functor and $\fB$ it is full and faithful. Note that Yoneda embedding $h:\Sch_k\ra \widehat{\Sch_k}$ and the functor
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -331,8 +331,8 @@ Let $\fX$ be a $k$-functor and $\big\{\sigma_i:\fX_i\ra \fX\big\}_{i\in I}$ be a
 (m-1-1) edge node[left] {$ $} (m-2-1);
 \end{tikzpicture}
 \end{center}
-in which bottom vertical morphism $\tau:\fB_{\Spec A}\ra \fX$ corresponds to $x$. We say that $\{\sigma_i\}_{i\in I}$ is \textit{an open cover of $\fX$} if for every $k$-scheme $X$ and $x\in \fX(X)$ we have
-$$\Spec A=\bigcup_{i\in I}D(\ideal{a}_i)$$
+in which bottom vertical morphism $\tau:\fB_{\Spec A}\ra \fX$ corresponds to $x$. We say that $\{\sigma_i\}_{i\in I}$ is \textit{an open cover of $\fX$} if for every $k$-algebra $A$ and $x\in \fX(A)$ we have
+$$\Spec A = \bigcup_{i\in I}D(\ideal{a}_i)$$
 or in other words $A = \sum_{i\in I}\ideal{a}_i$.
 \end{definition}
 
@@ -345,16 +345,14 @@ Let $\fX$ be a $k$-functor. Then the following are equivalent.
 \end{enumerate}
 \end{theorem}
 \noindent
-The proof depends on few lemmas.
+The proof depends on two lemmas. Check {\cite[Definition 7.1]{Sheaves}} for the notion of locally surjective morphism.
 
 \begin{lemma}\label{lemma:openimmersionslocallyondomainarezariskilocalkfunctors}
 Let $f:X\ra Y$ be a morphism of $k$-schemes. Suppose that $f$ is surjective morphism and an open immersion locally on $X$. Then $\fB_f$ is a locally surjective morphism of Zariski local $k$-functors. 
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Let $A$ be a $k$-algebra and $g:\Spec A\ra Y$ be an open immersion of schemes. Since $f$ is surjective and an open immersion locally on $X$, there exist a Zariski cover $\big\{f_i:A\ra A_i\big\}_{i\in I}$ and a family $\big\{g_i:\Spec A_i\ra X\big\}_{i\in I}$ of open immersions such that $f\cdot g_i = g\cdot \Spec f_i$ for every $i\in I$. This implies that $\fB_f(g_i) = \fB_Y(f_i)(g)$ for every $i\in I$. Thus $\fB_f$ is a locally surjective morphism of Zariski local $k$-functors.
+Let $A$ be a $k$-algebra and $g:\Spec A\ra Y$ be a morphism of $k$-schemes. Since $f$ is surjective and an open immersion locally on $X$, there exist a Zariski cover $\big\{f_i:A\ra A_i\big\}_{i\in I}$ and a family $\big\{g_i:\Spec A_i\ra X\big\}_{i\in I}$ of morphisms of $k$-schemes such that $f\cdot g_i = g\cdot \Spec f_i$ for every $i\in I$. This implies that $\fB_f(g_i) = \fB_Y(f_i)(g)$ for every $i\in I$. Thus $\fB_f$ is a locally surjective morphism of Zariski local $k$-functors.
 \end{proof}
-\noindent
-The next lemma is a categorical formulation of the \textit{recollement} technique {\cite[Chapitre 0, 4.1.7]{EGA1new}} and as such it is more convienient in our settings.
 
 \begin{lemma}\label{lemma:recollement}
 Let $X = \coprod_{i\in I}X_i, R = \coprod_{i,j\in I}R_{ij}$ be disjoint sums of $k$-schemes and let $p,q:R\ra X$ be morphisms of $k$-schemes such that
@@ -378,44 +376,19 @@ Then there exist a $k$-scheme $Y$ and a morphism $f:X\ra Y$ of $k$-schemes such 
 is a cokernel of a pair $(\fB_{p},\fB_{q})$ in the category of Zariski local $k$-functors.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-We define first $Y$ and $f$ in the category of topological spaces and continuous maps. For this let $Y$ be the quotient space of $X$ by $R$ and let $f$ be the quotient topological map. Since topologically we have $f\cdot p = f\cdot q$, we deduce that $f_*p_*\cO_R = f_*q_*\cO_R$ and in addition we have a pair
+Let
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{f_*\cO_X &  f_*\cdot {p}_*\cO_R = f_*\cdot {q}_*\cO_R  \\} ;
+{ R &  X & Y  \\} ;
 \path[->,line width=0.8pt,font=\scriptsize]
-(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ f_*p^{\#}  $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ f_*q^{\#} $} (m-1-2);
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q $} (m-1-2)
+(m-1-2) edge node[above] {$ f  $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-of morphisms of sheaves of $k$-algebras on $Y$. We define a sheaf $\cO_Y$ of $k$-algebras to be a kernel of a pair $(f_*p^{\#},f_*q^{\#})$. This sheaf comes with the canonical morphism $f^{\#}:\cO_Y\ra f_*\cO_X$ of sheaves of $k$-algebras. This makes $Y$ into a ringed topological space and $f$ into a morphism of ringed spaces such that $$f \cdot p = f\cdot q$$
-Now we show that $Y$ is a $k$-scheme and $f$ is a morphism of $k$-schemes. For every pair $i,j\in I$ we denote $p(R_{ij}) = X_{ij}$. This is an open subscheme of $X_i$ and moreover, $X_{ii} = X_i$ for every $i\in I$. Next for every $i,j\in I$ we have a commutative triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
-{R_{ij} &  & R_{ji}   \\
-&  X_{ij} &  \\} ;
-\path[->,line width=1.0pt, font=\scriptsize]  
-(m-1-1) edge node[above] {$ s_{ij} $} (m-1-3)
-(m-1-3) edge node[auto] {$q_{ij} $} (m-2-2)
-(m-1-1) edge node[left = 5pt, below = 1pt] {$p_{ij} $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-where $s_{ij}$ is induced by symmetry on $X\times X$ and isomorphisms $p_{ij}$ and $q_{ij}$ are induced by $p$ and $q$, respectively. In particular, $q_{ii} = p_{ii}$ for every $i\in I$. Since both $p, q$ are open maps, we derive that $f$ is an open map. Hence for every $i\in I$ a bijection $X_i\ra f(X_i)$ induced by $f$ is a topological isomorphism. Fix now $i\in I$ and denote $f(X_i)$ by $Y_i$. Note that this is an open subset of $Y$. Morphism $\left(f_*p^{\#}\right)_{Y_i}:\cO_{X_i}\times \prod_{j\neq i}\cO_{X_{ji}} \ra \prod_{j\in I}\cO_{R_{ij}} \times  \prod_{j\neq i}\cO_{R_{ji}}$ is given by
-$$\left(a, (b_{ji})_{j\neq i}\right)  \mapsto \left(\left(p_{ij}^{\#}(a_{\mid X_{ij}})\right)_{j\in I}, \left(p_{ji}^{\#}(b_{ji})\right)_{j\neq i}\right) $$
-and morphism $\left(f_*q^{\#}\right)_{Y_i}:\cO_{X_i}\times \prod_{j\neq i}\cO_{X_{ji}} \ra \prod_{j\in I}\cO_{R_{ji}} \times  \prod_{j\neq i}\cO_{R_{ij}}$ is given by
-$$\left(a, (b_{ji})_{j\neq i}\right)  \mapsto \left(\left(q_{ij}^{\#}(a_{\mid X_{ij}})\right)_{j\in I}, \left(q_{ji}^{\#}(b_{ji})\right)_{j\neq i}\right)$$
-Thus $\left(a, (b_{ji})_{j\neq i}\right)$ lies in the kernel of $\left(\left(f_*p^{\#}\right)_{Y_i}, \left(f_*q^{\#}\right)_{Y_i}\right)$ if and only if
-$$p_{ij}^{\#}(a_{\mid X_{ij}}) = q_{ji}^{\#}(b_{ji}),\,q_{ij}^{\#}(a_{\mid X_{ij}}) = p_{ji}^{\#}(b_{ji})$$
-for every $j\neq i$. This is equivalent with the system of equations
-$$b_{ji} = \left(\left(q_{ji}^{\#}\right)^{-1}\cdot p_{ij}^{\#}\right)(a_{\mid X_{ij}}),\,b_{ji} = \left(\left(p_{ji}^{\#}\right)^{-1}\cdot q_{ij}^{\#}\right)(a_{\mid X_{ij}})$$
-for every $j\neq i$. Since
-$$p_{ji}^{\#}\cdot \left(q^{\#}_{ji}\right)^{-1} = s^{\#}_{ji} = s^{\#}_{ij} = p^{\#}_{ij}\cdot \left(q_{ij}^{\#}\right)^{-1}$$
-for every $i,j\in I$, we derive that the system of equations has a unique solution for every section of $\cO_{X_i}$. This implies that $f^{\#}_{Y_i}:\cO_{Y_i}\ra \cO_{f^{-1}(Y_i)}$ composed with the restriction $\cO_{f^{-1}(Y_i)}\ra \cO_{X_i}$ is an isomorphism. Hence $f$ induces an isomorphism of ringed spaces $X_i\cong Y_i$. Thus for every $i\in I$ ringed space $Y_i$ is a $k$-scheme and $f$ induces isomorphism of $k$-schemes $X_i\cong Y_i$. Note that
-$$Y = f(X) = \bigcup_{i\in I}f(X_i) = \bigcup_{i\in I}Y_i$$
-Therefore, $Y$ is a $k$-scheme and $f:X\ra Y$ is a morphism of $k$-schemes.\\
+be a cokernel in the category of ringed spaces. It exists according to {\cite[Remark 2.3]{LocallyRingedSpaces}}. Moreover, {\cite[Theorem 3.2]{LocallyRingedSpaces}} states that for every $i\in I$ we have an isomorphism of ringed spaces $X_i\cong f(X_i)$ induced by $f$. Therefore, $Y$ is a $k$-scheme and $f:X\ra Y$ is a morphism of $k$-schemes.\\
 Now we verify that $\fB_f$ is the quotient in the category of Zariski local $k$-functors. For this note that we proved above that $f$ is open immersion of $k$-schemes locally on $X$ and it is surjective. Thus by Lemma \ref{lemma:openimmersionslocallyondomainarezariskilocalkfunctors} we derive that $\fB_f$ is a locally surjective morphism of Zariski local $k$-functors. Therefore ({\cite[Theorem 7.3]{Sheaves}}), it suffices to show that the square
 \begin{center}
 \begin{tikzpicture}
@@ -444,7 +417,7 @@ is cartesian. Since $\fB$ preserves limits (Fact \ref{fact:functorsofpoints}), w
 (m-1-2) edge node[right] {$ f $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is cartesian square of $k$-schemes. This is clear since $R_{ij} = X_i\times_YX_j$ for every $i, j\in I$ and hence
+is cartesian square of $k$-schemes. By {\cite[Remark 2.3]{LocallyRingedSpaces}} we have $R_{ij} = X_i\times_YX_j$ for every $i, j\in I$ and hence
 $$X\times_YX = \left(\coprod_{i\in I}X_i\right)\times_Y \left(\coprod_{i\in I}X_i\right) = \coprod_{i,j\in I}\left(X_i\times_YX_j\right) = \coprod_{i,j\in I}R_{ij} = R$$
 Thus the result follows.
 \end{proof}
@@ -804,10 +777,6 @@ Pick an open affine cover $\bigcup_{i\in I}X_i$ of this $A$-scheme such that $\G
 \end{proof}
 \noindent
 The Theorem \ref{theorem:closedimmersionsandinternalhom} is a simple yet powerful result. Before giving any interesting applications we state its immediate consequence.
-
-
-
-
 
 \small
 \bibliographystyle{alpha}
