@@ -1,0 +1,286 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Locally ringed spaces}
+\date{}
+\maketitle
+
+\section{Introduction}
+In this notes we study ringed and locally ringed spaces. Our main results concern existence and construction of colimits in these categories.
+
+\section{The category of locally ringed spaces}
+
+\begin{definition}
+Let $X$ be a topological space and $\cO_X$ be a sheaf of commutative rings on $X$. A pair $(X,\cO_X)$ is called \textit{a ringed space}.
+\end{definition}
+
+\begin{definition}
+Let $(X,\cO_X)$ and $(Y,\cO_Y)$ be ringed spaces. A pair $(f,f^{\#})$ consisting of a continuous map $f:X\ra Y$ and a morphism $f^{\#}:\cO_Y\ra f_*\cO_X$ of sheaves of rings is called \textit{a morphism of ringed spaces}.
+\end{definition}
+\noindent
+Suppose that $(f,f^{\#}:(X,\cO_X)\ra (Y,\cO_Y)$, $(g,g^{\#}):(Y,\cO_Y)\ra (Z,\cO_Z)$ are morphisms of ringed spaces. Then we have the composition
+$$(g,g^{\#})\cdot (f,f^{\#}) = \left(g\cdot f,(g_*f^{\#})\cdot g^{\#}\right):(X,\cO_X)\ra (Z,\cO_Z)$$
+We have the category $\Rs$ of ringed spaces.
+
+\begin{remark}\label{remark:colimitsinringedspaces}
+The category $\Rs$ has all small colimits. We describe them now. We start with coproducts. Suppose that $\big\{(X_i,\cO_{X_i})\big\}_{i\in I}$ is a family of ringed spaces. Let $\coprod_{i\in I}X_i$ be their coproduct (disjoint sum) in the category of topological spaces and for every $i\in I$ let $u_i:X_i\ra \coprod_{i\in I}X_i$ be the canonical topological immersion. Next let $u_i^{\#}:\prod_{i\in I}(u_i)_*\cO_{X_i}\ra (u_i)_*\cO_{X_i}$ be the projection on the $i$-th factor. Then we define a ringed space and family of morphisms of ringed spaces by
+$$(X,\cO_X) = \left(\coprod_{i\in I}X_i,\prod_{i\in I}(u_i)_*\cO_{X_i}\right),\bigg\{(u_i,u_i^{\#}):(X_i,\cO_{X_i})\ra \left(\coprod_{i\in I}X_i,\prod_{i\in I}(u_i)_*\cO_{X_i}\right)\bigg\}_{i\in I} = (X,\cO_X)$$
+This is a coproduct of $\big\{(X_i,\cO_{X_i})\big\}_{i\in I}$ in the category of ringed spaces. Now we describe cokernels. Consider the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{(R,\cO_R) &  (X,\cO_X)   \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ (p,p^{\#})  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ (q,q^{\#}) $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+of ringed spaces. Let $f:X\ra Y$ be a cokernel of the pair $(p,q)$ in the category of topological spaces and consider the kernel
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\cO_Y &f_*\cO_X & f_*p_*\cO_R=f_*q_*\cO_R   \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f^{\#}  $} (m-1-2)
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$f_* p^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$f_*q^{\#} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+in the category of sheaves of rings on $Y$. Then $(Y,\cO_Y)$ together with $(f,f^{\#})$ is a cokernel of the pair $\left((p,p^{\#}),(q,q^{\#})\right)$ in the category of ringed spaces.
+\end{remark}
+
+\begin{definition}
+Let $(X,\cO_X)$ be a ringed space such that for every $x$ in $X$ ring $\cO_{X,x}$ is local. Then $(X,\cO_X)$ is called \textit{a locally ringed space}.
+\end{definition}
+\noindent
+Let $X$ be a ringed space. Suppose that $U$ is an open subset of $X$ and $s\in \Gamma(U,\cO_X)$ is a section. Then we define
+$$U_s = \big\{x\in U\,\big|\,s_{\mid x}\mbox{ is invertible in }\cO_{X,x}\big\}$$
+
+\begin{fact}\label{fact:characterizationoflocallyringed}
+Let $X$ be a ringed space. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $X$ is a locally ringed space.
+\item For every open subset $U$ of $X$ and every section $s\in \Gamma(U,\cO_X)$ we have
+$$U = U_s\cup U_{(1-s)}$$
+\end{enumerate}
+\end{fact}
+\begin{proof}
+We prove $\textbf{(i)} \Rightarrow \textbf{(ii)}$. Assume \textbf{(i)} and pick an open subset $U$ of $X$ together with a section $s\in \Gamma(U,\cO_X)$. For every $x$ in $U$ ring $\cO_{X,x}$ is local and hence at least one $s_{\mid x}, (1-s)_{\mid x}$ is invertible in $\cO_{X,x}$. This implies that
+$$U = U_s\cup U_{(1-s)}$$
+We prove $\textbf{(ii)} \Rightarrow \textbf{(i)}$. Assume \textbf{(ii)} and pick $x$ in $X$ and also $r\in \cO_{X,x}$. Then there exists an open neighborhood $U$ of $x$ and an element $s\in \Gamma(U,\cO_X)$ such that $r = s_{\mid x}$. Since $U = U_s\cup U_{(1-s)}$ by \textbf{(ii)}, we deduce that at least one $s_{\mid x}, (1-s)_{\mid x}$ is invertible in $\cO_{X,x}$. This means that at least one $r, 1-r$ is invertible in $\cO_{X,x}$. Therefore, $\cO_{X,x}$ is local ring.
+\end{proof}
+
+\begin{definition}
+Let $(X,\cO_X), (Y,\cO_Y)$ be locally ringed spaces and let $(f,f^{\#}):(X,\cO_X)\ra (Y,\cO_Y)$ be a morphism of ringed spaces. If for every $x$ in $X$ the induced homomorphism $f^{\#}:\cO_{Y,f(x)}\ra \cO_{X,x}$ is local, then $(f,f^{\#})$ is \textit{a morphism of locally ringed spaces}.
+\end{definition}
+\noindent
+Note that if $:(X,\cO_X),(Y,\cO_Y),(Z,\cO_Z)$ are locally ringed spaces $(f,f^{\#}),(g,g^{\#})$ are morphisms of locally ringed spaces, then $(g,g^{\#})\cdot (f,f^{\#})$ is a morphism of locally ringed spaces. Indeed, for every $x$ in $X$ the composition $f^{\#}\cdot g^{\#}:\cO_{Z,g(f(x))}\ra \cO_{X,x}$ is a local morphism and this is precisely the morphism induced on stalks by $(g_*f^{\#})\cdot g^{\#}:\cO_Z\ra g_*f_*\cO_X$. This implies that there exists a category $\Lrs$ of locally ringed spaces and their morphisms. Moreover, we have the inclusion functor $\Lrs\hookrightarrow \Rs$ that is not full.
+
+\begin{fact}\label{fact:characterizationofmorphismsoflocallyringedspaces}
+Let $X,Y$ be a locally ringed spaces and $f:X\ra Y$ be a morphism of ringed spaces. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $f$ is a morphism of locally ringed spaces.
+\item For every open subset $V$ of $Y$ and every section $s\in \Gamma(V,\cO_Y)$ we have
+$$f^{-1}\left(V\right)_{f^{\#}(s)} = f^{-1}(V_s)$$
+\item For every open subset $V$ of $Y$ and every section $s\in \Gamma(V,\cO_Y)$ we have
+$$f^{-1}\left(V\right)_{f^{\#}(s)} \subseteq f^{-1}(V_s)$$
+\end{enumerate}
+\end{fact}
+\begin{proof}
+We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume \textbf{(i)}. For this note that $x\in f^{-1}(V_s)$ if and only if $f(x)\in V_s$. This holds if and only if $s_{\mid f(x)}$ is invertible in $\cO_{Y,f(x)}$. Since $f^{\#}:\cO_{Y,f(x)}\ra \cO_{X,x}$ is a local morphism by \textbf{(i)}, we derive that $s_{\mid f(x)}$ is invertible in $\cO_{Y,f(x)}$ if and only if $f^{\#}(s)_{\mid x} = f^{\#}(s_{\mid f(x)})$ is invertible in $\cO_{X,x}$. This is equivalent with $x\in f^{-1}(V)_{f^{\#}(s)}$.\\
+The implication $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ is clear.\\
+Now we prove that $\textbf{(iii)}\Rightarrow \textbf{(i)}$. Assume \textbf{(iii)}. Pick $x$ in $X$ and consider a morphism $f^{\#}:\cO_{Y,f(x)}\ra \cO_{X,x}$. Suppose that $r\in \cO_{Y,f(x)}$ and $f^{\#}(r)\in \cO_{X,x}$ is invertible. Then there exists an open neighborhood $V$ of $f(x)$ in $Y$ and a section $s\in \Gamma(V,\cO_Y)$ such that $s_{\mid f(x)} = r$. Then $f^{\#}(r) = f^{\#}(s_{\mid f(x)}) = f^{\#}(s)_{\mid x}$ and hence $x\in f^{-1}(V)_{f^{\#}(s)}$. Thus $x\in f^{-1}(V_s)$ by \textbf{(iii)} and thus $f(x)\in V_s$. Thus means that $r = s_{\mid f(x)}\in \cO_{Y,f(x)}$ is invertible.
+\end{proof}
+
+\begin{definition}
+Let $f:X\ra Y$ be a morphism of ringed spaces. We say that $f$ is \textit{an open immersion of ringed spaces} if $f$ is an open immersion of topological spaces (in particular $f(X)$ is an open subspace of $Y$) and $f^{\#}:\cO_Y\ra f_*\cO_X$ induces an isomorphism $\cO_{f(X)} \cong \left(f_*\cO_X\right)_{\mid f(X)}$.
+\end{definition}
+
+\begin{theorem}\label{theorem:colimitscreationforLrstoRs}
+The inclusion functor $\Lrs\hookrightarrow \Rs$ creates all small colimits.
+\end{theorem}
+\begin{proof}
+Suppose that $\big\{(X_i,\cO_{X_i})\big\}_{i\in I}$ is a family of locally ringed spaces. Then using notation of Remark \ref{remark:colimitsinringedspaces} we have a coproduct in the category of ringed spaces
+$$(X,\cO_X) = \left(\coprod_{i\in I}X_i,\prod_{i\in I}(u_i)_*\cO_{X_i}\right),\bigg\{(u_i,u_i^{\#}):(X_i,\cO_{X_i})\ra \left(\coprod_{i\in I}X_i,\prod_{i\in I}(u_i)_*\cO_{X_i}\right)\bigg\}_{i\in I} = (X,\cO_X)$$
+Note that for every $i\in I$ morphism $(u_i,u_i^{\#})$ is an open immersion of ringed spaces. Thus $(X,\cO_X)$ is a locally ringed space and for every $i\in I$ morphism $(u_i,u_i^{\#})$ is a morphism of locally ringed spaces. This shows that the inclusion functor $\Lrs\hookrightarrow \Rs$ creates coproducts.\\
+Consider now the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{(R,\cO_R) &  (X,\cO_X)   \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ (p,p^{\#})  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ (q,q^{\#}) $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+of locally ringed spaces and their morphisms. Let
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{(R,\cO_R) &  (X,\cO_X) & (Y,\cO_Y)  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ (p,p^{\#})  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ (q,q^{\#}) $} (m-1-2)
+(m-1-2) edge node[above] {$ (f,f^{\#})  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+be the cokernel in the category of ringed spaces described in Remark \ref{remark:colimitsinringedspaces}. In order to show that the inclusion functor $\Lrs\hookrightarrow \Rs$ creates cokernels it suffices to check that $(Y,\cO_Y)$ is a locally ringed space and $(f,f^{\#})$ is a morphism of locally ringed spaces. For this pick an open subset $V$ of $Y$ and $s\in \Gamma(V,\cO_Y)$. Then $p^{\#}(f^{\#}(s)) = q^{\#}(f^{\#}(s))$ by definition of $\cO_Y$ and also $p^{-1}(f^{-1}(V)) = q^{-1}(f^{-1}(V))$ by definition of $f$. Hence
+$$p^{-1}\left(f^{-1}(V)_{f^{\#}(s)}\right) = p^{-1}\left(f^{-1}(V)\right)_{p^{\#}(f^{\#}(s))} = q^{-1}\left(f^{-1}(V)\right)_{q^{\#}(f^{\#}(s))} =  q^{-1}\left(f^{-1}(V)_{f^{\#}(s)}\right)$$
+by Fact \ref{fact:characterizationofmorphismsoflocallyringedspaces}. Since $f$ is a topological cokernel of $(p,q)$, we derive that there exists an open subset $W$ of $V$ such that
+$$f^{-1}(W) = f^{-1}(V)_{f^{\#}(s)}$$
+Now $f^{\#}(s_{\mid W}) = f^{\#}(s)_{\mid f^{-1}(W)} = f^{\#}(s)_{\mid f^{-1}(V)_{f^{\#}(s)}}$ is an invertible element of $\Gamma(W,f_*\cO_X)$. Denote its inverse by $t$. We have
+$$f_*p^{\#}(f^{\#}(s))\cdot f_*p^{\#}(t) = f_*p^{\#}(f^{\#}(s)\cdot t) = 1 = f_*q^{\#}(f^{\#}(s)\cdot t) = f_*q^{\#}(f^{\#}(s))\cdot f_*q^{\#}(t)$$ 
+and hence
+$$f_*p^{\#}(t) = f_*q^{\#}(t)$$
+This implies by definition of $\cO_Y$ that there exists $r\in \Gamma(W,\cO_Y)$ such that $f^{\#}(r) = t$. Now
+$$1 = f^{\#}(s)\cdot t = f^{\#}(s\cdot r)$$
+and since $f^{\#}$ is injective, we derive that $r$ is an inverse of $s$ in $\Gamma(W,\cO_Y)$. Thus $s$ is an invertible element of $\Gamma(W,\cO_Y)$. Hence $W\subseteq V_s$. Since $f^{-1}(W) = f^{-1}(V)_{f^{\#}(s)}$ and $f$ is surjective, we derive that $W = V_s$ and
+$$f^{-1}(V_s) = f^{-1}(V)_{f^{\#}(s)}$$
+This holds for every section of $\cO_Y$ on $V$. This property together with Fact \ref{fact:characterizationoflocallyringed} applied to a locally ringed space $X$ yield
+$$f^{-1}\left(V_s\cup V_{(1-s)}\right)= f^{-1}(V_s)\cup f^{-1}(V_{(1-s)}) = f^{-1}(V)_{f^{\#}(s)}\cup f^{-1}(V)_{1-f^{\#}(s)} = f^{-1}(V)$$
+Again since $f$ is surjective, we deduce that $V = V_s\cup V_{(1-s)}$. By Fact \ref{fact:characterizationoflocallyringed} we deduce that $Y$ is a locally ringed space. Next by Fact \ref{fact:characterizationofmorphismsoflocallyringedspaces} and equality
+$$f^{-1}(V_s) = f^{-1}(V)_{f^{\#}(s)}$$
+we deduce that $(f,f^{\#})$ is a morphism of locally ringed spaces.
+\end{proof}
+\noindent
+Let $(X,\cO_X),(Y,\cO_Y)$ be ringed spaces and $(f,f^{\#}):(X,\cO_X)\ra (Y,\cO_Y)$ be their morphism. From now by the usual abuse of notation we say that $X,Y$ are ringed spaces and $f:X\ra Y$ is their morphism.\\
+Suppose now that $X$ is a locally ringed space. For every $x$ in $X$ we denote by $\ideal{m}_x$ the unique maximal ideal of $\cO_{X,x}$ and we denote by $k(x)$ the field $\cO_{X,x}/\ideal{m}_x$. Next if $U$ is an open neighborhood of $x$ and $s\in \Gamma(U,\cO_X)$ is a section, then we define $s(x)\in k(x)$ as an element $$s_{\mid x}\,\mathrm{mod}\,\ideal{m}_x\in k(x)$$
+In particular, for every open subset $U$ of $X$ and a section $s\in \Gamma(U,\cO_X)$ we have
+$$U_s = \{x\in U\,|\,s(x)\neq 0\}$$
+
+\begin{definition}
+Consider a pair of morphism of locally ringed spaces
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{R &  X \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+and let $U$ be an open subset of $X$. If $p^{-1}(U) = q^{-1}(U)$, then $U$ is \textit{a saturated subset for a pair $(p,q)$}.
+\end{definition}
+
+\begin{corollary}\label{proposition:cokernelsarelocalonquotient}
+Consider a cokernel
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{R &  X & Y  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q $} (m-1-2)
+(m-1-2) edge node[above] {$ f  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+in the category of locally ringed spaces. Suppose that $U$ is an open subset of $X$ saturated with respect to $(p,q)$. Then $f(U)$ is open in $Y$ and the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{p^{-1}(U)=q^{-1}(U) &  U & f(U)  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p_U  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_U $} (m-1-2)
+(m-1-2) edge node[above] {$ f_U  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a cokernel of $(p_U,q_U)$, where $f_U:U\ra f(U)$ is induced by $f$ and $p_U,q_U$ are induced by $p, q$, respectively.
+\end{corollary}
+\begin{proof}
+The proof follows from Theorem \ref{theorem:colimitscreationforLrstoRs} and the construction of cokernels in $\Rs$ descibed by Remark \ref{remark:colimitsinringedspaces}.
+\end{proof}
+
+\section{Recollement of ringed spaces}
+
+\begin{definition}
+Let $X, R$ be objects and let $p,q:R\ra X$ be morphism in some category $\cC$. Suppose that for every object $Y$ of $\cC$ we have injective map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=12em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor_{\cC}\left(Y,R\right)  &  \Mor_{\cC}\left(Y,X\right)\times \Mor_{\cC}\left(Y,X\right)   \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \langle \Mor_{\cC}\left(1_Y, p_1\right),\Mor_{\cC}\left(1_Y, p_2\right) \rangle $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+that exhibits $\Mor_{\cC}\left(Y,R\right)$ as an equivalence relation in $\Mor_{\cC}\left(Y,X\right)\times \Mor_{\cC}\left(Y,X\right)$. Then $(R,p,q)$ is called \textit{an equivalence relation in $\cC$}.
+\end{definition}
+\noindent
+The next theorem is a categorical reformulation of the \textit{recollement} technique {\cite[Chapitre 0, 4.1.7]{EGA1new}}.
+
+\begin{theorem}\label{theorem:recollement}
+Let $X = \coprod_{i\in I}X_i,\,R = \coprod_{i,j\in I}R_{ij}$ be disjoint sums of ringed spaces and let $p,q:R\ra X$ be morphisms of ringed spaces such that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item For any $i,j\in I$ morphism $p_{\mid R_{ij}}$ induces an open immersion $R_{ij}\hookrightarrow X_i$ and morphism $q_{\mid R_{ij}}$ induces an open immersion $R_{ij}\hookrightarrow X_j$.
+\item For every $i\in I$ morphisms $p_{\mid R_{ii}}$ and $q_{\mid R_{ii}}$ are equal and induce an isomorphisms $R_{ii}\ra X_i$.  
+\item Triple $\left(R,p,q\right)$ is an equivalence relation on $X$ in the category of ringed spaces over $k$.
+\end{enumerate}
+Let 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{R &  X & Y  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q $} (m-1-2)
+(m-1-2) edge node[above] {$ f  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+be a cokernel of a pair $(p,q)$ in the category of ringed spaces. Then $f$ induces an isomorphism of ringed spaces $X_i \cong f(X_i)$ for every $i\in I$.
+\end{theorem}
+
+\begin{lemma}\label{lemma:isomorphismforoneindex}
+Consider the assumptions as above. Suppose that in addition there exists $i\in I$ such that morphism $p$ induces an isomorphism $R_{ji}\cong X_j$ for every $j\in I$. Then $Y = f(X_i)$ and $f$ induces an isomorphism of ringed spaces $X_i\cong Y$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every $j\in I$ let $p_{ji}:R_{ji}\ra X_j$ be an isomorphism induced by $p$ and let $q_{ji}:R_{ji}\ra X_i$ be an open immersion induced by $q$. For every $j\in I$ we define $g_j:X_j\ra X_i$ by formula $q_{ji}\cdot p_{ji}^{-1}$. Next we define $g:X\ra X_i$ such that $g_{\mid X_j} = g_j$. We have $g\cdot p = g\cdot q$. Suppose now that $Z$ is a ringed space and $h:X\ra Z$ is a morphism of ringed spaces such that $h\cdot p = h\cdot q$. We denote $h_{\mid X_j}$ by $h_j$ for every $j\in I$. Then $h_j \cdot p_{ji} = h_i\cdot q_{ji}$ and hence
+$h_j = h_i\cdot (q_{ij}\cdot p_{ij}^{-1}) = h_i\cdot g_j$ for every $j\in I$. Thus we have $h = h_i\cdot g$ and $h_i$ is a unique morphism of ringed spaces with this property. Therefore, if such $i\in I$ exists, then
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{R &  X & X_i  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q $} (m-1-2)
+(m-1-2) edge node[above] {$ g  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a cokernel in the category of ringed spaces. Moreover, substituting $f$ for $h$ in our discussion. We deduce that $f_i = f_{\mid X_i}:X_i\ra Y$ is a unique morphism of ringed spaces such that $f_i \cdot g = f$. Since both $g:X\ra X_i$ and $f:X\ra Y$ are cokernels of the same pair $(p,q)$, we derive that $f_i$ is an isomorphism. Thus $f$ induces an isomorphism of ringed spaces $X_i\cong Y$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+We first prove that $f$ is topologically open map. For this consider an open subset $U$ of $X$. Then
+$$f^{-1}(f(U)) = p(q^{-1}(U))$$
+and since $p$ is an open continuous map, we derive that $f^{-1}(f(U))$ is open. By Remark \ref{remark:colimitsinringedspaces} $f$ is quotient map of topologically spaces and hence $f(U)$ is open in $Y$.\\
+Next fix $i\in I$ and note that $f$ induces a homeomorphism $X_i\cong f(X_i)$. In order to show that $f$ induces an isomorphism of ringed spaces $X_i \cong f(X_i)$ by Proposition \ref{proposition:cokernelsarelocalonquotient} we may restrict diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{R &  X & Y  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ p  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q $} (m-1-2)
+(m-1-2) edge node[above] {$ f  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+to the open subset $f^{-1}\left(f(x_i)\right)$ saturated with respect to $p, q$. Now our claim follows by Lemma \ref{lemma:isomorphismforoneindex}.
+\end{proof}
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{../zzz}
+
+\end{document}
