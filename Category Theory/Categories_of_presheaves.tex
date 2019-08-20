@@ -8,7 +8,7 @@
 
 \section{Introduction -- set theoretical background}\label{section:introduction}
 \noindent
-These notes deal with categories of presheaves. For some arguments and also for the underlying set-theoretic setup we use Grothendieck universes {\cite[page 22]{Maclane}}. This implies that our arguments rely on tools that go beyond the usual Zermelo-Frankel axioms. Grothendieck universes can be defined within Zermelo-Frankel set theory as follows.
+These notes deal with properties of categories of presheaves. For some arguments and also for the underlying set-theoretic setup we use Grothendieck universes {\cite[page 22]{Maclane}}. This implies that our arguments rely on stronger foundational assumptions than the usual Zermelo-Frankel axioms. Grothendieck universes can be defined within Zermelo-Frankel set theory as follows.
 
 \begin{definition}
 Let $U$ be a set. We say that $U$ is \textit{Grothendieck universe} if the following conditions are satisfied.
@@ -24,7 +24,7 @@ If $U$ is a Grothendieck universe, then the pair $(U,\in)$ forms a model for Zer
 \begin{center}
 \textit{Every set is an element of some Grothendieck universe.}
 \end{center}
-Let $U$ be a Grothendieck universe. We denote by $\Set_U$ a category whose objects are elements of $U$ and whose morphisms are maps of sets. 
+This new formal system is called \textit{Tarski-Grothendieck set theory}. Let $U$ be a Grothendieck universe. We denote by $\Set_U$ a category whose objects are elements of $U$ and whose morphisms are maps of sets. 
 
 \begin{definition}
 Let $U$ be a Grothendieck universe. A category $\cC$ is \textit{$U$-small} if classes of objects and morphisms of $\cC$ are members of $U$.
@@ -73,11 +73,11 @@ We now show that there exists a unique lift of a pair $\left(\big\{F(X)\big\}_{X
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 {F(Y)&   F_i(Y)   \\
  F(X)&    F_i(X)  \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$f_{i,Y} $} (m-1-2)
 (m-2-1) edge node[below] {$f_{i,X} $} (m-2-2)
 (m-2-2) edge node[right] {$F_i(f) $} (m-1-2);
-\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+\path[densely dotted,->,line width=1.0pt,font=\scriptsize]
 (m-2-1) edge node[left] {$F(f) $} (m-1-1);
 \end{tikzpicture}
 \end{center}
@@ -90,9 +90,9 @@ According to \textbf{($\star$)} we deduce that $F(g\cdot f)=F(g)\cdot F(f)$. Sim
 \matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
 { G(X)&      &  F(X)   \\
      &F_i(X)&          \\} ;
-\path[densely dotted, ->,line width=0.8pt, font=\scriptsize]
+\path[densely dotted, ->,line width=1.0pt, font=\scriptsize]
 (m-1-1) edge node[above] {$ \tau_X $} (m-1-3);
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[below = 3pt, left = 1pt] {$ g_{i,X} $} (m-2-2)
 (m-1-3) edge node[below = 3pt, right = 1pt] {$ f_{i,X} $} (m-2-2);
 \end{tikzpicture}
@@ -140,7 +140,7 @@ Fix $p:h_X\ra F$ for some $X\in \cC$ and $F\in \widehat{\cC}$. Denote $x=p(1_X)$
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
 { h_X(Y) &   F(Y)           \\
   h_X(X)&    F(X)             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[auto] {$p_Y$} (m-1-2)
 (m-2-1) edge node[below] {$p_X$} (m-2-2)
 (m-2-1) edge node[left] {$h_X(f) $} (m-1-1)
@@ -184,7 +184,7 @@ Let $\cC$ be a category. A class $\cK$ of objects of $\cC$ is called \textit{a c
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { X&  Y  \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ f$} (m-1-2)
 (m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ g$} (m-1-2);
 \end{tikzpicture}
@@ -202,7 +202,7 @@ Let $\cC$ be a category and $X$ be an object of $\cC$. \textit{An object of $\cC
 \matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
 { Y_1 &    & Y_2         \\
       &  X  &             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]  
+\path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ f $} (m-1-3)
 (m-1-1) edge node[below = 3pt, left = 1pt] {$ f_1 $} (m-2-2)
 (m-1-3) edge node[below = 3pt, right = 1pt] {$ f_2 $} (m-2-2);
@@ -232,7 +232,7 @@ is (full and) faithful.
 \end{theorem}
 \begin{proof}
 First we need to introduce some notation. For every object $X$ of $\cC$ we denote by $F_X:\cK/X\ra \cC$ the functor obtained as the compositon of $\pi_X:\cK/X\ra \cK$ with the inclusion functor $\cK\hookrightarrow \cC$. We also denote by $\Gamma_X$ the value of $\Gamma$ on $X$ and for every object $Y$ of $\cC$ we denote by  $\mathrm{Cocone}_Y(F_X)$ the class of cocones with $Y$ as the vertex over the functor $F_X$. Finally if $g:X\ra Y$ is a morphism of $\cC$, then we denote by $\Gamma_g$ a natural morphism $\Gamma_X\ra \Gamma_Y$ induced by $g$.\\
-Suppose now that $X$ and $Y$ are objects of $\cC$. Let $\sigma:\Gamma_X\ra \Gamma_Y$ be a natural transformation. Then one can show that $\{\sigma(f)\}_{f\in \cK/X}$ is a cocone of $F_Y$ with vertex in $Y$ and moreover, the map
+Suppose now that $X$ and $Y$ are objects of $\cC$. Let $\sigma:\Gamma_X\ra \Gamma_Y$ be a natural transformation. Then one can show that $\{\sigma(f)\}_{f\in \cK/X}$ is a cocone of $F_X$ with vertex in $Y$ and moreover, the map
 $$\Mor_{\cK}\left(\Gamma_X,\Gamma_Y\right)\ni \sigma \mapsto \{\sigma(f)\}_{f\in \cK/X}\in \mathrm{Cocone}_{Y}(F_X)$$
 is bijective. We have a commutative triangle
 \begin{center}
@@ -241,7 +241,7 @@ is bijective. We have a commutative triangle
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
 { \Mor_{\cK}\left(\Gamma_X,\Gamma_Y\right) &     & \mathrm{Cocone}_Y\left(F_X\right) \\
                                            & \Mor_{\cC}(X,Y) &             \\} ;
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[auto] {$\sigma \mapsto \{\sigma(f)\}_{f\in \cK/X} $} (m-1-3)
 (m-2-2) edge node[below = 4pt, left = 1pt] {$ g\mapsto \Gamma_g $} (m-1-1)
 (m-2-2) edge node[below = 4pt, right = 1pt] {$ g \mapsto \{g\cdot f\}_{f\in \cK/X} $} (m-1-3);
@@ -253,11 +253,11 @@ $$\Mor_{\cC}(X,Y)\ni g\mapsto \{g\cdot f\}_{f\in \cK/X}\in \mathrm{Cocone}_Y(F_X
 \end{proof}
 
 \begin{corollary}\label{corollary:representablesaredensegenerators}
-Let $\cC$ be a locally category. Then the class of representable presheaves $\{h_X\}_{X\in \cC}$ is a dense class of generators for $\widehat{\cC}$.
+Let $\cC$ be a locally small category. Then the class of representable presheaves $\{h_X\}_{X\in \cC}$ is a dense class of generators for $\widehat{\cC}$.
 \end{corollary}
 \begin{proof}
 We want to apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to $\widehat{\cC}$. Our issue is that in general $\widehat{\cC}$ is not a locally small category. To fix this we must be specific and work with Grothendieck universes {\cite[page 22]{Maclane}}.\\
-We assume (c.f. Section \ref{section:introduction}) that our base Grothendieck universe is $U$. Then $\Set = \Set_{U}$ is the category of $U$-small sets and $\cC$ is a locally $U$-small category. Next $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_{U})$ is a presheaf category. Now we fix another universe $V$ that contains $U$ and such that $\widehat{\cC}$ is $V$-small. We denote by $\Set_V$ the category of $V$-small sets. We can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$. Consider the composition of the Yoneda embedding $h:\widehat{\cC}\ra \Fun(\widehat{\cC}^{\mathrm{op}},\Set_V)$ with the restriction $\Fun(\widehat{\cC}^{\mathrm{op}},\Set_V)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the usual Yoneda embedding $h:\cC\ra \widehat{\cC}$. The composition is isomorphic with the functor $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_U)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the inclusion $\Set_U\hookrightarrow \Set_V$. Hence it is full and faithful. Now (replacing our base universe $U$ by $V$) we can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$ and derive the statement.
+We assume (c.f. Section \ref{section:introduction}) that our base Grothendieck universe is $U$. Then $\Set = \Set_{U}$ is the category of $U$-small sets and $\cC$ is a locally $U$-small category. Next $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_{U})$ is a presheaf category. Now we fix another universe $V$ that contains $U$ and such that $\cC$ is $V$-small. We denote by $\Set_V$ the category of $V$-small sets. We can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$. Consider the composition of the Yoneda embedding $\widehat{\cC}\ra \Fun\left(\left(\widehat{\cC}\,\right)^{\mathrm{op}},\Set_V\right)$ with the restriction $\Fun\left(\left(\widehat{\cC}\,\right)^{\mathrm{op}},\Set_V\right)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the usual Yoneda embedding $h:\cC\ra \widehat{\cC}$. The composition is isomorphic with the functor $\widehat{\cC} = \Fun(\cC^{\mathrm{op}},\Set_U)\ra \Fun(\cC^{\mathrm{op}},\Set_V)$ induced by the inclusion $\Set_U\hookrightarrow \Set_V$. Hence it is full and faithful. Now (replacing our base universe $U$ by $V$) we can apply Theorem \ref{theorem:generatorclassesdescribedcategorically} to a locally $V$-small category $\widehat{\cC}$ and derive the statement.
 \end{proof}
 
 \section{Internal hom}
@@ -332,10 +332,10 @@ Let $\cC$ be a locally small category and let $F$, $G$, $J$ be presheaves on $\c
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
 { J(Y)   &  \Mor_{\cC/Y}\left(F_{\mid Y},G_{\mid Y}\right)           \\
   J(X)   &  \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)           \\} ;
-\path[right hook->,line width=0.8pt,font=\scriptsize]  
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
 (m-2-1) edge node[below] {$ $} (m-2-2);
-\path[->,line width=0.8pt,font=\scriptsize]
+\path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[left] {$ J(f) $} (m-2-1)
 (m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_{\left(\cC/f\right)^{\mathrm{op}}} $} (m-2-2);
 \end{tikzpicture}
@@ -367,7 +367,7 @@ $$\big\{\mbox{families of $J$-morphisms parametrized by }H\big\}\ra \Mor_{\cC}\l
 on its subclasses, which is natural in $H$ and is given by the rule described in the discussion preceding the statement of the theorem.
 \end{proof}
 
-\section{Remarks on copresheaf categories}
+\section{Remarks on categories of copresheaves}
 
 \begin{definition}
 Let $\cC$ be a locally small category. The category $\Fun(\cC,\Set)$ is called \textit{the category of copresheaves on $\cC$}.
