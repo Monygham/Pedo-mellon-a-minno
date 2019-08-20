@@ -1,0 +1,104 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Kakutani's fixed point theorem and its applications}
+\date{}
+\maketitle
+
+\section{Introduction}
+In these notes we study applications of Kakutani's fixed point theorem to theory of Nash equilibria.
+
+\section{Brouwer fixed point theorem}
+\noindent
+In this section we present a Milnor's analytic proof of Brouwer fixed point theorem. The proof is based on the excellent paper \cite{BrouwerRogers}, where the author vastly simplifies the original Milnor's approach.\\
+Let $n\in \NN$ be a natural number. We denote by $\mathbb{B}^n$ a closed unit euclidean ball in $\RR^n$ and we denote by $S^n$ a unit euclidean sphere in $\RR^{n+1}$.
+
+\begin{theorem}[Brouwer's fixed point theorem]
+Let $f:\mathbb{B}^n\ra \mathbb{B}^n$ be a continuous map. Then there exists $x$ in $\mathbb{B}^n$ such that $f(x) = x$.
+\end{theorem}
+
+\begin{lemma}\label{lemma:thereisnodifferentiableretraction}
+Let $U$ be an open subset of $\RR^{n+1}$ containing $\mathbb{B}^{n+1}$. Then there is no continuously differentiable map $f:U\ra \RR^{n+1}$ such that $f(\mathbb{B}^{n+1}) = S^{n}$ and $f(x) = x$ for $x\in S^n$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Assume that such $f$ exists. For $t\in [0,1]$ we define $f_t:U\ra \RR^{n+1}$ given by formula
+$$f_t(x) = x - t(f(x) - x) = (1-t)x + tf(x)$$
+for every $x\in U$. We have $f_t\left(\mathbb{B}^{n+1}\right) \subseteq \mathbb{B}^{n+1}$ for every $t\in [0,1]$. There exists $T>0$ such that the following assertions hold for every $t\in [0,T]$.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item ${f_t}_{\mid \mathbb{B}^{n+1}}$ is injective.
+\item $Df_t(x)$ is invertible for every $x\in \mathbb{B}^{n+1}$.
+\end{enumerate}
+We explain now how to choose suitable $T$. For this consider a function $g:U\ra \RR^{n+1}$ given by formula $g(x)= x - f(x)$ for every $x\in U$. Let $L = 1 + \sup_{x\in \mathbb{B}^{n+1}}||Dg(x)||$. Then $g$ is Lipschitz function on $\mathbb{B}^{n+1}$ with constant $L$. Fix $t < L^{-1}$. If $x_1,x_2\in \mathbb{B}^{n+1}$ are distinct, then
+$$||f_t(x_1) - f_t(x_2)|| \geq ||x_1-x_2|| - t\cdot ||g(x_1) - g(x_2)|| \geq ||x_1 - x_2|| - tL\cdot ||x_1 - x_2|| = \left(1 - tL\right)\cdot ||x_1 - x_2|| > 0 $$
+Therefore, ${f_t}_{\mid \mathbb{B}^{n+1}}$ is injective. We have
+$$t\cdot ||Dg(x)|| = tL < 1$$
+for every $x\in \mathbb{B}^{n+1}$ and hence $Df_t(x)$ is invertible for such $x$. Thus it suffices to take $T = \min \left(L^{-1}, 1 \right)$. Now we fix $t\in [0,T]$. Property \textbf{(2)} and $f_t\left(\mathrm{B}^{n+1}\right) = \mathbb{B}^{n+1}$ imply that
+$$U_t = f_t\left(\bd{int}\left(\mathbb{B}^{n+1}\right)\right)\subseteq \RR^{n+1}$$
+is an open subset contained in $\mathbb{B}^{n+1}$. If $U_t \neq \bd{int}\left(\mathbb{B}^{n+1}\right)$, then there exists
+$$y \in \left(\bd{cl}(U_t) \setminus U_t\right) \cap \bd{int}\left(\mathbb{B}^{n+1}\right)$$
+Consider a sequence $\{x_m\}_{m\in \NN}$ of elements in $\bd{int}\left(\mathbb{B}^{n+1}\right)$ such that
+$$\lim_{m\ra +\infty}f_t(x_m) = y$$
+We may assume that the sequence $\{x_m\}_{n\in \NN}$ converges to some $x$ in $\mathbb{B}^{n+1}$. Then $y = f_t(x)$. Clearly $x \not \in \bd{int}\left(\mathbb{B}^{n+1}\right)$ because otherwise $y \in V_t$. Hence $x\in S^n$. But then
+$$\bd{int}\left(\mathbb{B}^{n+1}\right) \ni y = f_t(x) = (1-t)x + tf(x) = x \in S^n$$
+Thus the only possibility is that $V_t = \bd{int}\left(\mathbb{B}^{n+1}\right)$. Therefore, we have $f_t(\mathbb{B}^{n+1}) = \mathbb{B}^{n+1}$. Now \textbf{(1)} and \textbf{(2)} imply that $f_t$ induces a diffeomorphism $\mathbb{B}^{n+1}\ra \mathbb{B}^{n+1}$. Define a polynomial $p:[0,1]\ra \RR$ given by formula
+$$p(t) = \int_{\mathbb{B}^{n+1}}\big|\mathrm{det}\left(Df_t(x)\right)\big|dx = \int_{\mathrm{B}^{n+1}}\big|\mathrm{det}\left(1_{\mathrm{R}^{n+1}} + t\cdot Dg(x)\right)\big|dx$$
+Since $f_t$ induces a diffeomorphism $\mathbb{B}^{n+1}\ra \mathbb{B}^{n+1}$ for $t\in [0,T]$, we deduce that $p(t) = \mathrm{vol}\left(\mathrm{B}^{n+1}\right)$ for $t\in [0,T]$. Next $p(t)$ is a polynomial and hence we deduce that $p(t) = \mathrm{vol}\left(\mathrm{B}^{n+1}\right)$ for every $t\in [0,1]$. On the other hand we have
+$$p(1) = \int_{\mathbb{B}^{n+1}}\big|\mathrm{det}\left(Df(x)\right)\big|dx$$
+Since $f(\mathbb{B}^{n+1}) = S^n$, we deduce that $\mathrm{det}\left(Df(x)\right)=0$ for every $x\in \bd{int}\left(\mathbb{B}^{n+1}\right)$ and hence $p(1) = 0$. This is contradiction, because $\mathrm{vol}\left(\mathbb{B}^{n+1}\right) = p(1) \neq 0$.
+\end{proof}
+
+\begin{lemma}\label{lemma:everycontinuouslydifferentiableadmitsafixedpoint}
+Let $U$ be an open subset of $\RR^{n+1}$ containing $\mathbb{B}^{n+1}$. Suppose that $f:U\ra \RR^{n+1}$ is a continuously differentiable map such that $f(\mathbb{B}^{n+1})\subseteq \mathbb{B}^{n+1}$. Then there exists a fixed point of $f$ in $\mathbb{B}^{n+1}$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Assume that $f$ does not have fixed point in $\mathbb{B}^{n+1}$. Consider an open subset $W$ of $U$ defined by $f(x) \neq x$. Then $W$ contains $\mathbb{B}^{n+1}$. For every $x$ in $W$ we define a point $r(x)\in S^n$ as the intersection of a line
+$$\big\{f(x) + t\cdot \left(x - f(x)\right)\in \RR^{n+1}\,\big|\,t\in \RR_+\big\}$$
+with $S^n$. Then $r:W\ra \RR^{n+1}$ is continously differentiable, $r(W) = S^n$ and $r(x) = x$ for every $x\in S^n$. This is a contradiction with Lemma \ref{lemma:thereisnodifferentiableretraction}.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Suppose that $f:\mathbb{B}^{n+1}\ra \mathbb{B}^{n+1}$ is a continuous map without fixed points. We consider $f$ as a map $\tilde{f}:\mathbb{B}^{n+1}\ra \RR^{n+1}$. By Stone-Weierstrass theorem there exists a sequence $\big\{p_m:\RR^{n+1}\ra \RR^{n+1}\big\}_{m\in \NN}$ of polynomials such that the sequence $\{{p_m}_{\mid \mathbb{B}^{n+1}}\}_{m\in \NN}$ is uniformly convergent to $\tilde{f}$. Let
+$$\alpha_m = \sup_{x\in \mathbb{B}^{n+1}}||\tilde{f}(x) - p_m(x)||$$
+and consider an open subset $U_m$ such that $||p_m(x)|| < 1+\alpha_m$ for every $x\in U_m$. Clearly $U_m$ is an open subset of $\RR^{n+1}$ containing $\mathbb{B}^{n+1}$. Define a sequence $\big\{q_m:U_m\ra \RR^{n+1}\big\}_{m\in \NN}$ by formula $q_m(x) = (1 + \alpha_m)^{-1}\cdot p_m(x)$ for $x\in U_m$. Then $q_m(\mathbb{B}^{n+1}) \subseteq \mathbb{B}^{m+1}$ and $q_m$ is continuously differentiable for every $m\in \NN$. By Lemma \ref{lemma:everycontinuouslydifferentiableadmitsafixedpoint} we derive that there exists $x_m \in \mathbb{B}^{m+1}$ such that $q_m(x_m) = x_m$. Since $\mathbb{B}^{n+1}$ is compact, we may assume that the sequence $\{x_m\}_{m\in \NN}$ converges to some $x\in \mathbb{B}^{n+1}$. Note also that $\{{q_m}_{\mid \mathbb{B}^{n+1}}\}_{m\in \NN}$ is uniformly convergent to $\tilde{f}$. Thus we have
+$$x = \lim_{m\ra +\infty}x_m = \lim_{m\ra +\infty}q_m(x_m) = \tilde{f}(x)$$
+and hence $f(x) = x$. This proves the theorem in the case $n\geq 1$. For $n=0$ the set $\mathbb{B}^n$ consists of a point and hence the theorem holds trivially.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{../zzz}
+
+\end{document}
