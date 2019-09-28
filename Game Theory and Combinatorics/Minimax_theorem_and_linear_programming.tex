@@ -7,8 +7,6 @@
 \maketitle
 
 \section{Sion's minimax theorem}
-\noindent
-For reader's convenience we recall few notions.
 
 \begin{definition}
 Let $X$ be a topological space and let $f:X \ra \RR$ be a function. Then $f$ is \textit{lower-semicontinuous} if for every $r \in \RR$ the set
@@ -17,23 +15,10 @@ is closed. We say that $f$ is \textit{upper-semicontinuous} if $-f$ is lower-sem
 \end{definition}
 
 \begin{definition}
-Let $X$ be a convex subset of a linear space over $\RR$ and let $f:X \ra \RR$ be a function. Then $f$ is \textit{convex} if for every $x_1, x_2\in X$ and $t\in [0,1]$ we have
-$$f\left(tx_1 + (1-t)x_2\right)\leq tf(x_1) + (1-t)f(x_2)$$
-We say that $f$ is \textit{concave} if $-f$ is convex.
-\end{definition}
-
-\begin{definition}
 Let $X$ be a convex subset of a linear space over $\RR$ and let $f:X \ra \RR$ be a function. Then $f$ is \textit{quasiconvex} if for every $x_1, x_2\in X$ and $t\in [0,1]$ we have
 $$f\left(tx_1 + (1-t)x_2\right) \leq \max\big\{f(x_1),f(x_2)\big\}$$
 We say that $f$ is \textit{quasiconcave} if $-f$ is quasiconvex.
 \end{definition}
-
-\begin{fact}\label{fact:conveximpliesquasiconvex}
-Every convex function is quasiconvex.
-\end{fact}
-\begin{proof}
-We left the proof to the reader.
-\end{proof}
 
 \begin{proposition}\label{proposition:characterizationofquasiconvexity}
 Let $X$ be a convex subset of a linear space over $\RR$. Suppose that $f:X \ra \RR$ is a function. Then the following are equivalent.
@@ -52,59 +37,106 @@ We prove $\textbf{(2)}\Rightarrow \textbf{(1)}$. Pick $x_1,x_2\in X$ and $t\in [
 \begin{theorem}[Sion's theorem]\label{theorem:sionsminimax}
 Let $X$ be a convex, compact subset of a topological vector space over $\RR$ and let $Y$ be a convex subset of a topological vector space over $\RR$. Suppose that $f:X\times Y\ra \RR$ is a function such that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
-\item $f_x$ is upper-semicontinuous and quasiconcave for every $x$ in $X$.
-\item $f_y$ is lower-semicontinuous and quasiconvex for every $y$ in $Y$.
+\item $f_x$ is lower-semicontinuous and quasiconvex for every $x$ in $X$.
+\item $f_y$ is upper-semicontinuous and quasiconcave for every $y$ in $Y$.
 \end{enumerate}
 Then we have
-$$\inf_{x\in X}\sup_{y\in Y}f(x,y) = \sup_{y\in Y}\inf_{x\in X}f(x,y)$$
+$$\sup_{x\in X}\inf_{y\in Y}f(x,y) = \inf_{y\in Y}\sup_{x\in X}f(x,y)$$
 \end{theorem}
 \noindent
-For every $y\in Y$ and $r \in \RR$ we denote
-$$L_{f,r,y} = \big\{x\in X\,\big|\,f(x,y)\leq r \big\}$$
-Note that for each $r\in \RR$ the family $\{L_{f,r,y}\}_{y\in Y}$ consists of convex, compact subsets of $X$.
+The proof relies on series of lemmas.
 
-\begin{lemma}\label{lemma:finiteintersectionsionslemma}
-Let $X$ be a convex, compact subset of a topological vector space over $\RR$ and let $Y$ be a convex subset of a topological vector space over $\RR$. Suppose that $f:X\times Y\ra \RR$ is a function such that the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
-\item $f_x$ is upper-semicontinuous and quasiconcave for every $x$ in $X$.
-\item $f_y$ is lower-semicontinuous and quasiconvex for every $y$ in $Y$.
-\end{enumerate}
-For every $y\in Y$ and $r \in \RR$ we denote
-$$L_{f,r,y} = \big\{x\in X\,\big|\,f(x,y)\leq r \big\}$$
-If a family $\{L_{f,r,y}\}_{y\in Y}$ consists of nonempty sets, then it admits finite intersection property.
+\begin{lemma}\label{lemma:levelcangodown}
+Let $X$ be a compact topological space and let $f_1,f_2:X\ra \RR$ be upper-semicontinuous functions. Suppose that
+$$\big\{x\in X\,\big|\,f_{1}(x)\geq r\big\}\cap \big\{x\in X\,\big|\,f_{2}(x)\geq r\big\}=\emptyset$$
+for some $r\in \RR$. Then there exists $s< r$ such that
+$$\big\{x\in X\,\big|\,f_{1}(x)\geq s\big\}\cap \big\{x\in X\,\big|\,f_{2}(x)\geq s\big\}=\emptyset$$
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-For any such $X, Y$ and $f$ pick $r\in \RR$ such that $L_{f,r,y}$ is nonempty for every $y$ in $Y$. Suppose that $y_1,...,y_{m}$ are points in $Y$. We want to show that
+Pick an increasing sequence $\{s_n\}_{n\in \NN}$ of real numbers convergent to $r$. Define
+$$F_n = \big\{x\in X\,\big|\,f_{1}(x)\geq s_n\big\}\cap \big\{x\in X\,\big|\,f_{2}(x)\geq s_n\big\}$$
+for every $n\in \NN$. Since $f_{1}$ and $f_{2}$ are upper-semicontinuous, we derive that the family of sets $\{F_n\}_{n\in \NN}$ consists of closed sets. Moreover, this family is nonincreasing. If $F_n\neq \emptyset$ for all $n\in \NN$, then $\{F_n\}_{n\in \NN}$ admits finite intersection property. Hence by compactness of $X$ there exists $x$ in $X$ such that
+$$x\in \bigcap_{n\in \NN}F_n = \big\{x\in X\,\big|\,\forall_{n\in \NN}\,f_1(x)\geq s_n\mbox{ and }\forall_{n\in \NN}\,f_2(x)\geq s_n\big\} =$$
+$$= \big\{x\in X\,\big|\,f_{1}(x)\geq r\big\}\cap \big\{x\in X\,\big|\,f_{2}(x)\geq r\big\}$$
+This is contradiction. Thus $F_{n_0}=\emptyset$ for some $n_0\in \NN$ and hence for $s = s_{n_0}$ we have
+$$\big\{x\in X\,\big|\,f_{1}(x)\geq s\big\}\cap \big\{x\in X\,\big|\,f_{2}(x)\geq s\big\} = \emptyset$$
+Thus the assertion is proved.
+\end{proof}
+
+\begin{lemma}\label{lemma:pairintersectionsionslemma}
+Let $X$ be a convex, compact subset of a topological vector space over $\RR$ and let $Y$ be a convex subset of a topological vector space over $\RR$. Suppose that $f:X\times Y\ra \RR$ is a function such that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $f_x$ is lower-semicontinuous and quasiconvex for every $x$ in $X$.
+\item $f_y$ is upper-semicontinuous and quasiconcave for every $y$ in $Y$.
+\end{enumerate}
+For every $y\in Y$ and $r \in \RR$ we denote
+$$L_{r,y} = \big\{x\in X\,\big|\,f_y(x)\geq r \big\}$$
+If every set in the family $\{L_{r,y}\}_{y\in Y}$ is nonempty, then any two sets in this family have nonempty intersection. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose conversely that $L_{r,y_1}\cap L_{r,y_2} = \emptyset$ for some $y_1,y_2\in Y$. Then by Lemma \ref{lemma:levelcangodown} ($f_y$ are upper-semicontinuous for all $y$ so it can be applied) we derive that there exists $s < r$ such that $L_{s,y_1}\cap L_{s,y_2}= \emptyset$. Note that $L_{r,y}\subseteq L_{s,y}$ for all $y\in Y$ and hence $\{L_{s,y}\}_{y\in Y}$ consists of nonempty sets. Let $[y_1,y_2]$ be an interval joining $y_1$ and $y_2$ in $Y$. Pick now $y\in [y_1,y_2]$. If $x\in L_{s,y}$, then
+$$s\geq f_y(x) = f_x(y) \leq \max\{f_{x}(y_1),f_{x}(y_2)\} = \max\{f_{y_1}(x), f_{y_2}(x)\}$$
+by the fact that $f_x$ is quasiconvex. This implies that $x\in L_{s,y_1}\cup L_{s,y_2}$. Thus $L_{s,y}\subseteq L_{s,y_1}\cup L_{s,y_2}$. Since $f_y$ is quasiconcave, we derive that $L_{s,y}$ is convex and hence connected. Sets $L_{s,y_1},L_{s,y_2}$ are closed ($f_y$ is upper-semicontinous for each $y$) and disjoint. Therefore, we have either $L_{s,y}\subseteq L_{s,y_1}$ or $L_{s,y}\subseteq L_{s,y_2}$ for every $y\in [y_1,y_2]$. Now we define
+$$F_i = \big\{y\in [y_1,y_2]\,\big|\,L_{s,y}\subseteq L_{s,y_i}\big\}$$
+for $i=1, 2$. Then we have $[y_1,y_2] = F_1\cup F_2$ and $F_1\cap F_2 = \emptyset$. Next since $L_{r,y}\subseteq L_{s,y}$ for every $y\in Y$, we deduce that
+$$F_i = \big\{y\in [y_1,y_2]\big|\,L_{r,y}\subseteq L_{s,y_i}\big\}$$
+for $i = 1, 2$. Fix now $i = 1, 2$. Consider a sequence $\{z_n\}_{n\in \NN}$ of elements in $F_i$ convergent to some $z\in [y_1,y_2]$. Pick $x\in L_{r,z}$. Since $f_x$ is lower-semicontinous, we derive that
+$$\liminf_{n\ra +\infty}f_{z_n}(x)=\liminf_{n\ra +\infty}f_x(z_n) \geq f_x(z) = f_z(x) \geq r$$
+Therefore, the inequality $s< r$ implies that there exists $n\in \NN$ such that $f_{z_n}(x)\geq s$. Hence $x\in L_{s,z_n}$. The point $z_n$ is contained in $F_i$ and hence $x\in L_{s,z_n}\subseteq L_{s,y_i}$. Thus $\emptyset = L_{s,y_i}\cap L_{r,z}\subseteq L_{s,y_i}\cap L_{s,z}$. Thus $L_{s,z}\subseteq L_{s,y_i}$ and $z\in F_i$. We deduce that set $F_i$ is closed in $[y_1,y_2]$. Note that we obtain
+$$[y_1,y_2] = F_1\cup F_2,\emptyset = F_1\cap F_2$$
+for some closed subsets $F_1,F_2$ of $[y_1,y_2]$. This is a contradiction with connectedness.
+\end{proof}
+\noindent
+Let $\cF$ be a class of all functions $f:X\times Y\ra \RR$ such that the following assertions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $X$ is a convex, compact subset of a topological vector space over $\RR$ and $Y$ is a convex subset of a topological vector space over $\RR$.
+\item $f_x$ is lower-semicontinuous and quasiconvex for every $x$ in $X$.
+\item $f_y$ is upper-semicontinuous and quasiconcave for every $y$ in $Y$.
+\end{enumerate}
+For every $f:X\times Y\ra \RR$ and $r\in \RR$ we denote by $\cL_{f,r}$ the family of sets
+$$L_{f,ry} = \big\{x\in X\,\big|\,f_y(x)\geq r \big\}$$
+parametrized by $y\in Y$.
+
+\begin{lemma}\label{lemma:finiteintersectionsionslemma}
+For every $f\in \cF$ the following assertion holds. If for some $r\in \RR$ the family $\cL_{f,r}$ consists of nonempty sets, then it has finite intersection property.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose that $y_1,...,y_{m}$ are points in $Y$. We want to show that
 $$\bigcap_{i=1}^{m}L_{f,r,y_i} \neq \emptyset$$
-Consider $X' = L_{f,r,y_{m}}$. This is a convex, compact and nonempty subset of a topological vector space over $\RR$. Next let $f':X'\times Y\ra \RR$ be the restriction of $f$. Then
+The case $m=1$ holds by assumption so we may assume that $m\geq 2$. Consider $X' = L_{f,r,y_{m}}$. This is a convex, compact and nonempty subset of a topological vector space over $\RR$. Next let $f':X'\times Y\ra \RR$ be the restriction of $f$. Then $f'\in \cF$. In addition
 $$L_{f',r,y} = X' \cap L_{f,r,y} = L_{f,r,y_{m}} \cap L_{f,r,y}$$
-and it suffices to prove that
+and by Lemma \ref{lemma:pairintersectionsionslemma} this is nonempty set. So it suffices to prove that
 $$\bigcap_{i=1}^{m-1} L_{f',r,y_i} \neq \emptyset$$
-Hence the proof goes on induction on $m$ provided that we prove first that $L_{f,r,y_1}\cap L_{f,r,y_2}\neq \emptyset$ for any $y_1, y_2\in Y$ and every $X, Y, f$ and $r\in \RR$ such that the family $\{L_{f,r,y}\}_{y\in Y}$ consists of nonempty sets. Assume by contradiction that $L_{f,r,y_1}\cap L_{f,r,y_2} = \emptyset$. Suppose that $y\in [y_1,y_2]$ and $x\in L_{f,r,y}$. Since $f_x$ is quasiconcave, we derive that
-$$\min\{f(x,y_1),f(x,y_2)\} \leq f(x,y) \leq r$$
-and hence $x\in L_{f,r,y_1}\cup L_{f,r,y_2}$. This implies that for every $y\in [y_1,y_2]$ we have $L_{f,r,y} \subseteq L_{,fr,y_1}\cup L_{f,r,y_2}$. Since sets $L_{f,r,y_1}, L_{f,r,y_2}$ are disjoint, we deduce that either $L_{f,r,y}\subseteq L_{f,r,y_1}$ or $L_{f,r,y}\subseteq L_{f,r,y_2}$ for every $y\in Y$. Now we define
-$$F_1 = \big\{y\in [y_1,y_2]\,\big|\,L_{f,r,y}\subseteq L_{f,r,y_1}\big\},\,F_2 = \big\{y\in [y_1,y_2]\,\big|\,L_{f,r,y}\subseteq L_{f,r,y_2}\big\}$$
-We proved that $F_1\cup F_2 = [y_1,y_2]$ and $F_1\cap F_2 = \emptyset$. Next fix $i = 1,2$ and suppose that $\{z_n\}_{n\in \NN}$ is a sequence of points in $F_1$ convergent to some point $z\in [y_1,y_2]$. Pick $x\in L_{f,r,z}$. Since $f_x$ is upper-semicontinuous, we have
-$$\limsup_{n\ra +\infty}f(x,z_n) \leq f(x,z)\leq r$$
-Thus there exists $n\in \NN$ such that $f(x,z_n)\leq r$. This implies that $x\in L_{f,r,y_i}$ and hence $L_{f,r,z}$ intersects with $L_{f,r,y_i}$. Therefore, we deduce that $L_{f,r,z}\subseteq L_{f,r,y_i}$. This implies that $z\in F_i$. Hence $F_1, F_2$ are closed subsets of $[y_1,y_2]$, which are disjoint and with union equal to $[y_1,y_2]$. This is contradiction with the fact that $[y_1,y_2]$ is connected. This proves that $L_{f,r,y_1}\cap L_{f,r,y_2}\neq \emptyset$.
+Hence the proof goes on induction on $m$. 
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
 We always have
-$$\sup_{y\in Y}\inf_{x\in X}f(x,y)\leq \inf_{x\in X}\sup_{y\in Y}f(x,y)$$
+$$\sup_{x\in X}\inf_{y\in Y}f(x,y) \leq \inf_{y\in Y}\sup_{x\in X}f(x,y)$$
 Next pick $r\in \RR$ such that
-$$\sup_{y\in Y}\inf_{x\in X}f(x,y) < r$$
-Then $\{L_{f,r,y}\}_{y\in Y}$ consists of nonempty and compact subsets of $X$. By Lemma \ref{lemma:finiteintersectionsionslemma} we deduce that $\{L_{f,r,y}\}_{y\in Y}$ admits finite intersection property. Hence there exists $x$ in $X$ such that
-$$x\in \bigcap_{y\in Y}L_{f,r,y}$$
-Therefore, $f(x,y)\leq r$ for every $y\in Y$. This implies that
-$$\inf_{x\in X}\sup_{y\in Y}f(x,y)\leq \sup_{y\in Y}f(x,y)\leq r$$
+$$r < \inf_{y\in Y}\sup_{x\in X}f(x,y)$$
+Then $\cL_{f,r}$ consists of nonempty and compact subsets of $X$. By Lemma \ref{lemma:finiteintersectionsionslemma} we deduce that $\cL_{f,r}$ admits finite intersection property. Hence there exists $x$ in $X$ such that
+$$r \leq f(x,y)$$
+for every $y\in Y$. This implies that
+$$r\leq \inf_{y\in Y}f(x,y) \leq \sup_{x\in X}\inf_{y\in Y}f(x,y)$$
 This shows that
-$$\inf_{x\in X}\sup_{y\in Y}f(x,y) \leq \sup_{y\in Y}\inf_{x\in X}f(x,y)$$
+$$\sup_{x\in X}\inf_{y\in Y}f(x,y) \leq \inf_{y\in Y}\sup_{x\in X}f(x,y)$$
 \end{proof}
 
-\section{Strong duality theorem}
+\section{Convex and concave functions}
 
+\begin{definition}
+Let $X$ be a convex subset of a linear space over $\RR$ and let $f:X \ra \RR$ be a function. Then $f$ is \textit{convex} if for every $x_1, x_2\in X$ and $t\in [0,1]$ we have
+$$f\left(tx_1 + (1-t)x_2\right)\leq tf(x_1) + (1-t)f(x_2)$$
+We say that $f$ is \textit{concave} if $-f$ is convex.
+\end{definition}
 
+\begin{fact}\label{fact:conveximpliesquasiconvex}
+Every convex function is quasiconvex.
+\end{fact}
+\begin{proof}
+We left the proof to the reader.
+\end{proof}
 
 
 
