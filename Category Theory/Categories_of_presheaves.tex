@@ -284,10 +284,10 @@ $$\iMor_{\cC}(F,G)(Y)\ni \sigma \mapsto \sigma_{\left(\cC/f\right)^{\mathrm{op}}
 and these make $\iMor_{\cC}(F,G)$ a functor. The presheaf $\iMor_{\cC}(F,G)$ is called \textit{an internal hom of $F$ and $G$}.
 \end{definition}
 \noindent
-Let $F$, $G$ and $H$ be presheaves on a locally small category $\cC$ and assume that $\iMor_{\cC}(F,G)$ exists. Fix a morphism of presheaves $\sigma:H\times F\ra G$. Pick an object $X$ in $\cC$ and $x\in H(X)$. Let $i_x:\bd{1}_{\mid X}\ra H_{\mid X}$ be a morphism determined by $x\in H(X)$ as in Fact \ref{fact:globalsections}. Then $\sigma_{\mid X}\cdot \left(i_x\times 1_{F_{\mid X}}\right)$ yields a morphism $\tau_x:F_{\mid X}\ra G_{\mid X}$. Suppose now that $f:Y\ra X$ is a morphism in $\cC$. We have 
+Let $F$, $G$ and $H$ be presheaves on a locally small category $\cC$ and assume that $\iMor_{\cC}(F,G)$ exists. Fix a morphism of presheaves $\sigma:H\times F\ra G$. Pick an object $X$ in $\cC$ and $x\in H(X)$. Let $i_x:\bd{1}_{\mid X}\ra H_{\mid X}$ be a morphism determined by $x\in H(X)$ as in Fact \ref{fact:globalsections}. Then $\sigma_{\mid X}\cdot \left(i_x\times 1_{F_{\mid X}}\right)$ yields a morphism $\sigma_x:F_{\mid X}\ra G_{\mid X}$. Suppose now that $f:Y\ra X$ is a morphism in $\cC$. We have 
 $$\left(\sigma_{\mid X}\cdot \left(i_{x}\times 1_{F_{\mid X}}\right)\right)_{\left(\cC/f\right)^{\mathrm{op}}} = \left(\sigma_{\mid X}\right)_{\left(\cC/f\right)^{\mathrm{op}}}\cdot \left(\left(i_x\right)_{\left(\cC/f\right)^{\mathrm{op}}}\times \left(1_{F_{\mid X}}\right)_{\left(\cC/f\right)^{\mathrm{op}}}\right) = \sigma_{\mid Y}\cdot \left(i_{F(f)(x)}\times 1_{F_{\mid Y}}\right)$$
-because $\left(i_x\right)_{\left(\cC/f\right)^{\mathrm{op}}} = i_{F(f)(x)}$. This implies that $\left(\tau_x\right)_{\left(\cC/f\right)^{\mathrm{op}}} = \tau_{F(f)(x)}$. Hence $\tau:H\ra \iMor_{\cC}\left(F,G\right)$ given by 
-$$H(X)\ni x\mapsto \tau_x\in \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$$
+because $\left(i_x\right)_{\left(\cC/f\right)^{\mathrm{op}}} = i_{F(f)(x)}$. This implies that $\left(\sigma_x\right)_{\left(\cC/f\right)^{\mathrm{op}}} = \sigma_{F(f)(x)}$. Hence $\tau:H\ra \iMor_{\cC}\left(F,G\right)$ given by 
+$$H(X)\ni x\mapsto \sigma_x\in \Mor_{\cC/X}\left(F_{\mid X},G_{\mid X}\right)$$
 is a morphism of presheaves. This defines a map of classes
 $$\Mor_{\cC}\left(H\times F, G\right)\in \sigma \mapsto \tau \in \Mor_{\cC}\left(H,\iMor_{\cC}\left(F,G\right)\right)$$
 
@@ -343,14 +343,14 @@ Let $\cC$ be a locally small category and let $F$, $G$, $J$ be presheaves on $\c
 is commutative for every morphism $f:X\ra Y$ in $\cC$. Then we say that $J$ is \textit{a subpresheaf of internal hom of $F$ and $G$}.
 \end{definition}
 \noindent
-Let $\cC$ be a locally small category, $F$, $G$, $H$ be presheaves on $\cC$. Fix a morphism $\sigma:H\times F\ra G$ of presheaves. Recall form the previous section that for every object $X$ in $\cC$ and $x$ in $H(X)$ we denote by $i_x:\bd{1}_{\mid X}\ra H_{\mid X}$ a unique morphism determined by $x$ (Fact \ref{fact:globalsections}). Next we denote by $\tau_x:F_{\mid X}\ra G_{\mid X}$ a unique morphism isomorphic with $\sigma_{\mid X}\cdot \left(i_x\times 1_{F_{\mid X}}\right)$. 
+Let $\cC$ be a locally small category, $F$, $G$, $H$ be presheaves on $\cC$. Fix a morphism $\sigma:H\times F\ra G$ of presheaves. Recall form the previous section that for every object $X$ in $\cC$ and $x$ in $H(X)$ we denote by $i_x:\bd{1}_{\mid X}\ra H_{\mid X}$ a unique morphism determined by $x$ (Fact \ref{fact:globalsections}). Next we denote by $\sigma_x:F_{\mid X}\ra G_{\mid X}$ a unique morphism isomorphic with $\sigma_{\mid X}\cdot \left(i_x\times 1_{F_{\mid X}}\right)$. 
 
 \begin{definition}
-Let $\cC$ be a locally small category, $F$, $G$, $H$ be presheaves on $\cC$ and assume that $J$ is a subpresheaf of internal hom of $F$ and $G$. Then a morphism of presheaves $\sigma:H\times F\ra G$ is called \textit{a family of $J$-morphisms parametrized by $H$} if for every object $X$ in $\cC$ and every $x$ in $H(X)$ we have $\tau_x\in J(X)$.
+Let $\cC$ be a locally small category, $F$, $G$, $H$ be presheaves on $\cC$ and assume that $J$ is a subpresheaf of internal hom of $F$ and $G$. Then a morphism of presheaves $\sigma:H\times F\ra G$ is called \textit{a family of $J$-morphisms parametrized by $H$} if for every object $X$ in $\cC$ and every $x$ in $H(X)$ we have $\sigma_x\in J(X)$.
 \end{definition}
 \noindent
 We continue discussion started before the definition. Let us now assume that $\sigma:H\times F\ra G$ is a family of $J$-morphisms parametrized by $H$ for some subpresheaf $J$ of internal hom of $F$ and $G$. Then $\tau:H\ra J$ given by
-$$H(X)\ni x\mapsto \tau_x\in J(X)$$
+$$H(X)\ni x\mapsto \sigma_x\in J(X)$$
 is a morphism of presheaves. The proof is identical to the proof of the analogous statement preceding Theorem \ref{theorem:internalhomforpresheaves}. This gives rise to a map of classes
 $$\big\{\mbox{families of $J$-morphisms parametrized by }H\big\}\ni \sigma \mapsto \tau \in \Mor_{\cC}\left(H,J\right)$$
 

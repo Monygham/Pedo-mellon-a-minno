@@ -1,0 +1,475 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Linearly Reductive Groups}
+\date{}
+\maketitle
+
+\section{Motivation -- linear representations of compact topological groups}
+\noindent
+In this section we fix a compact topological group $\bd{G}$.
+Assume that $\rho:\bd{G}\ra \mathrm{GL}_n(\CC)$ is a continuous homomorphism i.e. a complex, $n$-dimensional linear representation of $\bd{G}$. For every $g\in \bd{G}$ we get a matrix
+$$\rho(g)=\left[c_{ij}(g)\right]_{1\leq i, j \leq n}$$
+For $i$, $j$ function $c_{ij}:\bd{G}\ra \CC$ is a continuous complex valued function. Alternatively suppose that $\{e_1,e_2,...,e_n\}$ is the standard basis of $\CC^n$ on which $\mathrm{GL}_n(\CC)$ act. Then $c_{ij}$ is equal to a function 
+$$\bd{G}\ni g \mapsto \langle g\cdot e_i, e_j\rangle \in \CC$$
+Fix now $g_1$, $g_2\in \bd{G}$ and note that
+$$\left[c_{ij}(g_2\cdot g_1)\right]_{1\leq i,j\leq n}  = \rho(g_2\cdot g_1) = \rho(g_2)\cdot \rho(g_1) = \left[\sum_{k=1}^nc_{ik}(g_2)\cdot c_{kj}(g_1)\right]_{1\leq i,j\leq n}$$
+Hence 
+$$c_{ij}(g_2\cdot g_1) = \sum_{k=1}^nc_{ik}(g_2)\cdot c_{kj}(g_1)$$
+for every $1\leq i,j\leq n$. This implies that $\sum_{1\leq i,j\leq n}\CC\cdot c_{ij}\subseteq \cL^2(\bd{G},\CC)$ is a linear $\bd{G}\times \bd{G}^{\mathrm{op}}$-subrepresentation of the regular representation $\cL^2(\bd{G},\CC)$. We call it \textit{the matrix coefficients of $\rho$}. 
+
+\section{Matrix coefficients of a representation}
+
+\begin{proposition}\label{proposition:matrixcoefficients}
+Let $\fX$ be a monoid $k$-functor and let $V$ be a finitely generated, projective $k$-module. Fix a morphism of monoids $\rho:\fX \ra \cL_V$. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. For every $A$-algebra $B$ and $x\in \fX_A(B)$ we consider the formula
+$$c_{v,w}(x) = \langle \rho_A(x) \cdot v_B, w_B \rangle$$
+Then $c_{v,w}$ defines a regular function on $\fX_A$ for every $k$-algebra $A$.
+\end{proposition}
+\begin{proof}
+Suppose that $f:B\ra C$ is a morphism of $A$-algebras and pick $x\in \fX_A(B)$. Since $\rho_A$ is natural and $w:A\otimes_kV\ra A$ is a morphism of $A$-modules, we derive that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{V_B & V_B & B \\
+ V_C & V_C & C\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$\rho_A\big(\fX_A(f)(x)\big) $} (m-2-2)
+(m-1-2) edge node[right] {$1_{V_A}\otimes_Af $} (m-2-2) 
+(m-1-1) edge node[left]  {$1_{V_A}\otimes_Af $} (m-2-1)
+(m-1-1) edge node[above] {$\rho_A(x) $} (m-1-2)
+(m-1-2) edge node[above] {$w_B $} (m-1-3)
+(m-2-2) edge node[below] {$w_C $} (m-2-3)
+(m-1-3) edge node[right] {$f $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+is commutative. Hence 
+$$c_{v,w}\big(\fX_A(f)(x)\big)=\langle \rho_A\big(\fX_A(f)(x)\big)\cdot v_C,w_C\rangle=f\big(\langle \rho_A(x)\cdot v_B, w_B\rangle \big)=f\big(c_{v,w}(x)\big)$$
+and this implies that $c_{v,w}:\fX_A\ra \mathbb{A}^1_A$ is natural.
+\end{proof}
+
+\begin{definition}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated, projective underlying $k$-module $V$. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Then the regular function $c_{v,w}$ on $\fX_A$ is called \textit{the matrix coefficient of $v$ and $w$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:matrixcoefficientsnatural}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Then the following assertions holds.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item For every $k$-algebra $A$ map
+$$\left(A\otimes_kV\right)\times \left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)$$
+is $A$-bilinear.
+\item The collection of maps
+$$\big\{\left(A\otimes_kV\right)\times \left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)\big\}_{A\in \Alg_k}$$
+gives rise to a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ V_{\mathrm{a}}\times V^{\vee}_{\mathrm{a}} &  \iMor_k\left(\fX,\mathbb{A}^1_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We left the proof of \textbf{(1)} to the reader.\\
+We prove \textbf{(2)}. Consider $k$-algebra $A$ and an $A$-algebra $B$ with structural morphism $f:A\ra B$. Fix $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. We prove that restriction of $c_{v,w}:\fX_A\ra \mathbb{A}^1_A$ to the category $\Alg_B$ is $c_{v_B,w_B}$. For this pick a $B$-algebra $C$ and an element $x\in \fX_A(C)=\fX_B(C)$. Note that
+$$c_{v,w}(x)= \langle \rho_A(x)\cdot v_C,w_C \rangle =  \langle \rho_B(x)\cdot v_C,w_C\rangle = \langle \rho_B(x)\cdot (v_B)_C,(w_B)_C\rangle = c_{v_B,w_B}(x)$$
+and hence ${c_{v,w}}_{\mid \Alg_B}=c_{v_B,w_B}$. Consider the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{V_{\mathrm{a}}(A)\times V^{\vee}_{\mathrm{a}}(A) & \iMor_k\left(\fX,\mathbb{A}^1\right)(A)  \\
+ V_{\mathrm{a}}(B)\times V^{\vee}_{\mathrm{a}}(B) & \iMor_k\left(\fX,\mathbb{A}^1\right)(B)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-2) edge node[right] {$\iMor_k(\fX,\mathbb{A}^1)(f) $} (m-2-2) 
+(m-1-1) edge node[left]  {$V_a(f)\times V^{\vee}_a(f)$} (m-2-1)
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+in which both horizontal arrows are given by formula $(v,w)\mapsto c_{v,w}$. We proved that the square commutes. Since $f$ is an arbitrary morphism of $k$-algebras, we conclude the assertion.
+\end{proof}
+
+\begin{corollary}\label{corollary:matrixcoefficientsnatural}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Then there exists a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \left(V \otimes_k V^{\vee}\right)_{\mathrm{a}} &  \iMor_k\left(\fX,\mathbb{A}^1_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$c $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+given by formula
+$$\left(A\otimes_kV\right)\otimes_A\left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)$$
+Moreover, $c$ is a morphism of $k$-functors equipped with $\fX \times \fX^{\mathrm{op}}$-actions.
+\end{corollary}
+\begin{proof}
+The first part is an immediate consequence of Proposition \ref{proposition:matrixcoefficientsnatural}. We prove that $c$ is a morphism of $k$-functors equipped with $\fX\times \fX^{\mathrm{op}}$-actions. For this we fix a $k$-algebra $k$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Pick a morphism of $k$-algebras $f:A\ra B$, $(y,z)\in \fX(A)\times \fX(A)^{\mathrm{op}}$ and $x\in \fX_A(B)$. Then we have 
+$$c_{\rho(y)\cdot v,w\cdot \rho(z)}(x) = \big\langle \rho_A(x)\cdot \left(\rho(y)\cdot v\right)_B, \left(w\cdot \rho(z)\right)_B \big\rangle =$$
+$$= \big\langle \rho_A(x)\cdot \rho_A(\left(\fX_A(f)(y)\right))\cdot v_B, w_B\cdot \rho_A\left(\fX_A(f)(z)\right) \big\rangle = w_B\big(\rho_A\left(\fX_A(f)(z)\right)\cdot \rho_A(x)\cdot \rho_A\left(\fX_A(f)(y)\right)\cdot v_B \big)=$$
+$$= w_B\big(\rho_A\left(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\right)\cdot v_B \big) = \big\langle \rho_A\left(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\right)\cdot v_B, w_B \big\rangle =  $$
+$$= c_{v,w}\big(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\big)$$
+and hence $c$ is a morphism of $k$-functors equipped with actions of $\fX\times \fX^{\mathrm{op}}$.
+\end{proof}
+
+
+
+
+\section{$k$-functors of monoids and their linear representations}
+\noindent
+In the sequel we assume that the reader is familiar with notions of a monoid, group etc. in arbitrary category with finite products. For definitions and some discussion related to these notions cf. {\cite[pages 2-5]{Maclane}}.
+
+\begin{definition}
+\textit{A monoid (group) $k$-functor} is a monoid (group) object in the category of $k$-functors.
+\end{definition}
+\noindent
+Next we introduce an important notion of a linear representation of a monoid $k$-functor. For this we define $k$-functors associated with modules over $k$ and discuss their properties.
+
+\begin{example}\label{example:additivekfunctor}
+Let $V$ be a $k$-module. We define a $k$-functor $V_{\mathrm{a}}$. We set
+$$V_{\mathrm{a}}(A) = A\otimes_kV,\,V_{\mathrm{a}}(f) = f\otimes_k1_V$$
+for every $k$-algebra $A$ and every morphism $f:A\ra B$ of $k$-algebras. Moreover, $V_{\mathrm{a}}$ admits a structure of a commutative group $k$-functor. Indeed, $V_{\mathrm{a}}(A)$ is a commutative group with respect to addition induced by its structure of $A$-module and $V_{\mathrm{a}}(f):V_{\mathrm{a}}(A)\ra V_{\mathrm{a}}(B)$ preserves the addition.
+\end{example}
+\noindent
+Suppose now that $V$, $W$ are $k$-modules and $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ is a morphism of $A$-functors for some $k$-algebra $A$. Then for every $A$-algebra $B$ we denote by $\sigma^B:B\otimes_kV\ra B\otimes_kW$ the component of $\sigma$ for $B$.
+
+\begin{definition}
+Let $V,W$ be $k$-modules and let $A$ be a $k$-algebra. A morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors is \textit{linear} if for every $A$-algebra $B$ the component $\sigma^B:B\otimes_kV\ra B\otimes_kW$ is a morphism of $B$-modules.
+\end{definition}
+\noindent
+Next result characterizes linear morphism.
+
+\begin{fact}\label{fact:frommorphismsofmodulestolinear}
+Let $V$, $W$ be $k$-modules and let $A$ be a $k$-algebra. Suppose that  $\phi:A\otimes_kV\ra A\otimes_kW$ is a morphism of $A$-modules. Then there exists a unique linear morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors such that $\sigma^A = \phi$.
+\end{fact}
+\begin{proof}
+Note that if such $\sigma$ exists, then by requirement $\sigma^A = \phi$ for every morphism $f:A\ra B$ of $k$-algebras the following diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_kV  & A\otimes_kW           \\
+   B\otimes_kV  & B\otimes_kW           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-2-1) edge node[below] {$\sigma^B $} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_W $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+must commute. We make this into a definition of a morphism $\sigma^B$ of $B$-modules. It is a matter of linear algebra that this diagram uniquely determines $\sigma^B$ and also that $\sigma^A = \phi$. It remains to verify that $\sigma = \{\sigma^B\}_{B\in \Alg_A}$ defined in such a way is a morphism of $A$-functors. For this suppose that $f:A\ra B$ and $g:B\ra C$ are morphisms of $k$-algebras. Then we have
+$$\sigma^C \cdot (g \otimes_k 1_V) \cdot (f\otimes_k 1_V) = \sigma^C \cdot (\left (g\cdot f) \otimes_k 1_V\right) = \left((g\cdot f) \otimes_k 1_W \right) \cdot \phi = $$
+$$ = (g \otimes_k 1_W) \cdot (f \otimes_k 1_V)\cdot \phi= (g \otimes_k 1_W)\cdot \sigma^B \cdot (f \otimes_k 1_V)$$
+and hence $\sigma^C \cdot (g \otimes_k 1_V) = (g \otimes_k 1_W) \cdot \sigma^B$. Thus $\sigma$ is a linear morphism of $A$-functors.
+\end{proof}
+\noindent
+We restate Fact \ref{fact:frommorphismsofmodulestolinear} in the form of the following result.
+
+\begin{corollary}\label{corollary:idenitificationoflinearmorphismsoffunctors}
+Let $V, W$ be $k$-modules and $A$ be a $k$-algebra. Consider the map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Hom_A(A\otimes_kV,A\otimes_kW) & \Mor_{A}\left(\left(V_{\mathrm{a}}\right)_A,\left(W_{\mathrm{a}}\right)_A\right) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+that sends morphism $\phi$ to a unique linear morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors such that $\sigma^A = \phi$. Then this map is injective and its image consists of all linear morphisms of $A$-functors.
+\end{corollary}
+
+\begin{example}\label{example:linearmonoid}
+Let $V$ be a $k$-module. We define a $k$-functor $\cL_V$. We set
+$$\cL_V(A) = \Hom_A(A\otimes_kV,A\otimes_kV)$$
+for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras and every morphism $\phi:A\otimes_kV\ra A\otimes_kV$ of $A$-modules we define $\cL_V(f)(\phi)$ as a unique morphism of $B$-modules such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_kV  & A\otimes_kV           \\
+   B\otimes_kV  & B\otimes_kV           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-2-1) edge node[below] {$\cL_V(\phi)  $} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_V $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Note also that $\cL_V(A)$ is a monoid with respect to the usual composition of morphism of $A$-modules and $\cL_V(f):\cL_V(A)\ra \cL_V(B)$ preserves this composition. Hence $\cL_V$ is a monoid $k$-functor.
+\end{example}
+
+\begin{remark}\label{remark:generallinearmonoid}
+Corollary \ref{corollary:idenitificationoflinearmorphismsoffunctors} implies that there are injective maps that make the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cL_V(A)   &  \Mor_{A}\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)_A\right)           \\
+  \cL_V(B)   &  \Mor_{B}\left(\left(V_{\mathrm{a}}\right)_B,\left(V_{\mathrm{a}}\right)_B\right)           \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ $} (m-2-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ \cL_V(f) $} (m-2-1)
+(m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_B $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutative for every morphism $f:A\ra B$ of $k$-algebras. It also shows that for every $k$-algebra $A$ this identifies $\cL_V(A)$ with a subset of the class $\Mor_A\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)_A\right)$ consisting of all linear morphism of the $A$-functor $\left(V_{\mathrm{a}}\right)_A$.
+\end{remark}
+\noindent
+The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}} (Remark \ref{remark:generallinearmonoid} shows that $\cL_V$ is a subcopresheaf of internal endomorphisms of $V_{\mathrm{a}}$ and hence the machinery developed in the citation above can be applied), but for the reader's convenience we decide to include all essential details even if this requires repetition.\\
+Let $\fM$ be a monoid $k$-functor and let be $V$ be a $k$-module. Suppose that $\alpha:\fM\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ is an action of $\fM$ on $V_{\mathrm{a}}$. Assume that $A$ is a $k$-algebra and $x\in \fM(A)$. We denote by $i_x:\bd{1}_A\ra \fM_A$ the morphism of $A$-functors corresponding to $x$ by means of {\cite[Fact 2.4]{kfunctors}}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\alpha_A\cdot \left(i_x \times 1_{\left(V_{\mathrm{a}}\right)_A}\right)$ is isomorphic to a morphism $\alpha_x:\left(V_{\mathrm{a}}\right)_A\ra \left(V_{\mathrm{a}}\right)_A$ of $A$-functors.
+
+\begin{definition}
+Let $\fM$ be a monoid $k$-functor and let $V$ be a $k$-module. An action $\alpha:\fM\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ of $\fM$ such that for any $k$-algebra $A$ and point $x\in \fM(A)$ morphism $\alpha_x$ is linear is called \textit{a linear action of $\fM$ on $V$}.
+\end{definition}
+\noindent
+Now we continue the discussion assuming that $\alpha:\fM\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ is a linear action. We define a morphism $\rho:\fM\ra \cL_V$ of $k$-functors by formula $\rho(x) = \alpha_x^A$. We first check that $\rho$ really is a morphism of $k$-functors. For this fix morphism $f:A\ra B$ of $k$-algebras and $x\in \fM(A)$. Then $\alpha_{\fM(f)(x)}$ is a morphism of $B$-functors isomorphic with $\alpha_B\cdot \left(i_{\fM(f)(x)}\times 1_{\left(V_{\mathrm{a}}\right)_B}\right)$ and since 
+$$\alpha_B\cdot \left(i_{\fM(f)(x)}\times 1_{\left(V_{\mathrm{a}}\right)_B}\right) = \alpha_B\cdot \left(i_{x}\times 1_{\left(V_{\mathrm{a}}\right)_A}\right)_B = \left(\alpha_A\cdot \left(i_{x}\times 1_{\left(V_{\mathrm{a}}\right)_A}\right)\right)_B$$
+we derive that $\alpha_{\fM(f)(x)} = \left(\alpha_x\right)_B$. This implies that
+$$\rho\left(\fM(f)(x)\right) = \alpha_{\fM(f)(x)}^B = \left(\left(\alpha_x\right)_B\right)^B= \alpha_x^B = \cL_V(f)\left(\alpha_x^A\right) = \cL_V(f)(\rho(x))$$
+and thus $\rho$ is a morphism of $k$-functors. Now we show that $\rho$ is a morphism of monoids. For this pick $k$-algebra $A$ and $x, y\in \fM(A)$. Since $\alpha$ is an action, we deduce that $\alpha_{x \cdot y} = \alpha_x\cdot \alpha_y$ and hence also
+$$\rho(x\cdot y) = \alpha^A_{x \cdot y} = \alpha^A_x\cdot \alpha^A_y = \rho(x)\cdot \rho(y)$$
+Therefore, $\rho$ is a morphism of monoid $k$-functors. This shows how to construct a morphism of monoid $k$-functors $\rho$ from linear action $\alpha$. 
+
+\begin{theorem}\label{theorem:characterizationsoflinearrepresentations}
+Let $\fM$ be a monoid $k$-functor and let $V$ be a $k$-module. Suppose that
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{\bigg\{\mbox{Linear actions of $\fM$ on $V$}\bigg\} & \bigg\{\mbox{Morphisms $\rho:\fM\ra \cL_V$ of monoid $k$-functors}\bigg\} \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\Phi $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a map of classes described above. Then $\Phi$ is bijection.
+\end{theorem}
+\begin{proof}
+We may refer to {\cite[Theorem 6.3]{Presheaves}}, but for self-containment of the presentation let us give a direct proof of this important result.\\
+Our goal is to construct the inverse of $\Phi$. We construct a map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \bigg\{\mbox{Morphisms $\rho:\fM\ra \cL_V$ of monoid $k$-functors}\bigg\} & \bigg\{\mbox{Linear actions of $\fM$ on $V$}\bigg\} \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\Psi $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+of classes. For this we start with morphism of $k$-monoids $\rho:\fM\ra \cL_V$ and we construct a linear action $\alpha:\fM\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ out of $\rho$. Consider $k$-algebra $A$ and $A$-points $x\in \fM(A),\,v\in V_{\mathrm{a}}(A)$ we set $\alpha^A(x, v) = \rho(x)\left(v\right)$. We verify that $\alpha$ is a morphism of $k$-functors. For this we pick morphism $f:A\ra B$ of $k$-algebras. Note that we have (Example \ref{example:linearmonoid}) a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_kV  & A\otimes_kV           \\
+   B\otimes_kV  & B\otimes_kV           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \rho\left(x\right) $} (m-1-2)
+(m-2-1) edge node[below] {$\cL_V(\rho(x))  $} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_V $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Hence
+$$\alpha^B\left(\fM(f)(x),V_{\mathrm{a}}(f)(v)\right) = \rho\left(\fM(f)(x)\right)\left(V_{\mathrm{a}}(f)(v)\right) = \cL_V(f)\left(\rho(x)\right)\left(V_{\mathrm{a}}(f)(v)\right) =$$
+$$= V_{\mathrm{a}}(f)\left(\rho(x)\left(v\right)\right) = V_{\mathrm{a}}(f)\left( \alpha^A(x,v) \right)$$
+Thus $\alpha$ is a morphism of $k$-functors. Next suppose that $y\in \fM(A)$. Then
+$$\alpha^A\left(y, \alpha^A(x, v)\right) = \rho(y)\left(\rho(x)(v)\right) = \left(\rho(y)\cdot \rho(x)\right)(v) = \rho\left(x\cdot y\right)(v) = \alpha^A\left(x\cdot y, v\right)$$
+Therefore, $\alpha$ is an action of $\fM$ on $V_{\mathrm{a}}$. It is also linear action and we define $\Psi(\rho)=\alpha$.\\
+Finally routine verification shows that $\Psi\cdot \Phi$ and $\Phi\cdot \Psi$ are identity maps of classes. Thus $\Phi$ is a bijection.
+\end{proof}
+\noindent
+Theorem \ref{theorem:characterizationsoflinearrepresentations} states that for every monoid $k$-functor $\fM$ and every $k$-module $V$ linear actions $\alpha:\fM\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ and morphisms $\rho:\fM\ra \cL_V$ of $k$-monoids are in bijective correspondence. This shows that the formal machinery developed so far works as expected. Now we introduce the following notion.
+
+\begin{definition}
+Let $\fM$ be a monoid $k$-functor. A pair $\left(V,\rho\right)$ consisting of a $k$-module $V$ and a morphism $\rho:\fM\ra \cL_V$ of $k$-monoids is called \textit{a linear representation of $\fM$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:characterization_of_morphism_of_linear_representations}
+Let $\fM$ be a monoid $k$-functor. Suppose that $\alpha:\fM\times V_{\mathrm{a}}\ra V_{\mathrm{a}},\,\beta:\fM\times W_{\mathrm{a}}\ra W_{\mathrm{a}}$ are $k$-linear actions on $k$-modules $V$ and $W$, respectively. Suppose that $\sigma:V_{\mathrm{a}}\ra W_{\mathrm{a}}$ is a linear morphism of $k$-functors and $\phi = \sigma^k$ is the corresponding morphism of $k$-modules. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item The square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{  \fM\times V_{\mathrm{a}}   & \fM\times W_{\mathrm{a}}           \\
+   V_{\mathrm{a}}  & W_{\mathrm{a}}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ 1_{\fM}\times \sigma  $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma $} (m-2-2)
+(m-1-1) edge node[left] {$ \beta $} (m-2-1)
+(m-1-2) edge node[right] {$ \alpha $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\item For every $k$-algebra $A$ and $x\in \fM(A)$ we have
+$$\left(1_A\otimes_k\phi\right)\cdot \rho(x) = \delta(x) \cdot \left(1_A\otimes_k\phi\right)$$
+where $\rho:\fM\ra \cL_V$ and $\delta:\fM\ra \cL_W$ are morphism of monoid $k$-functors corresponding to $\alpha$ and $\beta$, respectively.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Indeed, conditions expressed in \textbf{(i)} and \textbf{(ii)} are directly translatable to each other by virtue of Fact \ref{fact:frommorphismsofmodulestolinear} and the bijection in Theorem \ref{theorem:characterizationsoflinearrepresentations}. 
+\end{proof}
+
+\begin{definition}
+Let $\fM$ be a monoid $k$-functor and let $(V,\rho)$, $(W,\delta)$ be its linear representations. A morphism $\phi:V\ra W$ of $k$-modules such that for every $k$-algebra $A$ and $x\in \fM(A)$ we have
+$$\left(1_A\otimes_k\phi\right)\cdot \rho(x) = \delta(x) \cdot \left(1_A\otimes_k\phi\right)$$
+is called \textit{a morphism of linear representations of $\fM$}.
+\end{definition}
+\noindent
+Let $\fM$ be a monoid $k$-functor. We denote by $\bd{Rep}(\fM)$ its category of linear representations.
+
+\section{The category of linear representations}
+\noindent
+In this section we fix a monoid $k$-functor $\fM$. Note that there exists the forgetful functor $\bd{Rep}(\fM)\ra \Mod(k)$ that sends each linear representation to its underlying $k$-module.
+
+\begin{theorem}\label{theorem:forgetful_functor_from_reps_creates_colmits_and_flimits}
+The forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{Rep}(\fM)  & \Mod(k) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small colimits.
+\end{theorem}
+\begin{proof}
+Suppose that $I\ni i\mapsto (V_i,\rho_i)\in \bd{Rep}(\fM)$ is a diagram of linear representations of $\fM$ indexed by some category $I$. Let $V$ together with $u_i:V_i\ra V$ for $i\in I$ be a colimit of the diagram $I\ni i\mapsto V_i\in \Mod(k)$.\\
+Assume first that $(V,\rho)$ is a structure of the linear representation of $\fM$ on $V$ such that $u_i:V_i\ra V$ for $i\in I$ becomes a cocone over the diagram $I\ni i\mapsto (V_i,\rho_i)\in \bd{Rep}(\fM)$. For every $k$-algebra $A$ the functor $A\otimes_k(-)$ preserves colimits and hence $1_A\otimes_ku_i$ for $i\in I$ is a colimit of the diagram $I\ni i \mapsto 1_A\otimes_kV_i\in \Mod(A)$. For each $i\in I$ we have an action $\rho_i^A:\fM(A)\ra \Hom_A\left(A\otimes_kV_i, A\otimes_kV_i\right)$ of $\fM(A)$ on $A\otimes_kV_i$ and we may view the diagram $I\ni i \mapsto 1_A\otimes_kV_i\in \Mod(A)$ as a diagram in the category of $A$-modules equipped with $\fM(A)$-actions given by $A$-module morphisms. We refer to this category as to category of $A$-linear $\fM(A)$-actions. Now the forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \bigg\{\mbox{the category of $A$-linear $\fM(A)$-actions}\bigg\} & \Mod(A) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small limits. Indeed, the category on the right hand side is isomorphic with the category $\Mod\left(A[\fM(A)]\right)$ of left modules over the monoid $A$-algebra $A[\fM(A)]$ and the forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \Mod\left(A[\fM(A)]\right) & \Mod(A) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small colimits. This implies that $\rho^A:\fM(A) \ra \Hom_A(A\otimes_kV,A\otimes_kV)$ must be a unique morphism of monoids such that $1_A\otimes_ku_i$ for every $i\in I$ is a morphism of $A$-modules with $A$-linear action of $\fM(A)$. This implies that $\rho$ is unique and hence $(V,\rho)$ is unique lift of $\left(V,\{u_i\}_{i\in I}\right)$ to $\bd{Rep}(\fM)$. This shows the uniqueness of a lift.\\
+For the existence assume for given $k$-algebra $A$ that $\rho^A:\fM(A) \ra \Hom_A(A\otimes_kV,A\otimes_kV)$ is a unique morphism of monoids such that $1_A\otimes_ku_i$ for every $i\in I$ is a morphism of $A$-modules with $A$-linear action of $\fM(A)$. Note that $\rho^A$ exists because the forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \bigg\{\mbox{the category of $A$-linear $\fM(A)$-actions}\bigg\} & \Mod(A) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small colimits. Denote $\rho = \{\rho^A\}_{A\in \Alg_k}$. We verify that $\rho$ is a morphism of $k$-functors $\rho:\fM\ra \cL_V$. For this consider morphism $f:A\ra B$ of $k$-algebras and the commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_k V_i   & A\otimes_kV \\
+   B\otimes_k V_i   & B\otimes_kV \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ 1_A\otimes_ku_i $} (m-1-2)
+(m-2-1) edge node[below] {$ 1_B\otimes_ku_i$} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_{V_i} $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_V $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+defined for every $i\in I$. Note that the top row of the square is a morphism of $A$-modules with $A$-linear $\fM(A)$-actions. Similarly interpreting $B\otimes_kV_i$ and $B\otimes_kV$ as $A$-modules with $A$-linear actions of $\fM(A)$ given by $\rho^B_i\cdot \fM(f)$ and $\rho^B\cdot \fM(f)$, respectively, we derive that the square consists of $A$-modules with $A$-linear actions of $\fM(A)$ and all maps preserve actions except possibly $f\otimes_k1_V$. Since $A\otimes_kV$ together with $1_A\otimes_ku_i$ for $i\in I$ is a colimit of $I\ni i \mapsto 1_A\otimes_kV_i\in \Mod(A)$ in the category of $A$-modules, we deduce that $f\otimes_k1_V$ is the only morphism of $A$-modules making squares commutative for all $i\in I$. Since $A\otimes_kV$ with $\rho^A$ and $1_A\otimes_k u_i$ for $i\in I$ is a colimit of the same diagram, but interpreted as a diagram of $A$-modules with $A$-linear action of $\fM(A)$-modules, we derive from uniqueness of $f\otimes_k1_V$ that it must also preserve $\fM(A)$-action. Hence $\left(f\otimes_k1_V\right)\cdot \rho^A = \rho^B\cdot \fM(f)$. Thus $\rho$ is a morphism of $k$-functors. By definition of $\rho^A$ for each $k$-algebra $A$, we derive that it is a morphism of monoid $k$-functors. Hence $(V,\rho)$ is a linear representation of $\fM$ and again by componentwise definition of $\rho$ we deduce that $(V,\rho)$ is a colimit of the diagram $I\ni i\mapsto (V_i,\rho_i)\in \bd{Rep}(\fM)$. 
+\end{proof}
+
+\begin{theorem}
+Let $A$ be a commutative ring. The following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $\Spec A$ is a Hausdorff space.
+\item Every prime ideal of $A$ is maximal.
+\item Every $A/\cN$-module is flat, where $\cN$ is a nilradical of $A$.
+\item Every finitely generated ideal of $A$ is generated by an idempotent.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{lemma:flatness_in_stalks}
+Let $A$ be a commutative ring and $M$ be an $A$-module. Then $M$ is flat if and only if $M_{\ideal{p}}$ is flat for all $\ideal{p}\in \Spec A$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every $\ideal{p}\in \Spec A$ we have a natural isomorphism
+$$M_{\ideal{p}}\otimes_A(-) \cong \left(M\otimes_A(-)\right)_{\ideal{p}}$$
+Now the statement follows from the fact that a chain complex of $A$-modules is exact if and only if it is exact after localization in every prime ideal $\ideal{p}\in \Spec A$
+\end{proof}
+
+\begin{lemma}\label{lemma:absolutely_flat_local_ring}
+Let $A$ be a local ring such that each $A$-module is flat. Then $A$ is a field.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $\ideal{m}$ be a maximal ideal of $A$ and $k$ be a residue field. Pick finitely generated ideal $\ideal{a}\subseteq \ideal{m}$. Consider the canonical exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{0 & \ideal{a} &  A    & A/\ideal{a} & 0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$a \mapsto a\,\mathrm{mod}\,\ideal{a} $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Since $k$ is a flat $A$-module, we derive that the sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{0 & k\otimes_A\ideal{a} &  k    & k/\ideal{a}k & 0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$\alpha \mapsto \alpha\,\mathrm{mod}\,\ideal{a}k $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is exact. Since $\ideal{a}k = 0$ because $\ideal{a}\subseteq \ideal{m}$, we deduce from the short exact sequence that $k\otimes_A\ideal{a} = 0$. By Nakayama lemma this implies that $\ideal{a} = 0$ ($\ideal{a}$ is finitely generated over $A$). Thus every finitely generated $A$-submodule of $\ideal{m}$ is trivial. Thus $\ideal{m} = 0$ and hence $A$ is a field.
+\end{proof}
+
+\begin{proof}
+
+\end{proof}
+
+
+ shows that $\cL_V$ is a subcopresheaf of internal endomorphisms of $V_{\mathrm{a}}$ and hence the machinery developed in the citation above can be applied), but for the reader's convenience we decide to include all essential details even if this requires repetition.\\
+
+\section{$k$-subfunctors of internal hom}
+\noindent
+The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}}. For reader's convenience we decide not to use the general machinery developed there. Instead we give complete proofs.
+
+\begin{definition}
+Let $\fX, \fY,\fU$ be $k$-functors and let $\sigma:\fU\times \fX \ra \fY$ be a morphism of $k$-functors. Assume that $\sigma_z:\fX_A\ra \fY_A$ is an isomorphism of $A$-functors for every $k$-algebra $A$ and $z\in \fU(A)$. Then we call $\sigma$ \textit{a family of isomorphism parametrized by $\fU$}.
+\end{definition}
+
+\begin{definition}
+Let $\fX,\fY$ be $k$-functors. For every $k$-algebra $A$ we consider a subclass $\Iso_A\left(\fX_A,\fY_A\right)\subseteq \Mor_A\left(\fX_A,\fY_A\right)$ consisting of all morphism of $A$-functors that are isomorphism. If $\Iso_{A}\left(\fX_A,\fY_A\right)$ is a set for every $k$-algebra $A$, then we define a $k$-subfunctor $\iIso_k\left(\fX,\fY\right)$ of $\iMor_k\left(\fX,\fY\right)$ such that
+$$\iIso_k\left(\fX,\fY\right)(A) = \Iso_A\left(\fX_A,\fY_A\right)$$
+\end{definition}
+
+\small
+\bibliographystyle{alpha}
+\bibliography{../zzz}
+
+
+\end{document}

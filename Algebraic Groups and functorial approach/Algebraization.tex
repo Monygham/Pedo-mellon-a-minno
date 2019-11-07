@@ -1,0 +1,444 @@
+\input ../pree.tex
+
+\usetikzlibrary{matrix,arrows, cd, calc}
+\newcommand{\Zhat}{\widehat{Z}}
+\newcommand{\What}{\widehat{W}}
+\newcommand{\Zformal}{\cZ}
+\newcommand{\Wformal}{\cW}
+\newcommand{\Group}{\mathbf{G}}%
+\newcommand{\Groupop}{\mathbf{G}^{\mathrm{op}}}%
+\newcommand{\Gprod}{\Group\times \Groupop}%
+\newcommand{\Groupconn}{\mathbf{G}^{\circ}}%
+\newcommand{\Nroup}{\mathbf{N}}%
+\newcommand{\Nred}{\Nroup_{\mathrm{red}}^{\circ}}%
+\newcommand{\Gbar}{\overline{\mathbf{G}}}%
+\newcommand{\Nbar}{\overline{\mathbf{N}}}%
+\newcommand{\Fbar}{\overline{\mathbf{F}}}%
+\newcommand{\Ghat}{\widehat{\mathbf{G}}}%
+
+\newcommand{\Gmult}{\mathbb{G}_m}%
+%% Glowna rozmaitosc
+\newcommand{\kk}{k}%
+\newcommand{\kkbar}{\overline{k}}%
+\newcommand{\varX}{X}%
+%% Kategoria schematów lokalnie skończonego typu nad ciałem
+\newcommand{\kSch}{\Sch_{\kk}}%
+%% Funktor zbieznych deformacji (z argumentem i bez)
+\newcommand{\Dfunctor}[1]{\mathcal{D}_{#1}}%
+\newcommand{\DX}{\Dfunctor{\varX}}%
+\newcommand{\Xplus}{\varX^+}%
+\newcommand{\Yplus}{Y^+}%
+\newcommand{\fplus}{f^+}%
+%% Funktor punktow stalych (z argumentem i bez)
+\newcommand{\Ffunctor}[1]{{#1}^{\Group}}%
+\newcommand{\FX}{\Ffunctor{\varX}}%
+\newcommand{\MorX}{\Mor_{\kk}(-, \varX)}%
+%% Funktor formalnych kompaktyfikacji (z argumentem i bez)
+\newcommand{\Hfunctor}[1]{\widehat{\mathcal{D}}_{#1}}%
+\newcommand{\HX}{\Hfunctor{\varX}}%
+%% Wlozenie ``wlokna nad 1''
+\newcommand{\ione}[1]{i_{#1}}%
+\newcommand{\ioneX}{\ione{\varX}}
+%% Wlozenie ``wlokna nad \infty''
+\newcommand{\iinfty}[1]{\pi_{#1}}%
+\newcommand{\iinftyX}{\iinfty{\varX}}%
+\newcommand{\isection}[1]{s_{#1}}%
+\newcommand{\isectionX}{\isection{\varX}}%
+%% wlozenie puntkow stalych w X^+
+\newcommand{\emb}{e}%
+%% ABB, dla skrotu
+\newcommand{\BBname}{Bia{\l}ynicki-Birula}%
+\newcommand{\Tname}{locally $\Group$-affine}%
+%% Stogi
+\DeclareMathOperator{\Maps}{Maps}
+\DeclareMathOperator{\Irr}{Irr}
+\newcommand{\MapsStack}{\underline{\Maps}}%
+\DeclareMathOperator{\colim}{colim}
+
+
+\DeclareMathOperator{\charr}{char}%
+\DeclareMathOperator{\id}{id}%
+\DeclareMathOperator{\Hilb}{Hilb}%
+\newcommand{\into}{\hookrightarrow}%
+\newcommand{\onto}{\twoheadrightarrow}%
+\newcommand{\sigmabar}{\overline{\sigma}}%
+
+\newcommand{\GroupGlobalSects}{H^0(\Group, \cO_{\Group})}%
+\newcommand{\Hbar}{\overline{\mathbf{H}}}%
+\newcommand{\Hroup}{\mathbf{H}}%
+\newcommand{\mubar}{\overline{\mu}}%
+
+\begin{document}
+
+\section{Formal functors and representability}
+
+        
+
+        \begin{example}[Formal schemes from algebraic ones]\label{algebraicformalgroupschemes}
+            Let $Z$ be a $\Group$-scheme and $\cI$ be the ideal of
+            $Z^{\Group}$. Then $Z_n=V(\cI^{n+1})$ is a closed $\Group$-stable
+            subscheme of $Z$ for every $n\in \NN$ and this yields to a formal
+            $\Group$-scheme $\Zformal=\{Z_n\}_{n\in \NN}$. We denote this formal
+            $\Group$-scheme by $\Zhat$.
+        \end{example}
+
+
+        Now we define morphisms of formal $\Group$-schemes.
+        \begin{definition}
+            Let $\Zformal =\{Z_n\}$ and $\Wformal =\{W_n\}$ be formal $\Group$-schemes.
+            A \emph{morphism $\varphi:\Wformal\to \Zformal$ of formal
+            $\Group$-schemes} is a family of $\Group$-equivariant morphisms
+            $\varphi=\{\varphi_n:W_n\ra Z_n\}$ such that for every $n\in \NN$
+            we have a commutative square
+            \begin{center}
+                \begin{tikzpicture}
+                    [description/.style={fill=white,inner sep=2pt}]
+                    \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+                    {W_{n+1}&  &    Z_{n+1}          \\
+                W_n&   & Z_n         \\} ;
+                \path[->,font=\scriptsize]  
+                (m-1-1) edge node[above] {$\varphi_{n+1}$} (m-1-3)
+                (m-2-1) edge node[below] {$\varphi_n$} (m-2-3);
+                \path[right hook->,font=\scriptsize]
+                (m-2-3) edge node[right] {$ $} (m-1-3)
+                (m-2-1) edge node[right] {$ $} (m-1-1);
+            \end{tikzpicture}
+        \end{center}
+    \end{definition}
+    \begin{remark}[Morphisms of formal $\Gbar$-schemes are $\Gbar$-equivariant]
+        Let $\Wformal$ and $\Zformal$ be formal $\Gbar$-schemes and consider
+        their morphism $\varphi:\Wformal \to \Zformal$ (as formal
+        $\Group$-schemes). Then for every $n\in \NN$ the morphism
+        $\varphi_n\colon W_n\ra Z_n$ is $\Gbar$-equivariant. To see this,
+        consider Diagram~\eqref{eq:Gbarformaldiagram}.
+        \begin{equation}\label{eq:Gbarformaldiagram}
+            \begin{tikzpicture}
+                [description/.style={fill=white,inner sep=2pt}]
+                \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
+                {W_{n}&  &  W_0\times_{Z_0}Z_n  & &Z_n          \\
+                     &   & W_0           & &Z_0     \\} ;
+                \path[->,font=\scriptsize] 
+                (m-1-1) edge[bend left = 30] node[above] {$ \varphi_n $} (m-1-5) 
+                (m-1-1) edge node[below] {$r_n $} (m-1-3)
+                (m-1-3) edge node[right] {$p_n $} (m-2-3)
+                (m-1-1) edge node[left = 3pt, below = 3pt] {$\iinfty{W_n} $} (m-2-3)
+                (m-1-3) edge node[below] {$q_n $} (m-1-5)
+                (m-2-3) edge node[below] {$\varphi_0 $} (m-2-5)
+                (m-1-5) edge node[right] {$\iinfty{Z_n} $} (m-2-5);
+            \end{tikzpicture}
+        \end{equation}
+        Since $W_0$ and $Z_0$ are equipped with trivial $\Gbar$-actions, also the
+        pullback $W_0\times_{Z_0}Z_n$ is a $\Gbar$-scheme and $q_n$ is
+        $\Gbar$-equivariant. Recall that $\iinfty{Z_n}$, $\iinfty{W_n}$ are
+        affine morphisms. Therefore, $p_n$ is affine. Hence $r_n$ is a
+        $\Group$-equivariant morphism between $\Gbar$-schemes separated (even
+        affine) over $W_0$. Thus $r_n$ is $\Gbar$-equivariant.
+    \end{remark}
+
+    \begin{definition}\label{ref:locallylinear:def}
+        A \emph{locally linear $\Gbar$-scheme} is a $\Gbar$-scheme which
+        admits an open cover by affine $\Gbar$-stable subschemes. The category
+        of locally linear $\Gbar$-schemes consists of those schemes and
+        $\Gbar$-equivariant morphisms.
+    \end{definition}
+    Let $Z$ be a locally linear $\Gbar$-scheme. By Proposition~\ref{ref:isomorphism:prop}, the
+    map $\Dfunctor{Z}\to Z$ is an isomorphism. In particular, there is a
+    canonical morphism $\iinfty{Z}\colon Z\to Z^{\Group}$, which is the
+    multiplication by zero. For an affine open $\Gbar$-stable cover
+    $\{V_i\}_i$
+    of $Z$, we have $V_i = \iinfty{Z}^{-1}(\iinfty{Z}(V_i))$ by
+    Proposition~\ref{ref:openimmersionscartesian:prop}, hence the canonical morphism $\iinfty{Z}\colon Z\to Z^{\Group}$ is affine.
+
+\begin{definition}\label{ref:algebraization:def}
+Let $\Zformal$ be a formal $\Gbar$-scheme. An \emph{algebraization} of $\Zformal$ is a $\Gbar$-scheme $Z$ such that
+\begin{enumerate}
+            \item\label{it:algebraization:one} $Z$ is a locally linear
+                $\Gbar$-scheme.
+            \item\label{it:algebraization:two} $\Zformal$ and $\Zhat$ are isomorphic formal $\Gbar$-schemes.
+        \end{enumerate}
+    \end{definition}
+    By the above discussion, the morphism
+    $\iinfty{Z}\colon Z\to Z^{\Group}$ is affine for any algebraization $Z$.
+
+    \begin{theorem}[Algebraization of a formal $\Gbar$-scheme]\label{ref:algebraizationOfFormalSchemes:thm}
+        Let $\Zformal =\{Z_n\}$ be a formal $\Gbar$-scheme. Then there exists
+        a colimit
+        \[
+            Z = \colim_{n} Z_n
+        \]
+        in the category of locally linear $\Gbar$-schemes and $Z$ is the
+        unique algebraization of $\Zformal$.
+        If in addition $\Zformal$ is locally Noetherian, then $\iinfty{Z}$ is of finite type. If
+        $\Zformal$ is locally Noetherian and $Z_0$ is of finite type, then also $Z$ is of
+        finite type.
+    \end{theorem}
+
+Now we spell out the main idea of the proof: the $\Gbar$-scheme $Z$
+required in Theorem~\ref{ref:algebraizationOfFormalSchemes:thm} is equal to $\Spec_{Z_0} \cA$, where
+$\cA$ is the limit of $\cA_n$ \emph{in the category of
+$\Gbar$-algebras}; in other words each isotypic component of $\cA$ is the
+limit of isotypic components of $\cA_n$.
+Our first goal is to prove a stabilization result.
+We denote by $\Irr(\Group)$ the set of isomorphism types of irreducible
+$\Group$-representations and by $\Irr(\Gbar) \subset \Irr(\Group)$ the
+subset of $\Gbar$-representations. For $\lambda\in \Irr(\Group)$ and
+a quasi-coherent $\Gbar$-module $\cC$ on $Z_0$ we denote by $\cC[\lambda]
+\subset \cC$ the $\Gbar$-submodule such that $H^0(U, \cC[\lambda]) \subset H^0(U, \cC)$
+is the union of all $\Group$-subrepresentations of $H^0(U, \cC)$ isomorphic to
+$\lambda$ (i.e., the isotypic component of $\lambda$).
+
+
+\begin{lemma}[stabilization on an isotypic component]\label{ref:stability:lem}
+Let $\lambda\in \Irr(\Gbar)$. Then there exists a number $n_{\lambda}\in \NN$
+such that the following holds. Let $\Zformal=\{Z_n\}$ be a formal $\Gbar$-scheme
+and $\{\cA_{n+1} \onto \cA_n\}$ be the associated sequence of quasi-coherent
+$\Gbar$-algebras. Then for every $n > n_{\lambda}$ the surjection
+\[
+    \cA_{n}[\lambda] \onto \cA_{n-1}[\lambda]
+\]
+is an isomorphism. If $\lambda_0\in \Irr(\Gbar)$ is the
+trivial representation, then we may take $n_{\lambda_0}=0$.
+\end{lemma}
+\begin{proof}[Proof of Lemma~\ref{ref:stability:lem}]
+    The claims are preserved under field extension, so we may assume our field
+    is algebraically closed (hence perfect) so we may use the Kempf's torus.
+    Fix a grading on
+    $\kk[\Gbar]$ induced by a Kempf's torus for $\kk$ as in
+    Corollary~\ref{ref:KempfTorus:cor}. Denote by $A_{\lambda}\subseteq \NN$
+    the set of weights which appear in
+    $\kk[\Group]_{\lambda}$. Since $\dim_{\kk}\kk[\Group]_{\lambda}$
+    is finite by Proposition~\ref{ref:isotypiccomponents:prop}, the set
+    $A_{\lambda}$ is finite. Put
+    \[
+        n_{\lambda}=\sup A_{\lambda}.
+    \]
+    Fix $n> n_{\lambda}$ and let
+    $\cI_n = \ker(\cA_n\to \cA_0)$. Then we have a decomposition
+    with respect to the chosen torus
+    \[
+        \cA_n=\bigoplus_{i\geq 0}(\cA_n)[i],
+    \]
+    By Corollary~\ref{ref:KempfTorus:cor}, we have $\cI_n =
+    \bigoplus_{i\geq 1}(\cA_n)[i]$. Since $n > n_{\lambda}$ we have
+    \[
+        \cI^{n}_n \subset \bigoplus_{i\geq
+        n}(\cA_n)[i]\subseteq \bigoplus_{i \not \in
+            A_{\lambda}}(\cA_n)[i]
+    \]
+Hence, $\cI^{n}_n[\lambda] = 0$. But
+$\cI^{n}_n[\lambda] = \ker(\cA_{n}[\lambda] \to
+\cA_{n-1}[\lambda])$, thus $\cA_{n}[\lambda] \to \cA_{n-1}[\lambda]$ is an
+isomorphism.
+Finally note that $A_{\lambda_0}=\{0\}$. This implies that $n_{\lambda_0}=0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{ref:algebraizationOfFormalSchemes:thm}]
+    Let $\cA_n$ be the quasi-coherent $\Gbar$-algebras as
+    in~\eqref{eq:Andefinition}. For $\lambda\in \Irr(\Gbar)$ we define
+    $\cA[\lambda] := \cA_n[\lambda]$, where $n\geq n_{\lambda}$ as in
+    Lemma~\ref{ref:stability:lem}.
+    \[
+        \cA=\bigoplus_{\lambda\in
+            \Irr(\Gbar)}\cA[\lambda]=\bigoplus_{\lambda\in
+                \Irr(\Gbar)}\cA_{n_{\lambda}}[\lambda].
+    \]
+    Clearly $\cA[\lambda_0] = \cA_0 = \cO_{Z_0}$ canonically (where
+    $\lambda_0$ is the trivial representation), hence $\cA$ is an
+    $\cO_{Z_0}$-module.
+    Actually $\cA=\lim_{n}\cA_n$ in the category of quasi-coherent
+    $\Gbar$-modules on $Z_0$.
+    We construct the algebra structure on $\cA$. For this
+    pick $\eta_1, \eta_2\in \Irr(\Gbar)$. Fix the finite set
+    $\{\lambda_1, \ldots ,\lambda_s\}\subseteq \Irr(\Gbar)$ of representations
+    which appear in $\kk[\Gbar]_{\eta_1}\otimes_{\kk}\kk[\Gbar]_{\eta_2}$.
+    Then, for every $n\in \NN$, we have the multiplication
+$$\cA_n[\eta_1]\otimes_{\kk} \cA_n[\eta_2]\ra \cA_n[\eta_1]\cdot \cA_n[\eta_2]\subseteq \bigoplus_{i=1}^s\cA_n[\lambda_i]$$
+and by Lemma \ref{ref:stability:lem} these morphisms can be identified for $n\geq \sup \{n_{\eta_1},n_{\eta_2},n_{\lambda_1},...,n_{\lambda_s}\}$. We define
+$$\cA[\eta_1]\otimes_{\kk} \cA[\eta_2]\ra  \bigoplus_{i=1}^s\cA[\lambda_i]\subseteq \cA$$
+as a morphism induced by the multiplication morphism for any $n\geq \sup
+\{n_{\eta_1},n_{\eta_2},n_{\lambda_1}, \ldots ,n_{\lambda_s}\}$. This gives an
+$\cO_{Z_0}$-algebra structure on $\cA$, so $\cA$ is in fact the limit of
+$\cA_n$ is the category of $\Gbar$-algebras. Note that from the description of
+$\cA$ it follows that for every $n\in \NN$ we have a surjective morphism
+$p_n:\cA\onto \cA_n$ of $\Gbar$-algebras. We denote its kernel
+by $\cJ_n$ and we put $\cJ:=\cJ_0$. The natural injection $\cO_{Z_0} = \cA_0 \to \cA$ is a section
+of $p_0$, so that we have
+\[
+    \cJ=\bigoplus_{\lambda \in \Irr(\Gbar)\setminus
+        \{\lambda_0\}}\cA[\lambda].
+\]
+We also denote by $\cI_n$ the kernel of $\cA_n\twoheadrightarrow
+\cA_0=\cO_{Z_0}$ for $n\in \NN$. Then $\cI_n=\cJ/\cJ_n$.
+%Since $\Zformal$ is a
+%formal $\Gbar$-scheme, the ideal $\cI_n^{n+1}$ cuts $Z_n$ out of $Z_n$, hence
+%$\cI_n^{n+1} = 0$. Consequently, $\cJ^{n+1} \subset
+%\cJ_n$\jjtodo{to wydaje się niepotrzebne, bo potem i tak pokazujemy równość}.
+Fix $m\in \NN$ and consider $n\in \NN$
+such that $n\geq m$. Since $\Zformal$ is a formal $\Gbar$-scheme, the sheaf
+$\cI_n^{m+1}$ is the kernel of the morphism $\cA_n\twoheadrightarrow \cA_m$.
+Thus
+\[
+\cJ_m/\cJ_n=\cI_n^{m+1}=(\cJ^{m+1}+\cJ_n)/\cJ_n.
+\]
+Both $\cJ_m$ and $\cJ^{m+1}$ are $\Irr(\Gbar)$-graded and for given
+$\lambda\in \Irr(\Gbar)$ and $n\gg 0$ the isotypic component
+$\cJ_n[\lambda]$ is zero by Lemma~\ref{ref:stability:lem}. Hence $\cJ_m=\cJ^{m+1}$ for every $m \in \NN$.
+We define
+\[
+    Z=\Spec_{Z_0}(\cA)
+\]
+and we denote by $\pi:Z\to Z_0$ the structural morphism. The scheme $Z$
+inherits a $\Gbar$-action from $\cA$. For
+every $n\in \NN$ the zero-set of $\cJ^{n+1}\subseteq \cA$ is a $\Gbar$-scheme
+isomorphic to $Z_n$. Hence $\Zformal$ is isomorphic to $\Zhat$.
+Thus $Z$ is an algebraization of $\Zformal$. Since $\cA=\lim \cA_n$, we
+have $Z = \colim Z_n$ in the category of locally linear $\Gbar$-schemes.
+
+It remains to prove uniqueness of algebraization. Let $Z' = \Spec_{Z_0} \cA'$
+be an algebraization of $\Zformal = \{Z_n\}$. Then $Z_n \into Z'$, so by the
+universal property of colimit, we obtain a $\Gbar$-morphism $Z\to Z'$,
+corresponding to $\cA' \to \cA$. It induces epimorphisms $\cA' \onto \cA_n$
+for all $n$. For each $\lambda\in \Irr(\Gbar)$, the composition
+\[
+    \cA'[\lambda]\to \cA[\lambda]  \simeq \cA_{n_\lambda}[\lambda]
+\]
+is an epimorphism, hence $\cA'\to \cA$ is an epimorphism. The kernel of
+$\cA'\to \cA$ is equal to
+\[
+    \bigcap_n \ker(\cA'\to \cA_n) = \bigcap_n \ker(\cA' \to \cA_0)^n.
+\]
+To prove that this kernel is zero, we may enlarge the field to an
+algebraically closed field, so the result follows from
+Corollary~\ref{ref:KempfTorus:cor}.
+
+Assume that each scheme $Z_n$ is locally Noetherian over $\kk$. Then $\cI_n$
+is a coherent $\cA_n$-module, thus $\cI_n^i/\cI^{i+1}$ is a coherent
+$\cA_0$-module for all $i$. The series
+\[
+    0 = \cI_n^{n+1} \subset \cI^n \subset  \ldots \subset \cI \subset \cA_n
+\]
+has coherent subquotients, hence $\cA_n$ is a coherent $\cO_{Z_n}$-algebra.
+Thus $\cA[\lambda]$ is a coherent $\cO_{Z_0}$-module for every
+$\lambda\in \Irr(\Gbar)$. The claim that $\pi$ is of finite type is local on
+$Z^{\Group}$, hence we may
+assume that $Z^{\Group}$ is quasi-compact.
+The sheaf $\cJ/\cJ^2\subseteq \cA_1$ is coherent so there exists a finite set
+$\lambda_1, \ldots, \lambda_r\in \Irr(\Gbar)\setminus \{\lambda_0\}$ such that the morphism
+\[
+    \bigoplus_{i=1}^r\cA[\lambda_i]\ra \cJ/\cJ^2
+\]
+induced by $\cA\twoheadrightarrow \cA_2$ is surjective. Let $\cB \subset \cA$
+be the quasi-coherent $\cO_{Z_0}$-subalgebra generated by the coherent
+subsheaf $\cM := \bigoplus_{i=1}^r\cA[\lambda_i]\subseteq \cA$.
+Let $\kkbar$ be an algebraic closure of $\kk$ and let $\cA' = \cA \otimes
+\kkbar$. Fix a Kempf's torus over
+$\kkbar$ and the associated grading $\cA' = \bigoplus_{i\geq 0}
+\cA'[i]$ as in
+Corollary~\ref{ref:KempfTorus:cor}.
+Then $\cJ = \bigoplus_{i\geq 1} \cA'[i]$ is a graded ideal and $\cJ/\cJ^2$ is
+generated by the graded (coherent) subsheaf $\cM' = \bigoplus_{i=1}^r\cA'[\lambda_i]$. By
+graded Nakayama's lemma, the ideal $\cJ$ itself is generated by (the elements
+of) $\cM'$. Then by induction on the degree, $\cA'$ is generated by $\cM'$ as
+an algebra. In other words, $\cA' = \cB\otimes \kkbar$. Thus also $\cA = \cB$ and so $\cA$ is of
+finite type over $\cO_{Z_0}$.
+\end{proof}
+
+\newcommand{\varphihat}{\widehat{\varphi}}%
+With the proof of Theorem~\ref{ref:algebraizationOfFormalSchemes:thm} in hand,
+we can easily algebraize also equivariant mappings between formal schemes.
+
+\begin{proposition}[Algebraization of morphisms of formal
+    $\Gbar$-schemes]\label{ref:algebraizationOfMaps:prop}
+    Let $\Wformal = \{W_n\}$ and $\Zformal = \{Z_n\}$ be formal $\Gbar$-schemes. Let $W$ and $Z$ be
+    algebraizations of $\Wformal$ and $\Zformal$ respectively (see
+    Theorem~\ref{ref:algebraizationOfFormalSchemes:thm}). Then every
+    $\Gbar$-morphism $\varphihat\colon\Wformal\to \Zformal$  is the formalization of a unique
+    $\Gbar$-equivariant morphism $\varphi\colon W\to Z$.
+\end{proposition}
+\begin{proof}
+    The map $\varphihat$ induces maps $W_n \to Z_n \into Z$. By
+    Theorem~\ref{ref:algebraizationOfFormalSchemes:thm}, the scheme $W$ is a
+    colimit of $W_n$ in the category of locally linear $\Gbar$-schemes. By the universal
+    property of the colimit, we obtain a unique $\Gbar$-equivariant morphism $W\to Z$.
+\end{proof}
+
+\section{Formal $\bd{M}$-schemes}
+\noindent
+Let $\bd{M}$ be a $k$-monoid scheme.
+
+\begin{definition}
+Let $X$ be a $\bd{M}$-scheme. We say that $X$ is \textit{locally linear $\bd{M}$-scheme} if there exists an open cover of $X$ consisting of affine and $\bd{M}$-stable subchemes of $X$.
+\end{definition}
+
+\begin{definition}
+\textit{A formal $\bd{M}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{M}$-schemes together with $\bd{M}$-equivariant closed immersions
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\bd{M}$-scheme $Z_0$ is locally linear.
+\item Let $\cI_n$ be an ideal of $\cO_{Z_n}$ defining $Z_0$. Then for every $m\leq n$ the subscheme $Z_m \subset Z_n$ is defined by $\cI_n^{m+1}$.
+\end{enumerate}
+\end{definition}
+
+\section{Thick subcategories}
+
+\begin{definition}
+Let $\cC$ be an abelian category and let $\cS$ be its full subcategory. Suppose that for every exact sequence in $\cC$
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ 0 & X' & X & X'' & 0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+we have $X\in \cS$ if and only if $X',X''\in \cS$. Then $\cS$ is called \textit{a thick subcategory of $\cC$}.
+\end{definition}
+
+\begin{definition}
+A category $\cC$ is called \textit{well-powered} if the class of subobjects of $X$ is a set for every object $X$ in $\cC$.
+\end{definition}
+
+\begin{proposition}\label{proposition:largest_subobject_in_thick_subcategory}
+Let $\cC$ be an $\bd{Ab}3$-category and $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. Then for every object $X$ in $\cC$ there exists a unique subobject $S(X)$ such that for every morphism $f:Y\ra X$ in $\cC$ with $Y$ in $\cS$ we have $f(Y)\subseteq S(X)$.
+\end{proposition}
+\begin{proof}
+One can prove the result by invoking appropriate adjoint functor theorems {\cite[Chapter V, Sections 5 and 6]{Maclane}}. For self-containment we present the complete proof below.\\
+Fix an object $X$ of $\cC$. Since $\cC$ is well-powered, the class $\{Y_i\}_{i\in I}$ of subobjects of $X$ that belong to $\cS$ is a set. Since $\cS$ is closed under small direct sums we derive that $\sum_{i\in I}Y_i\subseteq X$ is in $\cS$. Indeed, this is the image of the canonical morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bigoplus_{i\in I}Y_i & X \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+and since $\cS$ is a thick subcategory closed under small direct sums, we deduce that this image is an object of $\cS$. Thus $S(X) = \sum_{i\in I}Y_i$ is the largest subobject of $X$ contained in $\cS$. This implies the statement.
+\end{proof}
+
+\begin{definition}
+Let $\cC$ be an $\bd{Ab}3$-category and $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. Then 
+\end{definition}
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+\end{document}

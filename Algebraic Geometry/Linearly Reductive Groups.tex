@@ -156,13 +156,13 @@ $$V_{\mathrm{a}}(A) = A\otimes_kV,\,V_{\mathrm{a}}(f) = f\otimes_k1_V$$
 for every $k$-algebra $A$ and every morphism $f:A\ra B$ of $k$-algebras. Moreover, $V_{\mathrm{a}}$ admits a structure of a commutative group $k$-functor. Indeed, $V_{\mathrm{a}}(A)$ is a commutative group with respect to addition induced by its structure of $A$-module and $V_{\mathrm{a}}(f):V_{\mathrm{a}}(A)\ra V_{\mathrm{a}}(B)$ preserves the addition.
 \end{example}
 \noindent
-Suppose now that $V$, $W$ are $k$-modules and $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ is a morphism of $A$-functors. Then for every $A$-algebra $B$ we denote by $\sigma^B:B\otimes_kV\ra B\otimes_kW$ the component of $\sigma$ for $B$.
+Suppose now that $V$, $W$ are $k$-modules and $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ is a morphism of $A$-functors for some $k$-algebra $A$. Then for every $A$-algebra $B$ we denote by $\sigma^B:B\otimes_kV\ra B\otimes_kW$ the component of $\sigma$ for $B$.
 
 \begin{definition}
 Let $V,W$ be $k$-modules and let $A$ be a $k$-algebra. A morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors is \textit{linear} if for every $A$-algebra $B$ the component $\sigma^B:B\otimes_kV\ra B\otimes_kW$ is a morphism of $B$-modules.
 \end{definition}
 \noindent
-Next Fact characterizes linear morphism.
+Next result characterizes linear morphism.
 
 \begin{fact}\label{fact:frommorphismsofmodulestolinear}
 Let $V$, $W$ be $k$-modules and let $A$ be a $k$-algebra. Suppose that  $\phi:A\otimes_kV\ra A\otimes_kW$ is a morphism of $A$-modules. Then there exists a unique linear morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors such that $\sigma^A = \phi$.
@@ -183,9 +183,9 @@ Note that if such $\sigma$ exists, then by requirement $\sigma^A = \phi$ for eve
 \end{tikzpicture}
 \end{center}
 must commute. We make this into a definition of a morphism $\sigma^B$ of $B$-modules. It is a matter of linear algebra that this diagram uniquely determines $\sigma^B$ and also that $\sigma^A = \phi$. It remains to verify that $\sigma = \{\sigma^B\}_{B\in \Alg_A}$ defined in such a way is a morphism of $A$-functors. For this suppose that $f:A\ra B$ and $g:B\ra C$ are morphisms of $k$-algebras. Then we have
-$$\sigma_C \cdot (g \otimes_k 1_V) \cdot (f\otimes_k 1_V) = \sigma_C \cdot (\left (g\cdot f) \otimes_k 1_V\right) = \left((g\cdot f) \otimes_k 1_W \right) \cdot \phi = $$
-$$ = (g \otimes_k 1_W) \cdot (f \otimes_k 1_V)\cdot \phi= (g \otimes_k 1_W)\cdot \sigma_B \cdot (f \otimes_k 1_V)$$
-and hence $\sigma_C \cdot (g \otimes_k 1_V) = (g \otimes_k 1_W) \cdot \sigma_B$. Thus $\sigma$ is a linear morphism of $A$-functors.
+$$\sigma^C \cdot (g \otimes_k 1_V) \cdot (f\otimes_k 1_V) = \sigma^C \cdot (\left (g\cdot f) \otimes_k 1_V\right) = \left((g\cdot f) \otimes_k 1_W \right) \cdot \phi = $$
+$$ = (g \otimes_k 1_W) \cdot (f \otimes_k 1_V)\cdot \phi= (g \otimes_k 1_W)\cdot \sigma^B \cdot (f \otimes_k 1_V)$$
+and hence $\sigma^C \cdot (g \otimes_k 1_V) = (g \otimes_k 1_W) \cdot \sigma^B$. Thus $\sigma$ is a linear morphism of $A$-functors.
 \end{proof}
 \noindent
 We restate Fact \ref{fact:frommorphismsofmodulestolinear} in the form of the following result.
@@ -207,7 +207,7 @@ that sends morphism $\phi$ to a unique linear morphism $\sigma:\left(V_{\mathrm{
 \begin{example}
 Let $V$ be a $k$-module. We define a $k$-functor $\cL_V$. We set
 $$\cL_V(A) = \Hom_A(A\otimes_kV,A\otimes_kV)$$
-for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras and a morphism $\phi:A\otimes_kV\ra A\otimes_kV$ of $A$-modules we define $\cL_V(f)(\phi)$ as a unique morphism of $B$-modules such that the diagram
+for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras and every morphism $\phi:A\otimes_kV\ra A\otimes_kV$ of $A$-modules we define $\cL_V(f)(\phi)$ as a unique morphism of $B$-modules such that the diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -221,7 +221,7 @@ for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras an
 (m-1-2) edge node[right] {$ f\otimes_k1_W $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is commutative. Note also that $\cL_v(A)$ is a monoid $k$-functor with respect to the usual composition of morphism of $A$-modules and $\cL_V(f):\cL_V(A)\ra \cL_V(B)$ preserves this composition.
+is commutative. Note also that $\cL_V(A)$ is a monoid with respect to the usual composition of morphism of $A$-modules and $\cL_V(f):\cL_V(A)\ra \cL_V(B)$ preserves this composition. Hence $\cL_V$ is a monoid $k$-functor.
 \end{example}
 
 \begin{remark}\label{remark:generallinearmonoid}
@@ -240,14 +240,14 @@ Corollary \ref{corollary:idenitificationoflinearmorphismsoffunctors} implies tha
 (m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_B $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-commutative for every morphism $f:A\ra B$ of $k$-algebras. Also Corollary \ref{corollary:idenitificationoflinearmorphismsoffunctors} shows that for every $k$-algebra $A$ this identifies $\cL_V(A)$ with a subset of the class $\Mor_A\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)\right)$ consisting of all linear morphism of $A$-functor.
+commutative for every morphism $f:A\ra B$ of $k$-algebras. It also shows that for every $k$-algebra $A$ this identifies $\cL_V(A)$ with a subset of the class $\Mor_A\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)_A\right)$ consisting of all linear morphism of the $A$-functor $\left(V_{\mathrm{a}}\right)_A$.
 \end{remark}
 \noindent
 The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}} (Remark \ref{remark:generallinearmonoid} shows that $\cL_V$ is a subcopresheaf of internal endomorphisms of $V_{\mathrm{a}}$ and hence the machinery developed in the citation above can be applied), but for the reader's convenience we decide to include all essential details even if this requires repetition.\\
-Let $\fX$ be a monoid $k$-functor and let be $V$ be a $k$-module. Suppose that $\alpha:\fX\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ is an action of $\fX$ on $V_{\mathrm{a}}$. Assume that $A$ is a $k$-algebra and $x\in \fX(A)$. We denote by $i_x:\bd{1}_A\ra \fX_A$ the morphism of $A$-functors corresponding to $x$ by means of Fact \ref{fact:points}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\alpha_A\cdot \left(i_x \times 1_{\left(V_{\mathrm{a}}\right)_A}\right)$ is isomorphic to a morphism $\alpha_x:\left(V_{\mathrm{a}}\right)_A\ra \left(V_{\mathrm{a}}\right)_A$ of $A$-functors. Suppose now that for any $k$-algebra $A$ and point $x\in \fX(A)$ morphism $\alpha_x$ is linear. Then we define a morphism $\rho:\fX\ra \cL_V$ of $k$-functors by formula $\rho(x) = \alpha_x^A$. We first check that $\rho$ really is a morphism of $k$-functors. For this fix morphism $f:A\ra B$ of $k$-algebras and $x\in \fX(A)$. Then $\alpha_{\fX(f)(x)}$ is a morphism of $B$-functors isomorphic with $\alpha_B\cdot \left(i_{\fX(f)(x)}\times 1_{\left(V_{\mathrm{a}}\right)_B}\right)$ and since 
+Let $\fX$ be a monoid $k$-functor and let be $V$ be a $k$-module. Suppose that $\alpha:\fX\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ is an action of $\fX$ on $V_{\mathrm{a}}$. Assume that $A$ is a $k$-algebra and $x\in \fX(A)$. We denote by $i_x:\bd{1}_A\ra \fX_A$ the morphism of $A$-functors corresponding to $x$ by means of {\cite[Fact 2.4]{kfunctors}}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\alpha_A\cdot \left(i_x \times 1_{\left(V_{\mathrm{a}}\right)_A}\right)$ is isomorphic to a morphism $\alpha_x:\left(V_{\mathrm{a}}\right)_A\ra \left(V_{\mathrm{a}}\right)_A$ of $A$-functors. Suppose now that for any $k$-algebra $A$ and point $x\in \fX(A)$ morphism $\alpha_x$ is linear. Then we define a morphism $\rho:\fX\ra \cL_V$ of $k$-functors by formula $\rho(x) = \alpha_x^A$. We first check that $\rho$ really is a morphism of $k$-functors. For this fix morphism $f:A\ra B$ of $k$-algebras and $x\in \fX(A)$. Then $\alpha_{\fX(f)(x)}$ is a morphism of $B$-functors isomorphic with $\alpha_B\cdot \left(i_{\fX(f)(x)}\times 1_{\left(V_{\mathrm{a}}\right)_B}\right)$ and since 
 $$\alpha_B\cdot \left(i_{\fX(f)(x)}\times 1_{\left(V_{\mathrm{a}}\right)_B}\right) = \alpha_B\cdot \left(i_{x}\times 1_{\left(V_{\mathrm{a}}\right)_A}\right)_B = \left(\alpha_A\cdot \left(i_{x}\times 1_{\left(V_{\mathrm{a}}\right)_A}\right)\right)_B$$
 we derive that $\alpha_{\fX(f)(x)} = \left(\alpha_x\right)_B$. This implies that
-$$\rho\left(\fX(f)(x)\right) = \alpha_{\fX(f)(x)}^B = \left(\left(\alpha_x\right)_B\right)^B= \alpha_x^B = \cL_V(f)(\rho(x))$$
+$$\rho\left(\fX(f)(x)\right) = \alpha_{\fX(f)(x)}^B = \left(\left(\alpha_x\right)_B\right)^B= \alpha_x^B = \cL_V(f)\left(\alpha_x^A\right) = \cL_V(f)(\rho(x))$$
 and thus $\rho$ is a morphism of $k$-functors. Now we show that $\rho$ is a morphism of monoids. For this pick $k$-algebra $A$ and $x, y\in \fX(A)$. Since $\alpha$ is an action, we deduce that $\alpha_{x \cdot y} = \alpha_x\cdot \alpha_y$ and hence also
 $$\rho(x\cdot y) = \alpha^A_{x \cdot y} = \alpha^A_x\cdot \alpha^A_y = \rho(x)\cdot \rho(y)$$
 Therefore, $\rho$ is a morphism of monoid $k$-functors.
