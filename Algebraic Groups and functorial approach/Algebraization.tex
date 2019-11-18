@@ -362,34 +362,23 @@ we can easily algebraize also equivariant mappings between formal schemes.
     property of the colimit, we obtain a unique $\Gbar$-equivariant morphism $W\to Z$.
 \end{proof}
 
-\section{Formal $\bd{M}$-schemes}
-\noindent
-Let $\bd{M}$ be a $k$-monoid scheme.
 
-\begin{definition}
-Let $X$ be a $\bd{M}$-scheme. We say that $X$ is \textit{locally linear $\bd{M}$-scheme} if there exists an open cover of $X$ consisting of affine and $\bd{M}$-stable subchemes of $X$.
-\end{definition}
+It turns out that for each $n\in \NN$ the functor $P_n$ admits a right adjoint. We construct this right adjoint now. Let $X$ be an object of $\cC_n$. For every $m\in \NN$ we define
+$$X_m = \begin{cases} G_{m-1}...G_{n+1}G_n(X)& \mbox{ if }m > n\\
+X & \mbox{ if }m=n\\
+F_{m}...F_{n-2}F_{n-1}(X)& \mbox{ if }m < n\\
+\end{cases}$$
+and
+$$u_m = \begin{cases} \xi_{G_{m-1}...G_{n+1}G_n(X)}& \mbox{ if }m \geq n\\
+1_{F_{m}...F_{n-2}F_{n-1}(X)}& \mbox{ if }m < n\\
+\end{cases}$$
+where $\xi_{G_{m-1}...G_{n+1}G_n(X)}:F_mG_{m}G_{m-1}...G_{n+1}G_n(X)\ra G_{m-1}...G_{n+1}G_n(X)$ is a counit of the adjoint functors $F_m$ and $G_m$, which is an isomorphism as $G_m$ is full and faithful. We define $Q_n(X) = \left(\{X_n\}_{n\in \NN},\{u_n\}_{n\in \NN}\right)$.
 
-\begin{definition}
-\textit{A formal $\bd{M}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{M}$-schemes together with $\bd{M}$-equivariant closed immersions
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-1-2) edge node[above] {$ $} (m-1-3)
-(m-1-3) edge node[above] {$ $} (m-1-4)
-(m-1-4) edge node[above] {$ $} (m-1-5)
-(m-1-5) edge node[above] {$ $} (m-1-6);
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $\bd{M}$-scheme $Z_0$ is locally linear.
-\item Let $\cI_n$ be an ideal of $\cO_{Z_n}$ defining $Z_0$. Then for every $m\leq n$ the subscheme $Z_m \subset Z_n$ is defined by $\cI_n^{m+1}$.
-\end{enumerate}
-\end{definition}
+
+\begin{proposition}
+Let $Q_n:\cC_n\ra \cC(\mathbb{T})$ be a that sends $X$
+\end{proposition}
+
 
 \section{Thick subcategories}
 
@@ -415,10 +404,10 @@ A category $\cC$ is called \textit{well-powered} if the class of subobjects of $
 \end{definition}
 
 \begin{proposition}\label{proposition:largest_subobject_in_thick_subcategory}
-Let $\cC$ be an $\bd{Ab}3$-category and $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. Then for every object $X$ in $\cC$ there exists a unique subobject $S(X)$ such that for every morphism $f:Y\ra X$ in $\cC$ with $Y$ in $\cS$ we have $f(Y)\subseteq S(X)$.
+Let $\cC$ be an $\bd{Ab}3$-category and let $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. For every object $X$ in $\cC$ there exists a unique subobject $S(X)$ such that for every morphism $f:Y\ra X$ in $\cC$ with $Y$ in $\cS$ we have $f(Y)\subseteq S(X)$.
 \end{proposition}
 \begin{proof}
-One can prove the result by invoking appropriate adjoint functor theorems {\cite[Chapter V, Sections 5 and 6]{Maclane}}. For self-containment we present the complete proof below.\\
+One can prove the result invoking general adjoint functor theorems {\cite[Chapter V, Sections 5 and 6]{Maclane}}. For self-containment we present the complete proof below.\\
 Fix an object $X$ of $\cC$. Since $\cC$ is well-powered, the class $\{Y_i\}_{i\in I}$ of subobjects of $X$ that belong to $\cS$ is a set. Since $\cS$ is closed under small direct sums we derive that $\sum_{i\in I}Y_i\subseteq X$ is in $\cS$. Indeed, this is the image of the canonical morphism
 \begin{center}
 \begin{tikzpicture}
@@ -432,9 +421,221 @@ Fix an object $X$ of $\cC$. Since $\cC$ is well-powered, the class $\{Y_i\}_{i\i
 and since $\cS$ is a thick subcategory closed under small direct sums, we deduce that this image is an object of $\cS$. Thus $S(X) = \sum_{i\in I}Y_i$ is the largest subobject of $X$ contained in $\cS$. This implies the statement.
 \end{proof}
 
+\begin{fact}\label{fact:left_exactness_of_thicksubobject}
+Let $\cC$ be an $\bd{Ab}3$-category and let $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. For every $X$ in $\cC$ let $S(X)$ be the largest subobject of $X$ contained in $\cS$. Then $S:\cC\ra \cS$ is a left exact functor.
+\end{fact}
+\begin{proof}
+Left to the reader.
+\end{proof}
+
+\section{Existence of the algebraization}
+
 \begin{definition}
-Let $\cC$ be an $\bd{Ab}3$-category and $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. Then 
+Let $\bd{M}$ be a affine monoid $k$-scheme. Let $\cK:\bd{Rep}(\bd{M})\ra \bd{Rep}(\mathbb{A}^1_k)$ be an exact functor such that the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{Rep}(\bd{M}) &         &\bd{Rep}(\mathbb{A}^1_k)  \\
+                &\Vect_k  &                           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\cK $} (m-1-3)
+(m-1-1) edge node[left = 2pt, below = 2pt] {$|-| $} (m-2-2)
+(m-1-3) edge node[right = 2pt, below = 2pt] {$|-| $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Then we say that $\cK$ is \textit{a Kempf functor for $\bd{M}$}.
 \end{definition}
+
+\section{Formal $\bd{M}$-schemes}
+\noindent
+Let $\bd{M}$ be a affine monoid $k$-scheme.
+
+\begin{definition}
+Let $X$ be a $\bd{M}$-scheme. We say that $X$ is \textit{a locally linear $\bd{M}$-scheme} if there exists an open cover of $X$ consisting of affine and $\bd{M}$-stable subchemes of $X$.
+\end{definition}
+
+\begin{definition}
+\textit{A formal $\bd{M}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{M}$-schemes together with $\bd{M}$-equivariant closed immersions
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+satisfying the following assertions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\bd{M}$-scheme $Z_0$ is locally linear.
+\item Let $\cI_n$ be an ideal of $\cO_{Z_n}$ defining $Z_0$. Then for every $m\leq n$ the subscheme $Z_m \subset Z_n$ is defined by $\cI_n^{m+1}$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $\cZ = \{Z_n\}_{n\in \NN}$ and $\cW = \{W_n\}_{n\in \NN}$ are formal $\bd{M}$-schemes. Then \textit{a morphism $f:\cZ\ra \cW$ of formal $\bd{M}$-schemes} consists of a family of $\bd{M}$-equivariant morphisms $f = \big\{f_n:Z_n\ra W_n\}_{n\in \NN}$ such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\
+ W_0 &  W_1 & ... & W_n & W_{n+1} & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6)
+(m-2-1) edge node[above] {$ $} (m-2-2)
+(m-2-2) edge node[above] {$ $} (m-2-3)
+(m-2-3) edge node[above] {$ $} (m-2-4)
+(m-2-4) edge node[above] {$ $} (m-2-5)
+(m-2-5) edge node[above] {$ $} (m-2-6);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$f_0 $} (m-2-1)
+(m-1-2) edge node[left] {$f_1 $} (m-2-2)
+(m-1-4) edge node[left] {$f_n $} (m-2-4)
+(m-1-5) edge node[left] {$f_{n+1} $} (m-2-5);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{definition}
+
+\begin{definition}
+Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. \textit{A quasi-coherent sheaf $\cF$ on $\cZ$} consists of a family $\left(\{\cF_n\}_{n\in \NN},\{\phi_{n,m}\}_{n,m\in \NN,m\leq n}\right)$ such that the following are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\cF_n$ is a quasi-coherent sheaf on $Z_n$ with $\bd{M}$-linearization.
+\item $\phi_{n,m}:{\cF_n}_{\mid Z_m} \ra \cF_m$ is an isomorphism of quasi-coherent sheaves with $\bd{M}$-linearizations for any pair $n,m\in \NN$ such that $m\leq n$.
+\item The composition
+$$\phi_{m,l}\cdot {\phi_{n,m}}_{\mid Z_l}:\left({\cF_n}_{\mid Z_m}\right)_{\mid Z_l}\ra \cF_l$$
+and the morphism
+$$\phi_{n,l}:{\cF_n}_{\mid Z_l}\ra \cF_l$$ are canonically isomorphic for any $n,m,l\in \NN$ such that $l\leq m\leq n$. 
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. Suppose that $\cF = \left(\{\cF_n\}_{n\in \NN},\{\phi_{n,m}\}_{n,m\in \NN,m\leq n}\right)$ and $\cG = \left(\{\cG_n\}_{n\in \NN},\{\psi_{n,m}\}_{n,m\in \NN,m\leq n}\right)$ are quasi-coherent sheaves on $\cZ$. \textit{A morphism $\theta:\cF\ra \cG$ of quasi-coherent sheaves on $\cZ$} consists of a family $\{\theta_n:\cF_n\ra \cG_n\}_{n\in \mathbb{N}}$ of morphisms of quasi-coherent sheaves with $\bd{M}$-linearizations such that squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ {\cF_n}_{\mid Z_m} &  \cF_m \\
+ {\cG_n}_{\mid Z_m} &  \cF_m  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\phi_{n,m} $} (m-1-2)
+(m-2-1) edge node[below] {$\psi_{n,m} $} (m-2-2)
+(m-1-1) edge node[left] {${\theta_n}_{\mid Z_m} $} (m-2-1)
+(m-1-2) edge node[right] {$\theta_m $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+are commutative for any $n,m\in \NN$ and $m\leq n$.
+\end{definition}
+\noindent
+If $\cZ$ is a formal $\bd{M}$-scheme, then we denote by $\Qcoh(\cZ)$ its category of quasi-coherent sheaves.
+
+\begin{definition}
+Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. A pair $(Z,\cI)$ consisting of a $\bd{M}$-scheme $Z$ together with a quasi-coherent ideal $\cI$ equipped with $\bd{M}$-linearization is called \textit{an algebraization of $\cZ$} if the following two conditions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\cZ$ is isomorphic to $\widehat{Z}_{\cI} = \{V(\cI^n)\}_{n\in \NN}$ in the category of formal $\bd{M}$-schemes.
+\item The canonical functor $\Qcoh_{\bd{M}}(Z)\ra \Qcoh\left(\widehat{Z}_{\cI}\right)$ is an equivalence of categories.
+\end{enumerate}
+\end{definition}
+
+\section{Reflective telescopes of categories and their $2$-limits}
+
+\begin{definition}
+A diagram
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
+(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
+(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
+(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
+(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
+(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+of categories and functors is called \textit{a telescope of categories}.
+\end{definition}
+\noindent
+We fix a telescope $\mathbb{T}$ of categories
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
+(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
+(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
+(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
+(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
+(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+Our goal is to construct $2$-categorical limit of this diagram. Consider pairs $\cX = \left(\{X_n\}_{n\in \NN}, \{u_n\}_{n\in \NN}\right)$ such that the following assertions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $X_n$ is an object of $\cC_n$ for every $n\in \NN$.
+\item $u_n:F_n(X_{n+1})\ra X_n$ is an isomorphism in $\cC_n$ for every $n\in \NN$.
+\end{enumerate}
+If $\cX = \left(\{X_n\}_{n\in \NN}, \{u_n\}_{n\in \NN}\right)$ and $\cY = \left(\{Y_n\}_{n\in \NN},\{w_n\}_{n\in \NN}\right)$ are two such pairs, then a morphism $f:\cX \ra \cY$ consists of a family $\{f_n:X_n\ra Y_n\}_{n\in \NN}$ of morphisms such that squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ F_n(X_{n+1}) &  X_n    \\
+  F_n(Y_{n+1}) &  Y_n           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ u_n  $} (m-1-2)
+(m-2-1) edge node[below] {$ w_n $} (m-2-2)
+(m-1-1) edge node[left] {$ F_n(f_{n+1}) $} (m-2-1)
+(m-1-2) edge node[right] {$ f_n  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+are commutative for $n\in \NN$. This data gives rise to a category $\cC_{\mathbb{T}}$. Next for every $n\in \NN$ we define a functor $\pi_n:\cC_{\mathbb{T}}\ra \cC_n$ that sends a morphism $f:\cX\ra \cY$ to $f_n:X_n\ra Y_n$. Finally we define a natural isomorphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=1em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{{} & \cC_{\mathbb{T}} &  {}               \\
+  {} & {} &  {}  \\
+  \cC_{n+1} &  {} & \cC_n     \\} ;
+\draw[->,line width=1.0pt] (m-1-2) to node [right= 11pt, above = -4pt] {$\pi_{n+1} $} (m-3-3);
+\draw[->,line width=1.0pt] (m-1-2) to node [left= 8pt, above = -4pt] {$\pi_n $} (m-3-1);
+\draw[->,line width=1.0pt] (m-3-1) to node [below = 1pt] {$F_n $} (m-3-3);
+\draw[-{Implies},line width=1.0pt,double distance=2pt,shorten >=35pt, shorten <=35pt] (m-2-1) to node [below = 2pt] {$ \sigma_n $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+by setting its component on $\cX = \left(\{X_n\}_{n\in \NN},\{u_n\}_{n\in \NN}\right)$ to be $u_n:F_n(X_{n+1}) \ra X_n$.\\
+Moreover, assume that $\mathbb{T}$ consists of monoidal categories and that for each $n\in \NN$ functor $F_n$ is monoidal. Then there exists a canonical monoidal structure on $\cC_{\mathbb{T}}$. We define $(-)\otimes_{\cC_{\mathbb{T}}}(-)$ by formula
+$$\cX \otimes_{\cC_{\mathbb{T}}} \cY = \left(\{X_n\otimes_{\cC_n}Y_n\}_{n\in \NN},\big\{\left(u_n \otimes_{\cC_n} w_n\right)\cdot m_{X_{n+1},Y_{n+1}}\big\}_{n\in \NN}\right)$$
+where
+$$m_{X_{n+1},Y_{n+1}}:F_{n}\left(X_{n+1}\otimes_{\cC_{n+1}} Y_{n+1}\right) \ra F_{n}(X_{n+1})\otimes_{\cC_n}F_{n}(Y_{n+1})$$
+is the tensor preserving isomorphism of $F_{n}$. We also define the unit
+$$I_{\cC_{\mathbb{T}}} = \left(\{I_{\cC_n}\}_{n\in \NN}, \{F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}\}_{n\in \NN}\right)$$
+where isomorphisms $F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}$ are precisely the unit preserving isomorphisms of monoidal functors $F_{n}$ for every $n\in \NN$. The associativity natural isomorphism for $(-)\otimes_{\cC_{\mathbb{T}}}(-)$ and right, left units for $I_{\cC_{\mathbb{T}}}$ in $\cC_{\mathbb{T}}$ are defined as tuples of the corresponding natural isomorphisms of $\cC_n$ for $n\in \NN$. With respect to this monoidal structure functors $\{\pi_n\}_{n\in \NN}$ are (even strict) monoidal functors and $\{\sigma_n\}_{n\in \NN}$ are monoidal natural isomorphisms.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \small
