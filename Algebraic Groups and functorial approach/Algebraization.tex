@@ -546,7 +546,7 @@ Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. A pair $(Z,\c
 \end{enumerate}
 \end{definition}
 
-\section{Reflective telescopes of categories and their $2$-limits}
+\section{Telescopes of categories and their $2$-limits}
 
 \begin{definition}
 A diagram
@@ -567,7 +567,7 @@ A diagram
 of categories and functors is called \textit{a telescope of categories}.
 \end{definition}
 \noindent
-We fix a telescope $\mathbb{T}$ of categories
+We fix a telescope
 \begin{center}   
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -582,7 +582,7 @@ We fix a telescope $\mathbb{T}$ of categories
 (m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
 \end{tikzpicture}
 \end{center}
-Our goal is to construct $2$-categorical limit of this diagram. Consider pairs $\cX = \left(\{X_n\}_{n\in \NN}, \{u_n\}_{n\in \NN}\right)$ such that the following assertions hold.
+of categories. Our goal is to construct its $2$-categorical limit. Consider pairs $\cX = \left(\{X_n\}_{n\in \NN}, \{u_n\}_{n\in \NN}\right)$ such that the following assertions hold.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
 \item $X_n$ is an object of $\cC_n$ for every $n\in \NN$.
 \item $u_n:F_n(X_{n+1})\ra X_n$ is an isomorphism in $\cC_n$ for every $n\in \NN$.
@@ -601,29 +601,89 @@ If $\cX = \left(\{X_n\}_{n\in \NN}, \{u_n\}_{n\in \NN}\right)$ and $\cY = \left(
 (m-1-2) edge node[right] {$ f_n  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-are commutative for $n\in \NN$. This data gives rise to a category $\cC_{\mathbb{T}}$. Next for every $n\in \NN$ we define a functor $\pi_n:\cC_{\mathbb{T}}\ra \cC_n$ that sends a morphism $f:\cX\ra \cY$ to $f_n:X_n\ra Y_n$. Finally we define a natural isomorphism
+are commutative for $n\in \NN$. This data gives rise to a category $\lim_{n\in \NN}\cC_n$. Next for every $n\in \NN$ we define a functor $\pi_n:\lim_{n\in \NN}\cC_n\ra \cC_n$ that sends a morphism $f:\cX\ra \cY$ to $f_n:X_n\ra Y_n$. Finally we define a natural isomorphism
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=1em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{{} & \cC_{\mathbb{T}} &  {}               \\
+{{} & \lim_{n\in \NN}\cC_n &  {}               \\
   {} & {} &  {}  \\
   \cC_{n+1} &  {} & \cC_n     \\} ;
-\draw[->,line width=1.0pt] (m-1-2) to node [right= 11pt, above = -4pt] {$\pi_{n+1} $} (m-3-3);
-\draw[->,line width=1.0pt] (m-1-2) to node [left= 8pt, above = -4pt] {$\pi_n $} (m-3-1);
+\draw[->,line width=1.0pt] (m-1-2) to node [right= 10pt, above = -4pt] {$\pi_{n} $} (m-3-3);
+\draw[->,line width=1.0pt] (m-1-2) to node [left= 12pt, above = -4pt] {$\pi_{n+1} $} (m-3-1);
 \draw[->,line width=1.0pt] (m-3-1) to node [below = 1pt] {$F_n $} (m-3-3);
-\draw[-{Implies},line width=1.0pt,double distance=2pt,shorten >=35pt, shorten <=35pt] (m-2-1) to node [below = 2pt] {$ \sigma_n $} (m-2-3);
+\draw[-{Implies},line width=1.0pt,double distance=2pt,shorten >=50pt, shorten <=50pt] (m-2-1) to node [below = 2pt] {$ \sigma_n $} (m-2-3);
 \end{tikzpicture}
 \end{center}
-by setting its component on $\cX = \left(\{X_n\}_{n\in \NN},\{u_n\}_{n\in \NN}\right)$ to be $u_n:F_n(X_{n+1}) \ra X_n$.\\
-Moreover, assume that $\mathbb{T}$ consists of monoidal categories and that for each $n\in \NN$ functor $F_n$ is monoidal. Then there exists a canonical monoidal structure on $\cC_{\mathbb{T}}$. We define $(-)\otimes_{\cC_{\mathbb{T}}}(-)$ by formula
-$$\cX \otimes_{\cC_{\mathbb{T}}} \cY = \left(\{X_n\otimes_{\cC_n}Y_n\}_{n\in \NN},\big\{\left(u_n \otimes_{\cC_n} w_n\right)\cdot m_{X_{n+1},Y_{n+1}}\big\}_{n\in \NN}\right)$$
+by setting its component on $\cX = \left(\{X_n\}_{n\in \NN},\{u_n\}_{n\in \NN}\right)$ to be $u_n:F_n(X_{n+1}) \ra X_n$. Since $F_n\pi_{n+1}\left(\cX\right) = F_n(X_{n+1})$ and $\pi_n(\cX) = X_n$ this makes sense. The next result states that the data above form a $2$-categorical limit over the telescope.
+
+\begin{theorem}\label{theorem:telescope_2_limits}
+Let 
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
+(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
+(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
+(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
+(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
+(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+be a telescope a categories. Suppose that $\cC$ is a category, $\{P_n:\cC\ra \cC_n\}_{n\in \NN}$ is a family of functors and $\{\tau_n:F_nP_{n+1}\Rightarrow P_{n}\}_{n\in \NN}$ is a family of natural isomorphisms. Then there exists a unique functor $F:\cC\ra \lim_{n\in \NN}\cC_n$ such that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$.
+\end{theorem}
+\begin{proof}
+Suppose that $F:\cC\ra \lim_{n\in \NN}\cC_n$ is a functor such that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$. Pick an object $X$ of $\cC$. Then we have $\pi_nF(X) = P_n(X)$ and $\left(\sigma_n\right)_{F(X)} = \left(\tau_n\right)_X$. This implies that
+$$F(X) = \left(\{P_n(X)\}_{n\in \NN},\{\left(\tau_n\right)_X:F_nP_{n+1}(X)\ra P_n(X)\}_{n\in \NN}\right)$$
+Next if $f:X\ra Y$ is a morphism in $\cC$, then we derive that $\pi_nF(f) = P_n(f)$ for $n\in \NN$. Hence $F(f) = \{P_n(f)\}_{n\in \NN}$. This implies that the functor $F$ can be completely recovered from the fact that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$. Note also that formulas
+$$F(X) = \left(\{P_n(X)\}_{n\in \NN},\{\left(\tau_n\right)_X:F_nP_{n+1}(X)\ra P_n(X)\}_{n\in \NN}\right),\,F(f) = \{P_n(f)\}_{n\in \NN}$$
+for an object $X$ in $\cC$ and a morphism $f:X\ra Y$ in $\cC$, give rise to a functor that satisfy $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$. This establishes existence and the uniqueness of $F$.
+\end{proof}
+\noindent
+Assume now that the telescope consists of monoidal categories and that for each $n\in \NN$ functor $F_n$ is monoidal. Then there exists a canonical monoidal structure on $\lim_{n\in \NN}\cC_n$. We define $(-)\otimes_{\lim_{n\in \NN}\cC_n}(-)$ by formula
+$$\cX \otimes_{\lim_{n\in \NN}\cC_n} \cY = \left(\{X_n\otimes_{\cC_n}Y_n\}_{n\in \NN},\big\{\left(u_n \otimes_{\cC_n} w_n\right)\cdot m_{X_{n+1},Y_{n+1}}\big\}_{n\in \NN}\right)$$
 where
 $$m_{X_{n+1},Y_{n+1}}:F_{n}\left(X_{n+1}\otimes_{\cC_{n+1}} Y_{n+1}\right) \ra F_{n}(X_{n+1})\otimes_{\cC_n}F_{n}(Y_{n+1})$$
 is the tensor preserving isomorphism of $F_{n}$. We also define the unit
-$$I_{\cC_{\mathbb{T}}} = \left(\{I_{\cC_n}\}_{n\in \NN}, \{F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}\}_{n\in \NN}\right)$$
-where isomorphisms $F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}$ are precisely the unit preserving isomorphisms of monoidal functors $F_{n}$ for every $n\in \NN$. The associativity natural isomorphism for $(-)\otimes_{\cC_{\mathbb{T}}}(-)$ and right, left units for $I_{\cC_{\mathbb{T}}}$ in $\cC_{\mathbb{T}}$ are defined as tuples of the corresponding natural isomorphisms of $\cC_n$ for $n\in \NN$. With respect to this monoidal structure functors $\{\pi_n\}_{n\in \NN}$ are (even strict) monoidal functors and $\{\sigma_n\}_{n\in \NN}$ are monoidal natural isomorphisms.
+$$I_{\lim_{n\in \NN}\cC_n} = \left(\{I_{\cC_n}\}_{n\in \NN}, \{F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}\}_{n\in \NN}\right)$$
+where isomorphisms $F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}$ are precisely the unit preserving isomorphisms of monoidal functors $F_{n}$ for every $n\in \NN$. The associativity natural isomorphism for $(-)\otimes_{\lim_{n\in \NN}\cC_n}(-)$ and right, left units for $I_{\lim_{n\in \NN}\cC_n}$ in $\lim_{n\in \NN}\cC_n$ are defined as tuples of the corresponding natural isomorphisms of $\cC_n$ for $n\in \NN$. With respect to this monoidal structure functors $\{\pi_n\}_{n\in \NN}$ are \textbf{strict monoidal functors} and $\{\sigma_n\}_{n\in \NN}$ are monoidal natural isomorphisms. The next result states that the data with these extra monoidal structure form a $2$-categorical limit over the telescope in the $2$-category of monoidal categories.
 
+\begin{theorem}\label{theorem:telescope_monoidal_2_limit}
+Let 
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
+(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
+(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
+(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
+(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
+(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+be a telescope of a monoidal categories and monoidal functors. Suppose that $\cC$ is a monoidal category, $\{P_n:\cC\ra \cC_n\}_{n\in \NN}$ is a family of monoidal functors and $\{\tau_n:F_nP_{n+1}\Rightarrow P_{n}\}_{n\in \NN}$ is a family of natural monoidal isomorphisms. Then there exists a unique monoidal functor $F:\cC\ra \lim_{n\in \NN}\cC_n$ such that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$ as monoidal functors and monoidal transformations, respectively.
+\end{theorem}
+\begin{proof}
+Note that $F$ must be defined precisely as it was detected in the proof of Theorem \ref{theorem:telescope_2_limits}. Namely we must have
+$$F(X) = \left(\{P_n(X)\}_{n\in \NN},\{\left(\tau_n\right)_X:F_nP_{n+1}(X)\ra P_n(X)\}_{n\in \NN}\right),\,F(f) = \{P_n(f)\}_{n\in \NN}$$
+for an object $X$ in $\cC$ and a morphism $f:X\ra Y$ in $\cC$. Suppose also that $F$ admits a structure of a monoidal functor such that $P_n = \pi_nF$ as monoidal functors for every $n\in \NN$. Let $$\big\{m^F_{X,Y}:F(X\otimes_{\cC}Y)\ra F(X)\otimes_{\lim_{n\in \NN}\cC_n}F(Y)\big\}_{X,Y\in \cC},\,\phi^F:F(I_{\cC})\ra I_{\lim_{n\in \NN}}$$
+be the data forming that structure. Since $\{\pi_n\}_{n\in \mathbb{N}}$ are strict monoidal functors and $P_n = \pi_nF$ as monoidal functors for every $n\in \NN$, we derive that for any objects $X,Y$ of $\cC$
+$$\pi_n(m^F_{X,Y}):P_n(X\otimes_{\cC}Y) \ra P_n(X)\otimes_{\cC_n}P_n(Y)$$
+is the tensor preserving isomorphism $m^{P_n}_{X,Y}:P_n(X\otimes_{\cC}Y) \ra P_n(X)\otimes_{\cC_n}P_n(Y)$ of the monoidal functor $P_n$ for every $n\in \NN$. By the same argument
+$$\pi_n(\phi_F):P_n(I_{\cC})\ra I_{\cC_n}$$
+is the unit preserving isomorphism $\phi^{P_n}:P_n(I_{\cC})\ra I_{\cC_n}$ of $P_n$. Thus we deduce that for any objects $X,Y$ of $\cC$ we have $m^F_{X,Y} = \{m^{P_n}_{X,Y}\}_{n\in \NN}$ and $\phi^F = \{\phi^{P_n}\}_{n\in \NN}$. This implies the uniqueness of a monoidal structure on $F$ such that $P_n = \pi_nF$ as monoidal functors for every $n\in \NN$. On the other hand define
+$$m^F_{X,Y} = \{m^{P_n}_{X,Y}\}_{n\in \NN}$$
+for objects $X,Y$ in $\cC$ and
+$$\phi^F = \{\phi^{P_n}\}_{n\in \NN}$$
+Then 
+
+\end{proof}
 
 
 
