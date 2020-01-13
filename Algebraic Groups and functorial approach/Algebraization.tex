@@ -1,5 +1,8 @@
 \input ../pree.tex
 
+\usepackage{todonotes}
+\newcommand{\lstodo}[1]{\todo[color=green!40,bordercolor=green,size=\footnotesize]{\textbf{LS TODO: }#1}}
+
 \usetikzlibrary{matrix,arrows, cd, calc}
 \newcommand{\Zhat}{\widehat{Z}}
 \newcommand{\What}{\widehat{W}}
@@ -70,95 +73,548 @@
 
 \begin{document}
 
-\section{Formal functors and representability}
+\title{Algebraization of formal $\bd{M}$-schemes}
+\date{}
+\maketitle
 
-        
+\section{Some $2$-categorical limits}
+\noindent
+Consider a category $\cC$ and its endofunctor $T:\cC\ra \cC$. Our goal is to construct certain $2$-categorical limit associated with a pair $(\cC,T)$. Consider pairs $\left(X,u\right)$ consisting of an object $X$ of $\cC$ and an isomorphism $u:T(X)\ra X$ in $\cC$. If $\left(X,u\right)$ and $\left(Y,w\right)$ are two such pairs, then a morphism $f:(X,u) \ra (Y,u)$ is a morphism $f:X\ra Y$ in $\cC$ such that the following square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ T(X) &  X    \\
+  T(Y) &  Y           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ u  $} (m-1-2)
+(m-2-1) edge node[below] {$ w $} (m-2-2)
+(m-1-1) edge node[left] {$ T(f) $} (m-2-1)
+(m-1-2) edge node[right] {$ f  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. This data give rise to a category $\cC(T)$. There exists a forgetful functor $\pi:\cC(T)\ra \cC$ that sends a morphism $f:(X,u)\ra (Y,w)$ to $f:X\ra Y$. Moreover, there exists a natural isomorphism $\sigma:T\cdot \pi \Rightarrow \pi$ such that the component of $\sigma$ on an object $(X,u)$ of $\cC(T)$ is $u$. The next result states that the data above form a certain $2$-categorical limit.
 
-        \begin{example}[Formal schemes from algebraic ones]\label{algebraicformalgroupschemes}
-            Let $Z$ be a $\Group$-scheme and $\cI$ be the ideal of
-            $Z^{\Group}$. Then $Z_n=V(\cI^{n+1})$ is a closed $\Group$-stable
-            subscheme of $Z$ for every $n\in \NN$ and this yields to a formal
-            $\Group$-scheme $\Zformal=\{Z_n\}_{n\in \NN}$. We denote this formal
-            $\Group$-scheme by $\Zhat$.
-        \end{example}
+\begin{theorem}\label{theorem:endoscope_2_limits}
+Let $(\cC,T)$ be a pair consiting of a category and its endofunctor $T:\cC\ra \cC$. Suppose that $\cD$ is a category, $P:\cD\ra \cC$ is a functor and $\tau:T\cdot P \Rightarrow P$ is a natural isomorphisms. Then there exists a unique functor $F:\cD\ra \cC(T)$ such that $P = \pi\cdot F$ and $\sigma_F = \tau$.
+\end{theorem}
+\begin{proof}
+Suppose that $F:\cD\ra \cC(T)$ is a functor such that $P = \pi\cdot F$ and $\sigma_F = \tau$. Pick an object $X$ of $\cD$. Then we have $\pi\cdot F(X) = P(X)$ and $\sigma_{F(X)} = \tau_X$. This implies that
+$$F(X) = \left(P(X),\tau_X:T(P(X))\ra P(X)\right)$$
+Next if $f:X\ra Y$ is a morphism in $\cD$, then we derive that $\pi(F(f)) = P(f)$. Hence $F(f) = P(f)$. This implies that there exists at most one functor $F$ satisfying the properties above. Note also that formulas
+$$F(X) = \left(P(X),\tau_X:T(P(X))\ra P(X)\right),\,F(f) = P(f)$$
+for an object $X$ in $\cD$ and a morphism $f:X\ra Y$ in $\cD$, give rise to a functor that satisfy $P = \pi\cdot F$ and $\sigma_F = \tau$. This establishes existence and the uniqueness of $F$.
+\end{proof}
+\noindent
+Assume now that the pair $(\cC,T)$ consists of a monoidal category $\cC$ and a monoidal endofunctor $T$. Then there exists a canonical monoidal structure on $\cC(T)$. We define $(-)\otimes_{\cC(T)}(-)$ by formula
+$$(X,u) \otimes_{\cC(T)}(Y,w) = \left(X\otimes_{\cC}Y,\left(u \otimes_{\cC} w\right)\cdot m_{X,Y}\right)$$
+where
+$$m_{X,Y}:T\left(X\otimes_{\cC} Y\right) \ra T(X)\otimes_{\cC}T(Y)$$
+is the tensor preserving isomorphism of $T$. We also define the unit
+$$I_{\cC(T)} = \left(I, T(I)\cong I\right)$$
+where isomorphism $T(I)\cong I$ is precisely the unit preserving isomorphism of the monoidal functor $T$. The associativity natural isomorphism for $(-)\otimes_{\cC(T)}(-)$ and right, left units for $I_{\cC(T)}$ in $\cC(T)$ are associavity natural isomorphism and right, left units for $\cC$, respectively. The structure makes a functor $\pi:\cC(T)\ra \cC$ strict monoidal and $\sigma$ a monoidal natural isomorphism. The next result states that the data with these extra monoidal structure form a $2$-categorical limit in the $2$-category of monoidal categories.
 
+\begin{theorem}\label{theorem:endoscope_monoidal_2_limit}
+Let $(\cC,T)$ be a pair consiting of a monoidal category and its monoidal endofunctor $T:\cC\ra \cC$. Suppose that $\cD$ is a monoidal category, $P:\cD\ra \cC$ is a monoidal functor and $\tau:T\cdot P \Rightarrow P$ is a monoidal natural isomorphisms. Then there exists a unique monoidal functor $F:\cD\ra \cC(T)$ such that $P = \pi\cdot F$ and $\sigma_F = \tau$ as monoidal functors and monoidal transformations.
+\end{theorem}
+\begin{proof}
+Note that $F$ must be defined as it was described in the proof of Theorem \ref{theorem:endoscope_2_limits}. Namely we must have
+$$F(X) = \left(P(X),\tau_X:T(P(X))\ra P(X)\right),\,F(f) = P(f)$$
+for an object $X$ in $\cC$ and a morphism $f:X\ra Y$ in $\cC$.\\
+Suppose now that $F$ admits a structure of a monoidal functor such that $P = \pi\cdot F$ as monoidal functors. Let
+$$\big\{m^F_{X,Y}:F(X\otimes_{\cD}Y)\ra F(X)\otimes_{\cC(T)}F(Y)\big\}_{X,Y\in \cC},\,\phi^F:F(I_{\cD})\ra I_{\cC(T)}$$
+be the data forming that structure. Since $\pi$ is a strict monoidal functor and $P = \pi\cdot F$ as monoidal functors, we derive that for any objects $X,Y$ of $\cC$
+$$\pi(m^F_{X,Y}):P(X\otimes_{\cD}Y) \ra P(X)\otimes_{\cC}P(Y)$$
+is the tensor preserving isomorphism $m^{P}_{X,Y}:P(X\otimes_{\cD}Y) \ra P(X)\otimes_{\cC}P(Y)$ of the monoidal functor $P$. By the same argument
+$$\pi(\phi_F):P(I_{\cD})\ra I_{\cC(T)}$$
+is the unit preserving isomorphism $\phi^{P}:P(I_{\cD})\ra I_{\cC(T)}$ of $P$. Thus we deduce that for any objects $X,Y$ of $\cC$ we have $m^F_{X,Y} = m^{P}_{X,Y}$ and $\phi^F = \phi^{P}$. This implies that there exists at most one monoidal functor $F$ such that $P = \pi\cdot F$ as monoidal functors.\\
+On the other hand define $m^F_{X,Y} = m^{P}_{X,Y}$ for objects $X,Y$ in $\cC$ and $\phi^F = \phi^{P}$. We check now that $F$ equipped with these data is a monoidal functor. Fix objects $X,Y$ in $\cC$. The square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=8em,text height=1.5ex, text depth=0.25ex] 
+{T\left(P\left(X\otimes_{\cD}Y\right)\right)  & P\left(X\otimes_{\cC}Y\right)     \\
+ T\left(P(X)\otimes_{\cC}P(Y)\right)  & P(X)\otimes_{\cC}P(Y)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \tau_{X\otimes_{\cC}Y}  $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(\tau_X\otimes_{\cC}\tau_Y\right)\cdot m^{T}_{P(X),P(Y)} $} (m-2-2)
+(m-1-1) edge node[left] {$ T\left(m^{P}_{X,Y}\right) $} (m-2-1)
+(m-1-2) edge node[right] {$  m^{P}_{X,Y} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative due to the fact that $\tau:T\cdot P \Rightarrow P$ is a monoidal natural isomorphisms. This implies that $m^F_{X,Y}$ is a morphism in $\cC(T)$. It follows that $m^F_{X,Y}$ is a natural isomorphism and due to the definition of associativity in $\cC(T)$, we derive its compatibility with $m^F_{X,Y}$. Similarly, since the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{T\left( P\left(I_{\cD}\right) \right)  & P\left(I_{\cD}\right)     \\
+ T\left( I_{\cC} \right)  & I_{\cC}  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \tau_{I_{\cD}}  $} (m-1-2)
+(m-2-1) edge node[below] {$ \phi^{T}  $} (m-2-2)
+(m-1-1) edge node[left] {$ T\left(\phi^{P}\right)  $} (m-2-1)
+(m-1-2) edge node[right] {$ \phi^{P}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative, we deduce that $\phi^F$ is a morphism in $\cC(T)$. By definition of left and right unit in $\cC(T)$, we derive their compatibility with $\phi^F$. This finishes the verification of the fact that $F$ with $\{m^F_{X,Y}\}_{X,Y\in \cC}$ and $\phi^F$ is a monoidal functor. Definitions of $\{m^F_{X,Y}\}_{X,Y\in \cC}$ and $\phi^F$ show that the identities $P = \pi\cdot F$ holds on the level of monoidal structures. Since the $2$-forgetful functor from $2$-category of monoidal categories into $2$-category of categories is faithful on $2$-cells, the identity $\sigma_F = \tau$ of natural isomorphisms is also the identity of monoidal natural isomorphisms.
+\end{proof}
 
-        Now we define morphisms of formal $\Group$-schemes.
-        \begin{definition}
-            Let $\Zformal =\{Z_n\}$ and $\Wformal =\{W_n\}$ be formal $\Group$-schemes.
-            A \emph{morphism $\varphi:\Wformal\to \Zformal$ of formal
-            $\Group$-schemes} is a family of $\Group$-equivariant morphisms
-            $\varphi=\{\varphi_n:W_n\ra Z_n\}$ such that for every $n\in \NN$
-            we have a commutative square
-            \begin{center}
-                \begin{tikzpicture}
-                    [description/.style={fill=white,inner sep=2pt}]
-                    \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-                    {W_{n+1}&  &    Z_{n+1}          \\
-                W_n&   & Z_n         \\} ;
-                \path[->,font=\scriptsize]  
-                (m-1-1) edge node[above] {$\varphi_{n+1}$} (m-1-3)
-                (m-2-1) edge node[below] {$\varphi_n$} (m-2-3);
-                \path[right hook->,font=\scriptsize]
-                (m-2-3) edge node[right] {$ $} (m-1-3)
-                (m-2-1) edge node[right] {$ $} (m-1-1);
-            \end{tikzpicture}
-        \end{center}
-    \end{definition}
-    \begin{remark}[Morphisms of formal $\Gbar$-schemes are $\Gbar$-equivariant]
-        Let $\Wformal$ and $\Zformal$ be formal $\Gbar$-schemes and consider
-        their morphism $\varphi:\Wformal \to \Zformal$ (as formal
-        $\Group$-schemes). Then for every $n\in \NN$ the morphism
-        $\varphi_n\colon W_n\ra Z_n$ is $\Gbar$-equivariant. To see this,
-        consider Diagram~\eqref{eq:Gbarformaldiagram}.
-        \begin{equation}\label{eq:Gbarformaldiagram}
-            \begin{tikzpicture}
-                [description/.style={fill=white,inner sep=2pt}]
-                \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
-                {W_{n}&  &  W_0\times_{Z_0}Z_n  & &Z_n          \\
-                     &   & W_0           & &Z_0     \\} ;
-                \path[->,font=\scriptsize] 
-                (m-1-1) edge[bend left = 30] node[above] {$ \varphi_n $} (m-1-5) 
-                (m-1-1) edge node[below] {$r_n $} (m-1-3)
-                (m-1-3) edge node[right] {$p_n $} (m-2-3)
-                (m-1-1) edge node[left = 3pt, below = 3pt] {$\iinfty{W_n} $} (m-2-3)
-                (m-1-3) edge node[below] {$q_n $} (m-1-5)
-                (m-2-3) edge node[below] {$\varphi_0 $} (m-2-5)
-                (m-1-5) edge node[right] {$\iinfty{Z_n} $} (m-2-5);
-            \end{tikzpicture}
-        \end{equation}
-        Since $W_0$ and $Z_0$ are equipped with trivial $\Gbar$-actions, also the
-        pullback $W_0\times_{Z_0}Z_n$ is a $\Gbar$-scheme and $q_n$ is
-        $\Gbar$-equivariant. Recall that $\iinfty{Z_n}$, $\iinfty{W_n}$ are
-        affine morphisms. Therefore, $p_n$ is affine. Hence $r_n$ is a
-        $\Group$-equivariant morphism between $\Gbar$-schemes separated (even
-        affine) over $W_0$. Thus $r_n$ is $\Gbar$-equivariant.
-    \end{remark}
+\begin{theorem}\label{theorem:endoscope_colimits}
+Let $(\cC,T)$ be a pair consiting of a category and its endofunctor $T:\cC\ra \cC$. Assume that $T$ preserves colomits. Then the following assertions hold.
+\begin{enumerate}[label=\textbf{\emph{(\arabic*)}}, leftmargin=1.5em]
+\item $\pi:\cC(T)\ra \cC$ creates colimits.
+\item Suppose that $\cD$ is a category, $P:\cD\ra \cC$ a functor preserving small colimits and $\tau:T\cdot P \Rightarrow P$ a natural isomorphisms. Then the unique functor $F:\cD \ra \cC(T)$ such that $P = \pi\cdot F$ and $\sigma_F = \tau$ preserves small colimits.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Let $I$ be a small category and $D:I\ra \cC(T)$ be a diagram such that the composition $\pi\cdot D:I\ra \cC$ admits a colimit given by cocone $(X,\{g_i\}_{i\in I})$. Since $T$ preserves colimits, we derive that $\left(T(X), \{T(u_i)\}_{i\in I}\right)$ is a colimit of $T\cdot \pi \cdot D:I\ra \cC$. Now $\sigma_D:T\cdot \pi\cdot D\ra \pi\cdot D$ is a natural isomorphism. Hence there exists a unique arrow $u:T(X)\ra X$ such that $u \cdot T(g_i) = g_i\cdot \sigma_{D(i)}$ for $i\in I$. Clearly $u$ is an isomorphism and hence $(X,u)$ is an object of $\cC(T)$. Moreover, the family $\{g_i\}_{i\in I}$ together with $(X,u)$ is a colimiting cocone over $D$. This proves \textbf{(1)}. Now \textbf{(2)} is a consequence of \textbf{(1)}.
+\end{proof}
+\noindent
+Now we apply the results above to certain more general diagrams of categories.
 
-    \begin{definition}\label{ref:locallylinear:def}
-        A \emph{locally linear $\Gbar$-scheme} is a $\Gbar$-scheme which
-        admits an open cover by affine $\Gbar$-stable subschemes. The category
-        of locally linear $\Gbar$-schemes consists of those schemes and
-        $\Gbar$-equivariant morphisms.
-    \end{definition}
-    Let $Z$ be a locally linear $\Gbar$-scheme. By Proposition~\ref{ref:isomorphism:prop}, the
-    map $\Dfunctor{Z}\to Z$ is an isomorphism. In particular, there is a
-    canonical morphism $\iinfty{Z}\colon Z\to Z^{\Group}$, which is the
-    multiplication by zero. For an affine open $\Gbar$-stable cover
-    $\{V_i\}_i$
-    of $Z$, we have $V_i = \iinfty{Z}^{-1}(\iinfty{Z}(V_i))$ by
-    Proposition~\ref{ref:openimmersionscartesian:prop}, hence the canonical morphism $\iinfty{Z}\colon Z\to Z^{\Group}$ is affine.
+\begin{definition}
+A diagram
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
+(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
+(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
+(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
+(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
+(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+of categories and functors is called \textit{a telescope of categories}.
+\end{definition}
 
-\begin{definition}\label{ref:algebraization:def}
-Let $\Zformal$ be a formal $\Gbar$-scheme. An \emph{algebraization} of $\Zformal$ is a $\Gbar$-scheme $Z$ such that
-\begin{enumerate}
-            \item\label{it:algebraization:one} $Z$ is a locally linear
-                $\Gbar$-scheme.
-            \item\label{it:algebraization:two} $\Zformal$ and $\Zhat$ are isomorphic formal $\Gbar$-schemes.
-        \end{enumerate}
-    \end{definition}
-    By the above discussion, the morphism
-    $\iinfty{Z}\colon Z\to Z^{\Group}$ is affine for any algebraization $Z$.
+\begin{definition}
+Let 
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
+(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
+(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
+(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
+(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
+(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+be a telescope of monoidal categories and monoidal cocontinuous functors. Then \textit{a $2$-categorical limit of the telescope} consists of a monoidal category $\cC$, a family of monoidal cocontinuous functors $\{\pi_n:\cC\ra \cC_n\}_{n\in \NN}$ and a family of monoidal natural isomorphisms $\{\sigma_n:F_{n+1} \cdot \pi_{n+1}\Rightarrow \pi_n\}_{n\in \NN}$ such that the following universal property holds. For any monoidal category $\cD$, family $\{P_n:\cD\ra \cC_n\}_{n\in \NN}$ of cocontinuous monoidal functors and a family $\{\tau_n:F_nP_{n+1}\Rightarrow P_{n}\}_{n\in \NN}$ of monoidal natural isomorphisms there exists a unique monoidal cocontinuous functor $F:\cD\ra \cC$ satisfying $P_n = \pi_n \cdot F$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$.
+\end{definition}
+
+\begin{corollary}\label{corollary:telescope_2_limits}
+Let 
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
+(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
+(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
+(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
+(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
+(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+be a telescope of monoidal categories and monoidal cocontinuous functors. Then its $2$-limit exists.
+\end{corollary}
+\begin{proof}
+We decompose the task of constructing its $2$-limit as follows. First note that one may form a product $\cC = \prod_{n\in \NN}\cC_n$. Next the functors $\{F_n\}_{n\in \NN}$ induce an endofunctor $T = \prod_{n\in \NN}F_n\times t$, where $\bd{1}$ is the terminal category (it has single object and single identity arrow) and $t:\cC_0\rightarrow \bd{1}$ is the unique functor. Consider the category $\cC(T)$. We define $\{\pi_n:\cC(T)\ra \cC_n\}_{n\in \NN}$ to be a family of functors given by coordinates of $\pi:\cC(T)\ra \cC$ and $\{\sigma_n:F_n\cdot \pi_{n+1}\Rightarrow \pi_n\}_{n\in \NN}$ to be a family of natural isomorphisms given by coordinates of $\sigma:\pi\cdot T\Rightarrow \pi$. Now this data form a $2$-limit of the telescope by compilation of Theorem \ref{theorem:endoscope_monoidal_2_limit} and Theorem \ref{theorem:endoscope_colimits}.
+\end{proof}
+
+\section{Formal $\bd{G}$-schemes}
+\noindent
+This section is devoted to introducing some notions from formal geometry that are central in this notes. We fix a group scheme $\bd{G}$ over $k$. 
+
+\begin{definition}
+\textit{A formal $\bd{G}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{G}$-schemes together with $\bd{G}$-equivariant closed immersions
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+satisfying the following assertions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item We have $Z_0 = Z_n^{\bd{G}}$ scheme-theoretically for every $n\in \NN$.
+\item Let $\cI_n$ be an ideal of $\cO_{Z_n}$ defining $Z_0$. Then for every $m\leq n$ the subscheme $Z_m \subset Z_n$ is defined by $\cI_n^{m+1}$.
+\end{enumerate}
+\end{definition}
+
+\begin{example}\label{example:formal_neighborhood_of_fixed_pts}
+Let $Z$ be a $\bd{G}$-scheme. Consider a quasi-coherent ideal $\cI$ of fixed point subscheme $Z^{\bd{G}}$ of $Z$. Then for every $n\in \NN$ ideal $\cI^n$ is $\bd{G}$-equivariant and hence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ V(\cI) &  V(\cI^2) & ... & V(\cI^n) & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is a formal $\bd{G}$-scheme. We denote it by $\widehat{Z}$.
+\end{example}
+
+\begin{definition}
+Let $\cZ = \{Z_n\}_{n\in \NN}$ and $\cW = \{W_n\}_{n\in \NN}$ are formal $\bd{G}$-schemes. Then \textit{a morphism $f:\cZ\ra \cW$ of formal $\bd{G}$-schemes} consists of a family of $\bd{G}$-equivariant morphisms $f = \big\{f_n:Z_n\ra W_n\}_{n\in \NN}$ such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\
+ W_0 &  W_1 & ... & W_n & W_{n+1} & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6)
+(m-2-1) edge node[above] {$ $} (m-2-2)
+(m-2-2) edge node[above] {$ $} (m-2-3)
+(m-2-3) edge node[above] {$ $} (m-2-4)
+(m-2-4) edge node[above] {$ $} (m-2-5)
+(m-2-5) edge node[above] {$ $} (m-2-6);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$f_0 $} (m-2-1)
+(m-1-2) edge node[left] {$f_1 $} (m-2-2)
+(m-1-4) edge node[left] {$f_n $} (m-2-4)
+(m-1-5) edge node[left] {$f_{n+1} $} (m-2-5);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{definition}
+
+\begin{definition}
+Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{G}$-scheme. Then there we have the corresponding telescope of monoidal categories
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{... &  \Qcoh_{\bd{G}}(Z_{n+1})  &  \Qcoh_{\bd{G}}(Z_n) & ... & \Qcoh_{\bd{G}}(Z_2) & \Qcoh_{\bd{G}}(Z_1) & \Qcoh_{\bd{G}}(Z_0)  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$  $} (m-1-2)
+(m-1-2) edge node[auto]  {$  $} (m-1-3)
+(m-1-3) edge node[auto]  {$  $} (m-1-4)
+(m-1-4) edge node[auto]  {$  $} (m-1-5)
+(m-1-5) edge node[auto]  {$  $} (m-1-6)
+(m-1-6) edge node[auto]  {$  $} (m-1-7);
+\end{tikzpicture}
+\end{center}
+and cocontinuous monoidal functors given by restricting $\bd{G}$-equivariant quasi-coherent sheaves to closed $\bd{G}$-subschemes. Then we define \textit{a category $\Qcoh(\cZ)$ of quasi-coherent sheaves on $\cZ$} as a monoidal category which is a $2$-limit of the telescope above. This category is defined uniquely up to a monoidal equivalence.
+\end{definition}
+\noindent
+Let $Z$ be a $\bd{G}$-scheme and let $\cI$ be a quasi-coherent ideal of $Z^{\bd{G}}$. We have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ V(\cI) &  V(\cI^2) & ... & V(\cI^n) & ... \\
+         &           & Z   &          &      \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-2) edge node[above] {$ $} (m-2-3);
+\path[right hook->,bend right, line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-2-3);
+\path[right hook->, line width=1.0pt,font=\scriptsize]  
+(m-1-4) edge node[above] {$ $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+in the category of $\bd{G}$-schemes. Thus restriction functors $\Qcoh_{\bd{G}}(Z) \ra \Qcoh_{\bd{G}}(V(\cI^n))$ for $n\in \NN$ induce a unique cocontinuous monoidal functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh(\widehat{Z})$.
+
+\begin{definition}
+Let $Z$ be a $\bd{G}$-scheme. Then a unique cocontinuous monoidal functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh(\widehat{Z})$ is called \textit{the comparison functor}.
+\end{definition}
+
+\begin{definition}
+Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{G}$-scheme. A $\bd{G}$-scheme $Z$ is called \textit{an algebraization of $\cZ$} if the following two conditions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\cZ$ is isomorphic to $\widehat{Z}$ in the category of formal $\bd{G}$-schemes.
+\item The comparison functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh\left(\widehat{Z}\right)$ is an equivalence of monoidal categories.
+\end{enumerate}
+\end{definition}
+
+\section{Preliminaries}
+\lstodo{Większość z wyników, które tutaj są, powinna być w teoretyczym wstępie. Idea jest taka, by tutaj w zasadzie tylko przygotować notację do dowodu głównego twierdzenia.}
+\subsection{Toruses}
+
+\begin{definition}
+Let $T$ be an affine algebraic group over $k$. Suppose that there exists $n\in \NN$ such that for every algebraically closed extension $K$ of $k$ there exists an isomorphism
+$$T_K \cong  \underbrace{\mathbb{G}_{m,K}\times \mathbb{G}_{m,K}\times ...\times \mathbb{G}_{m,K}}_{n\,\mathrm{times}} $$
+of group schemes over $k$. Then $T$ is called \textit{a torus over $k$}.
+\end{definition}
+
+\begin{example}\label{example:split_torus}
+If $T \cong \underbrace{\mathbb{G}_{m,K}\times \mathbb{G}_{m,K}\times ...\times \mathbb{G}_{m,K}}_{n\,\mathrm{times}}$, then $T$ is a torus. We call toruses $T$ of this form \textit{split toruses}.
+\end{example}
+
+\begin{example}\label{example:non_split_torus}
+Assume that the characteristic of $k$ is not $2$. Define
+$$\bd{S}^1 = \Spec k[x,y]/(x^2+y^2-1)$$
+a scheme over $k$ and let $\fP_{\bd{S}^1}$ be its functor of points. Then for every $k$-algebra $A$ we have
+$$\fP_{\bd{S}^1}(A) = \big\{(u,v)\in A\times A\,\big|\,u^2+v^2=1\big\}$$
+There is also a morphism $\fP_{\bd{S}^1}\times \fP_{\bd{S}^1}\ra \fP_{\bd{S}^1}$ of $k$-functors given by
+$$\fP_{\bd{S}^1}(A)\times \fP_{\bd{S}^1}(A)\ra \fP_{\bd{S}^1}\ni \left((u_1,v_1),(u_2,v_2)\right)\mapsto (u_1u_2-v_1v_2,u_1v_2+u_2v_1)\in \fP_{\bd{S}^1}(A)$$
+for every $k$-algebra $A$. This makes $\fP_{\bd{S}^1}$ into a group $k$-functor. Thus $\bd{S}^1$ with the group structure described above is an affine algebraic group over $k$. We call it \textit{the circle group over $k$}.\\
+Now suppose that $K$ is an algebraically closed extension of $k$. Consider an element $i\in K$ such that $i^2 = -1$. For every $K$-algebra $A$ we have a map
+$$\fP_{\bd{S}^1}(A)\ni (u,v)\mapsto u+iv\in A^*$$
+First note that this map is bijective. Indeed, its inverse is given by
+$$A^*\ni a \mapsto \left(\frac{1}{2}(a+a^{-1}),\frac{1}{2i}(a-a^{-1})\right) \in \fP_{\bd{S}^1}(A)$$
+Moreover, the map $\fP_{\bd{S}^1}(A)\ra A^*$ is a homomorphism of abstract groups. Thus $\fP_{\bd{S}^1}$ resricted to the category $\Alg_K$ of $K$-algebras is isomorphic with $\fP_{\mathbb{G}_{m,K}}$ as a group $k$-functor. Hence
+$$\bd{S}^1_K \cong \mathbb{G}_{m,K}$$
+as algebraic group schemes over $K$. Hence $\bd{S}^1$ is a torus over $k$.\\
+Now assume that $k = \RR$. Then abstract groups
+$$\fP_{\bd{S}^1}(\RR) = \big\{z\in \CC\,\big|\,|z|=1\big\} \subseteq \CC^*,\,\RR^*$$
+are not isomorphic. Indeed, the left hand side group has infinite torsion subgroup and the right hand side group has torsion subgroup equal to $\{-1,1\}$. This imlies that over $\RR$ algebraic groups $\bd{S}^1$ and $\mathbb{G}_{m}$ are not isomorphic. Hence $\bd{S}^1$ is not a split torus over $\RR$.
+\end{example}
+
+\subsection{Locally linear schemes}
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose that each point of $X$ admits an open affine $\bd{M}$-stable neighborhood. Then we say that $X$ is \textit{a locally linear $\bd{M}$-scheme}.
+\end{definition}
+
+\begin{proposition}\label{proposition:monoid_open_stable_correspondence}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose that there exists a quasi-coherent $\bd{M}$-equivariant ideal $\cI$ on $X$ with nilpotent sections. Consider an open subset $U$ of $X$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $U$ is $\bd{M}$-stable.
+\item $U\cap V(\cI)$ is $\bd{M}$-stable.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Let $\alpha:\bd{M} \times X\ra X$ be the action of $\bd{M}$ on $X$. Fix open subset $U$ of $X$. If $U$ is $\bd{M}$-stable, then $U\cap V(\cI)$ is $\bd{M}$-stable. So suppose that $U\cap V(\cI)$ is $\bd{M}$-stable. Since $\cI$ has nilpotent sections and $\bd{M}$ is affine, we derive that closed immersions $U\cap V(\cI)\hookrightarrow U$ and $\bd{M}\times \left(U\cap V(\cI)\right) \hookrightarrow \bd{M}\times U$ induce homeomorphisms on topological spaces. Consider the commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}\times U & X     \\
+  \bd{M}\times \left(U\cap V(\cI)\right) & U\cap V(\cI)   \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \alpha_{\mid U\cap V(\cI)}  $} (m-1-2)
+(m-2-1) edge node[below] {$   $} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[left] {$  $} (m-1-1)
+(m-2-2) edge node[right] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+where the bottom horizontal arrow is the induced action on $U\cap V(\cI)$ and vertical morphisms are homeomorphisms. The commutativity of the diagram implies that $\alpha\left(\bd{M}\times U\right)$ is contained set-theoretically in $U$. Since $U$ is open in $X$, we derive that morphism of schemes $\alpha_{\mid \bd{M}\times U}$ factors through $U$. Hence $U$ is $\bd{M}$-stable.
+\end{proof}
+
+\begin{corollary}\label{corollary:monoid_stable_open_affine_correspondence}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose that there exists a quasi-coherent $\bd{M}$-equivariant ideal $\cI$ on $X$ such that $\cI^n = 0$ for $n\in \NN$. Consider an open subset $U$ of $X$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $U$ is $\bd{M}$-stable and affine.
+\item $U\cap V(\cI)$ is $\bd{M}$-stable and affine.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Since $\cI^n = 0$, we derive that $U$ is affine if and only if $U\cap V(\cI)$ is affine. Combining this with Proposition \ref{proposition:monoid_open_stable_correspondence}, we deduce the result.
+\end{proof}
+
+\begin{corollary}\label{corollary:locally_linear_are_stable_under_thickenings}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose that there exists a quasi-coherent $\bd{M}$-equivariant ideal $\cI$ on $X$ such that $\cI^n = 0$ for $n\in \NN$. Then $X$ is locally linear $\bd{M}$-scheme if and only if $V(\cI)$ is locally linear $\bd{M}$-scheme.
+\end{corollary}
+\begin{proof}
+This is a consequence of Corollary \ref{corollary:monoid_stable_open_affine_correspondence}.
+\end{proof}
+
+\subsection{Affine monoid schemes with zero}
+
+\begin{proposition}\label{proposition:retraction_for_monoids_with_zero}
+Let $\bd{M}$ be an affine monoid $k$-scheme with zero and let $X$ be a locally linear $\bd{M}$-scheme. Then there exists an affine $\bd{M}$-equivariant morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{X & X^{\bd{M}} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$r$} (m-1-2);
+\end{tikzpicture}
+\end{center}
+such that $r_{\mid X^{\bd{M}}} = 1_{X^{\bd{M}}}$.
+\end{proposition}
+\begin{proof}
+Consider the action $\alpha:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Since $X$ is locally linear and $\bd{M}$ is affine, we derive that $\alpha$ is an affine morphism of $k$-schemes. Now if $\bd{o}$ is a zero of $\bd{M}$, then we define a morphism 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{X & \bd{o}\times X & \bd{M}\times X & X \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\cong$} (m-1-2)
+(m-1-3) edge node[above] {$\alpha$} (m-1-4);
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-2) edge node[above] {$ $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+The morphism above is affine (as a composition of affine morphisms) and induces multiplication by $\bd{o}$ on functors of points $\bd{o}\cdot(-):\fP_X\ra \fP_X$. Now $\bd{o}\cdot (-):\fP_X\ra \fP_X$ factors as an $fP_{\bd{M}}$-equivariant epimorphism $\fP_X\twoheadrightarrow \fP_{X^{\bd{M}}}$ composed with a closed immersion $\fP_{X^{\bd{M}}}\hookrightarrow \fP_X$. The $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\ra \fP_{X^{\bd{M}}}$ corresponds to a $\bd{M}$-equivariant morphism $r:X\ra X^{\bd{M}}$ of $k$-schemes such that $r_{\mid X^{\bd{M}}} = 1_{X^{\bd{M}}}$. Moreover, the composition of $r$ with a closed immersion $X^{\bd{M}}\hookrightarrow X$ is an affine morphism. Thus $r$ is affine.
+\end{proof}
+
+\subsection{Results on linear representations}
+
+\begin{proposition}\label{proposition:invariants_are_stable_under_tensoring_with_k_algebra}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $V$ be a representation of $\bd{M}$. Then for every $k$-algebra $A$ the natural morphism of $A$-modules
+$$V^{\bd{M}}\otimes_{k}A \ra \left(A\otimes_kV\right)^{\bd{M}_A}$$
+is an isomorphism.
+\end{proposition}
+\begin{proof}
+Note that we have a left exact sequence of $k$-vector spaces defining invariants
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{0 &  V^{\bd{M}} &   V& \Gamma(\bd{M},\cO_{\bd{M}}) \otimes_{k}V    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$\Delta-p $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+where $\Delta:V\ra \Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k} V$ is the coaction and $p:V\ra \Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V$ is the trivial coaction defined by formula $p(v)= 1\otimes v$ for every $v$ in $V$. Now tensoring the sequence with $k$-algebra $A$ yields a left exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{0 &  V^{\bd{M}}\otimes_k A &   A \otimes_kV &\Gamma(\bd{M}_A,\cO_{\bd{M}_A})\otimes_{A}\left(A\otimes_kV\right)   \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$\Delta_A-p_A $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+where $\Delta_A$ is the coaction on $A\otimes_kV$ induced by $\Delta$ and $p_A$ is the trivial coaction on $A\otimes_kV$. This shows that $V^{\bd{M}}\otimes_{k}A \ra \left(A\otimes_kV\right)^{\bd{M}_A}$ is an isomorphism.
+\end{proof}
+
+\begin{proposition}\label{proposition:base_change_for_hom_of_representations_of_affine_group_schemes}
+Let $\bd{G}$ be an affine group $k$-scheme and let $V,W$ be representations of $\bd{G}$. If $V$ is finite dimensional, then for every $k$-algebra $A$ the canonical morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{A\otimes_k\Hom_{\bd{G}}(V,W) & \Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right)\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is an isomorphism of $A$-modules.
+\end{proposition}
+\begin{proof}
+Fix a $k$-algebra $A$. Since $V$ is finite dimensional, for every $k$-algebra $B$ there exists an isomorphism $B\otimes_k\Hom_{k}(V,W) \ra \Hom_{B}\left(B\otimes_kV,B \otimes_kW\right)$ of $B$-modules natural in $B$. This implies that $\Hom_k(V,W)$ is a representation of $\bd{G}$ via the action given by formula
+$$\left(g\cdot f\right)(v) = g\cdot f(g^{-1}\cdot v)$$
+where $f\in \Hom_{B}\left(B\otimes_kV,B \otimes_kW\right)$, $v\in B\otimes_kV$ and $g\in \fP_{\bd{G}}(B)$. Similarly $\Hom_A(A\otimes_kV,A\otimes_kW)$ is a representation of $\bd{G}_K$ and the canonical isomorphism $A\otimes_k\Hom_{k}(V,W) \ra \Hom_{A}\left(A\otimes_kV,A \otimes_kW\right)$ of $A$-modules is $\bd{G}_A$-equivariant. Now we apply Proposition \ref{proposition:invariants_are_stable_under_tensoring_with_k_algebra} to derive a chain of isomorphisms
+$$\Hom_{A}\left(A\otimes_kV,A\otimes_kW\right)^{\bd{G}_A} \cong \left(A\otimes_k\Hom_{k}(V,W)\right)^{\bd{G}_A} \cong A\otimes_k\Hom_k(V,W)^{\bd{G}}$$
+of $A$-modules. Since we have identifications
+$$\Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right) \cong \Hom_{A}\left(A\otimes_kV,A\otimes_kW\right)^{\bd{G}_A} ,\,\Hom_{\bd{G}}\left(V,W\right)  \cong \Hom_k\left(V,W\right)^{\bd{G}}$$
+we deduce the statement.
+\end{proof}
+
+\begin{proposition}\label{proposition:commuting_action_preserves_isotypic_decomposition}
+Let $\bd{G}$ be an affine group scheme over $k$ and let $\fG$ be a monoid $k$-functor. Denote by $\Lambda$ the set of isomorphism classes of irreducible $\bd{G}$-representations. Suppose that $V$ is a representation of both $\bd{G}$ and $\fG$ and assume that their actions on $V$ commute. Assume that $V$ is completely reducible as a $\bd{G}$-representation and consider the decomposition
+$$V = \bigoplus_{\lambda\in \Lambda}V_{\lambda}$$
+onto isotypic components with respect to the action of $\bd{G}$. Then for every $\lambda$ in $\Lambda$ the subspace $V_{\lambda}$ is a $\fG$-subrepresentation of $V$.
+\end{proposition}
+\begin{proof}
+\lstodo{Uzupełnić dowód w oparciu o Stwierdzenie \ref{proposition:base_change_for_hom_of_representations_of_affine_group_schemes}.}
+\end{proof}
+
+\subsection{$\bd{M}$-equivariant quasi-coherent sheaves}
+\lstodo{Tu trzeba zdefiniować i następnie opisać przypadek schematu z trywialnym działaniem, bo on jest najważniejszy}
+
+\subsection{Kempf monoids}
+
+\begin{definition}
+\lstodo{Tutaj trzeba zdefiniować monoidy Kempfa. Najpierw trzeba porządnie spisać dowód algebraizacji, żeby mieć poprawną definicję}
+Let $\bd{M}$ be a monoid $k$-scheme. Suppose that the following conditions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\bd{M}$ is affine, geometrically connected and geometrically normal.
+\item There exists zero $\bd{o}$ in $\bd{M}$.
+\item There exists a torus $T$ over $k$ contained in the center of $\bd{M}$ such that the closure $\bd{cl}(T)$ of $T$ in $\bd{M}$ contains $\bd{o}$.
+\end{enumerate}
+Then $\bd{M}$ is called \textit{Kempf \lstodo{(or rather Jelisiejew :D)} monoid}.
+\end{definition}
+\noindent
+Let $\bd{M}$ be a Kempf monoid and let $\bd{G}$ be its group of units. If $V$ is a representation of $\bd{G}$ and $\lambda$ is a class in $\Lambda$, then we denote by $V[\lambda]\subseteq V$ the sum of all irreducible $T$-subpresentations of $V$ of isomorphism type $\lambda$. Since $T$ is a central subgroup of $\bd{G}$, we derive by Proposition \ref{proposition:commuting_action_preserves_isotypic_decomposition} that $V[\lambda]$ is a $\bd{G}$-representation of $V$.\\
+Suppose that $Z$ is a $k$-scheme with trivial action of $\bd{M}$. If $\cF$ is a quasi-coherent sheaf on $Z$ equipped with $\bd{G}$-action, then we denote by $\cF[\lambda]$ a sheaf given by
+$$U\mapsto \cF(U)[\lambda]$$
+for every open affine subset $U$ of $Z$. Then $\cF[\lambda]\subseteq \cF$ is a $\bd{G}$-quasi-coherent subsheaf of $\cF$.
+
+\subsection{Formal $\bd{M}$-schemes}
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme having $\bd{G}$ as the group of units. \textit{A formal $\bd{M}$-scheme} is a formal $\bd{G}$-scheme $\cZ = \{Z_n\}_{n\in \NN}$ such that for each $n\in \NN$ scheme $Z_n$ is $\bd{M}$-scheme and the sequence of closed immersions
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+consists of $\bd{M}$-equivariant morphisms.
+\end{definition}
+\noindent
+Let $\bd{M}$ be an affine monoid $k$-scheme with zero and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Suppose that $\bd{M}$ is a monoid with zero. Then by Proposition \ref{proposition:retraction_for_monoids_with_zero}, we derive that $\cZ$ is a part of the commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z_0 &  Z_1 & ... & Z_n & ... \\
+      &      & Z_0 &     &  \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\path[->>,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[bend right = 20] node[below] {$r_0 = 1_{Z_0} $} (m-2-3)
+(m-1-2) edge node[above] {$r_1 $} (m-2-3)
+(m-1-4) edge[bend left = 20] node[above] {$r_n $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+in which vertical morphisms $r_n:Z_n\twoheadrightarrow Z_0$ are affine morphisms such that ${r_n}_{\mid Z_0} = 1_{Z_0}$. This implies that $Z_n$ is affine over $Z_0$ for each $n\in \NN$ and hence we write $\Spec_{Z_0}\cA_n$ for $n\in \NN$, where $\cA_n$ is a quasi-coherent $Z_0$-algebra equipped with the action of $\bd{M}$. Moreover, we have $\cA_0 = \cO_{Z_0}$. The diagram above induces the following sequence of epimorphisms
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ ... &  \cA_{n+1} & \cA_n & ...& \cA_1 & \cA_0 = \cO_{Z_0} \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-action. Denote by $\bd{G}$ the group of units of $\bd{M}$. If $\bd{G}$ is schematically dense in $\bd{M}$ (for instance if $\bd{M}$ is integral), then we have $Z_0 = Z_n^{\bd{G}} = Z_n^{\bd{M}}$ and hence $Z_0$ admits trivial $\bd{M}$-action. This alternative description of formal $\bd{M}$-schemes will be used in the proof of the main theorem.
+
+\section{Formal functors and representability - OLD}
 
     \begin{theorem}[Algebraization of a formal $\Gbar$-scheme]\label{ref:algebraizationOfFormalSchemes:thm}
         Let $\Zformal =\{Z_n\}$ be a formal $\Gbar$-scheme. Then there exists
@@ -343,126 +799,27 @@ an algebra. In other words, $\cA' = \cB\otimes \kkbar$. Thus also $\cA = \cB$ an
 finite type over $\cO_{Z_0}$.
 \end{proof}
 
-\newcommand{\varphihat}{\widehat{\varphi}}%
-With the proof of Theorem~\ref{ref:algebraizationOfFormalSchemes:thm} in hand,
-we can easily algebraize also equivariant mappings between formal schemes.
-
-\begin{proposition}[Algebraization of morphisms of formal
-    $\Gbar$-schemes]\label{ref:algebraizationOfMaps:prop}
-    Let $\Wformal = \{W_n\}$ and $\Zformal = \{Z_n\}$ be formal $\Gbar$-schemes. Let $W$ and $Z$ be
-    algebraizations of $\Wformal$ and $\Zformal$ respectively (see
-    Theorem~\ref{ref:algebraizationOfFormalSchemes:thm}). Then every
-    $\Gbar$-morphism $\varphihat\colon\Wformal\to \Zformal$  is the formalization of a unique
-    $\Gbar$-equivariant morphism $\varphi\colon W\to Z$.
-\end{proposition}
-\begin{proof}
-    The map $\varphihat$ induces maps $W_n \to Z_n \into Z$. By
-    Theorem~\ref{ref:algebraizationOfFormalSchemes:thm}, the scheme $W$ is a
-    colimit of $W_n$ in the category of locally linear $\Gbar$-schemes. By the universal
-    property of the colimit, we obtain a unique $\Gbar$-equivariant morphism $W\to Z$.
-\end{proof}
-
-
-It turns out that for each $n\in \NN$ the functor $P_n$ admits a right adjoint. We construct this right adjoint now. Let $X$ be an object of $\cC_n$. For every $m\in \NN$ we define
-$$X_m = \begin{cases} G_{m-1}...G_{n+1}G_n(X)& \mbox{ if }m > n\\
-X & \mbox{ if }m=n\\
-F_{m}...F_{n-2}F_{n-1}(X)& \mbox{ if }m < n\\
-\end{cases}$$
-and
-$$u_m = \begin{cases} \xi_{G_{m-1}...G_{n+1}G_n(X)}& \mbox{ if }m \geq n\\
-1_{F_{m}...F_{n-2}F_{n-1}(X)}& \mbox{ if }m < n\\
-\end{cases}$$
-where $\xi_{G_{m-1}...G_{n+1}G_n(X)}:F_mG_{m}G_{m-1}...G_{n+1}G_n(X)\ra G_{m-1}...G_{n+1}G_n(X)$ is a counit of the adjoint functors $F_m$ and $G_m$, which is an isomorphism as $G_m$ is full and faithful. We define $Q_n(X) = \left(\{X_n\}_{n\in \NN},\{u_n\}_{n\in \NN}\right)$.
-
-
-\begin{proposition}
-Let $Q_n:\cC_n\ra \cC(\mathbb{T})$ be a that sends $X$
-\end{proposition}
-
-
-\section{Thick subcategories}
-
-\begin{definition}
-Let $\cC$ be an abelian category and let $\cS$ be its full subcategory. Suppose that for every exact sequence in $\cC$
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ 0 & X' & X & X'' & 0 \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-1-2) edge node[above] {$ $} (m-1-3)
-(m-1-3) edge node[above] {$ $} (m-1-4)
-(m-1-4) edge node[above] {$ $} (m-1-5);
-\end{tikzpicture}
-\end{center}
-we have $X\in \cS$ if and only if $X',X''\in \cS$. Then $\cS$ is called \textit{a thick subcategory of $\cC$}.
-\end{definition}
-
-\begin{definition}
-A category $\cC$ is called \textit{well-powered} if the class of subobjects of $X$ is a set for every object $X$ in $\cC$.
-\end{definition}
-
-\begin{proposition}\label{proposition:largest_subobject_in_thick_subcategory}
-Let $\cC$ be an $\bd{Ab}3$-category and let $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. For every object $X$ in $\cC$ there exists a unique subobject $S(X)$ such that for every morphism $f:Y\ra X$ in $\cC$ with $Y$ in $\cS$ we have $f(Y)\subseteq S(X)$.
-\end{proposition}
-\begin{proof}
-One can prove the result invoking general adjoint functor theorems {\cite[Chapter V, Sections 5 and 6]{Maclane}}. For self-containment we present the complete proof below.\\
-Fix an object $X$ of $\cC$. Since $\cC$ is well-powered, the class $\{Y_i\}_{i\in I}$ of subobjects of $X$ that belong to $\cS$ is a set. Since $\cS$ is closed under small direct sums we derive that $\sum_{i\in I}Y_i\subseteq X$ is in $\cS$. Indeed, this is the image of the canonical morphism
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bigoplus_{i\in I}Y_i & X \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-and since $\cS$ is a thick subcategory closed under small direct sums, we deduce that this image is an object of $\cS$. Thus $S(X) = \sum_{i\in I}Y_i$ is the largest subobject of $X$ contained in $\cS$. This implies the statement.
-\end{proof}
-
-\begin{fact}\label{fact:left_exactness_of_thicksubobject}
-Let $\cC$ be an $\bd{Ab}3$-category and let $\cS$ be a thick subcategory. Assume that $\cS$ is closed under small direct sums. For every $X$ in $\cC$ let $S(X)$ be the largest subobject of $X$ contained in $\cS$. Then $S:\cC\ra \cS$ is a left exact functor.
-\end{fact}
-\begin{proof}
-Left to the reader.
-\end{proof}
-
-\section{Existence of the algebraization}
-
-\begin{definition}
-Let $\bd{M}$ be a affine monoid $k$-scheme. Let $\cK:\bd{Rep}(\bd{M})\ra \bd{Rep}(\mathbb{A}^1_k)$ be an exact functor such that the triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{Rep}(\bd{M}) &         &\bd{Rep}(\mathbb{A}^1_k)  \\
-                &\Vect_k  &                           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$\cK $} (m-1-3)
-(m-1-1) edge node[left = 2pt, below = 2pt] {$|-| $} (m-2-2)
-(m-1-3) edge node[right = 2pt, below = 2pt] {$|-| $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative. Then we say that $\cK$ is \textit{a Kempf functor for $\bd{M}$}.
-\end{definition}
-
-\section{Formal $\bd{M}$-schemes}
+\section{Algebraization of formal $\bd{M}$-schemes}
 \noindent
-Let $\bd{M}$ be a affine monoid $k$-scheme.
+Now we prove the main result.
 
-\begin{definition}
-Let $X$ be a $\bd{M}$-scheme. We say that $X$ is \textit{a locally linear $\bd{M}$-scheme} if there exists an open cover of $X$ consisting of affine and $\bd{M}$-stable subchemes of $X$.
-\end{definition}
-
-\begin{definition}
-\textit{A formal $\bd{M}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{M}$-schemes together with $\bd{M}$-equivariant closed immersions
+\begin{theorem}\label{theorem:algebraization}
+Let $\bd{M}$ be a Kempf monoid with unit group $\bd{G}$ and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists an algebraization $Z$ of $\cZ$.
+Moreover, the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $Z$ is $\bd{M}$-scheme.
+\item The canonical morphism $\pi:Z\ra Z_0$ is an affine morphism.
+\end{enumerate}
+Moreover, if $\cZ$ is locally noetherian, then $\pi$ is of finite type.
+\end{theorem}
+\noindent
+Let $\bd{G}$ be the group of units of $\bd{M}$. According to the fact that $\bd{M}$ is integral, we derive that $\bd{G}$ is schematically dense in $\bd{M}$ and hence $Z_0$ admits trivial $\bd{M}$-action. Since $\bd{M}$ has zero, formal $\bd{M}$-scheme $\cZ$ corresponds to a sequence
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
+{ ... &  \cA_{n+1} & \cA_n & ...& \cA_1 & \cA_0 = \cO_{Z_0} \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$ $} (m-1-2)
 (m-1-2) edge node[above] {$ $} (m-1-3)
 (m-1-3) edge node[above] {$ $} (m-1-4)
@@ -470,220 +827,50 @@ Let $X$ be a $\bd{M}$-scheme. We say that $X$ is \textit{a locally linear $\bd{M
 (m-1-5) edge node[above] {$ $} (m-1-6);
 \end{tikzpicture}
 \end{center}
-satisfying the following assertions.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $\bd{M}$-scheme $Z_0$ is locally linear.
-\item Let $\cI_n$ be an ideal of $\cO_{Z_n}$ defining $Z_0$. Then for every $m\leq n$ the subscheme $Z_m \subset Z_n$ is defined by $\cI_n^{m+1}$.
+of $\bd{M}$-quasi-coherent $\cO_{Z_0}$-algebras such that $Z_n = \Spec_{Z_0}\cA_n$ for every $n\in \NN$. Next since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. Denote by $\Lambda$ the isomorphism classes of irreducible representations of $T$. The proof of the theorem is based on the following results.
+
+\begin{lemma}\label{lemma:affine_toric_geometry_extracted}
+Let $K$ be an algebraically closed field over $k$. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item $\ol{T}_K = \Spec K\times_{\Spec k}\ol{T}$ is an affine toric variety with torus $T_K$.
+\item There exists an abstract submonoid $S$ of the character group $\cX(T_K)$ such that
+$$\ol{T}_K = \Spec K[S]$$
+as $T_K$-varieties, where $K[S]$ is monoid $K$-algebra of $S$.
+\item $K$-subspace
+$$\ideal{m} = \bigoplus_{\chi \in S\setminus \{0\}}K \cdot \chi\subseteq \bigoplus_{\chi \in S}K \cdot \chi = K[S]$$
+is an ideal of $K[S]$ and for every finite subset $A$ of $\cX(T_K)$ there exists $n_A\in \NN$ such that for all $n\geq n_A$ we have
+$$K\cdot \chi \not \in \ideal{m}^{n}$$
+for every $\chi \in A$.
 \end{enumerate}
-\end{definition}
-
-\begin{definition}
-Let $\cZ = \{Z_n\}_{n\in \NN}$ and $\cW = \{W_n\}_{n\in \NN}$ are formal $\bd{M}$-schemes. Then \textit{a morphism $f:\cZ\ra \cW$ of formal $\bd{M}$-schemes} consists of a family of $\bd{M}$-equivariant morphisms $f = \big\{f_n:Z_n\ra W_n\}_{n\in \NN}$ such that the diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\
- W_0 &  W_1 & ... & W_n & W_{n+1} & ... \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-1-2) edge node[above] {$ $} (m-1-3)
-(m-1-3) edge node[above] {$ $} (m-1-4)
-(m-1-4) edge node[above] {$ $} (m-1-5)
-(m-1-5) edge node[above] {$ $} (m-1-6)
-(m-2-1) edge node[above] {$ $} (m-2-2)
-(m-2-2) edge node[above] {$ $} (m-2-3)
-(m-2-3) edge node[above] {$ $} (m-2-4)
-(m-2-4) edge node[above] {$ $} (m-2-5)
-(m-2-5) edge node[above] {$ $} (m-2-6);
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[left] {$f_0 $} (m-2-1)
-(m-1-2) edge node[left] {$f_1 $} (m-2-2)
-(m-1-4) edge node[left] {$f_n $} (m-2-4)
-(m-1-5) edge node[left] {$f_{n+1} $} (m-2-5);
-\end{tikzpicture}
-\end{center}
-is commutative.
-\end{definition}
-
-\begin{definition}
-Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. \textit{A quasi-coherent sheaf $\cF$ on $\cZ$} consists of a family $\left(\{\cF_n\}_{n\in \NN},\{\phi_{n,m}\}_{n,m\in \NN,m\leq n}\right)$ such that the following are satisfied.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $\cF_n$ is a quasi-coherent sheaf on $Z_n$ with $\bd{M}$-linearization.
-\item $\phi_{n,m}:{\cF_n}_{\mid Z_m} \ra \cF_m$ is an isomorphism of quasi-coherent sheaves with $\bd{M}$-linearizations for any pair $n,m\in \NN$ such that $m\leq n$.
-\item The composition
-$$\phi_{m,l}\cdot {\phi_{n,m}}_{\mid Z_l}:\left({\cF_n}_{\mid Z_m}\right)_{\mid Z_l}\ra \cF_l$$
-and the morphism
-$$\phi_{n,l}:{\cF_n}_{\mid Z_l}\ra \cF_l$$ are canonically isomorphic for any $n,m,l\in \NN$ such that $l\leq m\leq n$. 
-\end{enumerate}
-\end{definition}
-
-\begin{definition}
-Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. Suppose that $\cF = \left(\{\cF_n\}_{n\in \NN},\{\phi_{n,m}\}_{n,m\in \NN,m\leq n}\right)$ and $\cG = \left(\{\cG_n\}_{n\in \NN},\{\psi_{n,m}\}_{n,m\in \NN,m\leq n}\right)$ are quasi-coherent sheaves on $\cZ$. \textit{A morphism $\theta:\cF\ra \cG$ of quasi-coherent sheaves on $\cZ$} consists of a family $\{\theta_n:\cF_n\ra \cG_n\}_{n\in \mathbb{N}}$ of morphisms of quasi-coherent sheaves with $\bd{M}$-linearizations such that squares
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ {\cF_n}_{\mid Z_m} &  \cF_m \\
- {\cG_n}_{\mid Z_m} &  \cF_m  \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$\phi_{n,m} $} (m-1-2)
-(m-2-1) edge node[below] {$\psi_{n,m} $} (m-2-2)
-(m-1-1) edge node[left] {${\theta_n}_{\mid Z_m} $} (m-2-1)
-(m-1-2) edge node[right] {$\theta_m $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-are commutative for any $n,m\in \NN$ and $m\leq n$.
-\end{definition}
-\noindent
-If $\cZ$ is a formal $\bd{M}$-scheme, then we denote by $\Qcoh(\cZ)$ its category of quasi-coherent sheaves.
-
-\begin{definition}
-Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. A pair $(Z,\cI)$ consisting of a $\bd{M}$-scheme $Z$ together with a quasi-coherent ideal $\cI$ equipped with $\bd{M}$-linearization is called \textit{an algebraization of $\cZ$} if the following two conditions are satisfied.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $\cZ$ is isomorphic to $\widehat{Z}_{\cI} = \{V(\cI^n)\}_{n\in \NN}$ in the category of formal $\bd{M}$-schemes.
-\item The canonical functor $\Qcoh_{\bd{M}}(Z)\ra \Qcoh\left(\widehat{Z}_{\cI}\right)$ is an equivalence of categories.
-\end{enumerate}
-\end{definition}
-
-\section{Telescopes of categories and their $2$-limits}
-
-\begin{definition}
-A diagram
-\begin{center}   
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
-(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
-(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
-(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
-(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
-(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
-\end{tikzpicture}
-\end{center}
-of categories and functors is called \textit{a telescope of categories}.
-\end{definition}
-\noindent
-We fix a telescope
-\begin{center}   
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
-(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
-(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
-(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
-(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
-(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
-\end{tikzpicture}
-\end{center}
-of categories. Our goal is to construct its $2$-categorical limit. Consider pairs $\cX = \left(\{X_n\}_{n\in \NN}, \{u_n\}_{n\in \NN}\right)$ such that the following assertions hold.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $X_n$ is an object of $\cC_n$ for every $n\in \NN$.
-\item $u_n:F_n(X_{n+1})\ra X_n$ is an isomorphism in $\cC_n$ for every $n\in \NN$.
-\end{enumerate}
-If $\cX = \left(\{X_n\}_{n\in \NN}, \{u_n\}_{n\in \NN}\right)$ and $\cY = \left(\{Y_n\}_{n\in \NN},\{w_n\}_{n\in \NN}\right)$ are two such pairs, then a morphism $f:\cX \ra \cY$ consists of a family $\{f_n:X_n\ra Y_n\}_{n\in \NN}$ of morphisms such that squares
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ F_n(X_{n+1}) &  X_n    \\
-  F_n(Y_{n+1}) &  Y_n           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ u_n  $} (m-1-2)
-(m-2-1) edge node[below] {$ w_n $} (m-2-2)
-(m-1-1) edge node[left] {$ F_n(f_{n+1}) $} (m-2-1)
-(m-1-2) edge node[right] {$ f_n  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-are commutative for $n\in \NN$. This data gives rise to a category $\lim_{n\in \NN}\cC_n$. Next for every $n\in \NN$ we define a functor $\pi_n:\lim_{n\in \NN}\cC_n\ra \cC_n$ that sends a morphism $f:\cX\ra \cY$ to $f_n:X_n\ra Y_n$. Finally we define a natural isomorphism
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=1em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{{} & \lim_{n\in \NN}\cC_n &  {}               \\
-  {} & {} &  {}  \\
-  \cC_{n+1} &  {} & \cC_n     \\} ;
-\draw[->,line width=1.0pt] (m-1-2) to node [right= 10pt, above = -4pt] {$\pi_{n} $} (m-3-3);
-\draw[->,line width=1.0pt] (m-1-2) to node [left= 12pt, above = -4pt] {$\pi_{n+1} $} (m-3-1);
-\draw[->,line width=1.0pt] (m-3-1) to node [below = 1pt] {$F_n $} (m-3-3);
-\draw[-{Implies},line width=1.0pt,double distance=2pt,shorten >=50pt, shorten <=50pt] (m-2-1) to node [below = 2pt] {$ \sigma_n $} (m-2-3);
-\end{tikzpicture}
-\end{center}
-by setting its component on $\cX = \left(\{X_n\}_{n\in \NN},\{u_n\}_{n\in \NN}\right)$ to be $u_n:F_n(X_{n+1}) \ra X_n$. Since $F_n\pi_{n+1}\left(\cX\right) = F_n(X_{n+1})$ and $\pi_n(\cX) = X_n$ this makes sense. The next result states that the data above form a $2$-categorical limit over the telescope.
-
-\begin{theorem}\label{theorem:telescope_2_limits}
-Let 
-\begin{center}   
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
-(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
-(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
-(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
-(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
-(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
-\end{tikzpicture}
-\end{center}
-be a telescope a categories. Suppose that $\cC$ is a category, $\{P_n:\cC\ra \cC_n\}_{n\in \NN}$ is a family of functors and $\{\tau_n:F_nP_{n+1}\Rightarrow P_{n}\}_{n\in \NN}$ is a family of natural isomorphisms. Then there exists a unique functor $F:\cC\ra \lim_{n\in \NN}\cC_n$ such that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$.
-\end{theorem}
-\begin{proof}
-Suppose that $F:\cC\ra \lim_{n\in \NN}\cC_n$ is a functor such that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$. Pick an object $X$ of $\cC$. Then we have $\pi_nF(X) = P_n(X)$ and $\left(\sigma_n\right)_{F(X)} = \left(\tau_n\right)_X$. This implies that
-$$F(X) = \left(\{P_n(X)\}_{n\in \NN},\{\left(\tau_n\right)_X:F_nP_{n+1}(X)\ra P_n(X)\}_{n\in \NN}\right)$$
-Next if $f:X\ra Y$ is a morphism in $\cC$, then we derive that $\pi_nF(f) = P_n(f)$ for $n\in \NN$. Hence $F(f) = \{P_n(f)\}_{n\in \NN}$. This implies that the functor $F$ can be completely recovered from the fact that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$. Note also that formulas
-$$F(X) = \left(\{P_n(X)\}_{n\in \NN},\{\left(\tau_n\right)_X:F_nP_{n+1}(X)\ra P_n(X)\}_{n\in \NN}\right),\,F(f) = \{P_n(f)\}_{n\in \NN}$$
-for an object $X$ in $\cC$ and a morphism $f:X\ra Y$ in $\cC$, give rise to a functor that satisfy $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$. This establishes existence and the uniqueness of $F$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Note that $T\hookrightarrow \ol{T}$ is schematically dense open $T$-equivariant immersion of affine $k$-schemes. Since $K$ is flat over $k$, we derive that $T_K\hookrightarrow \ol{T}_K$ is schematically dense open $T_K$-immersion. Thus $\ol{T}_K$ is integral affine $T_K$-scheme and hence $\ol{T}_K$ is a affine toric variety having $T_K$ as a torus. Moreover, zero of $\bd{M}$ is contained in $\ol{T}$. Thus $\ol{T}_K$ admits a fixed $K$-point with respect to $T_K$-action. Now the lemma follows by basic affine toric geometry. \lstodo{dokładniej ten dowód, lub odniesienie do KOKSA. Nie ma Kempfa HAHA!}
 \end{proof}
-\noindent
-Assume now that the telescope consists of monoidal categories and that for each $n\in \NN$ functor $F_n$ is monoidal. Then there exists a canonical monoidal structure on $\lim_{n\in \NN}\cC_n$. We define $(-)\otimes_{\lim_{n\in \NN}\cC_n}(-)$ by formula
-$$\cX \otimes_{\lim_{n\in \NN}\cC_n} \cY = \left(\{X_n\otimes_{\cC_n}Y_n\}_{n\in \NN},\big\{\left(u_n \otimes_{\cC_n} w_n\right)\cdot m_{X_{n+1},Y_{n+1}}\big\}_{n\in \NN}\right)$$
-where
-$$m_{X_{n+1},Y_{n+1}}:F_{n}\left(X_{n+1}\otimes_{\cC_{n+1}} Y_{n+1}\right) \ra F_{n}(X_{n+1})\otimes_{\cC_n}F_{n}(Y_{n+1})$$
-is the tensor preserving isomorphism of $F_{n}$. We also define the unit
-$$I_{\lim_{n\in \NN}\cC_n} = \left(\{I_{\cC_n}\}_{n\in \NN}, \{F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}\}_{n\in \NN}\right)$$
-where isomorphisms $F_{n}(I_{\cC_{n+1}})\cong I_{\cC_n}$ are precisely the unit preserving isomorphisms of monoidal functors $F_{n}$ for every $n\in \NN$. The associativity natural isomorphism for $(-)\otimes_{\lim_{n\in \NN}\cC_n}(-)$ and right, left units for $I_{\lim_{n\in \NN}\cC_n}$ in $\lim_{n\in \NN}\cC_n$ are defined as tuples of the corresponding natural isomorphisms of $\cC_n$ for $n\in \NN$. With respect to this monoidal structure functors $\{\pi_n\}_{n\in \NN}$ are \textbf{strict monoidal functors} and $\{\sigma_n\}_{n\in \NN}$ are monoidal natural isomorphisms. The next result states that the data with these extra monoidal structure form a $2$-categorical limit over the telescope in the $2$-category of monoidal categories.
 
-\begin{theorem}\label{theorem:telescope_monoidal_2_limit}
-Let 
-\begin{center}   
+\begin{lemma}[Stabilization]\label{lemma:stabilization_lemma}
+Fix $\lambda$ in $\Lambda$. Then there exists a number $n_{\lambda}\in \NN$ such that the following holds. Let $\Zformal=\{Z_n\}$ be a formal $\bd{M}$-scheme and $\{\cA_{n+1} \onto \cA_n\}_{n\in \NN}$ be the associated sequence of quasi-coherent $\bd{M}$-algebras. Then for every $n > n_{\lambda}$ the surjection
+\begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{... &  \cC_{n+1}  &  \cC_n & ... & \cC_2 & \cC_1 & \cC_0  \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[auto]  {$F_{n+1}  $} (m-1-2)
-(m-1-2) edge node[auto]  {$F_n  $} (m-1-3)
-(m-1-3) edge node[auto]  {$F_{n-1}  $} (m-1-4)
-(m-1-4) edge node[auto]  {$F_2  $} (m-1-5)
-(m-1-5) edge node[auto]  {$F_1  $} (m-1-6)
-(m-1-6) edge node[auto]  {$F_0  $} (m-1-7);
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\cA_{n+1}[\lambda] & \cA_n[\lambda]\\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-be a telescope of a monoidal categories and monoidal functors. Suppose that $\cC$ is a monoidal category, $\{P_n:\cC\ra \cC_n\}_{n\in \NN}$ is a family of monoidal functors and $\{\tau_n:F_nP_{n+1}\Rightarrow P_{n}\}_{n\in \NN}$ is a family of natural monoidal isomorphisms. Then there exists a unique monoidal functor $F:\cC\ra \lim_{n\in \NN}\cC_n$ such that $P_n = \pi_nF$ and $\left(\sigma_n\right)_F = \tau_n$ for every $n\in \NN$ as monoidal functors and monoidal transformations, respectively.
-\end{theorem}
-\begin{proof}
-Note that $F$ must be defined precisely as it was detected in the proof of Theorem \ref{theorem:telescope_2_limits}. Namely we must have
-$$F(X) = \left(\{P_n(X)\}_{n\in \NN},\{\left(\tau_n\right)_X:F_nP_{n+1}(X)\ra P_n(X)\}_{n\in \NN}\right),\,F(f) = \{P_n(f)\}_{n\in \NN}$$
-for an object $X$ in $\cC$ and a morphism $f:X\ra Y$ in $\cC$. Suppose also that $F$ admits a structure of a monoidal functor such that $P_n = \pi_nF$ as monoidal functors for every $n\in \NN$. Let $$\big\{m^F_{X,Y}:F(X\otimes_{\cC}Y)\ra F(X)\otimes_{\lim_{n\in \NN}\cC_n}F(Y)\big\}_{X,Y\in \cC},\,\phi^F:F(I_{\cC})\ra I_{\lim_{n\in \NN}}$$
-be the data forming that structure. Since $\{\pi_n\}_{n\in \mathbb{N}}$ are strict monoidal functors and $P_n = \pi_nF$ as monoidal functors for every $n\in \NN$, we derive that for any objects $X,Y$ of $\cC$
-$$\pi_n(m^F_{X,Y}):P_n(X\otimes_{\cC}Y) \ra P_n(X)\otimes_{\cC_n}P_n(Y)$$
-is the tensor preserving isomorphism $m^{P_n}_{X,Y}:P_n(X\otimes_{\cC}Y) \ra P_n(X)\otimes_{\cC_n}P_n(Y)$ of the monoidal functor $P_n$ for every $n\in \NN$. By the same argument
-$$\pi_n(\phi_F):P_n(I_{\cC})\ra I_{\cC_n}$$
-is the unit preserving isomorphism $\phi^{P_n}:P_n(I_{\cC})\ra I_{\cC_n}$ of $P_n$. Thus we deduce that for any objects $X,Y$ of $\cC$ we have $m^F_{X,Y} = \{m^{P_n}_{X,Y}\}_{n\in \NN}$ and $\phi^F = \{\phi^{P_n}\}_{n\in \NN}$. This implies the uniqueness of a monoidal structure on $F$ such that $P_n = \pi_nF$ as monoidal functors for every $n\in \NN$. On the other hand define
-$$m^F_{X,Y} = \{m^{P_n}_{X,Y}\}_{n\in \NN}$$
-for objects $X,Y$ in $\cC$ and
-$$\phi^F = \{\phi^{P_n}\}_{n\in \NN}$$
-Then 
-
+is an isomorphism. If $\lambda_0$ is the isomorphism type of trivial representation of $\bd{G}$, then $n_{\lambda_0} = 0$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Fix an algebraically closed field $K$ over $k$. Consider an irreducible representation $V$ of $T$ in $\lambda$. Then $V_K = K\otimes_kV$ is an irreducible representation of $T_K$. Since $V_K$ is finite dimensional over $K$, it follows that $V_K$ as a $T_K$-representation decomposes onto finitely many character spaces of $T_K$. Say
+$$V_K = \bigoplus_{\chi \in A_{\lambda}}V_K[\chi]$$
+for some finite subset $A_{\lambda}\subseteq \cX(T_K)$, where $\cX(T_K)$ is the character group of $T_K$. Next we use Lemma \ref{lemma:affine_toric_geometry_extracted}. We can write
+$$\ol{T}_K = \Spec K[S],\ideal{m} = \bigoplus_{\chi \in S\setminus \{0\}}K \cdot \chi\subseteq \bigoplus_{\chi \in S}K \cdot \chi = K[S]$$
+and moreover, there exists $n_{\lambda}\in \NN$ such that for every $n\geq n_{\lambda}$ we have $K\cdot \chi \not \in \ideal{m}^n$ for every $\chi\in A_{\lambda}$. Next $\cA_n$ is a quasi-coherent $\ol{T}$-sheaf on $Z_0$ for every $n\in \NN$. Hence
+$$K\otimes_k\cA_n = \bigoplus_{\chi \in S}\left(K\otimes_k\cA_n\right)[\chi]$$
+for every $n\in \NN$.
 \end{proof}
+
+
 
 
 

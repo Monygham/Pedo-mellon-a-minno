@@ -1,6 +1,7 @@
 \input ../pree.tex
 
 \begin{document}
+
 \title{Abelian categories - some results}
 \date{}
 \maketitle
@@ -166,9 +167,30 @@ Let $\cC$ be a category and $X$ be an object in $\cC$. Suppose that for every co
 Let $\cC$ be a category. We say that $\cC$ is \textit{locally finite} if for every object $X$ there exists a complete filtered family $\{X_i\}_{i \in I}$ of subobjects of $X$ such that $X_i$ is of finite type for every $i\in I$.
 \end{definition}
 
+\section{Abelian Categories - definition and statement of the embedding theorem}
+
+\begin{definition}
+Let $\cC$ be a locally small category. Suppose that the following conditions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\cC$ has a zero object (i.e. an object that is both initial and terminal).
+\item $\cC$ has finite limits and colimits.
+\item Each epimorphism in $\cC$ is a cokernel of some arrow and each monomorphism in $\cC$ is a kernel of some arrow.
+\end{enumerate}
+Then $\cC$ is called \textit{an abelian category}.
+\end{definition}
+\noindent
+The definition of an abelian category is taken from \cite{freyd1964abelian}. This differs from the more popular definition {\cite[page 198]{Maclane}} - it does not assume the existence of $\Ab$-enrichment (abelian group structure on sets of morphisms). The two notions are equivalent by {\cite[Theorem 2.39]{freyd1964abelian}}.\\
+The next result shows that all elementary properties of categories of modules over a ring hold for general abelian categories.
+
+\begin{theorem}[Freyd-Mitchell embedding]\label{theorem:Freyd_Mitchel_embedding}
+Let $\cC$ be a small abelian category. Then there exists a ring $R$ and a full, faithful and exact functor $E:\cC\ra \Mod(R)$.
+\end{theorem}
+\noindent
+This is {\cite[Theorem 7.34]{freyd1964abelian}}.
+
 \section{\textbf{Ab}-conditions in categories}
 \noindent
-First it has to be said that the notion of abelian category can be described without  any mention of abelian group structure on classes of morphisms and this is carefully explained in \cite{freyd1962abelian}. In this section we discuss Grothendieck's $\bd{Ab}$-conditions in categories. The original source of the discussion below is the seminal work \cite{grothendieck1957}. First let us explain that Grothendieck introduces \textit{$\bd{Ab}0$-categories} as additive categories, \textit{$\bd{Ab}1$-categories} as preabelian categories and \textit{$\bd{Ab}2$-categories} as the usual abelian categories. Then he continues with more specific classes of abelian categories and recapitulation of parts of his work is our main task here.
+In this section we discuss Grothendieck's $\bd{Ab}$-conditions in categories. The original source of the discussion below is the seminal work \cite{grothendieck1957}. First let us explain that Grothendieck introduces \textit{$\bd{Ab}0$-categories} as additive categories, \textit{$\bd{Ab}1$-categories} as preabelian categories and \textit{$\bd{Ab}2$-categories} as the usual abelian categories. Then he continues with more specific classes of abelian categories and recapitulation of parts of his work is our main task here.
 
 \begin{definition}
 A category $\cC$ is \textit{an $\bd{Ab}3$-category} if it is an abelian category and small direct sums in $\cC$ exists.
@@ -204,7 +226,7 @@ A category $\cC$ is \textit{an $\bd{Ab}4$-category} if it is $\bd{Ab}3$-category
 Let $\cC$ be an $\bd{Ab}3$-category and assume that small filtered colimits in $\cC$ are exact. Then $\cC$ is an $\bd{Ab}4$-category.
 \end{fact}
 \begin{proof}
-Finite direct sums are exact in arbitrary abelian categories and a small direct sum is a filtered colimit of finite direct sums (taken over finite subsets of a set indexing objects in the direct sum). Thus the result follows.
+Finite direct sums are exact in arbitrary abelian categories and a small direct sum is a filtered colimit of finite direct sums taken over finite subsets of the indexing set. Thus the result follows.
 \end{proof}
 
 \begin{definition}
@@ -213,7 +235,7 @@ $$Y\cap \sum_{i\in I}X_i = \sum_{i\in I}Y\cap X_i$$
 then we say that $\cC$ is an $\bd{Ab}5$-category.
 \end{definition}
 \noindent
-The next result is very useful and we utilize it in the very next section.
+The next result is very useful.
 
 \begin{theorem}\label{theorem:kernelofastructuremapinab5}
 Let $\cC$ be an $\bd{Ab}5$-category and let $\left(\{X_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$ be a diagram indexed by a small filtered category $I$. Suppose that $\left(X,\{u_i\}_{i\in I}\right)$ is a colimiting cone of $\left(\{X_i\}_{i\in I},\{u_{\alpha}\}_{\alpha \in \Mor(I)}\right)$. Then
@@ -221,7 +243,7 @@ $$\ker(u_j) = \sum_{\alpha \in \Mor(I),\,\mathrm{dom}(\alpha) = j}\ker(u_{\alpha
 for every $j\in I$.
 \end{theorem}
 \noindent
-The following result is useful in proving next theorem so we decide to separate it from the main proof.
+The following result is a direct consequence of definition of $\bd{Ab}5$-category.
 
 \begin{lemma}\label{lemma:ab5refinement}
 Let $\cC$ be an $\bd{Ab}5$-category, $X$ be its object and $\{X_i\}_{i\in I}$ be a filtered family of subobjects of $X$. Assume also that $f:Y\ra X$ is a monomorphism. Then
@@ -230,7 +252,7 @@ $$f^{-1}\left(\sum_{i\in I}X_i\right) = \sum_{i\in I}f^{-1}(X_i)$$
 \begin{proof}[Proof of the lemma]
 It suffices to prove that 
 $$f(Y)\cap \sum_{i\in I}X_i = \sum_{i\in I}f(Y)\cap X_i$$
-From Fact \ref{fact:imageoffilteredinclass} applying factorization of $I\ra \mathrm{Sub}(X)$ through its image we can view $\{X_i\}_{i\in I}$ as a directed family of subobjects of $X$. Thus the result follows from the fact that $\cC$ is $\bd{Ab}5$.
+From Fact \ref{fact:imageoffilteredinclass} and applying factorization of $I\ra \mathrm{Sub}(X)$ through its image we can view $\{X_i\}_{i\in I}$ as a directed family of subobjects of $X$. Thus the result follows from the fact that $\cC$ is $\bd{Ab}5$.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
@@ -249,18 +271,18 @@ So we may assume that $j\in \{i_1,...,i_n\}$. Consider a finite diagram in $I$ t
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{      \bigoplus_{i\in I}X_i   &  \bigoplus_{i\in I}X_i      \\
-     X_j       &  X_{i_0} \\} ;
+{ X_j                   &   X_{i_0}              \\
+  \bigoplus_{i\in I}X_i &  \bigoplus_{i\in I}X_i \\};
 \path[->,line width=1.0pt,font=\scriptsize] 
-(m-1-1) edge node[above] {$f $} (m-1-2)
-(m-2-1) edge node[below] {$u_{\beta_j} $} (m-2-2)
-(m-2-1) edge node[left] {$v_j $} (m-1-1)
-(m-2-2) edge node[right] {$v_{i_0} $} (m-1-2);
+(m-2-1) edge node[below] {$f $} (m-2-2)
+(m-1-1) edge node[above] {$u_{\beta_j} $} (m-1-2)
+(m-1-1) edge node[left] {$v_j $} (m-2-1)
+(m-1-2) edge node[right] {$v_{i_0} $} (m-2-2);
 \end{tikzpicture}
 \end{center}
 and hence it follows that
-$$u_{\beta_j}\left(v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\right)= v_{i_0}^{-1}\left(f\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\right)=$$
-$$= v_{i_0}^{-1}\left(\sum_{\alpha \in F}v_{i_0}\cdot \left(u_{\beta_{\mathrm{cod}(\alpha)}}\cdot u_{\alpha}- u_{\beta_{\mathrm{dom}(\alpha)}}\right)\right)=0$$
+$$u_{\beta_j}\left(v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\right)\subseteq  v_{i_0}^{-1}\left(f\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\right)=$$
+$$= v_{i_0}^{-1}\left(\Image\left(\sum_{\alpha \in F}v_{i_0}\cdot \left(u_{\beta_{\mathrm{cod}(\alpha)}}\cdot u_{\alpha}- u_{\beta_{\mathrm{dom}(\alpha)}}\right)\right)\right)=0$$
 and thus
 $$v_j^{-1}\left(\Image\left(\sum_{\alpha \in F} v_{\mathrm{cod}(\alpha)}\cdot u_{\alpha}-v_{\mathrm{dom}(\alpha)}\right)\right)\subseteq \ker(u_{\beta_j})$$
 This finishes the proof.
@@ -523,54 +545,306 @@ Note that $\Hom_R(R^{\oplus n},-):\Mod(R)\ra \Ab$ is naturally isomorphic with t
 Let $A$ be a commutative ring and $R = A[x_0,x_1,...]$ be a polynomial $A$-algebra with infinitely many free variables. Denote by $\ideal{a}$ the ideal $\sum_{i\in \NN}R\cdot x_i$ of $R$. Then $M = R/\ideal{a}$ is a finitely generated (even cyclic) $R$-module. On the other hand the kernel of the canonical epimorphism $R\ra R/\ideal{a}=M$ is $\ideal{a}$ and hence it is not a finitely generated $R$-module. Thus $M$ is not finitely presented but finitely generated.
 \end{example}
 
+\section{Noetherian and Artinian objects}
+
+\begin{definition}
+Let $\cC$ be an abelian category. An object $X$ of $\cC$ is called \textit{noetherian} (\textit{artinian}) if for every ascending (descending) chain $\{X_n\}_{n\in \NN}$ of its subobjects, there exists $n_0\in \NN$ such that $X_n = X_{n_0}$ for $n\geq n_0$.
+\end{definition}
+\noindent
+First we note the following elementary result.
+
+\begin{fact}\label{fact:noetherian_is_dual_to_artinian}
+Let $\cC$ be an abelian category. Then noetherian objects in $\cC^{\mathrm{op}}$ are artinian in $\cC$ and vice versa.
+\end{fact}
+\noindent
+The next result is useful for certain applications.
+
+\begin{proposition}\label{proposition:characterization_of_noetherian_objects}
+Let $\cC$ be an abelian category and let $X$ be a noetherian (artinian) object of $\cC$. Then for every nonempty class $\cF$ of subobjects of $X$ there exists a maximal (minimal) element contained in this family.
+\end{proposition}
+\begin{proof}
+We present the proof for noetherian case (the proof for artinian case can be obtained by passing to the opposite category). Let $\cF$ be a class of subobjects of a noetherian object $X$. We construct an ascending chain $\{X_n\}_{n\in \NN}$ of subobjects of $\cF$ as follows. We pick $X_0\in \cF$. Suppose that $X_0\subseteq ...\subseteq X_n$ are defined. If $X_n$ is a maximal element of $\cF$, then we set $X_{n+1} = X_n$. Otherwise we pick $X_{n+1}\in \cF$ such that $X_n\subsetneq X_{n+1}$. Since $X$ is noetherian, there exists $n_0\in \NN$ such that $X_n = X_{n_0}$ for $n\geq n_0$. This implies that $X_{n_0}$ is maximal element in $\cF$.
+\end{proof}
+
+\begin{definition}
+Let $\cC$ be an abelian category and let $\cS$ be its full subcategory. Suppose that for every exact sequence in $\cC$
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ 0 & X' & X & X'' & 0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+we have $X\in \cS$ if and only if $X',X''\in \cS$. Then $\cS$ is called \textit{a thick subcategory of $\cC$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:noetherian_and_artinian_is_thick}
+Let $\cC$ be an abelian category. Then subcategory of $\cC$ consisting of noetherian (artinian) objects is thick.
+\end{proposition}
+\begin{proof}
+We present the proof for noetherian case (the proof for artinian case can be obtained by passing to the opposite category). Consider a short exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ 0 & X' & X & X'' & 0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$i $} (m-1-3)
+(m-1-3) edge node[above] {$p $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Suppose first that $X$ is noetherian. Consider an ascending chain $\{X'_n\}_{n\in \NN}$ of subobjects of $X'$. Then it is also an ascending chain of subobjects of $X$. Hence there exists $n_0\in \NN$ such that $X'_n = X'_{n_0}$ for $n\geq n_0$. This implies that $X'$ is noetherian. Now suppose that $\{X''_n\}_{n\in \NN}$ is an ascending chain of subobjects of $X''$. Then $\{p^{-1}(X''_n)\}_{n\in \NN}$ is an ascending chain of subobjects of $X$. Hence there exists $n_0\in \NN$ such that $p^{-1}(X''_n) = p^{-1}(X''_{n_0})$ for $n\geq n_0$. This shows that $X''_n = X''_{n_0}$ for $n\geq n_0$. Thus $X''$ is noetherian.\\
+Next suppose that both $X'$ and $X''$ are noetherian. Let $\{X_n\}_{n\in \NN}$ be an ascending chain of subobjects of $X$. Then $\{i^{-1}(X_n)\}_{n\in \NN}$ and $\{p(X_n)\}_{n\in \NN}$ are ascending chains of subobjects of $X'$ and $X''$, respectively. Since $X'$ and $X''$ are noetherian, we derive that there exists $n_0\in \NN$ such that $i^{-1}(X_n) = i^{-1}(X_{n_0})$ and $p(X_n) = p(X_{n_0})$ for $n\geq n_0$. This implies that $X_n = X_{n_0}$ for $n\geq n_0$ and hence $X$ is noetherian.
+\end{proof}
+
+\section{Objects of finite length}
+It is interesting to investigate the case when object is both noetherian and artinian. We need the following definition first.
+
+\begin{definition}
+Let $\cC$ be an abelian category. An nonzero object $X$ of $\cC$ is \textit{irreducible} if the only subobjects of $X$ are zero and $X$ itself.
+\end{definition}
+
+\begin{proposition}\label{proposition:characterization_of_objects_of_flength}
+Let $\cC$ be an abelian category and let $X$ be an object of $\cC$. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $X$ is both noetherian and artinian.
+\item There exists a chain
+$$0=X_0\subseteq X_1\subseteq X_2\subseteq ...\subseteq X_n = X$$
+of subobjects of $X$ such that for each $0\leq i\leq n-1$ the quotient $X_{i+1}/X_i$ is an irreducible object of $\cC$.
+\end{enumerate}
+\end{proposition}
+\noindent
+For the proof we will need the following.
+
+\begin{lemma}\label{lemma:minimal_subobject_above_given_subobject}
+Let $\cC$ be an abelian category and let $X$ be an artinian object of $\cC$. Suppose that $X'\subsetneq X$ is a subobject. Then there exists a minimal subobject $X''$ of $X$ such that $X'\subsetneq X''$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+It suffices to apply Proposition \ref{proposition:characterization_of_noetherian_objects} to a nonempty class
+$$\cF = \big\{Z\,\big|\,Z\mbox{ is a subobject of }X\mbox{ strictly containing }X'\big\}$$
+\end{proof}
+
+\begin{proof}[Proof of the proposition]
+We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Suppose that $X$ is both noetherian and artinian. Since $X$ is artinian, by Lemma \ref{lemma:minimal_subobject_above_given_subobject} we construct a chain
+$$0 = X_0\subsetneq X_1\subsetneq ...$$
+such that for each $i$ the quotient $X_{i+1}/X_i$ is irreducible object of $\cC$. Indeed, starting from $X_0 = 0$ we apply the following procedure. If $X_i$ was constructed and $X_i\subsetneq X$, then by Lemma \ref{lemma:minimal_subobject_above_given_subobject} we pick $X_{i+1}$ as a minimal subobject of $X$ such that $X_i\subsetneq X_{i+1}$. Note that the construction of this ascending chain of subobjects of $X$ cannot go indefinitely, because $X$ is noetherian. Hence we deduce that
+$$0 = X_0\subsetneq X_1\subsetneq ...\subsetneq X_n = X$$
+for some $n\in \NN$.\\
+Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Assume that there exists a chain
+$$0=X_0\subseteq X_1\subseteq X_2\subseteq ...\subseteq X_n = X$$
+of subobjects of $X$ such that for each $0\leq i\leq n-1$ the quotient $X_{i+1}/X_i$ is an irreducible object of $\cC$. Then we prove by finite induction that each $X_i$ is both noetherian and artinian. This clearly holds for $X_0$. Suppose that it holds for $X_i$ for some $i<n$. Then there exists a canonical short exact chain
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ 0 & X_i & X_{i+1} & X_{i+1}/X_i & 0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Since $X_i$ is both noetherian and artinian and moreover, $X_{i+1}/X_i$ as an irreducible object is both noetherian and artinian, we derive by Proposition \ref{proposition:noetherian_and_artinian_is_thick} that $X_{i+1}$ is both noetherian and artinian.
+\end{proof}
+
+\begin{definition}
+Let $\cC$ be an abelian category and let $X$ be an object of $\cC$. A chain
+$$0=X_0 \subseteq X_1\subseteq ...\subseteq X_n = X$$
+of subobjects such that $X_{i+1}/X_i$ is an irreducible object for $0 \leq i \leq n-1$ is called \textit{a composition series of $X$}. Irreducible objects
+$$X_1/X_0,X_2/X_1,...,X_n/X_{n-1}$$
+are called \textit{factors of the composition series}.
+\end{definition}
+\noindent
+Let $X$ be an object of a category $\cC$. Then we denote by $[X]_{\cong}$ the isomorphism class of $X$.
+
+\begin{theorem}[Jordan-Hölder]\label{theorem:JordanHölder_equivalence}
+Let $\cC$ be an abelian category and let $X$ be its object. Suppose that
+$$0=X_0 \subseteq X_1\subseteq ...\subseteq X_n = X$$
+and
+$$0=X'_0 \subseteq X'_1\subseteq ...\subseteq X'_m = X$$
+are composition series of $X$. Then multisets (sets which allow repetitions)
+$$\{[X_1/X_0]_{\cong},[X_2/X_1]_{\cong},...,[X_n/X_{n-1}]_{\cong}\},\,\{[X'_1/X'_0]_{\cong},[X'_2/X'_1]_{\cong},...,[X'_m/X'_{m-1}]_{\cong}\}$$
+are equal.
+\end{theorem}
+\begin{proof}
+The proof goes by induction on $n$. If $n=1$, then $X$ is irreducible and the result holds.\\
+Suppose now $n\geq 1$. Consider object $Z = X/X_1$. Then $Z_i = X_{i+1}/X_1$ for $0\leq i\leq n-1$. Clearly
+$$0=Z_0\subseteq Z_1\subseteq ...\subseteq Z_{n-1} = Z$$
+is a composition series of $Z$ and we have
+$$\{[Z_1/Z_0]_{\cong},[Z_2/Z_1]_{\cong},...,[Z_{n-1}/Z_{n-2}]_{\cong}\} = \{[X_2/X_1]_{\cong},[X_3/X_2]_{\cong},...,[X_n/X_{n-1}]_{\cong}\}$$
+Consider now objects $W_i = X'_i/(X'_i\cap X_1)$ for $0\leq i\leq m$. Then we have a chain of subobjects
+$$0 = W_0 \subseteq W_1\subseteq ...\subseteq W_m = Z$$
+of $Z$. Pick $i = 0,1,...,m-1$. We have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{0 & X'_i & X'_{i+1}  & X'_{i+1}/X'_i & 0 \\
+ 0 & W_i  & W_{i+1}   & W_{i+1}/W_i   & 0  \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+
+(m-2-1) edge node[above] {$ $} (m-2-2)
+(m-2-2) edge node[above] {$ $} (m-2-3)
+(m-2-3) edge node[above] {$ $} (m-2-4)
+(m-2-4) edge node[above] {$ $} (m-2-5)
+
+(m-1-2) edge node[left] {$p_i $} (m-2-2)
+(m-1-3) edge node[left] {$p_{i+1} $} (m-2-3)
+(m-1-4) edge node[right] {$q_{i+1} $} (m-2-4);
+\end{tikzpicture}
+\end{center}
+in $\cC$ with exact rows and canonical epimorphism as vertical arrows. By Snake Lemma ({\cite[page 11]{weibel1995introduction}}) we derive that there exists an exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ 0 & \Ker(p_i) & \Ker(p_{i+1}) & \Ker(q_{i+1}) & \Coker(p_i) & \Coker(p_{i+1}) & \Coker(q_{i+1}) & 0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6)
+(m-1-6) edge node[above] {$ $} (m-1-7)
+(m-1-7) edge node[above] {$ $} (m-1-8);
+\end{tikzpicture}
+\end{center}
+Since $\Ker(p_i) = X'_i\cap X_1,\,\Ker(p_{i+1}) = X'_{i+1}\cap X_1$ and $p_i,p_{i+1},q_{i+1}$ are epimorphism, we deduce that this exact sequence induces a short exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ 0 & X'_i\cap X_1 & X'_{i+1}\cap X_1  & \Ker(q_{i+1}) & 0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Pick now $k$ such that $X'_i\cap X_1 = 0$ for $i\leq k$ and $X'_i\cap X_1 = X_1$ for $k<i$. Thus for $i \neq k$ we have $\Ker(q_{i+1}) = 0$ and hence $X'_{i+1}/X'_i$ is isomorphic to $W_{i+1}/W_i$. Moreover, for $i = k$ we have $X_1\cong \Ker(q_{k+1})$. Hence $X_1 \cong X'_{k+1}/X'_k$ and $W_{k+1}/W_k = 0$. We define
+$$Z'_i = \begin{cases}W_i & \mbox{ for }i\leq k\\
+W_{i+1} & \mbox{ for }k<i
+\end{cases}
+$$
+for $0\leq i\leq m-1$. Then
+$$0 = Z'_0 \subseteq Z'_1\subseteq ...\subseteq Z'_{m-1}=Z$$
+is a composition series and
+$$\{[Z'_1/Z'_0]_{\cong},[Z'_2/Z'_1]_{\cong}....,[Z'_m/Z'_{m-1}]_{\cong}\} = \{[X'_2/X'_1]_{\cong},[X'_3/X'_2]_{\cong},...,[X'_m/X'_{m-1}]_{\cong}\}$$
+Now by induction we have
+$$\{[Z'_1/Z'_0]_{\cong},[Z'_2/Z'_1]_{\cong}....,[Z'_m/Z'_{m-1}]_{\cong}\} = \{[Z_1/Z_0]_{\cong},[Z_2/Z_1]_{\cong}....,[Z_m/Z_{m-1}]_{\cong}\}$$
+Since $X'_{k+1}/X'_k \cong X_1$, we deduce that
+$$\{[X'_1/X'_0]_{\cong},[X'_2/X'_1]_{\cong},...,[X'_m/X'_{m-1}]_{\cong}\} = \{[Z'_1/Z'_0]_{\cong},[Z'_2/Z'_1]_{\cong}....,[Z'_m/Z'_{m-1}]_{\cong}\}\cup \{[X'_{k+1}/X'_k]_{\cong}\} =$$
+$$=\{[Z_1/Z_0]_{\cong},[Z_2/Z_1]_{\cong}....,[Z_m/Z_{m-1}]_{\cong}\}\cup  \{[X_1]_{\cong}\} = \{[X_1/X_0]_{\cong},[X_2/X_1]_{\cong},...,[X_n/X_{n-1}]_{\cong}\}$$
+\end{proof}
 
 
+\begin{definition}
+Let $\cC$ be an abelian category and let $X$ be an object of $\cC$ that has a composition series (or equivalently that $X$ is both noetherian and artinian). Then we say that $X$ is \textit{an object of finite length}.
+\end{definition}
 
+\begin{corollary}\label{corollary:irreducible_class_multiplicity}
+Let $X$ be an object of finite length in an abelian category $\cC$ and let $\lambda$ be an isomorphism type of some irreducible object in $\cC$. Suppose that
+$$0=X_0 \subseteq X_1\subseteq ...\subseteq X_n = X$$
+is a composition series. Let $l_{\lambda}(X)$ be the number of elements of the multiset
+$$\{[X_1/X_0]_{\cong},[X_2/X_1]_{\cong},...,[X_n/X_{n-1}]_{\cong}\}$$
+equal to $\lambda$. Then $l_{\lambda}(X)$ does not depend on the composition series of $X$.
+\end{corollary}
+\begin{proof}
+This is a consequence of the fact that multisets of isomorphism types of factors are equal for any two composition series of $X$ (Theorem \ref{theorem:JordanHölder_equivalence}).
+\end{proof}
 
+\begin{definition}
+Let $X$ be an object of finite length in an abelian category $\cC$. Suppose that $\Lambda$ is a class of isomorphism types of irreducible objects in $\cC$. For a given $\lambda \in \Lambda$ we define $l_{\lambda}(X)$ as in Corollary \ref{corollary:irreducible_class_multiplicity} above. We call it \textit{the multiplicity of $\lambda$ in $X$}. Next we define
+$$l(X) = \sum_{\lambda\in \Lambda}l_{\lambda}(X)\in \NN$$
+(note that the components of the sum on the right hand side are almost all equal to zero) and we call this number \textit{the length of $X$}.
+\end{definition}
 
+\begin{proposition}\label{proposition:length_and_multipicity_as_morphism_from_Grothendieck_group}
+Suppose that
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ 0 & X' & X & X'' & 0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$i $} (m-1-3)
+(m-1-3) edge node[above] {$p $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is a short exact sequence of finite length objects in an abelian category $\cC$. Then for every isomorphism type $\lambda$ of some irreducible object $X$ in $\cC$ we have
+$$l_{\lambda}(X) = l_{\lambda}(X')+l_{\lambda}(X'')$$
+\end{proposition}
+\begin{proof}
+Since $X'$ and $X''$ are of finite length, we fix composition series
+$$0=X'_0 \subseteq X'_1\subseteq ...\subseteq X'_m = X',\,0= X''_0 \subseteq X''_1\subseteq ...\subseteq X''_k = X''$$
+Then
+$$0 = i(X'_0)\subseteq ...\subseteq i(X'_m)\subseteq p^{-1}(X''_1)\subseteq ...\subseteq p^{-1}(X''_k) = X$$
+is a composition series for $X$. By Corollar \ref{corollary:irreducible_class_multiplicity} we can calculate $l_{\lambda}(X)$ by means of this compositon series. This implies that
+$$l_{\lambda}(X) = l_{\lambda}(X')+l_{\lambda}(X'')$$
+\end{proof}
 
+\section{Semisimple objects}
 
+\begin{proposition}\label{proposition:finite_type_objects_admit_maximal_proper_subobjects}
+Let $\cC$ be a well-powered $\bd{Ab}3$-category and let $X$ be a nonzero object of $\cC$ of finite type. Then there exists a subobject $X'$ of $X$ such that $X/X'$ is irreducible.
+\end{proposition}
+\begin{proof}
+Let $\cF$ be the class of proper subobjects of $X$. That is $\cF = \mathrm{Sub}(X)\setminus \{X\}$. This class is nonempty, because $X$ is nonzero. Since $\cC$ is well-powered, we derive that $\cF$ is a set. Consider a linearly ordered set $I$ and a set $\{X_i\}_{i\in I}$ of elements of $\cF$ such that $X_{i_1}\subseteq X_{i_2}$ for $i_1\leq i_2$ in $I$. If $X = \sum_{i\in I}X_i$, then there exists $i_0\in I$ such that $X = X_{i_0}$. This is a contradiction with the fact that $X_{i_0}$ in an element of $\cF$. This implies that $\sum_{i\in I}X_i$ is an element of $\cF$. Hence chains of elements of $\cF$ admit upper bounds. By Zorn's lemma we deduce that there exists a maximal element $X'$ in $\cF$. Then $X'$ is a proper and maximal subobject of $X$. This is equivalent with $X/X'$ being irreducible.
+\end{proof}
 
- 
+\begin{definition}
+Let $\cC$ be an abelian category and let $X$ be an object of $\cC$. If every subobject $X'$ of $X$ is a direct summand of $X$, then we say that $X$ is \textit{completely reducible}.
+\end{definition}
 
+\begin{proposition}\label{proposition:completely_reducible_class_closed_under_subobjects}
+Let $\cC$ be an abelian category. Then the class of completely reducible objects of $\cC$ is closed under subobjects.
+\end{proposition}
+\begin{proof}
+Let $X$ be a completely reducible object of $\cC$. Consider its subobject $Y$. Assume that $Y'$ is a subobject of $Y$. Since $X$ is completely reducible, we derive that there exists a subobject $X'$ such that $X = Y' + X'$ and $X'\cap Y'=0$. Since subobject lattices in abelian categories are modular (it is a consequence of Theorem \ref{theorem:Freyd_Mitchel_embedding}), we derive that
+$$Y = Y\cap X = Y\cap (Y' +  X') = Y' + Y\cap X'$$
+Moreover, $Y'\cap (Y\cap X')=0$. Thus $Y'$ is a direct summand of $Y$. This proves that $Y$ is completely reducible.
+\end{proof}
 
+\begin{definition}
+Let $\cC$ be an abelian category and let $X$ be an object of $\cC$. If $X$ is the sum of its irreducible subobjects, then we say that $X$ is \textit{semisimple}.
+\end{definition}
 
+\begin{proposition}\label{proposition:semisimple_closed_under_quotients}
+Let $\cC$ be an abelian category. Then the class of semisimple objects of $\cC$ is closed under quotient objects.
+\end{proposition}
+\begin{proof}
+Let $X$ be a semisimple object of $\cC$. Consider an epimorphism $q:X\ra X'$. Since $q$ preserves sums of subobjects and an epimorphic image of irreducible subobject is either zero or irreducible, we derive that $X'$ is semisimple.
+\end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{theorem}
+Let $\cC$ be an abelian category and let $X$ be an object of $\cC$. Consider the following statements.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item $X$ is semisimple.
+\item $X$ is completely reducible.
+\end{enumerate}
+If $\cC$ is a well-powered $\bd{Ab}5$-category, then $\emph{\textbf{(i)}}\Rightarrow \emph{\textbf{(ii)}}$. If in addition $X$ is locally finite, then $\emph{\textbf{(ii)}} \Rightarrow \emph{\textbf{(i)}}$.
+\end{theorem}
+\begin{proof}
+Assume that $\cC$ is a well-powered $\bd{Ab}5$-category. We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Consider a subobject $X'$ of $X$. Consider a class
+$$\cF=\big\{Y\,\big|\,Y\mbox{ is a subobject of }X\mbox{ and }Y\cap X' =0\big\}$$
+Since $\cC$ is well-powered, the class $\cF$ is a set. Since $\cC$ is an $\bd{Ab}5$-category, Zorn's lemma implies that the set $\cF$ ordered by inclusion of subobjects has a maximal element $X''$. Now consider an irreducible subobject $K$ of $X$. If $K\cap (X'+X'')= 0$, then $Y = X'' + K$ is a subobject of $X$ containing $X''$ and satisfying $Y\cap X' = 0$. In particular, $Y$ is an element of $\cF$. By maximality of $X''$ in $\cF$, we derive that $Y = X''$ and hence $K$ is a contained in $X''$. This is a contradiction because then $K= K \cap (X' + X'') = 0$ and irreducible objects are nonzero. Thus for every irreducible subobject $K$ of $X$ we have $K\cap (X'+X'')\neq 0$. This implies that $K = K\cap (X'+X'')$ and hence $K$ is contained in $X'+X''$. Since $X$ is a sum of its irreducible subobjects, we derive that $X = X' + X''$. Therefore, $X'$ is a direct summand of $X$.\\
+Suppose that in addition $X$ is locally finite. Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Suppose that $X'$ is a sum of all irreducible subobjects of $X$. Since $X'$ is a direct summand of $X$, we derive that there exists a subobject $X''$ of $X$ such that $X'\cap X''=0$ and $X = X'+X''$. Assume that $X''$ is nonzero. Since $X$ is locally finite and $X''$ is isomorphic with $X/X'$, we deduce that $X''$ is locally finite. Consider a nonzero subobject $Y$ of $X''$ of finite type. By Proposition \ref{proposition:finite_type_objects_admit_maximal_proper_subobjects} we deduce that there exists a subobject $Y'$ of $Y$ such that $Y/Y'$ is irreducible. According to Proposition \ref{proposition:completely_reducible_class_closed_under_subobjects} we deduce that $Y$ is completely reducible as a subobject of $X$. Hence there exists a subobject $Y''$ of $Y$ such that $Y = Y' + Y''$ and $Y'\cap Y''=0$. Clearly $Y''\cong Y/Y'$ and hence $Y''$ is irreducible subobject of $Y$. Since $Y$ is contained in $X''$, we deduce that $X''$ admits an irreducible subobject. This is contradiction with $X'\cap X'' = 0$. This proves that $X''$ must be zero and hence $X$ is a sum of its irreducible subobjects.
+\end{proof}
 
 
 
