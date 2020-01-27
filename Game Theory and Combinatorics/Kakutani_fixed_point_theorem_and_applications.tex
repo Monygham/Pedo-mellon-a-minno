@@ -39,9 +39,9 @@ is an open subset contained in $\mathbb{B}^{n+1}$. If $U_t \neq \bd{int}\left(\m
 $$y \in \left(\bd{cl}(U_t) \setminus U_t\right) \cap \bd{int}\left(\mathbb{B}^{n+1}\right)$$
 Consider a sequence $\{x_m\}_{m\in \NN}$ of elements in $\bd{int}\left(\mathbb{B}^{n+1}\right)$ such that
 $$\lim_{m\ra +\infty}f_t(x_m) = y$$
-We may assume that the sequence $\{x_m\}_{n\in \NN}$ converges to some $x$ in $\mathbb{B}^{n+1}$. Then $y = f_t(x)$. Clearly $x \not \in \bd{int}\left(\mathbb{B}^{n+1}\right)$ because otherwise $y \in V_t$. Hence $x\in S^n$. But then
+We may assume that the sequence $\{x_m\}_{n\in \NN}$ converges to some $x$ in $\mathbb{B}^{n+1}$. Then $y = f_t(x)$. Clearly $x \not \in \bd{int}\left(\mathbb{B}^{n+1}\right)$ because otherwise $y \in U_t$. Hence $x\in S^n$. But then
 $$\bd{int}\left(\mathbb{B}^{n+1}\right) \ni y = f_t(x) = (1-t)x + tf(x) = x \in S^n$$
-Thus the only possibility is that $V_t = \bd{int}\left(\mathbb{B}^{n+1}\right)$. Therefore, we have $f_t(\mathbb{B}^{n+1}) = \mathbb{B}^{n+1}$. Now \textbf{(1)} and \textbf{(2)} imply that $f_t$ induces a diffeomorphism $\mathbb{B}^{n+1}\ra \mathbb{B}^{n+1}$. Define a polynomial $p:[0,1]\ra \RR$ given by formula
+Thus the only possibility is that $U_t = \bd{int}\left(\mathbb{B}^{n+1}\right)$. Therefore, we have $f_t(\mathbb{B}^{n+1}) = \mathbb{B}^{n+1}$. Now \textbf{(1)} and \textbf{(2)} imply that $f_t$ induces a diffeomorphism $\mathbb{B}^{n+1}\ra \mathbb{B}^{n+1}$. Define a polynomial $p:[0,1]\ra \RR$ given by formula
 $$p(t) = \int_{\mathbb{B}^{n+1}}\big|\mathrm{det}\left(Df_t(x)\right)\big|dx = \int_{\mathrm{B}^{n+1}}\big|\mathrm{det}\left(1_{\mathrm{R}^{n+1}} + t\cdot Dg(x)\right)\big|dx$$
 Since $f_t$ induces a diffeomorphism $\mathbb{B}^{n+1}\ra \mathbb{B}^{n+1}$ for $t\in [0,T]$, we deduce that $p(t) = \mathrm{vol}\left(\mathrm{B}^{n+1}\right)$ for $t\in [0,T]$. Next $p(t)$ is a polynomial and hence we deduce that $p(t) = \mathrm{vol}\left(\mathrm{B}^{n+1}\right)$ for every $t\in [0,1]$. On the other hand we have
 $$p(1) = \int_{\mathbb{B}^{n+1}}\big|\mathrm{det}\left(Df(x)\right)\big|dx$$
@@ -52,7 +52,7 @@ Since $f(\mathbb{B}^{n+1}) = S^n$, we deduce that $\mathrm{det}\left(Df(x)\right
 Let $U$ be an open subset of $\RR^{n+1}$ containing $\mathbb{B}^{n+1}$. Suppose that $f:U\ra \RR^{n+1}$ is a continuously differentiable map such that $f(\mathbb{B}^{n+1})\subseteq \mathbb{B}^{n+1}$. Then there exists a fixed point of $f$ in $\mathbb{B}^{n+1}$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Assume that $f$ does not have fixed point in $\mathbb{B}^{n+1}$. Consider an open subset $W$ of $U$ defined by $f(x) \neq x$. Then $W$ contains $\mathbb{B}^{n+1}$. For every $x$ in $W$ we define a point $r(x)\in S^n$ as the intersection of a line
+Assume that $f$ does not have fixed points in $\mathbb{B}^{n+1}$. Consider an open subset $W$ of $U$ defined by $f(x) \neq x$. Then $W$ contains $\mathbb{B}^{n+1}$. For every $x$ in $W$ we define a point $r(x)\in S^n$ as the intersection of a line
 $$\big\{f(x) + t\cdot \left(x - f(x)\right)\in \RR^{n+1}\,\big|\,t\in \RR_+\big\}$$
 with $S^n$. Then $r:W\ra \RR^{n+1}$ is continously differentiable, $r(W) = S^n$ and $r(x) = x$ for every $x\in S^n$. This is a contradiction with Lemma \ref{lemma:thereisnodifferentiableretraction}.
 \end{proof}

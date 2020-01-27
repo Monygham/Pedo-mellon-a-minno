@@ -6,6 +6,10 @@
 \date{}
 \maketitle
 
+\section{Introduction and notation}
+\noindent
+In these notes we study algebraic structures on the category of $k$-functors with special emphasis on monoid objects.\\
+If $R$ is a ring, then we denote by $R^{\times}$ its multplicative monoid.
 
 \section{Algebraic structures in the category of $k$-functors}
 \noindent
@@ -24,6 +28,12 @@ Basic example of a ring $k$-functor is a $k$-functor $\ideal{K}$ given by
 $$\fK(A) = k,\,\fK(f) = 1_k$$
 for any $k$-algebra $A$ and morphism $f$ of $k$-algebras. It can be described as a constant $k$-functor ({\cite[page 67]{Maclane}}) corresponding to $k$.
 \end{example}
+
+\begin{definition}
+Let $\fR$ be a ring $k$-functor. Then we denote by $\fR^{\times}$ the $k$-subfunctor of $\fR$ defined by
+$$\fR^{\times}(A) = \fR(A)^{\times}$$
+for every $k$-algebra $A$. We call $\fR^{\times}$ \textit{the multiplicative monoid $k$-functor of $\fR$}.
+\end{definition}
 
 \begin{definition}
 Let $\fA$ be a commutative ring $k$-functor. \textit{An $\fA$-algebra} is an $\fA$-algebra object in the category of $k$-functors.
@@ -223,8 +233,8 @@ Thus $\fO_k[\fG]$ is $\fO_k$-algebra. We call $\fO_k[\fG]$ \textit{a monoid $\fO
 \end{definition}
 
 \begin{fact}\label{fact:universal_property_of_monoid_algebra}
-Let $\fG$ be a monoid $k$-functor and let $\fR$ be an $\fO_k$-algebra $k$-functor. Consider $\fR$ as a monoid $k$-functor with respect to its multiplicative structure. Then every morphism
-$$\sigma:\fG\ra \fR$$
+Let $\fG$ be a monoid $k$-functor and let $\fR$ be an $\fO_k$-algebra $k$-functor. Then every morphism
+$$\sigma:\fG\ra \fR^{\times}$$
 of monoid $k$-functors admits a unique extension
 $$\tilde{\sigma}:\fO_k[\fG]\ra \fR$$
 to a morphism of $\fO_k$-algebras.
