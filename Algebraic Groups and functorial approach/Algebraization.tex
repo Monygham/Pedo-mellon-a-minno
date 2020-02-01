@@ -232,12 +232,16 @@ be a telescope of monoidal categories and monoidal cocontinuous functors. Then i
 We decompose the task of constructing its $2$-limit as follows. First note that one may form a product $\cC = \prod_{n\in \NN}\cC_n$. Next the functors $\{F_n\}_{n\in \NN}$ induce an endofunctor $T = \prod_{n\in \NN}F_n\times t$, where $\bd{1}$ is the terminal category (it has single object and single identity arrow) and $t:\cC_0\rightarrow \bd{1}$ is the unique functor. Consider the category $\cC(T)$. We define $\{\pi_n:\cC(T)\ra \cC_n\}_{n\in \NN}$ to be a family of functors given by coordinates of $\pi:\cC(T)\ra \cC$ and $\{\sigma_n:F_n\cdot \pi_{n+1}\Rightarrow \pi_n\}_{n\in \NN}$ to be a family of natural isomorphisms given by coordinates of $\sigma:\pi\cdot T\Rightarrow \pi$. Now this data form a $2$-limit of the telescope by compilation of Theorem \ref{theorem:endoscope_monoidal_2_limit} and Theorem \ref{theorem:endoscope_colimits}.
 \end{proof}
 
-\section{Formal $\bd{G}$-schemes}
+\section{$\bd{M}$-equivariant quasi-coherent sheaves}
+\lstodo{Tu trzeba zdefiniować i następnie opisać przypadek schematu z lokalnie liniowym działaniem, bo on jest najważniejszy}
+
+
+\section{Formal $\bd{M}$-schemes}
 \noindent
-This section is devoted to introducing some notions from formal geometry that are central in this notes. We fix a group scheme $\bd{G}$ over $k$. 
+This section is devoted to introducing some notions from formal geometry that are central in this notes. 
 
 \begin{definition}
-\textit{A formal $\bd{G}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{G}$-schemes together with $\bd{G}$-equivariant closed immersions
+Let $\bd{M}$ be a monoid $k$-scheme. \textit{A formal $\bd{M}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{M}$-schemes together with $\bd{M}$-equivariant closed immersions
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -253,13 +257,13 @@ This section is devoted to introducing some notions from formal geometry that ar
 \end{center}
 satisfying the following assertions.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item We have $Z_0 = Z_n^{\bd{G}}$ scheme-theoretically for every $n\in \NN$.
+\item We have $Z_0 = Z_n^{\bd{M}}$ scheme-theoretically for every $n\in \NN$.
 \item Let $\cI_n$ be an ideal of $\cO_{Z_n}$ defining $Z_0$. Then for every $m\leq n$ the subscheme $Z_m \subset Z_n$ is defined by $\cI_n^{m+1}$.
 \end{enumerate}
 \end{definition}
 
 \begin{example}\label{example:formal_neighborhood_of_fixed_pts}
-Let $Z$ be a $\bd{G}$-scheme. Consider a quasi-coherent ideal $\cI$ of fixed point subscheme $Z^{\bd{G}}$ of $Z$. Then for every $n\in \NN$ ideal $\cI^n$ is $\bd{G}$-equivariant and hence
+Let $\bd{M}$ be a monoid $k$-scheme and let $Z$ be a $\bd{M}$-scheme. Consider a quasi-coherent ideal $\cI$ of fixed point subscheme $Z^{\bd{M}}$ of $Z$. Then for every $n\in \NN$ ideal $\cI^n$ is $\bd{M}$-equivariant and hence
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -272,11 +276,11 @@ Let $Z$ be a $\bd{G}$-scheme. Consider a quasi-coherent ideal $\cI$ of fixed poi
 (m-1-4) edge node[above] {$ $} (m-1-5);
 \end{tikzpicture}
 \end{center}
-is a formal $\bd{G}$-scheme. We denote it by $\widehat{Z}$.
+is a formal $\bd{M}$-scheme. We denote it by $\widehat{Z}$.
 \end{example}
 
 \begin{definition}
-Let $\cZ = \{Z_n\}_{n\in \NN}$ and $\cW = \{W_n\}_{n\in \NN}$ are formal $\bd{G}$-schemes. Then \textit{a morphism $f:\cZ\ra \cW$ of formal $\bd{G}$-schemes} consists of a family of $\bd{G}$-equivariant morphisms $f = \big\{f_n:Z_n\ra W_n\}_{n\in \NN}$ such that the diagram
+Let $\bd{M}$ be a monoid $k$-scheme. Suppose that $\cZ = \{Z_n\}_{n\in \NN}$ and $\cW = \{W_n\}_{n\in \NN}$ are formal $\bd{M}$-schemes. Then \textit{a morphism $f:\cZ\ra \cW$ of formal $\bd{M}$-schemes} consists of a family of $\bd{M}$-equivariant morphisms $f = \big\{f_n:Z_n\ra W_n\}_{n\in \NN}$ such that the diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -303,9 +307,11 @@ Let $\cZ = \{Z_n\}_{n\in \NN}$ and $\cW = \{W_n\}_{n\in \NN}$ are formal $\bd{G}
 \end{center}
 is commutative.
 \end{definition}
+\noindent
+Since group $k$-scheme is also a monoid $k$-scheme, definitions above can be applied to group $k$-schemes.
 
 \begin{definition}
-Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{G}$-scheme. Then there we have the corresponding telescope of monoidal categories
+Let $\bd{G}$ be a group $k$-scheme. Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{G}$-scheme. Then there we have the corresponding telescope of monoidal categories
 \begin{center}   
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -349,286 +355,14 @@ Let $Z$ be a $\bd{G}$-scheme. Then a unique cocontinuous monoidal functor $\Qcoh
 \end{definition}
 
 \begin{definition}
-Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{G}$-scheme. A $\bd{G}$-scheme $Z$ is called \textit{an algebraization of $\cZ$} if the following two conditions are satisfied.
+Let $\bd{M}$ be a monoid $k$-scheme with group of units $\bd{G}$. Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. A $\bd{M}$-scheme $Z$ is called \textit{an algebraization of $\cZ$} if the following two conditions are satisfied.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $\cZ$ is isomorphic to $\widehat{Z}$ in the category of formal $\bd{G}$-schemes.
+\item $\cZ$ is isomorphic to $\widehat{Z}$ in the category of formal $\bd{M}$-schemes.
 \item The comparison functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh\left(\widehat{Z}\right)$ is an equivalence of monoidal categories.
 \end{enumerate}
 \end{definition}
 
-\section{Diagonalisable monoid $k$-schemes}
-\noindent
-Consider an abstract commutative monoid $\Gamma$. Consider the monoid $k$-algebra $k[\Gamma]$. Recall that $k[\Gamma]$ as a free $k$-vector space over $k$ and its elements can be uniquely written as
-$$\sum_{\gamma\in \Gamma}k_{\gamma}\cdot \gamma$$
-where almost all $k_{\gamma}$ are zero for $\gamma \in \Gamma$. Next the $k$-algebra $k[\Gamma]$ admits a structure of a commutative bialgebra with a comultiplication given by
-$$k[\Gamma] \ni \sum_{\gamma\in \Gamma} k_{\gamma}\cdot \gamma \ra \sum_{\gamma\in \Gamma}k_{\gamma}\cdot \left(\gamma\otimes \gamma\right)\in  k[\Gamma]\otimes_kk[\Gamma]$$
-and a counit
-$$k[\Gamma]\ni \sum_{\gamma \in \Gamma}k_{\gamma}\cdot \gamma \mapsto \sum_{\gamma\in \Gamma}k_{\gamma}\in k$$
-This makes $\Spec k[\Gamma]$ into a monoid $k$-scheme. We denote this monoid $k$-scheme by $\bd{D}_{\Gamma}$. For an alternative description note that we have identifications
-$$\fP_{\bd{D}_{\Gamma}}(A) \cong \Mor_k\left(k[\Gamma],A\right) \cong \Mon\left(\Gamma,A^{\times}\right)$$
-natural in $k$-algebra $A$, where the right hand side denotes the set of morphisms of monoids from $\Gamma$ to the multiplicative monoid $A^{\times}$ of $A$. The $k$-functor
-$$\Alg_k\ni A\mapsto \Mon\left(\Gamma,A^{\times}\right)\in \Set$$
-is a monoid $k$-functor with respect to multiplication of monoid homomorphisms in $\Mon\left(\Gamma,A^{\times}\right)$ for every $k$-algebra $A$. Hence the identification above makes the functor of points $\fP_{\bd{D}_{\Gamma}}$ into the monoid $k$-functor and induces precisely the bialgebra structure on $k[\Gamma]$ described above.\\
-Note that if $g:\Gamma_1\ra \Gamma_2$ is a morphism of commutative monoids, then $k[g]:k[\Gamma_1]\ra k[\Gamma_2]$ is a morphism of bialgebras (with respect to the structure described above). We denote $\Spec k[g]$ by $\bd{D}_{g}$.
-
-\begin{definition}
-Let $\bd{M}$ be a monoid $k$-scheme. We say that $\bd{M}$ is \textit{diagonalisable} if there exists an abstract commutative monoid $\Gamma$ such that $\bd{M}$ is visomorphic to $\bd{D}_{\Gamma}$ as a monoid $k$-scheme.
-\end{definition}
-\noindent
-Now we prove the following important result.
-
-\begin{theorem}\label{theorem:commutative_monoids_and_diagonalisable_monoid_k_schemes}
-Suppose that $k$ is commutative ring such that $\Spec k$ is connected (i.e. $k$ has no nontrivial idempotents). Consider the functor 
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=1em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \Gamma_1  &  & \bd{D}_{\Gamma_1}                           \\
-    {}      &  & {}          \\
-   \Gamma_2 &  & \bd{D}_{\Gamma_2}                  \\} ;
-\path[->, line width=1.0pt, font=\scriptsize]  
-(m-3-3) edge node[right] {$\bd{D}_{g} $} (m-1-3)
-(m-1-1) edge node[left] {$g $} (m-3-1);
-\path[|->, shorten >= 0.4cm, shorten <= 0.4cm, line width=1.0pt, font=\scriptsize]  
-(m-2-1) edge node[right] {$ $} (m-2-3);
-\end{tikzpicture}
-\end{center}
-defined on the category of commutative monoids and with values in the category of monoid schemes over $k$. This functor preserves finite products and induces an equivalence of categories between abstract commutative monoids and diagonalisable monoid schemes over $k$.
-\end{theorem}
-\begin{proof}
-Suppose that $\Gamma_1, \Gamma_2$ are commutative monoids and $f:k[\Gamma_1]\ra k[\Gamma_2]$ is a morphism of bialgebras over $k$. Let $\Delta_1,\xi_1$ and $\Delta_2,\xi_2$ be comultiplications and counits for $k[\Gamma_1],k[\Gamma_2]$, respectively. Fix $\gamma\in \Gamma_1$ and suppose that $f(\gamma) = \sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \gamma'$. The fact that $f$ is a morphism of bialgebras over $k$ implies that
-$$\Delta_2\left(f\left( \gamma\right)\right) = \left(f\otimes_k f\right)\left(\Delta_1(\gamma)\right) = \left(f\otimes_kf\right)(\gamma\otimes_k\gamma) = f(\gamma)\otimes_kf(\gamma)$$
-Substituting $\sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \gamma'$ for $f(\gamma)$ we deduce that
-$$\sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \left(\gamma'\otimes \gamma'\right) = \sum_{\gamma'\in \Gamma_2}\sum_{\gamma''\in \Gamma_2}k_{\gamma'}\cdot k_{\gamma''}\cdot \left(\gamma'\otimes \gamma''\right)$$
-Thus we derive that
-$$k_{\gamma'}\cdot k_{\gamma''} = \begin{cases} 0 & \mbox{ if }\gamma'\neq \gamma''\\
-k_{\gamma'} & \mbox{ if }\gamma'=\gamma''
-\end{cases}$$
-Since there are no nontrivial idempotents in $k$, this implies that $k_{\gamma'} = 0,1$ for each $\gamma'\in \Gamma_2$. Again by the fact that $f$ is a morphism of $k$-bialgebras, we derive that
-$$\xi_1(\gamma) = \xi_2\left(f(\gamma)\right)$$
-Substituting $\sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \gamma'$ for $f(\gamma)$ yields that
-$$\sum_{\gamma'\in \Gamma_2}k_{\gamma'} = 1$$
-Combining this with previously established fact that $k_{\gamma'}=0,1$ for each $\gamma'\in \Gamma_2$ we deduce that there exists precisely one $\gamma'\in \Gamma_2$ such that $f(\gamma) = \gamma'$. This proves that $f(\Gamma_1)\subseteq \Gamma_2$. Since $f$ preserves multiplication and unit, we deduce that $f = k[g]$ for some homomorphism of abstract monoids $g:\Gamma_1\ra \Gamma_2$. Thus the functor described in the statement is full.\\
-It is also clearly faithful. Indeed, for two distinct morphisms of monoids $g_1,g_2:\Gamma_1\ra \Gamma_2$ we have $k[g_1]\neq k[g_2]$ and hence $\Spec k[g_1] \neq \Spec k[g_2]$.\\
-By definition of diagonalisable monoid the image of the functor is an essential subcategory of the category of diagonalisable $k$-schemes.\\
-Finally, consider commutative monoids $\Gamma_1,\Gamma_2$ and note that isomorphism
-$$k[\Gamma_1\times \Gamma_2] \ni \sum_{(\gamma_1,\gamma_2)\in \Gamma_1\times \Gamma_2}k_{(\gamma_1,\gamma_2)}\cdot (\gamma_1,\gamma_2) \mapsto \sum_{(\gamma_1,\gamma_2)\in \Gamma_1\times \Gamma_2}k_{(\gamma_1,\gamma_2)}\cdot \gamma_1\otimes \gamma_2 \in k[\Gamma_1]\otimes_kk[\Gamma_2]$$
-is a morphism of $k$-bialgebras. This implies that the functor described in the statement preserves binary products. The functor preserves terminal objects, since $k$ is a monoid $k$-algebra for trivial (zero) commutative monoid.
-\end{proof}
-
-\section{Representations of diagonalisable monoid $k$-schemes}
-
-\begin{definition}
-Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. Suppose that $V$ is a representation of $\bd{D}_{\Gamma}$ with respect to a morphism of monoid $k$-functors given by
-$$\fP_{\bd{D}_{\Gamma}}(A) = \Mod\left(\Gamma,A^{\times}\right) \ni f\mapsto f(\gamma)\cdot (-) \in \cL_{V}(A)$$
-where $\gamma$ is a fixed element of $\Gamma$. Then $V$ is called \textit{a representation of $\bd{D}_{\Gamma}$ of weight $\gamma$}.
-\end{definition}
-
-\begin{fact}\label{fact:weight_representation_as_comodules}
-Let $\Gamma$ be a commutative monoid and let $\gamma$ be its element. Suppose that $V$ is a representation of $\bd{D}_{\Gamma}$ of weight $\gamma$. Then $V$ can be equivalently described as a comodule over $k[\Gamma]$ with respect to the following coaction
-$$V_{\gamma}\ni v\mapsto \gamma\otimes v\in k[\Gamma]\otimes_kV_{\gamma}$$
-\end{fact}
-\begin{proof}
-Denote by $\rho:\fP_{\bd{D}_{\Gamma}}\ra \cL_{V}$ the morphism of monoid $k$-functors that makes a $V$ into a representation of $\bd{D}_{\Gamma}$. Then $\rho\left(1_{\bd{D}_{\Gamma}}\right)$ is a morphism of $k[\Gamma]$-modules
-$$k[\Gamma]\otimes_kV \ni 1\otimes v \mapsto \gamma \otimes v \in k[\Gamma]\otimes_k V$$
-We obtain the coaction of $k[\Gamma]$ on $V$ corresponding to $\rho$ by transforming morphism $\rho\left(1_{\bd{D}_{\Gamma}}\right)$ via the canonical isomorphism
-$$\Hom_{k[\Gamma]}\left(k[\Gamma]\otimes_kV,k[\Gamma]\otimes_kV\right)\cong \Hom_k\left(V,k[\Gamma]\otimes_kV\right)$$
-Thus this coaction is given by formula
-$$V \ni v\mapsto \gamma \otimes v\ni k[\Gamma]\otimes_kV$$
-\end{proof}
-
-\begin{fact}\label{fact:othogonality_of_weights_representations}
-Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. Suppose that $V_1,V_2$ are representations of $\bd{D}_{\Gamma}$ and assume that $V_1,V_2$ have weights $\gamma_1, \gamma_2$ with $\gamma_1\neq \gamma_2$. Then
-$$\Hom_{\bd{D}_{\Gamma}}\left(V_1,V_2\right) = 0$$
-\end{fact}
-\begin{proof}
-This follows from Fact \ref{fact:weight_representation_as_comodules}.
-\end{proof}
-\noindent
-Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. For every representation $V$ of $\bd{D}_{\Gamma}$ and fixed $\gamma$ in $\Gamma$  define
-$$V[\gamma] = \big\{v\in V\,\big|\,d(v) = \gamma \otimes v\big\}$$
-where $d:V\ra k[\Gamma]\otimes_kV$ is the coaction. Then $V[\gamma]$ is a subrepresentation of $V$. Note that according to Fact \ref{fact:weight_representation_as_comodules} $V[\gamma]$ is a subrepresentation of $V$ of weight $\gamma$.
-
-\begin{proposition}\label{proposition:weight_decomposition}
-Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. For every representation $V$ of $\bd{D}_{\Gamma}$ we have a direct sum
-$$V = \bigoplus_{\gamma \in \Gamma}V[\gamma]$$
-\end{proposition}
-\begin{proof}
-Let $\Delta,\xi$ be the comultiplication and the counit of $k[\Gamma]$, respectively. Let $d:V\ra k[\Gamma]\otimes_k V$ be a coaction. Fix $v\in V$. Then we have a unique decomposition $d(v) = \sum_{\gamma \in \Gamma}\gamma\otimes v_{\gamma}$. Then
-$$\sum_{\gamma\in \Gamma}\gamma \otimes \gamma \otimes v_{\gamma}  = \left(\Delta\otimes_k1_V\right)\left(d(v)\right) =  \left(1_{k[\Gamma]}\otimes_kd\right)\left(d(v)\right) = \sum_{\gamma \in \Gamma}\gamma \otimes d(v_{\gamma})$$
-This implies that $d(v_{\gamma}) = \gamma \otimes v_{\gamma}$ and hence $v_{\gamma}\in V[\gamma]$. On the other hand we have
-$$v =  \xi\left(d(v)\right) = \sum_{\gamma\in \Gamma}v_{\gamma}$$
-Thus
-$$v \in \sum_{\gamma\in \Gamma}V[\gamma]$$
-Hence
-$$V =  \sum_{\gamma\in \Gamma}V[\gamma]$$
-Moreover, suppose that $\sum_{\gamma\in \Gamma}v_{\gamma} = \sum_{\gamma\in \Gamma}v'_{\gamma}$ for some $v_{\gamma},v'_{\gamma}\in V[\gamma]$. Then
-$$\sum_{\gamma\in \Gamma}\gamma\otimes v_{\gamma} = d\left(\sum_{\gamma\in \Gamma}v_{\gamma}\right) = d\left(\sum_{\gamma\in \Gamma}v'_{\gamma}\right) =  \sum_{\gamma\in \Gamma}\gamma \otimes v'_{\gamma}$$
-and hence $v_{\gamma} = v'_{\gamma}$ for each $\gamma \in \Gamma$. This proves the direct decomposition of $V$ as we claimed.
-\end{proof}
-
-\begin{corollary}\label{corollary:representations_of_diagonalisable_monoids}
-Let $k$ be a field. Suppose that $\Gamma$ is a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. Then the category $\bd{Rep}\left(\bd{D}_{\Gamma}\right)$ is semisimple. Moreover, each irreducible representation of $\bd{D}_{\Gamma}$ is isomorphic to one-dimensional representation of weight $\gamma$ for a unique $\gamma \in \Gamma$.
-\end{corollary}
-\begin{proof}
-This is a consequence of Fact \ref{fact:othogonality_of_weights_representations} and Proposition \ref{proposition:weight_decomposition}.
-\end{proof}
-
-\section{Diagonalisable group $k$-schemes}
-\noindent
-Let $\Gamma$ be an abstract commutative group. Then in addition to $k$-bialgebra structure the $k$-algebra $k[\Gamma]$ admits an antipode map
-$$k[\Gamma]\ni \sum_{\gamma\in \Gamma}k_{\gamma}\cdot \gamma \mapsto \sum_{\gamma\in \Gamma}k_{\gamma}\cdot \gamma^{-1}\in k[\Gamma]$$
-That makes $k[\Gamma]$ into a commutative Hopf $k$-algebra. Thus $\bd{D}_{\Gamma}$ is a group $k$-scheme in this case.\\
-The forgetful functor $|-|:\Ab\ra \bd{CMon}$ sending commutative (abelian) group to its underlying commutative monoid admits left adjoint $(-)_{\Grp}:\bd{CMon}\ra \Ab$. Hence for every commutative monoid $\Gamma$ there exists a universal commutative group $\Gamma_{\Grp}$ generated by $\Gamma$. This is used in the following result.
-
-\begin{proposition}\label{proposition:diagonalisable_monoid_k_schemes_its_group_of_units}
-Let $\Gamma$ be a commutative monoid. Then the canonical morphism $\Gamma \ra \Gamma_{\Grp}$ induces a monomorphism of monoid $k$-schemes
-$$\bd{D}_{\Gamma_{\Grp}} \hookrightarrow \bd{D}_{\Gamma}$$
-that identifies $\bd{D}_{\Gamma_{\Grp}}$ with $\left( \bd{D}_{\Gamma} \right)^*$.
-\end{proposition}
-\begin{proof}
-For every $k$-algebra we have an isomorphism of groups
-$$\Mon\left(\Gamma,A^{\times}\right)^* \cong \Mon\left(\Gamma,A^*\right) \cong \Mon\left(\Gamma_{\Grp},A^*\right) \cong \Mon\left(\Gamma_{\Grp},A^{\times}\right)$$
-natural in $A$. Note that this natural isomorphisms identifies $\fP_{\bd{D}_{\Gamma}}^*$ with $\fP_{\bd{D}_{\Gamma_{\Grp}}}$ by morphism induced by the unit $\Gamma\ra \Gamma_{\Grp}$ of the adjunction $|-|\vdash (-)_{\Grp}$.
-\end{proof}
-
-\begin{corollary}\label{corollary:diagonalisable_group_schemes}
-Let $\bd{G}$ be a group $k$-scheme. Suppose that  $G$ is isomorphic to $\bd{D}_{\Gamma}$ as a monoid $k$-scheme for some commutative monoid $\Gamma$. Then $\Gamma$ is a group.
-\end{corollary}
-\begin{proof}
-Suppose that $\bd{G}\cong \bd{D}_{\Gamma}$ as a monoid $k$-schemes. We derive that $\bd{D}_{\Gamma}$ is a group $k$-scheme. Hence $\bd{D}_{\Gamma_{\Grp}} \hookrightarrow \bd{D}_{\Gamma}$ is an isomorphism of monoid $k$-schemes. This implies that $\Gamma = \Gamma_{\Grp}$ and thus $\Gamma$ is an abstract group.
-\end{proof}
-
-\begin{definition}
-Let $\bd{G}$ be a group $k$-scheme. We say that $\bd{G}$ is \textit{diagonalisable group $k$-scheme} if it is diagonalisable as a monoid scheme over $k$.
-\end{definition}
-
-\begin{example}\label{example:multiplicative_group}
-Let $\mathbb{Z}$ be a commutative group of additive integers. We denote by $\mathbb{G}_{m}$ the monoid $k$-scheme $\bd{D}_{\ZZ}$. Note that $\mathbb{G}_{m}$ represents the group $k$-functor
-$$\Alg_k\ni A\mapsto A^{*}\in \Ab$$
-We call $\mathbb{G}_{m}$ \textit{the multiplicative group over $k$}.
-\end{example}
-
-\begin{definition}
-Let $\fG$ be a monoid $k$-functor. Then the morphisms $\fG\ra \fP_{\mathbb{G}_m}$ of monoid $k$-functors are called \textit{characters of $\fG$}. They form a group $\cX(\fG)$ called \textit{the group of characters of $\fG$}.
-\end{definition}
-
-\begin{corollary}\label{corollary:characters_and_diagonalisable_groups}
-Suppose that $k$ is commutative ring such that $\Spec k$ is connected (i.e. $k$ has no nontrivial idempotents). Functors 
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=1em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \Gamma_1  &  & \bd{D}_{\Gamma_1} & & \bd{G}_1  &  & \cX(\bd{G}_1)   \\
-    {}      &  & {}                & & {}        &  & {}              \\
-   \Gamma_2 &  & \bd{D}_{\Gamma_2} & &  \bd{G}_2 &  & \cX(\bd{G}_2)                 \\} ;
-\path[->, line width=1.0pt, font=\scriptsize]  
-(m-3-3) edge node[right] {$\bd{D}_{g} $} (m-1-3)
-(m-1-1) edge node[left] {$g $} (m-3-1)
-(m-3-7) edge node[right] {$\cX(f) $} (m-1-7)
-(m-1-5) edge node[left] {$f $} (m-3-5);
-\path[|->, shorten >= 0.4cm, shorten <= 0.4cm, line width=1.0pt, font=\scriptsize]  
-(m-2-1) edge node[right] {$ $} (m-2-3)
-(m-2-5) edge node[right] {$ $} (m-2-7);
-\end{tikzpicture}
-\end{center}
-induce an equivalence between categories of abstract commutative groups and diagonalisable group schemes over $k$..
-\end{corollary}
-\begin{proof}
-This is a consequence of Theorem \ref{theorem:commutative_monoids_and_diagonalisable_monoid_k_schemes}.
-\end{proof}
-
-
-
-\section{Preliminaries}
-\lstodo{Większość z wyników, które tutaj są, powinna być w teoretyczym wstępie. Idea jest taka, by tutaj w zasadzie tylko przygotować notację do dowodu głównego twierdzenia.}
-
-\subsection{Results on linear representations}
-
-\begin{proposition}\label{proposition:invariants_are_stable_under_tensoring_with_k_algebra}
-Let $\bd{M}$ be an affine monoid $k$-scheme and let $V$ be a representation of $\bd{M}$. Then for every $k$-algebra $A$ the natural morphism of $A$-modules
-$$V^{\bd{M}}\otimes_{k}A \ra \left(A\otimes_kV\right)^{\bd{M}_A}$$
-is an isomorphism.
-\end{proposition}
-\begin{proof}
-Note that we have a left exact sequence of $k$-vector spaces defining invariants
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{0 &  V^{\bd{M}} &   V& \Gamma(\bd{M},\cO_{\bd{M}}) \otimes_{k}V    \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-1-2) edge node[above] {$ $} (m-1-3)
-(m-1-3) edge node[above] {$\Delta-p $} (m-1-4);
-\end{tikzpicture}
-\end{center}
-where $\Delta:V\ra \Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k} V$ is the coaction and $p:V\ra \Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V$ is the trivial coaction defined by formula $p(v)= 1\otimes v$ for every $v$ in $V$. Now tensoring the sequence with $k$-algebra $A$ yields a left exact sequence
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{0 &  V^{\bd{M}}\otimes_k A &   A \otimes_kV &\Gamma(\bd{M}_A,\cO_{\bd{M}_A})\otimes_{A}\left(A\otimes_kV\right)   \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-1-2) edge node[above] {$ $} (m-1-3)
-(m-1-3) edge node[above] {$\Delta_A-p_A $} (m-1-4);
-\end{tikzpicture}
-\end{center}
-where $\Delta_A$ is the coaction on $A\otimes_kV$ induced by $\Delta$ and $p_A$ is the trivial coaction on $A\otimes_kV$. This shows that $V^{\bd{M}}\otimes_{k}A \ra \left(A\otimes_kV\right)^{\bd{M}_A}$ is an isomorphism.
-\end{proof}
-
-\begin{proposition}\label{proposition:base_change_for_hom_of_representations_of_affine_group_schemes}
-Let $\bd{G}$ be an affine group $k$-scheme and let $V,W$ be representations of $\bd{G}$. If $V$ is finite dimensional, then for every $k$-algebra $A$ the canonical morphism
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{A\otimes_k\Hom_{\bd{G}}(V,W) & \Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right)\\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-is an isomorphism of $A$-modules.
-\end{proposition}
-\begin{proof}
-Fix a $k$-algebra $A$. Since $V$ is finite dimensional, for every $k$-algebra $B$ there exists an isomorphism $B\otimes_k\Hom_{k}(V,W) \ra \Hom_{B}\left(B\otimes_kV,B \otimes_kW\right)$ of $B$-modules natural in $B$. This implies that $\Hom_k(V,W)$ is a representation of $\bd{G}$ via the action given by formula
-$$\left(g\cdot f\right)(v) = g\cdot f(g^{-1}\cdot v)$$
-where $f\in \Hom_{B}\left(B\otimes_kV,B \otimes_kW\right)$, $v\in B\otimes_kV$ and $g\in \fP_{\bd{G}}(B)$. Similarly $\Hom_A(A\otimes_kV,A\otimes_kW)$ is a representation of $\bd{G}_K$ and the canonical isomorphism $A\otimes_k\Hom_{k}(V,W) \ra \Hom_{A}\left(A\otimes_kV,A \otimes_kW\right)$ of $A$-modules is $\bd{G}_A$-equivariant. Now we apply Proposition \ref{proposition:invariants_are_stable_under_tensoring_with_k_algebra} to derive a chain of isomorphisms
-$$\Hom_{A}\left(A\otimes_kV,A\otimes_kW\right)^{\bd{G}_A} \cong \left(A\otimes_k\Hom_{k}(V,W)\right)^{\bd{G}_A} \cong A\otimes_k\Hom_k(V,W)^{\bd{G}}$$
-of $A$-modules. Since we have identifications
-$$\Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right) \cong \Hom_{A}\left(A\otimes_kV,A\otimes_kW\right)^{\bd{G}_A} ,\,\Hom_{\bd{G}}\left(V,W\right)  \cong \Hom_k\left(V,W\right)^{\bd{G}}$$
-we deduce the statement.
-\end{proof}
-
-\begin{proposition}\label{proposition:trivial_homs_stay_trivial}
-Let $\bd{G}$ be an affine group scheme over $k$ and let $V, W$ be $\bd{G}$-representation such that $\Hom_{\bd{G}}(U,W) = 0$ for every finite dimensional $\bd{G}$-subrepresentation of $V$. Then for every $k$-algebra $A$ we have
-$$\Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right)=0$$
-\end{proposition}
-\begin{proof}
-Let $\cF$ be a set of all finite dimensional $\bd{G}$-subrepresentations of $V$. Since $V$ is a $\bd{G}$-representation and $\bd{G}$ is an affine group $k$-scheme, we have
-$$V= \mathrm{colim}_{U\in \cF}\,U$$
-Fix $k$-algebra $A$ then we have identifications of $A$-modules
-$$\Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right) = \Hom_{\bd{G}_A}\left(A\otimes_k\mathrm{colim}_{U\in \cF}U,A\otimes_kW\right) =$$
-$$ = \Hom_{\bd{G}_A}\left(\mathrm{colim}_{U\in \cF}A \otimes_k U,A \otimes_k W\right) = \lim_{U\in \cF} \Hom_{\bd{G}_A}\left(A \otimes_k U,A \otimes_k W\right) = $$
-$$ = \lim_{U\in \cF} \big(A\otimes_k\Hom_{\bd{G}}\left(U,W\right)\big) = 0$$
-where we apply Proposition \ref{proposition:base_change_for_hom_of_representations_of_affine_group_schemes}.
-\end{proof}
-
-\begin{corollary}\label{corollary:commuting_action_preserves_isotypic_decomposition}
-Let $\bd{G}$ be an affine group scheme over $k$ and let $\fG$ be a monoid $k$-functor. Denote by $\Lambda$ the set of isomorphism classes of irreducible $\bd{G}$-representations. Suppose that $V$ is a representation of both $\bd{G}$ and $\fG$ and assume that their actions on $V$ commute. Assume that $V$ is completely reducible as a $\bd{G}$-representation and consider the decomposition
-$$V = \bigoplus_{\lambda\in \Lambda}V[\lambda]$$
-onto isotypic components with respect to the action of $\bd{G}$. Then for every $\lambda$ in $\Lambda$ the subspace $V[\lambda]$ is a $\fG$-subrepresentation of $V$.
-\end{corollary}
-\begin{proof}
-Part of the structure $V$ as the $\fG$-representation is the morphism $\rho:\fG \ra \cL_V$ of $k$-monoids. Fix $k$-algebra $A$ and $g\in \fG(A)$. Since actions of $\bd{G}$ and $\fG$ on $V$ commute, morphism $\rho(g):A\otimes_kV\ra A\otimes_kV$ of $A$-modules is a morphism of $\bd{G}_A$-representation. According to Proposition \ref{proposition:trivial_homs_stay_trivial} we derive that
-$$\Hom_{\bd{G}_A}\left(A\otimes_kV[\lambda_1],A\otimes_kV[\lambda_2]\right) = 0$$
-for distinct $\lambda_1,\lambda_2\in \Lambda$. Thus
-$$\rho(g)\left(A \otimes_k V[\lambda] \right)\subseteq A \otimes_kV[\lambda]$$
-for every $\lambda$ in $\Lambda$. This holds for every $k$-algebra $A$ and $g\in \fG(A)$. Hence $V[\lambda]$ is $\fG$-subrepresentation of $V$.
-\end{proof}
-
-\subsection{Locally linear schemes}
+\section{Locally linear $\bd{M}$-schemes}
 
 \begin{definition}
 Let $\bd{M}$ be a monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose that each point of $X$ admits an open affine $\bd{M}$-stable neighborhood. Then we say that $X$ is \textit{a locally linear $\bd{M}$-scheme}.
@@ -678,23 +412,29 @@ Let $\bd{M}$ be an affine monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Su
 This is a consequence of Corollary \ref{corollary:monoid_stable_open_affine_correspondence}.
 \end{proof}
 
-\subsection{Affine monoid schemes with zero}
+\section{Some results on formal $\bd{M}$-schemes}
+
+\begin{corollary}\label{corollary:each_formal_scheme_consists_of_locally_linear_schemes_if_group_is_affine}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{G}$-scheme. Then $Z_n$ is locally linear $\bd{G}$-scheme for every $n\in \NN$.
+\end{corollary}
+\begin{proof}
+Let $\cI_n$ be an ideal defining $Z_0$ in $Z_n$. Since $\cZ$ is a formal $\bd{M}$-scheme, we derive that $\cI_n^{n+1} = 0$ and $Z_0$ is locally linear $\bd{M}$-scheme. Thus we apply Corollary \ref{corollary:locally_linear_are_stable_under_thickenings} and derive that $Z_n$ is locally linear $\bd{M}$-scheme.
+\end{proof}
+\noindent
+We are particularly interested in formal $\bd{M}$-schemes for monoid $\bd{M}$ with zero. For this we need the following elementary result.
 
 \begin{proposition}\label{proposition:retraction_for_monoids_with_zero}
-Let $\bd{M}$ be an affine monoid $k$-scheme with zero and let $X$ be a locally linear $\bd{M}$-scheme. Then there exists an affine $\bd{M}$-equivariant morphism
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{X & X^{\bd{M}} \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$r$} (m-1-2);
-\end{tikzpicture}
-\end{center}
-such that $r_{\mid X^{\bd{M}}} = 1_{X^{\bd{M}}}$.
+Let $\bd{M}$ be a monoid $k$-scheme with zero $\bd{o}$ and let $X$ be a $\bd{M}$-scheme. Then the following results hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item The multiplication by zero $\bd{o}\cdot(-):X\ra X$ factors through $X^{\bd{M}}$ inducing a $\bd{M}$-equivariant retraction $r_{\bd{M}}:X\twoheadrightarrow X^{\bd{M}}$.
+\item If $\bd{N}$ is a submonoid $k$-scheme of $\bd{M}$ and $\bd{o}$ is a $k$-point of $\bd{N}$, then $r_{\bd{M}} = r_{\bd{N}}$.
+\item If $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme, then $r_{\bd{M}}$ is affine.
+\end{enumerate}
 \end{proposition}
 \begin{proof}
-Consider the action $\alpha:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Since $X$ is locally linear and $\bd{M}$ is affine, we derive that $\alpha$ is an affine morphism of $k$-schemes. Now if $\bd{o}$ is a zero of $\bd{M}$, then we define a morphism 
+The multiplication $\bd{o}\cdot (-):\fP_X\ra \fP_X$ factors as an $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\twoheadrightarrow \fP_{X^{\bd{M}}}$ composed with a closed immersion $\fP_{X^{\bd{M}}}\hookrightarrow \fP_X$. The $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\ra \fP_{X^{\bd{M}}}$ corresponds to a $\bd{M}$-equivariant morphism $r_{\bd{M}}:X\ra X^{\bd{M}}$ of $k$-schemes such that $r_{\bd{M}}$ restricted to $X^{\bd{M}}$ is the identity $1_{X^{\bd{M}}}$. This proves \textbf{(1)}.\\
+For the proof of \textbf{(2)} note that $\bd{o}\cdot (-):\fP_X\ra \fP_X$ is defined similarly for $\bd{M}$ and $\bd{N}$ (provided that $\bd{o}$ is a $k$-point of $\bd{N}$). Thus $r_{\bd{M}} = r_{\bd{N}}$.\\
+Suppose now that $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme. Consider the action $\alpha:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Since $X$ is locally linear and $\bd{M}$ is affine, we derive that $\alpha$ is an affine morphism of $k$-schemes. Now $\bd{o}\cdot (-):X\ra X$ is given as a composition 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -707,53 +447,13 @@ Consider the action $\alpha:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Since $X$ i
 (m-1-2) edge node[above] {$ $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-The morphism above is affine (as a composition of affine morphisms) and induces multiplication by $\bd{o}$ on functors of points $\bd{o}\cdot(-):\fP_X\ra \fP_X$. Now $\bd{o}\cdot (-):\fP_X\ra \fP_X$ factors as an $fP_{\bd{M}}$-equivariant epimorphism $\fP_X\twoheadrightarrow \fP_{X^{\bd{M}}}$ composed with a closed immersion $\fP_{X^{\bd{M}}}\hookrightarrow \fP_X$. The $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\ra \fP_{X^{\bd{M}}}$ corresponds to a $\bd{M}$-equivariant morphism $r:X\ra X^{\bd{M}}$ of $k$-schemes such that $r_{\mid X^{\bd{M}}} = 1_{X^{\bd{M}}}$. Moreover, the composition of $r$ with a closed immersion $X^{\bd{M}}\hookrightarrow X$ is an affine morphism. Thus $r$ is affine.
+The morphism above is affine (as a composition of affine morphisms). Since the composition of $r$ with a closed immersion $X^{\bd{M}}\hookrightarrow X$ is $\bd{o}\times(-)$ and hence an affine morphism, we derive that $r$ is affine. This proves \textbf{(3)}.
 \end{proof}
-
-
-
-\subsection{$\bd{M}$-equivariant quasi-coherent sheaves}
-\lstodo{Tu trzeba zdefiniować i następnie opisać przypadek schematu z trywialnym działaniem, bo on jest najważniejszy}
-
-\subsection{Kempf monoids}
-
-\begin{definition}
-\lstodo{Tutaj trzeba zdefiniować monoidy Kempfa. Najpierw trzeba porządnie spisać dowód algebraizacji, żeby mieć poprawną definicję}
-Let $\bd{M}$ be a monoid $k$-scheme. Suppose that the following conditions hold.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $\bd{M}$ is affine, geometrically connected and geometrically normal.
-\item There exists zero $\bd{o}$ in $\bd{M}$.
-\item There exists a torus $T$ over $k$ contained in the center of $\bd{M}$ such that the closure $\bd{cl}(T)$ of $T$ in $\bd{M}$ contains $\bd{o}$.
-\end{enumerate}
-Then $\bd{M}$ is called \textit{Kempf \lstodo{(or rather Jelisiejew :D)} monoid}.
-\end{definition}
 \noindent
-Let $\bd{M}$ be a Kempf monoid and let $\bd{G}$ be its group of units. If $V$ is a representation of $\bd{G}$ and $\lambda$ is a class in $\Lambda$, then we denote by $V[\lambda]\subseteq V$ the sum of all irreducible $T$-subpresentations of $V$ of isomorphism type $\lambda$. Since $T$ is a central subgroup of $\bd{G}$, we derive by Proposition \ref{proposition:commuting_action_preserves_isotypic_decomposition} that $V[\lambda]$ is a $\bd{G}$-representation of $V$.\\
-Suppose that $Z$ is a $k$-scheme with trivial action of $\bd{M}$. If $\cF$ is a quasi-coherent sheaf on $Z$ equipped with $\bd{G}$-action, then we denote by $\cF[\lambda]$ a sheaf given by
-$$U\mapsto \cF(U)[\lambda]$$
-for every open affine subset $U$ of $Z$. Then $\cF[\lambda]\subseteq \cF$ is a $\bd{G}$-quasi-coherent subsheaf of $\cF$.
+Let us note the immediate consequence of this result.
 
-\subsection{Formal $\bd{M}$-schemes}
-
-\begin{definition}
-Let $\bd{M}$ be a monoid $k$-scheme having $\bd{G}$ as the group of units. \textit{A formal $\bd{M}$-scheme} is a formal $\bd{G}$-scheme $\cZ = \{Z_n\}_{n\in \NN}$ such that for each $n\in \NN$ scheme $Z_n$ is $\bd{M}$-scheme and the sequence of closed immersions
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ Z_0 &  Z_1 & ... & Z_n & Z_{n+1} & ... \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-1-2) edge node[above] {$ $} (m-1-3)
-(m-1-3) edge node[above] {$ $} (m-1-4)
-(m-1-4) edge node[above] {$ $} (m-1-5)
-(m-1-5) edge node[above] {$ $} (m-1-6);
-\end{tikzpicture}
-\end{center}
-consists of $\bd{M}$-equivariant morphisms.
-\end{definition}
-\noindent
-Let $\bd{M}$ be an affine monoid $k$-scheme with zero and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Suppose that $\bd{M}$ is a monoid with zero. Then by Proposition \ref{proposition:retraction_for_monoids_with_zero}, we derive that $\cZ$ is a part of the commutative diagram
+\begin{corollary}\label{corollary:restraction_for_formal_schemes_and_pointed_submonoids}
+Let $\bd{M}$ be an affine monoid $k$-scheme with zero and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then $\cZ$ is a part of the commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -771,262 +471,11 @@ Let $\bd{M}$ be an affine monoid $k$-scheme with zero and let $\cZ = \{Z_n\}_{n\
 (m-1-4) edge[bend left = 20] node[above] {$r_n $} (m-2-3);
 \end{tikzpicture}
 \end{center}
-in which vertical morphisms $r_n:Z_n\twoheadrightarrow Z_0$ are affine morphisms such that ${r_n}_{\mid Z_0} = 1_{Z_0}$. This implies that $Z_n$ is affine over $Z_0$ for each $n\in \NN$ and hence we write $\Spec_{Z_0}\cA_n$ for $n\in \NN$, where $\cA_n$ is a quasi-coherent $Z_0$-algebra equipped with the action of $\bd{M}$. Moreover, we have $\cA_0 = \cO_{Z_0}$. The diagram above induces the following sequence of epimorphisms
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ ... &  \cA_{n+1} & \cA_n & ...& \cA_1 & \cA_0 = \cO_{Z_0} \\} ;
-\path[->>,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-1-2) edge node[above] {$ $} (m-1-3)
-(m-1-3) edge node[above] {$ $} (m-1-4)
-(m-1-4) edge node[above] {$ $} (m-1-5)
-(m-1-5) edge node[above] {$ $} (m-1-6);
-\end{tikzpicture}
-\end{center}
-of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-action. Denote by $\bd{G}$ the group of units of $\bd{M}$. If $\bd{G}$ is schematically dense in $\bd{M}$ (for instance if $\bd{M}$ is integral), then we have $Z_0 = Z_n^{\bd{G}} = Z_n^{\bd{M}}$ and hence $Z_0$ admits trivial $\bd{M}$-action. This alternative description of formal $\bd{M}$-schemes will be used in the proof of the main theorem.
-
-\section{Formal functors and representability - OLD}
-
-    \begin{theorem}[Algebraization of a formal $\Gbar$-scheme]\label{ref:algebraizationOfFormalSchemes:thm}
-        Let $\Zformal =\{Z_n\}$ be a formal $\Gbar$-scheme. Then there exists
-        a colimit
-        \[
-            Z = \colim_{n} Z_n
-        \]
-        in the category of locally linear $\Gbar$-schemes and $Z$ is the
-        unique algebraization of $\Zformal$.
-        If in addition $\Zformal$ is locally Noetherian, then $\iinfty{Z}$ is of finite type. If
-        $\Zformal$ is locally Noetherian and $Z_0$ is of finite type, then also $Z$ is of
-        finite type.
-    \end{theorem}
-
-Now we spell out the main idea of the proof: the $\Gbar$-scheme $Z$
-required in Theorem~\ref{ref:algebraizationOfFormalSchemes:thm} is equal to $\Spec_{Z_0} \cA$, where
-$\cA$ is the limit of $\cA_n$ \emph{in the category of
-$\Gbar$-algebras}; in other words each isotypic component of $\cA$ is the
-limit of isotypic components of $\cA_n$.
-Our first goal is to prove a stabilization result.
-We denote by $\Irr(\Group)$ the set of isomorphism types of irreducible
-$\Group$-representations and by $\Irr(\Gbar) \subset \Irr(\Group)$ the
-subset of $\Gbar$-representations. For $\lambda\in \Irr(\Group)$ and
-a quasi-coherent $\Gbar$-module $\cC$ on $Z_0$ we denote by $\cC[\lambda]
-\subset \cC$ the $\Gbar$-submodule such that $H^0(U, \cC[\lambda]) \subset H^0(U, \cC)$
-is the union of all $\Group$-subrepresentations of $H^0(U, \cC)$ isomorphic to
-$\lambda$ (i.e., the isotypic component of $\lambda$).
-
-
-\begin{lemma}[stabilization on an isotypic component]\label{ref:stability:lem}
-Let $\lambda\in \Irr(\Gbar)$. Then there exists a number $n_{\lambda}\in \NN$
-such that the following holds. Let $\Zformal=\{Z_n\}$ be a formal $\Gbar$-scheme
-and $\{\cA_{n+1} \onto \cA_n\}$ be the associated sequence of quasi-coherent
-$\Gbar$-algebras. Then for every $n > n_{\lambda}$ the surjection
-\[
-    \cA_{n}[\lambda] \onto \cA_{n-1}[\lambda]
-\]
-is an isomorphism. If $\lambda_0\in \Irr(\Gbar)$ is the
-trivial representation, then we may take $n_{\lambda_0}=0$.
-\end{lemma}
-\begin{proof}[Proof of Lemma~\ref{ref:stability:lem}]
-    The claims are preserved under field extension, so we may assume our field
-    is algebraically closed (hence perfect) so we may use the Kempf's torus.
-    Fix a grading on
-    $\kk[\Gbar]$ induced by a Kempf's torus for $\kk$ as in
-    Corollary~\ref{ref:KempfTorus:cor}. Denote by $A_{\lambda}\subseteq \NN$
-    the set of weights which appear in
-    $\kk[\Group]_{\lambda}$. Since $\dim_{\kk}\kk[\Group]_{\lambda}$
-    is finite by Proposition~\ref{ref:isotypiccomponents:prop}, the set
-    $A_{\lambda}$ is finite. Put
-    \[
-        n_{\lambda}=\sup A_{\lambda}.
-    \]
-    Fix $n> n_{\lambda}$ and let
-    $\cI_n = \ker(\cA_n\to \cA_0)$. Then we have a decomposition
-    with respect to the chosen torus
-    \[
-        \cA_n=\bigoplus_{i\geq 0}(\cA_n)[i],
-    \]
-    By Corollary~\ref{ref:KempfTorus:cor}, we have $\cI_n =
-    \bigoplus_{i\geq 1}(\cA_n)[i]$. Since $n > n_{\lambda}$ we have
-    \[
-        \cI^{n}_n \subset \bigoplus_{i\geq
-        n}(\cA_n)[i]\subseteq \bigoplus_{i \not \in
-            A_{\lambda}}(\cA_n)[i]
-    \]
-Hence, $\cI^{n}_n[\lambda] = 0$. But
-$\cI^{n}_n[\lambda] = \ker(\cA_{n}[\lambda] \to
-\cA_{n-1}[\lambda])$, thus $\cA_{n}[\lambda] \to \cA_{n-1}[\lambda]$ is an
-isomorphism.
-Finally note that $A_{\lambda_0}=\{0\}$. This implies that $n_{\lambda_0}=0$.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{ref:algebraizationOfFormalSchemes:thm}]
-    Let $\cA_n$ be the quasi-coherent $\Gbar$-algebras as
-    in~\eqref{eq:Andefinition}. For $\lambda\in \Irr(\Gbar)$ we define
-    $\cA[\lambda] := \cA_n[\lambda]$, where $n\geq n_{\lambda}$ as in
-    Lemma~\ref{ref:stability:lem}.
-    \[
-        \cA=\bigoplus_{\lambda\in
-            \Irr(\Gbar)}\cA[\lambda]=\bigoplus_{\lambda\in
-                \Irr(\Gbar)}\cA_{n_{\lambda}}[\lambda].
-    \]
-    Clearly $\cA[\lambda_0] = \cA_0 = \cO_{Z_0}$ canonically (where
-    $\lambda_0$ is the trivial representation), hence $\cA$ is an
-    $\cO_{Z_0}$-module.
-    Actually $\cA=\lim_{n}\cA_n$ in the category of quasi-coherent
-    $\Gbar$-modules on $Z_0$.
-    We construct the algebra structure on $\cA$. For this
-    pick $\eta_1, \eta_2\in \Irr(\Gbar)$. Fix the finite set
-    $\{\lambda_1, \ldots ,\lambda_s\}\subseteq \Irr(\Gbar)$ of representations
-    which appear in $\kk[\Gbar]_{\eta_1}\otimes_{\kk}\kk[\Gbar]_{\eta_2}$.
-    Then, for every $n\in \NN$, we have the multiplication
-$$\cA_n[\eta_1]\otimes_{\kk} \cA_n[\eta_2]\ra \cA_n[\eta_1]\cdot \cA_n[\eta_2]\subseteq \bigoplus_{i=1}^s\cA_n[\lambda_i]$$
-and by Lemma \ref{ref:stability:lem} these morphisms can be identified for $n\geq \sup \{n_{\eta_1},n_{\eta_2},n_{\lambda_1},...,n_{\lambda_s}\}$. We define
-$$\cA[\eta_1]\otimes_{\kk} \cA[\eta_2]\ra  \bigoplus_{i=1}^s\cA[\lambda_i]\subseteq \cA$$
-as a morphism induced by the multiplication morphism for any $n\geq \sup
-\{n_{\eta_1},n_{\eta_2},n_{\lambda_1}, \ldots ,n_{\lambda_s}\}$. This gives an
-$\cO_{Z_0}$-algebra structure on $\cA$, so $\cA$ is in fact the limit of
-$\cA_n$ is the category of $\Gbar$-algebras. Note that from the description of
-$\cA$ it follows that for every $n\in \NN$ we have a surjective morphism
-$p_n:\cA\onto \cA_n$ of $\Gbar$-algebras. We denote its kernel
-by $\cJ_n$ and we put $\cJ:=\cJ_0$. The natural injection $\cO_{Z_0} = \cA_0 \to \cA$ is a section
-of $p_0$, so that we have
-\[
-    \cJ=\bigoplus_{\lambda \in \Irr(\Gbar)\setminus
-        \{\lambda_0\}}\cA[\lambda].
-\]
-We also denote by $\cI_n$ the kernel of $\cA_n\twoheadrightarrow
-\cA_0=\cO_{Z_0}$ for $n\in \NN$. Then $\cI_n=\cJ/\cJ_n$.
-%Since $\Zformal$ is a
-%formal $\Gbar$-scheme, the ideal $\cI_n^{n+1}$ cuts $Z_n$ out of $Z_n$, hence
-%$\cI_n^{n+1} = 0$. Consequently, $\cJ^{n+1} \subset
-%\cJ_n$\jjtodo{to wydaje się niepotrzebne, bo potem i tak pokazujemy równość}.
-Fix $m\in \NN$ and consider $n\in \NN$
-such that $n\geq m$. Since $\Zformal$ is a formal $\Gbar$-scheme, the sheaf
-$\cI_n^{m+1}$ is the kernel of the morphism $\cA_n\twoheadrightarrow \cA_m$.
-Thus
-\[
-\cJ_m/\cJ_n=\cI_n^{m+1}=(\cJ^{m+1}+\cJ_n)/\cJ_n.
-\]
-Both $\cJ_m$ and $\cJ^{m+1}$ are $\Irr(\Gbar)$-graded and for given
-$\lambda\in \Irr(\Gbar)$ and $n\gg 0$ the isotypic component
-$\cJ_n[\lambda]$ is zero by Lemma~\ref{ref:stability:lem}. Hence $\cJ_m=\cJ^{m+1}$ for every $m \in \NN$.
-We define
-\[
-    Z=\Spec_{Z_0}(\cA)
-\]
-and we denote by $\pi:Z\to Z_0$ the structural morphism. The scheme $Z$
-inherits a $\Gbar$-action from $\cA$. For
-every $n\in \NN$ the zero-set of $\cJ^{n+1}\subseteq \cA$ is a $\Gbar$-scheme
-isomorphic to $Z_n$. Hence $\Zformal$ is isomorphic to $\Zhat$.
-Thus $Z$ is an algebraization of $\Zformal$. Since $\cA=\lim \cA_n$, we
-have $Z = \colim Z_n$ in the category of locally linear $\Gbar$-schemes.
-
-It remains to prove uniqueness of algebraization. Let $Z' = \Spec_{Z_0} \cA'$
-be an algebraization of $\Zformal = \{Z_n\}$. Then $Z_n \into Z'$, so by the
-universal property of colimit, we obtain a $\Gbar$-morphism $Z\to Z'$,
-corresponding to $\cA' \to \cA$. It induces epimorphisms $\cA' \onto \cA_n$
-for all $n$. For each $\lambda\in \Irr(\Gbar)$, the composition
-\[
-    \cA'[\lambda]\to \cA[\lambda]  \simeq \cA_{n_\lambda}[\lambda]
-\]
-is an epimorphism, hence $\cA'\to \cA$ is an epimorphism. The kernel of
-$\cA'\to \cA$ is equal to
-\[
-    \bigcap_n \ker(\cA'\to \cA_n) = \bigcap_n \ker(\cA' \to \cA_0)^n.
-\]
-To prove that this kernel is zero, we may enlarge the field to an
-algebraically closed field, so the result follows from
-Corollary~\ref{ref:KempfTorus:cor}.
-
-Assume that each scheme $Z_n$ is locally Noetherian over $\kk$. Then $\cI_n$
-is a coherent $\cA_n$-module, thus $\cI_n^i/\cI^{i+1}$ is a coherent
-$\cA_0$-module for all $i$. The series
-\[
-    0 = \cI_n^{n+1} \subset \cI^n \subset  \ldots \subset \cI \subset \cA_n
-\]
-has coherent subquotients, hence $\cA_n$ is a coherent $\cO_{Z_n}$-algebra.
-Thus $\cA[\lambda]$ is a coherent $\cO_{Z_0}$-module for every
-$\lambda\in \Irr(\Gbar)$. The claim that $\pi$ is of finite type is local on
-$Z^{\Group}$, hence we may
-assume that $Z^{\Group}$ is quasi-compact.
-The sheaf $\cJ/\cJ^2\subseteq \cA_1$ is coherent so there exists a finite set
-$\lambda_1, \ldots, \lambda_r\in \Irr(\Gbar)\setminus \{\lambda_0\}$ such that the morphism
-\[
-    \bigoplus_{i=1}^r\cA[\lambda_i]\ra \cJ/\cJ^2
-\]
-induced by $\cA\twoheadrightarrow \cA_2$ is surjective. Let $\cB \subset \cA$
-be the quasi-coherent $\cO_{Z_0}$-subalgebra generated by the coherent
-subsheaf $\cM := \bigoplus_{i=1}^r\cA[\lambda_i]\subseteq \cA$.
-Let $\kkbar$ be an algebraic closure of $\kk$ and let $\cA' = \cA \otimes
-\kkbar$. Fix a Kempf's torus over
-$\kkbar$ and the associated grading $\cA' = \bigoplus_{i\geq 0}
-\cA'[i]$ as in
-Corollary~\ref{ref:KempfTorus:cor}.
-Then $\cJ = \bigoplus_{i\geq 1} \cA'[i]$ is a graded ideal and $\cJ/\cJ^2$ is
-generated by the graded (coherent) subsheaf $\cM' = \bigoplus_{i=1}^r\cA'[\lambda_i]$. By
-graded Nakayama's lemma, the ideal $\cJ$ itself is generated by (the elements
-of) $\cM'$. Then by induction on the degree, $\cA'$ is generated by $\cM'$ as
-an algebra. In other words, $\cA' = \cB\otimes \kkbar$. Thus also $\cA = \cB$ and so $\cA$ is of
-finite type over $\cO_{Z_0}$.
-\end{proof}
-
-\subsection{Linear algebraic monoids}
-
-\begin{proposition}
-Let $\bd{M}$ be a monoid $k$-scheme. Then the $k$-functor of units $\fP_{\bd{M}}^*$ of $\fP_{\bd{M}}$ is representable by a group $k$-scheme $\bd{M}^*$. Moreover, if $\bd{M}$ is affine and of finite type over $k$, then $\bd{M}^*$ is an open subscheme of $\bd{M}$.
-\end{proposition}
+in which vertical morphisms $r_n:Z_n\twoheadrightarrow Z_0$ are affine $\bd{M}$-equivariant morphisms such that ${r_n}_{\mid Z_0} = 1_{Z_0}$. Moreover, if $\bd{N}$ is a submonoid $k$-scheme of $\bd{M}$ containing the zero of $\bd{M}$, then $\cZ$ is a formal $\bd{N}$-scheme.
+\end{corollary}
 \begin{proof}
-Note that $\fP_{\bd{M}}^*$ fits into a cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{\fP_{\bd{M}}^*                  &   \bd{1}      \\
- \fP_{\bd{M}}\times \fP_{\bd{M}} & \fP_{\bd{M}}  \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-2-1) edge node[below] {$\fP_{m} $} (m-2-2)
-(m-1-1) edge node[above] {$ $} (m-2-1)
-(m-1-2) edge node[right] {$\fP_e $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-where $m:\bd{M}\times \bd{M}\ra \bd{M}$ is the multiplication and $e:\Spec k\ra \bd{M}$ is the unit. Since the functor
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \widehat{\Sch_k}  & \mbox{\emph{the category of $k$-functors}} \\};
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$ $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-preserves fiber products, we derive that $\fP_{\bd{M}}^*$ is isomorphic to $\fP_{\bd{M}^*}$, where $\bd{M}^*$ is a $k$-scheme defined by the cartesian diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}^*             &      \Spec k      \\
-  \bd{M}\times \bd{M} &       \bd{M}  \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2)
-(m-2-1) edge node[below] {$ m $} (m-2-2)
-(m-1-1) edge node[above] {$ $} (m-2-1)
-(m-1-2) edge node[right] {$ e $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-Since $\fP_{\bd{M}^*}\cong \fP_{\bd{M}}^*$, we deduce that $\bd{M}^*$ admits a structure of a group $k$-scheme.\\
-Now suppose that $\bd{M}$ is affine monoid $k$-scheme of finite type over $k$. Then there exist a finite dimensional vector space $V$ over $k$ and a closed immersion $i:\bd{M}\ra L(V)$ of monoid $k$-schemes. \lstodo{Skończyć dowód.}
+This is an immediate consequence of Corollary \ref{corollary:each_formal_scheme_consists_of_locally_linear_schemes_if_group_is_affine} and Proposition \ref{proposition:retraction_for_monoids_with_zero}.
 \end{proof}
-
-\begin{definition}
-Let $\bd{M}$ be an affine monoid $k$-scheme. Suppose that the group $\bd{G}$ of units of $\bd{M}$ is an algebraic group over $k$ and that the open immersion $\bd{G}\hookrightarrow \bd{M}$ is schematically dense. Then $\bd{M}$ is \textit{a linear algebraic monoid over $k$}.
-\end{definition}
-
-\begin{definition}
-Let $\bd{M}$ be a linear algebraic monoid over $k$. Suppose that the group $\bd{G}$ of units of $\bd{M}$ is (linearly) reductive. Then $\bd{M}$ is \textit{a (linearly) reductive monoid over $k$}.
-\end{definition}
 
 \section{Toruses and toric monoid $k$-schemes}
 
@@ -1065,26 +514,68 @@ Let $T$ be a torus over $k$. Then $T$ is a linearly reductive algebraic group.
 \end{corollary}
 
 \begin{definition}
-Let $T$ be a torus over $k$ and let $\bd{M}$ be a linearly reductive monoid having $T$ as the group of units. Then $\bd{M}$ is \textit{a toric monoid over $k$}
+Let $T$ be a torus over $k$ and let $\ol{T}$ be a linearly reductive monoid having $T$ as the group of units. Then $\ol{T}$ is \textit{a toric monoid over $k$}
 \end{definition}
 
+\begin{theorem}\label{theorem:toric_monoids_properties_Kempf_torus}
+Let $\ol{T}$ be a toric monoid over $k$ with group of units $T$ and let $K$ be an algebraically closed extension of $k$. Suppose that $N$ is a dimension of $T$.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item The group of characters of $T_K$ is isomorphic to $\ZZ^N$ and there exists an abstract submonoid $S$ of $\ZZ^N$ such that the open immersion
+$$T_K = \Spec\left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) \hookrightarrow \Spec\left(\bigoplus_{m\in S}K\cdot \chi^m\right) = \ol{T}_K$$
+is induced by the inclusion $S\hookrightarrow \ZZ^N$.
+\item Let $\{V_{\lambda}\}_{\lambda\in \bd{Irr}(T)}$ be a set of irreducible representation of $T$ such that $V_{\lambda}$ is in isomorphism class $\lambda$. For every $\lambda$ there exists a finite subset $A_{\lambda}$ of $\ZZ^N$ such that
+$$K\otimes_kV_{\lambda} = \bigoplus_{m\in A_{\lambda}}K\cdot \chi^m$$
+If $\lambda$ consists of irreducible representations of $\ol{T}$, then $A_{\lambda}$ is a subset of $S$. Moreover, we have
+$$\ZZ^N = \coprod_{\lambda\in \bd{Irr}(T)}A_{\lambda}$$
+and $A_{\lambda_0} = \{0\}$, where $\lambda_0$ is a class of trivial representation of $T$.
+\item If $\ol{T}$ has a zero, then there exists a homomorphism $f:\ZZ^N\ra \ZZ$ of abelian groups such that $f_{\mid S\setminus \{0\}}>0$. Moreover, $f$ induces a closed immersion
+$$\Spec K\times \mathbb{G}_{m} = \Spec K[\ZZ]\hookrightarrow \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) = T_K$$
+of group $K$-schemes that extends to a zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Since $T$ is a torus, we derive that
+$$T_K = \Spec K \times \underbrace{\mathbb{G}_{m}\times \mathbb{G}_{m}\times ...\times \mathbb{G}_{m}}_{N\,\mathrm{times}} = \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right)$$
+and hence
+$$\ol{T}_K = \Spec \left(\bigoplus_{s\in S}K\cdot \chi^s\right)$$
+for some abstract submonoid $S$ of $\ZZ^N$. Moreover, the open immersion $T_K\hookrightarrow \ol{T}_K$ is induced by the inclusion $S \hookrightarrow \ZZ^N$. This proves \textbf{(1)}.\\
+We have identification
+$$k[T] = \bigoplus_{\lambda\in \bd{Irr}(T)}V_{\lambda}^{n_{\lambda}}$$
+of $T$-representations, where $n_{\lambda}\in \NN\setminus \{0\}$ for each $\lambda$. Thus
+$$\bigoplus_{m\in \ZZ^N}K\cdot \chi^m = K\otimes_kk[T] = \bigoplus_{\lambda\in \bd{Irr}(T)}\left(K\otimes_kV_{\lambda}\right)^{n_{\lambda}}$$
+This implies that $n_{\lambda} = 1$ for every $\lambda$ and moreover, we derive that
+$$K\otimes_kV_{\lambda} = \bigoplus_{m\in A_{\lambda}}K\cdot \chi^m$$
+for some finite set $A_{\lambda}\subseteq \ZZ^N$. We also have $A_{\lambda_0} = \{0\}$ and $A_{\lambda}\subseteq S\setminus \{0\}$ for $\lambda \in \bd{Irr}(\ol{T})$. This proves \textbf{(2)}.\\
+Since $\ol{T}$ admits a zero, we derive that
+$$\ideal{m} = \bigoplus_{m \in S\setminus\{0\}}K\cdot \chi^s \subseteq \bigoplus_{m\in \ZZ^N}K\cdot \chi^m$$
+is an ideal. This implies that $S\setminus \{0\}$ is closed under addition. In particular, there exists a homomorphism of abelian groups $f:\ZZ^N\ra \ZZ$ such that $f_{\mid S\setminus \{0\}}>0$. This implies \textbf{(3)}.
+\end{proof}
+
+\section{Commuting actions}
+
+\begin{corollary}\label{corollary:commuting_action_preserves_isotypic_decomposition}
+Let $\bd{G}$ be an affine group scheme over $k$ and let $\fG$ be a monoid $k$-functor. Denote by $\Lambda$ the set of isomorphism classes of irreducible $\bd{G}$-representations. Suppose that $V$ is a representation of both $\bd{G}$ and $\fG$ and assume that their actions on $V$ commute. Assume that $V$ is completely reducible as a $\bd{G}$-representation and consider the decomposition
+$$V = \bigoplus_{\lambda\in \Lambda}V[\lambda]$$
+onto isotypic components with respect to the action of $\bd{G}$. Then for every $\lambda$ in $\Lambda$ the subspace $V[\lambda]$ is a $\fG$-subrepresentation of $V$.
+\end{corollary}
+\begin{proof}
+Part of the structure $V$ as the $\fG$-representation is the morphism $\rho:\fG \ra \cL_V$ of $k$-monoids. Fix $k$-algebra $A$ and $g\in \fG(A)$. Since actions of $\bd{G}$ and $\fG$ on $V$ commute, morphism $\rho(g):A\otimes_kV\ra A\otimes_kV$ of $A$-modules is a morphism of $\bd{G}_A$-representation. According to Proposition \ref{proposition:trivial_homs_stay_trivial} we derive that
+$$\Hom_{\bd{G}_A}\left(A\otimes_kV[\lambda_1],A\otimes_kV[\lambda_2]\right) = 0$$
+for distinct $\lambda_1,\lambda_2\in \Lambda$. Thus
+$$\rho(g)\left(A \otimes_k V[\lambda] \right)\subseteq A \otimes_kV[\lambda]$$
+for every $\lambda$ in $\Lambda$. This holds for every $k$-algebra $A$ and $g\in \fG(A)$. Hence $V[\lambda]$ is $\fG$-subrepresentation of $V$.
+\end{proof}
 
 
 \section{Algebraization of formal $\bd{M}$-schemes}
 \noindent
-Now we prove the main result.
+In this section we prove the main algebraization result. The first step is to prove the following interesting theorem. 
 
-\begin{theorem}\label{theorem:algebraization}
-Let $\bd{M}$ be a Kempf monoid with unit group $\bd{G}$ and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists an algebraization $Z$ of $\cZ$.
-Moreover, the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
-\item $Z$ is $\bd{M}$-scheme.
-\item The canonical morphism $\pi:Z\ra Z_0$ is an affine morphism.
-\end{enumerate}
-Moreover, if $\cZ$ is locally noetherian, then $\pi$ is of finite type.
+\begin{theorem}\label{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood}
+Let $\bd{M}$ be a Kempf monoid with unit group $\bd{G}$ and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists a locally linear $\bd{M}$-scheme $Z$ equipped with an action of $\bd{M}$ such that $\widehat{Z}$ is isomorphic to $\cZ$.
 \end{theorem}
 \noindent
-Let $\bd{G}$ be the group of units of $\bd{M}$. According to the fact that $\bd{M}$ is integral, we derive that $\bd{G}$ is schematically dense in $\bd{M}$ and hence $Z_0$ admits trivial $\bd{M}$-action. Since $\bd{M}$ has zero, formal $\bd{M}$-scheme $\cZ$ corresponds to a sequence
+Monoid $\bd{M}$ is affine and admits zero $\bd{o}$. Hence by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} formal $\bd{M}$-scheme $\cZ$ corresponds to a sequence of surjections
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -1098,45 +589,31 @@ Let $\bd{G}$ be the group of units of $\bd{M}$. According to the fact that $\bd{
 (m-1-5) edge node[above] {$ $} (m-1-6);
 \end{tikzpicture}
 \end{center}
-of $\bd{M}$-quasi-coherent $\cO_{Z_0}$-algebras such that $Z_n = \Spec_{Z_0}\cA_n$ for every $n\in \NN$. Next since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. Then $\ol{T}$ is toric monoid over $k$ with group of units $T$ and with zero. Let $\bd{Irr}(\ol{T}), \bd{Irr}(T)$ be sets of isomorphism classes of irreducible representations of $\ol{T}$ and $T$, respectively. Suppose that $\lambda_0$ is the class of trivial irreducible representation of $\ol{T}$. The proof of the theorem is based on the following results.
+of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-linearization such that $\cA_n^{\bd{M}} = \cA_0$ for every $n\in \NN$ and if $\cI_n$ is the kernel of $\cA_n\twoheadrightarrow \cA_0$ in $\cA_n$, then $\cI_n^{m+1}$ is the kernel of $\cA_n\twoheadrightarrow \cA_m$ for $m\leq n$ and $n\in \NN$. Since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. We derive by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} that $\cA_n^{\bd{\ol{T}}} = \cA_0$ for every $n\in \NN$. By definition $\ol{T}$ is a toric monoid $k$-scheme with $T$ as a group of units. We start with some lemmas.
 
-\begin{lemma}\label{lemma:stablization_in_general}
-Let $\{V_{\lambda}\}_{\lambda \in \bd{Irr}(\ol{T})}$ be a set of irreducible representations of $\ol{T}$ such that $V_{\lambda}$ is in class $\lambda$. Denote by $\lambda_0$ the isomorphism class of trivial one-dimensional representations of $\ol{T}$. Then for every $\lambda \in \bd{Irr}(\ol{T})$ there exists $n_{\lambda}\in \NN$ with the following property. For each $n > n_{\lambda}$ and any $\lambda_1,...,\lambda_n\in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}$ the representation
+\begin{lemma}\label{lemma:stablization_for_representations}
+Let $\lambda$ be in $\bd{Irr}(\ol{T})$. Then there exists $n_{\lambda}\in \NN$ such that for each $n > n_{\lambda}$ and any $\lambda_1,...,\lambda_n\in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}$ the representation
 $$\bigotimes_{i=1}^nV_{\lambda_i}$$ 
-for $1\leq i\leq n$ has trivial isotypic component of type $\lambda$. Moreover, we may pick $n_{\lambda_0} = 0$.
+for $1\leq i\leq n$ has trivial isotypic component of type $\lambda$. We have $n_{\lambda_0} = 0$, where $\lambda_0$ is an isomorphism type of the trivial representation of $T$.
 \end{lemma}
 
 \begin{proof}[Proof of the lemma]
-Denote by $T$ the group of units of $\ol{T}$. By assumption $T$ is a torus over $k$. Let $K$ be an algebraically closed extension of $k$. Then $\ol{T}_K = \ol{T}\times_{\Spec k}\Spec K$ is an affine toric variety over $T_K = T\times_{\Spec k}\Spec K$. Since
-$$T_K = \Spec K \times \underbrace{\mathbb{G}_{m}\times \mathbb{G}_{m}\times ...\times \mathbb{G}_{m}}_{N\,\mathrm{times}} = \Spec K[\ZZ^N]$$
-we derive that
-$$\ol{T}_K = \Spec K[S]$$
-for some abstract submonoid $S$ of $\ZZ^N$. Moreover, the open immersion $T_K\hookrightarrow \ol{T}_K$ is induced by the inclusion $S\hookrightarrow \ZZ^N$. Since $\ol{T}$ admits a zero, we derive that
-$$\ideal{m} = \bigoplus_{s \in S\setminus\{0\}}K\cdot s\subseteq K[S]$$
-is an ideal in $K[S]$. This implies that $S\setminus \{0\}$ is closed under addition. Next since $\ol{T}$ is of finite type over $k$, we derive that $S\setminus \{0\}$ is a finitely generated semigroup. By \lstodo{Książka Coxa} there exists $f:\ZZ^N\ra \ZZ$ such that $f_{\mid S\setminus \{0\}}>0$. Now we fix $\lambda \in \bd{Irr}(\ol{T})$. Then there exists a finite subset $A$ of $S$ and $n_s\in \NN$ for each $s\in A$ such that we have decomposition
-$$K\otimes_kV_{\lambda} = \bigoplus_{s\in A}\left(Ks\right)^{\oplus n_s}$$
-onto irreducible representations of $\ol{T}_K$. Let $n_{\lambda} = \sup_{s\in A}f(s)$. Pick $n> n_{\lambda}$ and $\lambda_1,...,\lambda_n \in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}$. Then representation $K\otimes_k\bigotimes_{i=1}^nV_{\lambda_i}$ is a direct sum of representations
-$$K(s_1+...+s_n) = \bigotimes_{i=1}^nKs_i$$
-for some $s_1,...,s_n\in S\setminus \{0\}$. Since
-$$f(s_1+...+s_n) = f(s_1) + ... + f(s_n) \geq n > n_{\lambda} = \sup_{s\in A}f(s)$$
-Thus for every $s\in A$ we have $s \neq s_1+...+s_n$. Thus $V_{\lambda}$ cannot be a direct summand of $\bigotimes_{i=1}^nV_{\lambda_i}$. Also note that $K\otimes_kV_{\lambda_0}$ is one-dimensional trivial representation of $\ol{T}_K$. Hence $n_{\lambda_0}=0$.
+Let $K$ be an algebraically closed extension of $k$. Pick $A_{\lambda}$ and $f$ as in Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} and define
+$$n_{\lambda} = \sup_{m\in A_{\lambda}}f(m)$$
+We have
+$$K\otimes_kV_{\lambda_1}\otimes_k...\otimes_kV_{\lambda_n} = \bigoplus_{(m_1,...,m_n)\in A_{\lambda_1}\times ...\times A_{\lambda_n}}K\cdot \chi^{m_1+...+m_n}$$
+and since $m_1,...m_n\in A_{\lambda_1}\cup ...\cup A_{\lambda_n}\subseteq S\setminus \{0\}$ we derive that
+$$f(m_1+...+m_n) = f(m_1) + ... + f(m_n) \geq n > n_{\lambda} = \sup_{m\in A_{\lambda}}f(m)$$
+This implies that $V_{\lambda}$ is not an isotypic component of $V_{\lambda_1}\otimes_k...\otimes_kV_{\lambda_n}$.
 \end{proof}
 
 \begin{lemma}\label{lemma:stabilization_for_formal_schemes}
-Fix $\lambda$ in $\bd{Irr}(\ol{T})$. Then there exists a number $n_{\lambda}\in \NN$ such that the following holds. For every $n > n_{\lambda}$ the surjection
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{\cA_{n+1}[\lambda] & \cA_n[\lambda]\\} ;
-\path[->>,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-is an isomorphism. If $\lambda_0$ is the isomorphism type of trivial representation of $\bd{G}$, then $n_{\lambda_0} = 0$.
+Fix $\lambda$ in $\bd{Irr}(\ol{T})$. Then $\cA_{n+1}[\lambda]\twoheadrightarrow \cA_n[\lambda]$ is an isomorphism for $n \geq  n_{\lambda}$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Let $\cI_n$ be a quasi-coherent ideal of $\cA_{n}\twoheadrightarrow \cA_0 = \cO_{Z_0}$.  Since $\cZ$ is a formal $\bd{M}$-scheme, the kernel of $\cA_{n+1}\twoheadrightarrow \cA_n$ is $\cI_{n+1}^n$. Note also that the image of the composition
+Since $\cA_n^{\ol{T}} = \cA_0$ and $\ol{T}$ is linearly reductive monoid, we derive that $\cI_n[\lambda] = 0$ for $\lambda \not \in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}$. Fix $\lambda \in \bd{Irr}(\ol{T})$. By Lemma \ref{lemma:stablization_for_representations} we derive that
+$$\left(\underbrace{\cI_{n+1}\otimes_{k}\cI_{n+1}\otimes_{k}...\otimes_{k}\cI_{n+1}}_{n+1\,\mathrm{times}}\right)[\lambda] = 0$$
+for $n \geq n_{\lambda}$. Note also that the image of the composition 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -1148,30 +625,118 @@ Let $\cI_n$ be a quasi-coherent ideal of $\cA_{n}\twoheadrightarrow \cA_0 = \cO_
 (m-1-2) edge node[above] {$ $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-is $\cI_{n+1}^n$. Pick $n_{\lambda}\in \NN$ as in Lemma \ref{lemma:stablization_in_general} (note that $n_{\lambda_0}=0$). If $n>n_{\lambda}$, then by Lemma \ref{lemma:stablization_in_general} we derive that
-$$\left(\underbrace{\cI_{n+1}\otimes_{k}\cI_{n+1}\otimes_{k}...\otimes_{k}\cI_{n+1}}_{n\,\mathrm{times}}\right)[\lambda] = 0$$
-Since the composition above is a morphism of sheaves with $\ol{T}$-linearization, we derive that $\cI_{n+1}^n[\lambda]=0$ for $n>n_{\lambda}$. Thus $\cA_{n+1}[\lambda]\twoheadrightarrow \cA_n[\lambda]$ is an isomorphism.
+is $\cI_{n+1}^{n+1}$. Since the composition above is a morphism of sheaves with $\ol{T}$-linearization, we derive that $\cI_{n+1}^{n+1}[\lambda]=0$ for $n \geq n_{\lambda}$. Hence the kernel of $\cA_{n+1}[\lambda]\twoheadrightarrow \cA_n[\lambda]$ is trivial.
 \end{proof}
 
-\begin{lemma}\label{lemma:zero_stabiization}
-We have $\cA_0 = \cA_0[\lambda_0]$ and for every $n > 0$ the surjection
+\begin{proof}[Proof of Theorem]
+According to Corollary \ref{corollary:commuting_action_preserves_isotypic_decomposition} and the fact that $T$ is central in $\bd{M}$ we derive that $\cA_n[\lambda]$ is a quasi-coherent sheaf with $\bd{M}$-linearization. For $\lambda\in \bd{Irr}(\ol{T})$ we define
+$$\cA[\lambda] = \cA_n[\lambda]$$
+where $n\geq n_{\lambda}$ as in Lemma \ref{lemma:stabilization_for_formal_schemes}. We set
+$$\cA=\bigoplus_{\lambda\in \bd{Irr}(\ol{T})}\cA[\lambda]$$
+Clearly $\cA[\lambda_0] = \cA_0 = \cO_{Z_0}$ canonically (where $\lambda_0$ is the trivial $T$-representation), hence $\cA$ is a quasi-coherent sheaf on $Z_0$ with $\bd{M}$-linearization. Actually $\cA=\lim_{n\in \NN}\cA_n$ in the category of quasi-coherent sheaves with $\bd{M}$-linearization on $Z_0$. We construct the $\cO_{Z_0}$-algebra structure on $\cA$. For this pick $\lambda_1, \lambda_2\in \bd{Irr}(\ol{T})$. Consider the irreducible representations $V_{\lambda_1}$ and $V_{\lambda_1}$ in classes $\lambda_1$ and $\lambda_2$, respectively. Suppose that $\eta_1,...,\eta_s$ are finitely many classes in $\bd{Irr}(\ol{T})$ such that $V_{\lambda_1}\otimes_k V_{\lambda_2}$ can be completely decomposed onto irreducible representation in these classes. Since the image of the multiplication $\cA_n[\lambda_1]\otimes_{\cO_{Z_0}}\cA_n[\lambda_2]\ra \cA_n$ on $\cA_n$ is also the image of a morphism
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{\cA_{n+1}[\lambda_0] & \cA_0[\lambda_0]\\} ;
+{\cA_n[\lambda_1]\otimes_{k}\cA_n[\lambda_2]  &\cA_n[\lambda_1]\otimes_{\cO_{Z_0}}\cA_n[\lambda_2]  & \cA_n\\} ;
 \path[->>,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$ $} (m-1-2);
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-2) edge node[above] {$ $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-is an isomorphism.
-\end{lemma}
+we deduce that it is contained in $\bigoplus_{i=1}^s\cA_n[\eta_i]$. By Lemma \ref{lemma:stabilization_for_formal_schemes} all these multiplications for $n\geq \sup \{n_{\lambda_1},n_{\lambda_2},n_{\eta_1},...,n_{\eta_s}\}$ can be identified. Now we define
+$$\cA[\lambda_1]\otimes_{\cO_{Z_0}} \cA[\lambda_2]\ra  \bigoplus_{i=1}^s\cA[\eta_i]\subseteq \cA$$
+as a morphism induced by the multiplication morphism for any $n\geq \sup\{n_{\lambda_1},n_{\lambda_2},n_{\eta_1},...,n_{\eta_s}\}$. This gives an $\cO_{Z_0}$-algebra structure on $\cA$, so $\cA$ is in fact the limit of $\{\cA_n\}_{n\in \NN}$ is the category of quasi-coherent algebras with $\bd{M}$-linearization. Note that from the description of $\cA$ it follows that for every $n\in \NN$ we have a surjective morphism $p_n:\cA\onto \cA_n$ of algebras. We denote its kernel by $\cJ_n$ and we put $\cJ = \cJ_0$. The natural injection $\cO_{Z_0} = \cA_0 \ra \cA$ is a section of $p_0$, so that we have
+$$\cJ=\bigoplus_{\lambda \in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}}\cA[\lambda]$$
+Recall that we denote by $\cI_n$ the kernel of $\cA_n\twoheadrightarrow \cA_0=\cO_{Z_0}$ for $n\in \NN$. Then $\cI_n=\cJ/\cJ_n$. Fix $m\in \NN$ and consider $n\in \NN$ such that $n\geq m$. Since $\cZ$ is a formal $\bd{M}$-scheme, the sheaf $\cI_n^{m+1}$ is the kernel of the morphism $\cA_n\twoheadrightarrow \cA_m$. Thus
+$$\cJ_m/\cJ_n=\cI_n^{m+1}=(\cJ^{m+1}+\cJ_n)/\cJ_n$$
+Both $\cJ_m$ and $\cJ^{m+1}$ are $\bd{Irr}(\ol{T})$-graded and for given $\lambda\in \bd{Irr}(\ol{T})$ and for $n \geq n_{\lambda}$ the isotypic component $\cJ_n[\lambda]$ is zero by Lemma \ref{lemma:stabilization_for_formal_schemes}. Hence $\cJ_m=\cJ^{m+1}$ for every $m \in \NN$.
+We define
+$$Z=\Spec_{Z_0}\cA$$
+and we denote by $\pi:Z\to Z_0$ the structural morphism. The scheme $Z$ inherits a $\bd{M}$-action from $\cA$. For every $n\in \NN$ the zero-set of $\cJ^{n+1}$ in $\cA$ is a $\bd{M}$-scheme isomorphic to $Z_n = \Spec_{Z_0}\cA_n$. Hence $\cZ$ is isomorphic to $\widehat{Z}$.
+\end{proof}
 
-\begin{lemma}\label{lemma:isotypic_components_of_central_torus}
-Let $\lambda$ be an element of $\bd{Irr}(T)$. Then the functor
-$$\Qcoh_{\bd{G}}(Z_0) \ni \cF \mapsto \cF[\lambda]\in \Qcoh_{T}(Z_0)$$
-is exact.
-\end{lemma}
+\begin{theorem}\label{theorem:locally_linear_with_locally_noetherian_formal_neighborhood_is_locally_noetherian}
+Let $\bd{M}$ be a Kempf monoid and let $Z$ be a locally noetherian $\bd{M}$-scheme. If $\widehat{Z}$ is locally noetherian, then the canonical morphism $\pi:Z\ra Z_0$ is of finite type. In particular, $Z$ is locally noetherian. 
+\end{theorem}
+
+
+\section{Nibylandia \lstodo{Tutaj szanowni państwo kończy się uporządkowany świat i zaczyna się...}}
+\noindent
+
+
+
+Now a $\bd{G}$-coherent sheaf on $\cZ$ corresponds to a sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ ... &  \cM_{n+1} & \cM_n & ...& \cM_1 & \cM_0 \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+such that $\cM_n$ is a coherent sheaf on $\cA_0$ with $\bd{G}$-action and the kernel of $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cI_{n+1,n}\cdot \cM_{n+1}$ for every $n\in \NN$.
+
+\subsection{Kempf monoids}
+
+\begin{definition}
+\lstodo{Tutaj trzeba zdefiniować monoidy Kempfa. Najpierw trzeba porządnie spisać dowód algebraizacji, żeby mieć poprawną definicję}
+Let $\bd{M}$ be a monoid $k$-scheme. Suppose that the following conditions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item $\bd{M}$ is affine, geometrically connected and geometrically normal.
+\item There exists zero $\bd{o}$ in $\bd{M}$.
+\item There exists a torus $T$ over $k$ contained in the center of $\bd{M}$ such that the closure $\bd{cl}(T)$ of $T$ in $\bd{M}$ contains $\bd{o}$.
+\end{enumerate}
+Then $\bd{M}$ is called \textit{Kempf \lstodo{(or rather Jelisiejew :D)} monoid}.
+\end{definition}
+\noindent
+Let $\bd{M}$ be a Kempf monoid and let $\bd{G}$ be its group of units. If $V$ is a representation of $\bd{G}$ and $\lambda$ is a class in $\Lambda$, then we denote by $V[\lambda]\subseteq V$ the sum of all irreducible $T$-subpresentations of $V$ of isomorphism type $\lambda$. Since $T$ is a central subgroup of $\bd{G}$, we derive by Proposition \ref{proposition:commuting_action_preserves_isotypic_decomposition} that $V[\lambda]$ is a $\bd{G}$-representation of $V$.\\
+Suppose that $Z$ is a $k$-scheme with trivial action of $\bd{M}$. If $\cF$ is a quasi-coherent sheaf on $Z$ equipped with $\bd{G}$-action, then we denote by $\cF[\lambda]$ a sheaf given by
+$$U\mapsto \cF(U)[\lambda]$$
+for every open affine subset $U$ of $Z$. Then $\cF[\lambda]\subseteq \cF$ is a $\bd{G}$-quasi-coherent subsheaf of $\cF$.
+
+
+
+\begin{proof}
+\lstodo{Locally noetherian trzeba włączyć i jechać z koksami dalej}
+Assume that each scheme $Z_n$ is locally Noetherian over $\kk$. Then $\cI_n$
+is a coherent $\cA_n$-module, thus $\cI_n^i/\cI^{i+1}$ is a coherent
+$\cA_0$-module for all $i$. The series
+\[
+    0 = \cI_n^{n+1} \subset \cI^n \subset  \ldots \subset \cI \subset \cA_n
+\]
+has coherent subquotients, hence $\cA_n$ is a coherent $\cO_{Z_n}$-algebra.
+Thus $\cA[\lambda]$ is a coherent $\cO_{Z_0}$-module for every
+$\lambda\in \Irr(\Gbar)$. The claim that $\pi$ is of finite type is local on
+$Z^{\Group}$, hence we may
+assume that $Z^{\Group}$ is quasi-compact.
+The sheaf $\cJ/\cJ^2\subseteq \cA_1$ is coherent so there exists a finite set
+$\lambda_1, \ldots, \lambda_r\in \Irr(\Gbar)\setminus \{\lambda_0\}$ such that the morphism
+\[
+    \bigoplus_{i=1}^r\cA[\lambda_i]\ra \cJ/\cJ^2
+\]
+induced by $\cA\twoheadrightarrow \cA_2$ is surjective. Let $\cB \subset \cA$
+be the quasi-coherent $\cO_{Z_0}$-subalgebra generated by the coherent
+subsheaf $\cM := \bigoplus_{i=1}^r\cA[\lambda_i]\subseteq \cA$.
+Let $\kkbar$ be an algebraic closure of $\kk$ and let $\cA' = \cA \otimes
+\kkbar$. Fix a Kempf's torus over
+$\kkbar$ and the associated grading $\cA' = \bigoplus_{i\geq 0}
+\cA'[i]$ as in
+Corollary~\ref{ref:KempfTorus:cor}.
+Then $\cJ = \bigoplus_{i\geq 1} \cA'[i]$ is a graded ideal and $\cJ/\cJ^2$ is
+generated by the graded (coherent) subsheaf $\cM' = \bigoplus_{i=1}^r\cA'[\lambda_i]$. By
+graded Nakayama's lemma, the ideal $\cJ$ itself is generated by (the elements
+of) $\cM'$. Then by induction on the degree, $\cA'$ is generated by $\cM'$ as
+an algebra. In other words, $\cA' = \cB\otimes \kkbar$. Thus also $\cA = \cB$ and so $\cA$ is of
+finite type over $\cO_{Z_0}$.
+\end{proof}
+
 
 
 
