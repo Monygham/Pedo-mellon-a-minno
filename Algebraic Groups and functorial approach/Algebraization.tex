@@ -232,8 +232,6 @@ be a telescope of monoidal categories and monoidal cocontinuous functors. Then i
 We decompose the task of constructing its $2$-limit as follows. First note that one may form a product $\cC = \prod_{n\in \NN}\cC_n$. Next the functors $\{F_n\}_{n\in \NN}$ induce an endofunctor $T = \prod_{n\in \NN}F_n\times t$, where $\bd{1}$ is the terminal category (it has single object and single identity arrow) and $t:\cC_0\rightarrow \bd{1}$ is the unique functor. Consider the category $\cC(T)$. We define $\{\pi_n:\cC(T)\ra \cC_n\}_{n\in \NN}$ to be a family of functors given by coordinates of $\pi:\cC(T)\ra \cC$ and $\{\sigma_n:F_n\cdot \pi_{n+1}\Rightarrow \pi_n\}_{n\in \NN}$ to be a family of natural isomorphisms given by coordinates of $\sigma:\pi\cdot T\Rightarrow \pi$. Now this data form a $2$-limit of the telescope by compilation of Theorem \ref{theorem:endoscope_monoidal_2_limit} and Theorem \ref{theorem:endoscope_colimits}.
 \end{proof}
 
-\section{$\bd{M}$-equivariant quasi-coherent sheaves}
-\lstodo{Tu trzeba zdefiniować i następnie opisać przypadek schematu z lokalnie liniowym działaniem, bo on jest najważniejszy}
 
 
 \section{Formal $\bd{M}$-schemes}
@@ -278,6 +276,10 @@ Let $\bd{M}$ be a monoid $k$-scheme and let $Z$ be a $\bd{M}$-scheme. Consider a
 \end{center}
 is a formal $\bd{M}$-scheme. We denote it by $\widehat{Z}$.
 \end{example}
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. We say that $\cZ$ is \textit{locally Noetherian} if for all $n\in \NN$ scheme $Z_n$ is locally Noetherian.
+\end{definition}
 
 \begin{definition}
 Let $\bd{M}$ be a monoid $k$-scheme. Suppose that $\cZ = \{Z_n\}_{n\in \NN}$ and $\cW = \{W_n\}_{n\in \NN}$ are formal $\bd{M}$-schemes. Then \textit{a morphism $f:\cZ\ra \cW$ of formal $\bd{M}$-schemes} consists of a family of $\bd{M}$-equivariant morphisms $f = \big\{f_n:Z_n\ra W_n\}_{n\in \NN}$ such that the diagram
@@ -426,14 +428,14 @@ We are particularly interested in formal $\bd{M}$-schemes for monoid $\bd{M}$ wi
 \begin{proposition}\label{proposition:retraction_for_monoids_with_zero}
 Let $\bd{M}$ be a monoid $k$-scheme with zero $\bd{o}$ and let $X$ be a $\bd{M}$-scheme. Then the following results hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
-\item The multiplication by zero $\bd{o}\cdot(-):X\ra X$ factors through $X^{\bd{M}}$ inducing a $\bd{M}$-equivariant retraction $r_{\bd{M}}:X\twoheadrightarrow X^{\bd{M}}$.
-\item If $\bd{N}$ is a submonoid $k$-scheme of $\bd{M}$ and $\bd{o}$ is a $k$-point of $\bd{N}$, then $r_{\bd{M}} = r_{\bd{N}}$.
-\item If $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme, then $r_{\bd{M}}$ is affine.
+\item The multiplication by zero $\bd{o}\cdot(-):X\ra X$ factors through $X^{\bd{M}}$ inducing a $\bd{M}$-equivariant retraction $\pi_{\bd{M}}:X\twoheadrightarrow X^{\bd{M}}$.
+\item If $\bd{N}$ is a submonoid $k$-scheme of $\bd{M}$ and $\bd{o}$ is a $k$-point of $\bd{N}$, then $\pi_{\bd{M}} = \pi_{\bd{N}}$.
+\item If $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme, then $\pi_{\bd{M}}$ is affine.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-The multiplication $\bd{o}\cdot (-):\fP_X\ra \fP_X$ factors as an $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\twoheadrightarrow \fP_{X^{\bd{M}}}$ composed with a closed immersion $\fP_{X^{\bd{M}}}\hookrightarrow \fP_X$. The $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\ra \fP_{X^{\bd{M}}}$ corresponds to a $\bd{M}$-equivariant morphism $r_{\bd{M}}:X\ra X^{\bd{M}}$ of $k$-schemes such that $r_{\bd{M}}$ restricted to $X^{\bd{M}}$ is the identity $1_{X^{\bd{M}}}$. This proves \textbf{(1)}.\\
-For the proof of \textbf{(2)} note that $\bd{o}\cdot (-):\fP_X\ra \fP_X$ is defined similarly for $\bd{M}$ and $\bd{N}$ (provided that $\bd{o}$ is a $k$-point of $\bd{N}$). Thus $r_{\bd{M}} = r_{\bd{N}}$.\\
+The multiplication $\bd{o}\cdot (-):\fP_X\ra \fP_X$ factors as an $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\twoheadrightarrow \fP_{X^{\bd{M}}}$ composed with a closed immersion $\fP_{X^{\bd{M}}}\hookrightarrow \fP_X$. The $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\ra \fP_{X^{\bd{M}}}$ corresponds to a $\bd{M}$-equivariant morphism $\pi_{\bd{M}}:X\ra X^{\bd{M}}$ of $k$-schemes such that $\pi_{\bd{M}}$ restricted to $X^{\bd{M}}$ is the identity $1_{X^{\bd{M}}}$. This proves \textbf{(1)}.\\
+For the proof of \textbf{(2)} note that $\bd{o}\cdot (-):\fP_X\ra \fP_X$ is defined similarly for $\bd{M}$ and $\bd{N}$ (provided that $\bd{o}$ is a $k$-point of $\bd{N}$). Thus $\pi_{\bd{M}} = \pi_{\bd{N}}$.\\
 Suppose now that $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme. Consider the action $\alpha:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Since $X$ is locally linear and $\bd{M}$ is affine, we derive that $\alpha$ is an affine morphism of $k$-schemes. Now $\bd{o}\cdot (-):X\ra X$ is given as a composition 
 \begin{center}
 \begin{tikzpicture}
@@ -447,7 +449,7 @@ Suppose now that $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme. C
 (m-1-2) edge node[above] {$ $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-The morphism above is affine (as a composition of affine morphisms). Since the composition of $r$ with a closed immersion $X^{\bd{M}}\hookrightarrow X$ is $\bd{o}\times(-)$ and hence an affine morphism, we derive that $r$ is affine. This proves \textbf{(3)}.
+The morphism above is affine (as a composition of affine morphisms). Since the composition of $\pi$ with a closed immersion $X^{\bd{M}}\hookrightarrow X$ is $\bd{o}\times(-)$ and hence an affine morphism, we derive that $\pi$ is affine. This proves \textbf{(3)}.
 \end{proof}
 \noindent
 Let us note the immediate consequence of this result.
@@ -466,12 +468,12 @@ Let $\bd{M}$ be an affine monoid $k$-scheme with zero and let $\cZ = \{Z_n\}_{n\
 (m-1-3) edge node[above] {$ $} (m-1-4)
 (m-1-4) edge node[above] {$ $} (m-1-5);
 \path[->>,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge[bend right = 20] node[below] {$r_0 = 1_{Z_0} $} (m-2-3)
-(m-1-2) edge node[above] {$r_1 $} (m-2-3)
-(m-1-4) edge[bend left = 20] node[above] {$r_n $} (m-2-3);
+(m-1-1) edge[bend right = 20] node[below] {$\pi_0 = 1_{Z_0} $} (m-2-3)
+(m-1-2) edge node[above] {$ \pi_1 $} (m-2-3)
+(m-1-4) edge[bend left = 20] node[above] {$ \pi_n $} (m-2-3);
 \end{tikzpicture}
 \end{center}
-in which vertical morphisms $r_n:Z_n\twoheadrightarrow Z_0$ are affine $\bd{M}$-equivariant morphisms such that ${r_n}_{\mid Z_0} = 1_{Z_0}$. Moreover, if $\bd{N}$ is a submonoid $k$-scheme of $\bd{M}$ containing the zero of $\bd{M}$, then $\cZ$ is a formal $\bd{N}$-scheme.
+in which vertical morphisms $\pi_n:Z_n\twoheadrightarrow Z_0$ are affine $\bd{M}$-equivariant morphisms such that ${\pi_n}_{\mid Z_0} = 1_{Z_0}$. Moreover, if $\bd{N}$ is a submonoid $k$-scheme of $\bd{M}$ containing the zero of $\bd{M}$, then $\cZ$ is a formal $\bd{N}$-scheme.
 \end{corollary}
 \begin{proof}
 This is an immediate consequence of Corollary \ref{corollary:each_formal_scheme_consists_of_locally_linear_schemes_if_group_is_affine} and Proposition \ref{proposition:retraction_for_monoids_with_zero}.
@@ -528,7 +530,7 @@ $$K\otimes_kV_{\lambda} = \bigoplus_{m\in A_{\lambda}}K\cdot \chi^m$$
 If $\lambda$ consists of irreducible representations of $\ol{T}$, then $A_{\lambda}$ is a subset of $S$. Moreover, we have
 $$\ZZ^N = \coprod_{\lambda\in \bd{Irr}(T)}A_{\lambda}$$
 and $A_{\lambda_0} = \{0\}$, where $\lambda_0$ is a class of trivial representation of $T$.
-\item If $\ol{T}$ has a zero, then there exists a homomorphism $f:\ZZ^N\ra \ZZ$ of abelian groups such that $f_{\mid S\setminus \{0\}}>0$. Moreover, $f$ induces a closed immersion
+\item If $\ol{T}$ has a zero, then there exists a homomorphism $f:\ZZ^N\ra \ZZ$ of abelian groups such that $f_{\mid S\setminus \{0\}}>0$. In particular, $f$ induces a closed immersion
 $$\Spec K\times \mathbb{G}_{m} = \Spec K[\ZZ]\hookrightarrow \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) = T_K$$
 of group $K$-schemes that extends to a zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes.
 \end{enumerate}
@@ -566,13 +568,12 @@ $$\rho(g)\left(A \otimes_k V[\lambda] \right)\subseteq A \otimes_kV[\lambda]$$
 for every $\lambda$ in $\Lambda$. This holds for every $k$-algebra $A$ and $g\in \fG(A)$. Hence $V[\lambda]$ is $\fG$-subrepresentation of $V$.
 \end{proof}
 
-
 \section{Algebraization of formal $\bd{M}$-schemes}
 \noindent
-In this section we prove the main algebraization result. The first step is to prove the following interesting theorem. 
+This section is devoted to certain results in formal geometry. 
 
 \begin{theorem}\label{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood}
-Let $\bd{M}$ be a Kempf monoid with unit group $\bd{G}$ and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists a locally linear $\bd{M}$-scheme $Z$ equipped with an action of $\bd{M}$ such that $\widehat{Z}$ is isomorphic to $\cZ$.
+Let $\bd{M}$ be a Kempf monoid and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists a locally linear $\bd{M}$-scheme $Z$ equipped with an action of $\bd{M}$ such that $\widehat{Z}$ is isomorphic to $\cZ$.
 \end{theorem}
 \noindent
 Monoid $\bd{M}$ is affine and admits zero $\bd{o}$. Hence by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} formal $\bd{M}$-scheme $\cZ$ corresponds to a sequence of surjections
@@ -589,7 +590,7 @@ Monoid $\bd{M}$ is affine and admits zero $\bd{o}$. Hence by Corollary \ref{coro
 (m-1-5) edge node[above] {$ $} (m-1-6);
 \end{tikzpicture}
 \end{center}
-of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-linearization such that $\cA_n^{\bd{M}} = \cA_0$ for every $n\in \NN$ and if $\cI_n$ is the kernel of $\cA_n\twoheadrightarrow \cA_0$ in $\cA_n$, then $\cI_n^{m+1}$ is the kernel of $\cA_n\twoheadrightarrow \cA_m$ for $m\leq n$ and $n\in \NN$. Since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. We derive by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} that $\cA_n^{\bd{\ol{T}}} = \cA_0$ for every $n\in \NN$. By definition $\ol{T}$ is a toric monoid $k$-scheme with $T$ as a group of units. We start with some lemmas.
+of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-linearization such that $\cA_n^{\bd{M}} = \cA_0$ for every $n\in \NN$ and if $\cI_n$ is the kernel of $\cA_n\twoheadrightarrow \cA_0$ in $\cA_n$, then $\cI_n^{m+1}$ is the kernel of $\cA_n\twoheadrightarrow \cA_m$ for $m\leq n$ and $n\in \NN$. Since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ of the unit group $\bd{G}$ of $\bd{M}$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. We derive by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} that $\cA_n^{\bd{\ol{T}}} = \cA_0$ for every $n\in \NN$. By definition $\ol{T}$ is a toric monoid $k$-scheme with $T$ as a group of units. We start with some lemmas.
 
 \begin{lemma}\label{lemma:stablization_for_representations}
 Let $\lambda$ be in $\bd{Irr}(\ol{T})$. Then there exists $n_{\lambda}\in \NN$ such that for each $n > n_{\lambda}$ and any $\lambda_1,...,\lambda_n\in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}$ the representation
@@ -654,13 +655,35 @@ $$\cJ_m/\cJ_n=\cI_n^{m+1}=(\cJ^{m+1}+\cJ_n)/\cJ_n$$
 Both $\cJ_m$ and $\cJ^{m+1}$ are $\bd{Irr}(\ol{T})$-graded and for given $\lambda\in \bd{Irr}(\ol{T})$ and for $n \geq n_{\lambda}$ the isotypic component $\cJ_n[\lambda]$ is zero by Lemma \ref{lemma:stabilization_for_formal_schemes}. Hence $\cJ_m=\cJ^{m+1}$ for every $m \in \NN$.
 We define
 $$Z=\Spec_{Z_0}\cA$$
-and we denote by $\pi:Z\to Z_0$ the structural morphism. The scheme $Z$ inherits a $\bd{M}$-action from $\cA$. For every $n\in \NN$ the zero-set of $\cJ^{n+1}$ in $\cA$ is a $\bd{M}$-scheme isomorphic to $Z_n = \Spec_{Z_0}\cA_n$. Hence $\cZ$ is isomorphic to $\widehat{Z}$.
+and we denote by $\pi:Z\to Z_0$ the structural morphism. The scheme $Z$ inherits a $\bd{M}$-action from $\cA$. For every $n\in \NN$ the zero-set of $\cJ^{n+1}$ in $\cA$ is a $\bd{M}$-scheme isomorphic to $Z_n = \Spec_{Z_0}\cA_n$. Hence $\cZ$ is isomorphic to $\widehat{Z}$ and this proves the theorem.\\
 \end{proof}
 
-\begin{theorem}\label{theorem:locally_linear_with_locally_noetherian_formal_neighborhood_is_locally_noetherian}
-Let $\bd{M}$ be a Kempf monoid and let $Z$ be a locally noetherian $\bd{M}$-scheme. If $\widehat{Z}$ is locally noetherian, then the canonical morphism $\pi:Z\ra Z_0$ is of finite type. In particular, $Z$ is locally noetherian. 
-\end{theorem}
 
+\begin{theorem}
+Let $\bd{M}$ be a Kempf monoid and $Z$ be a locally linear $\bd{M}$-scheme. Suppose that the formal $\bd{M}$-scheme $\widehat{Z}$ is locally noetherian. Then the retraction $\pi:Z\ra Z^{\bd{M}}$ is of finite type.
+\end{theorem}
+\begin{proof}
+Since $\pi$ is affine (Proposition \ref{proposition:retraction_for_monoids_with_zero}), we derive that $\cA = \pi_*\cO_Z$ is a quasi-coherent $\cO_{Z^{\bd{M}}}$-algebra with $\bd{M}$-linearization. We denote by $\cJ$ the ideal of $\cA$ that corresponds to the closed immersion $Z^{\bd{M}}\hookrightarrow Z$. We know that the formal $\bd{M}$-scheme
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Z^{\bd{M}} = \Spec_{Z^{\bd{M}}}\cA/\cJ &  ... &  \Spec_{Z^{\bd{M}}}\cA/\cJ^{n+1} &  \Spec_{Z^{\bd{M}}}\cA/\cJ^{n+2} & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is locally noetherian. Hence $\cJ/\cJ^{n+1}$ is $\cA/\cJ^{n+1}$-module of finite type. Thus $\{\cJ^i/\cJ^{i+1}\}_{1\leq i\leq n}$ are finite type $\cA/\cJ$-modules. The series
+$$0 \subseteq \cJ^n/\cJ^{n+1} \subseteq  ... \subseteq \cJ/\cJ^{n+1} \subseteq \cA/\cJ^{n+1}$$
+has subquotients that are of finite type over $\cO_{Z^{\bd{M}}} = \cA/\cJ$. This implies that $\cA/\cJ^{n+1}$ is a coherent $\cO_{Z^{\bd{M}}}$-algebra ofr every $n\in \NN$. The claim that $\pi$ is of finite type is local on $Z^{\bd{M}}$, hence we may assume that $Z^{\bd{M}}$ is quasi-compact. This reduces the question to the noetherian $Z^{\bd{M}}$. The sheaf $\cJ/\cJ^2\subseteq \cA/\cJ$ is coherent over $\cO_{Z^{\bd{M}}}$. Since $Z^{\bd{M}}$ is noetherian, there exists coherent $\cO_{Z^{\bd{M}}}$-subsheaf $\cM\subseteq \cJ$ such that the morphism $\cM\twoheadrightarrow \cJ/\cJ^2$ is surjective. Fix an algebraically closed $K$ extension of $k$ and denote
+$$\cA_K = K\otimes_k\cA,\cJ_K = K\otimes_k\cJ,\cM_K = K\otimes_k\cM$$
+Since $\bd{M}$ is a Kempf torus and by \textbf{(3)} Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\mathbb{A}^1_K\hookrightarrow \bd{M}_K$ of monoid $K$-schemes that preserve zero. This implies that we have $\NN$-grading $\cA_K = \bigoplus_{i\geq 0}\cA_K[i]$ that gives rise to the action of $\mathbb{A}^1_K$. Moreover, by Propostion \ref{proposition:retraction_for_monoids_with_zero} we deduce that
+$$\Spec K\times Z^{\bd{M}} = \left(\Spec K \times Z\right)^{\bd{M}_K} = \left(\Spec K \times Z\right)^{\mathbb{A}^1_K}$$
+as $K$-schemes. This shows that $\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1} \cA_K[i]$ is an ideal with positive grading. We have surjection $\cM_K\twoheadrightarrow \cJ_K/\cJ_K^2$. By graded Nakayama's lemma, the ideal $\cJ_K$  is generated by $\cM_K$. Then by induction on degrees we deduce that $\cA_K$ is generated by $\cM_K$ as a $K\otimes_k\cO_{Z^{\bd{M}}}$-algebra. Thus $1_{\Spec K}\times\pi$ is of finite type and by faitfully flat descent also $\pi$ is of finite type.
+\end{proof}
 
 \section{Nibylandia \lstodo{Tutaj szanowni państwo kończy się uporządkowany świat i zaczyna się...}}
 \noindent
@@ -703,46 +726,79 @@ for every open affine subset $U$ of $Z$. Then $\cF[\lambda]\subseteq \cF$ is a $
 
 
 
+
+
+
+
+
+\section{$\bd{M}$-equivariant quasi-coherent sheaves}
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme and $X$ be a $k$-scheme together with $\bd{M}$-action $a:\bd{M}\times X\ra X$. Fix a quasi-coherent sheaf $\cF$ on $X$. A $\bd{M}$-linearization of $\cF$ is an isomorphism $\phi:\bd{pr}_X^*\cF\ra a^*\cF$ such that, the following condition holds:
+\begin{center}
+$(\mu\times_S1_X)^*\phi=(1_G\times_Sa)^*\phi\, \bd{pr}_{(G\times_SX)}^*\phi$
+\end{center}
+where $\mu:G\times_SG\ra G$ is the multiplication and $\bd{pr}_{(G\times_SX)}:G\times_S(G\times_SX)\ra G\times_SX$ is a projection. A pair $(\cF,\phi)$ is called a $G$-sheaf.\\
+Suppose that $(\cF_1,\phi_1)$ and $(\cF_2,\phi_2)$ are $G$-sheaves. A morphism $f:(\cF_1,\phi_1)\ra (\cF_2,\phi_2)$ is a morphism $f:\cF_1\ra \cF_2$ of $\cO_X$-modules that commutes with $G$-linearizations. Thus we have a category $\Mod_G(\cO_X)$ of $G$-sheaves.
+\end{definition}
+
+\begin{proposition}[compatibility with identity]
+Let $\cF$ be a sheaf of $\cO_X$-modules and $\phi:\bd{pr}_X^*\cF\ra a^*\cF$ be a $G$-linearization. Assume that $e:S\ra G$ is an identity of $G$. Let $i_e:X\ra G\times_SX$ be a morphism induced by $e$ and $1_X$. Then $i^*_e\phi=1_{\cF}$.
+\end{proposition}
 \begin{proof}
-\lstodo{Locally noetherian trzeba włączyć i jechać z koksami dalej}
-Assume that each scheme $Z_n$ is locally Noetherian over $\kk$. Then $\cI_n$
-is a coherent $\cA_n$-module, thus $\cI_n^i/\cI^{i+1}$ is a coherent
-$\cA_0$-module for all $i$. The series
-\[
-    0 = \cI_n^{n+1} \subset \cI^n \subset  \ldots \subset \cI \subset \cA_n
-\]
-has coherent subquotients, hence $\cA_n$ is a coherent $\cO_{Z_n}$-algebra.
-Thus $\cA[\lambda]$ is a coherent $\cO_{Z_0}$-module for every
-$\lambda\in \Irr(\Gbar)$. The claim that $\pi$ is of finite type is local on
-$Z^{\Group}$, hence we may
-assume that $Z^{\Group}$ is quasi-compact.
-The sheaf $\cJ/\cJ^2\subseteq \cA_1$ is coherent so there exists a finite set
-$\lambda_1, \ldots, \lambda_r\in \Irr(\Gbar)\setminus \{\lambda_0\}$ such that the morphism
-\[
-    \bigoplus_{i=1}^r\cA[\lambda_i]\ra \cJ/\cJ^2
-\]
-induced by $\cA\twoheadrightarrow \cA_2$ is surjective. Let $\cB \subset \cA$
-be the quasi-coherent $\cO_{Z_0}$-subalgebra generated by the coherent
-subsheaf $\cM := \bigoplus_{i=1}^r\cA[\lambda_i]\subseteq \cA$.
-Let $\kkbar$ be an algebraic closure of $\kk$ and let $\cA' = \cA \otimes
-\kkbar$. Fix a Kempf's torus over
-$\kkbar$ and the associated grading $\cA' = \bigoplus_{i\geq 0}
-\cA'[i]$ as in
-Corollary~\ref{ref:KempfTorus:cor}.
-Then $\cJ = \bigoplus_{i\geq 1} \cA'[i]$ is a graded ideal and $\cJ/\cJ^2$ is
-generated by the graded (coherent) subsheaf $\cM' = \bigoplus_{i=1}^r\cA'[\lambda_i]$. By
-graded Nakayama's lemma, the ideal $\cJ$ itself is generated by (the elements
-of) $\cM'$. Then by induction on the degree, $\cA'$ is generated by $\cM'$ as
-an algebra. In other words, $\cA' = \cB\otimes \kkbar$. Thus also $\cA = \cB$ and so $\cA$ is of
-finite type over $\cO_{Z_0}$.
+Let $j:X\ra G\times_SG\times_SX$ be a morphism induced by $e$ and $1_X$. Observe that:
+\begin{center}
+$i_e^*\phi=j^*(\mu\times_S1_X)^*\phi=j^*((1_G\times_Sa)^*\phi\bd{pr}^*_{(G\times_SX)}\phi)=i^*_e\phi i^*_e\phi$
+\end{center}
+Thus $i_e^*\phi=1_{\cF}$.
 \end{proof}
 
+\begin{proposition}[canonical linearization of the structure sheaf]
+Let ${\bd{pr}_X}_{\#}:\bd{pr}^*_X\cO_X\ra \cO_{G\times_SX}$, $a_{\#}:a^*\cO_X\ra \cO_{G\times_SX}$ be adjoints of sheaf parts $\bd{pr}_X^{\#}:\cO_X\ra {\bd{pr}_X}_*\cO_{G\times_SX}$, $a^{\#}:\cO_X\ra a_*\cO_{G\times_SX}$ of morphisms $\bd{pr}_X$ and $a$ respectively. Then $\phi_{\cO_X}=a_{\#}^{-1}{\bd{pr}_X}_{\#}$ is a $G$-linearization of the structure sheaf $\cO_X$.
+\end{proposition}
+\begin{proof}
+First we introduce convienient notation. If $(f,f^{\#}):(Y,\cO_Y)\ra (Z,\cO_Z)$ is a morphism of ringed spaces, then we denote $f_{\#}:f^*\cO_Z\ra \cO_Y$ adjoint of $f^{\#}:\cO_Z\ra f_*\cO_Y$. This is consistent with notation from the statement. Note that $f_{\#}$ is always an isomorphism.\\
+We have:
+\begin{center}
+$(1_G\times_Sa)^*({\bd{pr}_X}_{\#})\bd{pr}_{(G\times_SX)}^*(a_{\#})^{-1}=$\\$=(1_G\times_Sa)_{\#}^{-1}(1_G\times_Sa)_{\#}(1_G\times_Sa)^*({\bd{pr}_X}_{\#})({\bd{pr}_{(G\times_SX)}}_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}\bd{pr}_{(G\times_SX)}^*(a_{\#}))^{-1}=$\\$=(1_G\times_Sa)_{\#}^{-1}(\bd{pr}_X(1_G\times_Sa))_{\#}(a\bd{pr}_{(G\times_SX)})_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}=(1_G\times_Sa)_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}$
+\end{center}
+Hence:
+\begin{center}
+$(1_G\times_Sa)^*(a_{\#}^{-1}{\bd{pr}_X}_{\#})\bd{pr}_{(G\times_SX)}^*(a_{\#}^{-1}{\bd{pr}_X}_{\#})=$\\$=(1_G\times_Sa)^*(a_{\#}^{-1})(1_G\times_Sa)_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}\bd{pr}_{(G\times_SX)}^*({\bd{pr}_X}_{\#})=(a(1_G\times_Sa))_{\#}^{-1}(\bd{pr}_X\bd{pr}_{(G\times_SX)})_{\#}=$\\$=(a(\mu\times_S1_X))^{-1}_{\#}(\bd{pr}_X(\mu\times_S1_X))_{\#}=(\mu\times_S1_X)^*(a_{\#})^{-1}(\mu\times_S1_X)^{-1}_{\#}(\mu\times_S1_X)_{\#}(\mu\times_S1_X)^*({\bd{pr}_X}_{\#})=$\\$=(\mu\times_S1_X)^*(a_{\#})^{-1}(\mu\times_S1_X)^*({\bd{pr}_X}_{\#})=(\mu\times_S1_X)^*(a_{\#}^{-1}{\bd{pr}_X}_{\#})$
+\end{center}
+This means that $(\mu\times_S1_X)^*\phi_{\cO_X}=(1_G\times a)^*\phi_{\cO_X}\bd{pr}_{(G\times_SX)}^*\phi_{\cO_X}$
+\end{proof}
 
+\begin{proposition}
+The forgetful functor $\Mod_G(\cO_X)\ra \Mod(\cO_X)$ creates finite products and colimits.\\
+Moreover, if $\bd{pr}^*_X$ and $a^*$ are exact, then the functor above creates all finite limits.
+\end{proposition}
+\begin{proof}
+The first assertion is a straighforward consequence of the fact that $\bd{pr}_X^*$ and $a^*$ preserve finite products and colimits. The second assertion follows by the same argument using additional assumptions. 
+\end{proof}
 
+\begin{corollary}
+Suppose that $\bd{pr}^*_X$ and $a^*$ are exact. Then $\Mod_G(\cO_X)$ is an $\bd{Ab}5$-category.
+\end{corollary}
+\begin{proof}
+The result is a consequence of the general rule. If a category admits a functor to some $\bd{Ab}5$-category and this functor creates colimits and finite limits, then the  category itself is an $\bd{Ab}5$-category.
+\end{proof}
 
+\begin{proposition}
+Let $f:X\ra Y$ be a $G$-equivariant morphism of locally ringed spaces over $S$ admiting action of some $S$-group $G$. For a $G$-sheaf $\cG$ of $\cO_Y$-modules together with a linearization $\phi$ there exists a linearization of $f^*\cG$ given by $(1_G\times f)^*\phi$. This gives a lift $f^*:\Mod_G(\cO_Y)\ra \Mod_G(\cO_X)$ of a pullback $f^*:\Mod(\cO_Y)\ra \Mod(\cO_X)$.
+\end{proposition}
+\begin{proof}
+Let $b:G\times_SY\ra Y$ denote an action of $G$ on $Y$.\\
+Observe that:
+\begin{center}
+$(1_G\times_Sa)^*((1_G\times_Sf)^*\phi))\bd{pr}_{(G\times_SX)}^*((1_G\times_Sf)^*\phi)=(1_G\times_Sfa)^*\phi (\bd{pr}_{(G\times_SY)}(1_{(G\times_SG)}\times_Sf))^*\phi=$\\$=(1_{(G\times_SG)}\times_Sf)^*((1_G\times_Sb)^*\phi \bd{pr}_{(G\times_SY)}^*\phi)=(1_{(G\times_SG)}\times_Sf)^*(\mu\times_S1_Y)^*\phi=(\mu\times_S1_X)^*(1_G\times_Sf)^*\phi$
+\end{center}
+Thus indeed $(1_G\times_Sf)^*\phi$ is a $G$-linearization on $f^*\cF$. 
+\end{proof}
 
-
-
+\begin{remark}
+Exactly the same results are derived in the category of complex analytic spaces, smooth manifolds and (not necessarly locally) ringed topological spaces. Definitions and proofs are the same after replacing fiber product over $S$ by product in the corresponding category.
+\end{remark}
 
 
 
