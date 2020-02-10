@@ -527,9 +527,9 @@ $$T_K = \Spec\left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) \hookrightarrow \S
 is induced by the inclusion $S\hookrightarrow \ZZ^N$.
 \item Let $\{V_{\lambda}\}_{\lambda\in \bd{Irr}(T)}$ be a set of irreducible representation of $T$ such that $V_{\lambda}$ is in isomorphism class $\lambda$. For every $\lambda$ there exists a finite subset $A_{\lambda}$ of $\ZZ^N$ such that
 $$K\otimes_kV_{\lambda} = \bigoplus_{m\in A_{\lambda}}K\cdot \chi^m$$
-If $\lambda$ consists of irreducible representations of $\ol{T}$, then $A_{\lambda}$ is a subset of $S$. Moreover, we have
+If $\lambda$ is in  $\bd{Irr}(\ol{T})$, then $A_{\lambda}$ is a subset of $S$. Moreover, we have
 $$\ZZ^N = \coprod_{\lambda\in \bd{Irr}(T)}A_{\lambda}$$
-and $A_{\lambda_0} = \{0\}$, where $\lambda_0$ is a class of trivial representation of $T$.
+and $A_{\lambda_0} = \{0\}$, where $\lambda_0$ is the class of the trivial representation of $T$.
 \item If $\ol{T}$ has a zero, then there exists a homomorphism $f:\ZZ^N\ra \ZZ$ of abelian groups such that $f_{\mid S\setminus \{0\}}>0$. In particular, $f$ induces a closed immersion
 $$\Spec K\times \mathbb{G}_{m} = \Spec K[\ZZ]\hookrightarrow \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) = T_K$$
 of group $K$-schemes that extends to a zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes.
@@ -570,7 +570,7 @@ for every $\lambda$ in $\Lambda$. This holds for every $k$-algebra $A$ and $g\in
 
 \section{Algebraization of formal $\bd{M}$-schemes}
 \noindent
-This section is devoted to certain results in formal geometry. 
+This section proves some results in equivariant formal geometry. 
 
 \begin{theorem}\label{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood}
 Let $\bd{M}$ be a Kempf monoid and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists a locally linear $\bd{M}$-scheme $Z$ equipped with an action of $\bd{M}$ such that $\widehat{Z}$ is isomorphic to $\cZ$.
@@ -590,12 +590,13 @@ Monoid $\bd{M}$ is affine and admits zero $\bd{o}$. Hence by Corollary \ref{coro
 (m-1-5) edge node[above] {$ $} (m-1-6);
 \end{tikzpicture}
 \end{center}
-of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-linearization such that $\cA_n^{\bd{M}} = \cA_0$ for every $n\in \NN$ and if $\cI_n$ is the kernel of $\cA_n\twoheadrightarrow \cA_0$ in $\cA_n$, then $\cI_n^{m+1}$ is the kernel of $\cA_n\twoheadrightarrow \cA_m$ for $m\leq n$ and $n\in \NN$. Since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ of the unit group $\bd{G}$ of $\bd{M}$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. We derive by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} that $\cA_n^{\bd{\ol{T}}} = \cA_0$ for every $n\in \NN$. By definition $\ol{T}$ is a toric monoid $k$-scheme with $T$ as a group of units. We start with some lemmas.
+of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-linearization such that $\cA_n^{\bd{M}} = \cA_0$ for every $n\in \NN$ and if $\cI_n$ is the kernel of $\cA_n\twoheadrightarrow \cA_0$ in $\cA_n$, then $\cI_n^{m+1}$ is the kernel of $\cA_n\twoheadrightarrow \cA_m$ for $m\leq n$ and $n\in \NN$. Since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ of the unit group $\bd{G}$ of $\bd{M}$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. We derive by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} that $\cA_n^{\bd{\ol{T}}} = \cA_0$ for every $n\in \NN$. By definition $\ol{T}$ is a toric monoid $k$-scheme with $T$ as a group of units. Let $\{V_{\lambda}\}_{\lambda\in \bd{Irr}(T)}$ be a set of irreducible representations of $T$ such that $V_{\lambda}$ is contained in $\lambda$.
+We start with some lemmas.
 
 \begin{lemma}\label{lemma:stablization_for_representations}
 Let $\lambda$ be in $\bd{Irr}(\ol{T})$. Then there exists $n_{\lambda}\in \NN$ such that for each $n > n_{\lambda}$ and any $\lambda_1,...,\lambda_n\in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}$ the representation
 $$\bigotimes_{i=1}^nV_{\lambda_i}$$ 
-for $1\leq i\leq n$ has trivial isotypic component of type $\lambda$. We have $n_{\lambda_0} = 0$, where $\lambda_0$ is an isomorphism type of the trivial representation of $T$.
+has trivial isotypic component of type $\lambda$. We have $n_{\lambda_0} = 0$, where $\lambda_0$ is an isomorphism type of the trivial representation of $T$.
 \end{lemma}
 
 \begin{proof}[Proof of the lemma]
@@ -658,9 +659,8 @@ $$Z=\Spec_{Z_0}\cA$$
 and we denote by $\pi:Z\to Z_0$ the structural morphism. The scheme $Z$ inherits a $\bd{M}$-action from $\cA$. For every $n\in \NN$ the zero-set of $\cJ^{n+1}$ in $\cA$ is a $\bd{M}$-scheme isomorphic to $Z_n = \Spec_{Z_0}\cA_n$. Hence $\cZ$ is isomorphic to $\widehat{Z}$ and this proves the theorem.\\
 \end{proof}
 
-
 \begin{theorem}
-Let $\bd{M}$ be a Kempf monoid and $Z$ be a locally linear $\bd{M}$-scheme. Suppose that the formal $\bd{M}$-scheme $\widehat{Z}$ is locally noetherian. Then the retraction $\pi:Z\ra Z^{\bd{M}}$ is of finite type.
+Let $\bd{M}$ be a Kempf monoid and let $Z$ be a locally linear $\bd{M}$-scheme. Suppose that $\pi:Z\ra Z^{\bd{M}}$ is the canonical retraction. If the formal $\bd{M}$-scheme $\widehat{Z}$ is locally noetherian, then $\pi:Z\ra Z^{\bd{M}}$ is of finite type.
 \end{theorem}
 \begin{proof}
 Since $\pi$ is affine (Proposition \ref{proposition:retraction_for_monoids_with_zero}), we derive that $\cA = \pi_*\cO_Z$ is a quasi-coherent $\cO_{Z^{\bd{M}}}$-algebra with $\bd{M}$-linearization. We denote by $\cJ$ the ideal of $\cA$ that corresponds to the closed immersion $Z^{\bd{M}}\hookrightarrow Z$. We know that the formal $\bd{M}$-scheme
@@ -678,19 +678,20 @@ Since $\pi$ is affine (Proposition \ref{proposition:retraction_for_monoids_with_
 \end{center}
 is locally noetherian. Hence $\cJ/\cJ^{n+1}$ is $\cA/\cJ^{n+1}$-module of finite type. Thus $\{\cJ^i/\cJ^{i+1}\}_{1\leq i\leq n}$ are finite type $\cA/\cJ$-modules. The series
 $$0 \subseteq \cJ^n/\cJ^{n+1} \subseteq  ... \subseteq \cJ/\cJ^{n+1} \subseteq \cA/\cJ^{n+1}$$
-has subquotients that are of finite type over $\cO_{Z^{\bd{M}}} = \cA/\cJ$. This implies that $\cA/\cJ^{n+1}$ is a coherent $\cO_{Z^{\bd{M}}}$-algebra ofr every $n\in \NN$. The claim that $\pi$ is of finite type is local on $Z^{\bd{M}}$, hence we may assume that $Z^{\bd{M}}$ is quasi-compact. This reduces the question to the noetherian $Z^{\bd{M}}$. The sheaf $\cJ/\cJ^2\subseteq \cA/\cJ$ is coherent over $\cO_{Z^{\bd{M}}}$. Since $Z^{\bd{M}}$ is noetherian, there exists coherent $\cO_{Z^{\bd{M}}}$-subsheaf $\cM\subseteq \cJ$ such that the morphism $\cM\twoheadrightarrow \cJ/\cJ^2$ is surjective. Fix an algebraically closed $K$ extension of $k$ and denote
+has subquotients that are of finite type over $\cO_{Z^{\bd{M}}} = \cA/\cJ$. This implies that $\cA/\cJ^{n+1}$ is a coherent $\cO_{Z^{\bd{M}}}$-algebra for every $n\in \NN$. The claim that $\pi$ is of finite type is local on $Z^{\bd{M}}$, hence we may assume that $Z^{\bd{M}}$ is quasi-compact. This reduces the question to the noetherian $Z^{\bd{M}}$. The sheaf $\cJ/\cJ^2\subseteq \cA/\cJ$ is coherent over $\cO_{Z^{\bd{M}}}$. Since $Z^{\bd{M}}$ is noetherian, there exists coherent $\cO_{Z^{\bd{M}}}$-subsheaf $\cM\subseteq \cJ$ such that the morphism $\cM\twoheadrightarrow \cJ/\cJ^2$ is surjective. Fix an algebraically closed $K$ extension of $k$ and denote
 $$\cA_K = K\otimes_k\cA,\cJ_K = K\otimes_k\cJ,\cM_K = K\otimes_k\cM$$
 Since $\bd{M}$ is a Kempf torus and by \textbf{(3)} Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\mathbb{A}^1_K\hookrightarrow \bd{M}_K$ of monoid $K$-schemes that preserve zero. This implies that we have $\NN$-grading $\cA_K = \bigoplus_{i\geq 0}\cA_K[i]$ that gives rise to the action of $\mathbb{A}^1_K$. Moreover, by Propostion \ref{proposition:retraction_for_monoids_with_zero} we deduce that
 $$\Spec K\times Z^{\bd{M}} = \left(\Spec K \times Z\right)^{\bd{M}_K} = \left(\Spec K \times Z\right)^{\mathbb{A}^1_K}$$
 as $K$-schemes. This shows that $\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1} \cA_K[i]$ is an ideal with positive grading. We have surjection $\cM_K\twoheadrightarrow \cJ_K/\cJ_K^2$. By graded Nakayama's lemma, the ideal $\cJ_K$  is generated by $\cM_K$. Then by induction on degrees we deduce that $\cA_K$ is generated by $\cM_K$ as a $K\otimes_k\cO_{Z^{\bd{M}}}$-algebra. Thus $1_{\Spec K}\times\pi$ is of finite type and by faitfully flat descent also $\pi$ is of finite type.
 \end{proof}
 
-\section{Nibylandia \lstodo{Tutaj szanowni państwo kończy się uporządkowany świat i zaczyna się...}}
-\noindent
-
-
-
-Now a $\bd{G}$-coherent sheaf on $\cZ$ corresponds to a sequence
+\begin{theorem}
+Let $\bd{M}$ be a Kempf monoid with group of unit $\bd{G}$ and let $Z$ be a locally linear $\bd{M}$-scheme. Suppose that $\pi:Z\ra Z^{\bd{M}}$ is the canonical retraction. If $Z$ is locally noetherian, then the comparison functor
+$$\Coh_{\bd{G}}(Z)\ra \Coh_{\bd{G}}(\widehat{Z})$$
+is an equivalence of monoidal categories.
+\end{theorem}
+\begin{proof}
+Since $\bd{M}$ is a Kempf torus, there exists the central torus $T$ closed subgroup $k$-scheme in $\bd{G}$ such that the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero of $\bd{M}$. As above we note that $\pi$ is affine (Proposition \ref{proposition:retraction_for_monoids_with_zero}) and we pick a quasi-coherent $\cO_{Z^{\bd{M}}}$-algebra $\cA = \pi_*\cO_Z$ with $\bd{M}$-linearization. We denote by $\cJ$ the ideal of $\cA$ that corresponds to the closed immersion $Z^{\bd{M}}\hookrightarrow Z$. Then $\cO_{Z^{\bd{M}}} = \cA/\cJ$ and since $\pi$ is a retraction, we derive that $\cA = \cO_{Z^{\bd{M}}}\oplus \cJ$. Next $\widehat{Z}$ is locally noetherian (this follows from the fact that $Z$ is locally noetherian). Hence an object of $\Coh_{\bd{G}}(\widehat{Z})$ corresponds to a sequence of surjections
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -704,6 +705,35 @@ Now a $\bd{G}$-coherent sheaf on $\cZ$ corresponds to a sequence
 (m-1-5) edge node[above] {$ $} (m-1-6);
 \end{tikzpicture}
 \end{center}
+of coherent $\cO_{Z^{\bd{M}}}$-modules such that the following assertions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item For each $n\in \NN$ sheaf $\cM_n$ is a module over $\cA/\cJ^{n+1}$.
+\item For each $n\in \NN$ the kernel of surjection $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cJ\cM_{n+1}$.
+\end{enumerate}
+ Out goal is to show that there are only finitely many $\lambda$ in $\bd{Irr}(T)$ such that $\cM_n[\lambda]\neq 0$ for all $n\in \NN$ and moreover, that for each such $\lambda$ the sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ ... &  \cM_{n+1}[\lambda] & \cM_n[\lambda] & ...& \cM_1[\lambda] & \cM_0[\lambda] \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+We also fix an algebraically closed field $K$ containing $k$. By \textbf{(3)} of Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ such that 
+\end{proof}
+
+\section{Nibylandia \lstodo{Tutaj szanowni państwo kończy się uporządkowany świat i zaczyna się...}}
+\noindent
+
+
+
+Now a $\bd{G}$-coherent sheaf on $\cZ$ corresponds to a sequence
+
 such that $\cM_n$ is a coherent sheaf on $\cA_0$ with $\bd{G}$-action and the kernel of $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cI_{n+1,n}\cdot \cM_{n+1}$ for every $n\in \NN$.
 
 \subsection{Kempf monoids}
