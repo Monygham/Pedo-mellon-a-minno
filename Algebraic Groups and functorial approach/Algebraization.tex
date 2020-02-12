@@ -575,7 +575,8 @@ This section proves some results in equivariant formal geometry.
 \begin{theorem}\label{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood}
 Let $\bd{M}$ be a Kempf monoid and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists a locally linear $\bd{M}$-scheme $Z$ equipped with an action of $\bd{M}$ such that $\widehat{Z}$ is isomorphic to $\cZ$.
 \end{theorem}
-\noindent
+
+\begin{proof}[Setup]
 Monoid $\bd{M}$ is affine and admits zero $\bd{o}$. Hence by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} formal $\bd{M}$-scheme $\cZ$ corresponds to a sequence of surjections
 \begin{center}
 \begin{tikzpicture}
@@ -591,7 +592,7 @@ Monoid $\bd{M}$ is affine and admits zero $\bd{o}$. Hence by Corollary \ref{coro
 \end{tikzpicture}
 \end{center}
 of quasi-coherent $\cO_{Z_0}$-algebras with $\bd{M}$-linearization such that $\cA_n^{\bd{M}} = \cA_0$ for every $n\in \NN$ and if $\cI_n$ is the kernel of $\cA_n\twoheadrightarrow \cA_0$ in $\cA_n$, then $\cI_n^{m+1}$ is the kernel of $\cA_n\twoheadrightarrow \cA_m$ for $m\leq n$ and $n\in \NN$. Since $\bd{M}$ is a Kempf monoid, there exists a closed subgroup $T$ of the center $Z(\bd{G})$ of the unit group $\bd{G}$ of $\bd{M}$ such that $T$ is a torus and the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero $\bd{o}$ of $\bd{M}$. We derive by Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} that $\cA_n^{\bd{\ol{T}}} = \cA_0$ for every $n\in \NN$. By definition $\ol{T}$ is a toric monoid $k$-scheme with $T$ as a group of units. Let $\{V_{\lambda}\}_{\lambda\in \bd{Irr}(T)}$ be a set of irreducible representations of $T$ such that $V_{\lambda}$ is contained in $\lambda$.
-We start with some lemmas.
+\end{proof}
 
 \begin{lemma}\label{lemma:stablization_for_representations}
 Let $\lambda$ be in $\bd{Irr}(\ol{T})$. Then there exists $n_{\lambda}\in \NN$ such that for each $n > n_{\lambda}$ and any $\lambda_1,...,\lambda_n\in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}$ the representation
@@ -690,8 +691,8 @@ Let $\bd{M}$ be a Kempf monoid with group of unit $\bd{G}$ and let $Z$ be a loca
 $$\Coh_{\bd{G}}(Z)\ra \Coh_{\bd{G}}(\widehat{Z})$$
 is an equivalence of monoidal categories.
 \end{theorem}
-\begin{proof}
-Since $\bd{M}$ is a Kempf torus, there exists the central torus $T$ closed subgroup $k$-scheme in $\bd{G}$ such that the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero of $\bd{M}$. As above we note that $\pi$ is affine (Proposition \ref{proposition:retraction_for_monoids_with_zero}) and we pick a quasi-coherent $\cO_{Z^{\bd{M}}}$-algebra $\cA = \pi_*\cO_Z$ with $\bd{M}$-linearization. We denote by $\cJ$ the ideal of $\cA$ that corresponds to the closed immersion $Z^{\bd{M}}\hookrightarrow Z$. Then $\cO_{Z^{\bd{M}}} = \cA/\cJ$ and since $\pi$ is a retraction, we derive that $\cA = \cO_{Z^{\bd{M}}}\oplus \cJ$. Next $\widehat{Z}$ is locally noetherian (this follows from the fact that $Z$ is locally noetherian). Hence an object of $\Coh_{\bd{G}}(\widehat{Z})$ corresponds to a sequence of surjections
+\begin{proof}[Setup]
+Since $\bd{M}$ is a Kempf torus, there exists a central closed torus $T$ in $\bd{G}$ such that the scheme-theoretic closure $\ol{T}$ of $T$ in $\bd{M}$ contains the zero. As above we note that $\pi$ is affine (Proposition \ref{proposition:retraction_for_monoids_with_zero}) and we pick a quasi-coherent $\cO_{Z^{\bd{M}}}$-algebra $\cA = \pi_*\cO_Z$ with $\bd{M}$-linearization. We denote by $\cJ$ the ideal of $\cA$ that corresponds to the closed immersion $Z^{\bd{M}}\hookrightarrow Z$. Then $\cO_{Z^{\bd{M}}} = \cA/\cJ$ and since $\pi$ is a retraction, we derive that $\cA = \cO_{Z^{\bd{M}}}\oplus \cJ$. Next $\widehat{Z}$ is locally noetherian (this follows from the fact that $Z$ is locally noetherian). Hence an object of $\Coh_{\bd{G}}(\widehat{Z})$ corresponds to a sequence of surjections
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -705,17 +706,71 @@ Since $\bd{M}$ is a Kempf torus, there exists the central torus $T$ closed subgr
 (m-1-5) edge node[above] {$ $} (m-1-6);
 \end{tikzpicture}
 \end{center}
-of coherent $\cO_{Z^{\bd{M}}}$-modules such that the following assertions hold.
+of coherent $\cO_{Z^{\bd{M}}}$-modules with $\bd{G}$-linearizations such that the following assertions hold.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
 \item For each $n\in \NN$ sheaf $\cM_n$ is a module over $\cA/\cJ^{n+1}$.
-\item For each $n\in \NN$ the kernel of surjection $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cJ\cM_{n+1}$.
+\item For each $n\in \NN$ the kernel of the surjection $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cJ^{n+1}\cM_{n+1}$.
 \end{enumerate}
- Out goal is to show that there are only finitely many $\lambda$ in $\bd{Irr}(T)$ such that $\cM_n[\lambda]\neq 0$ for all $n\in \NN$ and moreover, that for each such $\lambda$ the sequence
+We fix an algebraically closed field $K$ containing $k$. By \textbf{(3)} of Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\Spec K\times \mathbb{G}_m\hookrightarrow T_K$ of group $K$-schemes that induces zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes. By Proposition \ref{proposition:retraction_for_monoids_with_zero} we have
+$$\Spec K\times Z^{\bd{M}} = \left(\Spec K\times Z\right)^{\bd{M}_K} = \left(\Spec K\times Z\right)^{\mathbb{A}^1_K}$$
+This implies that
+$$\cA_K = K\otimes_k\cA = \bigoplus_{i\geq 0}\cA_K[i],\,\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1}\cA_K[i]$$
+where gradation is induced by the action of $\mathbb{A}^1_K$. For every $n\in \NN$ the action of $\Spec K\times \mathbb{G}_m$ on $K\otimes_k\cM_n$ induced by the closed immersion $\Spec K\times \mathbb{G}_m \hookrightarrow \ol{T}_K\hookrightarrow \bd{M}_K$ of group $K$-schemes gives rise to a gradation
+$$K\otimes_k\cM_n = \bigoplus_{i\in \ZZ}\left(K\otimes_k\cM_n\right)[i]$$
+\end{proof}
+
+\begin{lemma}\label{lemma:boundedness_of_gradation_and_two_stabilizations}
+The following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item There exists $i_0\in \ZZ$ such that for every $n\in \NN$ we have $\left(K\otimes_k\cM_n\right)[i] = 0$ for $i< i_0$.
+\item For every $i\in \ZZ$ there exists $n_i\in \NN$ such that for all $n\geq n_i$ the surjection $\left(K\otimes_k\cM_{n+1}\right)[i]\twoheadrightarrow \left(K\otimes_k\cM_n\right)[i]$ is an isomorphisms.
+\item For every $\lambda$ in $\bd{Irr}(T)$ there exists $n_{\lambda}\in \NN$ such that for all $n\geq n_{\lambda}$ the surjection $\cM_{n+1}[\lambda]\twoheadrightarrow \cM_n[\lambda]$ is an isomorphisms.
+\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Fix $n\in \NN$ and consider the decomposition $K\otimes_k\cM_n = \bigoplus_{i\in \ZZ}\left(K\otimes_k\cM_0\right)[i]$. Since $K\otimes_k\cM_n$ is a coherent $K\otimes_k \cO_{Z^{\bd{M}}}$-module and the decomposition consists of modules over $K\otimes_k\cO_{Z^{\bd{M}}}$, we derive that there are only finitely many $i\in \ZZ$ such that $\left(K\otimes_k\cM_0\right)[i]\neq 0$. Hence we may write $K\otimes_k\cM_n = \bigoplus_{i\geq i_n}\left(K\otimes_k\cM_n\right)[i]$ for some $i_n\in \ZZ$ such that $\left(K\otimes_k\cM_n\right)[i_n] \neq 0$. Moreover, we know that the kernel of the surjection
+$$K\otimes_k\cM_{n+1} = \bigoplus_{i\geq i_{n+1}}\left(K\otimes_k\cM_{n+1}\right)[i] \twoheadrightarrow \bigoplus_{i\geq i_n}\left(K\otimes_k\cM_n\right)[i] = K\otimes_k\cM_n$$
+is $\cJ_K^{n+1}\cdot \left(K\otimes_k\cM_{n+1}\right)$ and hence is contained in $\bigoplus_{i\geq (i_{n+1}+n+1)}\left(K\otimes_k\cM_{n+1}\right)[i]$
+This implies that $\left(K\otimes_k\cM_{n}\right)[i]  = \left(K\otimes_k\cM_{n+1}\right)[i]$ for $i_{n+1}\leq i \leq i_{n+1}+n$. In particular, we have $\left(K\otimes_k\cM_{n}\right)[i]  = \left(K\otimes_k\cM_{n+1}\right)[i] \neq 0$ and thus $i_{n+1} \geq i_n$. This shows that $i_n\geq i_0$ for every $n\in \NN$ and \textbf{(1)} is proved. Now the surjection
+$$K\otimes_k\cM_{n+1} = \bigoplus_{i\geq i_{0}}\left(K\otimes_k\cM_{n+1}\right)[i] \twoheadrightarrow \bigoplus_{i\geq i_0}\left(K\otimes_k\cM_n\right)[i] = K\otimes_k\cM_n$$
+induces an isomorphism for $i$-th graded component, where $i_0 \leq i\leq i_0+n$. Hence for fixed $i\in \ZZ$ there exists $n_i\in \NN$ such that for all $n\geq n_i$ the surjection $\left(K\otimes_k\cM_{n+1}\right)[i] \twoheadrightarrow \left(K\otimes_k\cM_n\right)[i]$ is an isomorphism. Thus we proved \textbf{(2)}. Fix now $\lambda$ in $\bd{Irr}(T)$ and let $V_{\lambda}$ be an irreducible representation in class $\lambda$. There exists finite subset $B_{\lambda}\subseteq \ZZ$ such that for $\left(K\otimes_kV_{\lambda}\right)[i] \neq 0$ if $i\in B_{\lambda}$. Now define $n_{\lambda} = \sup_{i\in B_{\lambda}}n_i$ the surjection $K\otimes_k\cM_{n+1}\twoheadrightarrow K\otimes_k\cM_n$ induces an isomorphism $\left(K\otimes_k\cM_{n+1}\right)[i] \cong \left(K\otimes_k\cM_n\right)[i]$ for every $i$ in $B_{\lambda}$. Thus for $n\geq n_{\lambda}$ the surjection $\cM_{n+1}\twoheadrightarrow \cM_n$ induces an isomorphism $\cM_{n+1}[\lambda]\cong \cM_n[\lambda]$. This shows \textbf{(3)}.
+\end{proof}
+
+
+\begin{proof}[Proof of the theorem]
+For fixed $\lambda$ in $\bd{Irr}(T)$ we define $\cM[\lambda] = \cM_n[\lambda]$ for any $n\geq n_{\lambda}$, where $n_{\lambda}\in \NN$ is as in \textbf{(3)} of Lemma \ref{lemma:boundedness_of_gradation_and_two_stabilizations} (in particular, this does not depend on $n\geq n_{\lambda}$). Next we define
+$$\cM = \bigoplus_{\lambda\in \bd{Irr}}\cM[\lambda]$$
+Since by Corollary \ref{corollary:commuting_action_preserves_isotypic_decomposition} for every $n\in \NN$ and $\lambda \in \bd{Irr}(T)$ sheaf $\cM_n[\lambda]$ admits $\bd{G}$-linearization. Therefore, $\cM$ is a quasi-coherent sheaf of $\cO_{Z^{\bd{M}}}$-modules with $\bd{G}$-linearization. We now show that $\cM$ admits a canonical structure of $\cA$-module. For this pick $\lambda_1$ and $\lambda_2$ in $\bd{Irr}(T)$. Consider the irreducible representations $V_{\lambda_1}$ and $V_{\lambda_1}$ in classes $\lambda_1$ and $\lambda_2$, respectively. Suppose that $\eta_1,...,\eta_s$ are finitely many classes in $\bd{Irr}(T)$ such that $V_{\lambda_1}\otimes_k V_{\lambda_2}$ can be completely decomposed into irreducible representation in $\eta_1,...,\eta_s$. Since the image of the multiplication $\cA[\lambda_1]\otimes_{\cO_{Z_0}}\cM_n[\lambda_2]\ra \cM_n$ is also the image of a morphism
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ ... &  \cM_{n+1}[\lambda] & \cM_n[\lambda] & ...& \cM_1[\lambda] & \cM_0[\lambda] \\} ;
+{\cA[\lambda_1]\otimes_{k}\cM_n[\lambda_2]  & \cA[\lambda_1]\otimes_{\cO_{Z_0}}\cM_n[\lambda_2]  & \cM_n\\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-2) edge node[above] {$ $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+we deduce that it is contained in $\bigoplus_{i=1}^s\cM_n[\eta_i]$. By \textbf{(3)} of Lemma \ref{lemma:boundedness_of_gradation_and_two_stabilizations} all these multiplications for $n\geq \sup \{n_{\lambda_1},n_{\lambda_2},n_{\eta_1},...,n_{\eta_s}\}$ can be identified. Now we define
+$$\cA[\lambda_1]\otimes_{\cO_{Z_0}} \cM[\lambda_2]\ra  \bigoplus_{i=1}^s\cM[\eta_i]\subseteq \cM$$
+as a morphism induced by the multiplication morphism for any $n\geq \sup\{n_{\lambda_1},n_{\lambda_2},n_{\eta_1},...,n_{\eta_s}\}$. This gives an $\cA$-module structure on $\cM$. Next we prove that $\cM$ is $\cA$-module of finite type. Denote $K\otimes_k\cM$ by $\cM_K$. Note that the combination of \textbf{(2)} and \textbf{(3)} of Lemma \ref{lemma:boundedness_of_gradation_and_two_stabilizations} show that
+$$\cM_K[i] = \left(K\otimes_k\cM_n\right)[i]$$
+for $n\geq n_i$. Hence by \textbf{(1)} of Lemma \ref{lemma:boundedness_of_gradation_and_two_stabilizations} we have
+$$\bigoplus_{\lambda\in \bd{Irr}(T)}\cM[\lambda]_K = \cM_K = \bigoplus_{i\geq i_0}\cM_K[i]$$
+Since each $\cM_n$ is a coherent $\cO_{Z^{\bd{M}}}$-module, we derive that $\cM_K[i]$ is a coherent $K\otimes_k\cO_{Z^{\bd{M}}}$-module for every $i\in \ZZ$. Now we may pick $\lambda_1,...,\lambda_r$ in $\bd{Irr}(T)$ such that we have a surjection
+$$\bigoplus_{j=1}^r\cM[\lambda_j]_K \twoheadrightarrow \bigoplus_{i_0\leq i\leq 1}\cM_K[i]$$
+induced by the projection $\cM_K = \bigoplus_{i\geq i_0}\cM_K[i]\twoheadrightarrow \bigoplus_{i_0\leq i\leq 1}\cM_K[i]$. Let
+$$\cG = \bigoplus_{j=1}^r\cM[\lambda_j]$$
+be a $\cO_{Z^{\bd{M}}}$-submodule of $\cM$. Clearly each $\cM[\lambda]$ is a coherent $\cO_{Z^{\bd{M}}}$-module. Hence $\cG$ is a coherent $\cO_{Z^{\bd{M}}}$-module. Since $\cJ_K = \bigoplus_{i\geq 1}\cA_K[i]$, we derive that
+$$\cM_K = \sum_{j\geq 1}\cJ_K^j\cdot \cG_K$$
+and hence $\cG_K$ generates $\cM_K$ as an $\cA_K$-module. By faithfully flat descent we deduce that $\cG$ generates $\cM$ as an $\cA$-module. Since $\cG$ is a coherent $\cO_{Z^{\bd{M}}}$-module, we derive that $\cM$ is $\cA$-module of finite type. Moreover, by construction of $\cM$ we have $\cM/\cJ^{n+1}\cM = \cM_{n}$ for every $n\in \NN$.\\
+All these facts imply that $\cM$ corresponds to a coherent sheaf on $Z$ with $\bd{G}$-linearization such that its image under the comparison functor $\Coh_{\bd{G}}(Z)\ra \Coh_{\bd{G}}(\widehat{Z})$ is a coherent sheaf on $\widehat{Z}$ with $\bd{G}$-linearization described by $\{\cM_n\}_{n\in \NN}$. Hence the comparison functor is essentially surjective. We now prove that it is full and faithful. For this let
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ ... &  \cN_{n+1} & \cN_n & ...& \cN_1 & \cN_0 \\} ;
 \path[->>,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$ $} (m-1-2)
 (m-1-2) edge node[above] {$ $} (m-1-3)
@@ -724,41 +779,8 @@ of coherent $\cO_{Z^{\bd{M}}}$-modules such that the following assertions hold.
 (m-1-5) edge node[above] {$ $} (m-1-6);
 \end{tikzpicture}
 \end{center}
-We also fix an algebraically closed field $K$ containing $k$. By \textbf{(3)} of Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ such that 
+represents some other object of $\Coh_{\bd{G}}(\widehat{Z})$. As for $\{\cM_n\}_{n\in \NN}$ we can construct finite type $\cA$-module $\cN$ with $\bd{G}$-linearization such that $\cN/\cJ^{n+1}\cN = \cN_n$ for every $n\in \NN$. Pick a morphism $f:\cM\ra \cN$ of $\cA$-modules with $\bd{G}$-linearization. For every $\lambda$ in $\bd{Irr}(T)$ morphism $f[\lambda]:\cM[\lambda]\ra \cN[\lambda]$ is equal (by virtue of constructions of $\cN$ and $\cM$) to a morphism $\left(1_{\cA/\cJ^{n+1}}\otimes_{\cA}f\right)[\lambda]$ for sufficiently large $n\in \NN$. This implies that the comparison functor is full and faithful.
 \end{proof}
-
-\section{Nibylandia \lstodo{Tutaj szanowni państwo kończy się uporządkowany świat i zaczyna się...}}
-\noindent
-
-
-
-Now a $\bd{G}$-coherent sheaf on $\cZ$ corresponds to a sequence
-
-such that $\cM_n$ is a coherent sheaf on $\cA_0$ with $\bd{G}$-action and the kernel of $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cI_{n+1,n}\cdot \cM_{n+1}$ for every $n\in \NN$.
-
-\subsection{Kempf monoids}
-
-\begin{definition}
-\lstodo{Tutaj trzeba zdefiniować monoidy Kempfa. Najpierw trzeba porządnie spisać dowód algebraizacji, żeby mieć poprawną definicję}
-Let $\bd{M}$ be a monoid $k$-scheme. Suppose that the following conditions hold.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
-\item $\bd{M}$ is affine, geometrically connected and geometrically normal.
-\item There exists zero $\bd{o}$ in $\bd{M}$.
-\item There exists a torus $T$ over $k$ contained in the center of $\bd{M}$ such that the closure $\bd{cl}(T)$ of $T$ in $\bd{M}$ contains $\bd{o}$.
-\end{enumerate}
-Then $\bd{M}$ is called \textit{Kempf \lstodo{(or rather Jelisiejew :D)} monoid}.
-\end{definition}
-\noindent
-Let $\bd{M}$ be a Kempf monoid and let $\bd{G}$ be its group of units. If $V$ is a representation of $\bd{G}$ and $\lambda$ is a class in $\Lambda$, then we denote by $V[\lambda]\subseteq V$ the sum of all irreducible $T$-subpresentations of $V$ of isomorphism type $\lambda$. Since $T$ is a central subgroup of $\bd{G}$, we derive by Proposition \ref{proposition:commuting_action_preserves_isotypic_decomposition} that $V[\lambda]$ is a $\bd{G}$-representation of $V$.\\
-Suppose that $Z$ is a $k$-scheme with trivial action of $\bd{M}$. If $\cF$ is a quasi-coherent sheaf on $Z$ equipped with $\bd{G}$-action, then we denote by $\cF[\lambda]$ a sheaf given by
-$$U\mapsto \cF(U)[\lambda]$$
-for every open affine subset $U$ of $Z$. Then $\cF[\lambda]\subseteq \cF$ is a $\bd{G}$-quasi-coherent subsheaf of $\cF$.
-
-
-
-
-
-
 
 
 \section{$\bd{M}$-equivariant quasi-coherent sheaves}
