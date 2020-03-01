@@ -12,7 +12,7 @@ These notes deal with properties of categories of presheaves. For some arguments
 
 \begin{definition}
 Let $U$ be a set. We say that $U$ is \textit{Grothendieck universe} if the following conditions are satisfied.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item The set $\omega$ of finite ordinals in the sense of von Neumann is an element of $U$.
 \item If $y\in U$ and $x\in y$, then $y\in U$.
 \item If $x\in U$, then $\cP(x)\in U$ and $\bigcup x\in U$.
@@ -48,7 +48,7 @@ Let $F:\cC\ra \cX$, $D:I\ra \cC$ be functors. We say that \textit{$F$ creates li
 
 \begin{definition}
 Let $F:\cC\ra \cX$ be a functor. We say that:
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item \textit{$F$ creates limits} if $F$ creates limits for all functors $D:I\ra \cC$.
 \item \textit{$F$ creates small limits} if $F$ creates limits for all functors $D:I\ra \cC$ with $I$ being small category.
 \item \textit{$F$ creates finite limits} if $F$ creates limits for all functors $D:I\ra \cC$ with $I$ being category with finitely many objects and arrows.
@@ -63,7 +63,7 @@ Let $\cC$, $\cX$ be a categories. Then the functor $\Fun(\cC,\cX)\ra \Fun(|\cC|,
 \end{theorem}
 \begin{proof}
 We prove that this functor creates limits. Creation of colimits can be handled similarly. Let $I$ be a category. For every object $i$ in $I$ consider a functor $F_i:\cC\ra \cX$ and for every arrow $\alpha:i\ra j$ in $I$ consider a natural transformation $F_{\alpha}:F_i\ra F_j$. Suppose that these data gives rise to a functor $I\ra \Fun(\cC,\cX)$. Each limiting cone over the composition of $I\ra \Fun(\cC,\cX)$ and $\Fun(\cC,\cX)\ra \Fun(|\cC|,\cX)$ consists of a family of objects $\big\{F(X)\big\}_{X\in \cC}$ of $\cX$ parametrized by objects of $\cC$ and a family $\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}$ of arrows in $\cX$ parametrized by objects of $I \times \cC$ such that the following assertion hold.
-\begin{enumerate}[label=\textbf{($\star$)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{($\star$)}, leftmargin=3.0em]
 \item For every $X\in \cC$ a pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone for a functor $I\ra \cX$ given by $i\mapsto F_i(X)$ and $\alpha\mapsto F_{\alpha}(X)$ for any object $i$ and arrow $\alpha$ in $I$.
 \end{enumerate}
 We now show that there exists a unique lift of a pair $\left(\big\{F(X)\big\}_{X\in \cC},\big\{f_{i,X}\big\}_{i\in I,\,X\in \cC}\right)$ to a cone $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over the functor $I\ra \Fun(\cC,\cX)$ described by data $\left(\big\{F_i\big\}_{i\in I},\big\{F_{\alpha}\big\}_{\alpha \in \bd{Mor}(I)}\right)$. For this pick an arrow $f:X\ra Y$. Then by \textbf{($\star$)} there exists a unique arrow $F(f):F(X)\ra F(Y)$ such that every square
@@ -106,7 +106,7 @@ Let $\cC$, $\cX$ be categories. For every object $X\in \cC$ we denote by $\mathr
 
 \begin{corollary}\label{corollary:limitsaretakenpointwiseinfuncorcategories}
 Let $\cC$, $\cX$ and $I$ be categories and let $D:I\ra \Fun(\cC,\cX)$ be a functor. Suppose that for every $X\in \cC$ the functor $\mathrm{ev}_X\cdot D:I\ra \cX$ admits a limit (colimit). Then $D$ admits a limit (colimit). Moreover, suppose that $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$. Then the following are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 \item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$.
 \item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$.
 \end{enumerate}
@@ -164,7 +164,7 @@ Now we investigate small limits and colimits in presheaf categories. For this fi
 
 \begin{corollary}\label{corollary:limitsinpresheaves}
 Fix a locally small category $\cC$. Let $I$ be a category and let $D:I\ra \widehat{\cC}$ be a functor. If $I$ is a small category, then $D$ admits a limit (colimit). Moreover, for a cone (cocone) $\left(F,\big\{f_i\big\}_{i\in I}\right)$ over $D$ the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 \item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $D$.
 \item $\left(F,\big\{f_i\big\}_{i\in I}\right)$ is a cone (cocone) over $D$ and for every $X\in \cC$ the pair $\left(F(X),\big\{f_{i,X}\big\}_{i\in I}\right)$ is a limiting cone (colimiting cocone) over $\mathrm{ev}_X\cdot D$.
 \end{enumerate}
@@ -223,7 +223,7 @@ Let $\cC$ be a locally small category and $\cK$ be a class of objects of $\cC$. 
 
 \begin{theorem}\label{theorem:generatorclassesdescribedcategorically}
 Let $\cC$ be a locally small category and $\cK$ be a class of objects of $\cC$. Then the following are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 \item $\cK$ is a (dense) class of generators for $\cC$.
 \item The functor
 $$\Gamma_{\cK}:\cC\ra \widehat{\cK}$$
@@ -310,7 +310,7 @@ is a bijection.\\
 Now we prove the general case. We know that the map
 $$\Mor_{\cC}\left(H\times F,G\right)\ra  \Mor_{\cC}\left(H,\iMor_{\cC}\left(F,G\right)\right)$$
 is natural in $H$ and is bijective when $H$ is a representable presheaf. Now the following statements hold.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item Every presheaf is canonically the colimit of representable presheaves by Corollary \ref{corollary:representablesaredensegenerators}.
 \item The functor $(-)\times F:\widehat{\cC}\ra \widehat{\cC}$ preserves colimits (this follows from cartesian closedness of $\Set$ {\cite[page 98]{Maclane}} and Corollary \ref{corollary:limitsinpresheaves}).
 \item Suppose that $V$ is a Grothendieck universe that contains the base universe $U$ and such that $\widehat{\cC}$ is $V$-locally small. Then the functor

@@ -25,7 +25,7 @@ Let $U$ be an open subset of $\RR^{n+1}$ containing $\mathbb{B}^{n+1}$. Then the
 Assume that such $f$ exists. For $t\in [0,1]$ we define $f_t:U\ra \RR^{n+1}$ given by formula
 $$f_t(x) = x - t(f(x) - x) = (1-t)x + tf(x)$$
 for every $x\in U$. We have $f_t\left(\mathbb{B}^{n+1}\right) \subseteq \mathbb{B}^{n+1}$ for every $t\in [0,1]$. There exists $T>0$ such that the following assertions hold for every $t\in [0,T]$.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item ${f_t}_{\mid \mathbb{B}^{n+1}}$ is injective.
 \item $Df_t(x)$ is invertible for every $x\in \mathbb{B}^{n+1}$.
 \end{enumerate}
@@ -33,7 +33,7 @@ We explain now how to choose suitable $T$. For this consider a function $g:U\ra 
 $$||f_t(x_1) - f_t(x_2)|| \geq ||x_1-x_2|| - t\cdot ||g(x_1) - g(x_2)|| \geq ||x_1 - x_2|| - tL\cdot ||x_1 - x_2|| = \left(1 - tL\right)\cdot ||x_1 - x_2|| > 0 $$
 Therefore, ${f_t}_{\mid \mathbb{B}^{n+1}}$ is injective. We have
 $$t\cdot ||Dg(x)|| = tL < 1$$
-for every $x\in \mathbb{B}^{n+1}$ and hence $Df_t(x)$ is invertible for such $x$. Thus it suffices to take $T = \min \left(L^{-1}, 1 \right)$. Now we fix $t\in [0,T]$. Property \textbf{(2)} and $f_t\left(\mathrm{B}^{n+1}\right) = \mathbb{B}^{n+1}$ imply that
+for every $x\in \mathbb{B}^{n+1}$ and hence $Df_t(x)$ is invertible for such $x$. Thus it suffices to take $T = \min \left(L^{-1}, 1 \right)$. Now we fix $t\in [0,T]$. Property \textbf{(2)} and $f_t\left(\mathrm{B}^{n+1}\right) \subseteq  \mathbb{B}^{n+1}$ imply that
 $$U_t = f_t\left(\bd{int}\left(\mathbb{B}^{n+1}\right)\right)\subseteq \RR^{n+1}$$
 is an open subset contained in $\mathbb{B}^{n+1}$. If $U_t \neq \bd{int}\left(\mathbb{B}^{n+1}\right)$, then there exists
 $$y \in \left(\bd{cl}(U_t) \setminus U_t\right) \cap \bd{int}\left(\mathbb{B}^{n+1}\right)$$

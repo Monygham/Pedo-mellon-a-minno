@@ -3,74 +3,6 @@
 \usepackage{todonotes}
 \newcommand{\lstodo}[1]{\todo[color=green!40,bordercolor=green,size=\footnotesize]{\textbf{LS TODO: }#1}}
 
-\usetikzlibrary{matrix,arrows, cd, calc}
-\newcommand{\Zhat}{\widehat{Z}}
-\newcommand{\What}{\widehat{W}}
-\newcommand{\Zformal}{\cZ}
-\newcommand{\Wformal}{\cW}
-\newcommand{\Group}{\mathbf{G}}%
-\newcommand{\Groupop}{\mathbf{G}^{\mathrm{op}}}%
-\newcommand{\Gprod}{\Group\times \Groupop}%
-\newcommand{\Groupconn}{\mathbf{G}^{\circ}}%
-\newcommand{\Nroup}{\mathbf{N}}%
-\newcommand{\Nred}{\Nroup_{\mathrm{red}}^{\circ}}%
-\newcommand{\Gbar}{\overline{\mathbf{G}}}%
-\newcommand{\Nbar}{\overline{\mathbf{N}}}%
-\newcommand{\Fbar}{\overline{\mathbf{F}}}%
-\newcommand{\Ghat}{\widehat{\mathbf{G}}}%
-
-\newcommand{\Gmult}{\mathbb{G}_m}%
-%% Glowna rozmaitosc
-\newcommand{\kk}{k}%
-\newcommand{\kkbar}{\overline{k}}%
-\newcommand{\varX}{X}%
-%% Kategoria schematów lokalnie skończonego typu nad ciałem
-\newcommand{\kSch}{\Sch_{\kk}}%
-%% Funktor zbieznych deformacji (z argumentem i bez)
-\newcommand{\Dfunctor}[1]{\mathcal{D}_{#1}}%
-\newcommand{\DX}{\Dfunctor{\varX}}%
-\newcommand{\Xplus}{\varX^+}%
-\newcommand{\Yplus}{Y^+}%
-\newcommand{\fplus}{f^+}%
-%% Funktor punktow stalych (z argumentem i bez)
-\newcommand{\Ffunctor}[1]{{#1}^{\Group}}%
-\newcommand{\FX}{\Ffunctor{\varX}}%
-\newcommand{\MorX}{\Mor_{\kk}(-, \varX)}%
-%% Funktor formalnych kompaktyfikacji (z argumentem i bez)
-\newcommand{\Hfunctor}[1]{\widehat{\mathcal{D}}_{#1}}%
-\newcommand{\HX}{\Hfunctor{\varX}}%
-%% Wlozenie ``wlokna nad 1''
-\newcommand{\ione}[1]{i_{#1}}%
-\newcommand{\ioneX}{\ione{\varX}}
-%% Wlozenie ``wlokna nad \infty''
-\newcommand{\iinfty}[1]{\pi_{#1}}%
-\newcommand{\iinftyX}{\iinfty{\varX}}%
-\newcommand{\isection}[1]{s_{#1}}%
-\newcommand{\isectionX}{\isection{\varX}}%
-%% wlozenie puntkow stalych w X^+
-\newcommand{\emb}{e}%
-%% ABB, dla skrotu
-\newcommand{\BBname}{Bia{\l}ynicki-Birula}%
-\newcommand{\Tname}{locally $\Group$-affine}%
-%% Stogi
-\DeclareMathOperator{\Maps}{Maps}
-\DeclareMathOperator{\Irr}{Irr}
-\newcommand{\MapsStack}{\underline{\Maps}}%
-\DeclareMathOperator{\colim}{colim}
-
-
-\DeclareMathOperator{\charr}{char}%
-\DeclareMathOperator{\id}{id}%
-\DeclareMathOperator{\Hilb}{Hilb}%
-\newcommand{\into}{\hookrightarrow}%
-\newcommand{\onto}{\twoheadrightarrow}%
-\newcommand{\sigmabar}{\overline{\sigma}}%
-
-\newcommand{\GroupGlobalSects}{H^0(\Group, \cO_{\Group})}%
-\newcommand{\Hbar}{\overline{\mathbf{H}}}%
-\newcommand{\Hroup}{\mathbf{H}}%
-\newcommand{\mubar}{\overline{\mu}}%
-
 \begin{document}
 
 \title{Algebraization of formal $\bd{M}$-schemes}
@@ -161,7 +93,7 @@ is commutative, we deduce that $\phi^F$ is a morphism in $\cC(T)$. By definition
 
 \begin{theorem}\label{theorem:endoscope_colimits}
 Let $(\cC,T)$ be a pair consiting of a category and its endofunctor $T:\cC\ra \cC$. Assume that $T$ preserves colomits. Then the following assertions hold.
-\begin{enumerate}[label=\textbf{\emph{(\arabic*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{\emph{(\arabic*)}}, leftmargin=3.0em]
 \item $\pi:\cC(T)\ra \cC$ creates colimits.
 \item Suppose that $\cD$ is a category, $P:\cD\ra \cC$ a functor preserving small colimits and $\tau:T\cdot P \Rightarrow P$ a natural isomorphisms. Then the unique functor $F:\cD \ra \cC(T)$ such that $P = \pi\cdot F$ and $\sigma_F = \tau$ preserves small colimits.
 \end{enumerate}
@@ -254,7 +186,7 @@ Let $\bd{M}$ be a monoid $k$-scheme. \textit{A formal $\bd{M}$-scheme} consists 
 \end{tikzpicture}
 \end{center}
 satisfying the following assertions.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item We have $Z_0 = Z_n^{\bd{M}}$ scheme-theoretically for every $n\in \NN$.
 \item Let $\cI_n$ be an ideal of $\cO_{Z_n}$ defining $Z_0$. Then for every $m\leq n$ the subscheme $Z_m \subset Z_n$ is defined by $\cI_n^{m+1}$.
 \end{enumerate}
@@ -358,7 +290,7 @@ Let $Z$ be a $\bd{G}$-scheme. Then a unique cocontinuous monoidal functor $\Qcoh
 
 \begin{definition}
 Let $\bd{M}$ be a monoid $k$-scheme with group of units $\bd{G}$. Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. A $\bd{M}$-scheme $Z$ is called \textit{an algebraization of $\cZ$} if the following two conditions are satisfied.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item $\cZ$ is isomorphic to $\widehat{Z}$ in the category of formal $\bd{M}$-schemes.
 \item The comparison functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh\left(\widehat{Z}\right)$ is an equivalence of monoidal categories.
 \end{enumerate}
@@ -372,7 +304,7 @@ Let $\bd{M}$ be a monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose th
 
 \begin{proposition}\label{proposition:monoid_open_stable_correspondence}
 Let $\bd{M}$ be an affine monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose that there exists a quasi-coherent $\bd{M}$-equivariant ideal $\cI$ on $X$ with nilpotent sections. Consider an open subset $U$ of $X$. Then the following are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item $U$ is $\bd{M}$-stable.
 \item $U\cap V(\cI)$ is $\bd{M}$-stable.
 \end{enumerate}
@@ -398,7 +330,7 @@ where the bottom horizontal arrow is the induced action on $U\cap V(\cI)$ and ve
 
 \begin{corollary}\label{corollary:monoid_stable_open_affine_correspondence}
 Let $\bd{M}$ be an affine monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Suppose that there exists a quasi-coherent $\bd{M}$-equivariant ideal $\cI$ on $X$ such that $\cI^n = 0$ for $n\in \NN$. Consider an open subset $U$ of $X$. Then the following are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item $U$ is $\bd{M}$-stable and affine.
 \item $U\cap V(\cI)$ is $\bd{M}$-stable and affine.
 \end{enumerate}
@@ -427,7 +359,7 @@ We are particularly interested in formal $\bd{M}$-schemes for monoid $\bd{M}$ wi
 
 \begin{proposition}\label{proposition:retraction_for_monoids_with_zero}
 Let $\bd{M}$ be a monoid $k$-scheme with zero $\bd{o}$ and let $X$ be a $\bd{M}$-scheme. Then the following results hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item The multiplication by zero $\bd{o}\cdot(-):X\ra X$ factors through $X^{\bd{M}}$ inducing a $\bd{M}$-equivariant retraction $\pi_{\bd{M}}:X\twoheadrightarrow X^{\bd{M}}$.
 \item If $\bd{N}$ is a submonoid $k$-scheme of $\bd{M}$ and $\bd{o}$ is a $k$-point of $\bd{N}$, then $\pi_{\bd{M}} = \pi_{\bd{N}}$.
 \item If $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme, then $\pi_{\bd{M}}$ is affine.
@@ -521,7 +453,7 @@ Let $T$ be a torus over $k$ and let $\ol{T}$ be a linearly reductive monoid havi
 
 \begin{theorem}\label{theorem:toric_monoids_properties_Kempf_torus}
 Let $\ol{T}$ be a toric monoid over $k$ with group of units $T$ and let $K$ be an algebraically closed extension of $k$. Suppose that $N$ is a dimension of $T$.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item The group of characters of $T_K$ is isomorphic to $\ZZ^N$ and there exists an abstract submonoid $S$ of $\ZZ^N$ such that the open immersion
 $$T_K = \Spec\left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) \hookrightarrow \Spec\left(\bigoplus_{m\in S}K\cdot \chi^m\right) = \ol{T}_K$$
 is induced by the inclusion $S\hookrightarrow \ZZ^N$.
@@ -650,7 +582,7 @@ Clearly $\cA[\lambda_0] = \cA_0 = \cO_{Z_0}$ canonically (where $\lambda_0$ is t
 \end{center}
 we deduce that it is contained in $\bigoplus_{i=1}^s\cA_n[\eta_i]$. By Lemma \ref{lemma:stabilization_for_formal_schemes} all these multiplications for $n\geq \sup \{n_{\lambda_1},n_{\lambda_2},n_{\eta_1},...,n_{\eta_s}\}$ can be identified. Now we define
 $$\cA[\lambda_1]\otimes_{\cO_{Z_0}} \cA[\lambda_2]\ra  \bigoplus_{i=1}^s\cA[\eta_i]\subseteq \cA$$
-as a morphism induced by the multiplication morphism for any $n\geq \sup\{n_{\lambda_1},n_{\lambda_2},n_{\eta_1},...,n_{\eta_s}\}$. This gives an $\cO_{Z_0}$-algebra structure on $\cA$, so $\cA$ is in fact the limit of $\{\cA_n\}_{n\in \NN}$ is the category of quasi-coherent algebras with $\bd{M}$-linearization. Note that from the description of $\cA$ it follows that for every $n\in \NN$ we have a surjective morphism $p_n:\cA\onto \cA_n$ of algebras. We denote its kernel by $\cJ_n$ and we put $\cJ = \cJ_0$. The natural injection $\cO_{Z_0} = \cA_0 \ra \cA$ is a section of $p_0$, so that we have
+as a morphism induced by the multiplication morphism for any $n\geq \sup\{n_{\lambda_1},n_{\lambda_2},n_{\eta_1},...,n_{\eta_s}\}$. This gives an $\cO_{Z_0}$-algebra structure on $\cA$, so $\cA$ is in fact the limit of $\{\cA_n\}_{n\in \NN}$ is the category of quasi-coherent algebras with $\bd{M}$-linearization. Note that from the description of $\cA$ it follows that for every $n\in \NN$ we have a surjective morphism $p_n:\cA\twoheadrightarrow \cA_n$ of algebras. We denote its kernel by $\cJ_n$ and we put $\cJ = \cJ_0$. The natural injection $\cO_{Z_0} = \cA_0 \ra \cA$ is a section of $p_0$, so that we have
 $$\cJ=\bigoplus_{\lambda \in \bd{Irr}(\ol{T})\setminus \{\lambda_0\}}\cA[\lambda]$$
 Recall that we denote by $\cI_n$ the kernel of $\cA_n\twoheadrightarrow \cA_0=\cO_{Z_0}$ for $n\in \NN$. Then $\cI_n=\cJ/\cJ_n$. Fix $m\in \NN$ and consider $n\in \NN$ such that $n\geq m$. Since $\cZ$ is a formal $\bd{M}$-scheme, the sheaf $\cI_n^{m+1}$ is the kernel of the morphism $\cA_n\twoheadrightarrow \cA_m$. Thus
 $$\cJ_m/\cJ_n=\cI_n^{m+1}=(\cJ^{m+1}+\cJ_n)/\cJ_n$$
@@ -707,7 +639,7 @@ Since $\bd{M}$ is a Kempf torus, there exists a central closed torus $T$ in $\bd
 \end{tikzpicture}
 \end{center}
 of coherent $\cO_{Z^{\bd{M}}}$-modules with $\bd{G}$-linearizations such that the following assertions hold.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item For each $n\in \NN$ sheaf $\cM_n$ is a module over $\cA/\cJ^{n+1}$.
 \item For each $n\in \NN$ the kernel of the surjection $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cJ^{n+1}\cM_{n+1}$.
 \end{enumerate}
@@ -721,7 +653,7 @@ $$K\otimes_k\cM_n = \bigoplus_{i\in \ZZ}\left(K\otimes_k\cM_n\right)[i]$$
 
 \begin{lemma}\label{lemma:boundedness_of_gradation_and_two_stabilizations}
 The following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item There exists $i_0\in \ZZ$ such that for every $n\in \NN$ we have $\left(K\otimes_k\cM_n\right)[i] = 0$ for $i< i_0$.
 \item For every $i\in \ZZ$ there exists $n_i\in \NN$ such that for all $n\geq n_i$ the surjection $\left(K\otimes_k\cM_{n+1}\right)[i]\twoheadrightarrow \left(K\otimes_k\cM_n\right)[i]$ is an isomorphisms.
 \item For every $\lambda$ in $\bd{Irr}(T)$ there exists $n_{\lambda}\in \NN$ such that for all $n\geq n_{\lambda}$ the surjection $\cM_{n+1}[\lambda]\twoheadrightarrow \cM_n[\lambda]$ is an isomorphisms.
