@@ -119,13 +119,6 @@ and hence $c$ is a morphism of $k$-functors equipped with actions of $\fX\times 
 \end{proof}
 
 
-
-
-
-\noindent
-The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}} (Remark \ref{remark:generallinearmonoid} shows that $\cL_V$ is a subcopresheaf of internal endomorphisms of $V_{\mathrm{a}}$ and hence the machinery developed in the citation above can be applied), but for the reader's convenience we decide to include all essential details even if this requires repetition.\\
-Let $\fG$ be a monoid $k$-functor and let be $V$ be a $k$-module. Suppose that $\alpha:\fG\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ is an action of $\fG$ on $V_{\mathrm{a}}$. Assume that $A$ is a $k$-algebra and $x\in \fG(A)$. We denote by $i_x:\bd{1}_A\ra \fG_A$ the morphism of $A$-functors corresponding to $x$ by means of {\cite[Fact 2.4]{kfunctors}}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\alpha_A\cdot \left(i_x \times 1_{\left(V_{\mathrm{a}}\right)_A}\right)$ is isomorphic to a morphism $\alpha_x:\left(V_{\mathrm{a}}\right)_A\ra \left(V_{\mathrm{a}}\right)_A$ of $A$-functors.
-
 \begin{definition}
 Let $\fG$ be a monoid $k$-functor and let $V$ be a $k$-module. An action $\alpha:\fG\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ of $\fG$ such that for any $k$-algebra $A$ and point $x\in \fG(A)$ morphism $\alpha_x$ is linear is called \textit{a linear action of $\fG$ on $V$}.
 \end{definition}
@@ -296,98 +289,8 @@ is exact. Since $\ideal{a}k = 0$ because $\ideal{a}\subseteq \ideal{m}$, we dedu
 
 \section{Linear representations of monoid $k$-functors}
 
-\begin{example}\label{example:additivekfunctor}
-Let $V$ be a $k$-module. We define a $k$-functor $V_{\mathrm{a}}$. We set
-$$V_{\mathrm{a}}(A) = A\otimes_kV,\,V_{\mathrm{a}}(f) = f\otimes_k1_V$$
-for every $k$-algebra $A$ and every morphism $f:A\ra B$ of $k$-algebras. Moreover, $V_{\mathrm{a}}$ admits a structure of a commutative group $k$-functor. Indeed, $V_{\mathrm{a}}(A)$ is a commutative group with respect to addition induced by its structure of $A$-module and $V_{\mathrm{a}}(f):V_{\mathrm{a}}(A)\ra V_{\mathrm{a}}(B)$ preserves the addition.
-\end{example}
+
 \noindent
-Suppose now that $V$, $W$ are $k$-modules and $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ is a morphism of $A$-functors for some $k$-algebra $A$. Then for every $A$-algebra $B$ we denote by $\sigma^B:B\otimes_kV\ra B\otimes_kW$ the component of $\sigma$ for $B$.
-
-\begin{definition}
-Let $V,W$ be $k$-modules and let $A$ be a $k$-algebra. A morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors is \textit{linear} if for every $A$-algebra $B$ the component $\sigma^B:B\otimes_kV\ra B\otimes_kW$ is a morphism of $B$-modules.
-\end{definition}
-\noindent
-Next result characterizes linear morphism.
-
-\begin{fact}\label{fact:frommorphismsofmodulestolinear}
-Let $V$, $W$ be $k$-modules and let $A$ be a $k$-algebra. Suppose that  $\phi:A\otimes_kV\ra A\otimes_kW$ is a morphism of $A$-modules. Then there exists a unique linear morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors such that $\sigma^A = \phi$.
-\end{fact}
-\begin{proof}
-Note that if such $\sigma$ exists, then by requirement $\sigma^A = \phi$ for every morphism $f:A\ra B$ of $k$-algebras the following diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{  A\otimes_kV  & A\otimes_kW           \\
-   B\otimes_kV  & B\otimes_kW           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ \phi $} (m-1-2)
-(m-2-1) edge node[below] {$\sigma^B $} (m-2-2)
-(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
-(m-1-2) edge node[right] {$ f\otimes_k1_W $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-must commute. We make this into a definition of a morphism $\sigma^B$ of $B$-modules. It is a matter of linear algebra that this diagram uniquely determines $\sigma^B$ and also that $\sigma^A = \phi$. It remains to verify that $\sigma = \{\sigma^B\}_{B\in \Alg_A}$ defined in such a way is a morphism of $A$-functors. For this suppose that $f:A\ra B$ and $g:B\ra C$ are morphisms of $k$-algebras. Then we have
-$$\sigma^C \cdot (g \otimes_k 1_V) \cdot (f\otimes_k 1_V) = \sigma^C \cdot (\left (g\cdot f) \otimes_k 1_V\right) = \left((g\cdot f) \otimes_k 1_W \right) \cdot \phi = $$
-$$ = (g \otimes_k 1_W) \cdot (f \otimes_k 1_V)\cdot \phi= (g \otimes_k 1_W)\cdot \sigma^B \cdot (f \otimes_k 1_V)$$
-and hence $\sigma^C \cdot (g \otimes_k 1_V) = (g \otimes_k 1_W) \cdot \sigma^B$. Thus $\sigma$ is a linear morphism of $A$-functors.
-\end{proof}
-\noindent
-We restate Fact \ref{fact:frommorphismsofmodulestolinear} in the form of the following result.
-
-\begin{corollary}\label{corollary:idenitificationoflinearmorphismsoffunctors}
-Let $V, W$ be $k$-modules and $A$ be a $k$-algebra. Consider the map
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \Hom_A(A\otimes_kV,A\otimes_kW) & \Mor_{A}\left(\left(V_{\mathrm{a}}\right)_A,\left(W_{\mathrm{a}}\right)_A\right) \\};
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$ $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-that sends morphism $\phi$ to a unique linear morphism $\sigma:\left(V_{\mathrm{a}}\right)_A\ra \left(W_{\mathrm{a}}\right)_A$ of $A$-functors such that $\sigma^A = \phi$. Then this map is injective and its image consists of all linear morphisms of $A$-functors.
-\end{corollary}
-
-\begin{example}\label{example:linearmonoid}
-Let $V$ be a $k$-module. We define a $k$-functor $\cL_V$. We set
-$$\cL_V(A) = \Hom_A(A\otimes_kV,A\otimes_kV)$$
-for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras and every morphism $\phi:A\otimes_kV\ra A\otimes_kV$ of $A$-modules we define $\cL_V(f)(\phi)$ as a unique morphism of $B$-modules such that the diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{  A\otimes_kV  & A\otimes_kV           \\
-   B\otimes_kV  & B\otimes_kV           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ \phi $} (m-1-2)
-(m-2-1) edge node[below] {$\cL_V(\phi)  $} (m-2-2)
-(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
-(m-1-2) edge node[right] {$ f\otimes_k1_V $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative. Note also that $\cL_V(A)$ is a monoid with respect to the usual composition of morphism of $A$-modules and $\cL_V(f):\cL_V(A)\ra \cL_V(B)$ preserves this composition. Hence $\cL_V$ is a monoid $k$-functor.
-\end{example}
-
-\begin{remark}\label{remark:generallinearmonoid}
-Corollary \ref{corollary:idenitificationoflinearmorphismsoffunctors} implies that there are injective maps that make the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \cL_V(A)   &  \Mor_{A}\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)_A\right)           \\
-  \cL_V(B)   &  \Mor_{B}\left(\left(V_{\mathrm{a}}\right)_B,\left(V_{\mathrm{a}}\right)_B\right)           \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$ $} (m-1-2)
-(m-2-1) edge node[below] {$ $} (m-2-2);
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[left] {$ \cL_V(f) $} (m-2-1)
-(m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_B $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-commutative for every morphism $f:A\ra B$ of $k$-algebras. It also shows that for every $k$-algebra $A$ this identifies $\cL_V(A)$ with a subset of the class $\Mor_A\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)_A\right)$ consisting of all linear morphism of the $A$-functor $\left(V_{\mathrm{a}}\right)_A$.
-\end{remark}
 
 \section{Results on affine monoids}
 

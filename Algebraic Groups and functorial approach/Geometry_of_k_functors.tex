@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-In these notes we introduce functorial approach to algebraic geometry. Our aim is to show that functorial and geometrical techniques are interrelated in a very efficient way.\\
+In these notes we provide functorial approach to algebraic geometry. Our aim is to show that functorial and geometrical techniques are interrelated in a very efficient way.\\
 Throughout these notes $k$ is a fixed commutative ring and $\Alg_k$ denote the category of commutative $k$-algebras. If $A, B$ are $k$-algebras, then we denote by $\Mor_k(A, B)$ the set of all morphisms $A\ra B$ of $k$-algebras. Similarly if $X, Y$ are $k$-schemes (i.e. schemes together with morphism to $\Spec k$), then we denote by $\Mor_k(X,Y)$ the set of all morphisms $X\ra Y$ of $k$-schemes (morphisms of schemes that preserve structure morphisms to $\Spec k$).
 
 \section{\textit{k}-functors}
@@ -46,65 +46,6 @@ v[description/.style={fill=white,inner sep=2pt}]
 \begin{proof}
 Left to the reader.
 \end{proof}
-\noindent
-We denote by $\bd{1}$ a $k$-functor that assigns to every $k$-algebra a set with one element. Then for every $k$-algebra $A$ the restriction $\bd{1}_A$ is a terminal object in the category of $A$-functors.
-
-\begin{fact}\label{fact:points}
-Let $\fX$ be a $k$-functor. Suppose $A$ is a $k$-algebra and $x\in \fX(A)$. Then $x$ determines a morphism $\bd{1}_{A}\ra \fX_A$ that for every $A$-algebra $B$ with structural morphism $f:A\ra B$ sends a unique element of $\bd{1}_{A}(B)$ to $\fX(f)(x)\in \fX_A(B)$. This gives rise to a bijection
-$$\fX(A)\cong \Mor_{A}\left(\bd{1}_{A},\fX_A\right)$$
-\end{fact}
-\begin{proof}
-Left to the reader as an exercise.
-\end{proof}
-
-\begin{definition}
-Let $\fX$ be a $k$-functor and $A$ be a $k$-algebra. The set $\fX(A)$ is called \textit{the set of $A$-points of $\fX$}.
-\end{definition}
-\noindent
-The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}}. For reader's convenience we make our presentation self-contained.
-
-\begin{definition}
-Let $\fX, \fY$ be $k$-functors. Let $\fJ$ be a $k$-functor such that $\fJ(A)$ is a subset of a class $\Mor_A\left(\fX_A,\fY_A\right)$ for every $k$-algebra $A$. Assume that for every morphism $f:A\ra B$ of $k$-algebras and every $\sigma\in \fJ(A)$ we have
-$$\fJ(f)(\sigma) = \sigma_B$$
-where $\sigma_B\in \Mor_B\left(\fX_B,\fY_B\right)$ is the restriction of $\sigma$ along $f$. Then we call $\fJ$ \textit{a $k$-subfunctor of internal hom of $\fX$ and $\fY$}.
-\end{definition}
-\noindent
-Let $\fX$, $\fY$ be $k$-functors. Suppose next that $\fU$ is a $k$-functor and $\sigma:\fU\times \fX\ra \fY$ is a morphism of $k$-functors. We denote by $i_z:\bd{1}_A\ra \fU_A$ the morphism of $A$-functors corresponding to $z$ by means of Fact \ref{fact:points}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\sigma_A\cdot \left(i_z\times 1_{\fX_A}\right)$ is isomorphic to a morphism $\sigma_z:\fX_A\ra \fY_A$ of $A$-functors.
-
-\begin{definition}
-Let $\fX, \fY,\fU$ be $k$-functors and let $\sigma:\fU\times \fX \ra \fY$ be a morphism of $k$-functors. Suppose that $\fJ$ is a $k$-subfunctor of internal hom of $\fX$ and $\fY$. Assume that $\sigma_z:\fX_A\ra \fY_A$ is contained in $\fJ(A)$ for every $k$-algebra $A$ and $z\in \fU(A)$. Then we call $\sigma$ \textit{a family of $\fJ$-morphisms parametrized by $\fU$}.
-\end{definition}
-\noindent
-We continue the previous discussion. Let $\fJ$ be a $k$-subfunctor of internal hom of $\fX$ and $\fY$. Assume that $\sigma:\fU\times \fX\ra \fY$ is a $\fJ$-family of morphism parametrized by $\fU$. Then $z\mapsto \sigma_z$ gives rise to a morphism $\tau:\fU\ra \fJ$ of $k$-functors. Indeed, for a morphism $f:A\ra B$ of $k$-algebras and $z\in \fU(A)$ we have
-$$\sigma_B\cdot \left(i_{\fU(f)(z)}\times 1_{\fX_B}\right) = \left(\sigma_A\cdot \left(i_{z}\times 1_{\fX_A}\right)\right)_B $$
-and hence $\sigma_{\fU(f)(z)} = \left(\sigma_z\right)_B$. This gives rise to a map $\Phi$ of classes
-$$\bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\}\ni \sigma\mapsto \tau\in \Mor_k\left(\fU,\fJ\right)$$
-Consider next a morphism $\tau:\fU\ra \fJ$ of $k$-functors and define $\sigma:\fU\times \fX\ra \fY$ by formula $\sigma^A(z,x) = \left(\tau^A(z)\right)^A(x)$ for every $k$-algebra $A$ and points $z\in \fU(A),\,x\in \fX(A)$. Let $f:A\ra B$ be a morphism of $k$-algebras. Then
-$$\sigma^B\left(\fU(f)(z),\fX(f)(x)\right) = \left(\tau^B\left(\fU(f)(z)\right)\right)^B\left(\fX(f)(x)\right) = \left(\left(\tau^A(z)\right)_B\right)^B\left(\fX(f)(x)\right) =$$
-$$ = \left(\tau^A(z)\right)^B\left(\fX(f)(x)\right) = \fY(f)\left(\left(\tau^A(z)\right)^A(x)\right) = \fY(f)\left(\sigma^A(z,x)\right)$$
-Thus $\sigma:\fU\times \fX\ra \fY$ is a morphism of $k$-functors. For every $k$-algebra $A$ and $z\in\fU(A)$ we have $\sigma_z = \tau^A(z)$. Indeed, let $f:A\ra B$ be a morphism of $k$-algebras and $x$ be an element in $\fX(B)$ then we have
-$$\left(\sigma_z\right)^B(x) = \sigma^B\left(\fU(f)(z),x\right) = \left(\tau^B\left(\fU(f)(z)\right)\right)^B(x) = \left(\left(\tau^A(z)\right)_B\right)^B(x) = \left(\tau^A(z)\right)^B(x)$$
-Hence $\sigma$ is a family of $\fJ$-morphisms parametrized by $\fU$. This gives rise to a map $\Psi$ of classes
-$$\Mor_k\left(\fU,\fJ\right) \ni \tau \mapsto \sigma\in \bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\}$$
-Now we have the following result, which is an instance {\cite[Theorem 6.3]{Presheaves}}. To make presentation self-contained we give a complete proof.  
-
-\begin{theorem}\label{theorem:k_subfunctors_of_hom}
-Let $\fX$, $\fY$ be $k$-functors and let $\fJ$ be a $k$-subfunctor of internal hom of $\fX$ and $\fY$. Then maps 
-$$\Phi:\bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\} \ra  \Mor_{k}\left(\fU,\fJ\right)$$
-and
-$$\Psi:\Mor_{k}\left(\fU,\fJ\right) \ra \bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\}$$
-are mutually inverse bijections.
-\end{theorem}
-\begin{proof}
-Pick a morphism $\tau:\fU\ra \fJ$ of $k$-functors. Let $A$ be a $k$-algebra and $z\in \fU(A)$. In the discussion preceding the statement we showed that $\Psi(\tau)_z = \tau^A(z)$. Thus
-$$\left(\Phi(\Psi(\tau))\right)^A(z) = \Psi(\tau)_z = \tau^A(z)$$
-and hence $\Phi\cdot \Psi$ is the identity.\\
-Pick a family of $\fJ$-morphism $\sigma:\fU\times \fX\ra \fY$ parametrized by $\fU$. Let $A$ be a $k$-algebra and $z\in \fU(A)$, $x\in \fX(A)$ be points. Then
-$$\left(\Psi\left(\Phi(\sigma)\right)\right)^A(z,x) = \left(\Phi(\sigma)^A(z)\right)^A(x) = \sigma_z^A(x) = \sigma^A(z,x)$$
-Thus $\Psi\cdot \Phi$ is the identity map.
-\end{proof}
-\noindent
-Now we formulate direct consequences of Theorem \ref{theorem:k_subfunctors_of_hom}.
 
 \begin{definition}
 Let $\fX$ and $\fY$ be $k$-functors and suppose that for every $k$-algebra $A$ the class $\Mor_A\left(\fX_A,\fY_A\right)$ is a set. We define
@@ -113,29 +54,6 @@ for every $k$-algebra $A$. This is a $k$-functor. Indeed, for every $k$-algebra 
 $$\iMor_{k}(\fX,\fY)(A)\ni \sigma \mapsto \sigma_{B}\in \iMor_{k}(\fX,\fY)(B)$$
 and according to Fact \ref{fact:restrictionsworkasexpected} these maps make $\iMor_{k}(\fX,\fY)$ a $k$-functor. The $k$-functor $\iMor_{\cC}(\fX,\fY)$ is called \textit{a hom $k$-functor of $\fX$ and $\fY$}.
 \end{definition}
-
-\begin{corollary}\label{corollary:hom_k_functors}
-Let $\fX$, $\fY$ be $k$-functors. Assume that for every $k$-algebra $A$ the class $\Mor_{A}\left(\fX_A,\fY_A\right)$ is a set. Then there is a bijection 
-$$\Mor_{k}\left(\fU\times \fX,\fY\right)\ra  \Mor_{k}\left(\fU,\iMor_{k}\left(\fX,\fY\right)\right)$$
-of classes.
-\end{corollary}
-
-\begin{definition}
-Let $\fX,\fY$ be $k$-functors. If $\Iso_{A}\left(\fX_A,\fY_A\right)$ is a set for every $k$-algebra $A$, then we define a $k$-subfunctor $\iIso_k\left(\fX,\fY\right)$ of $\iMor_k\left(\fX,\fY\right)$ by
-$$\iIso_k\left(\fX,\fY\right)(A) = \Iso_A\left(\fX_A,\fY_A\right)$$
-for every $k$-algebra $A$. We call $\iIso_k\left(\fX,\fY\right)$ \textit{the $k$-functor of isomorphism}.
-\end{definition}
-
-\begin{definition}
-Let $\fX, \fY,\fU$ be $k$-functors and let $\sigma:\fU\times \fX \ra \fY$ be a morphism of $k$-functors. Assume that $\sigma_z:\fX_A\ra \fY_A$ is an isomorphism of $A$-functors for every $k$-algebra $A$. Then we call $\sigma$ \textit{a family of isomorphisms parametrized by $\fU$}.
-\end{definition}
-
-\begin{corollary}\label{corollary:hom_isomorphism_bijection}
-Let $\fU,\fX,\fY$ be $k$-functors and suppose that for every $k$-algebra $A$ the class $\Iso_A\left(\fX_A,\fY_A\right)$ is a set. The the following map
-$$\bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of isomorphism parametrized by }\fU\bigg\}\ra \Mor_k\left(\fU,\iIso_k\left(\fX,\fY\right)\right)$$
-is a bijection of classes.
-\end{corollary}
-
 
 \section{Zariski local $k$-functors and Zariski sheaves}
 \noindent

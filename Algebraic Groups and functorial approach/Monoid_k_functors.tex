@@ -2,13 +2,13 @@
 
 \begin{document}
 
-\title{Monoid $k$-functors}
+\title{Monoid $k$-functors and their representations}
 \date{}
 \maketitle
 
 \section{Introduction and notation}
 \noindent
-In these notes we study algebraic structures on the category of $k$-functors with special emphasis on monoid objects.\\
+In these notes we study algebraic structures in the category of $k$-functors with special emphasis on monoid objects.\\
 If $R$ is a ring, then we denote by $R^{\times}$ its multplicative monoid.
 
 \section{Algebraic structures in the category of $k$-functors}
@@ -39,45 +39,6 @@ for every $k$-algebra $A$. We call $\fR^{\times}$ \textit{the multiplicative mon
 Let $\fA$ be a commutative ring $k$-functor. \textit{An $\fA$-algebra} is an $\fA$-algebra object in the category of $k$-functors.
 \end{definition}
 
-\begin{definition}
-Let $\fR$ be a ring $k$-functor. Suppose that $\fM$ is an abelian group $k$-functor and there exists a morphism $\fR \times \fM\ra \fM$ of $k$-functors that for each $k$-algebra $A$ makes $\fM(A)$ into an $\fR(A)$-module. Then we say that $\fM$ is \textit{a module $k$-functor over $\fR$}.
-\end{definition}
-
-\begin{definition}
-Let $\fR$ be an ring $k$-functor and let $\fM_1,\fM_2$ be module $k$-functors over $\fR$. Suppose that $\sigma:\fM_1\ra \fM_2$ is a morphism of abelian group $k$-functors such that the diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
-{  \fR \times \fM_1   & \fR \times \fM_2  \\
-   \fM_1              & \fM_2            \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ 1_{\fR} \times \sigma  $} (m-1-2)
-(m-2-1) edge node[below] {$ \sigma $} (m-2-2)
-(m-1-1) edge node[left] {$ \alpha_1 $} (m-2-1)
-(m-1-2) edge node[right] {$ \alpha_2 $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative, where $\alpha_i:\fR\times \fM_i\ra \fM_i$ define $\fR$-module structure on $\fM_i$ for $i=1,2$. Then $\sigma$ is \textit{a morphism of modules over $\fR$}.
-\end{definition}
-\noindent
-Let $\fM_1$ and $\fM_2$ be module $k$-functors over $\fR$. We denote by
-$$\Hom_{\fR}\left(\fM_1,\fM_2\right)$$
-as a class of all morphisms of modules $\fM_1\ra \fM_2$ over $\fR_A$.
-
-\begin{definition}
-Let $\fM_1$ and $\fM_2$ be module $k$-functors over $\fR$. Assume that $\Hom_{\fR_A}\left((\fM_1)_A,(\fM_2)_A\right)$ is a set for every $k$-algebra $A$. Then we define a $k$-subfunctor $\shHom_{\fR}(\fM_1,\fM_2)$ of internal hom of $\fM_1$ and $\fM_2$ by formula
-$$\Alg_k\ni A \mapsto \Hom_{\fR_A}\left((\fM_1)_A,(\fM_2)_A\right) \in \Set$$
-We call $\shHom_{\fR}(\fM_1,\fM_2)$ \textit{a $k$-functor of module morphisms of $\fM_1$ and $\fM_2$}.
-\end{definition}
-\noindent
-If $\fM$ is a module $k$-functor over some ring $k$-functor $\fR$, then we denote (if it exists) $\shHom_{\fR}(\fM,\fM)$ by $\cE nd_{\fR}(\fM)$.
-
-\begin{example}\label{example:endomorphisms_of_module_k_functor}
-Let $\fM$ be a module over a ring $k$-functor $\fR$. Assume that $\cE nd_{\fR}(\fM)$ exists. Then $\cE nd_{\fR}(\fM)$ is a ring $k$-functor with respect to composition of morphisms of modules as the multiplication and canonically defined addition of module morphisms.\\
-If $\fR$ is a commutative ring $k$-functor, then $\cE nd_{\fR}(\fM)$ admits additional strucutre of a $\fR$-algebra $k$-functor induced via a unique morphism $\fR\ra \cE nd_{\fR}(\fM)$ of ring $k$-functors that sends $1\mapsto 1_{\fM}$.
-\end{example}
-
 \section{Global regular functions on a $k$-functor}
 \noindent
 Recall the ring $k$-functor $\fK$ from Example \ref{example:constant_ring_k_functor}. Note that a $\fK$-algebra $\fA$ can be viewed as a functor $\fA:\Alg_k\ra \Alg_k$.
@@ -99,14 +60,14 @@ natural in $B$.
 \end{proof}
 \noindent
 In particular, since $|-|$ carries the structure $\fK$-algebra $\fO_k$, we derive that $\fP_{\mathbb{A}^1_k}$ admits a structure of $\fK$-algebra isomorphic to $\fO_k$.\\
-No we introduce regular functions on a $k$-functors.
+No we introduce regular functions on $k$-functors.
 
 \begin{definition}
-Let $\fX$ be a $k$-functor and assume that $\Mor_k\left(\fX, \fO_k\right)$ is a set. Then $\Mor_k\left(\fX, \fO_k\right)$ is a $k$-algebra with respect to the structure induced by $\fO_k$. We call this $k$-algebra \textit{the $k$-algebra of global regular functions on $\fX$}. Its elements are called \textit{global regular functions on $\fX$}.
+Let $\fX$ be a $k$-functor and assume that $\iMor_k\left(\fX, \fO_k\right)$ is a set. Then $\Mor_k\left(\fX, \fO_k\right)$ is a $k$-algebra with respect to the structure induced by $\fO_k$. We call this $k$-algebra \textit{the $k$-algebra of global regular functions on $\fX$}. Its elements are called \textit{global regular functions on $\fX$}.
 \end{definition}
 
 \begin{definition}
-Let $\fX$ be a $k$-functor. Suppose that $A$ is a $k$-algebra, $x\in \fX(A)$ and $f\in \Mor_k\left(\fX,\fO_k\right)$. The element $f(x) \in A$ is called \textit{the value of $f$ on point $x$}.
+Let $\fX$ be a $k$-functor. Suppose that $A$ is a $k$-algebra, $x\in \fX(A)$ and $f\in \Mor_k\left(\fX,\fO_k\right)$. The element $f(x) \in A$ is called \textit{the value of $f$ on a point $x$}.
 \end{definition}
 \noindent
 For given $k$-functor $\fX$ we describe $k$-algebra operations on $\Mor_k\left(\fX,\fO_k\right)$ in terms of values of its elements on points of $\fX$. For this consider $\alpha \in k$ and $f$, $g\in \Mor_k\left(\fX, \fO_k\right)$. We have formulas
@@ -119,15 +80,99 @@ $$\Mor_A(\fX_A,\fO_A) \ni f \mapsto f_B\in \Mor_B(\fX_B,\fO_B)$$
 is a morphism of $A$-algebras. This implies that $\iMor_k(\fX,\fO_k)$ admits a canonical structure of an $\fO_k$-algebra $k$-functor.
 \end{example}
 
+\section{Internal hom and product of $k$-functors}
+\noindent
+We denote by $\bd{1}$ a $k$-functor that assigns to every $k$-algebra a set with one element. Then for every $k$-algebra $A$ the restriction $\bd{1}_A$ is a terminal object in the category of $A$-functors.
+
+\begin{fact}\label{fact:points_and_morphisms_from_terminal_k_functor}
+Let $\fX$ be a $k$-functor. Suppose $A$ is a $k$-algebra and $x\in \fX(A)$. Then $x$ determines a morphism $\bd{1}_{A}\ra \fX_A$ that for every $A$-algebra $B$ with structural morphism $f:A\ra B$ sends a unique element of $\bd{1}_{A}(B)$ to $\fX(f)(x)\in \fX_A(B)$. This gives rise to a bijection
+$$\fX(A)\cong \Mor_{A}\left(\bd{1}_{A},\fX_A\right)$$
+\end{fact}
+\begin{proof}
+Left to the reader as an exercise.
+\end{proof}
+\noindent
+The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}}. For reader's convenience we make our presentation self-contained.
+
+\begin{definition}
+Let $\fU,\fX,\fY$ be $k$-functors and let $\sigma:\fU\times \fX\ra \fY$ be a morphism of $k$-functors. Fix $z\in \fU(A)$ for some $k$-algebra $A$. We denote by $i_z:\bd{1}_A\ra \fU_A$ the morphism of $A$-functors corresponding to $z$ by Fact \ref{fact:points_and_morphisms_from_terminal_k_functor}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\sigma_A\cdot \left(i_z\times 1_{\fX_A}\right)$ is isomorphic to a morphism $\sigma_z:\fX_A\ra \fY_A$ of $A$-functors. We call $\sigma_z$ \textit{the slice of $\sigma$ over $z$}.
+\end{definition}
+
+\begin{definition}
+Let $\fX, \fY$ be $k$-functors. Let $\fJ$ be a $k$-functor such that $\fJ(A)$ is a subset of a class $\Mor_A\left(\fX_A,\fY_A\right)$ for every $k$-algebra $A$. Assume that for every morphism $f:A\ra B$ of $k$-algebras and every $\sigma\in \fJ(A)$ we have
+$$\fJ(f)(\sigma) = \sigma_B$$
+where $\sigma_B\in \Mor_B\left(\fX_B,\fY_B\right)$ is the restriction of $\sigma$ along $f$. Then we call $\fJ$ \textit{a $k$-subfunctor of internal hom of $\fX$ and $\fY$}.
+\end{definition}
+
+\begin{definition}
+Let $\fX, \fY,\fU$ be $k$-functors and let $\sigma:\fU\times \fX \ra \fY$ be a morphism of $k$-functors. Suppose that $\fJ$ is a $k$-subfunctor of internal hom of $\fX$ and $\fY$. Assume that $\sigma_z:\fX_A\ra \fY_A$ is contained in $\fJ(A)$ for every $k$-algebra $A$ and $z\in \fU(A)$. Then we call $\sigma$ \textit{a family of $\fJ$-morphisms parametrized by $\fU$}.
+\end{definition}
+\noindent
+Let $\fJ$ be a $k$-subfunctor of internal hom of $\fX$ and $\fY$. Assume that $\sigma:\fU\times \fX\ra \fY$ is a $\fJ$-family of morphism parametrized by $\fU$. Then the family of maps
+$$\fU(A)\ni z\mapsto \sigma_z\in \fJ(A)$$
+gives rise to a morphism $\tau:\fU\ra \fJ$ of $k$-functors. Indeed, for a morphism $f:A\ra B$ of $k$-algebras and $z\in \fU(A)$ we have
+$$\sigma_B\cdot \left(i_{\fU(f)(z)}\times 1_{\fX_B}\right) = \left(\sigma_A\cdot \left(i_{z}\times 1_{\fX_A}\right)\right)_B$$
+and hence $\sigma_{\fU(f)(z)} = \left(\sigma_z\right)_B$. This gives rise to a map $\Phi$ of classes
+$$\bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\}\ni \sigma\mapsto \tau\in \Mor_k\left(\fU,\fJ\right)$$
+Consider next a morphism $\tau:\fU\ra \fJ$ of $k$-functors and define $\sigma:\fU\times \fX\ra \fY$ by formula $\sigma^A(z,x) = \left(\tau^A(z)\right)^A(x)$ for every $k$-algebra $A$ and points $z\in \fU(A),\,x\in \fX(A)$. Let $f:A\ra B$ be a morphism of $k$-algebras. Then
+$$\sigma^B\left(\fU(f)(z),\fX(f)(x)\right) = \left(\tau^B\left(\fU(f)(z)\right)\right)^B\left(\fX(f)(x)\right) = \left(\left(\tau^A(z)\right)_B\right)^B\left(\fX(f)(x)\right) =$$
+$$ = \left(\tau^A(z)\right)^B\left(\fX(f)(x)\right) = \fY(f)\left(\left(\tau^A(z)\right)^A(x)\right) = \fY(f)\left(\sigma^A(z,x)\right)$$
+Thus $\sigma:\fU\times \fX\ra \fY$ is a morphism of $k$-functors. For every $k$-algebra $A$ and $z\in\fU(A)$ we have $\sigma_z = \tau^A(z)$. Indeed, let $f:A\ra B$ be a morphism of $k$-algebras and $x$ be an element in $\fX(B)$ then we have
+$$\left(\sigma_z\right)^B(x) = \sigma^B\left(\fU(f)(z),x\right) = \left(\tau^B\left(\fU(f)(z)\right)\right)^B(x) = \left(\left(\tau^A(z)\right)_B\right)^B(x) = \left(\tau^A(z)\right)^B(x)$$
+Hence $\sigma$ is a family of $\fJ$-morphisms parametrized by $\fU$. This gives rise to a map $\Psi$ of classes
+$$\Mor_k\left(\fU,\fJ\right) \ni \tau \mapsto \sigma\in \bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\}$$
+Now we have the following result, which is an instance {\cite[Theorem 6.3]{Presheaves}}. To make presentation self-contained we give a complete proof.  
+
+\begin{theorem}\label{theorem:k_subfunctors_of_hom}
+Let $\fX$, $\fY$ be $k$-functors and let $\fJ$ be a $k$-subfunctor of internal hom of $\fX$ and $\fY$. Then maps 
+$$\Phi:\bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\} \ra  \Mor_{k}\left(\fU,\fJ\right)$$
+and
+$$\Psi:\Mor_{k}\left(\fU,\fJ\right) \ra \bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of }\fJ\mbox{-morphisms parametrized by }\fU\bigg\}$$
+are mutually inverse bijections.
+\end{theorem}
+\begin{proof}
+Pick a morphism $\tau:\fU\ra \fJ$ of $k$-functors. Let $A$ be a $k$-algebra and $z\in \fU(A)$. In the discussion preceding the statement we showed that $\Psi(\tau)_z = \tau^A(z)$. Thus
+$$\left(\Phi(\Psi(\tau))\right)^A(z) = \Psi(\tau)_z = \tau^A(z)$$
+and hence $\Phi\cdot \Psi$ is the identity.\\
+Pick a family of $\fJ$-morphism $\sigma:\fU\times \fX\ra \fY$ parametrized by $\fU$. Let $A$ be a $k$-algebra and $z\in \fU(A)$, $x\in \fX(A)$ be points. Then
+$$\left(\Psi\left(\Phi(\sigma)\right)\right)^A(z,x) = \left(\Phi(\sigma)^A(z)\right)^A(x) = \sigma_z^A(x) = \sigma^A(z,x)$$
+Thus $\Psi\cdot \Phi$ is the identity map.
+\end{proof}
+\noindent
+Now we formulate some consequences of Theorem \ref{theorem:k_subfunctors_of_hom}.
+
+\begin{corollary}\label{corollary:hom_k_functors}
+Let $\fX$, $\fY$ be $k$-functors. Assume that for every $k$-algebra $A$ the class $\Mor_{A}\left(\fX_A,\fY_A\right)$ is a set. Then there is a bijection 
+$$\Mor_{k}\left(\fU\times \fX,\fY\right)\ra  \Mor_{k}\left(\fU,\iMor_{k}\left(\fX,\fY\right)\right)$$
+of classes.
+\end{corollary}
+
+\begin{definition}
+Let $\fX,\fY$ be $k$-functors. If $\Iso_{A}\left(\fX_A,\fY_A\right)$ is a set for every $k$-algebra $A$, then we define a $k$-subfunctor $\iIso_k\left(\fX,\fY\right)$ of $\iMor_k\left(\fX,\fY\right)$ by
+$$\iIso_k\left(\fX,\fY\right)(A) = \Iso_A\left(\fX_A,\fY_A\right)$$
+for every $k$-algebra $A$. We call $\iIso_k\left(\fX,\fY\right)$ \textit{the $k$-functor of isomorphism}.
+\end{definition}
+
+\begin{definition}
+Let $\fX, \fY,\fU$ be $k$-functors and let $\sigma:\fU\times \fX \ra \fY$ be a morphism of $k$-functors. Assume that $\sigma_z:\fX_A\ra \fY_A$ is an isomorphism of $A$-functors for every $k$-algebra $A$. Then we call $\sigma$ \textit{a family of isomorphisms parametrized by $\fU$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:hom_isomorphism_bijection}
+Let $\fU,\fX,\fY$ be $k$-functors and suppose that for every $k$-algebra $A$ the class $\Iso_A\left(\fX_A,\fY_A\right)$ is a set. The the following map
+$$\bigg\{\mbox{families }\fU\times \fX\ra \fY\mbox{ of isomorphism parametrized by }\fU\bigg\}\ra \Mor_k\left(\fU,\iIso_k\left(\fX,\fY\right)\right)$$
+is a bijection of classes.
+\end{corollary}
+
+
 \section{Actions of monoid $k$-functors}\label{section:actions_of_monoid_k_functors}
 \noindent
-In the sequel we assume that the reader is familiar with notion of an action of a monoid object in arbitrary category with finite products. For definitions and some discussion related to these notions cf. {\cite[pages 5]{Maclane}}.\\
-Let $\fG$ be a monoid $k$-functor and $\fX$ be a $k$-functor together with an action $\alpha:\fG\times \fX \ra \fX$. Next assume that $k$-functor $\iMor_k(\fX,\fX)$ exists. By Example \ref{example:endomorphisms_of_k_functor} it is a monoid $k$-functor. We define a morphism $\rho:\fG\ra \iMor_k(\fX,\fX)$ of $k$-functors by formula $\rho(x) = \alpha_x$. Note that by discussion preceding {\cite[Theorem 2.7]{kfunctors}} and by {\cite[Corollary 2.9]{kfunctors}}, we deduce that $\rho$ is a well defined morphism of $k$-functors. We show now that $\rho$ is a morphism of monoids. For this pick $k$-algebra $A$ and $x, y\in \fG(A)$. Since $\alpha$ is an action, we deduce that $\alpha_{x \cdot y} = \alpha_x \cdot \alpha_y$ and hence also
+In this section we assume that the reader is familiar with notion of an action of a monoid object in arbitrary category with finite products. For definitions and some discussion related to these notions cf. {\cite[pages 5]{Maclane}}.\\
+Let $\fG$ be a monoid $k$-functor and $\fX$ be a $k$-functor together with an action $\alpha:\fG\times \fX \ra \fX$. Next assume that $k$-functor $\iMor_k(\fX,\fX)$ exists. By Example \ref{example:endomorphisms_of_k_functor} it is a monoid $k$-functor. We define a morphism $\rho:\fG\ra \iMor_k(\fX,\fX)$ of $k$-functors by formula $\rho(x) = \alpha_x$. Note that by discussion preceding Theorem \ref{theorem:k_subfunctors_of_hom}, we deduce that $\rho$ is a well defined morphism of $k$-functors. We show now that $\rho$ is a morphism of monoids. For this pick $k$-algebra $A$ and $x, y\in \fG(A)$. Since $\alpha$ is an action, we deduce that $\alpha_{x \cdot y} = \alpha_x \cdot \alpha_y$ and hence also
 $$\rho(x\cdot y) = \alpha_{x \cdot y} = \alpha_x\cdot \alpha_y = \rho(x)\cdot \rho(y)$$
 Therefore, $\rho$ is a morphism of monoid $k$-functors. This shows how to construct a morphism of monoid $k$-functors $\rho$ from an action $\alpha$ of $\fG$.
 
 \begin{theorem}\label{theorem:actions_and_monoid_morphisms}
-Let $\fG$ be a monoid $k$-functor and let $\fX$ be a $k$-functor such that $\cI so_{k}(\fX,\fX)$ exists. Suppose that
+Let $\fG$ be a monoid $k$-functor and let $\fX$ be a $k$-functor such that $\iMor_{k}(\fX,\fX)$ exists. Suppose that
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -140,11 +185,11 @@ Let $\fG$ be a monoid $k$-functor and let $\fX$ be a $k$-functor such that $\cI 
 is a map of classes described above. Then it is bijection.
 \end{theorem}
 \begin{proof}
-Our goal is to construct the inverse of the map. Recall {\cite[Theorem 2.7]{kfunctors}} and substitute in that Theorem $\fJ = \iMor_k(\fX,\fX)$. Consider maps
+Our goal is to construct the inverse of the map. Substitute $\fJ = \iMor_k(\fX,\fX)$ in Theorem \ref{theorem:k_subfunctors_of_hom}. Consider maps
 $$\Phi:\bigg\{\mbox{families }\fG\times \fX\ra \fX\mbox{ of morphisms}\bigg\} \ra  \Mor_{k}\left(\fG,\iMor_k(\fX,\fX)\right)$$
 and
 $$\Psi:\Mor_{k}\left(\fG, \iMor_k(\fX,\fX)\right) \ra \bigg\{\mbox{families }\fG\times \fX\ra \fX\mbox{ of morphisms}\bigg\}$$
-in that Theorem. Then the map in the statement above is the restriction of $\Phi$ to $\fG$-actions on $\fX$ on the right and morphisms $\fG\ra \iMor_k(\fX,\fX)$ of monoid $k$-functors on the left. Since by {\cite[Theorem 2.7]{kfunctors}} maps $\Phi$ and $\Psi$ are mutually inverse, it suffices to check that $\Psi$ sends a morphism $\rho:\fG\ra \iMor_{k}(\fX,\fX)$ of monoids to an action of $\fG$ on $\fX$. For this denote $\Psi(\rho)$ by $\alpha$. Consider $k$-algebra $A$ and $A$-points $x,y\in \fG(A),\,z\in \fX(A)$. Then
+in that Theorem. Then the map in the statement above is the restriction of $\Phi$ to $\fG$-actions on $\fX$ on the right and morphisms $\fG\ra \iMor_k(\fX,\fX)$ of monoid $k$-functors on the left. Since by Theorem \ref{theorem:k_subfunctors_of_hom} maps $\Phi$ and $\Psi$ are mutually inverse, it suffices to check that $\Psi$ sends a morphism $\rho:\fG\ra \iMor_{k}(\fX,\fX)$ of monoids to an action of $\fG$ on $\fX$. For this denote $\Psi(\rho)$ by $\alpha$. Consider $k$-algebra $A$ and $A$-points $x,y\in \fG(A),\,z\in \fX(A)$. Then
 $$\alpha\left(y, \alpha(x, z)\right) = \rho(y)\left(\rho(x)(z)\right) = \left(\rho(y)\cdot \rho(x)\right)(z) = \rho\left(x\cdot y\right)(z) = \alpha\left(x\cdot y, z\right)$$
 Therefore, $\alpha$ is an action of $\fG$ on $\fX$.
 \end{proof}
@@ -194,9 +239,47 @@ Let $\fG$ be a monoid $k$-functor and let $(\fX_1,\alpha_1)$, $(\fX_2,\alpha_2)$
 is commutative. Then $\sigma$ is called \textit{an $\fG$-equivariant morphism}.
 \end{definition}
 
-\section{Modules over ring $k$-functor}
+\section{Modules over ring $k$-functors}
+
+\begin{definition}
+Let $\fR$ be a ring $k$-functor. Suppose that $\fM$ is an abelian group $k$-functor and there exists a morphism $\fR \times \fM\ra \fM$ of $k$-functors that for each $k$-algebra $A$ makes $\fM(A)$ into an $\fR(A)$-module. Then we say that $\fM$ is \textit{a module $k$-functor over $\fR$}.
+\end{definition}
+
+\begin{definition}
+Let $\fR$ be an ring $k$-functor and let $\fM_1,\fM_2$ be module $k$-functors over $\fR$. Suppose that $\sigma:\fM_1\ra \fM_2$ is a morphism of abelian group $k$-functors such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{  \fR \times \fM_1   & \fR \times \fM_2  \\
+   \fM_1              & \fM_2            \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ 1_{\fR} \times \sigma  $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma $} (m-2-2)
+(m-1-1) edge node[left] {$ \alpha_1 $} (m-2-1)
+(m-1-2) edge node[right] {$ \alpha_2 $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative, where $\alpha_i:\fR\times \fM_i\ra \fM_i$ define $\fR$-module structure on $\fM_i$ for $i=1,2$. Then $\sigma$ is \textit{a morphism of modules over $\fR$}.
+\end{definition}
 \noindent
-Let $\fA$ be a commutative ring $k$-functor and let $\fR$ be a $\fA$-algebra $k$-functor. This means that there exists a morphism $\fA\ra \fR$ of ring $k$-functors and for every $k$-algebra $A$ induced morphism $\fA(A)\ra \fR(A)$ sends $\fA(A)$ to the center of a ring $\fR(A)$. Fix a module $\fM$ over $\fA$. Next assume that $k$-functor $\cE nd_{\fA}(\fM)$ exists. Recall that by Example \ref{example:endomorphisms_of_module_k_functor} it is a ring $k$-functor.
+Let $\fM_1$ and $\fM_2$ be module $k$-functors over $\fR$. We denote by
+$$\Hom_{\fR}\left(\fM_1,\fM_2\right)$$
+the class of all morphisms of modules $\fM_1\ra \fM_2$ over $\fR$. We denote the category of $\fR$-modules by $\Mod\left(\fR\right)$.
+
+\begin{definition}
+Let $\fM_1$ and $\fM_2$ be module $k$-functors over $\fR$. Assume that $\Hom_{\fR_A}\left((\fM_1)_A,(\fM_2)_A\right)$ is a set for every $k$-algebra $A$. Then we define a $k$-subfunctor $\shHom_{\fR}(\fM_1,\fM_2)$ of internal hom of $\fM_1$ and $\fM_2$ by formula
+$$\Alg_k\ni A \mapsto \Hom_{\fR_A}\left((\fM_1)_A,(\fM_2)_A\right) \in \Set$$
+We call $\shHom_{\fR}(\fM_1,\fM_2)$ \textit{a $k$-functor of module morphisms of $\fM_1$ and $\fM_2$}.
+\end{definition}
+\noindent
+If $\fM$ is a module $k$-functor over some ring $k$-functor $\fR$, then we denote (if it exists) $\shHom_{\fR}(\fM,\fM)$ by $\cE nd_{\fR}(\fM)$.
+
+\begin{example}\label{example:endomorphisms_of_module_k_functor}
+Let $\fM$ be a module over a ring $k$-functor $\fR$. Assume that $\cE nd_{\fR}(\fM)$ exists. Then $\cE nd_{\fR}(\fM)$ is a ring $k$-functor with respect to composition of morphisms of modules as the multiplication and the usual addition of module morphisms. Moreover, if $\fA$ is a commutative ring $k$-functor, then $\cE nd_{\fA}(\fM)$ (if exists) admits additional structure of a $\fA$-algebra $k$-functor induced via a unique morphism $\fA\ra \cE nd_{\fR}(\fM)$ of ring $k$-functors that sends $1\mapsto 1_{\fM}$.
+\end{example}
+\noindent
+Let $\fA$ be a commutative ring $k$-functor and let $\fR$ be a $\fA$-algebra $k$-functor. This means that there exists a morphism $\fA\ra \fR$ of ring $k$-functors and for every $k$-algebra $A$ induced morphism $\fA(A)\ra \fR(A)$ sends $\fA(A)$ to the center of a ring $\fR(A)$. Fix a module $\fM$ over $\fA$. Next assume that $k$-functor $\cE nd_{\fA}(\fM)$ exists. By Example \ref{example:endomorphisms_of_module_k_functor} it is a ring $k$-functor.
 
 \begin{definition}
 In the setting above suppose that $\alpha:\fR\times \fM\ra \fM$ is a morphism of $k$-functors. Suppose that $\alpha$ makes $\fM$ into $\fR$-module and moreover, for every $k$-algebra $A$ and for every point $x\in \fR(A)$ morphism $\alpha_x$ is a morphism of $\fA_A$-modules. Then $\alpha$ is called \textit{a $\fA$-linear $\fR$-action on $\fM$}.
@@ -221,7 +304,6 @@ is a map of classes described above. Then it is bijection.
 The proof is similar to the proof of Theorem \ref{theorem:actions_and_monoid_morphisms}.
 \end{proof}
 
-
 \section{Monoid algebra $\fO_k[\fG]$ and its modules}
 
 \begin{definition}
@@ -240,7 +322,7 @@ $$\tilde{\sigma}:\fO_k[\fG]\ra \fR$$
 to a morphism of $\fO_k$-algebras.
 \end{fact}
 \begin{proof}
-This follows from the analogical universal property of algebras over abstract monoids (monoid algebras in $\Set$).
+This follows from the analogical universal property of algebras over abstract monoids.
 \end{proof}
 
 \begin{definition}
@@ -330,7 +412,7 @@ $$\sigma_A \cdot \tilde{\rho}_1(x) = \tilde{\rho}_2(x) \cdot \sigma_A$$
 where $\tilde{\rho}_1:\fO_k[\fG] \ra \cE nd_{\fO_k}(\fM_1)$ and $\tilde{\rho}_2:\fO_k[\fG] \ra \cE nd_{\fO_k}(\fM_2)$ are morphism of $\fO_k$-algebras corresponding to $\tilde{\alpha_1}$ and $\tilde{\alpha_2}$, respectively.
 \item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
 $$\sigma_A \cdot \rho_1(x) = \rho_2(x) \cdot \sigma_A$$
-where $\rho_1:\fO_k[\fG] \ra \cE nd_{\fO_k}(\fM_1)$ and $\rho_2:\fO_k[\fG] \ra \cE nd_{\fO_k}(\fM_2)$ are morphism of monoid $k$-functors restricting $\tilde{\rho_1}$ and $\tilde{\rho_2}$, respectively.
+where $\rho_1:\fG \ra \cE nd_{\fO_k}(\fM_1)$ and $\rho_2:\fG \ra \cE nd_{\fO_k}(\fM_2)$ are restrictions of $\tilde{\rho_1}$ and $\tilde{\rho_2}$, respectively.
 \end{enumerate}
 The equivalence of \emph{\textbf{(1)}} and \emph{\textbf{(2)}} does not require the existence of $\cE nd_{\fO_k}(\fM_1)$ and $\cE nd_{\fO_k}(\fM_2)$.
 \end{proposition}
@@ -340,17 +422,107 @@ Conditions expressed in \textbf{(i)}-\textbf{(iv)} are directly translatable to 
 \noindent
 Let $\fG$ be a monoid $k$-functor. We denote by $\Mod\left(\fO_k[\fG]\right)$ the category of $\fO_k[\fG]$-modules.
 
-\section{Regular functions as a module over monoid $k$-functor}
+\section{Example of $\fG$-action: Regular functions $k$-functor}
 \noindent
-Let $\fG$ be a monoid $k$-functor. In this section we discuss important example of a $\fO_k[\fG]$-module. Fix a $k$-functor $\fX$ for which $\iMor_k(\fX,\fO_k)$ exists. Let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on $\fX$. According to {\cite[Corollary 2.12]{kfunctors}} we deduce that $\alpha$ corresponds to a unique morphism of $k$-functors $\rho:\fG\ra \cI so_k(\fX)$. For every $k$-algebra $A$ and $x\in \fG(A)$ we have $\rho(x) = \alpha_x$. Moreover, $\rho$ is a morphism of $k$-monoids (this is a consequence of the fact that $\alpha$ is an action). Next we have a map of sets
-$$\Mor_A\left(\fX_A,(\fO_k)_A\right) \ni f\mapsto f\cdot \rho(x)\in \Mor_A\left(\fX_A,(\fO_k)_A\right)$$
-For every $A$-algebra $B$ and every point $y\in \fX(B)$ we have
-$$(f\cdot \rho(x))(y) = f\left(\rho(x)(y)\right)$$
-From this description it follows that the map $f\mapsto f\cdot \rho(x)$ is a morphism of $A$-algebras.
+First we need the following notion.
 
+\begin{definition}
+Let $\left(-\right)^{\mathrm{op}}:\Mon \ra \Mon$ be the functor of opposite monoid and let $\fG$ be a monoid $k$-functor. Then the composition $\fG^{\mathrm{op}} = \left(-\right)^{\mathrm{op}}\cdot \fG$ is called \textit{the opposite monoid $k$-functor of $\fG$}.
+\end{definition}
+\noindent
+Let $\fG$ be a monoid $k$-functor. In this section we discuss important example of a $\fO_k[\fG]$-module. Fix a $k$-functor $\fX$ for which $\iMor_k(\fX,\fO_k)$ exists. Recall that by Example \ref{example:regular_functions_as_an_algebra_over_structure_algebra} $\iMor_k\left(\fX,\fO_k\right)$ is $\fO_k$-algebra $k$-functor. Let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on $\fX$. For every $k$-algebra $A$  we have a map of sets
+$$\Mor_A\left(\fX_A,(\fO_k)_A\right) \ni f\mapsto f\cdot \alpha_x\in \Mor_A\left(\fX_A,(\fO_k)_A\right)$$
+where $x\in \fG(A)$. From this description it follows that the map $f\mapsto f\cdot \alpha_x$ is a morphism of $A$-algebras. Moreover, note that if $y\in \fG(A)$ is some other $A$-point, then $\left(f\cdot \alpha_x\right)\cdot \alpha_y = f\cdot \alpha_{x\cdot y}$, where $x\cdot y \in \fG(A)$ is a product of $x$ and $y$. Thus the opposite monoid $\fG^{\mathrm{op}}(A)$ acts on the $A$-algebra $\Mor_A\left(\fX_A,\left(\fO_k\right)_A\right)$ by morphism of $A$-algebras. Next for every $A$-algebra $B$ and every point $y\in \fX(B)$ we have
+$$(f\cdot \alpha_x)(y) = f\left(\alpha_x(y)\right)$$
+This proves the following result.
 
+\begin{proposition}\label{proposition:action_on_regular_k_functor}
+Let $\fX$ be a $k$-functor and let $\alpha:\fG\times \fX \ra \fX$ be an action of a monoid $k$-functor $\fG$. Suppose that $\iMor_k\left(\fX,\fO_k\right)$ exists. Then $\fG^{\mathrm{op}}$ acts canonically on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
+\end{proposition}
+\noindent
+Let us note one important consequence of this result.
 
+\begin{corollary}\label{corollary:action_on_regular_k_functor}
+Let $\fG$ be a monoid $k$-functor. The action of $\fG\times \fG^{\mathrm{op}}$ on $\fG$ induces the action of $\fG\times \fG^{\mathrm{op}}$ on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
+\end{corollary}
 
+\section{Linear representations of a monoid $k$-functors}
+\noindent
+We start the discussion with some results that relates categories $\Mod(k)$ and $\Mod\left(\fO_k\right)$.
+
+\begin{example}\label{example:additive_k_functor}
+Let $V$ be a $k$-module. We define a $k$-functor $V_{\mathrm{a}}$. We set
+$$V_{\mathrm{a}}(A) = A\otimes_kV,\,V_{\mathrm{a}}(f) = f\otimes_k1_V$$
+for every $k$-algebra $A$ and every morphism $f:A\ra B$ of $k$-algebras. Note that $V_{\mathrm{a}}$ is $\fO_k$-module.\\
+Suppose that $\phi:V\ra W$ is a morphism of $k$-modules, then we define $\phi_{\mathrm{a}}:V_{\mathrm{a}}\ra W_{\mathrm{a}}$ by formula
+$$\phi_{\mathrm{a}}^A = 1_A\otimes_k\sigma$$
+for every $k$-algebra. Then $\phi_{\mathrm{a}}$ is a morphism of $\fO_k$-modules.
+\end{example}
+
+\begin{proposition}\label{proposition:inclusion_of_k_modules_into_O_k_modules}
+The functor $\left(-\right)_{\mathrm{a}}:\Mod\left(k\right)\ra \Mod\left(\fO_k\right)$ is full and faithful.
+\end{proposition}
+\begin{proof}
+Fix $k$-modules $V,W$. Then
+$$\Hom_{\fO_k}\left(V_{\mathrm{a}},W_{\mathrm{a}}\right)\ni \sigma \mapsto \sigma^k\in \Hom_k\left(V,W\right)$$
+and
+$$\Hom_k\left(V,W\right) \ni \phi \mapsto \phi_{\mathrm{a}} \in \Hom_{\fO_k}\left(V_{\mathrm{a}},W_{\mathrm{a}}\right)$$
+are mutually inverse bijections. Hence the functor is full and faithful.
+\end{proof}
+
+\begin{example}\label{example:general_linear_monoid}
+Let $V$ be a $k$-module. We define a $k$-functor $\cL_V$. We set
+$$\cL_V(A) = \Hom_A(A\otimes_kV,A\otimes_kV)$$
+for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras and every morphism $\phi:A\otimes_kV\ra A\otimes_kV$ of $A$-modules we define $\cL_V(f)(\phi)$ as a unique morphism of $B$-modules such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_kV  & A\otimes_kV           \\
+   B\otimes_kV  & B\otimes_kV           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-2-1) edge node[below] {$\cL_V(\phi)  $} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_V $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_V $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Note also that $\cL_V(A)$ is an $A$-algebra. Hence $\cL_V$ is a monoid $k\fO_k$-algebra.
+\end{example}
+
+\begin{remark}\label{remark:general_linear_monoid}
+Let $V$ be a $k$-module. Proposition \ref{proposition:inclusion_of_k_modules_into_O_k_modules} implies that there are bijective maps that make the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cL_V(A)   &  \cE nd_{\fO_A}\left(\left(V_{\mathrm{a}}\right)_A,\left(V_{\mathrm{a}}\right)_A\right)           \\
+  \cL_V(B)   &  \cE nd_{\fO_B}\left(\left(V_{\mathrm{a}}\right)_B,\left(V_{\mathrm{a}}\right)_B\right)           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\cong $} (m-1-2)
+(m-2-1) edge node[below] {$\cong $} (m-2-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ \cL_V(f) $} (m-2-1)
+(m-1-2) edge node[auto] {$ \sigma \mapsto \sigma_B $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutative for every morphism $f:A\ra B$ of $k$-algebras. This induces an idenitification $\cL_V = \cE nd_{\fO_k}\left(V_{\mathrm{a}}\right)$ of $\fO_k$-algebras.
+\end{remark}
+\noindent
+Fix monoid $k$-functor $\fG$. Now we have the following consequence of our discussion concerning modules over $\fO_k[\fG]$.
+
+\begin{corollary}\label{proposition:decription_of_linear_monoid_actions_on_modules}
+Let $\fG$ be a monoid $k$-functor and let $V$ be a $k$-module. Then the following classes are in canonical bijections.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
+\item Linear actions of $\fG$ on $V_{\mathrm{a}}$.
+\item $\fO_k$-linear actions $\fO_k[\fG]\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$. These are precisely $\fO_k[\fG]$-modules.
+\item Morphisms $\fO_k[\fG]\ra \cL_V$ of $\fO_k$-algebras.
+\item Morphisms $\fG\ra \cL_V$ of monoids.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+This follows from Proposition \ref{proposition:decription_of_linear_monoid_actions_on_modules}.
+\end{proof}
 
 
 
