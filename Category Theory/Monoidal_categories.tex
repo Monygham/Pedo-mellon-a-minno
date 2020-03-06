@@ -460,7 +460,7 @@ Let $\cC$ be a monoidal category. Then there exists a strict monoidal category $
 \end{theorem}
 \begin{proof}
 According to {\cite[Introduction]{Presheaves}} we may enlarge our base universe so that $\cC$ is a small category. Denote by $I$ unit and by $\otimes$ functor (as usual we use infix notation for it) in $\cC$. Let $S$ be a set of objects of $\cC$. Let $\bd{Syn}_S$ be the groupoid and $F_S:\bd{Syn}_S\ra \cC$ be the functor defined above. Let $X$, $Y$ be objects of $\cC$. We write $X\sim_{\bd{syn}}Y$ if and only if there exists an arrow $\eta:v\ra w$ in $\bd{Syn}_S$ such that $F_S(v)=X$ and $F_S(w)=Y$. Next suppose that $f:X\ra Y$ and $g:Z\ra T$ are morphisms of $\cC$. Then we write $f \equiv_{\bd{syn}}g$ if and only if there exist arrows $\beta$ and $\gamma$ in $\bd{Syn}_S$ such that $F_S(\beta)\cdot f = g\cdot F_S(\gamma)$. Since $\bd{Syn}_S$ is a groupoid, both $\sim_{\bd{syn}}$, $\equiv_{\bd{syn}}$ are equivalence relations. Now the following assertions hold.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item Suppose that $f_1$ and $f_2$ are morphisms in $\cC$ such that $\mathrm{cod}(f_1) \sim_{\bd{syn}} \mathrm{dom}(f_2)$. Then there exist $g_1 \equiv_{\bd{syn}} f_1$ and $g_2\equiv_{\bd{syn}} f_2$ such that $\mathrm{cod}(g_1)=\mathrm{dom}(g_2)$. 
 \item If $f_1\equiv_{\bd{syn}} g_1,\, f_2\equiv_{\bd{syn}} g_2$ and compositions $f_2\cdot f_1,\,g_2\cdot g_1$ exist, then $f_2\cdot f_1\equiv_{\bd{syn}}g_2\cdot g_1$.
 \item If $f$ is a morphism in $\cC$ and $X\sim_{\bd{syn}} \mathrm{dom}(f)$, $Y\sim_{\bd{syn}} \mathrm{cod}(f)$, then there exists a unique morphism $g:X\ra Y$ in $\cC$ such that $g \equiv_{\bd{syn}} f$.
