@@ -375,7 +375,7 @@ Moreover, the bijection between class \emph{\textbf{(1)}} and \emph{\textbf{(2)}
 Now in a similar manner we can describe morphisms.
 
 \begin{proposition}\label{proposition:morphism_of_monoid_modules}
-Let $\fG$ be a monoid $k$-functor and let $\fM_1$, $\fM_2$ be $k$-functors of $\fO_k$-modules such that $\cE nd_{\fO_k}(\fM_1),\cE nd_{\fO_k}(\fM_2)$ exist. Suppose that $\alpha_1:\fG\times \fM_1 \ra \fM_1,\,\alpha_2:\fG\times \fM_2 \ra \fM_2$ are linear actions of $\fG$, respectively. Suppose that $\sigma:\fM_1\ra \fM_2$ is a morphism of modules over $\fO_k$. Then the following assertions are equivalent.
+Let $\fG$ be a monoid $k$-functor and let $\fM_1$, $\fM_2$ be $k$-functors of $\fO_k$-modules such that $\cE nd_{\fO_k}(\fM_1),\cE nd_{\fO_k}(\fM_2)$ exist. Suppose that $\alpha_1:\fG\times \fM_1 \ra \fM_1,\,\alpha_2:\fG\times \fM_2 \ra \fM_2$ are linear actions of $\fG$. Suppose that $\sigma:\fM_1\ra \fM_2$ is a morphism of modules over $\fO_k$. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
 \item The square
 \begin{center}
@@ -414,7 +414,7 @@ where $\tilde{\rho}_1:\fO_k[\fG] \ra \cE nd_{\fO_k}(\fM_1)$ and $\tilde{\rho}_2:
 $$\sigma_A \cdot \rho_1(x) = \rho_2(x) \cdot \sigma_A$$
 where $\rho_1:\fG \ra \cE nd_{\fO_k}(\fM_1)$ and $\rho_2:\fG \ra \cE nd_{\fO_k}(\fM_2)$ are restrictions of $\tilde{\rho_1}$ and $\tilde{\rho_2}$, respectively.
 \end{enumerate}
-The equivalence of \emph{\textbf{(1)}} and \emph{\textbf{(2)}} does not require the existence of $\cE nd_{\fO_k}(\fM_1)$ and $\cE nd_{\fO_k}(\fM_2)$.
+The equivalence of \emph{\textbf{(i)}} and \emph{\textbf{(ii)}} does not require the existence of $\cE nd_{\fO_k}(\fM_1)$ and $\cE nd_{\fO_k}(\fM_2)$.
 \end{proposition}
 \begin{proof}
 Conditions expressed in \textbf{(i)}-\textbf{(iv)} are directly translatable to each other by virtue of bijections in Proposition \ref{proposition:decription_of_linear_monoid_actions_on_modules}. 
@@ -443,7 +443,7 @@ Let $\fX$ be a $k$-functor and let $\alpha:\fG\times \fX \ra \fX$ be an action o
 Let us note one important consequence of this result.
 
 \begin{corollary}\label{corollary:action_on_regular_k_functor}
-Let $\fG$ be a monoid $k$-functor. The action of $\fG\times \fG^{\mathrm{op}}$ on $\fG$ induces the action of $\fG\times \fG^{\mathrm{op}}$ on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
+Let $\fG$ be a monoid $k$-functor. The action of $\fG\times \fG^{\mathrm{op}}$ on $\fG$ induces the action of $\fG^{\mathrm{op}}\times \fG$ on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
 \end{corollary}
 
 \section{Linear representations of a monoid $k$-functors}
@@ -508,10 +508,14 @@ Let $V$ be a $k$-module. Proposition \ref{proposition:inclusion_of_k_modules_int
 \end{center}
 commutative for every morphism $f:A\ra B$ of $k$-algebras. This induces an idenitification $\cL_V = \cE nd_{\fO_k}\left(V_{\mathrm{a}}\right)$ of $\fO_k$-algebras.
 \end{remark}
-\noindent
-Fix monoid $k$-functor $\fG$. Now we have the following consequence of our discussion concerning modules over $\fO_k[\fG]$.
 
-\begin{corollary}\label{proposition:decription_of_linear_monoid_actions_on_modules}
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor. A pair $\left(V,\rho\right)$ consisting of a $k$-module $V$ and a morphism $\rho:\fG\ra \cL_V$ of $k$-monoids is called \textit{a linear representation of $\fG$}.
+\end{definition}
+\noindent
+Next result characterizes linear representations of monoid $k$-functors.
+
+\begin{corollary}\label{corollary:linear_representations_various_characterizations}
 Let $\fG$ be a monoid $k$-functor and let $V$ be a $k$-module. Then the following classes are in canonical bijections.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=1.5em]
 \item Linear actions of $\fG$ on $V_{\mathrm{a}}$.
@@ -524,10 +528,60 @@ Let $\fG$ be a monoid $k$-functor and let $V$ be a $k$-module. Then the followin
 This follows from Proposition \ref{proposition:decription_of_linear_monoid_actions_on_modules}.
 \end{proof}
 
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor and let $(V,\rho)$, $(W,\delta)$ be its linear representations. A morphism $\phi:V\ra W$ of $k$-modules such that
+$$\phi_{\mathrm{a}}^A \cdot \rho(x) = \delta(x) \cdot \phi_{\mathrm{a}}^A$$
+for every $k$-algebra $A$ and $x\in \fG(A)$ is called \textit{a morphism of linear representations of $\fG$}.
+\end{definition}
+\noindent
+Next result characterizes morphisms of linear representations of monoid $k$-functor.
 
-
-
-
+\begin{corollary}\label{corollary:characterization_of_morphisms_of_linear_representations}
+Let $\fG$ be a monoid $k$-functor and let $V$, $W$ be $k$-modules. Suppose that $\alpha_1:\fG\times V_{\mathrm{a}} \ra V_{\mathrm{a}},\,\alpha_2:\fG\times W_{\mathrm{a}} \ra W_{\mathrm{a}}$ are linear actions of $\fG$. Suppose that $\phi:V\ra W$ is a morphism of $k$-modules. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item The square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{  \fG\times V_{\mathrm{a}}   & \fG\times W_{\mathrm{a}} \\
+   V_{\mathrm{a}}             & W_{\mathrm{a}} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ 1_{\fG}\times \phi_{\mathrm{a}}  $} (m-1-2)
+(m-2-1) edge node[below] {$ \phi_{\mathrm{a}} $} (m-2-2)
+(m-1-1) edge node[left] {$ \alpha_1 $} (m-2-1)
+(m-1-2) edge node[right] {$ \alpha_2 $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\item The square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{  \fO_k[\fG] \times V_{\mathrm{a}}   & \fO_k[\fG] \times W_{\mathrm{a}} \\
+   V_{\mathrm{a}}                     & W_{\mathrm{a}} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ 1_{\fO_k[\fG]}\times \phi_{\mathrm{a}}  $} (m-1-2)
+(m-2-1) edge node[below] {$ \phi_{\mathrm{a}} $} (m-2-2)
+(m-1-1) edge node[left] {$ \tilde{\alpha_1} $} (m-2-1)
+(m-1-2) edge node[right] {$ \tilde{\alpha_2} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative, where $\tilde{\alpha_1}$ and $\tilde{\alpha_2}$ are $\fO_k$-linear actions of $\fO_k[\fG]$ corresponding to $\alpha_1$ and $\alpha_2$, respectively. 
+\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
+$$\phi_{\mathrm{a}}^A \cdot \tilde{\rho}_1(x) = \tilde{\rho}_2(x) \cdot \phi_{\mathrm{a}}^A$$
+where $\tilde{\rho}_1:\fO_k[\fG] \ra \cL_V$ and $\tilde{\rho}_2:\fO_k[\fG] \ra \cL_W$ are morphism of $\fO_k$-algebras corresponding to $\tilde{\alpha_1}$ and $\tilde{\alpha_2}$, respectively.
+\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
+$$\phi_{\mathrm{a}}^A \cdot \rho_1(x) = \rho_2(x) \cdot \phi_{\mathrm{a}}^A$$
+where $\rho_1:\fG \ra \cL_V$ and $\rho_2:\fG \ra \cL_W$ are restrictions of $\tilde{\rho_1}$ and $\tilde{\rho_2}$, respectively. This states that $\phi$ is a morphism of linear representations of $\fG$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+This follows from Proposition \ref{proposition:morphism_of_monoid_modules}.
+\end{proof}
+\noindent
+Let $\fG$ be a monoid $k$-functor. We denote by $\bd{Rep}(\fG)$ its category of linear representations. Note that $\bd{Rep}(\fG)$ is a full subcategory of $\Mod(\fO_k\left[\fG\right])$.
 
 \small
 \bibliographystyle{alpha}

@@ -119,51 +119,6 @@ and hence $c$ is a morphism of $k$-functors equipped with actions of $\fX\times 
 \end{proof}
 
 
-\begin{definition}
-Let $\fG$ be a monoid $k$-functor and let $V$ be a $k$-module. An action $\alpha:\fG\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ of $\fG$ such that for any $k$-algebra $A$ and point $x\in \fG(A)$ morphism $\alpha_x$ is linear is called \textit{a linear action of $\fG$ on $V$}.
-\end{definition}
-\noindent
-Theorem \ref{theorem:characterizationsoflinearrepresentations} states that for every monoid $k$-functor $\fG$ and every $k$-module $V$ linear actions $\alpha:\fG\times V_{\mathrm{a}}\ra V_{\mathrm{a}}$ and morphisms $\rho:\fG\ra \cL_V$ of $k$-monoids are in bijective correspondence. This shows that the formal machinery developed so far works as expected. Now we introduce the following notion.
-
-\begin{definition}
-Let $\fG$ be a monoid $k$-functor. A pair $\left(V,\rho\right)$ consisting of a $k$-module $V$ and a morphism $\rho:\fG\ra \cL_V$ of $k$-monoids is called \textit{a linear representation of $\fG$}.
-\end{definition}
-
-\begin{proposition}\label{proposition:characterization_of_morphism_of_linear_representations}
-Let $\fG$ be a monoid $k$-functor. Suppose that $\alpha:\fG\times V_{\mathrm{a}}\ra V_{\mathrm{a}},\,\beta:\fG\times W_{\mathrm{a}}\ra W_{\mathrm{a}}$ are $k$-linear actions on $k$-modules $V$ and $W$, respectively. Suppose that $\sigma:V_{\mathrm{a}}\ra W_{\mathrm{a}}$ is a linear morphism of $k$-functors and $\phi = \sigma^k$ is the corresponding morphism of $k$-modules. Then the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
-\item The square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
-{  \fG\times V_{\mathrm{a}}   & \fG\times W_{\mathrm{a}}           \\
-   V_{\mathrm{a}}  & W_{\mathrm{a}}           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ 1_{\fG}\times \sigma  $} (m-1-2)
-(m-2-1) edge node[below] {$ \sigma $} (m-2-2)
-(m-1-1) edge node[left] {$ \beta $} (m-2-1)
-(m-1-2) edge node[right] {$ \alpha $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative.
-\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
-$$\left(1_A\otimes_k\phi\right)\cdot \rho(x) = \delta(x) \cdot \left(1_A\otimes_k\phi\right)$$
-where $\rho:\fG\ra \cL_V$ and $\delta:\fG\ra \cL_W$ are morphism of monoid $k$-functors corresponding to $\alpha$ and $\beta$, respectively.
-\end{enumerate}
-\end{proposition}
-\begin{proof}
-Indeed, conditions expressed in \textbf{(i)} and \textbf{(ii)} are directly translatable to each other by virtue of Fact \ref{fact:frommorphismsofmodulestolinear} and the bijection in Theorem \ref{theorem:characterizationsoflinearrepresentations}. 
-\end{proof}
-
-\begin{definition}
-Let $\fG$ be a monoid $k$-functor and let $(V,\rho)$, $(W,\delta)$ be its linear representations. A morphism $\phi:V\ra W$ of $k$-modules such that for every $k$-algebra $A$ and $x\in \fG(A)$ we have
-$$\left(1_A\otimes_k\phi\right)\cdot \rho(x) = \delta(x) \cdot \left(1_A\otimes_k\phi\right)$$
-is called \textit{a morphism of linear representations of $\fG$}.
-\end{definition}
-\noindent
-Let $\fG$ be a monoid $k$-functor. We denote by $\bd{Rep}(\fG)$ its category of linear representations.
-
 \section{The category of linear representations}
 \noindent
 In this section we fix a monoid $k$-functor $\fG$. Note that there exists the forgetful functor $\bd{Rep}(\fG)\ra \Mod(k)$ that sends each linear representation to its underlying $k$-module.
@@ -282,15 +237,6 @@ Since $k$ is a flat $A$-module, we derive that the sequence
 \end{center}
 is exact. Since $\ideal{a}k = 0$ because $\ideal{a}\subseteq \ideal{m}$, we deduce from the short exact sequence that $k\otimes_A\ideal{a} = 0$. By Nakayama lemma this implies that $\ideal{a} = 0$ ($\ideal{a}$ is finitely generated over $A$). Thus every finitely generated $A$-submodule of $\ideal{m}$ is trivial. Thus $\ideal{m} = 0$ and hence $A$ is a field.
 \end{proof}
-
-
-
-\section{}
-
-\section{Linear representations of monoid $k$-functors}
-
-
-\noindent
 
 \section{Results on affine monoids}
 

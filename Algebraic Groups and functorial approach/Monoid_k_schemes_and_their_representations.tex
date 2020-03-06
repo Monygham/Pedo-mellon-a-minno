@@ -1,0 +1,103 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Monoid $k$-schemes and their representations}
+\date{}
+\maketitle
+
+\section{Equivalence of representations and comodules}
+\noindent 
+Let $k$ be a commutative ring.
+
+\begin{theorem}\label{comodulesandrepresentationsthm}
+Let $\bd{M}$ be an affine monoid scheme over $k$. Suppose that $\rho:\bd{M}\ra \cL(V)$ is a morphism of functors of sets. Yoneda lemma implies that $\rho$ is determined by some element 
+$$p_{\rho}\in \Hom_{\Gamma(\bd{M},\cO_{\bd{M}})}\left(\Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V,\Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V\right)$$
+Next under the natural isomorphism
+$$\Hom_{k}(V,\Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V)\ra \Hom_{\Gamma(\bd{M},\cO_{\bd{M}})}\left(\Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V,\Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V\right)$$
+we deduce that $p_{\rho}$ corresponds to a unique $k$-linear morphism $d_{\rho}:V\ra \Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V$.\\
+Then $(V,\rho)$ is a representation of $\bd{M}$ if and only if $(V,d_{\rho})$ is a comodule over $\Gamma(\bd{M},\cO_{\bd{M}})$.\\
+Moreover, assume that $(V,\rho_V)$, $(W,\rho_W)$ are representations and $(V,d_{\rho_V})$, $(W,d_{\rho_W})$ are associated comodules. Then a morphism of $k$-modules $f:V\ra W$ is a morphism of the representations if and only if it is a morphism of the comodules.
+\end{theorem}
+\noindent
+In order to give a proof we will fix some notation. For every affine scheme $S$ over $k$ we denote by $O_S$ its $k$-algebra of global regular functions. We also denote by $\delta_S:O_S\otimes_{k}O_S\ra O_S$ the multiplication on $O_S$ and by $\eta_S:k\ra O_S$ the structural morphism. In particular, $O_{\bd{M}}=\Gamma(\bd{M},\cO_{\bd{M}})$ is a bialgebra of global regular functions on $\bd{M}$. We denote its counit and comultiplication by $\xi_{\bd{M}}$ and $\Delta_{\bd{M}}$, respectively. Finally for every morphism $f:S\ra T$ of affine $k$-schemes denote by $f^{\#}:O_T\ra O_S$ the corresponding morphism of $k$-algebras.\\
+We identify freely $\bd{M}$ with its functor of points. Let $V$ be a module over $k$. Note that every morphism $\rho:\bd{M}\ra \cL(V)$ of functors of sets gives rise by the rule described in the statement to a unique morphism of $k$-modules $d_{\rho}:V\ra O_{\bd{M}}\otimes_{k}V$. This correspondence is one to one by Yoneda lemma.\\
+Fix a morphism $\rho:\bd{M}\ra \cL(V)$ of functors and associated morphism of $k$-modules $d_{\rho}:V\ra O_{\bd{M}}\otimes_{k}V$. Let $S$ be an affine $k$-scheme and pick an $S$-point $m\in \bd{M}(S)$. Then $m$ gives rise to a morphism $m^{\#}:O_{\bd{M}}\ra O_S$ of $k$-algebras and
+$$\rho(m)=\left(\delta_S\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}m^{\#}\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}d_{\rho}\right)$$
+Now we need some additional results.
+
+\begin{lemma}\label{semigroupmorphism}
+Let $V$ be a module over $k$, $\rho:\bd{M}\ra \cL(V)$ be a morphism of functors and $d_{\rho}$ be an associated morphism of $k$-modules. Then $\rho$ is a morphism of semigroups if and only if $d_{\rho}$ satisfies 
+$$\left(\Delta_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}=\left(1_{O_{\bd{M}}}\otimes_{k}d_{\rho}\right)\cdot d_{\rho}$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $S$ be an affine $k$-scheme and suppose that $m_1,m_2\in \bd{M}(S)$. Then
+$$\rho(m_1)\cdot \rho(m_2)=\left(\left(\delta_S\cdot \left(1_{O_S}\otimes_{k}\delta_S\right)\right)\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}m_1^{\#}\otimes_{k}m_2^{\#}\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}\left(\left(1_{O_{\bd{M}}}\otimes_{k}d_{\rho}\right)\cdot d_{\rho}\right)\right)$$
+and if $m_1\cdot m_2$ denotes product of these elements in $\bd{M}(S)$, then
+$$\rho(m_1\cdot m_2)=\left(\left(\delta_S\cdot \left(1_{O_S}\otimes_{k}\delta_S\right)\right)\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}m_1^{\#}\otimes_{k}m_2^{\#}\otimes_{k}1_V\right)\cdot\left(1_{O_S}\otimes_{k}\left(\left(\Delta_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}\right)\right)$$
+These formulas imply that if 
+$$\left(\Delta_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}=\left(1_{O_{\bd{M}}}\otimes_{k}d_{\rho}\right)\cdot d_{\rho}$$
+then $\rho$ is a morphism of functors of semigroups.\\
+Conversely consider two canonical projections $\pi_1$, $\pi_2:\bd{M}\times_{\Spec k}\bd{M}\ra \bd{M}$ so that $\pi_1$, $\pi_2\in \bd{M}\left(\bd{M}\times_{\Spec k}\bd{M}\right)$. Then formulas above together with the fact that $1_{O_{\bd{M}\times_{\Spec k}\bd{M}}}= \delta_{\bd{M}\times_{\Spec k}\bd{M}}\cdot \left(\pi_1^{\#}\otimes_{k}\pi_2^{\#}\right)$ imply
+$$\rho(\pi_1\cdot \pi_2)=\left(\delta_{\bd{M}\times_{\Spec k}\bd{M}}\otimes_{k}1_V\right)\cdot \left(1_{O_{\bd{M}\times_{\Spec k}\bd{M}}}\otimes_{k}\left(\left(\Delta_{\bd{M}}\otimes_{k}1_M\right)\cdot d_{\rho}\right)\right)$$
+and
+$$\rho(\pi_1)\cdot \rho(\pi_2)=\left(\delta_{\bd{M}\times_{\Spec k}\bd{M}}\otimes_{k}1_V\right)\cdot \left(1_{O_{\bd{M}\times_{\Spec k}\bd{M}}}\otimes_{k}\left(\left(1_{O_{\bd{M}}}\otimes_{k}d_{\rho}\right)\cdot d_{\rho}\right)\right)$$
+Now if $\rho$ is a morphism of functors of semigroups, then $\rho(\pi_1\cdot \pi_2)=\rho(\pi_1)\cdot \rho(\pi_2)$ and hence
+$$\left(1_{O_{\bd{M}}}\otimes_{k}d_{\rho}\right)\cdot d_{\rho}=\left(\Delta_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}$$
+\end{proof}
+
+\begin{lemma}\label{identitypreservation}
+Let $V$ be a module over $k$, $\rho:\bd{M}\ra \cL(V)$ be a morphism of functors and $d_{\rho}$ be an associated morphism of $k$-modules. Then $\rho$ preserves identity elements if and only if 
+$\left(\xi_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}$
+coincides with the canonical morphism $V\ra k\otimes_{k}V$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every affine $k$-scheme $S$ define $e_S\in \bd{M}(S)$ as a structural morphism $S\ra \Spec k$ composed with the neutral element $e:\Spec k\ra \bd{M}$. This is an identity element of monoid $\bd{M}(S)$. We have
+$$\rho(e_S)=\left(\delta_S\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}\eta_S\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}\left(\left(\xi_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}\right)\right)$$
+Therefore, if 
+$$\left(\left(\xi_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}\right)$$
+is equal to the canonical isomorphism $V\ra k\otimes_{k}V$, then $\rho(e_S)=1_{O_S\otimes_{k}V}$.\\
+On the other hand if $\rho(e_S)=1_{O_S\otimes_{k}V}$ for every affine $k$-scheme $S$, then setting $S=\Spec k$ we derive
+$$1_{k\otimes_{k}V}=\rho(e_{\Spec k})=\left(\delta_{\Spec k} \otimes_{k}1_V\right)\cdot \left(1_{k}\otimes_{k}\left(\left(\xi_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}\right)\right)$$ 
+and thus $\left(\xi_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}$ is equal to the canonical morphism $V\ra k\otimes_{k}V$.
+\end{proof}
+
+\begin{lemma}\label{linearmorphismscoincide}
+Suppose that $V$ and $W$ are $k$-modules and $f:V\ra W$ be a morphism of $k$-modules. Let $\rho_V:\bd{M}\ra \cL(V)$, $\rho_W:\bd{M}\ra \cL(W)$ be morphisms of functors of sets and $d_{\rho_V}$, $d_{\rho_W}$ be associated morphism of $k$-modules. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=1.5em]
+\item The formula
+$$\left(1_{\Gamma(\bd{M},\cO_{\bd{M}})}\otimes_{k}f\right)\cdot d_{\rho_V}=d_{\rho_W}\cdot f$$
+holds.
+\item The formula
+$$\rho_W(m)\cdot \left(1_{\Gamma(S,\cO_S)}\otimes_{k}f\right)=\left(1_{\Gamma(S,\cO_S)}\otimes_{k}f\right)\cdot \rho_V(m)$$
+holds for every affine scheme $S$ over $k$ and $m\in \bd{M}(S)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $m\in \bd{M}(S)$ be an $S$-point for some affine scheme $S$. We have
+$$\left(1_{O_S}\otimes_{k}f\right)\cdot \rho_V(m)=\left(\delta_S\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}m^{\#}\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}\left(\left(1_{O_{\bd{M}}}\otimes_{k}f\right)\cdot d_{\rho_V}\right)\right)$$
+and
+$$\rho_W(m)\cdot (1_{O_S}\otimes_{k}f)=\left(\delta_S\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}m^{\#}\otimes_{k}1_V\right)\cdot \left(1_{O_S}\otimes_{k}\left(d_{\rho_W}\cdot f\right)\right)$$
+Hence clearly $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Now suppose that \textbf{(ii)} holds. In particular
+$$\left(\delta_{\bd{M}}\otimes_{k}1_V\right)\cdot \left(1_{O_{\bd{M}}}\otimes_{k}\left(\left(1_{O_{\bd{M}}}\otimes_{k}f\right)\cdot d_{\rho_V}\right)\right)=\left(1_{O_{\bd{M}}}\otimes_{k}f\right)\cdot \rho_V(1_{\bd{M}})=$$
+$$=\rho_W(1_{\bd{M}})\cdot (1_{O_{\bd{M}}}\otimes_{k}f)=\left(\delta_{\bd{M}}\otimes_{k}1_V\right)\cdot \left(1_{O_\bd{M}}\otimes_{k}\left(d_{\rho_W}\cdot f\right)\right)$$
+This implies that 
+$$\left(1_{O_{\bd{M}}}\otimes_{k}f\right)\cdot d_{\rho_V}=d_{\rho_W}\cdot f$$
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+According to Lemmas \ref{semigroupmorphism} and \ref{identitypreservation} we deduce that $\rho$ is a morphism of functors of monoids if and only if $(M,d_{\rho})$ is a comodule over the bialgebra $\Gamma(\bd{V},\cO_{\bd{M}})$. This proves that the correspondence $(V,\rho)\mapsto (V,d_{\rho})$ between representations of $\bd{M}$ and comodules over $\Gamma(\bd{M},\cO_{\bd{M}})$ is bijective.\\
+Now suppose that $f:V\ra W$ is a morphism of $k$-modules and $(V,\rho_V)$, $(W,\rho_W)$ are representations. Lemma \ref{linearmorphismscoincide} shows that $f$ is a morphism of representations if and only if $f$ is a morphism of comodules over $\Gamma(\bd{M},\cO_{\bd{M}})$.
+\end{proof}
+
+\begin{corollary}\label{comodulesandrepresentation}
+Let $\bd{M}$ be an affine monoid $k$-scheme. Then correspondence described in Theorem \ref{comodulesandrepresentationsthm} gives rise to an isomorphism of categories
+$$\bd{Rep}_{\bd{M}}\ra \bd{coMod}\left(\Gamma(\bd{M},\cO_{\bd{M}})\right)$$
+\end{corollary}
+\begin{proof}
+This is just a reformulation of Theorem \ref{comodulesandrepresentationsthm}.
+\end{proof}
+
+
+
+\end{document}
