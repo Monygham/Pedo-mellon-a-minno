@@ -1,0 +1,659 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{In construction}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In this notes we study affine monoid $k$-schemes by using their linear representation.
+
+
+\section{Comodules}
+\begin{theorem}\label{theorem:limits_creation_forgetful_from_coalgebras_to_modules}
+Let $C$ be a $k$-coalgebra such that $C$ is a flat $k$-module. Then the forgetful functor $\bd{coMod}(C)\ra \Mod(k)$ creates finite limits.
+\end{theorem}
+\begin{proof}
+Let $\Delta,\xi$ be the comultiplication and the counit of $C$, respectively. Suppose that $I\ni i\mapsto (V_i,d_i)\in \bd{coMod}(C)$ is a diagram of $C$-comodules indexed by some finite category $I$. Let $V$ together with $u_i:V\ra V_i$ for $i\in I$ be a limit of the diagram $I\ni i\mapsto V_i\in \Mod(k)$. Then $C\otimes_{k}V$ together with $1_C\otimes_{k}u_i:C\otimes_{k}V\ra C\otimes_{k}V_i$ for $i\in I$ is a limit of the diagram $I\ni i\mapsto C\otimes_{k}V_i\in \Mod(k)$. By the universal property of limit we deduce that there exists a unique morphism $d:V\ra C\otimes_{k}V$ such that diagrams 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{V&  &       V_i    \\
+C\otimes_{k}V &   &   C\otimes_{k}V_i  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ p_i$} (m-1-3)
+(m-1-3) edge node[right] {$d_i $} (m-2-3)
+(m-1-1) edge node[left] {$d $} (m-2-1)
+(m-2-1) edge node[below] {$ 1_{C}\otimes_{k}p_i$} (m-2-3);
+\end{tikzpicture}
+\end{center} 
+are commutative for every $i\in I$. Note that $C\otimes_{k}C\otimes_{k}V$ together with morphisms $1_C\otimes_{k}1_C\otimes_{k}p_i:C\otimes_{k}C\otimes_{k}V\ra C\otimes_{k}C\otimes_{k}V_i$ for every $i\in I$ is a limit of the diagram given by $I\ni i\mapsto C\otimes_{k}C\otimes_{k}V_i\in \Mod(k)$. In order to show that $(V,d)$ is a $C$-comodule note that for every $i\in I$ we have
+$$\left(1_C\otimes_{k}1_C\otimes_{k}p_i\right)\cdot \left(1_C\otimes_{k}d\right)\cdot d=\left(1_C\otimes_{k}d_i\right)\cdot d_i\cdot p_i=$$
+$$=\left(\Delta\otimes_{k}1_{V_i}\right)\cdot d_i\cdot p_i=\left(1_C\otimes_{k}1_C\otimes_{k}p_i\right)\cdot \left(\Delta\otimes_{k}1\right)\cdot d$$
+and
+$$\left(1_{k}\otimes_{k}p_i\right)\cdot \left(\xi\otimes_{k}1\right)\cdot d= \left(\xi\otimes_{k}1_{V_i}\right)\cdot d_i\cdot p_i=j_{V_i}\cdot p_i=\left(1_{k}\otimes_{k}p_i\right)\cdot j_V$$
+where $j_W:W\ra k\otimes_{k}W$ is the natural isomorphism for every $k$-module $W$. Thus by the universality of a limit we deduce that $d$ is a coaction of $C$ on $V$. Suppose now that $(W,e)$ is a $C$-comodule and $r_i:W\ra V_i$ for $i\in I$ is a family of $C$-comodule morphisms compatible with the diagram $I\ni i\mapsto (V_i,d_i)\in \bd{coMod}(C)$. Then there exists a unique morphism of $k$-modules $f:W\ra V$ such that $p_i\cdot f=r_i$ for every $i$. Note that
+$$(1_C\otimes_{k}p_i)\cdot d\cdot f= d_i\cdot p_i\cdot f=d_i\cdot r_i=\left(1_C\otimes_{k}r_i\right)\cdot e=\left(1_C\otimes_{k}p_i\right)\cdot \left(1_C\otimes_{k}f\right)\cdot e$$ 
+for every $i\in I$. Hence $d\cdot f=\left(1_C\otimes_{k}f\right)\cdot e$. Thus $f$ is a morphism of left comodules over $C$. Thus $(V,d)$ and together with family $\{p_i:(V,d)\ra (V_i,d_i)\}_{i\in I}$ is a limit of the diagram $I\ni i\mapsto (V_i,d_i)\in \bd{coMod}(C)$ of $C$-comodules. This implies that the forgetful functor $\bd{coMod}(C)\ra \Mod(k)$ creates finite limits.
+\end{proof}
+
+\section{Motivation -- linear representations of compact topological groups}
+\noindent
+In this section we fix a compact topological group $\bd{G}$.
+Assume that $\rho:\bd{G}\ra \mathrm{GL}_n(\CC)$ is a continuous homomorphism i.e. a complex, $n$-dimensional linear representation of $\bd{G}$. For every $g\in \bd{G}$ we get a matrix
+$$\rho(g)=\left[c_{ij}(g)\right]_{1\leq i, j \leq n}$$
+For $i$, $j$ function $c_{ij}:\bd{G}\ra \CC$ is a continuous complex valued function. Alternatively suppose that $\{e_1,e_2,...,e_n\}$ is the standard basis of $\CC^n$ on which $\mathrm{GL}_n(\CC)$ act. Then $c_{ij}$ is equal to a function 
+$$\bd{G}\ni g \mapsto \langle g\cdot e_i, e_j\rangle \in \CC$$
+Fix now $g_1$, $g_2\in \bd{G}$ and note that
+$$\left[c_{ij}(g_2\cdot g_1)\right]_{1\leq i,j\leq n}  = \rho(g_2\cdot g_1) = \rho(g_2)\cdot \rho(g_1) = \left[\sum_{k=1}^nc_{ik}(g_2)\cdot c_{kj}(g_1)\right]_{1\leq i,j\leq n}$$
+Hence 
+$$c_{ij}(g_2\cdot g_1) = \sum_{k=1}^nc_{ik}(g_2)\cdot c_{kj}(g_1)$$
+for every $1\leq i,j\leq n$. This implies that $\sum_{1\leq i,j\leq n}\CC\cdot c_{ij}\subseteq \cL^2(\bd{G},\CC)$ is a linear $\bd{G}\times \bd{G}^{\mathrm{op}}$-subrepresentation of the regular representation $\cL^2(\bd{G},\CC)$. We call it \textit{the matrix coefficients of $\rho$}. 
+
+\section{Matrix coefficients of a representation}
+
+\begin{proposition}\label{proposition:matrixcoefficients}
+Let $\fX$ be a monoid $k$-functor and let $V$ be a finitely generated, projective $k$-module. Fix a morphism of monoids $\rho:\fX \ra \cL_V$. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. For every $A$-algebra $B$ and $x\in \fX_A(B)$ we consider the formula
+$$c_{v,w}(x) = \langle \rho_A(x) \cdot v_B, w_B \rangle$$
+Then $c_{v,w}$ defines a regular function on $\fX_A$ for every $k$-algebra $A$.
+\end{proposition}
+\begin{proof}
+Suppose that $f:B\ra C$ is a morphism of $A$-algebras and pick $x\in \fX_A(B)$. Since $\rho_A$ is natural and $w:A\otimes_kV\ra A$ is a morphism of $A$-modules, we derive that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{V_B & V_B & B \\
+ V_C & V_C & C\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$\rho_A\big(\fX_A(f)(x)\big) $} (m-2-2)
+(m-1-2) edge node[right] {$1_{V_A}\otimes_Af $} (m-2-2) 
+(m-1-1) edge node[left]  {$1_{V_A}\otimes_Af $} (m-2-1)
+(m-1-1) edge node[above] {$\rho_A(x) $} (m-1-2)
+(m-1-2) edge node[above] {$w_B $} (m-1-3)
+(m-2-2) edge node[below] {$w_C $} (m-2-3)
+(m-1-3) edge node[right] {$f $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+is commutative. Hence 
+$$c_{v,w}\big(\fX_A(f)(x)\big)=\langle \rho_A\big(\fX_A(f)(x)\big)\cdot v_C,w_C\rangle=f\big(\langle \rho_A(x)\cdot v_B, w_B\rangle \big)=f\big(c_{v,w}(x)\big)$$
+and this implies that $c_{v,w}:\fX_A\ra \mathbb{A}^1_A$ is natural.
+\end{proof}
+
+\begin{definition}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated, projective underlying $k$-module $V$. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Then the regular function $c_{v,w}$ on $\fX_A$ is called \textit{the matrix coefficient of $v$ and $w$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:matrixcoefficientsnatural}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Then the following assertions holds.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item For every $k$-algebra $A$ map
+$$\left(A\otimes_kV\right)\times \left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)$$
+is $A$-bilinear.
+\item The collection of maps
+$$\big\{\left(A\otimes_kV\right)\times \left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)\big\}_{A\in \Alg_k}$$
+gives rise to a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ V_{\mathrm{a}}\times V^{\vee}_{\mathrm{a}} &  \iMor_k\left(\fX,\mathbb{A}^1_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We left the proof of \textbf{(1)} to the reader.\\
+We prove \textbf{(2)}. Consider $k$-algebra $A$ and an $A$-algebra $B$ with structural morphism $f:A\ra B$. Fix $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. We prove that restriction of $c_{v,w}:\fX_A\ra \mathbb{A}^1_A$ to the category $\Alg_B$ is $c_{v_B,w_B}$. For this pick a $B$-algebra $C$ and an element $x\in \fX_A(C)=\fX_B(C)$. Note that
+$$c_{v,w}(x)= \langle \rho_A(x)\cdot v_C,w_C \rangle =  \langle \rho_B(x)\cdot v_C,w_C\rangle = \langle \rho_B(x)\cdot (v_B)_C,(w_B)_C\rangle = c_{v_B,w_B}(x)$$
+and hence ${c_{v,w}}_{\mid \Alg_B}=c_{v_B,w_B}$. Consider the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{V_{\mathrm{a}}(A)\times V^{\vee}_{\mathrm{a}}(A) & \iMor_k\left(\fX,\mathbb{A}^1\right)(A)  \\
+ V_{\mathrm{a}}(B)\times V^{\vee}_{\mathrm{a}}(B) & \iMor_k\left(\fX,\mathbb{A}^1\right)(B)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-2) edge node[right] {$\iMor_k(\fX,\mathbb{A}^1)(f) $} (m-2-2) 
+(m-1-1) edge node[left]  {$V_a(f)\times V^{\vee}_a(f)$} (m-2-1)
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+in which both horizontal arrows are given by formula $(v,w)\mapsto c_{v,w}$. We proved that the square commutes. Since $f$ is an arbitrary morphism of $k$-algebras, we conclude the assertion.
+\end{proof}
+
+\begin{corollary}\label{corollary:matrixcoefficientsnatural}
+Let $\fX$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Then there exists a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \left(V \otimes_k V^{\vee}\right)_{\mathrm{a}} &  \iMor_k\left(\fX,\mathbb{A}^1_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$c $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+given by formula
+$$\left(A\otimes_kV\right)\otimes_A\left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fX_A,\mathbb{A}^1_A\right)$$
+Moreover, $c$ is a morphism of $k$-functors equipped with $\fX \times \fX^{\mathrm{op}}$-actions.
+\end{corollary}
+\begin{proof}
+The first part is an immediate consequence of Proposition \ref{proposition:matrixcoefficientsnatural}. We prove that $c$ is a morphism of $k$-functors equipped with $\fX\times \fX^{\mathrm{op}}$-actions. For this we fix a $k$-algebra $k$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Pick a morphism of $k$-algebras $f:A\ra B$, $(y,z)\in \fX(A)\times \fX(A)^{\mathrm{op}}$ and $x\in \fX_A(B)$. Then we have 
+$$c_{\rho(y)\cdot v,w\cdot \rho(z)}(x) = \big\langle \rho_A(x)\cdot \left(\rho(y)\cdot v\right)_B, \left(w\cdot \rho(z)\right)_B \big\rangle =$$
+$$= \big\langle \rho_A(x)\cdot \rho_A(\left(\fX_A(f)(y)\right))\cdot v_B, w_B\cdot \rho_A\left(\fX_A(f)(z)\right) \big\rangle = w_B\big(\rho_A\left(\fX_A(f)(z)\right)\cdot \rho_A(x)\cdot \rho_A\left(\fX_A(f)(y)\right)\cdot v_B \big)=$$
+$$= w_B\big(\rho_A\left(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\right)\cdot v_B \big) = \big\langle \rho_A\left(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\right)\cdot v_B, w_B \big\rangle =  $$
+$$= c_{v,w}\big(\fX_A(f)(z) \cdot x \cdot \fX_A(f)(y)\big)$$
+and hence $c$ is a morphism of $k$-functors equipped with actions of $\fX\times \fX^{\mathrm{op}}$.
+\end{proof}
+
+\section{The category of linear representations}
+\noindent
+In this section we fix a monoid $k$-functor $\fG$. Note that there exists the forgetful functor $\bd{Rep}(\fG)\ra \Mod(k)$ that sends each linear representation to its underlying $k$-module.
+
+\begin{theorem}\label{theorem:forgetful_functor_from_reps_creates_colmits_and_flimits}
+The forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{Rep}(\fG)  & \Mod(k) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small colimits.
+\end{theorem}
+\begin{proof}
+Suppose that $I\ni i\mapsto (V_i,\rho_i)\in \bd{Rep}(\fG)$ is a diagram of linear representations of $\fG$ indexed by some category $I$. Let $V$ together with $u_i:V_i\ra V$ for $i\in I$ be a colimit of the diagram $I\ni i\mapsto V_i\in \Mod(k)$.\\
+Assume first that $(V,\rho)$ is a structure of the linear representation of $\fG$ on $V$ such that $u_i:V_i\ra V$ for $i\in I$ becomes a cocone over the diagram $I\ni i\mapsto (V_i,\rho_i)\in \bd{Rep}(\fG)$. For every $k$-algebra $A$ the functor $A\otimes_k(-)$ preserves colimits and hence $1_A\otimes_ku_i$ for $i\in I$ is a colimit of the diagram $I\ni i \mapsto 1_A\otimes_kV_i\in \Mod(A)$. For each $i\in I$ we have an action $\rho_i^A:\fG(A)\ra \Hom_A\left(A\otimes_kV_i, A\otimes_kV_i\right)$ of $\fG(A)$ on $A\otimes_kV_i$ and we may view the diagram $I\ni i \mapsto 1_A\otimes_kV_i\in \Mod(A)$ as a diagram in the category of $A$-modules equipped with $\fG(A)$-actions given by $A$-module morphisms. We refer to this category as to category of $A$-linear $\fG(A)$-actions. Now the forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \bigg\{\mbox{the category of $A$-linear $\fG(A)$-actions}\bigg\} & \Mod(A) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small limits. Indeed, the category on the right hand side is isomorphic with the category $\Mod\left(A[\fG(A)]\right)$ of left modules over the monoid $A$-algebra $A[\fG(A)]$ and the forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \Mod\left(A[\fG(A)]\right) & \Mod(A) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small colimits. This implies that $\rho^A:\fG(A) \ra \Hom_A(A\otimes_kV,A\otimes_kV)$ must be a unique morphism of monoids such that $1_A\otimes_ku_i$ for every $i\in I$ is a morphism of $A$-modules with $A$-linear action of $\fG(A)$. This implies that $\rho$ is unique and hence $(V,\rho)$ is unique lift of $\left(V,\{u_i\}_{i\in I}\right)$ to $\bd{Rep}(\fG)$. This shows the uniqueness of a lift.\\
+For the existence assume for given $k$-algebra $A$ that $\rho^A:\fG(A) \ra \Hom_A(A\otimes_kV,A\otimes_kV)$ is a unique morphism of monoids such that $1_A\otimes_ku_i$ for every $i\in I$ is a morphism of $A$-modules with $A$-linear action of $\fG(A)$. Note that $\rho^A$ exists because the forgetful functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \bigg\{\mbox{the category of $A$-linear $\fG(A)$-actions}\bigg\} & \Mod(A) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+creates small colimits. Denote $\rho = \{\rho^A\}_{A\in \Alg_k}$. We verify that $\rho$ is a morphism of $k$-functors $\rho:\fG\ra \cL_V$. For this consider morphism $f:A\ra B$ of $k$-algebras and the commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{  A\otimes_k V_i   & A\otimes_kV \\
+   B\otimes_k V_i   & B\otimes_kV \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ 1_A\otimes_ku_i $} (m-1-2)
+(m-2-1) edge node[below] {$ 1_B\otimes_ku_i$} (m-2-2)
+(m-1-1) edge node[left] {$ f\otimes_k1_{V_i} $} (m-2-1)
+(m-1-2) edge node[right] {$ f\otimes_k1_V $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+defined for every $i\in I$. Note that the top row of the square is a morphism of $A$-modules with $A$-linear $\fG(A)$-actions. Similarly interpreting $B\otimes_kV_i$ and $B\otimes_kV$ as $A$-modules with $A$-linear actions of $\fG(A)$ given by $\rho^B_i\cdot \fG(f)$ and $\rho^B\cdot \fG(f)$, respectively, we derive that the square consists of $A$-modules with $A$-linear actions of $\fG(A)$ and all maps preserve actions except possibly $f\otimes_k1_V$. Since $A\otimes_kV$ together with $1_A\otimes_ku_i$ for $i\in I$ is a colimit of $I\ni i \mapsto 1_A\otimes_kV_i\in \Mod(A)$ in the category of $A$-modules, we deduce that $f\otimes_k1_V$ is the only morphism of $A$-modules making squares commutative for all $i\in I$. Since $A\otimes_kV$ with $\rho^A$ and $1_A\otimes_k u_i$ for $i\in I$ is a colimit of the same diagram, but interpreted as a diagram of $A$-modules with $A$-linear action of $\fG(A)$-modules, we derive from uniqueness of $f\otimes_k1_V$ that it must also preserve $\fG(A)$-action. Hence $\left(f\otimes_k1_V\right)\cdot \rho^A = \rho^B\cdot \fG(f)$. Thus $\rho$ is a morphism of $k$-functors. By definition of $\rho^A$ for each $k$-algebra $A$, we derive that it is a morphism of monoid $k$-functors. Hence $(V,\rho)$ is a linear representation of $\fG$ and again by componentwise definition of $\rho$ we deduce that $(V,\rho)$ is a colimit of the diagram $I\ni i\mapsto (V_i,\rho_i)\in \bd{Rep}(\fG)$. 
+\end{proof}
+
+\begin{theorem}
+Let $A$ be a commutative ring. The following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $\Spec A$ is a Hausdorff space.
+\item Every prime ideal of $A$ is maximal.
+\item Every $A/\cN$-module is flat, where $\cN$ is a nilradical of $A$.
+\item Every finitely generated ideal of $A$ is generated by an idempotent.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{lemma:flatness_in_stalks}
+Let $A$ be a commutative ring and $M$ be an $A$-module. Then $M$ is flat if and only if $M_{\ideal{p}}$ is flat for all $\ideal{p}\in \Spec A$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every $\ideal{p}\in \Spec A$ we have a natural isomorphism
+$$M_{\ideal{p}}\otimes_A(-) \cong \left(M\otimes_A(-)\right)_{\ideal{p}}$$
+Now the statement follows from the fact that a chain complex of $A$-modules is exact if and only if it is exact after localization in every prime ideal $\ideal{p}\in \Spec A$
+\end{proof}
+
+\begin{lemma}\label{lemma:absolutely_flat_local_ring}
+Let $A$ be a local ring such that each $A$-module is flat. Then $A$ is a field.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $\ideal{m}$ be a maximal ideal of $A$ and $k$ be a residue field. Pick finitely generated ideal $\ideal{a}\subseteq \ideal{m}$. Consider the canonical exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{0 & \ideal{a} &  A    & A/\ideal{a} & 0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$a \mapsto a\,\mathrm{mod}\,\ideal{a} $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Since $k$ is a flat $A$-module, we derive that the sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{0 & k\otimes_A\ideal{a} &  k    & k/\ideal{a}k & 0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$\alpha \mapsto \alpha\,\mathrm{mod}\,\ideal{a}k $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is exact. Since $\ideal{a}k = 0$ because $\ideal{a}\subseteq \ideal{m}$, we deduce from the short exact sequence that $k\otimes_A\ideal{a} = 0$. By Nakayama lemma this implies that $\ideal{a} = 0$ ($\ideal{a}$ is finitely generated over $A$). Thus every finitely generated $A$-submodule of $\ideal{m}$ is trivial. Thus $\ideal{m} = 0$ and hence $A$ is a field.
+\end{proof}
+
+\section{Results on affine monoids}
+
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor. We say that $\fG$ is \textit{a monoid $k$-functor with zero} if there exists a $k$-point $\bd{o}$ of $\fG$ such that the following two morphisms
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\bd{1}\times \fG & \fG\times\fG & \fG & \fG \times \bd{1} & \fG\times \fG & \fG  \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[auto]  {$ \bd{o}\times 1_{\fG} $} (m-1-2)
+(m-1-2) edge node[auto]  {$ \textrm{mul} $} (m-1-3)
+(m-1-4) edge node[auto]  {$ 1_{\fG} \times \bd{o} $} (m-1-5)
+(m-1-5) edge node[auto]  {$ \textrm{mul} $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+where $\textrm{mul}: \fG \times \fG \ra \fG$ is the multiplication on $\fG$, factor through $\bd{o}$. If this is the case, then $\bd{o}$ is called \textit{the zero of $\fG$}.
+\end{definition}
+
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor. For each $k$-algebra $A$ we denote by $\fG^*(A)$ the group of units of $\fG(A)$. This gives rise to a subgroup $k$-functor $\fG^*$ of $\fG$. We call $\fG^*$ \textit{the group of units of $\fG$}.
+\end{definition}
+\noindent
+Now we describe the universal property of the group of units. Let $\fG$ be a monoid $k$-functor and let $\fG$ be a group $k$-functor. Suppose that $\sigma:\fG\ra \fG$ is a morphism of monoid $k$-functors. Then $\sigma$ factors through $\fG^*$.
+
+\begin{proposition}\label{proposition:integral_monoids_groups_of_units_are_schematically_dense}
+Let $\bd{M}$ be an affine $k$-monoid scheme and denote by $\fG$ the $k$-monoid functor that represents $\bd{M}$. Then $\fG^*$ is representable by an affine $k$-group scheme. Moreover, if $\bd{M}$ is an affine integral $k$-monoid scheme of finite type over $k$, then $\fG^*$ is an open $k$-subfunctor of $\fG$.
+\end{proposition}
+
+
+
+\section{Diagonalisable monoid $k$-schemes}
+\noindent
+Consider an abstract commutative monoid $\Gamma$. Consider the monoid $k$-algebra $k[\Gamma]$. Recall that $k[\Gamma]$ as a free $k$-vector space over $k$ and its elements can be uniquely written as
+$$\sum_{\gamma\in \Gamma}k_{\gamma}\cdot \gamma$$
+where almost all $k_{\gamma}$ are zero for $\gamma \in \Gamma$. Next the $k$-algebra $k[\Gamma]$ admits a structure of a commutative bialgebra with a comultiplication given by
+$$k[\Gamma] \ni \sum_{\gamma\in \Gamma} k_{\gamma}\cdot \gamma \ra \sum_{\gamma\in \Gamma}k_{\gamma}\cdot \left(\gamma\otimes \gamma\right)\in  k[\Gamma]\otimes_kk[\Gamma]$$
+and a counit
+$$k[\Gamma]\ni \sum_{\gamma \in \Gamma}k_{\gamma}\cdot \gamma \mapsto \sum_{\gamma\in \Gamma}k_{\gamma}\in k$$
+This makes $\Spec k[\Gamma]$ into a monoid $k$-scheme. We denote this monoid $k$-scheme by $\bd{D}_{\Gamma}$. For an alternative description note that we have identifications
+$$\fP_{\bd{D}_{\Gamma}}(A) \cong \Mor_k\left(k[\Gamma],A\right) \cong \Mon\left(\Gamma,A^{\times}\right)$$
+natural in $k$-algebra $A$, where the right hand side denotes the set of morphisms of monoids from $\Gamma$ to the multiplicative monoid $A^{\times}$ of $A$. The $k$-functor
+$$\Alg_k\ni A\mapsto \Mon\left(\Gamma,A^{\times}\right)\in \Set$$
+is a monoid $k$-functor with respect to multiplication of monoid homomorphisms in $\Mon\left(\Gamma,A^{\times}\right)$ for every $k$-algebra $A$. Hence the identification above makes the functor of points $\fP_{\bd{D}_{\Gamma}}$ into the monoid $k$-functor and induces precisely the bialgebra structure on $k[\Gamma]$ described above.\\
+Note that if $g:\Gamma_1\ra \Gamma_2$ is a morphism of commutative monoids, then $k[g]:k[\Gamma_1]\ra k[\Gamma_2]$ is a morphism of bialgebras (with respect to the structure described above). We denote $\Spec k[g]$ by $\bd{D}_{g}$.
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme. We say that $\bd{M}$ is \textit{diagonalisable} if there exists an abstract commutative monoid $\Gamma$ such that $\bd{M}$ is visomorphic to $\bd{D}_{\Gamma}$ as a monoid $k$-scheme.
+\end{definition}
+\noindent
+Now we prove the following important result.
+
+\begin{theorem}\label{theorem:commutative_monoids_and_diagonalisable_monoid_k_schemes}
+Suppose that $k$ is commutative ring such that $\Spec k$ is connected (i.e. $k$ has no nontrivial idempotents). Consider the functor 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=1em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \Gamma_1  &  & \bd{D}_{\Gamma_1}                           \\
+    {}      &  & {}          \\
+   \Gamma_2 &  & \bd{D}_{\Gamma_2}                  \\} ;
+\path[->, line width=1.0pt, font=\scriptsize]  
+(m-3-3) edge node[right] {$\bd{D}_{g} $} (m-1-3)
+(m-1-1) edge node[left] {$g $} (m-3-1);
+\path[|->, shorten >= 0.4cm, shorten <= 0.4cm, line width=1.0pt, font=\scriptsize]  
+(m-2-1) edge node[right] {$ $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+defined on the category of commutative monoids and with values in the category of monoid schemes over $k$. This functor preserves finite products and induces an equivalence of categories between abstract commutative monoids and diagonalisable monoid schemes over $k$.
+\end{theorem}
+\begin{proof}
+Suppose that $\Gamma_1, \Gamma_2$ are commutative monoids and $f:k[\Gamma_1]\ra k[\Gamma_2]$ is a morphism of bialgebras over $k$. Let $\Delta_1,\xi_1$ and $\Delta_2,\xi_2$ be comultiplications and counits for $k[\Gamma_1],k[\Gamma_2]$, respectively. Fix $\gamma\in \Gamma_1$ and suppose that $f(\gamma) = \sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \gamma'$. The fact that $f$ is a morphism of bialgebras over $k$ implies that
+$$\Delta_2\left(f\left( \gamma\right)\right) = \left(f\otimes_k f\right)\left(\Delta_1(\gamma)\right) = \left(f\otimes_kf\right)(\gamma\otimes_k\gamma) = f(\gamma)\otimes_kf(\gamma)$$
+Substituting $\sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \gamma'$ for $f(\gamma)$ we deduce that
+$$\sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \left(\gamma'\otimes \gamma'\right) = \sum_{\gamma'\in \Gamma_2}\sum_{\gamma''\in \Gamma_2}k_{\gamma'}\cdot k_{\gamma''}\cdot \left(\gamma'\otimes \gamma''\right)$$
+Thus we derive that
+$$k_{\gamma'}\cdot k_{\gamma''} = \begin{cases} 0 & \mbox{ if }\gamma'\neq \gamma''\\
+k_{\gamma'} & \mbox{ if }\gamma'=\gamma''
+\end{cases}$$
+Since there are no nontrivial idempotents in $k$, this implies that $k_{\gamma'} = 0,1$ for each $\gamma'\in \Gamma_2$. Again by the fact that $f$ is a morphism of $k$-bialgebras, we derive that
+$$\xi_1(\gamma) = \xi_2\left(f(\gamma)\right)$$
+Substituting $\sum_{\gamma'\in \Gamma_2}k_{\gamma'}\cdot \gamma'$ for $f(\gamma)$ yields that
+$$\sum_{\gamma'\in \Gamma_2}k_{\gamma'} = 1$$
+Combining this with previously established fact that $k_{\gamma'}=0,1$ for each $\gamma'\in \Gamma_2$ we deduce that there exists precisely one $\gamma'\in \Gamma_2$ such that $f(\gamma) = \gamma'$. This proves that $f(\Gamma_1)\subseteq \Gamma_2$. Since $f$ preserves multiplication and unit, we deduce that $f = k[g]$ for some homomorphism of abstract monoids $g:\Gamma_1\ra \Gamma_2$. Thus the functor described in the statement is full.\\
+It is also clearly faithful. Indeed, for two distinct morphisms of monoids $g_1,g_2:\Gamma_1\ra \Gamma_2$ we have $k[g_1]\neq k[g_2]$ and hence $\Spec k[g_1] \neq \Spec k[g_2]$.\\
+By definition of diagonalisable monoid the image of the functor is an essential subcategory of the category of diagonalisable $k$-schemes.\\
+Finally, consider commutative monoids $\Gamma_1,\Gamma_2$ and note that isomorphism
+$$k[\Gamma_1\times \Gamma_2] \ni \sum_{(\gamma_1,\gamma_2)\in \Gamma_1\times \Gamma_2}k_{(\gamma_1,\gamma_2)}\cdot (\gamma_1,\gamma_2) \mapsto \sum_{(\gamma_1,\gamma_2)\in \Gamma_1\times \Gamma_2}k_{(\gamma_1,\gamma_2)}\cdot \gamma_1\otimes \gamma_2 \in k[\Gamma_1]\otimes_kk[\Gamma_2]$$
+is a morphism of $k$-bialgebras. This implies that the functor described in the statement preserves binary products. The functor preserves terminal objects, since $k$ is a monoid $k$-algebra for trivial (zero) commutative monoid.
+\end{proof}
+
+\section{Representations of diagonalisable monoid $k$-schemes}
+
+\begin{definition}
+Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. Suppose that $V$ is a representation of $\bd{D}_{\Gamma}$ with respect to a morphism of monoid $k$-functors given by
+$$\fP_{\bd{D}_{\Gamma}}(A) = \Mod\left(\Gamma,A^{\times}\right) \ni f\mapsto f(\gamma)\cdot (-) \in \cL_{V}(A)$$
+where $\gamma$ is a fixed element of $\Gamma$. Then $V$ is called \textit{a representation of $\bd{D}_{\Gamma}$ of weight $\gamma$}.
+\end{definition}
+
+\begin{fact}\label{fact:weight_representation_as_comodules}
+Let $\Gamma$ be a commutative monoid and let $\gamma$ be its element. Suppose that $V$ is a representation of $\bd{D}_{\Gamma}$ of weight $\gamma$. Then $V$ can be equivalently described as a comodule over $k[\Gamma]$ with respect to the following coaction
+$$V_{\gamma}\ni v\mapsto \gamma\otimes v\in k[\Gamma]\otimes_kV_{\gamma}$$
+\end{fact}
+\begin{proof}
+Denote by $\rho:\fP_{\bd{D}_{\Gamma}}\ra \cL_{V}$ the morphism of monoid $k$-functors that makes a $V$ into a representation of $\bd{D}_{\Gamma}$. Then $\rho\left(1_{\bd{D}_{\Gamma}}\right)$ is a morphism of $k[\Gamma]$-modules
+$$k[\Gamma]\otimes_kV \ni 1\otimes v \mapsto \gamma \otimes v \in k[\Gamma]\otimes_k V$$
+We obtain the coaction of $k[\Gamma]$ on $V$ corresponding to $\rho$ by transforming morphism $\rho\left(1_{\bd{D}_{\Gamma}}\right)$ via the canonical isomorphism
+$$\Hom_{k[\Gamma]}\left(k[\Gamma]\otimes_kV,k[\Gamma]\otimes_kV\right)\cong \Hom_k\left(V,k[\Gamma]\otimes_kV\right)$$
+Thus this coaction is given by formula
+$$V \ni v\mapsto \gamma \otimes v\ni k[\Gamma]\otimes_kV$$
+\end{proof}
+
+\begin{fact}\label{fact:othogonality_of_weights_representations}
+Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. Suppose that $V_1,V_2$ are representations of $\bd{D}_{\Gamma}$ and assume that $V_1,V_2$ have weights $\gamma_1, \gamma_2$ with $\gamma_1\neq \gamma_2$. Then
+$$\Hom_{\bd{D}_{\Gamma}}\left(V_1,V_2\right) = 0$$
+\end{fact}
+\begin{proof}
+This follows from Fact \ref{fact:weight_representation_as_comodules}.
+\end{proof}
+\noindent
+Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. For every representation $V$ of $\bd{D}_{\Gamma}$ and fixed $\gamma$ in $\Gamma$  define
+$$V[\gamma] = \big\{v\in V\,\big|\,d(v) = \gamma \otimes v\big\}$$
+where $d:V\ra k[\Gamma]\otimes_kV$ is the coaction. Then $V[\gamma]$ is a subrepresentation of $V$. Note that according to Fact \ref{fact:weight_representation_as_comodules} $V[\gamma]$ is a subrepresentation of $V$ of weight $\gamma$.
+
+\begin{proposition}\label{proposition:weight_decomposition}
+Let $\Gamma$ be a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. For every representation $V$ of $\bd{D}_{\Gamma}$ we have a direct sum
+$$V = \bigoplus_{\gamma \in \Gamma}V[\gamma]$$
+\end{proposition}
+\begin{proof}
+Let $\Delta,\xi$ be the comultiplication and the counit of $k[\Gamma]$, respectively. Let $d:V\ra k[\Gamma]\otimes_k V$ be a coaction. Fix $v\in V$. Then we have a unique decomposition $d(v) = \sum_{\gamma \in \Gamma}\gamma\otimes v_{\gamma}$. Then
+$$\sum_{\gamma\in \Gamma}\gamma \otimes \gamma \otimes v_{\gamma}  = \left(\Delta\otimes_k1_V\right)\left(d(v)\right) =  \left(1_{k[\Gamma]}\otimes_kd\right)\left(d(v)\right) = \sum_{\gamma \in \Gamma}\gamma \otimes d(v_{\gamma})$$
+This implies that $d(v_{\gamma}) = \gamma \otimes v_{\gamma}$ and hence $v_{\gamma}\in V[\gamma]$. On the other hand we have
+$$v =  \xi\left(d(v)\right) = \sum_{\gamma\in \Gamma}v_{\gamma}$$
+Thus
+$$v \in \sum_{\gamma\in \Gamma}V[\gamma]$$
+Hence
+$$V =  \sum_{\gamma\in \Gamma}V[\gamma]$$
+Moreover, suppose that $\sum_{\gamma\in \Gamma}v_{\gamma} = \sum_{\gamma\in \Gamma}v'_{\gamma}$ for some $v_{\gamma},v'_{\gamma}\in V[\gamma]$. Then
+$$\sum_{\gamma\in \Gamma}\gamma\otimes v_{\gamma} = d\left(\sum_{\gamma\in \Gamma}v_{\gamma}\right) = d\left(\sum_{\gamma\in \Gamma}v'_{\gamma}\right) =  \sum_{\gamma\in \Gamma}\gamma \otimes v'_{\gamma}$$
+and hence $v_{\gamma} = v'_{\gamma}$ for each $\gamma \in \Gamma$. This proves the direct decomposition of $V$ as we claimed.
+\end{proof}
+
+\begin{corollary}\label{corollary:representations_of_diagonalisable_monoids}
+Let $k$ be a field. Suppose that $\Gamma$ is a commutative monoid and let $\bd{D}_{\Gamma}$ be the corresponding monoid $k$-scheme. Then the category $\bd{Rep}\left(\bd{D}_{\Gamma}\right)$ is semisimple. Moreover, each irreducible representation of $\bd{D}_{\Gamma}$ is isomorphic to one-dimensional representation of weight $\gamma$ for a unique $\gamma \in \Gamma$.
+\end{corollary}
+\begin{proof}
+This is a consequence of Fact \ref{fact:othogonality_of_weights_representations} and Proposition \ref{proposition:weight_decomposition}.
+\end{proof}
+
+\section{Diagonalisable group $k$-schemes}
+\noindent
+Let $\Gamma$ be an abstract commutative group. Then in addition to $k$-bialgebra structure the $k$-algebra $k[\Gamma]$ admits an antipode map
+$$k[\Gamma]\ni \sum_{\gamma\in \Gamma}k_{\gamma}\cdot \gamma \mapsto \sum_{\gamma\in \Gamma}k_{\gamma}\cdot \gamma^{-1}\in k[\Gamma]$$
+That makes $k[\Gamma]$ into a commutative Hopf $k$-algebra. Thus $\bd{D}_{\Gamma}$ is a group $k$-scheme in this case.\\
+The forgetful functor $|-|:\Ab\ra \bd{CMon}$ sending commutative (abelian) group to its underlying commutative monoid admits left adjoint $(-)_{\Grp}:\bd{CMon}\ra \Ab$. Hence for every commutative monoid $\Gamma$ there exists a universal commutative group $\Gamma_{\Grp}$ generated by $\Gamma$. This is used in the following result.
+
+\begin{proposition}\label{proposition:diagonalisable_monoid_k_schemes_its_group_of_units}
+Let $\Gamma$ be a commutative monoid. Then the canonical morphism $\Gamma \ra \Gamma_{\Grp}$ induces a monomorphism of monoid $k$-schemes
+$$\bd{D}_{\Gamma_{\Grp}} \hookrightarrow \bd{D}_{\Gamma}$$
+that identifies $\bd{D}_{\Gamma_{\Grp}}$ with $\left( \bd{D}_{\Gamma} \right)^*$.
+\end{proposition}
+\begin{proof}
+For every $k$-algebra we have an isomorphism of groups
+$$\Mon\left(\Gamma,A^{\times}\right)^* \cong \Mon\left(\Gamma,A^*\right) \cong \Mon\left(\Gamma_{\Grp},A^*\right) \cong \Mon\left(\Gamma_{\Grp},A^{\times}\right)$$
+natural in $A$. Note that this natural isomorphisms identifies $\fP_{\bd{D}_{\Gamma}}^*$ with $\fP_{\bd{D}_{\Gamma_{\Grp}}}$ by morphism induced by the unit $\Gamma\ra \Gamma_{\Grp}$ of the adjunction $|-|\vdash (-)_{\Grp}$.
+\end{proof}
+
+\begin{corollary}\label{corollary:diagonalisable_group_schemes}
+Let $\bd{G}$ be a group $k$-scheme. Suppose that  $G$ is isomorphic to $\bd{D}_{\Gamma}$ as a monoid $k$-scheme for some commutative monoid $\Gamma$. Then $\Gamma$ is a group.
+\end{corollary}
+\begin{proof}
+Suppose that $\bd{G}\cong \bd{D}_{\Gamma}$ as a monoid $k$-schemes. We derive that $\bd{D}_{\Gamma}$ is a group $k$-scheme. Hence $\bd{D}_{\Gamma_{\Grp}} \hookrightarrow \bd{D}_{\Gamma}$ is an isomorphism of monoid $k$-schemes. This implies that $\Gamma = \Gamma_{\Grp}$ and thus $\Gamma$ is an abstract group.
+\end{proof}
+
+\begin{definition}
+Let $\bd{G}$ be a group $k$-scheme. We say that $\bd{G}$ is \textit{diagonalisable group $k$-scheme} if it is diagonalisable as a monoid scheme over $k$.
+\end{definition}
+
+\begin{example}\label{example:multiplicative_group}
+Let $\mathbb{Z}$ be a commutative group of additive integers. We denote by $\mathbb{G}_{m}$ the monoid $k$-scheme $\bd{D}_{\ZZ}$. Note that $\mathbb{G}_{m}$ represents the group $k$-functor
+$$\Alg_k\ni A\mapsto A^{*}\in \Ab$$
+We call $\mathbb{G}_{m}$ \textit{the multiplicative group over $k$}.
+\end{example}
+
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor. Then the morphisms $\fG\ra \fP_{\mathbb{G}_m}$ of monoid $k$-functors are called \textit{characters of $\fG$}. They form a group $\cX(\fG)$ called \textit{the group of characters of $\fG$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:characters_and_diagonalisable_groups}
+Suppose that $k$ is commutative ring such that $\Spec k$ is connected (i.e. $k$ has no nontrivial idempotents). Functors 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=1em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \Gamma_1  &  & \bd{D}_{\Gamma_1} & & \bd{G}_1  &  & \cX(\bd{G}_1)   \\
+    {}      &  & {}                & & {}        &  & {}              \\
+   \Gamma_2 &  & \bd{D}_{\Gamma_2} & &  \bd{G}_2 &  & \cX(\bd{G}_2)                 \\} ;
+\path[->, line width=1.0pt, font=\scriptsize]  
+(m-3-3) edge node[right] {$\bd{D}_{g} $} (m-1-3)
+(m-1-1) edge node[left] {$g $} (m-3-1)
+(m-3-7) edge node[right] {$\cX(f) $} (m-1-7)
+(m-1-5) edge node[left] {$f $} (m-3-5);
+\path[|->, shorten >= 0.4cm, shorten <= 0.4cm, line width=1.0pt, font=\scriptsize]  
+(m-2-1) edge node[right] {$ $} (m-2-3)
+(m-2-5) edge node[right] {$ $} (m-2-7);
+\end{tikzpicture}
+\end{center}
+induce an equivalence between categories of abstract commutative groups and diagonalisable group schemes over $k$..
+\end{corollary}
+\begin{proof}
+This is a consequence of Theorem \ref{theorem:commutative_monoids_and_diagonalisable_monoid_k_schemes}.
+\end{proof}
+
+
+\subsection{Results on linear representations}
+
+\begin{proposition}\label{proposition:invariants_are_stable_under_tensoring_with_k_algebra}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $V$ be a representation of $\bd{M}$. Then for every $k$-algebra $A$ the natural morphism of $A$-modules
+$$V^{\bd{M}}\otimes_{k}A \ra \left(A\otimes_kV\right)^{\bd{M}_A}$$
+is an isomorphism.
+\end{proposition}
+\begin{proof}
+Note that we have a left exact sequence of $k$-vector spaces defining invariants
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{0 &  V^{\bd{M}} &   V& \Gamma(\bd{M},\cO_{\bd{M}}) \otimes_{k}V    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$\Delta-p $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+where $\Delta:V\ra \Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k} V$ is the coaction and $p:V\ra \Gamma(\bd{M},\cO_{\bd{M}})\otimes_{k}V$ is the trivial coaction defined by formula $p(v)= 1\otimes v$ for every $v$ in $V$. Now tensoring the sequence with $k$-algebra $A$ yields a left exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{0 &  V^{\bd{M}}\otimes_k A &   A \otimes_kV &\Gamma(\bd{M}_A,\cO_{\bd{M}_A})\otimes_{A}\left(A\otimes_kV\right)   \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$\Delta_A-p_A $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+where $\Delta_A$ is the coaction on $A\otimes_kV$ induced by $\Delta$ and $p_A$ is the trivial coaction on $A\otimes_kV$. This shows that $V^{\bd{M}}\otimes_{k}A \ra \left(A\otimes_kV\right)^{\bd{M}_A}$ is an isomorphism.
+\end{proof}
+
+\begin{proposition}\label{proposition:base_change_for_hom_of_representations_of_affine_group_schemes}
+Let $\bd{G}$ be an affine group $k$-scheme and let $V,W$ be representations of $\bd{G}$. If $V$ is finite dimensional, then for every $k$-algebra $A$ the canonical morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{A\otimes_k\Hom_{\bd{G}}(V,W) & \Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right)\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is an isomorphism of $A$-modules.
+\end{proposition}
+\begin{proof}
+Fix a $k$-algebra $A$. Since $V$ is finite dimensional, for every $k$-algebra $B$ there exists an isomorphism $B\otimes_k\Hom_{k}(V,W) \ra \Hom_{B}\left(B\otimes_kV,B \otimes_kW\right)$ of $B$-modules natural in $B$. This implies that $\Hom_k(V,W)$ is a representation of $\bd{G}$ via the action given by formula
+$$\left(g\cdot f\right)(v) = g\cdot f(g^{-1}\cdot v)$$
+where $f\in \Hom_{B}\left(B\otimes_kV,B \otimes_kW\right)$, $v\in B\otimes_kV$ and $g\in \fP_{\bd{G}}(B)$. Similarly $\Hom_A(A\otimes_kV,A\otimes_kW)$ is a representation of $\bd{G}_K$ and the canonical isomorphism $A\otimes_k\Hom_{k}(V,W) \ra \Hom_{A}\left(A\otimes_kV,A \otimes_kW\right)$ of $A$-modules is $\bd{G}_A$-equivariant. Now we apply Proposition \ref{proposition:invariants_are_stable_under_tensoring_with_k_algebra} to derive a chain of isomorphisms
+$$\Hom_{A}\left(A\otimes_kV,A\otimes_kW\right)^{\bd{G}_A} \cong \left(A\otimes_k\Hom_{k}(V,W)\right)^{\bd{G}_A} \cong A\otimes_k\Hom_k(V,W)^{\bd{G}}$$
+of $A$-modules. Since we have identifications
+$$\Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right) \cong \Hom_{A}\left(A\otimes_kV,A\otimes_kW\right)^{\bd{G}_A} ,\,\Hom_{\bd{G}}\left(V,W\right)  \cong \Hom_k\left(V,W\right)^{\bd{G}}$$
+we deduce the statement.
+\end{proof}
+
+\begin{proposition}\label{proposition:trivial_homs_stay_trivial}
+Let $\bd{G}$ be an affine group scheme over $k$ and let $V, W$ be $\bd{G}$-representation such that $\Hom_{\bd{G}}(U,W) = 0$ for every finite dimensional $\bd{G}$-subrepresentation of $V$. Then for every $k$-algebra $A$ we have
+$$\Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right)=0$$
+\end{proposition}
+\begin{proof}
+Let $\cF$ be a set of all finite dimensional $\bd{G}$-subrepresentations of $V$. Since $V$ is a $\bd{G}$-representation and $\bd{G}$ is an affine group $k$-scheme, we have
+$$V= \mathrm{colim}_{U\in \cF}\,U$$
+Fix $k$-algebra $A$ then we have identifications of $A$-modules
+$$\Hom_{\bd{G}_A}\left(A\otimes_kV,A\otimes_kW\right) = \Hom_{\bd{G}_A}\left(A\otimes_k\mathrm{colim}_{U\in \cF}U,A\otimes_kW\right) =$$
+$$ = \Hom_{\bd{G}_A}\left(\mathrm{colim}_{U\in \cF}A \otimes_k U,A \otimes_k W\right) = \lim_{U\in \cF} \Hom_{\bd{G}_A}\left(A \otimes_k U,A \otimes_k W\right) = $$
+$$ = \lim_{U\in \cF} \big(A\otimes_k\Hom_{\bd{G}}\left(U,W\right)\big) = 0$$
+where we apply Proposition \ref{proposition:base_change_for_hom_of_representations_of_affine_group_schemes}.
+\end{proof}
+
+
+\subsection{Linear algebraic monoids}
+
+\begin{proposition}
+Let $\bd{M}$ be a monoid $k$-scheme. Then the $k$-functor of units $\fP_{\bd{M}}^*$ of $\fP_{\bd{M}}$ is representable by a group $k$-scheme $\bd{M}^*$. Moreover, if $\bd{M}$ is affine and of finite type over $k$, then $\bd{M}^*$ is an open subscheme of $\bd{M}$.
+\end{proposition}
+\begin{proof}
+Note that $\fP_{\bd{M}}^*$ fits into a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{\fP_{\bd{M}}^*                  &   \bd{1}      \\
+ \fP_{\bd{M}}\times \fP_{\bd{M}} & \fP_{\bd{M}}  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$\fP_{m} $} (m-2-2)
+(m-1-1) edge node[above] {$ $} (m-2-1)
+(m-1-2) edge node[right] {$\fP_e $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $m:\bd{M}\times \bd{M}\ra \bd{M}$ is the multiplication and $e:\Spec k\ra \bd{M}$ is the unit. Since the functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \widehat{\Sch_k}  & \mbox{\emph{the category of $k$-functors}} \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+preserves fiber products, we derive that $\fP_{\bd{M}}^*$ is isomorphic to $\fP_{\bd{M}^*}$, where $\bd{M}^*$ is a $k$-scheme defined by the cartesian diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}^*             &      \Spec k      \\
+  \bd{M}\times \bd{M} &       \bd{M}  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ m $} (m-2-2)
+(m-1-1) edge node[above] {$ $} (m-2-1)
+(m-1-2) edge node[right] {$ e $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Since $\fP_{\bd{M}^*}\cong \fP_{\bd{M}}^*$, we deduce that $\bd{M}^*$ admits a structure of a group $k$-scheme.\\
+Now suppose that $\bd{M}$ is affine monoid $k$-scheme of finite type over $k$. Then there exist a finite dimensional vector space $V$ over $k$ and a closed immersion $i:\bd{M}\ra L(V)$ of monoid $k$-schemes.
+\end{proof}
+
+\begin{definition}
+Let $\bd{M}$ be an affine monoid $k$-scheme. Suppose that the group $\bd{G}$ of units of $\bd{M}$ is an algebraic group over $k$ and that the open immersion $\bd{G}\hookrightarrow \bd{M}$ is schematically dense. Then $\bd{M}$ is \textit{a linear algebraic monoid over $k$}.
+\end{definition}
+
+\begin{definition}
+Let $\bd{M}$ be a linear algebraic monoid over $k$. Suppose that the group $\bd{G}$ of units of $\bd{M}$ is (linearly) reductive. Then $\bd{M}$ is \textit{a (linearly) reductive monoid over $k$}.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{../zzz}
+
+\end{document}

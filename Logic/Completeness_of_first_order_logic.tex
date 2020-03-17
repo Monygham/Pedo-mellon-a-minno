@@ -184,18 +184,19 @@ Let $\phi$ be a formula of $\cL$. If $\bd{Fr}(\phi)=\emptyset$, then $\phi$ is c
 \end{definition}
 
 \section{First order languages and their semantics}
+
+\begin{definition}
+Let $\Sigma$ be a signature. \textit{A model $\fU$ of $\Sigma$} consists of the following data.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item A nonempty set $|\fU|$ called \textit{the universe of $\fU$} or \textit{the underlying set of $\fU$}.
+\item For each $n$-ary relation symbol $r$ of $\Sigma$ a relation $r^\fU \subseteq \underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}}$.
+\item For each $n$-ary function symbol $f$ of $\Sigma$ a function $f^\fU:\underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}} \ra |\fU|$.
+\end{enumerate}
+\textit{A model of $\cL$} is a model of the signature of $\cL$.
+\end{definition}
 \noindent
 In this section we fix a first order language $\cL$ with the set of variables $\bd{V}$.
 
-\begin{definition}
-\textit{A model $\fU$ of $\cL$} consists of the following data.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
-\item A nonempty set $|\fU|$ called \textit{the universe of $\fU$} or \textit{the underlying set of $\fU$}.
-\item For each $n$-ary relation symbol $r$ a relation $r^\fU \subseteq \underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}}$.
-\item For each $n$-ary function symbol $f$ a function $f^\fU:\underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}} \ra |\fU|$.
-\end{enumerate}
-\end{definition}
-  
 \begin{definition}
 Let $\fU$ be a model of $\cL$. \textit{An interpretation of $\cL$ in $\fU$} is a function $s:\bd{V}\ra |\fU|$.
 \end{definition}

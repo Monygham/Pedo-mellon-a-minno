@@ -9,7 +9,7 @@
 \section{Introduction and notation}
 \noindent
 In these notes we study algebraic structures in the category of $k$-functors with special emphasis on monoid objects.\\
-If $R$ is a ring, then we denote by $R^{\times}$ its multplicative monoid.
+Throughout these notes $k$ is a fixed commutative ring. If $M$ is a monoid, then we denote by $M^*$ the group of units of $M$. If $R$ is a ring, then we denote by $R^{\times}$ its multplicative monoid.
 
 \section{Algebraic structures in the category of $k$-functors}
 \noindent
@@ -21,6 +21,12 @@ In the sequel we assume that the reader is familiar with notions of a monoid, gr
 
 \begin{example}\label{example:endomorphisms_of_k_functor}
 Let $\fX$ be a $k$-functor such that $\iMor_k(\fX,\fX)$ exists. Then $\iMor_k(\fX,\fX)$ is a monoid $k$-functor with respect to composition of morphisms.
+\end{example}
+
+\begin{example}\label{example:units_k_functor_for_a_monoid}
+Let $\fG$ be a monoid $k$-functor. Then we denote by $\fG^*$ the $k$-subfunctor of $\fG$ defined by
+$$\fG^{*}(A) = \fG(A)^{*}$$
+for every $k$-algebra $A$. We call $\fG^{*}$ \textit{the unit group $k$-functor of $\fG$}.
 \end{example}
 
 \begin{example}\label{example:constant_ring_k_functor}
@@ -70,7 +76,7 @@ Let $\fX$ be a $k$-functor and assume that $\iMor_k\left(\fX, \fO_k\right)$ is a
 Let $\fX$ be a $k$-functor. Suppose that $A$ is a $k$-algebra, $x\in \fX(A)$ and $f\in \Mor_k\left(\fX,\fO_k\right)$. The element $f(x) \in A$ is called \textit{the value of $f$ on a point $x$}.
 \end{definition}
 \noindent
-For given $k$-functor $\fX$ we describe $k$-algebra operations on $\Mor_k\left(\fX,\fO_k\right)$ in terms of values of its elements on points of $\fX$. For this consider $\alpha \in k$ and $f$, $g\in \Mor_k\left(\fX, \fO_k\right)$. We have formulas
+For given $k$-functor $\fX$ we describe $k$-algebra operations on $\Mor_k\left(\fX,\fO_k\right)$ in terms of values of its elements on points of $\fX$. For this consider $\alpha \in k$ and $f$, $g_1\in \Mor_k\left(\fX, \fO_k\right)$. We have formulas
 $$\left(f+g\right)(x) = f(x)+g(x),\,\left(f\cdot g\right)(x) = f(x)\cdot g(x),\,\left(\alpha \cdot f\right)(x) = \alpha \cdot f(x)$$
 in which right hand side are $k$-algebra operations in $A$.
 
@@ -95,7 +101,7 @@ Left to the reader as an exercise.
 The discussion below is partially an application of the main result in {\cite[section 6]{Presheaves}}. For reader's convenience we make our presentation self-contained.
 
 \begin{definition}
-Let $\fU,\fX,\fY$ be $k$-functors and let $\sigma:\fU\times \fX\ra \fY$ be a morphism of $k$-functors. Fix $z\in \fU(A)$ for some $k$-algebra $A$. We denote by $i_z:\bd{1}_A\ra \fU_A$ the morphism of $A$-functors corresponding to $z$ by Fact \ref{fact:points_and_morphisms_from_terminal_k_functor}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\sigma_A\cdot \left(i_z\times 1_{\fX_A}\right)$ is isomorphic to a morphism $\sigma_z:\fX_A\ra \fY_A$ of $A$-functors. We call $\sigma_z$ \textit{the slice of $\sigma$ over $z$}.
+Let $\fU,\fX,\fY$ be $k$-functors and let $\sigma:\fU\times \fX\ra \fY$ be a morphism of $k$-functors. Fix $z\in \fU(A)$ for some $k$-algebra $A$. We denote by $i_z:\bd{1}_A\ra \fU_A$ the morphism of $A$-functors corresponding to $z$ by Fact \ref{fact:points_and_morphisms_from_terminal_k_functor}. Since $\bd{1}_A$ is terminal $A$-functor, a morphism $\sigma_A\cdot \left(i_z\times 1_{\fX_A}\right)$ is isomorphic to a morphism $\sigma_z:\fX_A\ra \fY_A$ of $A$-functors. We call $\sigma_z$ \textit{the slice of $\sigma$ along $z$}.
 \end{definition}
 
 \begin{definition}
@@ -167,8 +173,8 @@ is a bijection of classes.
 \section{Actions of monoid $k$-functors}\label{section:actions_of_monoid_k_functors}
 \noindent
 In this section we assume that the reader is familiar with notion of an action of a monoid object in arbitrary category with finite products. For definitions and some discussion related to these notions cf. {\cite[pages 5]{Maclane}}.\\
-Let $\fG$ be a monoid $k$-functor and $\fX$ be a $k$-functor together with an action $\alpha:\fG\times \fX \ra \fX$. Next assume that $k$-functor $\iMor_k(\fX,\fX)$ exists. By Example \ref{example:endomorphisms_of_k_functor} it is a monoid $k$-functor. We define a morphism $\rho:\fG\ra \iMor_k(\fX,\fX)$ of $k$-functors by formula $\rho(x) = \alpha_x$. Note that by discussion preceding Theorem \ref{theorem:k_subfunctors_of_hom}, we deduce that $\rho$ is a well defined morphism of $k$-functors. We show now that $\rho$ is a morphism of monoids. For this pick $k$-algebra $A$ and $x, y\in \fG(A)$. Since $\alpha$ is an action, we deduce that $\alpha_{x \cdot y} = \alpha_x \cdot \alpha_y$ and hence also
-$$\rho(x\cdot y) = \alpha_{x \cdot y} = \alpha_x\cdot \alpha_y = \rho(x)\cdot \rho(y)$$
+Let $\fG$ be a monoid $k$-functor and $\fX$ be a $k$-functor together with an action $\alpha:\fG\times \fX \ra \fX$. Next assume that $k$-functor $\iMor_k(\fX,\fX)$ exists. By Example \ref{example:endomorphisms_of_k_functor} it is a monoid $k$-functor. We define a morphism $\rho:\fG\ra \iMor_k(\fX,\fX)$ of $k$-functors by formula $\rho(g) = \alpha_{g}$. Note that by discussion preceding Theorem \ref{theorem:k_subfunctors_of_hom}, we deduce that $\rho$ is a well defined morphism of $k$-functors. We show now that $\rho$ is a morphism of monoids. For this pick $k$-algebra $A$ and $g_1, g_2\in \fG(A)$. Since $\alpha$ is an action, we deduce that $\alpha_{g_1 \cdot g_2} = \alpha_{g_1} \cdot \alpha_{g_2}$ and hence also
+$$\rho(g_1\cdot g_2) = \alpha_{g_1 \cdot g_2} = \alpha_{g_1}\cdot \alpha_{g_2} = \rho(g_1)\cdot \rho(g_2)$$
 Therefore, $\rho$ is a morphism of monoid $k$-functors. This shows how to construct a morphism of monoid $k$-functors $\rho$ from an action $\alpha$ of $\fG$.
 
 \begin{theorem}\label{theorem:actions_and_monoid_morphisms}
@@ -189,8 +195,8 @@ Our goal is to construct the inverse of the map. Substitute $\fJ = \iMor_k(\fX,\
 $$\Phi:\bigg\{\mbox{families }\fG\times \fX\ra \fX\mbox{ of morphisms}\bigg\} \ra  \Mor_{k}\left(\fG,\iMor_k(\fX,\fX)\right)$$
 and
 $$\Psi:\Mor_{k}\left(\fG, \iMor_k(\fX,\fX)\right) \ra \bigg\{\mbox{families }\fG\times \fX\ra \fX\mbox{ of morphisms}\bigg\}$$
-in that Theorem. Then the map in the statement above is the restriction of $\Phi$ to $\fG$-actions on $\fX$ on the right and morphisms $\fG\ra \iMor_k(\fX,\fX)$ of monoid $k$-functors on the left. Since by Theorem \ref{theorem:k_subfunctors_of_hom} maps $\Phi$ and $\Psi$ are mutually inverse, it suffices to check that $\Psi$ sends a morphism $\rho:\fG\ra \iMor_{k}(\fX,\fX)$ of monoids to an action of $\fG$ on $\fX$. For this denote $\Psi(\rho)$ by $\alpha$. Consider $k$-algebra $A$ and $A$-points $x,y\in \fG(A),\,z\in \fX(A)$. Then
-$$\alpha\left(y, \alpha(x, z)\right) = \rho(y)\left(\rho(x)(z)\right) = \left(\rho(y)\cdot \rho(x)\right)(z) = \rho\left(x\cdot y\right)(z) = \alpha\left(x\cdot y, z\right)$$
+in that Theorem. Then the map in the statement above is the restriction of $\Phi$ to $\fG$-actions on $\fX$ on the right and morphisms $\fG\ra \iMor_k(\fX,\fX)$ of monoid $k$-functors on the left. Since by Theorem \ref{theorem:k_subfunctors_of_hom} maps $\Phi$ and $\Psi$ are mutually inverse, it suffices to check that $\Psi$ sends a morphism $\rho:\fG\ra \iMor_{k}(\fX,\fX)$ of monoids to an action of $\fG$ on $\fX$. For this denote $\Psi(\rho)$ by $\alpha$. Consider $k$-algebra $A$ and $A$-points $g_1,g_2\in \fG(A),\,x\in \fX(A)$. Then
+$$\alpha\left(g_1, \alpha(g_2, x)\right) = \rho(g_1)\left(\rho(g_2)(x)\right) = \left(\rho(g_1)\cdot \rho(g_2)\right)(x) = \rho\left(g_1\cdot g_2\right)(x) = \alpha\left(g_1\cdot g_2, x\right)$$
 Therefore, $\alpha$ is an action of $\fG$ on $\fX$.
 \end{proof}
 
@@ -212,8 +218,8 @@ Let $\fG$ be a monoid $k$-functor and let $\fX_1$, $\fX_2$ be $k$-functors such 
 \end{tikzpicture}
 \end{center}
 is commutative.
-\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
-$$\sigma_A \cdot \rho_1(x) = \rho_2(x) \cdot \sigma_A$$
+\item For every $k$-algebra $A$ and $g\in \fG(A)$ we have
+$$\sigma_A \cdot \rho_1(g) = \rho_2(g) \cdot \sigma_A$$
 where $\rho_1:\fG\ra \iMor_k(\fX_1,\fX_1)$ and $\rho_2:\fG\ra \iMor_{k}(\fX_2,\fX_2)$ are morphism of monoid $k$-functors corresponding to $\alpha_1$ and $\alpha_2$, respectively.
 \end{enumerate}
 \end{proposition}
@@ -285,7 +291,7 @@ Let $\fA$ be a commutative ring $k$-functor and let $\fR$ be a $\fA$-algebra $k$
 In the setting above suppose that $\alpha:\fR\times \fM\ra \fM$ is a morphism of $k$-functors. Suppose that $\alpha$ makes $\fM$ into $\fR$-module and moreover, for every $k$-algebra $A$ and for every point $x\in \fR(A)$ morphism $\alpha_x$ is a morphism of $\fA_A$-modules. Then $\alpha$ is called \textit{a $\fA$-linear $\fR$-action on $\fM$}.
 \end{definition}
 \noindent
-We continue the discussion. We assume that we are given an $\fA$-linear $\fR$-action $\alpha:\fR\times \fM \ra \fM$ on $\fM$. We define a morphism $\rho:\fR\ra \cE nd_{\fA}(\fM)$ of $k$-functors by formula $\rho(x) = \alpha_x$. As in Section \ref{section:actions_of_monoid_k_functors} we can prove that $\rho$ is a morphism of ring $k$-functors. Now we have the following result.
+We continue the discussion. We assume that we are given an $\fA$-linear $\fR$-action $\alpha:\fR\times \fM \ra \fM$ on $\fM$. We define a morphism $\rho:\fR\ra \cE nd_{\fA}(\fM)$ of $k$-functors by formula $\rho(r) = \alpha_r$. As in Section \ref{section:actions_of_monoid_k_functors} we can prove that $\rho$ is a morphism of ring $k$-functors. Now we have the following result.
 
 \begin{theorem}\label{theorem:linear_morphisms_and_homomorphisms_of_rings}
 Let $\fR$ be an algebra $k$-functor over commutative ring $\fA$ $k$-functor and let $\fM$ be a $\fA$-module such that $\cE nd_{\fA}(\fM)$ exists. Suppose that
@@ -326,7 +332,7 @@ This follows from the analogical universal property of algebras over abstract mo
 \end{proof}
 
 \begin{definition}
-Let $\fG$ be a monoid $k$-functor and let $\fM$ be a module over $\fO_k$. Suppose that $\alpha:\fG\times \fM\ra \fM$ is an action of $\fG$ such that for any $k$-algebra $A$ and point $x\in \fG(A)$ morphism $\alpha_x:\fM_A\ra \fM_A$ is a morphism of $\fO_A$-modules. Then $\alpha$ is called \textit{a linear $\fG$-action on $\fM$}.
+Let $\fG$ be a monoid $k$-functor and let $\fM$ be a module over $\fO_k$. Suppose that $\alpha:\fG\times \fM\ra \fM$ is an action of $\fG$ such that for any $k$-algebra $A$ and point $g\in \fG(A)$ morphism $\alpha_{g}:\fM_A\ra \fM_A$ is a morphism of $\fO_A$-modules. Then $\alpha$ is called \textit{a linear $\fG$-action on $\fM$}.
 \end{definition}
 \noindent
 Suppose now that $\fG$ is a monoid $k$-functor and $\fM$ is a module $\fO_k$. Note that every linear $\fG$-action $\alpha:\fG\times \fM \ra \fM$ extends uniquely to a $\fO_k$-linear action $\fO_k[\fG]\times \fM\ra \fM$ of monoid $\fO_k$-algebra. This gives a bijection
@@ -359,7 +365,7 @@ Finally Fact \ref{fact:universal_property_of_monoid_algebra} implies that we hav
 (m-1-1) edge node[auto] {$ $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-This chain of bijections sends a linear action $\alpha:\fG\times \fM\ra \fM$ of $\fG$ to a morphism $\rho:\fG\ra \cE nd_{\fO_k}(\fM)$ of monoid $k$-functors given by $\rho(x) = \alpha_x$ for every $x\in \fG(A)$ and every $k$-algebra $A$. We proved the following result.
+This chain of bijections sends a linear action $\alpha:\fG\times \fM\ra \fM$ of $\fG$ to a morphism $\rho:\fG\ra \cE nd_{\fO_k}(\fM)$ of monoid $k$-functors given by $\rho(g) = \alpha_{g}$ for every $g\in \fG(A)$ and every $k$-algebra $A$. We proved the following result.
 
 \begin{proposition}\label{proposition:decription_of_linear_monoid_actions_on_modules}
 Let $\fG$ be a monoid $k$-functor and let $\fM$ be a $\fO_k$-module such that $\cE nd_{\fO_k}(\fM)$ exists. Then the following classes are in canonical bijections described above.
@@ -407,11 +413,11 @@ is commutative.
 \end{tikzpicture}
 \end{center}
 is commutative, where $\tilde{\alpha_1}$ and $\tilde{\alpha_2}$ are $\fO_k$-linear actions of $\fO_k[\fG]$ corresponding to $\alpha_1$ and $\alpha_2$, respectively. This states that $\sigma$ is a morphism of $\fO_k[\fG]$-modules.
-\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
-$$\sigma_A \cdot \tilde{\rho}_1(x) = \tilde{\rho}_2(x) \cdot \sigma_A$$
+\item For every $k$-algebra $A$ and $g\in \fG(A)$ we have
+$$\sigma_A \cdot \tilde{\rho}_1(g) = \tilde{\rho}_2(g) \cdot \sigma_A$$
 where $\tilde{\rho}_1:\fO_k[\fG] \ra \cE nd_{\fO_k}(\fM_1)$ and $\tilde{\rho}_2:\fO_k[\fG] \ra \cE nd_{\fO_k}(\fM_2)$ are morphism of $\fO_k$-algebras corresponding to $\tilde{\alpha_1}$ and $\tilde{\alpha_2}$, respectively.
-\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
-$$\sigma_A \cdot \rho_1(x) = \rho_2(x) \cdot \sigma_A$$
+\item For every $k$-algebra $A$ and $g\in \fG(A)$ we have
+$$\sigma_A \cdot \rho_1(g) = \rho_2(g) \cdot \sigma_A$$
 where $\rho_1:\fG \ra \cE nd_{\fO_k}(\fM_1)$ and $\rho_2:\fG \ra \cE nd_{\fO_k}(\fM_2)$ are restrictions of $\tilde{\rho_1}$ and $\tilde{\rho_2}$, respectively.
 \end{enumerate}
 The equivalence of \emph{\textbf{(i)}} and \emph{\textbf{(ii)}} does not require the existence of $\cE nd_{\fO_k}(\fM_1)$ and $\cE nd_{\fO_k}(\fM_2)$.
@@ -427,14 +433,14 @@ Let $\fG$ be a monoid $k$-functor. We denote by $\Mod\left(\fO_k[\fG]\right)$ th
 First we need the following notion.
 
 \begin{definition}
-Let $\left(-\right)^{\mathrm{op}}:\Mon \ra \Mon$ be the functor of opposite monoid and let $\fG$ be a monoid $k$-functor. Then the composition $\fG^{\mathrm{op}} = \left(-\right)^{\mathrm{op}}\cdot \fG$ is called \textit{the opposite monoid $k$-functor of $\fG$}.
+Let $\left(-\right)^{\mathrm{op}}:\Mon \ra \Mon$ be the opposite monoid functor and let $\fG$ be a monoid $k$-functor. Then the composition $\fG^{\mathrm{op}} = \left(-\right)^{\mathrm{op}}\cdot \fG$ is called \textit{the opposite monoid $k$-functor of $\fG$}.
 \end{definition}
 \noindent
-Let $\fG$ be a monoid $k$-functor. In this section we discuss important example of a $\fO_k[\fG]$-module. Fix a $k$-functor $\fX$ for which $\iMor_k(\fX,\fO_k)$ exists. Recall that by Example \ref{example:regular_functions_as_an_algebra_over_structure_algebra} $\iMor_k\left(\fX,\fO_k\right)$ is $\fO_k$-algebra $k$-functor. Let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on $\fX$. For every $k$-algebra $A$  we have a map of sets
-$$\Mor_A\left(\fX_A,(\fO_k)_A\right) \ni f\mapsto f\cdot \alpha_x\in \Mor_A\left(\fX_A,(\fO_k)_A\right)$$
-where $x\in \fG(A)$. From this description it follows that the map $f\mapsto f\cdot \alpha_x$ is a morphism of $A$-algebras. Moreover, note that if $y\in \fG(A)$ is some other $A$-point, then $\left(f\cdot \alpha_x\right)\cdot \alpha_y = f\cdot \alpha_{x\cdot y}$, where $x\cdot y \in \fG(A)$ is a product of $x$ and $y$. Thus the opposite monoid $\fG^{\mathrm{op}}(A)$ acts on the $A$-algebra $\Mor_A\left(\fX_A,\left(\fO_k\right)_A\right)$ by morphism of $A$-algebras. Next for every $A$-algebra $B$ and every point $y\in \fX(B)$ we have
-$$(f\cdot \alpha_x)(y) = f\left(\alpha_x(y)\right)$$
-This proves the following result.
+Let $\fG$ be a monoid $k$-functor. In this section we discuss important example of a $\fO_k[\fG]$-module. Fix a $k$-functor $\fX$ for which $\iMor_k(\fX,\fO_k)$ exists. Recall that by Example \ref{example:regular_functions_as_an_algebra_over_structure_algebra} $\iMor_k\left(\fX,\fO_k\right)$ is $\fO_k$-algebra $k$-functor. Let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on $\fX$. For every $k$-algebra $A$ we have a map of sets
+$$\Mor_A\left(\fX_A,(\fO_k)_A\right) \ni f\mapsto f\cdot \alpha_{g}\in \Mor_A\left(\fX_A,(\fO_k)_A\right)$$
+where $g\in \fG(A)$. From this description it follows that the map $f\mapsto f\cdot \alpha_{g}$ is a morphism of $A$-algebras. Moreover, note that if $g_1,g_2\in \fG(A)$, then $\left(f\cdot \alpha_{g_1}\right)\cdot \alpha_{g_2} = f\cdot \alpha_{g_1\cdot g_2}$, where $g_1\cdot g_2 \in \fG(A)$ is a product of $g_1$ and $g_2$. Thus the opposite monoid $\fG^{\mathrm{op}}(A)$ acts on the $A$-algebra $\Mor_A\left(\fX_A,\left(\fO_k\right)_A\right)$ by morphism of $A$-algebras. Next for every $A$-algebra $B$ and every point $x\in \fX(B)$ we have
+$$(f\cdot \alpha_{g})(x) = f\left(\alpha_{g}(x)\right)$$
+where $g\in \fG(A)$. This proves the following result.
 
 \begin{proposition}\label{proposition:action_on_regular_k_functor}
 Let $\fX$ be a $k$-functor and let $\alpha:\fG\times \fX \ra \fX$ be an action of a monoid $k$-functor $\fG$. Suppose that $\iMor_k\left(\fX,\fO_k\right)$ exists. Then $\fG^{\mathrm{op}}$ acts canonically on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
@@ -487,7 +493,11 @@ for every $k$-algebra $A$. Next for every morphism $f:A\ra B$ of $k$-algebras an
 (m-1-2) edge node[right] {$ f\otimes_k1_V $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is commutative. Note also that $\cL_V(A)$ is an $A$-algebra. Hence $\cL_V$ is a monoid $k\fO_k$-algebra.
+is commutative. Note also that $\cL_V(A)$ is an $A$-algebra for every $k$-algebra $A$. Hence $\cL_V$ is a monoid $\fO_k$-algebra. Note that we have natural identification
+$$\cL_V(A) = \Hom_k(V,A\otimes_kV)$$
+for every $k$-algebra. One can describe $\fO_k$-algebra structure on $\cL_V$ in terms of this identification as follows. Since $\Hom_k(V,A\otimes_kV)$ carries canonical structure of $A$-module it suffices to describe the multiplication. For this suppose that $d_1,d_2\in \Hom_k(V,A\otimes_kV)$. Then their product is given by
+$$\left(\mu_A\otimes_k1_V\right)\cdot \left(1_A\otimes d_2\right)\cdot d_1$$
+where $\mu_A:A\otimes_kA\ra A$ is the multiplication on $A$.
 \end{example}
 
 \begin{remark}\label{remark:general_linear_monoid}
@@ -528,11 +538,10 @@ Let $\fG$ be a monoid $k$-functor and let $V$ be a $k$-module. Then the followin
 This follows from Proposition \ref{proposition:decription_of_linear_monoid_actions_on_modules}.
 \end{proof}
 
-
 \begin{definition}
 Let $\fG$ be a monoid $k$-functor and let $(V,\rho)$, $(W,\delta)$ be its linear representations. A morphism $\phi:V\ra W$ of $k$-modules such that
-$$\phi_{\mathrm{a}}^A \cdot \rho(x) = \delta(x) \cdot \phi_{\mathrm{a}}^A$$
-for every $k$-algebra $A$ and $x\in \fG(A)$ is called \textit{a morphism of linear representations of $\fG$}.
+$$\phi_{\mathrm{a}}^A \cdot \rho(g) = \delta(g) \cdot \phi_{\mathrm{a}}^A$$
+for every $k$-algebra $A$ and $g \in \fG(A)$ is called \textit{a morphism of linear representations of $\fG$}.
 \end{definition}
 \noindent
 Next result characterizes morphisms of linear representations of monoid $k$-functor.
@@ -570,11 +579,11 @@ is commutative.
 \end{tikzpicture}
 \end{center}
 is commutative, where $\tilde{\alpha_1}$ and $\tilde{\alpha_2}$ are $\fO_k$-linear actions of $\fO_k[\fG]$ corresponding to $\alpha_1$ and $\alpha_2$, respectively. 
-\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
-$$\phi_{\mathrm{a}}^A \cdot \tilde{\rho}_1(x) = \tilde{\rho}_2(x) \cdot \phi_{\mathrm{a}}^A$$
+\item For every $k$-algebra $A$ and $g \in \fG(A)$ we have
+$$\phi_{\mathrm{a}}^A \cdot \tilde{\rho}_1(g) = \tilde{\rho}_2(g) \cdot \phi_{\mathrm{a}}^A$$
 where $\tilde{\rho}_1:\fO_k[\fG] \ra \cL_V$ and $\tilde{\rho}_2:\fO_k[\fG] \ra \cL_W$ are morphism of $\fO_k$-algebras corresponding to $\tilde{\alpha_1}$ and $\tilde{\alpha_2}$, respectively.
-\item For every $k$-algebra $A$ and $x\in \fG(A)$ we have
-$$\phi_{\mathrm{a}}^A \cdot \rho_1(x) = \rho_2(x) \cdot \phi_{\mathrm{a}}^A$$
+\item For every $k$-algebra $A$ and $g \in \fG(A)$ we have
+$$\phi_{\mathrm{a}}^A \cdot \rho_1(g) = \rho_2(g) \cdot \phi_{\mathrm{a}}^A$$
 where $\rho_1:\fG \ra \cL_V$ and $\rho_2:\fG \ra \cL_W$ are restrictions of $\tilde{\rho_1}$ and $\tilde{\rho_2}$, respectively. This states that $\phi$ is a morphism of linear representations of $\fG$.
 \end{enumerate}
 \end{corollary}
@@ -583,6 +592,394 @@ This follows from Proposition \ref{proposition:morphism_of_monoid_modules}.
 \end{proof}
 \noindent
 Let $\fG$ be a monoid $k$-functor. We denote by $\bd{Rep}(\fG)$ its category of linear representations. Note that $\bd{Rep}(\fG)$ is a full subcategory of $\Mod(\fO_k\left[\fG\right])$.
+
+\section{Monoid $k$-schemes}
+
+\begin{definition}
+\textit{A monoid $k$-scheme $\bd{M}$} is a monoid object in the category of $k$-schemes. If $\bd{M}$ is affine, then we say that $\bd{M}$ is \textit{an affine monoid $k$-scheme}.
+\end{definition}
+
+\begin{definition}
+\textit{A group $k$-scheme $\bd{G}$} is a group object in the category of $k$-schemes. If $\bd{G}$ is affine, then we say that $\bd{G}$ is \textit{an affine group $k$-scheme}.
+\end{definition}
+
+\begin{corollary}\label{corollary:monoid_k_schemes_and_their_functors_of_points}
+The functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Sch_k  & \mbox{\emph{the category of $k$-functors}} \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ \fP $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+induces an equivalence of categories
+$$\mbox{\emph{the category of monoid $k$-schemes}}\cong \mbox{\emph{monoid $k$-functors representable by $k$-schemes}}$$
+Similarly for categories of groups.
+\end{corollary}
+\begin{proof}
+Follows from {\cite[Fact 4.1]{kfunctors}}.
+\end{proof}
+\noindent
+Recall that by Example \ref{example:units_k_functor_for_a_monoid} each monoid $k$-functor $\fG$ has its group $k$-functor $\fG^*$ of units.
+
+\begin{proposition}
+Let $\bd{M}$ be an affine monoid $k$-scheme. Then the $k$-functor of units $\fP_{\bd{M}}^*$ is representable (by an affine $k$-scheme).
+\end{proposition}
+\begin{proof}
+Note that $\fP_{\bd{M}}^*$ fits into a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{\fP_{\bd{M}}^*                  &   \bd{1}      \\
+ \fP_{\bd{M}}\times \fP_{\bd{M}} & \fP_{\bd{M}}  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$\fP_{m} $} (m-2-2)
+(m-1-1) edge node[above] {$ $} (m-2-1)
+(m-1-2) edge node[right] {$\fP_e $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $m:\bd{M}\times \bd{M}\ra \bd{M}$ is the multiplication and $e:\Spec k\ra \bd{M}$ is the unit. By {\cite[Fact 4.1]{kfunctors}} the functor $\fP$ preserves finite products and hence it preserves fiber-products. This implies that $\fP_{\bd{M}}^*$ is represented by a unique (up to an isomorphism) $k$-scheme $\bd{M}^*$ that fit into a cartesian square below.
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}^*             &      \Spec k      \\
+  \bd{M}\times \bd{M} &       \bd{M}  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$ m $} (m-2-2)
+(m-1-1) edge node[above] {$ $} (m-2-1)
+(m-1-2) edge node[right] {$ e $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Note that if $\bd{M}$ is affine, then also $\bd{M}^*$ is affine.
+\end{proof}
+
+\begin{remark}\label{remark:convention_on_relation_between_notions_for_monoid_schemes_and_monoid_functors}
+Under the embedding given in Corollary \ref{corollary:monoid_k_schemes_and_their_functors_of_points} notions defined for monoid $k$-functors can be translated to monoid $k$-schemes.
+\end{remark}
+\noindent
+We give three instances of the use of Remark \ref{remark:convention_on_relation_between_notions_for_monoid_schemes_and_monoid_functors} below.
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme. Then the group $k$-scheme $\bd{M}^*$ representing $\fP_{\bd{M}}^*$ is called \textit{the group of units of $\bd{M}$}.
+\end{definition}
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme. Then \textit{the category of linear representations of $\bd{M}$} is the category of linear representations of the monoid $k$-functor $\fP_{\bd{M}}$. We denote this category by $\bd{Rep}\left(\bd{M}\right)$.
+\end{definition}
+
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-functor and let $\alpha:\fP_{\bd{M}}\times \fX\ra \fX$ be an action of $\fP_{\bd{M}}$ on a $k$-functor $\fX$. Then we say that $\alpha$ is \textit{an action of $\bd{M}$ on $\fX$}.
+\end{definition}
+
+\section{Bialgebras and affine monoid $k$-schemes}
+\noindent
+We start here with a general notion of $k$-coalgebras.
+
+\begin{definition}
+Let $(C,\Delta,\xi)$ be a triple consisting of a module $C$ over $k$ and morphisms
+$$\Delta:C \ra C\otimes_{k} C,\xi:C\ra k$$
+of $k$-modules such that the following diagrams are commutative.
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{C&  &    C\otimes_{k}C      &                       C& & C\otimes_{k}C &     C    & &C\otimes_{k}C \\
+C\otimes_{k}C&   &   C\otimes_{k}C\otimes_{k}C &  & &C\otimes_{k}k&          && k\otimes_{k}C  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$\Delta $} (m-1-3)
+(m-2-1) edge node[below] {$\Delta\otimes_{k}1_C $} (m-2-3)
+(m-1-3) edge node[right] {$ 1_{C}\otimes_{k}\Delta $} (m-2-3)  
+(m-1-1) edge node[left] {$ \Delta $} (m-2-1)
+(m-1-4) edge node[above] {$\Delta $} (m-1-6)
+(m-1-6) edge node[right] {$1\otimes_{k}\xi $} (m-2-6)
+(m-1-4) edge node[below = 3pt] {$\cong $} (m-2-6)
+(m-1-7) edge node[above] {$\Delta $} (m-1-9)
+(m-1-9) edge node[right] {$\xi\otimes_{k}1_C $} (m-2-9)
+(m-1-7) edge node[below = 3pt] {$\cong $} (m-2-9);
+\end{tikzpicture}
+\end{center}
+Then $(C,\Delta,\xi)$ is called \textit{a $k$-coalgebra}. Morphisms $\Delta$, $\xi$ are called \textit{a comultiplication} and \textit{a counit}, respectively.
+\end{definition}
+
+\begin{definition}
+Let $\left(C_1,\Delta_1,\xi_1\right)$ and $\left(C_2,\Delta_2,\xi_2\right)$ are $k$-coalgebras. Then a morphism $f:C_1\ra C_2$ of $k$-modules is \textit{a morphism of $k$-coalgebras} if the following diagrams are commutative.
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ C_1\otimes_{k}C_1 &   &   C_2\otimes_{k}C_2                            &    C_1 &   &  C_2 \\
+C_1             &   &       C_2                    &      & k &    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f\otimes_kf$} (m-1-3)
+(m-2-3) edge node[right] {$\Delta_2 $} (m-1-3)
+(m-2-1) edge node[left] {$\Delta_1$} (m-1-1)
+(m-2-1) edge node[below] {$ f$} (m-2-3)
+(m-1-4) edge node[above] {$ f$} (m-1-6)
+(m-1-4) edge node[left] {$\xi_1 $} (m-2-5)
+(m-1-6) edge node[right] {$\xi_2 $} (m-2-5);
+\end{tikzpicture}
+\end{center} 
+\end{definition}
+\noindent
+By $k$-algebra we mean commutative and unital $k$-algebra.
+
+\begin{definition}
+Let $B$ be a $k$-module with structures of both $k$-algebra and $k$-coalgebra. Assume that the comultiplication and the counit of $B$ are morphisms of $k$-algebras with respect to $k$-algebra structure of $B$. Then we say that $B$ with these structures is \textit{a $k$-bialgebra}. 
+\end{definition}
+
+\begin{definition}
+Let $B_1,B_2$ be $k$-bialgebras and let $f:B_1\ra B_2$ be a morphism of $k$-modules. We say that $f$ is \textit{a morphism of $k$-bialgebras} if it is simultaneously morphism of $k$-algebras and $k$-coalgebras. 
+\end{definition}
+
+\begin{theorem}\label{theorem:bialgebras_and_monoid_k_functors}
+The functor $\Spec:\Alg_k\ra \Sch_k$ induces an equivalence of categories
+$$\mbox{\emph{$k$-bialgebras}} \cong \mbox{\emph{the category of affine monoid $k$-schemes}}$$
+\end{theorem}
+\begin{proof}
+This is an exercise in translation. For details see {\cite[II, 1.6]{demazure1970groupes}}.
+\end{proof}
+\noindent
+Let $\bd{M}$ be an affine monoid $k$-scheme. Then we denote by $k[\bd{M}]$ its coordinate $k$-bialgebra, by $\Delta_{\bd{M}}$ its comultiplication and by $\xi_{\bd{M}}$ its counit. This is a notation that we consistently use in these notes.
+
+\section{Comodules over $k$-coalgebras}
+
+\begin{definition}
+Let $C$ be a $k$-coalgebra with the comultiplication $\Delta$ and the counit $\xi$. A pair $(V,d)$ consisting of a $k$-module $V$ and a morphism $d:V\ra C\otimes_{k}V$ of $k$-modules such that the following diagrams are commutative
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{V&  &    C\otimes_{k}V                            &   V&  &    C\otimes_{k}V \\
+C\otimes_{k}V&   &   C\otimes_{k}C\otimes_{k}V &  &   &   k\otimes_{k}V  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ d $} (m-1-3)
+(m-2-1) edge node[below] {$ \Delta\otimes_{k}1_V $} (m-2-3)
+(m-1-3) edge node[right] {$ 1_C\otimes_{k}d $} (m-2-3)  
+(m-1-1) edge node[left] {$ d $} (m-2-1)
+(m-1-4) edge node[above] {$d $} (m-1-6)
+(m-1-6) edge node[right] {$\xi\otimes_{k} 1_V $} (m-2-6)
+(m-1-4) edge node[below] {$ \cong$} (m-2-6);
+\end{tikzpicture}
+\end{center} 
+is called \textit{a $C$-comodule}. Morphism $d$ is called \textit{a coaction of $C$ on $V$}.
+\end{definition}
+
+\begin{definition}
+Let $C$ be a $k$-coalgebra and let $(V_1,d_1),(V_2,d_2)$ be two comodules over $C$. A morphism of $k$-modules $f:V_1\ra V_2$ is \textit{a morphism of $C$-comodules} if the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{C\otimes_{k}V_1 &    C\otimes_{k}V_2     \\
+              V_1&         V_2  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_{C}\otimes_{k}f$} (m-1-2)
+(m-2-2) edge node[right] {$d_2 $} (m-1-2)
+(m-2-1) edge node[left] {$d_1 $} (m-1-1)
+(m-2-1) edge node[below] {$ f$} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+is commutative. 
+\end{definition}
+\noindent
+We denote by $\bd{coMod}(C)$ the category of $C$-comodules for a $k$-coalgebra $C$.
+
+\begin{theorem}\label{theorem:forgetful_coalgebras_to_modules_create_colimits}
+Let $C$ be a $k$-coalgebra. Then the forgetful functor $\bd{coMod}(C)\ra \Mod(k)$ creates colimits. 
+\end{theorem}
+\begin{proof}
+Let $\Delta,\xi$ be the comultiplication and the counit of $C$, respectively. Suppose that $I\ni i\mapsto (V_i,d_i)\in \bd{coMod}(C)$ is a diagram of $C$-comodules indexed by some category $I$. Let $V$ together with $u_i:V_i\ra V$ for $i\in I$ be a colimit of the diagram $I\ni i\mapsto V_i\in \Mod(k)$. By the universal property of colimit we deduce that there exists a unique morphism $d:V\ra C\otimes_{k}V$ such that diagrams 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{C\otimes_{k}V_i &    C\otimes_{k}V     \\
+             V_i &         V            \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_{C}\otimes_{k}u_i $} (m-1-2)
+(m-2-2) edge node[right] {$ d $} (m-1-2)
+(m-2-1) edge node[left] {$ d_i $} (m-1-1)
+(m-2-1) edge node[below] {$ u_i$} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+are commutative for every $i\in I$. In order to verify that diagrams
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{V&  &    C\otimes_{k}V                            &   V&  &    C\otimes_{k}V \\
+C\otimes_{k}V&   &   C\otimes_{k}C\otimes_{k}V &  &   &   k\otimes_{k}V  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ d $} (m-1-3)
+(m-2-1) edge node[below] {$ \Delta \otimes_{k}1_V $} (m-2-3)
+(m-1-3) edge node[right] {$ 1_C\otimes_{k}d $} (m-2-3)  
+(m-1-1) edge node[left] {$ d $} (m-2-1)
+(m-1-4) edge node[above] {$d $} (m-1-6)
+(m-1-6) edge node[right] {$\xi \otimes_{k} 1_V $} (m-2-6)
+(m-1-4) edge node[below] {$ \cong$} (m-2-6);
+\end{tikzpicture}
+\end{center}
+are commutative it suffices to note that for every $i\in I$ we have chains of equalities
+$$\left(1_C\otimes_{k}d\right)\cdot d\cdot u_i=\left(1_C\otimes_k 1_C\otimes_{k}u_i\right)\cdot \left(1_C\otimes_k 1_C \otimes_{k}d_i\right)\cdot d_i=\left(1_C\otimes 1_C \otimes_{k}u_i\right) \cdot \left(\Delta\otimes_{k}1_{V_i}\right)\cdot d_i=\left(\Delta \otimes_{k}1_V\right)\cdot d\cdot u_i$$
+and
+$$\left(\xi \otimes_{k}1_V\right)\cdot d\cdot u_i=\left(1_{k}\otimes_{k}u_i\right)\cdot \left(\xi \otimes_{k}1_{V_i}\right)\cdot d_i=\left(1_{k}\otimes_{k}u_i\right)\cdot j_{V_i}=j_V\cdot u_i$$
+where $j_W:W\ra k\otimes_{k}W$ is the natural isomorphism for every $k$-module $W$. Hence $(V,d)$ is a $C$-comodule. Suppose now that $(W,e)$ is a $C$-comodule and $w_i:V_i\ra W$ for $i\in I$ is a family of $C$-comodule morphisms compatible with the diagram $I\ni i\mapsto (V_i,d_i)\in \bd{coMod}(C)$. Since $\{u_i:V_i\ra V\}_{i\in I}$ form a colimiting cocone for $I\ni i\mapsto V_i\in \Mod(k)$, there exists a unique morphism of $k$-modules $f:V\ra W$ such that $f\cdot u_i=w_i$. Note that
+$$e\cdot f \cdot u_i= e\cdot w_i=\left(1_C\otimes_{k}w_i\right)\cdot d_i=\left(1_C\otimes_{k}f\right)\cdot \left(1_C\otimes_{k}u_i\right)\cdot d_i=\left(1_C\otimes_{k}f\right)\cdot d\cdot u_i$$
+for every $i\in I$. Hence $e\cdot f=\left(1_C\otimes_{k}f\right)\cdot d$. Thus $f$ is a morphism of $C$-comodules. Thus $(V,d)$ together with family $\big\{u_i:(V_i,d_i)\ra (V,d)\big\}_{i\in I}$ is a colimit of the diagram $I\ni i\mapsto (V_i,d_i)\in \bd{coMod}(C)$ of $C$-comodules. This implies that the forgetful functor $\bd{coMod}(C)\ra \Mod(k)$ creates colimits.
+\end{proof}
+
+\begin{theorem}\label{theorem:limits_creation_forgetful_from_coalgebras_to_modules}
+Let $C$ be a $k$-coalgebra such that $C$ is a flat $k$-module. Then the forgetful functor $\bd{coMod}(C)\ra \Mod(k)$ creates finite limits.
+\end{theorem}
+\begin{proof}
+The proof is similar to the proof of Theorem \ref{theorem:forgetful_coalgebras_to_modules_create_colimits}.
+\end{proof}
+
+\begin{corollary}\label{corollary:comodules_category_properties}
+Let $C$ be a coalgebra over $k$ and assume that $C$ is flat as a $k$-module. Then $\bd{coMod}(C)$ is an abelian category with small colimits.
+\end{corollary}
+\begin{proof}
+This follows from Theorems \ref{theorem:forgetful_coalgebras_to_modules_create_colimits} and \ref{theorem:limits_creation_forgetful_from_coalgebras_to_modules}.
+\end{proof}
+\noindent
+The next result is of fundamental importance.
+
+\begin{theorem}\label{theorem:rationality_of_comodules}
+Let $C$ be a $k$-coalgebra that is free as a $k$-module. Suppose that $V$ is a $C$-comodule over $C$. Then for every finitely generated $k$-submodule $U \subseteq V$ there exists a $C$-subcomodule $W$ of $V$ such that $U \subseteq W$ and $W$ is a finitely generated $k$-module.
+\end{theorem}
+\noindent
+The theorem follows from the following simple lemma.
+
+\begin{lemma}\label{lemma:for_single_element}
+Let $C$ be a $k$-coalgebra over $k$ that is free as a $k$-module. Suppose that $V$ is a $C$-comodule over $C$ and fix an element $v\in V$. Then there exists a $C$-subcomodule $W$ of $V$ such that $v\in W$ and $W$ is a finitely generated $k$-module.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $\{e_j\}_{j\in J}$ be a free basis of $C$ over $k$ and let $d:V\ra C\otimes_{k}V$ be a left coaction of $C$ on $V$. Denote by $\Delta:C\ra C\otimes_{k}C$ the comultiplication of $C$. Then we have
+$$d(v)=\sum_{j\in J}e_j\otimes v_{j}$$
+where $v_j\in V$ are zero for almost all $j\in J$. Next according to
+$$\left(\Delta\otimes_{k}1_V\right)\cdot d=\left(1_C\otimes_{k}d\right)\cdot d$$
+we derive that equality
+$$\sum_{j\in J}e_j\otimes d(v_{j})=(1_C\otimes_{k}d)\big(d(v)\big)=(\Delta\otimes_{k}1_V)\big(d(v)\big)=\sum_{j\in J}\Delta(e_j)\otimes v_{j}\subseteq \sum_{j\in J}C\otimes_{k}C\otimes_{k}k\cdot v_j$$
+holds. This implies that $d(v_j)\subseteq C\otimes_{k}\left(\sum_{j\in J}k\cdot v_j\right)$. Hence $k$-submodule $W$ of $V$ generated by $v$ and $\{v_j\}_{j\in J}$ is $C$-subcomodule of $V$. It is finitely generated as a $k$-module and $v\in W$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Suppose that $U$ is generated by $\{v_1,...,v_n\}$ as a $k$-module. For each $i$ pick $C$-subcomodule $W_i$ of $V$ such that $W_i$ is finitely generated as a $k$-module and $v_i\in W_i$. This can be done by Lemma \ref{lemma:for_single_element}. Next
+$$W = W_1+...+W_n$$
+is a $C$-subcomodule of $V$ that is finitely generated as a $k$-module and contains $U$.
+\end{proof}
+
+\section{Linear representations and comodules}
+\noindent
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $\rho:\fP_{\bd{M}}\ra \cL_V$ be a morphism of functors of sets, where $V$ is a $k$-module. Yoneda Lemma implies that $\rho$ is determined by some element (Example \ref{example:general_linear_monoid}) 
+$$d_{\rho}\in \Hom_{k}\left(V,k[\bd{M}]\otimes_{k}V\right)$$
+
+\begin{theorem}\label{theorem:comodules_equivalent_to_representations}
+Let $\bd{M}$ be an affine monoid $k$-scheme. Then the correspondence
+$$\bd{Rep}(\bd{M}) \ni \left(V,\rho\right) \mapsto \left(V,d_{\rho}\right)\in \bd{coMod}\left(k[\bd{M}]\right)$$
+is an isomorphism of categories over $\Mod(k)$.
+\end{theorem}
+\begin{proof}
+We fix notation in the proof. We denote by $\mu_A:A\otimes_kA\ra A$ the multiplication and by $\eta_A:k\ra A$ the unit for every $k$-algebra $A$. If $A$ is a $k$-algebra, then we denote by $e_A$ the composition $\eta_A \cdot \xi_{\bd{M}}:k[\bd{M}]\ra A$. Note that $e_A\in \fP_{\bd{M}}(A)$ is the neutral element.\\
+We start the proof with some useful remarks. If $V$ is a $k$-module, then
+$$\cL_V(A) = \Hom_k(V,A\otimes_kV)$$
+for every $k$-algebra $A$ with $\fO_k$-algebra structure discussed in Example \ref{example:general_linear_monoid}. Moreover, if $\rho:\fP_{\bd{M}}\ra \cL_V$ is a morphism of $k$-functors corresponding to $d_{\rho}:V\ra k[\bd{M}]\otimes_kV$, then for every $k$-algebra $A$ and a morphism $f:k[\bd{M}]\ra A$ of $k$-algebras we have
+$$\rho(f) = \left(f\otimes_k1_V\right)\cdot d_{\rho}$$
+Our Discussion in Example \ref{example:general_linear_monoid} and Yoneda Lemma show that the following assertions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
+\item For $k$-algebra $A$ and $f_1,f_2\in \Hom_k\left(k[\bd{M}],A\right) = \fP_{\bd{M}}(A)$ we have
+$$\rho(f_1)\cdot \rho(f_2) = \left(\mu_A\otimes_k1_V\right)\cdot \left(f_2\otimes_kf_1\otimes_k1_V\right) \cdot \left(1_{k[\bd{M}]}\otimes_k d_{\rho}\right) \cdot d_{\rho}$$
+and
+$$\rho(f_1\cdot f_2)=\left(\mu_A\otimes_k1_V\right)\cdot \left(f_2\otimes_kf_1\otimes_k1_V \right)\cdot \left(\Delta_{\bd{M}}\otimes_k 1_V\right)\cdot d_{\rho}$$
+\item For $k$-algebra $A$ we have
+$$\rho(e_A) = \left(\eta_A\otimes_k 1_V\right)\cdot \left(\xi_{\bd{M}}\otimes_k 1_V\right) \cdot d_{\rho}$$
+\end{enumerate}
+Now \textbf{(1)} imply that if $\left(\Delta_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}=\left(1_{O_{\bd{M}}}\otimes_{k}d_{\rho}\right)\cdot d_{\rho}$
+then $\rho(f_1\cdot f_2) = \rho(f_1)\cdot \rho(f_2)$. On the other hand suppose that $\rho(f_1\cdot f_2) = \rho(f_1)\cdot \rho(f_2)$ for any two $f_1,f_2:k[\bd{M}]\ra A$ morphism of $k$-algebras and for every $k$-algebra $A$. Pick inclusions $f_1,f_2:k[\bd{M}]\ra k[\bd{M}]\otimes_kk[\bd{M}]$ onto first and second component, respectively. Then
+$$\left(\mu_{k[\bd{M}]\otimes_kk[\bd{M}]}\otimes_k1_V\right)\cdot \left(f_2\otimes_kf_1\otimes_k1_V\right) = 1_{k[\bd{M}]}\otimes_k1_{k[\bd{M}]}\otimes_k1_V$$
+and hence $\left(\Delta_{\bd{M}}\otimes_{k}1_V\right)\cdot d_{\rho}=\left(1_{O_{\bd{M}}}\otimes_{k}d_{\rho}\right)\cdot d_{\rho}$ by \textbf{(1)}.\\
+Now if $\left(\xi_{\bd{M}}\otimes_k 1_V\right) \cdot d_{\rho}$ is the canonical isomorphism $V\cong k\otimes_kV$. Then by \textbf{(2)} we derive that $\rho(e_A)$ is the canonical morphism $V \ra A\otimes_kV$. On the other hand if $\rho(e_A)$ is $V \ra A\otimes_kV$ for every $k$-algebra $A$, then substituting $k$ for $A$ we deduce by \textbf{(2)} that $\rho(e_k) = \left(\xi_{\bd{M}}\otimes_k 1_V\right) \cdot d_{\rho}$ is the canonical isomorphism $V\cong k\otimes_kV$.\\
+These considerations prove that $\rho$ is a morphism of monoid $k$-functors if and only if $d_{\rho}$ is a coaction of $k[\bd{M}]$ on $V$.\\
+Now suppose that $V_1,V_2$ are $k$-modules and $\rho_1:\fP_{\bd{M}}\ra \cL_V,\,\rho_2:\fP_{\bd{M}}\ra \cL_W$ are morphisms of $k$-functors. Suppose that $\phi:V_1\ra V_2$ is a morphism of $k$-modules. Pick a $k$-algebra $A$ and a morphism $f:k[\bd{M}]\ra A$ of $k$-algebras. Assume that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{k[\bd{M}]\otimes_{k}V_1 &    k[\bd{M}]\otimes_{k}V_2     \\
+              V_1&         V_2  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  1_{k[\bd{M}]}\otimes_{k}\phi$} (m-1-2)
+(m-2-2) edge node[right] {$d_{\rho_2} $} (m-1-2)
+(m-2-1) edge node[left] {$d_{\rho_1} $} (m-1-1)
+(m-2-1) edge node[below] {$\phi$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Since the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   A\otimes_k V_1        &         A\otimes_k V_2           \\
+ k[\bd{M}]\otimes_{k}V_1 &    k[\bd{M}]\otimes_{k}V_2      \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_A\otimes_{k}\phi $} (m-1-2)
+(m-2-2) edge node[right] {$ f\otimes_k1_W $} (m-1-2)
+(m-2-1) edge node[left] {$ f\otimes_k1_V $} (m-1-1)
+(m-2-1) edge node[below] {$ 1_{k[\bd{M}]}\otimes_k\phi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative, we derive that
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ A\otimes_{k}V_1 &    A\otimes_{k}V_2     \\
+              V_1&         V_2  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  1_{A}\otimes_{k}\phi$} (m-1-2)
+(m-2-2) edge node[right] {$\rho_2(f) $} (m-1-2)
+(m-2-1) edge node[left] {$\rho_1(f) $} (m-1-1)
+(m-2-1) edge node[below] {$\phi$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Moreover, if the square above commutes for every $k$-algebra $A$, then it also commutes for $A = k[\bd{M}]$ and this recovers the commutativity of the first square. Suppose now that $(V,\rho_1)$ and $(W, \rho_2)$ are linear representations of $\bd{M}$, then the discussion above implies that $\phi$ is a morphism of linear representations if and only if $\phi$ is a morphism of $k[\bd{M}]$-comodules $(V,d_{\rho_1})$ and $(W, d_{\rho_2})$.
+\end{proof}
+\noindent
+We obtain immediate consequence.
+
+\begin{corollary}\label{corollary:each_linear_representation_is_rational}
+Let $k$ be a field. Let $(V,\rho)$ be a linear representation of an affine monoid $k$-scheme $\bd{M}$. Then for every finitely generated $k$-subspace $U \subseteq V$ there exists a subrepresentation $W$ of $(V,\rho)$ such that $U \subseteq W$ and $W$ is a finitely generated $k$-module.
+\end{corollary}
+\begin{proof}
+This follows from Theorems \ref{theorem:comodules_equivalent_to_representations} and \ref{theorem:rationality_of_comodules}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \small
 \bibliographystyle{alpha}
