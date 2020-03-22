@@ -9,7 +9,9 @@
 \section{Introduction and notation}
 \noindent
 In these notes we study algebraic structures in the category of $k$-functors with special emphasis on monoid objects.\\
-Throughout these notes $k$ is a fixed commutative ring. If $M$ is a monoid, then we denote by $M^*$ the group of units of $M$. If $R$ is a ring, then we denote by $R^{\times}$ its multplicative monoid.
+Throughout these notes $k$ is a fixed commutative ring and $\Alg_k$ denote the category of commutative $k$-algebras. If $A, B$ are $k$-algebras, then we denote by $\Mor_k(A, B)$ the set of all morphisms $A\ra B$ of $k$-algebras. Similarly if $X, Y$ are $k$-schemes (i.e. schemes together with morphism to $\Spec k$), then we denote by $\Mor_k(X,Y)$ the set of all morphisms $X\ra Y$ of $k$-schemes (morphisms of schemes that preserve structure morphisms to $\Spec k$). If $M$ is a monoid, then we denote by $M^*$ the group of units of $M$. If $R$ is a ring, then we denote by $R^{\times}$ its multplicative monoid. Let $A$ be a $k$-algebra and let $V$ be an $A$-module and $v$ be an element of $V$. Then for $A$-algebra $B$ we denote by $v_B$ the element $1\otimes v$ of $B\otimes_AV$. If $V$ is an $A$-module, then we denote $\Hom_A(V,A)$ by $V^{\vee}$. Thus we have a contravariant functor
+$$(-)^{\vee}:\Mod(A)^{\mathrm{op}}\ra \Mod(A)$$
+
 
 \section{Algebraic structures in the category of $k$-functors}
 \noindent
@@ -85,6 +87,22 @@ Let $\fX$ be a $k$-functor and assume that $\iMor_k(\fX,\fO_k)$ exists. Fix $k$-
 $$\Mor_A(\fX_A,\fO_A) \ni f \mapsto f_B\in \Mor_B(\fX_B,\fO_B)$$
 is a morphism of $A$-algebras. This implies that $\iMor_k(\fX,\fO_k)$ admits a canonical structure of an $\fO_k$-algebra $k$-functor.
 \end{example}
+
+
+\begin{proposition}\label{proposition:regular_functions_on_k_schemes}
+Let $X$ be a $k$-scheme. Then $\iMor_k\left(\fP_X,\fO_k\right)$ exists and
+$$\iMor_k\left(\fP_X,\fO_k\right)(A) = \Gamma\left(\Spec A\times X,\cO_{\Spec A\times X}\right)$$
+for every $k$-algebra $A$. In particular, if $X$ is affine $k$-scheme, then we have an isomorphism
+$$\iMor_k\left(\fP_X,\fO_k\right) = A\otimes_k\Gamma(X,\cO_X)$$
+natural in $k$-algebra $A$.
+\end{proposition}
+\begin{proof}
+Fact \ref{fact:affineline_as_forgetfulfunctor} and the fact that morphisms $\Spec A\times X\ra \mathbb{A}^1_A$ of $A$-schemes corresponds to regular functions on $X_A$ imply that we have an identification
+$$\Mor_A\left((\fP_X)_A,\fO_A\right) = \Gamma\left(\Spec A\times X,\cO_{\Spec A\times X}\right)$$
+natural in $k$-algebra $A$. This proves the first part of the statement. Moreover, if $X$ is affine over $k$, then there is another identification
+$$\Mor_A\left(\Spec A\times X,\mathbb{A}^1_A\right) = A\otimes_k\Gamma(X,\cO_X)$$
+natural in $A$. Combining two isomorphisms above, we derive that the second assertion.
+\end{proof}
 
 \section{Internal hom and product of $k$-functors}
 \noindent
@@ -428,30 +446,6 @@ Conditions expressed in \textbf{(i)}-\textbf{(iv)} are directly translatable to 
 \noindent
 Let $\fG$ be a monoid $k$-functor. We denote by $\Mod\left(\fO_k[\fG]\right)$ the category of $\fO_k[\fG]$-modules.
 
-\section{Example of $\fG$-action: Regular functions $k$-functor}
-\noindent
-First we need the following notion.
-
-\begin{definition}
-Let $\left(-\right)^{\mathrm{op}}:\Mon \ra \Mon$ be the opposite monoid functor and let $\fG$ be a monoid $k$-functor. Then the composition $\fG^{\mathrm{op}} = \left(-\right)^{\mathrm{op}}\cdot \fG$ is called \textit{the opposite monoid $k$-functor of $\fG$}.
-\end{definition}
-\noindent
-Let $\fG$ be a monoid $k$-functor. In this section we discuss important example of a $\fO_k[\fG]$-module. Fix a $k$-functor $\fX$ for which $\iMor_k(\fX,\fO_k)$ exists. Recall that by Example \ref{example:regular_functions_as_an_algebra_over_structure_algebra} $\iMor_k\left(\fX,\fO_k\right)$ is $\fO_k$-algebra $k$-functor. Let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on $\fX$. For every $k$-algebra $A$ we have a map of sets
-$$\Mor_A\left(\fX_A,(\fO_k)_A\right) \ni f\mapsto f\cdot \alpha_{g}\in \Mor_A\left(\fX_A,(\fO_k)_A\right)$$
-where $g\in \fG(A)$. From this description it follows that the map $f\mapsto f\cdot \alpha_{g}$ is a morphism of $A$-algebras. Moreover, note that if $g_1,g_2\in \fG(A)$, then $\left(f\cdot \alpha_{g_1}\right)\cdot \alpha_{g_2} = f\cdot \alpha_{g_1\cdot g_2}$, where $g_1\cdot g_2 \in \fG(A)$ is a product of $g_1$ and $g_2$. Thus the opposite monoid $\fG^{\mathrm{op}}(A)$ acts on the $A$-algebra $\Mor_A\left(\fX_A,\left(\fO_k\right)_A\right)$ by morphism of $A$-algebras. Next for every $A$-algebra $B$ and every point $x\in \fX(B)$ we have
-$$(f\cdot \alpha_{g})(x) = f\left(\alpha_{g}(x)\right)$$
-where $g\in \fG(A)$. This proves the following result.
-
-\begin{proposition}\label{proposition:action_on_regular_k_functor}
-Let $\fX$ be a $k$-functor and let $\alpha:\fG\times \fX \ra \fX$ be an action of a monoid $k$-functor $\fG$. Suppose that $\iMor_k\left(\fX,\fO_k\right)$ exists. Then $\fG^{\mathrm{op}}$ acts canonically on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
-\end{proposition}
-\noindent
-Let us note one important consequence of this result.
-
-\begin{corollary}\label{corollary:action_on_regular_k_functor}
-Let $\fG$ be a monoid $k$-functor. The action of $\fG\times \fG^{\mathrm{op}}$ on $\fG$ induces the action of $\fG^{\mathrm{op}}\times \fG$ on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
-\end{corollary}
-
 \section{Linear representations of a monoid $k$-functors}
 \noindent
 We start the discussion with some results that relates categories $\Mod(k)$ and $\Mod\left(\fO_k\right)$.
@@ -464,6 +458,12 @@ Suppose that $\phi:V\ra W$ is a morphism of $k$-modules, then we define $\phi_{\
 $$\phi_{\mathrm{a}}^A = 1_A\otimes_k\sigma$$
 for every $k$-algebra. Then $\phi_{\mathrm{a}}$ is a morphism of $\fO_k$-modules.
 \end{example}
+
+\begin{remark}\label{remark:representability_of_additive_functor}
+Let $V$ be a finitely generated, projective $k$-module. Then for each $k$-algebra $A$ we have an isomorphism
+$$\fP_{\Spec \Sym(V^{\vee})}(A) = \Mor_k\left(\Sym(V^{\vee}), A\right) = \Hom_k\left(V^{\vee},A\right) \cong A\otimes_kV$$
+Clearly this isomorphism is natural in $A$. Thus $V_{\mathrm{a}}$ is representable by a $k$-scheme $\Spec \Sym(V^{\vee})$.
+\end{remark}
 
 \begin{proposition}\label{proposition:inclusion_of_k_modules_into_O_k_modules}
 The functor $\left(-\right)_{\mathrm{a}}:\Mod\left(k\right)\ra \Mod\left(\fO_k\right)$ is full and faithful.
@@ -517,6 +517,12 @@ Let $V$ be a $k$-module. Proposition \ref{proposition:inclusion_of_k_modules_int
 \end{tikzpicture}
 \end{center}
 commutative for every morphism $f:A\ra B$ of $k$-algebras. This induces an idenitification $\cL_V = \cE nd_{\fO_k}\left(V_{\mathrm{a}}\right)$ of $\fO_k$-algebras.
+\end{remark}
+
+\begin{remark}\label{remark:representability_of_linear_monoid}
+Suppose that $V$ is a finitely generated, projective $k$-module. Then for each $k$-algebra $A$ we have an isomorphism
+$$\cL_V(A) = \Hom_A\left(V,A\otimes_kV\right) \cong A\otimes_kV^{\vee}\otimes_kV$$
+Clearly this isomorphism is natural in $A$. Hence $\cL_V$ is isomorphic with $\left(V^{\vee}\otimes_kV\right)_{\mathrm{a}}$ and thus (Remark \ref{remark:representability_of_additive_functor}) it is representable by a $k$-scheme $\Spec \Sym(V\otimes_kV^{\vee})$.
 \end{remark}
 
 \begin{definition}
@@ -593,6 +599,165 @@ This follows from Proposition \ref{proposition:morphism_of_monoid_modules}.
 \noindent
 Let $\fG$ be a monoid $k$-functor. We denote by $\bd{Rep}(\fG)$ its category of linear representations. Note that $\bd{Rep}(\fG)$ is a full subcategory of $\Mod(\fO_k\left[\fG\right])$.
 
+\section{Constructions of linear representations}
+
+\begin{example}[Outer tensor product of representations]\label{example:outer_tensor_product}
+Let $(V_1,\rho_1)$ and $(V_2,\rho_2)$ are linear representations of monoid $k$-functors $\fG_1$ and $\fG_2$, respectively. Then we define a linear representation of $\fG_1\times \fG_2$ with $V_1\otimes_k V_2$ as the underlying $k$-module that corresponds to a morphism $\rho:\fG_1\times \fG_2 \ra \cL_{V_1\otimes_kV_2}$ of monoid $k$-functors given by
+$$\rho\left(g_1,g_2\right) = \rho_1(g_1)\otimes_A\rho_2(g_2):A\otimes_kV_1\otimes_kV_2\ra A\otimes_kV_1\otimes_kV_2$$
+for $(g_1,g_2)\in \fG_1(A)\times \fG_2(A)$, where $A$ is a $k$-algebra.
+\end{example}
+
+\begin{example}[Tensor product of representations]\label{example:tensor_product}
+Let $(V_1,\rho_1)$ and $(V_2,\rho_2)$ are linear representations of monoid $k$-functor $\fG$. Then we define a linear representation of $\fG$ with $V_1\otimes_k V_2$ as the underlying $k$-module given as the composition of the outer tensor product of $(V_1,\rho_1)$ and $(V_2,\rho_2)$ with the diagonal $\fG\hookrightarrow \fG\times \fG$.
+\end{example}
+
+\begin{example}[Tensor operations]\label{example:tensor_operations}
+Let $\fG$ be a monoid $k$-functor, let $V$ be $k$-module and let $\rho:\fG\ra \cL_V$ be a morphism of monoid $k$-functors. Then both $\bigwedge^nV$ and $\Sym^n(V)$ for $n\in \NN$ carry canonical structure of linear representation of $\fG$.
+\end{example}
+\noindent
+Note that if $V$ is a finitely generated, projective $k$-module, then there is a canonical isomorphism of $A$-modules $\left(V^{\vee}\right)_{\mathrm{a}}(A) \cong (A\otimes_kV)^{\vee}$ natural in $k$-algebra $A$. Under these assumptions on $V$ there exists an anti-isomorphism of $A$-algebras
+$$\Hom_A\left(A\otimes_kV,A\otimes_kV\right)\ni \phi \mapsto \phi^{\vee} \in \Hom_A\left((A\otimes_kV)^{\vee},(A\otimes_kV)^{\vee}\right)$$
+natural in $k$-algebra $A$. This proves the following result.
+
+\begin{fact}\label{fact:opposite_linear_monoid}
+Let $V$ be a finitely generated, projective $k$-module. Then we have an identification of $k$-functors of $\fO_k$-algebras
+$$\cL_V^{\mathrm{op}} = \cL_{V^{\vee}}$$
+\end{fact}
+
+\begin{example}[Dual representation]\label{example:dual_representation}
+Let $\fG$ be a monoid $k$-functor, let $V$ be $k$-module and let $\rho:\fG\ra \cL_V$ be a morphism of monoid $k$-functors. Suppose that $V$ is a projective and finitely generated $k$-module. Fact \ref{fact:opposite_linear_monoid} implies that morphism of a monoid $k$-functors $\rho^{\mathrm{op}}:\fG^{\mathrm{op}}\ra \cL_V^{\mathrm{op}}$ can be identified with $\rho^{\vee}:\fG^{\mathrm{op}}\ra \cL_{V^{\vee}}$. Hence a pair $(V^{\vee},\rho^{\vee})$ is a linear representation of $\fG^{\mathrm{op}}$.
+\end{example}
+\noindent
+
+\begin{example}[Hom representation]\label{example:hom_representation}
+Let $(V_1,\rho_1)$ and $(V_2,\rho_2)$ are linear representations of monoid $k$-functor $\fG$. Suppose that $V_1,V_2$ are finitely generated, projective $k$-module. Then we have an identification
+$$\Hom_k\left(V_1,V_2\right)_{\mathrm{a}} = \left(V_1^{\vee}\otimes_kV_2\right)_{\mathrm{a}}$$
+of $\fO_k$-modules. By Examples \ref{example:outer_tensor_product} and \ref{example:dual_representation} this isomorphism makes $\Hom_k(V_1,V_2)$ into linear representation of $\fG\times \fG^{\mathrm{op}}$.
+\end{example}
+
+\section{Example of $\fG$-action: Regular functions $k$-functor}
+\noindent
+First we need the following notion.
+
+\begin{definition}
+Let $\left(-\right)^{\mathrm{op}}:\Mon \ra \Mon$ be the opposite monoid functor and let $\fG$ be a monoid $k$-functor. Then the composition $\fG^{\mathrm{op}} = \left(-\right)^{\mathrm{op}}\cdot \fG$ is called \textit{the opposite monoid $k$-functor of $\fG$}.
+\end{definition}
+\noindent
+Let $\fG$ be a monoid $k$-functor. In this section we discuss important example of a $\fO_k[\fG]$-module. Fix a $k$-functor $\fX$ for which $\iMor_k(\fX,\fO_k)$ exists. Recall that by Example \ref{example:regular_functions_as_an_algebra_over_structure_algebra} $\iMor_k\left(\fX,\fO_k\right)$ is $\fO_k$-algebra $k$-functor. Let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on $\fX$. For every $k$-algebra $A$ we have a map of sets
+$$\Mor_A\left(\fX_A,(\fO_k)_A\right) \ni f\mapsto f\cdot \alpha_{g}\in \Mor_A\left(\fX_A,(\fO_k)_A\right)$$
+where $g\in \fG(A)$. From this description it follows that the map $f\mapsto f\cdot \alpha_{g}$ is a morphism of $A$-algebras. Moreover, note that if $g_1,g_2\in \fG(A)$, then $\left(f\cdot \alpha_{g_1}\right)\cdot \alpha_{g_2} = f\cdot \alpha_{g_1\cdot g_2}$, where $g_1\cdot g_2 \in \fG(A)$ is a product of $g_1$ and $g_2$. Thus the opposite monoid $\fG^{\mathrm{op}}(A)$ acts on the $A$-algebra $\Mor_A\left(\fX_A,\left(\fO_k\right)_A\right)$ by morphism of $A$-algebras. Next for every $A$-algebra $B$ and every point $x\in \fX(B)$ we have
+$$(f\cdot \alpha_{g})(x) = f\left(\alpha_{g}(x)\right)$$
+where $g\in \fG(A)$. This proves the following result.
+
+\begin{proposition}\label{proposition:action_on_regular_k_functor}
+Let $\fX$ be a $k$-functor and let $\alpha:\fG\times \fX \ra \fX$ be an action of a monoid $k$-functor $\fG$. Suppose that $\iMor_k\left(\fX,\fO_k\right)$ exists. Then $\fG^{\mathrm{op}}$ acts canonically on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
+\end{proposition}
+\noindent
+Let us note one important consequence of this result.
+
+\begin{corollary}\label{corollary:action_on_regular_k_functor}
+Let $\fG$ be a monoid $k$-functor. The action of $\fG\times \fG^{\mathrm{op}}$ on $\fG$ induces the action of $\fG^{\mathrm{op}}\times \fG$ on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
+\end{corollary}
+
+\section{Matrix coefficients of a representation}
+
+\begin{proposition}\label{proposition:matrix_coefficients}
+Let $\fG$ be a monoid $k$-functor and let $V$ be a finitely generated, projective $k$-module. Fix a morphism $\rho:\fG \ra \cL_V$ of monoid $k$-functors. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. For every $A$-algebra $B$ and $g\in \fG(B)$ we consider the formula
+$$c_{v,w}(g) = \langle \rho_A(g) \cdot v_B, w_B \rangle$$
+Then $c_{v,w}$ defines a regular function on $\fG_A$ for every $k$-algebra $A$.
+\end{proposition}
+\begin{proof}
+Suppose that $f:B\ra C$ is a morphism of $A$-algebras and pick $g\in \fG(B)$. Since $\rho_A$ is natural and $w:A\otimes_kV\ra A$ is a morphism of $A$-modules, we derive that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{B\otimes_kV & B\otimes_kV & B \\
+ C\otimes_kV & C\otimes_kV & C\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$\rho_A\big(\fG_A(f)(g)\big) $} (m-2-2)
+(m-1-2) edge node[right] {$f\otimes_A1_{A\otimes_kV} $} (m-2-2) 
+(m-1-1) edge node[left]  {$f\otimes_A1_{A\otimes_kV} $} (m-2-1)
+(m-1-1) edge node[above] {$\rho_A(g) $} (m-1-2)
+(m-1-2) edge node[above] {$w_B $} (m-1-3)
+(m-2-2) edge node[below] {$w_C $} (m-2-3)
+(m-1-3) edge node[right] {$f $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+is commutative. Hence 
+$$c_{v,w}\big(\fG_A(f)(g)\big)=\langle \rho_A\big(\fG_A(f)(g)\big)\cdot v_C,w_C\rangle=f\big(\langle \rho_A(g)\cdot v_B, w_B\rangle \big)=f\big(c_{v,w}(g)\big)$$
+and this implies that $c_{v,w}:\fG_A\ra \fO_A$ is a morphism of $A$-functors.
+\end{proof}
+
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated, projective underlying $k$-module $V$. Fix $k$-algebra $A$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Then the regular function $c_{v,w}$ on $\fG_A$ is called \textit{the matrix coefficient of $v$ and $w$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:matrix_coefficients_natural}
+Let $\fG$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Then the following assertions holds.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item For every $k$-algebra $A$ map
+$$\left(A\otimes_kV\right)\times \left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fG_A,\fO_A\right)$$
+is $A$-bilinear.
+\item Suppose that $\iMor_k\left(\fG,\fO_k\right)$ exists. Then the collection of maps
+$$\bigg\{\big(A\otimes_kV\big)\times \big(A\otimes_kV^{\vee}\big)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\big(\fG_A,\fO_A\big)\bigg\}_{A\in \Alg_k}$$
+gives rise to a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ V_{\mathrm{a}}\times V^{\vee}_{\mathrm{a}} &  \iMor_k\left(\fG,\fO_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We left the proof of \textbf{(1)} to the reader.\\
+We prove \textbf{(2)}. Consider $k$-algebra $A$ and an $A$-algebra $B$ with structural morphism $f:A\ra B$. Fix $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. We prove that restriction of $c_{v,w}:\fG_A\ra \fO_A$ to the category $\Alg_B$ is $c_{v_B,w_B}$. For this pick a $B$-algebra $C$ and an element $g\in \fG(C)$. Note that
+$$c_{v,w}(g)= \langle \rho_A(g)\cdot v_C,w_C \rangle =  \langle \rho_B(g)\cdot v_C,w_C\rangle = \langle \rho_B(g)\cdot (v_B)_C,(w_B)_C\rangle = c_{v_B,w_B}(g)$$
+and hence ${c_{v,w}}_{\mid \Alg_B} = c_{v_B,w_B}$. Consider the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{V_{\mathrm{a}}(A)\times V^{\vee}_{\mathrm{a}}(A) & \iMor_k\left(\fG,\fO_A\right)(A)  \\
+ V_{\mathrm{a}}(B)\times V^{\vee}_{\mathrm{a}}(B) & \iMor_k\left(\fG,\fO_B\right)(B)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-2) edge node[right] {$\iMor_k(\fG,\fO_k)(f) $} (m-2-2) 
+(m-1-1) edge node[left]  {$V_a(f)\times V^{\vee}_a(f)$} (m-2-1)
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+in which both horizontal arrows are given by formula $(v,w)\mapsto c_{v,w}$. We proved that the square commutes. Since $f$ is an arbitrary morphism of $k$-algebras, we conclude the assertion.
+\end{proof}
+
+\begin{corollary}\label{corollary:matrix_coefficients_natural}
+Let $\fG$ be a monoid $k$-functor and let $(V,\rho)$ be its representation with finitely generated projective underlying $k$-module $V$. Suppose that $\iMor_k\left(\fG,\fO_k\right)$ exists. Then there exists a morphism of $k$-functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \left(V \otimes_k V^{\vee}\right)_{\mathrm{a}} &  \iMor_k\left(\fG,\fO_k\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ c $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+given by formula
+$$\left(A\otimes_kV\right)\otimes_A\left(A\otimes_kV^{\vee}\right)\ni (v,w)\mapsto c_{v,w}\in \Mor_A\left(\fG_A,\fO_A\right)$$
+Moreover, $c$ is a morphism of $k$-functors equipped with $\fG \times \fG^{\mathrm{op}}$-actions.
+\end{corollary}
+\begin{proof}
+The first part is an immediate consequence of Proposition \ref{proposition:matrix_coefficients_natural}. We prove that $c$ is a morphism of $k$-functors equipped with $\fG\times \fG^{\mathrm{op}}$-actions. For this we fix a $k$-algebra $k$ and elements $v\in A\otimes_kV$, $w\in A\otimes_kV^{\vee}$. Pick a morphism of $k$-algebras $f:A\ra B$, $(g_1,g_2)\in \fG(A)\times \fG(A)^{\mathrm{op}}$ and $g\in \fG(B)$. Then we have 
+$$c_{\rho(g_1)\cdot v,w\cdot \rho(g_2)}(g) = \big\langle \rho_A(g)\cdot \left(\rho(g_1)\cdot v\right)_B, \left(w\cdot \rho(g_2)\right)_B \big\rangle =$$
+$$= \big\langle \rho_A(g)\cdot \rho_A(\left(\fG_A(f)(g_1)\right))\cdot v_B, w_B\cdot \rho_A\left(\fG_A(f)(g_2)\right) \big\rangle = w_B\big(\rho_A\left(\fG_A(f)(g_2)\right)\cdot \rho_A(g)\cdot \rho_A\left(\fG_A(f)(g_1)\right)\cdot v_B \big)=$$
+$$= w_B\big(\rho_A\left(\fG_A(f)(g_2) \cdot g \cdot \fG_A(f)(g_1)\right)\cdot v_B \big) = \big\langle \rho_A\left(\fG_A(f)(g_2) \cdot g \cdot \fG_A(f)(g_1)\right)\cdot v_B, w_B \big\rangle =  $$
+$$= c_{v,w}\big(\fG_A(f)(g_2) \cdot g \cdot \fG_A(f)(g_1)\big)$$
+and hence $c$ is a morphism of $k$-functors equipped with actions of $\fG\times \fG^{\mathrm{op}}$.
+\end{proof}
+
 \section{Monoid $k$-schemes}
 
 \begin{definition}
@@ -659,15 +824,15 @@ where $m:\bd{M}\times \bd{M}\ra \bd{M}$ is the multiplication and $e:\Spec k\ra 
 Note that if $\bd{M}$ is affine, then also $\bd{M}^*$ is affine.
 \end{proof}
 
+\begin{definition}
+Let $\bd{M}$ be a monoid $k$-scheme. Then the group $k$-scheme $\bd{M}^*$ representing $\fP_{\bd{M}}^*$ is called \textit{the group of units of $\bd{M}$}.
+\end{definition}
+
 \begin{remark}\label{remark:convention_on_relation_between_notions_for_monoid_schemes_and_monoid_functors}
 Under the embedding given in Corollary \ref{corollary:monoid_k_schemes_and_their_functors_of_points} notions defined for monoid $k$-functors can be translated to monoid $k$-schemes.
 \end{remark}
 \noindent
-We give three instances of the use of Remark \ref{remark:convention_on_relation_between_notions_for_monoid_schemes_and_monoid_functors} below.
-
-\begin{definition}
-Let $\bd{M}$ be a monoid $k$-scheme. Then the group $k$-scheme $\bd{M}^*$ representing $\fP_{\bd{M}}^*$ is called \textit{the group of units of $\bd{M}$}.
-\end{definition}
+We give two instances of the use of Remark \ref{remark:convention_on_relation_between_notions_for_monoid_schemes_and_monoid_functors} below.
 
 \begin{definition}
 Let $\bd{M}$ be a monoid $k$-scheme. Then \textit{the category of linear representations of $\bd{M}$} is the category of linear representations of the monoid $k$-functor $\fP_{\bd{M}}$. We denote this category by $\bd{Rep}\left(\bd{M}\right)$.
@@ -891,7 +1056,7 @@ We start the proof with some useful remarks. If $V$ is a $k$-module, then
 $$\cL_V(A) = \Hom_k(V,A\otimes_kV)$$
 for every $k$-algebra $A$ with $\fO_k$-algebra structure discussed in Example \ref{example:general_linear_monoid}. Moreover, if $\rho:\fP_{\bd{M}}\ra \cL_V$ is a morphism of $k$-functors corresponding to $d_{\rho}:V\ra k[\bd{M}]\otimes_kV$, then for every $k$-algebra $A$ and a morphism $f:k[\bd{M}]\ra A$ of $k$-algebras we have
 $$\rho(f) = \left(f\otimes_k1_V\right)\cdot d_{\rho}$$
-Our Discussion in Example \ref{example:general_linear_monoid} and Yoneda Lemma show that the following assertions hold.
+Our discussion in Example \ref{example:general_linear_monoid} and Yoneda Lemma show that the following assertions hold.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=1.5em]
 \item For $k$-algebra $A$ and $f_1,f_2\in \Hom_k\left(k[\bd{M}],A\right) = \fP_{\bd{M}}(A)$ we have
 $$\rho(f_1)\cdot \rho(f_2) = \left(\mu_A\otimes_k1_V\right)\cdot \left(f_2\otimes_kf_1\otimes_k1_V\right) \cdot \left(1_{k[\bd{M}]}\otimes_k d_{\rho}\right) \cdot d_{\rho}$$
@@ -959,6 +1124,39 @@ Let $k$ be a field. Let $(V,\rho)$ be a linear representation of an affine monoi
 \begin{proof}
 This follows from Theorems \ref{theorem:comodules_equivalent_to_representations} and \ref{theorem:rationality_of_comodules}.
 \end{proof}
+
+\section{Regular representation and matrix coefficients for affine monoid $k$-schemes}
+
+\begin{proposition}\label{proposition:}
+Suppose that $\bd{M}$ is a monoid $k$-scheme. Then $\iMor_k\left(\fP_{\bd{M}},\fO_k\right)$ exists and
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

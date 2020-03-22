@@ -1,0 +1,200 @@
+\input ../pree.tex
+
+\begin{document}
+\title{Algebraic group schemes over field}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In these notes we group schemes over fields. For background we refer to \cite{kfunctors} and \cite{Monoid_k_functors}.\\
+Throughout these notes $k$ is a fixed field.
+
+\begin{definition}
+Let $\bd{G}$ be a group scheme over $k$. If $\bd{G}$ is of finite type over $k$, then we say that $\bd{G}$ is \textit{an algebraic group over $k$}.
+\end{definition}
+
+\section{Simple criterion for separatedness}
+
+\begin{proposition}\label{proposition:separatedness_criterion}
+Let $\bd{G}$ be a group scheme over $k$ and let $e_{\bd{G}}:\Spec k\ra \bd{G}$ be its unit. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $e_{\bd{G}}$ is a closed immersion.
+\item $\bd{G}$ is separated.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Suppose that \textbf{(i)} holds. Consider morphism $f:\bd{G}\times_k\bd{G}\ra \bd{G}$ given on $A$-points by formula
+$$f(g_1,g_2) = g_1\cdot g_2^{-1}$$
+where $A$ is a $k$-algebra. Note that we have a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{G}                & \Spec k \\
+    \bd{G}\times_k\bd{G}  & \bd{G}  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$\mathrm{can.} $} (m-1-2)
+(m-2-1) edge node[below] {$f $} (m-2-2)
+(m-1-1) edge node[left] {$\delta_{\bd{G}} $} (m-2-1)
+(m-1-2) edge node[right] {$e_{\bd{G}}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $\delta_{\bd{G}}$ is a diagonal of $\bd{G}$. Since base change of a closed immersion is a closed immersion, we derive that $\delta_{\bd{G}}$ is a closed immersion and hence $\bd{G}$ is separated. This is \textbf{(ii)}.\\
+Suppose now that \textbf{(ii)} holds. Let $\pi:\bd{G}\ra \Spec k$ be the structural morphism. Then $\pi\cdot e_{\bd{G}} = 1_{\bd{G}}$. Since $\pi$ is a separated morphism, we derive that (by cancellation) $e_{\bd{G}}$ is closed immersion. This is \textbf{(i)}.
+\end{proof}
+
+\section{Complete group schemes}
+\noindent
+We start this section with the following general result.
+
+\begin{theorem}[Rigidity]\label{theorem:rigidity_result}
+Let $\pi:X\ra Y$ be a proper morphism of schemes such that $\pi^{\#}:\cO_Y\ra \pi_*\cO_X$ is an isomorphism of sheaves. Let $g:X\ra Z$ be a morphism of schemes. Suppose that for some point $y$ in $Y$ there is a point $z$ of $Z$ such that $\pi^{-1}(y)\subseteq g^{-1}(z)$. Then there exist an affine neighborhood $V$ of $y$ and an affine neighborhood $W$ of $z$ such that $\pi^{-1}(V) \subseteq g^{-1}(W)$. Moreover, there exists a morphism $h:V\ra W$ making the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{  \pi^{-1}(V) & W  \\
+    V  &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \mathrm{res.\,of}\,g $} (m-1-2)
+(m-1-1) edge node[left] {$ \mathrm{restriction\,of}\,\pi $} (m-2-1)
+(m-2-1) edge node[below = 7pt, right = -6pt] {$ h $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+commutative, where horizontal arrow is the restriction of $g$.
+\end{theorem}
+\begin{proof}
+Consider an affine open neighborhood of $W$ of $z$. Since $\pi$ is proper and $\pi^{-1}(y)) = g^{-1}(z)$, we derive that $\pi\big(X\setminus g^{-1}(W)\big)$ is a closed subset of $Y$ that does not contain $y$. Pick an open affine neighborhood $V$ of $y$ in $Y$ that does not intersect with $\pi\big(X\setminus g^{-1}(W)\big)$. Then $\pi^{-1}(V) \subseteq g^{-1}(W)$. Since $\pi^{\#}$ is an isomorphism we have the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{  \cO_Z(W) & \Gamma\big(g^{-1}(W),\cO_X\big)  & \Gamma\big(\pi^{-1}(V),\cO_X\big)  & \cO_Y(V)\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ g^{\#}_W  $} (m-1-2)
+(m-1-2) edge node[above] {$ (-)_{\mid \pi^{-1}(V)} $} (m-1-3)
+(m-1-3) edge node[above] {$ \left(\pi^{\#}_V\right)^{-1} $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+This composition induces a morphism of affine schemes $h:V\ra W$. Since a morphism from a scheme to an affine scheme is determined by the morphism on global sections of structure sheaves, we derive that $h$ makes the triangle in the statement commutative.
+\end{proof}
+\noindent
+Now we can apply this result to study complete algebraic groups over $k$. For this we need the following definition.
+
+\begin{definition}
+Let $\bd{A}$ be a geometrically integral, complete algebraic group over $k$. Then we say that $\bd{A}$ is \textit{an abelian variety over $k$}.
+\end{definition}
+\noindent
+Now we prove the following interesting result.
+
+\begin{theorem}\label{theorem:morphisms_from_abelian_varieties}
+Let $\bd{A}$ be an abelian variety over $k$, let $\bd{G}$ be a separated group scheme over $k$ and let $f:\bd{A}\ra \bd{G}$ be a morphism of schemes over $k$. Suppose that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \bd{A} &        & \bd{G}  \\
+          &\Spec k &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f $} (m-1-3)
+(m-2-2) edge node[auto] {$ e_{\bd{A}} $} (m-1-1)
+(m-2-2) edge node[below = 6pt, right = 1pt] {$ e_{\bd{G}} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is commutative. Then $f$ is a morphism of groups schemes over $k$.
+\end{theorem}
+\begin{proof}
+We define a morphism $g:\bd{A}\times_k \bd{A}\ra \bd{G}$ given by
+$$(x_1,x_2) \mapsto f(x_1)\cdot f(x_2)\cdot f(x_1\cdot x_2)^{-1}$$
+where $A$ is a $k$-algebra and $x_1,x_2$ are $A$-points of $\bd{A}$. It suffices to show that $g$ factors through $\Spec k(e_{\bd{G}})$. For this we may change base to an algebraic closure of $k$ by faitfully flat descent. So we may assume that the field $k$ is algebraically closed and $\bd{A}$ is connected. Then the projection onto second factor $\pi:\bd{A}\times_k \bd{A}\ra \bd{A}$ is proper and $k = \Gamma\big(\bd{A},\cO_{\bd{A}}\big)$ implies that $\pi^{\#}$ is an isomorphism of sheaves on $\bd{A}$. Moreover, note that $\pi^{-1}(e_{\bd{A}})\subseteq g^{-1}(e_{\bd{G}})$. Indeed, this follows from the assumption that $f(e_{\bd{A}}) = e_{\bd{G}}$. By Theorem \ref{theorem:rigidity_result} we deduce that there exist an affine neighborhood $V$ of $e_{\bd{A}}$, an affine neighborhood $W$ of $e_{\bd{G}}$ and a morphism $h:\Spec k\ra W$ such that $\pi^{-1}(V) \subseteq g^{-1}(W)$ and the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{  \bd{A}\times_kV & W  \\
+    V  &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \mathrm{res.\,of}\,g $} (m-1-2)
+(m-1-1) edge node[left] {$ \mathrm{projection} $} (m-2-1)
+(m-2-1) edge node[below = 7pt, right = -6pt] {$ h $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Hence for every $k$-point $v$ of $V$ we have the restiction $g_{\mid \bd{A} \times_k\Spec k(v)}$ factors through $\Spec k\left(h(v)\right)$. Since $g(v,e_{\bd{A}}) = e_{\bd{G}}$, we derive that $h(v) = e_{\bd{G}}$ and thus $g_{\mid \bd{A}\times_k\Spec k(v)}$ factors through $\Spec k(e_{\bd{G}})$. This holds for any $k$-point of $V$. Therefore, $g_{\mid \bd{A}\times_kV}$ factors through $\Spec k(e_{\bd{G}})$. Consider the kernel $i:Z\hookrightarrow \bd{A}\times_k\bd{A}$ of a pair consisting of $g$ and a morphism $\bd{A}\times_k\bd{A}\ra \bd{G}$ that factorizes through $\Spec k(e_{\bd{G}})$. Since $\bd{G}$ is separated, we derive that $i$ is a closed immersion. Moreover, $i$ dominates $\bd{A}\times_kV$. Since $\bd{A}\times_kV$ is schematically dense open subset of $\bd{A}\times_k\bd{A}$ (because $\bd{A}\times_k\bd{A}$ is integral), we derive that $i$ is an isomorphism and hence $g$ factors through $\Spec k(e_{\bd{G}})$.
+\end{proof}
+
+\begin{corollary}\label{corollary:abelian_varieties_are_commutative}
+Let $\bd{A}$ be an abelian variety over $k$. Then $\bd{A}$ is a commutative group scheme over $k$.
+\end{corollary}
+\begin{proof}
+Consider the morphism $(-)^{-1}:\bd{A}\ra \bd{A}$. By Theorem \ref{theorem:morphisms_from_abelian_varieties} we derive $(-)^{-1}$ is a morphism of group schemes over $k$. Hence $\bd{A}$ is a commutative group scheme.
+\end{proof}
+
+\section{Transporters}
+
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor and let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on a $k$-functor $\fX$. Suppose that $\fY_1,\fY_2$ are $k$-subfunctors of $\fX$. For every $k$-algebra $A$ we define
+$$\mathrm{Transp}_{\fG}\left(\fY_1,\fY_2\right)(A) = \big\{g\in \fG(A)\,\big|\,\alpha_g\left(\fY_1(A)\right)\subseteq \fY_2(A)\big\}$$
+where as usual $\alpha_g$ is a slice of $\alpha$ along $g$. Then $\mathrm{Transp}_{\fG}\left(\fY_1,\fY_2\right)$ is a $k$-subfunctor of $\fG$. It is called \textit{the tranporter of $\fY_1$ into $\fY_2$ with respect to $\alpha$}. 
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{alpha}
+\bibliography{../zzz}
+
+
+
+
+\end{document}
