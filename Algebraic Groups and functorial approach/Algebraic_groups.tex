@@ -1,6 +1,7 @@
 \input ../pree.tex
 
 \begin{document}
+
 \title{Algebraic group schemes over field}
 \date{}
 \maketitle
@@ -10,9 +11,7 @@
 In these notes we group schemes over fields. For background we refer to \cite{kfunctors} and \cite{Monoid_k_functors}.\\
 Throughout these notes $k$ is a fixed field.
 
-\begin{definition}
-Let $\bd{G}$ be a group scheme over $k$. If $\bd{G}$ is of finite type over $k$, then we say that $\bd{G}$ is \textit{an algebraic group over $k$}.
-\end{definition}
+
 
 \section{Simple criterion for separatedness}
 
@@ -34,17 +33,28 @@ where $A$ is a $k$-algebra. Note that we have a cartesian square
 {   \bd{G}                & \Spec k \\
     \bd{G}\times_k\bd{G}  & \bd{G}  \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$\mathrm{can.} $} (m-1-2)
+(m-1-1) edge node[above] {$\pi $} (m-1-2)
 (m-2-1) edge node[below] {$f $} (m-2-2)
 (m-1-1) edge node[left] {$\delta_{\bd{G}} $} (m-2-1)
 (m-1-2) edge node[right] {$e_{\bd{G}}  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-where $\delta_{\bd{G}}$ is a diagonal of $\bd{G}$. Since base change of a closed immersion is a closed immersion, we derive that $\delta_{\bd{G}}$ is a closed immersion and hence $\bd{G}$ is separated. This is \textbf{(ii)}.\\
+where $\delta_{\bd{G}}$ is a diagonal of $\bd{G}$ and the top horizontal arrow is the structure morphism. Since base change of a closed immersion is a closed immersion, we derive that $\delta_{\bd{G}}$ is a closed immersion and hence $\bd{G}$ is separated. This is \textbf{(ii)}.\\
 Suppose now that \textbf{(ii)} holds. Let $\pi:\bd{G}\ra \Spec k$ be the structural morphism. Then $\pi\cdot e_{\bd{G}} = 1_{\bd{G}}$. Since $\pi$ is a separated morphism, we derive that (by cancellation) $e_{\bd{G}}$ is closed immersion. This is \textbf{(i)}.
 \end{proof}
 
-\section{Complete group schemes}
+\begin{definition}
+Let $\bd{G}$ be a group scheme over $k$. If $\bd{G}$ is (locally) of finite type over $k$, then we say that $\bd{G}$ is \textit{an (a locally) algebraic group over $k$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:locally_algebraic_groups_are_separated}
+Let $\bd{G}$ be a locally algebraic group over $k$. Then $\bd{G}$ is separated. 
+\end{corollary}
+\begin{proof}
+Consider the unit $e_{\bd{G}}:\Spec k \ra \bd{G}$. Since $\bd{G}$ is locally of finite type, we derive that each $k$-point is closed in $\bd{G}$. Thus $e_{\bd{G}}$ is a closed immersion. By Proposition \ref{proposition:separatedness_criterion} we derive that $\bd{G}$ is separated.
+\end{proof}
+
+\section{Abelian Varieties}
 \noindent
 We start this section with the following general result.
 
@@ -127,7 +137,119 @@ is commutative. Hence for every $k$-point $v$ of $V$ we have the restiction $g_{
 Let $\bd{A}$ be an abelian variety over $k$. Then $\bd{A}$ is a commutative group scheme over $k$.
 \end{corollary}
 \begin{proof}
-Consider the morphism $(-)^{-1}:\bd{A}\ra \bd{A}$. By Theorem \ref{theorem:morphisms_from_abelian_varieties} we derive $(-)^{-1}$ is a morphism of group schemes over $k$. Hence $\bd{A}$ is a commutative group scheme.
+Consider the morphism $f:\bd{A}\ra \bd{A}$ given on $A$-points of $\bd{A}$ by
+$$f(x) = x^{-1}$$
+where $A$ is a $k$-algebra. By Theorem \ref{theorem:morphisms_from_abelian_varieties} we derive that $f$ is a morphism of group schemes over $k$. Hence $\bd{A}$ is a commutative group scheme.
+\end{proof}
+
+\section{Representability of fixed points}
+
+\begin{definition}
+Let $\fG$ be a monoid $k$-functor and let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on a $k$-functor. Then we define a $k$-subfunctor $\fX^{\fG}$ of $\fX$ by
+$$\fX^{\fG}(A) = \big\{x\in \fX(A)\,\big|\,\mbox{ for any }A\mbox{-algebra }f:A\ra B\mbox{ and }g\in \fG(B)\mbox{ we have }\alpha\big(g,\fX(f)(x)\big) = \fX(f)(x)\big\}$$
+for every $k$-algebra $A$. Then $\fX^{\fG}$ is called \textit{the fixed point $k$-functor}.
+\end{definition}
+
+\begin{theorem}\label{theorem:fixed_points_existence}
+Let $\bd{G}$ be a group scheme over $k$ and let $a:\bd{G}\times_kX\ra X$ be an action of $\bd{G}$ on a $k$-scheme $X$. Suppose that one of the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $X$ is separated.
+\item $\bd{G}$ is a geometrically connected, locally algebraic group.
+\end{enumerate}
+\end{theorem}
+\noindent
+The following result is based on {\cite[Theorem 6.2]{kfunctors}} and plays the fundamental role in the proof.
+
+\begin{lemma}\label{lemma:representability_of_fixed_point_functor}
+Let $X,Y$ be $k$-schemes and let $a:Y\times_kX\ra X$ be a morphism of $k$-schemes. Suppose that one of the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item $X$ is separated.
+\item For every open subscheme $U$ of $X$ we have $a\left(Y\times_kU\right)\subseteq U$
+\end{enumerate}
+Consider a $k$-functor given by formula
+$$A \mapsto \big\{f:\Spec A\ra X\,\big|\,a\cdot \left(1_Y\times_k f\right) = \mathrm{pr}_X\cdot \left(1_Y\times_kf\right)\big\}$$
+where $A$ is a  $k$-algebra and $\mathrm{pr}_X:Y\times_kX \ra X$ is the projection. Then this $k$-functor is representable by a closed subscheme of $X$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Assume first that $X$ is separated. Consider a morphism $\langle a, \mathrm{pr}_X\rangle:Y\times_kX\ra X\times_k X$. By {\cite[Corollary 4.6]{Monoid_k_functors}} we deduce that $\fP_{\langle a, \mathrm{pr}_X\rangle}$ corresponds to a morphism $\sigma:\fP_X\ra \iMor_k\left(\fP_Y, \fP_X\times \fP_X\right)$ of $k$-functors. Since $X$ is separated, the diagonal $\delta_X:X\ra X\times_k X$ is a closed immersion. This implies that $\fP_{\delta_X}$ is a closed immersion of $k$-functors. The fact that $Y$ is locally free over $k$ and {\cite[Theorem 6.2]{kfunctors}} imply that
+$$\iMor_k\left(1_{\fP_Y}, \fP_{\delta_X} \right):\iMor_k\left( \fP_{Y},\fP_{X} \right) \hookrightarrow \iMor_k\left( \fP_{Y}, \fP_{X} \times \fP_{X} \right)$$
+is a closed immersion of $k$-functors. Consider now a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{    \fX      & \iMor_k\left( \fP_{Y},\fP_{X} \right)               \\
+  \fP_X      & \iMor_k\left( \fP_{Y}, \fP_{X} \times \fP_{X} \right)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ j $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma $} (m-2-2)
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$ \iMor_k\left(1_{\fP_Y}, \fP_{\delta_X} \right) $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+of $k$-functors. By base change $j:\fX\ra \fP_X$ is a closed immersion of $k$-functors. Thus we derive that $\fX$ is representable by a closed subscheme of $\fX$. It suffices to observe that $\fX$ is precisely the $k$-functor described in the statement. This proves the statement under the assumption \textbf{(1)}.\\
+Now suppose that $a\left(Y\times_kU\right) \subseteq U$ for every open subscheme $U$ of $X$. For every open subscheme denote by $a_U:Y\times_kU\ra U$ the restriction of $a$. Let $\cU$ be an open affine cover of $X$. Then functors
+$$\bigg\{\Alg_k\ni A\mapsto \big\{f:\Spec A\ra U\,\big|\,a\cdot \left(1_Y\times_k f\right) = \mathrm{pr}_X\cdot \left(1_Y\times_k f\right)\big\}\in \Set \bigg\}_{U\in \cU}$$
+form an open cover ({\cite[Definition 4.5]{kfunctors}}) of the $k$-functor in the statemtent. Moreover, since each $U$ in $\cU$ is affine and hence separated, we derive by the first part of the proof that each $k$-functor in the family is representable. Now {\cite[Theorem 4.6]{kfunctors}} imply that the functor in the statement is representable. This finishes the proof in case \textbf{(2)}.
+\end{proof}
+
+\begin{lemma}\label{lemma:infinitesimal_isomorphisms}
+Let $f:\bd{H}\ra \bd{G}$ be a morphism of locally algebraic groups over $k$. Suppose that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item The morphism
+$$\widehat{\cO_{\bd{G},e_{\bd{G}}}} \ra  \widehat{\cO_{\bd{H},e_{\bd{H}}}}$$
+induced by $f^{\#}$ is an isomorphism.
+\item $f$ is a monomorphism of $k$-schemes.
+\end{enumerate}
+Then $f$ is an open immersion.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+The assertion \textbf{(1)} implies that $f$ is {\'e}tale in $e_{\bd{H}}$. Let $K$ be an algebraic closure of $k$. Consider the {\'e}tale locus $U$ of $f_k = 1_K\otimes_kf:\bd{H}_K\ra \bd{G}_K$. Then $U$ is an open subscheme of $\bd{H}_K$ containing the unit. Moreover, for every $K$-point $h$ of $\bd{H}_K$ we have a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex]
+{ \bd{H}_K  & \bd{G}_K          \\
+  \bd{H}_K  & \bd{G}_K  \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f_K $} (m-1-2)
+(m-2-1) edge node[below] {$ f_K $} (m-2-2)
+(m-1-1) edge node[left]  {$ h\cdot (-)  $} (m-2-1)
+(m-1-2) edge node[right] {$ f_K(h)\cdot (-)  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $h\cdot (-)$ and $f_K(h)\cdot (-)$ are isomorphisms of $K$-schemes. This proves that $h\cdot U\subseteq U$. Hence $U$ contains all $K$-rational points of $\bd{H}_K$. Therefore, the complement of $U$ in $\bd{H}_K$ is empty. Hence $U = \bd{H}_K$. This shows that $f_K$ is {\'e}tale and by faithfully flat descent also $f$ is {\'e}tale. Since {\'e}tale monomorphisms are open immersions, we derive that $f$ is an open immersion.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+If \textbf{(1)} holds, then the statement follows directly from Lemma \ref{lemma:representability_of_fixed_point_functor}.\\
+Suppose now that \textbf{(2)} holds that is $\bd{G}$ is an algebraic group. For each $n\in \NN$ we define
+$$\bd{G}_n = \Spec \cO_{\bd{G},e_{\bd{G}}}/\ideal{m}_{e_{\bd{G}}}^{n+1}$$
+where $e$ is the unit of $\bd{G}$. Then $\bd{G}_n$ is the $n$-th infinitesimal neighborhood of $e$ in $\bd{G}$. Denote by $p_n:\bd{G}_n\times_kX\ra X$ the projection on the second factor. Let $a_n:\bd{G}_n\times_kX\ra X$ be the morphism induced by $a$. Note that for every open subscheme $U$ of $X$ we have $a_n\left(\bd{G}_n\times_kU\right)\subseteq U$. By Lemma \ref{lemma:representability_of_fixed_point_functor} it follows that the $k$-functor given by
+$$\Alg_k \ni A \mapsto \big\{f:\Spec A\ra X\,\big|\,a_n\cdot \left(1_{\bd{G}_n}\times_k f\right) = \mathrm{pr}_n\cdot \left(1_{\bd{G}_n}\times_kf\right)\big\} \in \Set$$
+is representable by a closed subscheme $Z_n$ of $X$. Consider now the quasi-coherent ideal $\cI_n$ of $Z_n$ inside $X$. Define
+$$\cI = \sum_{n\in \NN}\cI_n$$
+Let $i:Z\hookrightarrow X$ be a closed subscheme of $X$ determined by $\cI$. This means that $Z$ is the scheme-theoretic intersection inside $X$ of closed subschemes $Z_n$ for $n\in \NN$. We show that $Z$ represents the fixed point functor. For this assume that $A$ is a $k$-algebra and $f:\Spec A\ra X$ is a morphism of $k$-schemes such that $f$ is an $A$-point of the fixed point functor. This is equivalent with
+$$a\cdot \left(1_{\bd{G}}\times_k f\right) = \mathrm{pr}_X\cdot \left(1_{\bd{G}}\times_kf\right)$$
+From this equality we deduce that
+$$a_n\cdot \left(1_{\bd{G}_n}\times_k f\right) = \mathrm{pr}_n\cdot \left(1_{\bd{G}_n}\times_kf\right)$$
+for every $n\in \NN$ and hence $f$ factors through $Z_n$ for every $n\in \NN$. We derive that $f$ factors through $Z$. This proves that the fixed point functor is a $k$-subfunctor of the functor of points of $Z$. It suffices to prove that $Z$ is invariant with respect to $\bd{G}$-action. For this consider the morphism $b:\bd{G}\times_kZ\ra X$ induced by $a$. By {\cite[Corollary 4.6]{Monoid_k_functors}} morphism $b$ corresponds to a morphism $\sigma:\fP_{\bd{G}} \ra \iMor_k\left(\fP_{Z},\fP_X\right)$ of $k$-functors. Consider the cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{    \fH      & \iMor_k\left( \fP_{Z},\fP_{Z} \right)               \\
+  \fP_{\bd{G}}      & \iMor_k\left( \fP_{Z},\fP_{X}\right)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ j $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma $} (m-2-2)
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$ \iMor_k\left(1_{\fP_Z}, \fP_{i} \right) $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+The fact that $Z$ is locally free over $k$ and {\cite[Theorem 6.2]{kfunctors}} imply that $\iMor_k\left(\fP_{Z},\fP_{i}\right)$ is a closed immersion of $k$-functors. Hence $j:\fH \hookrightarrow \fP_{\bd{G}}$ is a closed immersion. Moreover, $\fH$ is a subgroup $k$-functor of $\fP_{\bd{G}}$. Thus we deduce that $j$ is induced by a closed immersion of an algebraic groups $f:\bd{H} \hookrightarrow \bd{G}$. By definition of $i:Z\hookrightarrow X$, we derive that morphism of local $k$-algebras
+$$\widehat{\cO_{\bd{G},e_{\bd{G}}}} \ra  \widehat{\cO_{\bd{H},e_{\bd{H}}}}$$
+induced by $f^{\#}$ is an isomorphism. Hence by Lemma \ref{lemma:infinitesimal_isomorphisms} $f$ is an open immersion of locally algebraic groups. Since $\bd{G}$ is geometrically connected, we deduce that $f$ is an isomorphism. Thus $j$ is an isomorphism and this means that $b:\bd{G}\times_k Z\ra X$ factors through $i:Z\hookrightarrow X$.
 \end{proof}
 
 \section{Transporters}
@@ -138,6 +260,46 @@ $$\mathrm{Transp}_{\fG}\left(\fY_1,\fY_2\right)(A) = \big\{g\in \fG(A)\,\big|\,\
 where as usual $\alpha_g$ is a slice of $\alpha$ along $g$. Then $\mathrm{Transp}_{\fG}\left(\fY_1,\fY_2\right)$ is a $k$-subfunctor of $\fG$. It is called \textit{the tranporter of $\fY_1$ into $\fY_2$ with respect to $\alpha$}. 
 \end{definition}
 
+\section{Morphisms of locally algebraic groups}
+
+\begin{theorem}\label{theorem:monomorphisms_of_algebraic_groups}
+Let $f:\bd{H}\ra \bd{G}$ be a morphism of algebraic groups over $k$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $f$ is a monomorphism of $k$-schemes.
+\item $f$ is a locally closed immersion of $k$-schemes.
+\item $f$ is a closed immersion of $k$-schemes.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{theorem:monomorphisms_of_algebraic_schemes}
+Let $f:X\ra Y$ be a monomorphism of finite type with $X,Y$ noetherian. Then there exists open dense subscheme $V$ of $Y$ such that the morphism $f^{-1}(V)\ra V$ induced by $f$ is a locally closed immersion.
+\end{theorem}
+The proof is based on a sequence of results.
+
+\begin{lemma}\label{lemma:monomorphisms_of_fields_spectra}
+Let $K$ and $L$ be a fields. If $\Spec L\hookrightarrow \Spec K$ is a monomorphism of schemes, then it is an isomorphism. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Since the diagonal of a monomorphism is an isomorphism, we deduce that the multiplication map $L\otimes_KL\ra L$ is an isomorphism. This implies that $\mathrm{dim}_k(L) = \mathrm{dim}_L\left(L\otimes_kL\right) = 1$. Hence $k\hookrightarrow L$ is an isomorphism of fields.
+\end{proof}
+
+\begin{lemma}\label{lemma:local_embeddings}
+There exists an open dense subset $U$ of $X$ such that $f_{\mid U}$ is a locally closed immersion.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose that $x$ is a generic point of an irreducible component of $X$. Let $y = f(x)$. Pick $f_{y}:X_{y}\ra \Spec k(y)$. Then $f_{y}$ is a monomorphism. Since $\Spec k(x)$ is a closed subscheme of $X_y$, we derive that the composition of $\Spec k(x)\hookrightarrow X_y$ and $f_y$ is a monomorphism $\Spec k(x)\hookrightarrow \Spec k(y)$ of schemes. By Lemma \ref{lemma:monomorphisms_of_fields_spectra} we deduce that is an isomorphism. We derive that $f_{y}$ is a retraction. A retraction that is a monomorphism is an isomorphism. Hence $f_y$ is an isomorphism. This shows that $k(y)\cong \cO_{X,x}/\ideal{m}_y\cO_{X,x}$. Thus we have
+$$\cO_{X,x} = f^{\#}\left(\cO_{Y,y}\right)+\ideal{m}_{y}\cO_{X,x}$$
+Since $x$ is a generic point of an irreducible component of $X$, we derive that $\cO_{X,x}$ is artinian. Thus $\ideal{m}_y\cO_{X,x} \subseteq \ideal{m}_x$ is a nilpotent ideal. Thus $f^{\#}:\cO_{Y,y}\ra \cO_{X,x}$ is onto.
+\end{proof}
+
+\begin{lemma}\label{lemma:local_surjections_give_local_closed_immersions}
+Let $f:A\ra B$ be a morphism of finite type between noetherian rings. Suppose that $\ideal{p}\in \Spec A$ and $\ideal{q}\in \Spec B$ are prime ideals such that $f^{-1}(\ideal{q})=\ideal{p}$. Assume that $f$ induces a surjective morphism $A_{\ideal{p}}\ra B_{\ideal{q}}$. Then there exists $s\in B\setminus \ideal{q}$ such that $f$ induces a surjective morphism $A\ra B_s$.
+\end{lemma}
+\begin{proof}[Proof of the Lemma]
+First assume that $A_{\ideal{p}}\ra B_{\ideal{q}}$ is bijective and let $\phi:B_{\ideal{q}}\ra A_{\ideal{p}}$. Since $f:A\ra B$ is morphism of finite type between noetherian rings, we have $B \cong A[x_1,...,x_n]/I$ for some finitely generated ideal $I\subseteq A[x_1,..,x_n]$ and free variables $x_1,...,x_n$. Let $\ol{x}_i = x_i\,\mathrm{mod}\,I$ for $1\leq i\leq n$. Suppose that $a_1,...,a_n$ are elements in $A$ such that
+$$\frac{a_i}{1} = \phi\left(\frac{\ol{x}_i}{1}\right)$$
+for $1\leq i\leq n$.
+\end{proof}
 
 
 
