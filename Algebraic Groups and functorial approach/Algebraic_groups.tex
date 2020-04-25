@@ -11,9 +11,11 @@
 In these notes we group schemes over fields. For background we refer to \cite{kfunctors} and \cite{Monoid_k_functors}.\\
 Throughout these notes $k$ is a fixed field.
 
+\begin{definition}
+Let $X$ be a scheme over $k$. If $X$ is (locally) of finite type over $k$, then we say that $X$ is \textit{an (a locally) algebraic scheme over $k$}.
+\end{definition}
 
-
-\section{Simple criterion for separatedness}
+\section{General properties of groups schemes over $k$}
 
 \begin{proposition}\label{proposition:separatedness_criterion}
 Let $\bd{G}$ be a group scheme over $k$ and let $e_{\bd{G}}:\Spec k\ra \bd{G}$ be its unit. Then the following are equivalent.
@@ -44,7 +46,7 @@ Suppose now that \textbf{(ii)} holds. Let $\pi:\bd{G}\ra \Spec k$ be the structu
 \end{proof}
 
 \begin{definition}
-Let $\bd{G}$ be a group scheme over $k$. If $\bd{G}$ is (locally) of finite type over $k$, then we say that $\bd{G}$ is \textit{an (a locally) algebraic group over $k$}.
+Let $\bd{G}$ be a group scheme over $k$. If $\bd{G}$ is (locally) algebraic over $k$, then we say that $\bd{G}$ is \textit{an (a locally) algebraic group over $k$}.
 \end{definition}
 
 \begin{corollary}\label{corollary:locally_algebraic_groups_are_separated}
@@ -52,6 +54,378 @@ Let $\bd{G}$ be a locally algebraic group over $k$. Then $\bd{G}$ is separated.
 \end{corollary}
 \begin{proof}
 Consider the unit $e_{\bd{G}}:\Spec k \ra \bd{G}$. Since $\bd{G}$ is locally of finite type, we derive that each $k$-point is closed in $\bd{G}$. Thus $e_{\bd{G}}$ is a closed immersion. By Proposition \ref{proposition:separatedness_criterion} we derive that $\bd{G}$ is separated.
+\end{proof}
+
+\begin{remark}\label{remark:action_is_isomorphic_with_projection}
+Let $\fG$ be a group $k$-functor and let $a:\fG \times \fX \ra \fX$ be an action of $\fG$ on $\fX$. Consider an isomorphism $\phi:\fG\times \fX\ra \fG\times \fX$ given by
+$$\fG(A)\times \fX(A)\ni (g,x)\mapsto (g,g^{-1}x)\in \fG(A)\times \fX(A)$$
+for every $k$-algebra. Then the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \fG\times \fX  &     & \fG\times \fX   \\
+                 &\fX  &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-1-1) edge node[below = 2pt, left = 2pt] {$ \pi_{\fX}  $} (m-2-2)
+(m-1-2) edge node[below = 2pt, right = 2pt] {$ a $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{remark}
+
+\begin{corollary}\label{corollary:action_isomorphic_with_projection}
+Let $\bd{G}$ be a group scheme over $k$ and let $a:\bd{G}\times_k X\ra X$ be an action of $\bd{G}$ on $k$-scheme $X$. Then $a$ is isomorphism with the projection $\pi_X:\bd{G}\times_k X\ra X$.
+\end{corollary}
+\begin{proof}
+This is a reformulation of Remark \ref{remark:action_is_isomorphic_with_projection}.
+\end{proof}
+
+\begin{corollary}\label{corollary:action_is_flat}
+Let $\bd{G}$ be a group scheme over $k$ and let $a:\bd{G}\times_k X\ra X$ be an action of $\bd{G}$ on $k$-scheme $X$. Then $a$ is faithfuly flat.
+\end{corollary}
+\begin{proof}
+This is a direct consequence of Corollary \ref{corollary:action_isomorphic_with_projection} and the fact that each group scheme $\bd{G}$ over a field $k$ is faithfuly flat.
+\end{proof}
+
+\begin{theorem}\label{theorem:base_locus_of_certain_classes_of_morphisms_are_invariant}
+Let $\bd{G}$ be a group scheme over $k$, let $X,Y$ be $k$-schemes with $\bd{G}$-actions and let $f:X\ra Y$ be a $\bd{G}$-equivariant morphism. Suppose that $\bd{P}$ is a property of morphisms of $k$-schemes such that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item $\bd{P}$ is local on the base.
+\item $\bd{P}$ is closed under base change.
+\item $\bd{P}$ descends along faithfuly flat base change.
+\end{enumerate}
+Then there exists the largest open subset of $Y$ such that the restriction $f^{-1}(V)\ra V$ of $f$ is in $\bd{P}$ and it is $\bd{G}$-invariant.
+\end{theorem}
+\begin{proof}
+Note that the existence of $V$ follows from \textbf{(1)}. We denote by $\tilde{f}$ the restriction of $f$ to $f^{-1}(V)\ra V$ and we denote by $\bd{G}\cdot V$, $\bd{G}\cdot f^{-1}(V)$ translations with respect to $\bd{G}$-actions of $V$, $f^{-1}(V)$, respectively. We also denote by $\hat{f}:\bd{G}\cdot f^{-1}(V)\ra \bd{G}\cdot V$ the restriction of $f$. Note that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{G}\times_k f^{-1}(V) & \bd{G}\cdot f^{-1}(V) \\
+    \bd{G}\times_k V         & \bd{G}\cdot V  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \bd{G}-\mathrm{action} $} (m-1-2)
+(m-2-1) edge node[below] {$ \bd{G}-\mathrm{action} $} (m-2-2)
+(m-1-1) edge node[left] {$1_{\bd{G}}\times_k\tilde{f}  $} (m-2-1)
+(m-1-2) edge node[right] {$ \hat{f} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. The assumption \textbf{(2)} implies that $1_{\bd{G}}\times_k\tilde{f}$ is in $\bd{P}$. Since bottom horizontal morphism is faithfuly flat by Corollary \ref{corollary:action_is_flat}, we deduce by \textbf{(3)} that $\hat{f}$ is in $\bd{P}$. Since $V$ is the largest open subset of $Y$ such that the restriction $f^{-1}(V)\ra V$ of $f$ is in $\bd{P}$ and
+$$f^{-1}\left(\bd{G}\cdot V\right) = \bd{G}\cdot f^{-1}(V)$$
+we derive that $\bd{G}\cdot V \subseteq V$. Hence $V = \bd{G}\cdot V$, which means that $V$ is $\bd{G}$-invariant.
+\end{proof}
+\noindent
+Finally we introduce certain class of monoid $k$-schemes that satify rudimentary finitness properties.
+
+\begin{definition}
+Let $\bd{M}$ be a monoid scheme over $k$. If $\bd{M}$ is (locally) algebraic over $k$, then we say that $\bd{M}$ is \textit{an (a locally) algebraic monoid over $k$}.
+\end{definition}
+
+\section{The action on regular functions of a $\bd{G}$-scheme}
+\noindent
+We start with the following notion.
+
+\begin{definition}
+Let $Y$ be a scheme and let $X$ be a $Y$-scheme. If the diagonal $X\ra X\times_Y X$ is affine, then we say that $X$ is \textit{semi-separated} over $Y$.
+\end{definition}
+
+\begin{remark}\label{remark:separated_is_semi-separated}
+Let $Y$ be a scheme. Every separated $Y$-scheme is semi-separated.
+\end{remark}
+
+\begin{example}[Semi-separated scheme that is not separated]
+Let $o$ be the origin of the affine line $\mathbb{A}^1_k$. Consider the following pushout diagram in the category of $k$-schemes.
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{   \mathbb{A}^1_k\setminus \{o\} & \mathbb{A}^1_k \\
+    \mathbb{A}^1_k                & X              \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-1) edge node[left] {$ $} (m-2-1);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below] {$ $} (m-2-2)
+(m-1-2) edge node[right] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Then $X$ is an affine line with double origin. Then the diagonal $X\ra X\times_k X$ is affine but not a closed immersion. Hence $X$ is semi-separated but not separated.
+\end{example}
+
+\begin{theorem}\label{theorem:regular_functions_on_products}
+Let $X,Y$ be quasi-compact and semi-separated $k$-schemes. Denote by $\pi_X$ and $\pi_Y$ projections from $X\times_kY$ to $X$ and $Y$, respectively. Then the canonical morphism
+$$\Gamma(X,\cO_X)\otimes_k\Gamma(Y,\cO_Y)\ni f\otimes_k g\mapsto \pi_X^{\#}(f)\cdot \pi_Y^{\#}(g)\in \Gamma\left(X\times_kY,\cO_{X\times_kY}\right)$$
+is an isomorphism.
+\end{theorem}
+\noindent
+The theorem follows from the following result.
+
+\begin{lemma}\label{lemma:regular_functions_and_open_covers_of_a_factor}
+Let $X,Y$ be $k$-schemes and let $\{V_i\}_{i=1}^n$ be a finite open cover of $Y$. Suppose that the canonical morphism
+$$\Gamma(X,\cO_X)\otimes_k\Gamma\left(V_i\cap V_j,\cO_{V_i \cap V_j}\right) \ra \Gamma\left( X \times_k \left(V_i\cap V_j\right),\cO_{X\times_k\left(V_i \cap V_j\right)}\right)$$
+is an isomorphism for any $i,j\in \{1,...,n\}$. Then the canonical morphism
+$$\Gamma(X,\cO_X)\otimes_k\Gamma(Y,\cO_Y) \ra \Gamma\left(X\times_kY,\cO_{X\times_kY}\right)$$
+is an isomorphism.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For each $i\in \{1,...,n\}$ we have the restriction $r_i:\Gamma\left(X \times_kY,\cO_{X \times_kY}\right)\ra \Gamma\left(X\times_kV_i,\cO_{X\times_kY}\right)$ we denote by $p_i$ the restriction $\Gamma\left(Y,\cO_{Y}\right)\ra \Gamma\left(V_i,\cO_{Y}\right)$ tensored with $\Gamma(X,\cO_X)$. For $i, j \in \{1,...,n\}$ we have the restriction $r_{i,j}:\Gamma\left(X \times_kV_i,\cO_{X \times_kY}\right)\ra \Gamma\left(X\times_k\left(V_i\cap V_j\right),\cO_{X\times_kY}\right)$ and we denote by $p_{i,j}$ the restriction $\Gamma\left(V_i,\cO_{Y}\right)\ra \Gamma\left(V_i\cap V_j ,\cO_{Y}\right)$ tensored with $\Gamma(X,\cO_X)$. Consider the commutative diagram
+\begin{center}
+\hspace*{-1.5cm}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \Gamma\left(X\times_k Y,\cO_{X\times_k Y}\right) & \Oplus_{i=1}^n\Gamma\left(X\times_k V_i,\cO_{X\times_k Y}\right)   &  \Oplus_{1\leq i < j\leq n}\Gamma\left(X\times_k \left(V_i\cap V_j\right),\cO_{X\times_kY}\right) \\
+ \Gamma\left(X,\cO_X\right)\otimes_k\Gamma\left(Y,\cO_{Y}\right) &  \Oplus_{i=1}^n\Gamma\left(X,\cO_X\right) \otimes_k \Gamma\left(V_i,\cO_{V_i}\right)   & \Oplus_{1\leq i <j \leq n} \Gamma\left(X,\cO_X\right)\otimes_k \Gamma\left(V_i\cap V_j,\cO_{V_i\cap V_j}\right)  \\} ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$\langle r_i\rangle_{i=1}^n  $} (m-1-2)
+(m-1-2) edge[transform canvas={yshift=0.6ex}] node[above]  {$\langle r_{i,j}\cdot \mathrm{pr}_i\rangle_{1\leq i<j\leq n}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.6ex}] node[below] {$\langle r_{j,i}\cdot \mathrm{pr}_j\rangle_{1\leq i<j\leq n}  $} (m-1-3)
+(m-2-1) edge node[above] {$\langle p_i \rangle_{i=1}^n  $} (m-2-2)
+(m-2-2) edge[transform canvas={yshift=0.6ex}] node[above] {$ \langle p_{i,j}\cdot \mathrm{pr}_i\rangle_{1\leq i<j\leq n}  $} (m-2-3)
+(m-2-2) edge[transform canvas={yshift=-0.6ex}] node[below] {$\langle p_{j,i}\cdot \mathrm{pr}_j\rangle_{1\leq i<j\leq n}  $} (m-2-3)
+(m-2-1) edge node[left] {$   $} (m-1-1)
+(m-2-2) edge node[left] {$ \cong $} (m-1-2)
+(m-2-3) edge node[right] {$ \cong $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+in which vertical arrows are canonically defined. Moreover, by assumptions right and middle vertical arrows are isomorphisms. Note also that both rows are kernel diagrams. Indeed, for the top row this follows from the sheaf property of $\cO_{X\times_k Y}$ and for the bottom row this follows from the fact that $\Gamma(X,\cO_X)$ is flat over $k$ (it is a field) together with the sheaf property of $\cO_Y$. These imply that the left vertical arrow is an isomorphism. This proves the assertion.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+The statement holds, if $X,Y$ are affine. Note that semi-separatedness of a scheme over commutative ring is equivalent to the fact that intersection of every pair of its open affine subschemes is affine. Now Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor} implies that the result holds if $X$ is affine and $Y$ is quasi-compact and semi-separated over $k$. Next and by symmetry in Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor}, we derive that the result holds if $X,Y$ are quasi-compact and semi-separated over $k$.
+\end{proof}
+
+\begin{proposition}\label{proposition:regular_functions_on_k_qc_semiseparated_k_schemes}
+Let $X$ be a quasi-compact and semi-separated $k$-scheme. Then $\iMor_k\left(\fP_X,\fO_k\right)$ exists and for every $k$-algebra $A$ there is identification
+$$\iMor_k\left(\fP_X,\fO_k\right)(A) =  A\otimes_k\Gamma(X,\cO_X)$$
+natural in $A$.
+\end{proposition}
+\begin{proof}
+Since $k$-functor $\fO_k$ is representable by $\mathbb{A}^1_k$ {\cite[Fact 3.2]{Monoid_k_functors}} and morphisms $\Spec A\times X\ra \mathbb{A}^1_A$ of $A$-schemes corresponds to regular functions on $\Spec A \times_k X$, we derive that there is an identification
+$$\Mor_A\left((\fP_X)_A,\fO_A\right) = \Gamma\left(\Spec A\times_k X,\cO_{\Spec A\times_k X}\right)$$
+natural in $k$-algebra $A$. Now by Theorem \ref{theorem:regular_functions_on_products} and assumptions on $X$ we deduce that for every $k$-algebra there is an identification
+$$\iMor_k\left(\fP_X,\fO_k\right)(A) =  A\otimes_k\Gamma(X,\cO_X)$$
+natural in $A$.
+\end{proof}
+\noindent
+Recall that if $\fG$ is a monoid $k$-functor that acts on a $k$-functor $\fX$, then by {\cite[Proposition 10.2]{Monoid_k_functors}} there exists canonically defined action of $\fG^{\mathrm{op}}$ on $\iMor_k\left(\fX,\fO_k\right)$ assuming that the latter exists.
+
+\begin{example}\label{example:k_monoid_action_on_regular_functions}
+Let $\bd{M}$ be a quasi-compact and semi-separated monoid $k$-scheme and let $a:\bd{M}\times_kX\ra X$ be an action of $\bd{M}$ on quasi-compact and semi-separated $k$-scheme $X$. Then by the remark above and by Proposition \ref{proposition:regular_functions_on_k_qc_semiseparated_k_schemes} we deduce that $\Gamma(X,\cO_X)$ carries the canonical structure of a linear representation of $\bd{M}^{\mathrm{op}}$. Let us explain how this representation is defined. For this consider $k$-algebra $A$ and let $f:\Spec A\ra \bd{M}$ be a morphism of $k$-schemes. Since $\bd{M} = \bd{M}^{\mathrm{op}}$ as $k$-schemes, morphism $f$ is an $A$-point of $\bd{M}^{\mathrm{op}}$. Now the morphism
+$$a\cdot \left(f\times_k 1_X\right):\Spec A\times_k X\ra X$$
+defines a morphism
+$$\rho(f):\Gamma\left(X,\cO_X\right)\ra A\otimes_k \Gamma\left(X,\cO_X\right)$$
+on global sections. Thus we have
+$$\fP_{\bd{M}^{\mathrm{op}}}(A)\ni f\mapsto \rho(f) \in \Hom_k\big(\Gamma\left(X,\cO_X\right), A\otimes_k \Gamma\left(X,\cO_X\right)\big)$$
+and this determines $\Gamma\left(X,\cO_X\right)$ as the linear representation of $\bd{M}^{\mathrm{op}}$.
+\end{example}
+
+\begin{theorem}\label{theorem:rationality_of_regular_functions}
+Let $\bd{M}$ be a a quasi-compact and semi-separated monoid $k$-scheme and let $a:\bd{M}\times_kX\ra X$ be an action of $\bd{M}$ on quasi-compact and semi-separated $k$-scheme $X$. Consider the canonical linear representation $\Gamma\left(X,\cO_X\right)$ of $\bd{M}^{\mathrm{op}}$. Then every finite dimensional subspace $V\subseteq \Gamma\left(X,\cO_X\right)$ is contained in some finite dimensional $\bd{M}^{\mathrm{op}}$-subrepresentation.
+\end{theorem}
+\begin{proof}
+Let $\mu:\bd{M}\times_k\bd{M}\ra \bd{M}$ be the multiplication. Since $a$ is an action, the following square is commutative
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{M}\times_k \bd{M}\times_k X & \bd{M}\times_k X \\
+    \bd{M}\times_k X                & X  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_{\bd{M}}\times_k a $} (m-1-2)
+(m-2-1) edge node[below] {$ a $} (m-2-2)
+(m-1-1) edge node[left] {$ \mu\times_k1_X $} (m-2-1)
+(m-1-2) edge node[right] {$ a $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+It implies that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   \cO_{\bd{M}\times_k\bd{M}\times_kX}(\bd{M}\times_k \bd{M}\times_k X) & \cO_{\bd{M}\times_kX}(\bd{M}\times_k X) \\
+    \cO_{\bd{M}\times_kX}(\bd{M}\times_k X)                & \cO_X(X)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[above] {$ \left(1_{\bd{M}}\times_k a\right)^{\#}_{\bd{M}\times_kX} $} (m-1-1)
+(m-2-2) edge node[below] {$a^{\#}_X  $} (m-2-1)
+(m-2-1) edge node[left] {$ \left(\mu\times_k1_X\right)^{\#}_{\bd{M}\times_kX} $} (m-1-1)
+(m-2-2) edge node[right] {$ a^{\#}_X $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Since $\bd{M}$, $X$ are quasi-compact and semi-separated, canonical identifications of Theorem \ref{theorem:regular_functions_on_products} can be used. This implies that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   \cO_{\bd{M}}(\bd{M})\otimes_k\cO_{\bd{M}}(\bd{M})\otimes_k\cO_{X}(X) & \cO_{\bd{M}}(\bd{M})\otimes_k\cO_X(X) \\
+    \cO_{\bd{M}}(\bd{M})\otimes_k\cO_X(X)               & \cO_X(X)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[above] {$ 1_{\cO_{\bd{M}}(\bd{M})}\otimes_k a^{\#}_X $} (m-1-1)
+(m-2-2) edge node[below] {$ a^{\#}_X $} (m-2-1)
+(m-2-1) edge node[left] {$ \mu^{\#}_{\bd{M}}\otimes_k1_{\cO_X(X)} $} (m-1-1)
+(m-2-2) edge node[right] {$ a^{\#}_X $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Fix a $k$-basis $\{r_i\}_{i\in I}$ of $\Gamma\left(X,\cO_X)\right)$. Pick a regular function $r$ on $X$ and write
+$$a^{\#}_X(r) = \sum_{i\in F}\phi_i\otimes_kr_i$$
+where $F$ is a finite subset of $I$ and $\phi_i$ are regular functions on $\bd{M}$ for $i\in F$. Let $W$ be a $k$-subspace of $\Gamma(X,\cO_X)$ spanned by $\{r_i\}_{i\in F}$ and $r$. Then we equality
+$$\sum_{i\in F}\phi_i\otimes_ka^{\#}(r_i) = \sum_{i\in F}\mu^{\#}(\phi_i)\otimes_kr_i \in \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_k \Gamma\left(\bd{M},\cO_{\bd{M}}\right) \otimes_k W$$
+Therefore, we have $a^{\#}(r_i)\in \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$ for every $i\in F$. We deduce that $a^{\#}(W) \subseteq \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$. Now for each $k$-algebra $A$ and $A$-point $f$ of $k$-scheme $\bd{M}^{\mathrm{op}} = \bd{M}$ and for every $s\in \Gamma(X,\cO_X)$ Theorem \ref{theorem:regular_functions_on_products} and description of $\rho$ in Example \ref{example:k_monoid_action_on_regular_functions} imply
+$$\rho(f) =  \left(f^{\#}_{\bd{M}}\otimes_k 1_{\Gamma(X,\cO_X)}\right)\cdot a^{\#}_X$$
+Thus for every $A$-point $f$ of $\bd{M}^{\mathrm{op}}$ we have
+$$\rho(f)\left(W\right) \subseteq A\otimes_kW$$
+Thus $W$ is a linear $\bd{M}^{\mathrm{op}}$-subrepresentation of $\Gamma(X,\cO_X)$ and $r\in W$. This proves that each element of $\Gamma(X,\cO_X)$ is contained in a finite dimensional subrepresentation of $\bd{M}^{\mathrm{op}}$. So the statement holds for one dimensional vector subspaces of $\Gamma(X,\cO_X)$. If the statement holds for two finite dimensional vector subspaces of $\Gamma(X,\cO_X)$, then it also holds for their sum. Thus the assertion holds for arbitrary finite dimensional vector subspace of $\Gamma(X,\cO_X)$.
+\end{proof}
+
+
+\section{Morphisms of locally algebraic groups}
+\noindent
+We start with the following interesting result.
+
+\begin{theorem}\label{theorem:images_of_locally_algebraic_groups_homomorphisms}
+Let $f:\bd{H}\ra \bd{G}$ be a morphism of locally algebraic groups over $k$. Suppose that $f$ is of finite type. Let $i:\bd{K}\ra \bd{G}$ be the scheme-theoretic image of $f$ and let $g:\bd{H}\ra \bd{K}$ be the unique morphism of schemes such that $f = i\cdot g$. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item $\bd{K}$ is a closed subgroup $k$-scheme of $\bd{G}$.
+\item $g$ is a surjective morphism of group schemes over $k$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Since $f$ is quasi-compact, we deduce that $i:\bd{K} \hookrightarrow \bd{G}$ is a closed immersion determined by the kernel of $f^{\#}:\cO_{\bd{G}}\ra f_*\cO_{\bd{H}}$ and $g^{\#}:\cO_{\bd{K}}\ra g_*\cO_{\bd{H}}$ is injective morphism of sheaves. Moreover, $g$ is quasi-compact. We derive by Theorem \ref{theorem:regular_functions_on_products} and Corollary \ref{corollary:locally_algebraic_groups_are_separated} that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_{\bd{K}\times_k\bd{K}}(V\times_k W)  & \cO_{\bd{H}\times_k \bd{H}}\left(g^{-1}(V)\times_k g^{-1}(W)\right) \\
+  \cO_{\bd{K}}(V)\otimes_k \cO_{\bd{K}}(W) & \cO_{\bd{H}}\left(g^{-1}(V)\right)\otimes_k \cO_{\bd{H}}\left(g^{-1}(W)\right)  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \left(g\times_k g\right)^{\#}_{V\times_k W} $} (m-1-2)
+(m-2-1) edge node[below] {$ g^{\#}_V\otimes_k g^{\#}_W $} (m-2-2)
+(m-2-1) edge node[left]  {$ \cong $} (m-1-1)
+(m-2-2) edge node[right] {$ \cong $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is commutative, where vertical arrows are canonical isomorphisms. This implies that the morphism $\left(g\times_k g\right)^{\#}$ is injective. Consider the commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{H}\times_k \bd{H} & \bd{K}\times_k \bd{K} & \bd{G}\times_k\bd{G} \\
+    \bd{H}                & \bd{K}                & \bd{G}\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$g\times_k g  $} (m-1-2)
+(m-2-1) edge node[below] {$g  $} (m-2-2)
+(m-1-1) edge node[left] {$ \nu_{\bd{H}} $} (m-2-1)
+(m-1-3) edge node[right] {$ \nu_{\bd{G}} $} (m-2-3);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[above] {$ i\times_k i $} (m-1-3)
+(m-2-2) edge node[below] {$ i  $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+where $\nu_{\bd{G}}$ and $\nu_{\bd{H}}$ are morphisms determined by formula $(x_1,x_2)\mapsto x_1^{-1}\cdot x_2$ on functors of points. Commutativity of the diagram implies that we have equality
+$$\big(\left(\nu_{\bd{G}}\right)_*\left(i\times_k i\right)_*\left(g\times_k g\right)^{\#}\big) \cdot \big(\left(\nu_{\bd{G}}\right)_*\left(i\times_k i\right)^{\#} \big) \cdot \nu_{\bd{G}}^{\#} = \big(i_*g_* \left(\nu_{\bd{H}}\right)^{\#} \big) \cdot \big(i_*g^{\#} \big) \cdot i^{\#}$$
+This equality together with injectivity of $\left(g\times_k g\right)^{\#}$ implies that the kernel of
+$$\big(\nu_{\bd{G}}\cdot \left(i\times_k i\right)\big)^{\#} = \big(\left(\nu_{\bd{G}}\right)_*\left(i\times_k i\right)^{\#} \big) \cdot \nu_{\bd{G}}^{\#}$$
+contains $\Ker(i^{\#})$. Thus $\nu_{\bd{G}}\cdot \left(i\times_k i\right)$ factors through $i$. Hence there exists a unique morphism $\nu$ such that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{K}\times_k \bd{K} & \bd{G}\times_k\bd{G} \\
+    \bd{K}                & \bd{G}\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ \nu $} (m-2-1)
+(m-1-2) edge node[right] {$ \nu_{\bd{G}} $} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ i \times_k i $} (m-1-2)
+(m-2-1) edge node[below] {$ i  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. This implies that $i:\bd{K} \hookrightarrow \bd{G}$ is a closed subgroup $k$-scheme of $\bd{G}$. Since $i$ is a monomorphism and
+$$i\cdot \nu \cdot \left(g\times_k g\right) = \nu_{\bd{G}}\cdot \left(i\times_k i\right) \cdot \left(g\times_k g\right) = i \cdot g \cdot \nu_{\bd{H}}$$
+we derive that $\nu \cdot \left(g\times_k g\right) = g\cdot \nu_{\bd{H}}$. Hence $g$ is a morphism of group schemes over $k$. It remains to prove that $g:\bd{H}\ra \bd{K}$ is surjective. Recall that $g$ is of finite type and $g^{\#}$ is injective. Note that these properties are preserved under base change to an algebraic closure of $k$. Moreover, the surjectivity of morphism descends along faithfuly flat base change. Thus we may assume that $k$ is algebraically closed. By {\cite[Theorem 3.4]{Constructibleandlocallyconstructiblesets}} and the fact that $g$ is of finite type, we deduce that $g\left(\bd{H}\right)$ is locally constructible in $\bd{K}$. Since $g^{\#}$ is injective, we derive that set-theoretic image $g\left(\bd{H}\right)\subseteq \bd{K}$ is dense. Thus $g\left(\bd{H}\right)$ is dense and locally constructible. Hence there exists an open and dense subset $V$ of $\bd{K}$ such that $V\subseteq g\left(\bd{H}\right)$. Since $k$ is algebraically closed and $\bd{K}$ is locally algebraic, we may pick a $k$-point $v$ in $V$. Since $V\subseteq g\left(\bd{H}\right)$, we deduce that $v\in g\left(\bd{H}\right)$ and thus $v^{-1}\in g\left(\bd{H}\right)$. Hence
+$$W = v^{-1}\cdot V \subseteq g\left(\bd{H}\right)\cdot g\left(\bd{H}\right) \subseteq g\left(\bd{H}\right)$$
+Thus $W$ is open neighborhood of the unit, dense in $\bd{K}$ and contained in $g\left(\bd{H}\right)$. Next
+$$g\left(\bd{H}\right)\cdot W \subseteq g\left(\bd{H}\right)\cdot g\left(\bd{H}\right)\subseteq g\left(\bd{H}\right)$$
+Thus $g(\bd{H})$ is open in $\bd{K}$. Now if $u\in \bd{K}\setminus g\left(\bd{H}\right)$ is a $k$-point, then
+$$u\cdot g\left(\bd{H}\right)\cap g\left(\bd{H}\right) = \emptyset$$
+as two distinct left cosets of an open subgroup $g\left(\bd{H}\right)$ in $\bd{K}$ are disjoint. This is contradiction, because $u\cdot g\left(\bd{H}\right)$ is open neighborhood of $u$ and $g\left(\bd{H}\right)$ is dense in $\bd{K}$. Therefore, $g\left(\bd{H}\right)$ is an open subset of $\bd{K}$ that contains all its $k$-points. Since $k$ is algebraically closed and $\bd{K}$ is locally algebraic, this implies that the closed subset $\bd{K}\setminus g\left(\bd{H}\right)$ is empty. Thus $g$ is surjective.
+\end{proof}
+\noindent
+Now we study equivariant monomorphisms of actions of locally algebraic groups. We start by proving certain results that hold for monomorphisms locally of finite type in locally noetherian case.
+
+\begin{proposition}\label{proposition:local_surjection_is_locally_a_locally_closed_immersion}
+Let $f:X\ra Y$ be a morphism locally of finite type with $Y$ locally noetherian. Suppose that for some point $x$ in $X$ morphism $f^{\#}:\cO_{Y,f(x)}\ra \cO_{X,x}$ is surjective. Then there exist an open neighborhood $U$ of $x$ and an open neighborhood $V$ of $f(x)$ such that $f(U)\subseteq V$ and the restriction $U\ra V$ induced by $f$ is a closed immersion.
+\end{proposition}
+\begin{proof}
+Consider an open affine neighborhood $W$ of $x$ and an open affine neighborhood $V$ of $f(x)$ such that $f(W)\subseteq V$. Let $V = \Spec A$, $W = \Spec B$ and $f = \Spec g$. Then $g$ induces a surjective map $A_{\ideal{p}}\ra B_{\ideal{q}}$ with $x$ corresponding to $\ideal{q}\in \Spec B$ and $f(x)$ corresponding to $\ideal{p}\in \Spec A$. Since $B$ is a finitely generated $A$-algebra ($g$ is of finite type), there exist $b_1,...,b_n$ generators of $B$ over $A$. Next the fact that $A_{\ideal{p}}\ra B_{\ideal{q}}$ is surjective, implies that there exist $a_1,...,a_n\in A$, $s_1,...,s_n \in A\setminus \ideal{p}$ and $t_1,...,t_n\in B\setminus \ideal{q}$ such that
+$$t_i\left(g(a_i) - g(s_i)b_i\right) = 0$$
+for $i=1,2,...,n$. Suppose that $\tilde{s} = s_1...s_n$ and $t = t_1...t_n g(s)$. Then
+$$\frac{g(a_i)}{g(s_i)} = \frac{b_i}{1}$$
+in $B_t$. Moreover, there exists a polynomial $F\in A[x_1,...,x_n]$ such that $t = F(b_1,...,b_n)$. This shows that
+$$\frac{t}{1} = F\left(\frac{g(a_1)}{g(s_1)},...,\frac{g(a_n)}{g(s_n)}\right)$$
+as an element of $B_t$. Thus in $B_t$ we have equality
+$$\frac{t}{1} = \frac{g(a)}{g(\tilde{s})^m}$$
+for some element $a\in A$ and $m\in \NN$. Note that $t\not \in \ideal{q}$ and hence $a \not \in \ideal{p}$. Since $B_t$ is generated by $\frac{b_1}{1},...,\frac{b_n}{1},\frac{1}{t}$ over $A$, we derive that the morphism $A_{\tilde{s}\cdot a}\ra B_t$ induced by $g$ is surjective. Since $\tilde{s}\not \in \ideal{p}$, we deduce that for $s = \tilde{s}\cdot a$ the restriction of $f$ to $W_t \ra V_s$ induces a closed immersion.
+\end{proof}
+
+\begin{remark}\label{remark:monomorphisms_of_fields_spectra}
+Let $K \hookrightarrow L$ be a fields such that $\Spec L\hookrightarrow \Spec K$ is a monomorphism of schemes. Since the diagonal of a monomorphism is an isomorphism, we deduce that the multiplication map $L\otimes_KL\ra L$ is an isomorphism. This implies that $\mathrm{dim}_K(L) = \mathrm{dim}_L\left(L\otimes_KL\right) = 1$. Hence $K\hookrightarrow L$ is an isomorphism of fields. Thus every monomorphism of spectra of fields is an isomorphism.
+\end{remark}
+
+\begin{theorem}\label{theorem:monomorphisms_are_locally_densely_on_base_closed_immersions}
+Let $f:X\ra Y$ be a monomorphism of finite type and let $Y$ be locally noetherian. Then there exists open dense subscheme $V$ of $Y$ such that the morphism $f^{-1}(V)\ra V$ induced by $f$ is a closed immersion.
+\end{theorem}
+The proof is based on a sequence of results.
+
+\begin{lemma}\label{lemma:monomorphisms_over_artinian_local_rings}
+Let $(A,\ideal{m})$ be an artinian local ring and $f:X\ra \Spec A$ be a monomorphism locally of finite type. Then $f$ is a closed immersion.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $K$ be a residue field of $A$ i.e. $K = A/\ideal{m}$. Since $f$ is locally of finite type, we derive that $X$ is a locally noetherian scheme. Moreover, $f$ is injective. Hence $X$ consists of a single point. Thus $X = \Spec B$ for some local artinian ring $(B,\ideal{n})$. Note that the composition $\Spec B/\ideal{n}\hookrightarrow \Spec B/\ideal{m}B \hookrightarrow \Spec K$ is a monomorphism of spectra of fields. Hence by Remark \ref{remark:monomorphisms_of_fields_spectra} we derive that it is an isomorphism. This implies that $\Spec B/\ideal{m}B\hookrightarrow \Spec K$ is simultaneously a monomorphism and a retraction of schemes. Thus $\Spec B/\ideal{m}B\hookrightarrow \Spec K$ is an isomorphism of schemes. We deduce that
+$$B = f^{\#}(A) + \ideal{m}B$$
+Since $\ideal{m}B \subseteq \ideal{n}$ and $\ideal{n}$ is nilpotent, this last equality shows that $B = f^{\#}(A)$. Hence $f^{\#}$ is surjective. This means that $f$ is a closed immersion.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Let $y$ be a generic point of an irreducible component of $Y$. There are two cases.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item Suppose that there exists $x$ in $X$ such that $f(x) = y$. Note that $\cO_{Y,y}$ is artinian local ring. By Lemma \ref{lemma:monomorphisms_over_artinian_local_rings} we derive that $f^{\#}:\cO_{Y,y}\ra \cO_{X,x}$ is surjective. Next by Proposition \ref{proposition:local_surjection_is_locally_a_locally_closed_immersion} we deduce that there exists an open neighborhood $U$ of $x$ and an open neighborhood $V$ of $y$ such that the restriction $U\ra V$ of $f$ is a closed immersion. Shrinking $V$ we may assume that it is affine and does not intersect any irreducible component of $Y$ other than $\bd{cl}\left(\{y\}\right)$. By Chevalley's theorem on images {\cite[Theorem 3.4]{Constructibleandlocallyconstructiblesets}} we derive that $f(U)$ is locally constructible in $V$ and contains $y$. Hence there exists open neighborhood $V_y$ of $y$ contained in $f(U)$. Since $f$ is injective, we infer that $f$ induces a closed immersion $f^{-1}(V_y)\ra V_y$.
+\item Suppose that $y\not \in f(X)$. Since $f$ is of finite type and $Y$ is locally noetherian, we deduce by {\cite[Theorem 3.4]{Constructibleandlocallyconstructiblesets}} that $f(X)$ is locally constructible and does not contain $y$. This implies that there exists an open affine neighborhood $V_y$ of $y$ such that $V_y\cap f(X) = \emptyset$. Clearly $f^{-1}(V_y)\ra V_y$ is a closed immersion (inclusion of an empty closed subscheme into $V_y$).
+\end{enumerate}
+Since closed immersions are local on the target, we derive that $f^{-1}(V)\ra V$ is a closed immersion, where
+$$V = \bigcup_{y\in Y_o}V_y$$
+and $Y_o$ denotes the set of generic points of irreducible components of $Y$. By construction $V$ is dense in $Y$.
+\end{proof}
+
+\begin{theorem}\label{theorem:monomorphisms_are_locally_on_domain_closed_immersions}
+Let $f:X\ra Y$ be a monomorphism locally of finite type with $Y$ locally noetherian. Then for each generic point $x$ of an irreducible component of $X$ there exist an open neighborhood $U$ of $x$ and an open neighborhood $V$ of $f(x)$ such that $f(U)\subseteq V$ and the restriction $U\ra V$ induced by $f$ is a closed immersion.
+\end{theorem}
+\begin{proof}
+The proof is similar to the proof of Lemma \ref{lemma:monomorphisms_over_artinian_local_rings}. Note that $\cO_{X,x}$ is an artinian local ring and $f(x) = y$. Next consider the fiber $f_y:X_y\ra \Spec k(y)$ of $f$. This is a monomorphism. Hence the composition of closed immersion $\Spec k(x) \hookrightarrow X_y$ with $f_y$ is a monomorphism of spectra of fields. Thus by Remark \ref{remark:monomorphisms_of_fields_spectra} we derive that it is an isomorphism. Therefore, $f_y$ is simultaneously a monomorphism and a retraction. We deduce that $f_y$ is an isomorphism. This means that
+$$\cO_{X,x} = f^{\#}(\cO_{Y,y})+\ideal{m}_y\cO_{X,x}$$
+Since $\ideal{m}_y\subseteq \ideal{m}_x$ and this last ideal is nilpotent as $\cO_{X,x}$ is artinian, we infer that $\cO_{X,x} = f^{\#}(\cO_{Y,y})$. We conclude by Proposition \ref{proposition:local_surjection_is_locally_a_locally_closed_immersion}.
+\end{proof}
+
+\begin{corollary}\label{corollary:equivariant_monomorphisms_are_local_on_the_base_equivariant_closed_immersion}
+Let $\bd{G}$ be a group scheme over $k$, let $X,Y$ be $k$-schemes with $\bd{G}$-actions and let $f:X\ra Y$ be a $\bd{G}$-equivariant morphism. If $f$ is a monomorphism of finite type and $Y$ is locally algebraic scheme over $k$, then there exists an open dense and $\bd{G}$-invariant subset $V$ such that the restriction $f^{-1}(V)\ra V$ of $f$ is a closed immersion.
+\end{corollary}
+\begin{proof}
+By Theorem \ref{theorem:monomorphisms_are_locally_densely_on_base_closed_immersions} there exists an open dense subset $V$ of $Y$ such that the restriction $f^{-1}(V)\ra V$ is a closed immersion. Note that the class of closed immersions satisfies conditions \textbf{(1)}, \textbf{(2)}, \textbf{(3)} of Theorem \ref{theorem:base_locus_of_certain_classes_of_morphisms_are_invariant}. Thus we may pick $V$ that is open dense in $Y$ and $\bd{G}$-invariant. 
+\end{proof}
+
+\begin{corollary}\label{corollary:monomorphisms_of_algebraic_groups}
+Let $f:\bd{H}\ra \bd{G}$ be a morphisms of finite type of locally algebraic group schemes over $k$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $f$ is a monomorphism.
+\item $f$ is a closed immersion.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Assume \textbf{(i)}. By Theorem \ref{theorem:images_of_locally_algebraic_groups_homomorphisms} we may assume that $f$ is a surjective monomorphism. We view $f$ as a $\bd{H}$-equivariant morphism with respect to action of $\bd{H}$ on $\bd{G}$ given by $f$. Now Corollary \ref{corollary:equivariant_monomorphisms_are_local_on_the_base_equivariant_closed_immersion} implies that there exists an open, dense and $\bd{H}$-invariant subset $V$ of $\bd{G}$ such that the morphism $f^{-1}(V)\ra V$ induced by $f$ is a closed immersion. Every $\bd{H}$-invariant open subset of $\bd{G}$ is $\bd{G}$-invariant (this follows from the fact that $f$ is surjective). Thus $V = \bd{G}$ and we deduce \textbf{(ii)}.\\
+The implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ is obvious.
 \end{proof}
 
 \section{Abelian Varieties}
@@ -252,54 +626,10 @@ $$\widehat{\cO_{\bd{G},e_{\bd{G}}}} \ra  \widehat{\cO_{\bd{H},e_{\bd{H}}}}$$
 induced by $f^{\#}$ is an isomorphism. Hence by Lemma \ref{lemma:infinitesimal_isomorphisms} $f$ is an open immersion of locally algebraic groups. Since $\bd{G}$ is geometrically connected, we deduce that $f$ is an isomorphism. Thus $j$ is an isomorphism and this means that $b:\bd{G}\times_k Z\ra X$ factors through $i:Z\hookrightarrow X$.
 \end{proof}
 
-\section{Transporters}
 
-\begin{definition}
-Let $\fG$ be a monoid $k$-functor and let $\alpha:\fG\times \fX\ra \fX$ be an action of $\fG$ on a $k$-functor $\fX$. Suppose that $\fY_1,\fY_2$ are $k$-subfunctors of $\fX$. For every $k$-algebra $A$ we define
-$$\mathrm{Transp}_{\fG}\left(\fY_1,\fY_2\right)(A) = \big\{g\in \fG(A)\,\big|\,\alpha_g\left(\fY_1(A)\right)\subseteq \fY_2(A)\big\}$$
-where as usual $\alpha_g$ is a slice of $\alpha$ along $g$. Then $\mathrm{Transp}_{\fG}\left(\fY_1,\fY_2\right)$ is a $k$-subfunctor of $\fG$. It is called \textit{the tranporter of $\fY_1$ into $\fY_2$ with respect to $\alpha$}. 
-\end{definition}
 
-\section{Morphisms of locally algebraic groups}
 
-\begin{theorem}\label{theorem:monomorphisms_of_algebraic_groups}
-Let $f:\bd{H}\ra \bd{G}$ be a morphism of algebraic groups over $k$. Then the following are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item $f$ is a monomorphism of $k$-schemes.
-\item $f$ is a locally closed immersion of $k$-schemes.
-\item $f$ is a closed immersion of $k$-schemes.
-\end{enumerate}
-\end{theorem}
 
-\begin{theorem}\label{theorem:monomorphisms_of_algebraic_schemes}
-Let $f:X\ra Y$ be a monomorphism of finite type with $X,Y$ noetherian. Then there exists open dense subscheme $V$ of $Y$ such that the morphism $f^{-1}(V)\ra V$ induced by $f$ is a locally closed immersion.
-\end{theorem}
-The proof is based on a sequence of results.
-
-\begin{lemma}\label{lemma:monomorphisms_of_fields_spectra}
-Let $K$ and $L$ be a fields. If $\Spec L\hookrightarrow \Spec K$ is a monomorphism of schemes, then it is an isomorphism. 
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Since the diagonal of a monomorphism is an isomorphism, we deduce that the multiplication map $L\otimes_KL\ra L$ is an isomorphism. This implies that $\mathrm{dim}_k(L) = \mathrm{dim}_L\left(L\otimes_kL\right) = 1$. Hence $k\hookrightarrow L$ is an isomorphism of fields.
-\end{proof}
-
-\begin{lemma}\label{lemma:local_embeddings}
-There exists an open dense subset $U$ of $X$ such that $f_{\mid U}$ is a locally closed immersion.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Suppose that $x$ is a generic point of an irreducible component of $X$. Let $y = f(x)$. Pick $f_{y}:X_{y}\ra \Spec k(y)$. Then $f_{y}$ is a monomorphism. Since $\Spec k(x)$ is a closed subscheme of $X_y$, we derive that the composition of $\Spec k(x)\hookrightarrow X_y$ and $f_y$ is a monomorphism $\Spec k(x)\hookrightarrow \Spec k(y)$ of schemes. By Lemma \ref{lemma:monomorphisms_of_fields_spectra} we deduce that is an isomorphism. We derive that $f_{y}$ is a retraction. A retraction that is a monomorphism is an isomorphism. Hence $f_y$ is an isomorphism. This shows that $k(y)\cong \cO_{X,x}/\ideal{m}_y\cO_{X,x}$. Thus we have
-$$\cO_{X,x} = f^{\#}\left(\cO_{Y,y}\right)+\ideal{m}_{y}\cO_{X,x}$$
-Since $x$ is a generic point of an irreducible component of $X$, we derive that $\cO_{X,x}$ is artinian. Thus $\ideal{m}_y\cO_{X,x} \subseteq \ideal{m}_x$ is a nilpotent ideal. Thus $f^{\#}:\cO_{Y,y}\ra \cO_{X,x}$ is onto.
-\end{proof}
-
-\begin{lemma}\label{lemma:local_surjections_give_local_closed_immersions}
-Let $f:A\ra B$ be a morphism of finite type between noetherian rings. Suppose that $\ideal{p}\in \Spec A$ and $\ideal{q}\in \Spec B$ are prime ideals such that $f^{-1}(\ideal{q})=\ideal{p}$. Assume that $f$ induces a surjective morphism $A_{\ideal{p}}\ra B_{\ideal{q}}$. Then there exists $s\in B\setminus \ideal{q}$ such that $f$ induces a surjective morphism $A\ra B_s$.
-\end{lemma}
-\begin{proof}[Proof of the Lemma]
-First assume that $A_{\ideal{p}}\ra B_{\ideal{q}}$ is bijective and let $\phi:B_{\ideal{q}}\ra A_{\ideal{p}}$. Since $f:A\ra B$ is morphism of finite type between noetherian rings, we have $B \cong A[x_1,...,x_n]/I$ for some finitely generated ideal $I\subseteq A[x_1,..,x_n]$ and free variables $x_1,...,x_n$. Let $\ol{x}_i = x_i\,\mathrm{mod}\,I$ for $1\leq i\leq n$. Suppose that $a_1,...,a_n$ are elements in $A$ such that
-$$\frac{a_i}{1} = \phi\left(\frac{\ol{x}_i}{1}\right)$$
-for $1\leq i\leq n$.
-\end{proof}
 
 
 

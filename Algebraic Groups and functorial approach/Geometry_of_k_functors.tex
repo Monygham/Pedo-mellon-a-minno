@@ -20,7 +20,7 @@ The category $\Fun(\Alg_k,\Set)$ of copresheaves on $\Alg_k$ is called \textit{t
 If $\fX$ and $\fY$ are $k$-functors, then we denote by $\Mor_k(\fX,\fY)$ the class of morphisms $\fX\ra \fY$ of $k$-functors. If $\sigma:\fX\ra \fY$ is a morphism of $k$-functors, then for every $k$-algebra $A$ we denote by $\sigma^A$ the corresponding component of $\sigma$.\\
 Let $\fX$ and $\fY$ be $A$-functors for some $k$-algebra $A$. Then we denote by $\Mor_A\left(\fX,\fY\right)$ the class of morphisms of $A$-functors $\fX\ra \fY$. For every $A$-algebra $B$ and a morphism $\sigma:\fX\ra \fY$ of $A$-functors we denote by $\fX_{B}$, $\fY_{B}$, $\sigma_{B}$ the restrictions $\fX_{\mid \Alg_B}$, $\fY_{\mid \Alg_B}$, $\sigma_{\mid \Alg_B}$ of these entities to the category of $B$-algebras. 
 
-\begin{fact}\label{fact:restrictionsworkasexpected}
+\begin{fact}\label{fact:restriction_works_as_expected}
 Let $\fX$ and $\fY$ be $k$-functors. Assume that $A$ is a $k$-algebra, $B$ is an $A$-algebra, $C$ is an $B$-algebra. Then the composition of maps of classes
 \begin{center}
 \begin{tikzpicture}
@@ -52,7 +52,7 @@ Let $\fX$ and $\fY$ be $k$-functors and suppose that for every $k$-algebra $A$ t
 $$\iMor_k(\fX,\fY)(A)=\Mor_A\left(\fX_A,\fY_A\right)$$
 for every $k$-algebra $A$. This is a $k$-functor. Indeed, for every $k$-algebra $A$ and $A$-algebra $B$ we can compose a morphism $\sigma:\fX_A\ra \fY_A$ of $k$-functors with the forgetful functor $\Alg_B \ra \Alg_A$. This induces a map 
 $$\iMor_{k}(\fX,\fY)(A)\ni \sigma \mapsto \sigma_{B}\in \iMor_{k}(\fX,\fY)(B)$$
-and according to Fact \ref{fact:restrictionsworkasexpected} these maps make $\iMor_{k}(\fX,\fY)$ a $k$-functor. The $k$-functor $\iMor_{\cC}(\fX,\fY)$ is called \textit{a hom $k$-functor of $\fX$ and $\fY$}.
+and according to Fact \ref{fact:restriction_works_as_expected} these maps make $\iMor_{k}(\fX,\fY)$ a $k$-functor. The $k$-functor $\iMor_{\cC}(\fX,\fY)$ is called \textit{a hom $k$-functor of $\fX$ and $\fY$}.
 \end{definition}
 
 \section{Zariski local $k$-functors and Zariski sheaves}
@@ -145,7 +145,7 @@ is a kernel of a pair of arrows, where for every $(i,j)\in I\times I$ morphisms 
 \noindent
 Now we state the main result of this section.
 
-\begin{theorem}\label{theorem:sheavesonschemesarelocalkfunctors}
+\begin{theorem}\label{theorem:sheaves_on_schemes_are_local_kfunctors}
 Let
 \begin{center}
 \begin{tikzpicture}
@@ -160,61 +160,6 @@ be the restriction of presheaves on $\Sch_k$ to copresheaves on $\Alg_k$ ($k$-fu
 \end{theorem}
 \begin{proof}
 Note that $\Aff_k$ with Zariski topology is a dense subsite ({\cite[definition 4.4]{Sheaves}}) of $\Sch_k$ with Zariski topology. Hence the result is a special case of a more general theorem {\cite[Theorem 4.6]{Sheaves}}. 
-\end{proof}
-
-\begin{proposition}\label{proposition:representablemonomorphismsaresheaves}
-Let $\sigma:\fX \ra \fY$ be a monomorphism of $k$-functors and $\fY$ be a Zariski local $k$-functor. Assume that for every $k$-algebra $A$ and every morphism $\tau:\fP_{\Spec A}\ra \fY$ of $k$-functors there exist a Zariski local $k$-functor $\fZ$ that fits into a cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{  \fZ                       & \fX           \\
-   \fP_{\Spec A}             & \fY           \\};
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$  $} (m-1-2)
-(m-2-1) edge node[below] {$ \tau $} (m-2-2)
-(m-1-2) edge node[right] {$ \sigma $} (m-2-2)
-(m-1-1) edge node[left] {$   $} (m-2-1);
-\end{tikzpicture}
-\end{center}
-Then $\fX$ is a Zariski local $k$-functor.
-\end{proposition}
-\begin{proof}
-Suppose that $A$ is a $k$-algebra and $S$ is a covering sieve on $A$ with respect to Zariski topology. Recall that by {\cite[page 2]{Sheaves}} we may consider $S$ as a subcopresheaf of $\fP_{\Spec A}$. Suppose that $\tau:\fP_{\Spec A}\ra \fY$ and $m:S\ra \fX$ are morphisms of $k$-functors such that $\sigma \cdot m$ is equal to the composition of $S\hookrightarrow \fP_{\Spec A}$ with $\tau$. Next there exists a Zariski local $k$-functor $\fZ$ that fits into a cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{  \fZ               & \fX           \\
-   \fP_{\Spec A}    & \fY           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$\tau'  $} (m-1-2)
-(m-2-1) edge node[below] {$\tau  $} (m-2-2)
-(m-1-2) edge node[right] {$ \sigma $} (m-2-2)
-(m-1-1) edge node[left] {$ \sigma'  $} (m-2-1);
-\end{tikzpicture}
-\end{center}
-of $k$-functors. By universal property of cartesian squares there exists a unique morphism $n:S\ra \fZ$ of $k$-functors such that the diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ S & {}            &  {}               \\
- {} &  \fZ        & \fX     \\
- {} & \fP_{\Spec A} &  \fY       \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node [right= 2pt, below= 2pt] {$ n $} (m-2-2)
-(m-2-2) edge node [above = 2pt] {$\tau' $} (m-2-3)
-(m-2-2) edge node [left= 2pt] {$\sigma' $} (m-3-2)
-(m-2-3) edge node [right] {$\sigma $} (m-3-3)
-(m-3-2) edge node [below] {$\tau $} (m-3-3);
-\path[->, bend left, line width=1.0pt, font=\scriptsize]
-(m-1-1) edge node [left= 2pt, above= 2pt] {$m $} (m-2-3);
-\path[right hook->, bend right, line width=1.0pt, font=\scriptsize]
-(m-1-1) edge node [left= 2pt, below= 2pt] {$ $} (m-3-2);
-\end{tikzpicture} 
-\end{center}
-is commutative. Since $\fZ$ is Zariski local, there exists a morphism $\rho:\fP_{\Spec A}\ra \fZ$ such that $\rho_{\mid S} = n$. Then $\left(\tau'\cdot \rho\right)_{\mid S} = \tau'\cdot n = m$ and hence matching family $m$ admits an amalgamation. Since $\sigma$ is a monomorphism, this suffices to prove that $\fX$ is a Zariski local $k$-functor.
 \end{proof}
 
 \section{Schemes and their functors of points}
@@ -232,7 +177,7 @@ That is $\fP_X$ is the restriction of the presheaf on $\Sch_k$ represented by $X
 \end{tikzpicture}
 \end{center}
 
-\begin{fact}\label{fact:functorsofpoints}
+\begin{fact}\label{fact:functors_of_points}
 Functor
 \begin{center}
 \begin{tikzpicture}
@@ -246,7 +191,7 @@ Functor
 is full, faithful and its image consists of Zariski local $k$-functors. Moreover, $\fP$ preserves limits.
 \end{fact}
 \begin{proof}
-Note that the presheaf $h_X$ on $\Sch_k$ represented by $X$ is a Zariski sheaf. Indeed, this just rephrases standard fact that morphism of schemes can be glued in Zariski topology. Next according to Theorem \ref{theorem:sheavesonschemesarelocalkfunctors} the functor $\Spec:\Alg_k\ra \Sch_k$ induces an equivalence between the category of Zariski sheaves and the category of local Zariski $k$-functors. Thus $\fP_X$ is a local Zariski $k$-functor and $\fP$ it is full and faithful. Note that Yoneda embedding $h:\Sch_k\ra \widehat{\Sch_k}$ and the functor
+Note that the presheaf $h_X$ on $\Sch_k$ represented by $X$ is a Zariski sheaf. Indeed, this just rephrases standard fact that morphism of schemes can be glued in Zariski topology. Next according to Theorem \ref{theorem:sheaves_on_schemes_are_local_kfunctors} the functor $\Spec:\Alg_k\ra \Sch_k$ induces an equivalence between the category of Zariski sheaves and the category of local Zariski $k$-functors. Thus $\fP_X$ is a local Zariski $k$-functor and $\fP$ it is full and faithful. Note that Yoneda embedding $h:\Sch_k\ra \widehat{\Sch_k}$ and the functor
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -285,7 +230,7 @@ Let $\sigma:\fX\ra \fY$ be a morphism of $k$-functors. Assume that for every $k$
 is cartesian. Then $\sigma$ is \textit{an open immersion of $k$-functors}.
 \end{definition}
 
-\begin{fact}\label{fact:openimmersionsclosedunderbasechangeandcomposition}
+\begin{fact}\label{fact:open_immersions_closed_under_base_change_and_composition}
 The class of open immersions of $k$-functors is closed under base change and composition.
 \end{fact}
 \begin{proof}
@@ -313,7 +258,7 @@ $$\Spec A = \bigcup_{i\in I}D(\ideal{a}_i)$$
 or in other words $A = \sum_{i\in I}\ideal{a}_i$.
 \end{definition}
 
-\begin{theorem}\label{theorem:representabilitybasicresult}
+\begin{theorem}\label{theorem:representability_basic_result}
 Let $\fX$ be a $k$-functor. Then the following are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 \item $\fX$ is isomorphic with functor of points of some $k$-scheme.
@@ -324,7 +269,7 @@ Let $\fX$ be a $k$-functor. Then the following are equivalent.
 \noindent
 The proof depends on two lemmas. Check {\cite[Definition 7.1]{Sheaves}} for the notion of a locally surjective morphism.
 
-\begin{lemma}\label{lemma:openimmersionslocallyondomainarezariskilocalkfunctors}
+\begin{lemma}\label{lemma:open_immersions_locally_on_domain_are_zariski_localk_functors}
 Let $f:X\ra Y$ be a morphism of $k$-schemes. Suppose that $f$ is surjective morphism and an open immersion locally on $X$. Then $\fP_f$ is a locally surjective morphism of Zariski local $k$-functors. 
 \end{lemma}
 \begin{proof}[Proof of the lemma]
@@ -366,7 +311,7 @@ Let
 \end{tikzpicture}
 \end{center}
 be a cokernel in the category of ringed spaces. It exists according to {\cite[Remark 2.3]{LocallyRingedSpaces}}. Moreover, {\cite[Theorem 3.2]{LocallyRingedSpaces}} states that for every $i\in I$ subset $f(X_i)$ is open in $Y$ and we have an isomorphism of ringed spaces $X_i\cong f(X_i)$ induced by $f$. Therefore, $Y$ is a $k$-scheme and $f:X\ra Y$ is a morphism of $k$-schemes.\\
-Now we verify that $\fP_f$ is the quotient in the category of Zariski local $k$-functors. For this note that we proved above that $f$ is open immersion of $k$-schemes locally on $X$ and it is surjective. Thus by Lemma \ref{lemma:openimmersionslocallyondomainarezariskilocalkfunctors} we derive that $\fP_f$ is a locally surjective morphism of Zariski local $k$-functors. Therefore ({\cite[Theorem 7.3]{Sheaves}}), it suffices to show that the square
+Now we verify that $\fP_f$ is the quotient in the category of Zariski local $k$-functors. For this note that we proved above that $f$ is open immersion of $k$-schemes locally on $X$ and it is surjective. Thus by Lemma \ref{lemma:open_immersions_locally_on_domain_are_zariski_localk_functors} we derive that $\fP_f$ is a locally surjective morphism of Zariski local $k$-functors. Therefore ({\cite[Theorem 7.3]{Sheaves}}), it suffices to show that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -380,7 +325,7 @@ Now we verify that $\fP_f$ is the quotient in the category of Zariski local $k$-
 (m-1-2) edge node[right] {$ \fP_f $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is cartesian. Since $\fP$ preserves limits (Fact \ref{fact:functorsofpoints}), we derive that it suffices to check that
+is cartesian. Since $\fP$ preserves limits (Fact \ref{fact:functors_of_points}), we derive that it suffices to check that
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -400,7 +345,7 @@ Thus the result follows.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-If \textbf{(i)} holds, then we may assume that $\fX=\fP_Y$ for some $k$-scheme $Y$. Fact \ref{fact:functorsofpoints} states that $\fP_Y$ is a Zariski local $k$-functor and clearly $1_{\fP_Y}:\fP_Y\ra \fP_Y$ is an open cover. Thus $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+If \textbf{(i)} holds, then we may assume that $\fX=\fP_Y$ for some $k$-scheme $Y$. Fact \ref{fact:functors_of_points} states that $\fP_Y$ is a Zariski local $k$-functor and clearly $1_{\fP_Y}:\fP_Y\ra \fP_Y$ is an open cover. Thus $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
 Every functor of points of a $k$-scheme admits open cover by functors of points of affine $k$-schemes. Indeed, it suffices to take open affine subschemes that cover given $k$-scheme and apply $\fP$. This implies that every open cover of a $k$-functor $\fX$ by functors of points of $k$-schemes admits refinement by open cover of functors of points of affine $k$-schemes. Therefore, implication $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ holds.\\
 Suppose that a $k$-functor $\fX$ is Zariski local and $\big\{\sigma_i:\fP_{\Spec A_i}\ra \fX\big\}_{i\in I}$ is an open cover of $\fX$. Note that for every $i,j\in I$ there exist a $k$-scheme $R_{ij}$ and open immersions $p_{ij}:R_{ij}\hookrightarrow \Spec A_i$, $q_{ij}:R_{ij}\hookrightarrow \Spec A_j$ such that the square
 \begin{center}
@@ -457,6 +402,61 @@ is a cokernel of $\left(\fP_p,\fP_q\right)$. Moreover, $\sigma$ is locally surje
 is a cokernel of $\left(\fP_p,\fP_q\right)$. Thus $\fP_Y$ is isomorphic with $\fX$. This proves $\textbf{(iii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
 
+\begin{proposition}\label{proposition:representable_monomorphisms_are_sheaves}
+Let $\sigma:\fX \ra \fY$ be a monomorphism of $k$-functors and $\fY$ be a Zariski local $k$-functor. Assume that for every $k$-algebra $A$ and every morphism $\tau:\fP_{\Spec A}\ra \fY$ of $k$-functors there exist a Zariski local $k$-functor $\fZ$ that fits into a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \fZ                       & \fX           \\
+   \fP_{\Spec A}             & \fY           \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$ \tau $} (m-2-2)
+(m-1-2) edge node[right] {$ \sigma $} (m-2-2)
+(m-1-1) edge node[left] {$   $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+Then $\fX$ is a Zariski local $k$-functor.
+\end{proposition}
+\begin{proof}
+Suppose that $A$ is a $k$-algebra and $S$ is a covering sieve on $A$ with respect to Zariski topology. Recall that by {\cite[page 2]{Sheaves}} we may consider $S$ as a subcopresheaf of $\fP_{\Spec A}$. Suppose that $\tau:\fP_{\Spec A}\ra \fY$ and $m:S\ra \fX$ are morphisms of $k$-functors such that $\sigma \cdot m$ is equal to the composition of $S\hookrightarrow \fP_{\Spec A}$ with $\tau$. Next there exists a Zariski local $k$-functor $\fZ$ that fits into a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \fZ               & \fX           \\
+   \fP_{\Spec A}    & \fY           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$\tau'  $} (m-1-2)
+(m-2-1) edge node[below] {$\tau  $} (m-2-2)
+(m-1-2) edge node[right] {$ \sigma $} (m-2-2)
+(m-1-1) edge node[left] {$ \sigma'  $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+of $k$-functors. By universal property of cartesian squares there exists a unique morphism $n:S\ra \fZ$ of $k$-functors such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ S & {}            &  {}               \\
+ {} &  \fZ        & \fX     \\
+ {} & \fP_{\Spec A} &  \fY       \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node [right= 2pt, below= 2pt] {$ n $} (m-2-2)
+(m-2-2) edge node [above = 2pt] {$\tau' $} (m-2-3)
+(m-2-2) edge node [left= 2pt] {$\sigma' $} (m-3-2)
+(m-2-3) edge node [right] {$\sigma $} (m-3-3)
+(m-3-2) edge node [below] {$\tau $} (m-3-3);
+\path[->, bend left, line width=1.0pt, font=\scriptsize]
+(m-1-1) edge node [left= 2pt, above= 2pt] {$m $} (m-2-3);
+\path[right hook->, bend right, line width=1.0pt, font=\scriptsize]
+(m-1-1) edge node [left= 2pt, below= 2pt] {$ $} (m-3-2);
+\end{tikzpicture} 
+\end{center}
+is commutative. Since $\fZ$ is Zariski local, there exists a morphism $\rho:\fP_{\Spec A}\ra \fZ$ such that $\rho_{\mid S} = n$. Then $\left(\tau'\cdot \rho\right)_{\mid S} = \tau'\cdot n = m$ and hence matching family $m$ admits an amalgamation. Since $\sigma$ is a monomorphism, this suffices to prove that $\fX$ is a Zariski local $k$-functor.
+\end{proof}
+
 \section{Representable morphisms of $k$-functors}
 
 \begin{definition}
@@ -477,14 +477,14 @@ Let $\sigma:\fX\ra \fY$ be a morphism of $k$-functors. Assume that for every $k$
 is cartesian. Then $\sigma$ is \textit{a representable morphism of $k$-functors}.
 \end{definition}
 
-\begin{fact}\label{fact:representablemorphismsunderbasechangeandcomposition}
+\begin{fact}\label{fact:representable_morphisms_under_base_change_and_composition}
 The class of representable morphisms of $k$-functors is closed under base change and composition.
 \end{fact}
 \begin{proof}
 Left to the reader.
 \end{proof}
 
-\begin{proposition}\label{proposition:representablearerepresentableafterarbitrarybasechange}
+\begin{proposition}\label{proposition:representable_are_representable_after_arbitrary_base_change}
 Let $\sigma:\fX\ra \fY$ be a representable morphism of Zariski local $k$-functors. Fix a $k$-scheme $Y$ and a morphism $\tau:\fP_Y\ra \fY$. Then there exist a $k$-scheme $X$, a morphism $f:X\ra Y$ and a morphism $\tau':\fP_X\ra \fX$ such that the square
 \begin{center}
 \begin{tikzpicture}
@@ -516,7 +516,7 @@ Let
 (m-1-1) edge node[left] {$ \sigma'  $} (m-2-1);
 \end{tikzpicture}
 \end{center}
-be a cartesian square. According to {\cite[Theorem 2.12]{Sheaves}} $k$-functor $\fZ$ is Zariski local. Suppose that $\big\{f_i:\Spec A_i\ra Y\big\}_{i\in I}$ is an open cover of $Y$. Then $\big\{\fP_{f_i}:\fP_{\Spec A_i}\ra \fP_Y\big\}_{i\in I}$ is an open cover of $\fP_Y$ and hence its base change $\big\{\tau_i:\fZ_i\ra \fZ\big\}_{i\in I}$ is an open cover of $\fZ$. Since $\sigma$ is representable, we deduce that $\fZ_i$ is a functor of points of some $k$-scheme for $i\in I$. Now by Theorem \ref{theorem:representabilitybasicresult} we derive that there exists a $k$-scheme $X$ such that $\fZ$ is isomorphic with $\fP_X$. This proves the result.
+be a cartesian square. According to {\cite[Theorem 2.12]{Sheaves}} $k$-functor $\fZ$ is Zariski local. Suppose that $\big\{f_i:\Spec A_i\ra Y\big\}_{i\in I}$ is an open cover of $Y$. Then $\big\{\fP_{f_i}:\fP_{\Spec A_i}\ra \fP_Y\big\}_{i\in I}$ is an open cover of $\fP_Y$ and hence its base change $\big\{\tau_i:\fZ_i\ra \fZ\big\}_{i\in I}$ is an open cover of $\fZ$. Since $\sigma$ is representable, we deduce that $\fZ_i$ is a functor of points of some $k$-scheme for $i\in I$. Now by Theorem \ref{theorem:representability_basic_result} we derive that there exists a $k$-scheme $X$ such that $\fZ$ is isomorphic with $\fP_X$. This proves the result.
 \end{proof}
 
 \begin{definition}
@@ -537,14 +537,14 @@ Let $\sigma:\fX\ra \fY$ be a morphism of $k$-functors. Assume that for every $k$
 is cartesian, where $q:A\ra A/\ideal{a}$ is the quotient map. Then $\sigma$ is \textit{a closed immersion of $k$-functors}.
 \end{definition}
 
-\begin{fact}\label{fact:closedimmersionsclosedunderbasechangeandcomposition}
+\begin{fact}\label{fact:closed_immersions_closed_under_base_change_and_composition}
 The class of closed immersions of $k$-functors is closed under base change and composition.
 \end{fact}
 \begin{proof}
 Left to the reader.
 \end{proof}
 
-\begin{proposition}\label{proposition:openclosedimmersions}
+\begin{proposition}\label{proposition:open_closed_immersions}
 Let $\sigma:\fX\ra \fY$ be a closed (open) immersion of $k$-functors. Fix a $k$-scheme $Y$ and a morphism $\tau:\fP_Y\ra \fY$. Then there exist a $k$-scheme $X$, a closed (open) immersion $f:X\ra Y$ of schemes and a morphism $\tau':\fP_X\ra \fX$ of $k$-functors such that the square
 \begin{center}
 \begin{tikzpicture}
@@ -562,7 +562,7 @@ Let $\sigma:\fX\ra \fY$ be a closed (open) immersion of $k$-functors. Fix a $k$-
 is cartesian.
 \end{proposition}
 \begin{proof}
-According to Fact \ref{fact:closedimmersionsclosedunderbasechangeandcomposition} (Fact \ref{fact:openimmersionsclosedunderbasechangeandcomposition}) pullback $\fX\times_{\fY}\fP_Y\ra \fP_Y$ of $\sigma$ along $\tau$ is a closed (open) immersion of $k$-functors. Since $\fP_Y$ is a Zariski local $k$-functor by Fact \ref{fact:functorsofpoints} and closed (open) immersions are monomorphisms, we derive by Proposition \ref{proposition:representablemonomorphismsaresheaves} that a fiber-product $\fX\times_{\fY}\fP_Y$ of $\sigma$ and $\tau$ is a Zariski local $k$-functor. Since closed (open) immersions of $k$-functors are representable, we deduce by Proposition \ref{proposition:representablearerepresentableafterarbitrarybasechange} that there exists a $k$-scheme $X$, a morphism $f:X\ra Y$ of $k$-schemes and a morphism $\tau':\fP_X\ra \fX$ of $k$-functors such that the square
+According to Fact \ref{fact:closed_immersions_closed_under_base_change_and_composition} (Fact \ref{fact:open_immersions_closed_under_base_change_and_composition}) pullback $\fX\times_{\fY}\fP_Y\ra \fP_Y$ of $\sigma$ along $\tau$ is a closed (open) immersion of $k$-functors. Since $\fP_Y$ is a Zariski local $k$-functor by Fact \ref{fact:functors_of_points} and closed (open) immersions are monomorphisms, we derive by Proposition \ref{proposition:representable_monomorphisms_are_sheaves} that a fiber-product $\fX\times_{\fY}\fP_Y$ of $\sigma$ and $\tau$ is a Zariski local $k$-functor. Since closed (open) immersions of $k$-functors are representable, we deduce by Proposition \ref{proposition:representable_are_representable_after_arbitrary_base_change} that there exists a $k$-scheme $X$, a morphism $f:X\ra Y$ of $k$-schemes and a morphism $\tau':\fP_X\ra \fX$ of $k$-functors such that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -606,7 +606,7 @@ where $f_V:f^{-1}(V)\ra V$ is the restriction of $f$. Next as $\fP_f$ is a close
 \noindent
 The next result is frequently used in the theory of \textit{algebraic spaces}.
 
-\begin{proposition}\label{proposition:diagonalrepresentabilityofmorphisms}
+\begin{proposition}\label{proposition:diagonal_representability_of_morphisms}
 Let $\fY$ be a $k$-functor such that the diagonal $\fY\ra \fY\times \fY$ is representable. Then every morphism $\sigma:\fX\ra \fY$ of $k$-functors is representable.
 \end{proposition}
 \begin{proof}
@@ -649,7 +649,7 @@ Let $X$ be a $k$-scheme. Suppose that there exists an open affine cover $X = \bi
 \noindent
 Next theorem is the main result of this section.
 
-\begin{theorem}\label{theorem:closedimmersionsandinternalhom}
+\begin{theorem}\label{theorem:closed_immersions_and_internal_hom}
 Let $j:\fY'\ra \fY$ be a closed immersion of $k$-functors and $X$ be a locally free $k$-scheme. Suppose that classes $\Mor_A\left((\fP_X)_A,\fY_A\right)$ are sets for every $k$-algebra $A$. Then classes $\Mor_A\left((\fP_X)_A,\fY'_A\right)$ are sets for every $k$-algebra $A$ and the morphism
 $$\iMor_k\left(1_{\fP_X},j\right):\iMor_k\left(\fP_X,\fY'\right)\ra \iMor_k\left(\fP_X,\fY\right)$$
 is a closed immersion of $k$-functors.
@@ -657,7 +657,7 @@ is a closed immersion of $k$-functors.
 \noindent
 It is useful to isolate crucial steps in the argument. For this we proceed by proving some lemmas.
 
-\begin{lemma}\label{lemma:foraffinelocalfactorization}
+\begin{lemma}\label{lemma:for_affine_local_factorization}
 Suppose that $A$ is a commutative ring. Let $j:\fY'\ra \fY$ be a closed immersion of $A$-functors and $X$ be an affine $A$-scheme such that $\Gamma(X,\cO_X)$ is a free $A$-module. Assume that $\tau:\fP_X\ra \fY$ is a morphism of $A$-functors. Then there exists an ideal $\ideal{a}\subseteq A$ such that for every $A$-algebra $B$ the restriction $\tau_B$ factors through $j_B$ if and only if the structure morphism $f:A\ra B$ of $B$ satisfies $\ideal{a}\subseteq \ker(f)$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
@@ -692,13 +692,13 @@ of $A$-functors. Next let $B$ be an $A$-algebra with the structure morphism $f:A
 In the diagram $pr^A_i$ is the projection on $i$-th component. Diagram implies that $\left(pr^B_i\cdot f^{\oplus I}\right)\left(\ideal{J}\right)=$ for every $i\in I$ if and only if $\left(f\cdot pr_i^A\right)(\ideal{J}) = 0$ for every $i\in I$. This is equivalent with the condition that $f(\ideal{a})=0$ for ideal $\ideal{a}$ in $A$ generated by $\sum_{i\in I}pr_i^A(\ideal{J})$. Thus the lemma is proved.
 \end{proof}
 
-\begin{lemma}\label{lemma:coveringsandfactorizations}
+\begin{lemma}\label{lemma:covers_and_factorizations}
 Suppose that $A$ is a commutative ring. Let $j:\fY'\ra \fY$ be a closed immersion of $A$-functors and $X$ be an $A$-scheme with open cover
 $$X=\bigcup_{i\in I}X_i$$
 Assume that $\tau:\fP_X\ra \fY$ is a morphism of $A$-functors. Fix an $A$-algebra $B$. Then $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid \fP_{X_i}}\right)_B$ factors through $j_B$ for every $i\in I$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-If $\tau_B$ factors through $j_B$, then also $\left(\tau_{\mid \fP_{X_i}}\right)_B$ factors through $j_B$ for every $i\in I$. It suffices to prove the converse. So suppose that $\left(\tau_{\mid \fP_{X_i}}\right)_B$ factors through $j_B$ for every $i\in I$. Since $j$ is a closed immersion of $A$-functors and $X$ is an $A$-scheme, Proposition \ref{proposition:openclosedimmersions} implies that there exists a cartesian square
+If $\tau_B$ factors through $j_B$, then also $\left(\tau_{\mid \fP_{X_i}}\right)_B$ factors through $j_B$ for every $i\in I$. It suffices to prove the converse. So suppose that $\left(\tau_{\mid \fP_{X_i}}\right)_B$ factors through $j_B$ for every $i\in I$. Since $j$ is a closed immersion of $A$-functors and $X$ is an $A$-scheme, Proposition \ref{proposition:open_closed_immersions} implies that there exists a cartesian square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -750,7 +750,7 @@ exist and morphism $\iMor_k(1_{\fP_X},j)$ of $k$-functors is a monomorphism. Our
 \end{center}
 Since $\iMor_k\left(1_{\fP_X},j\right)$ is a monomorphism, we may consider $\fU$ as a $k$-subfunctor of $\fP_{\Spec A}$. For every $k$-algebra $B$ subset $\fU(B)\subseteq \Mor_k(A,B)= \Mor_k\left(\Spec B,\Spec A\right)$ consists of $A$-algebras $B$ with structure morphisms $f:A\ra B$ such that $\tau_B$ factors through $j_B:\fY'_B\ra \fY_B$. Since $X$ is a locally free $k$-scheme, we deduce that $(\fP_{X})_A$ is a functor of points of a locally free $A$-scheme
 $$\Spec A\times_{\Spec k}X$$
-Pick an open affine cover $\bigcup_{i\in I}X_i$ of this $A$-scheme such that $\Gamma(X_i,\cO_X)$ is a free $A$-module. Now Lemma \ref{lemma:coveringsandfactorizations} implies that $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Next by Lemma \ref{lemma:foraffinelocalfactorization} we deduce that $\left(\tau_{\mid X_i}\right)_B$  factors through $j_B$ for given $i\in I$ if and only if $f(\ideal{a}_i)=0$ for some ideal $\ideal{a}_i\subseteq A$ independent of $f$. Thus $\fU$ consists of all morphisms $f:A\ra B$ of $k$-algebras such that $f(\ideal{a})=0$ where $\ideal{a} = \sum_{i\in I}\ideal{a}_i$. Therefore, $\fU\hookrightarrow \fP_{\Spec A}$ is isomorphic with $\fP_{V(\ideal{a})} = \fP_{\Spec A/\ideal{a}}\hookrightarrow \fP_{\Spec A}$ induced by the quotient map $A\ra A/\ideal{a}$ and hence $\iMor_k(1_{\fP_X},j)$ is a closed immersion of $k$-functors.
+Pick an open affine cover $\bigcup_{i\in I}X_i$ of this $A$-scheme such that $\Gamma(X_i,\cO_X)$ is a free $A$-module. Now Lemma \ref{lemma:covers_and_factorizations} implies that $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Next by Lemma \ref{lemma:for_affine_local_factorization} we deduce that $\left(\tau_{\mid X_i}\right)_B$  factors through $j_B$ for given $i\in I$ if and only if $f(\ideal{a}_i)=0$ for some ideal $\ideal{a}_i\subseteq A$ independent of $f$. Thus $\fU$ consists of all morphisms $f:A\ra B$ of $k$-algebras such that $f(\ideal{a})=0$ where $\ideal{a} = \sum_{i\in I}\ideal{a}_i$. Therefore, $\fU\hookrightarrow \fP_{\Spec A}$ is isomorphic with $\fP_{V(\ideal{a})} = \fP_{\Spec A/\ideal{a}}\hookrightarrow \fP_{\Spec A}$ induced by the quotient map $A\ra A/\ideal{a}$ and hence $\iMor_k(1_{\fP_X},j)$ is a closed immersion of $k$-functors.
 \end{proof}
 
 

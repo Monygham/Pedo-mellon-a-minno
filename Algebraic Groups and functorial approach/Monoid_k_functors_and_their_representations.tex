@@ -52,7 +52,7 @@ Let $\fA$ be a commutative ring $k$-functor. \textit{An $\fA$-algebra} is an $\f
 Recall the ring $k$-functor $\fK$ from Example \ref{example:constant_ring_k_functor}. Note that a $\fK$-algebra $\fA$ can be viewed as a functor $\fA:\Alg_k\ra \Alg_k$.
 
 \begin{definition}
-The $\fK$-algebra $\fO_k$ represented by the identity functor on $\Alg_k$ is called \textit{the structure $\fK$-algebra}.
+The $\fK$-algebra $\fO_k$ given by the identity functor on $\Alg_k$ is called \textit{the structure $\fK$-algebra}.
 \end{definition}
 \noindent
 Let $|-|:\Alg_k\ra \Set$ be the forgetful $k$-functor. Note that $|-|$ is the underlying $k$-functor of $\fK$-algebra $\fO_k$. Recall that the affine line $\mathbb{A}^1_k$ is an affine $k$-scheme having $k$-algebra of polynomials with one variable as a $k$-algebra of regular functions.
@@ -87,22 +87,6 @@ Let $\fX$ be a $k$-functor and assume that $\iMor_k(\fX,\fO_k)$ exists. Fix $k$-
 $$\Mor_A(\fX_A,\fO_A) \ni f \mapsto f_B\in \Mor_B(\fX_B,\fO_B)$$
 is a morphism of $A$-algebras. This implies that $\iMor_k(\fX,\fO_k)$ admits a canonical structure of an $\fO_k$-algebra $k$-functor.
 \end{example}
-
-
-\begin{proposition}\label{proposition:regular_functions_on_k_schemes}
-Let $X$ be a $k$-scheme. Then $\iMor_k\left(\fP_X,\fO_k\right)$ exists and
-$$\iMor_k\left(\fP_X,\fO_k\right)(A) = \Gamma\left(\Spec A\times X,\cO_{\Spec A\times X}\right)$$
-for every $k$-algebra $A$. In particular, if $X$ is affine $k$-scheme, then we have an isomorphism
-$$\iMor_k\left(\fP_X,\fO_k\right) = A\otimes_k\Gamma(X,\cO_X)$$
-natural in $k$-algebra $A$.
-\end{proposition}
-\begin{proof}
-Fact \ref{fact:affineline_as_forgetfulfunctor} and the fact that morphisms $\Spec A\times X\ra \mathbb{A}^1_A$ of $A$-schemes corresponds to regular functions on $X_A$ imply that we have an identification
-$$\Mor_A\left((\fP_X)_A,\fO_A\right) = \Gamma\left(\Spec A\times X,\cO_{\Spec A\times X}\right)$$
-natural in $k$-algebra $A$. This proves the first part of the statement. Moreover, if $X$ is affine over $k$, then there is another identification
-$$\Mor_A\left(\Spec A\times X,\mathbb{A}^1_A\right) = A\otimes_k\Gamma(X,\cO_X)$$
-natural in $A$. Combining two isomorphisms above, we derive that the second assertion.
-\end{proof}
 
 \section{Internal hom and product of $k$-functors}
 \noindent
@@ -1124,46 +1108,6 @@ Let $k$ be a field. Let $(V,\rho)$ be a linear representation of an affine monoi
 \begin{proof}
 This follows from Theorems \ref{theorem:comodules_equivalent_to_representations} and \ref{theorem:rationality_of_comodules}.
 \end{proof}
-
-\section{Regular representation and matrix coefficients for affine monoid $k$-schemes}
-
-\begin{proposition}\label{proposition:}
-Suppose that $\bd{M}$ is a monoid $k$-scheme. Then $\iMor_k\left(\fP_{\bd{M}},\fO_k\right)$ exists and
-\end{proposition}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
