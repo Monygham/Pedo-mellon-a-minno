@@ -176,7 +176,7 @@ That is $\fP_X$ is the restriction of the presheaf on $\Sch_k$ represented by $X
 (m-1-1) edge node[auto] {$ \fP $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-
+v
 \begin{fact}\label{fact:functors_of_points}
 Functor
 \begin{center}
@@ -752,6 +752,175 @@ Since $\iMor_k\left(1_{\fP_X},j\right)$ is a monomorphism, we may consider $\fU$
 $$\Spec A\times_{\Spec k}X$$
 Pick an open affine cover $\bigcup_{i\in I}X_i$ of this $A$-scheme such that $\Gamma(X_i,\cO_X)$ is a free $A$-module. Now Lemma \ref{lemma:covers_and_factorizations} implies that $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Next by Lemma \ref{lemma:for_affine_local_factorization} we deduce that $\left(\tau_{\mid X_i}\right)_B$  factors through $j_B$ for given $i\in I$ if and only if $f(\ideal{a}_i)=0$ for some ideal $\ideal{a}_i\subseteq A$ independent of $f$. Thus $\fU$ consists of all morphisms $f:A\ra B$ of $k$-algebras such that $f(\ideal{a})=0$ where $\ideal{a} = \sum_{i\in I}\ideal{a}_i$. Therefore, $\fU\hookrightarrow \fP_{\Spec A}$ is isomorphic with $\fP_{V(\ideal{a})} = \fP_{\Spec A/\ideal{a}}\hookrightarrow \fP_{\Spec A}$ induced by the quotient map $A\ra A/\ideal{a}$ and hence $\iMor_k(1_{\fP_X},j)$ is a closed immersion of $k$-functors.
 \end{proof}
+
+\section{Example: Grassmannians}
+\noindent
+In this section we use representability results to prove the existence of grassmannian $k$-scheme. We start by recalling the notion of quotient.
+
+\begin{definition}
+Let $\cC$ be a category and let $X$ be an object of $\cC$. Suppose that $f_1:X\twoheadrightarrow X_1$ and $f_2:X\twoheadrightarrow X_2$ are epimorphisms in $\cC$. We say that $f_1$ and $f_2$ are \textit{equivalent} if there exists a commutative triangle 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{     X_1     &   &  X_2        \\
+              & X &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize] 
+(m-1-1) edge node[above] {$\cong $} (m-1-3);
+\path[->>,line width=1.0pt,font=\scriptsize] 
+(m-2-2) edge node[auto] {$f_1 $} (m-1-1)
+(m-2-2) edge node[below = 7pt, right = 1pt] {$f_2 $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+in $\cC$ in which horizontal arrow is an isomorphism. Class of epimorphisms with domain in $X$ which are equivalent with respect to the relation above is called \textit{a quotient of $X$}. 
+\end{definition}
+
+\begin{example}\label{example:grassmanian}
+Let $V$ be a $k$-module and let $n$ be a positive integer. We define
+$$\mathrm{Grass}_{V,n}(A) =\bigg\{    \begin{subarray}{c}
+\mbox{Quotients of $A\otimes_kV$ represented by epimorphisms }\\
+\mbox{with codomains that are projective $A$-modules of rank $n$}
+\end{subarray}\bigg\}$$
+for $k$-algebra $A$. Note that if $f:A\ra B$ is a morphism of $k$-algebras (making $B$ into an $A$-algebra), then the functor $B\otimes_A(-)$ induces the canonical map
+$$\mathrm{Grass}_{V,n}(f):\mathrm{Grass}_{V,n}(A)\ra \mathrm{Grass}_{V,n}(B)$$
+This makes $\mathrm{Grass}_{V,n}$ into a $k$-functor. 
+\end{example}
+
+\begin{theorem}\label{theorem:representability_of_grassmannian}
+Let $V$ be a $k$-module and let $n$ be a positive integer. Then the $k$-functor $\mathrm{Grass}_{V,n}$ is representable.
+\end{theorem}
+\noindent
+We start with the following general result.
+
+\begin{lemma}\label{lemma:isomorphism_locus_of_module_morphism}
+Let $X$ be a locally ringed space and $\phi:\cP \ra Q$ be a morphism of $\cO_X$-modules such that $\cP$ is of finite type and $Q$ is locally free of finite type. Then we have
+$$\big\{x\in X\,\big|\,1_{k(x)}\otimes_{\cO_{X,x}}\phi_{x}\mbox{ is an isomorphism of vector spaces over }k(x)\big\} = $$
+$$= \big\{x\in X\,\big|\,\phi_{x}\mbox{ is an isomorphism of }\cO_{X,x}\mbox{-modules}\big\}$$
+and the set above is open.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose that $\cK = \Ker\left(\phi\right),\,\cL = \Coker\left(\phi\right)$. Note first that $\cL$ is of finitely type $\cO_X$-module as the homomorphic image of $Q$. Fix a point $x$ in $X$ such that $1_{k(x)}\otimes_{\cO_{X,x}}\phi_{x}$ is an isomorphisms of $k(x)$ vector spaces. This implies that $k(x)\otimes_{\cO_{X,x}}\cL_x = 0$ and hence by Nakayama lemma we derive that $\cL_{x} = 0$. Thus we have a short exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  0 & \cK_{x} & \cP_{x} & Q_{x} & 0      \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-1-2) edge node[above] {$  $} (m-1-3)
+(m-1-3) edge node[above] {$ \phi_{x} $} (m-1-4)
+(m-1-4) edge node[above] {$  $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Facts that $Q_{x}$ is finitely presented and $\cP_{x}$ is finitely generated over $\cO_{X,x}$ imply that $\cK_{x}$ is finitely generated over $\cO_{X,x}$. Since $Q_{x}$ is free, we derive that the sequence above is split exact. Therefore, also the sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3.5em,text height=1.5ex, text depth=0.25ex] 
+{  0 & k(x)\otimes_{\cO_{X,x}}\cK_{x} & k(x)\otimes_{\cO_{X,x}}\cP_{x} & k(x)\otimes_{\cO_{X,x}}Q_{x} & 0      \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-1-2) edge node[above] {$  $} (m-1-3)
+(m-1-3) edge node[above] {$ 1_{k(x)}\otimes_{\cO_{X,x}}\phi_{x} $} (m-1-4)
+(m-1-4) edge node[above] {$  $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is exact and hence $k(x)\otimes_{\cO_{X,x}}\cK_{x} = 0$. Nakayama lemma implies that $\cK_{x} = 0$. Thus we derive that $1_{k(x)}\otimes_{\cO_{X,x}}\phi_{x}$ is an isomorphisms of $k(x)$ vector spaces if and only if $\phi_{x}$ is an isomorphisms of $\cO_{X,x}$-modules. In other words
+$$\big\{x\in X\,\big|\,1_{k(x)}\otimes_{\cO_{X,x}}\phi_{x}\mbox{ is an isomorphism of vector spaces over }k(x)\big\} = $$
+$$= \big\{x\in X\,\big|\,\phi_{x}\mbox{ is an isomorphism of }\cO_{X,x}\mbox{-modules}\big\}$$
+Note that
+$$\big\{x\in X\,\big|\,\phi_{x}\mbox{ is an isomorphism of }\cO_{X,x}\mbox{-modules}\big\}\subseteq \big\{x\in X\,\big|\,\phi_{x}\mbox{ is an epimorphism of }\cO_{X,x}\mbox{-modules}\big\}$$
+and
+$$\big\{x\in X\,\big|\,\phi_{x}\mbox{ is an epimorphism of }\cO_{X,x}\mbox{-modules}\big\} = X\setminus \mathrm{supp}(\cL)$$
+Since $\cL$ is finitely generated, we derive that $\mathrm{supp}(\cL)$ is closed and $X\setminus \mathrm{supp}(\cL)$. Now there is a short exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  0 & \cK_{\mid X\setminus \mathrm{supp}(\cL)} & \cP_{\mid X\setminus \mathrm{supp}(\cL)} & Q_{\mid X\setminus \mathrm{supp}(\cL)} & 0      \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-1-2) edge node[above] {$  $} (m-1-3)
+(m-1-3) edge node[above] {$ \phi_{\mid X\setminus \mathrm{supp}(\cL)} $} (m-1-4)
+(m-1-4) edge node[above] {$  $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+It follows that $\cK_{\mid X\setminus \mathrm{supp}(\cL)}$ is finite type $\cO_X$-module. Thus
+$$\big\{x\in X\,\big|\,\phi_{x}\mbox{ is an isomorphism of }\cO_{X,x}\mbox{-modules}\big\} = \left(X\setminus \mathrm{supp}(\cL)\right)\setminus \mathrm{supp}(\cK_{\mid X\setminus \mathrm{supp}(\cL)})$$
+is open.
+\end{proof}
+\noindent
+Next result is a useful consequence of the previous lemma.
+
+\begin{lemma}\label{lemma:isomorphism_block}
+Let $(A,\ideal{m},L)$ be a commutative local ring and let $n$ be a positive integer. Suppose that $\phi:A^{\oplus I}\twoheadrightarrow A^{\oplus n}$ is an epimorphism of free $A$-modules, where $I$ is some set. Then there exists a subset $J$ of $I$ with $\bd{card}(J) = n$ such that $\phi \cdot u_J$ is an isomorphism, where $u_J:A^{\oplus J}\hookrightarrow A^{\oplus I}$ is the canonical injection.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $\{e_i\}_{i\in I}$ be the canonical basis of $L^{\oplus I}$. Then $\big\{\left(1_L\otimes_A\phi\right)(e_i)\big\}_{i\in I}$ spans $L^{\oplus n}$. Hence there exists $J\subseteq I$ such that $\bd{card}(J) = n$ and $\big\{\left(1_L\otimes_A\phi\right)(e_i)\big\}_{j\in J}$ is a basis of $L^{\oplus n}$. Thus $1_L\otimes_A\left(\phi \cdot u_J\right)$ is an isomorphism of $L$-vector spaces. By Lemma \ref{lemma:isomorphism_locus_of_module_morphism} we derive that $1_L\otimes_A\left(\phi \cdot u_J\right)$ is an isomorphism of $L$-vector spaces if and only if $\phi\cdot u_J$ is an isomorphism of $A$-modules. Therefore, $\phi\cdot u_J$ is an isomorphism of $A$-modules.
+\end{proof}
+\noindent
+We need the following construction.
+
+\begin{example}\label{example:open_chart_of_grassmannian}
+Let $V = k^{\oplus I}$ be a free $k$-module, where $I$ is some (possibly infinite) set, and let $n$ be a positive integer. Pick a subset $J \subseteq I$ with $n$-elements. Then we have the canonical injection $u_J:k^{\oplus J}\hookrightarrow k^{\oplus I}$. Now we define a $k$-subfunctor $\mathrm{Grass}_{V,J}$ of $\mathrm{Grass}_{V,n}$ by formula
+$$\mathrm{Grass}_{V}^J(A) =\bigg\{\begin{subarray}{c}
+\mbox{Elements of $\mathrm{Grass}_{V,n}(A)$ which are represented by epimorphisms $\phi:A\otimes_kV\ra U$}\\
+\mbox{such that the composition $\phi\cdot \left(1_A\otimes_k u_J\right)$ is an isomorphism}
+\end{subarray}\bigg\}$$
+for every $k$-algebra.
+\end{example}
+\noindent
+Next we prove certain partial results.
+
+\begin{lemma}\label{lemma:standard_open_cover_of_grassmannian}
+Let $V = k^{\oplus I}$ be a free $k$-module, where $I$ is a set, and let $n$ be a positive integer. Then
+$$\big\{\mathrm{Grass}_{V}^J\hookrightarrow \mathrm{Grass}_{V,n} \big\}_{J\subseteq I,\,\bd{card}(J)=n}$$
+is an open cover of $\mathrm{Grass}_{V,n}$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $A$ be a $k$-algebra. Consider a morphism $\tau:\fP_{\Spec A}\ra \mathrm{Grass}_{V,n}$ that corresponds to some quotient of $A\otimes_kV$ that is represented by an epimorphism $\phi:A\otimes_kV\ra U$ of $A$-modules with projective $A$-module $U$ of rank $n$. Let $J$ be a subset of $I$ with $\bd{card}(J) = n$. Consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \fX_J        & \mathrm{Grass}^J_V           \\
+   \fP_{\Spec A}             & \mathrm{Grass}_{V,n}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$ \tau $} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Pick a $k$-algebra $B$ and a morphism $f:A\ra B$ of $k$-algebras. Note that $f$ makes $B$ into an $A$-algebra. We have identifications
+$$f\in \Hom_k(A,B) = \Mor_k(\Spec B,\Spec A) = \fP_{\Spec A}(B)$$
+Then $f\in \fX_J(B)$ if and only if $\left(1_B\otimes_A\phi\right)\cdot \left(1_B\otimes_ku_J\right)$ is an isomorphism of $B$-modules. Thus by Lemma \ref{lemma:isomorphism_locus_of_module_morphism} we deduce that $f\in \fX_J(B)$ if and only if $\Spec f:\Spec B\ra \Spec A$ factors through an open subscheme $$W_J = \bigg\{\ideal{q}\in \Spec A\,\bigg|\,\big(\phi\cdot \left(1_A\otimes_ku_J\right)\big)_{\ideal{q}}\mbox{ is an isomorphism of }A_{\ideal{q}}\mbox{-modules}\bigg\} =$$
+$$= \bigg\{\ideal{q}\in \Spec A\,\bigg|\,k(\ideal{q})\otimes_{A_{\ideal{q}}}\big(\phi\cdot \left(1_A\otimes_ku_J\right)\big)_{\ideal{q}}\mbox{ is an isomorphism of }k(\ideal{q})\mbox{-vector spaces}\bigg\}$$
+This implies that $\fX_J\hookrightarrow \fP_{\Spec A}$ is isomorphic to an open immersion $\fP_{W_J}\hookrightarrow \fP_{\Spec A}$.\\
+Moreover, note that for every $\ideal{q}$ we have $U_{\ideal{q}}$ is free $A_{\ideal{q}}$-module of rank $n$. Hence by Lemma \ref{lemma:isomorphism_block} there exists $J\subseteq I$ with $\bd{card}(J) = n$ such that $\phi_{\ideal{q}}\cdot \left(A\otimes_ku_J\right)_{\ideal{q}}$ is an isomorphism of $A_{\ideal{q}}$-modules. Thus
+$$\Spec A = \bigcup_{J\subseteq I,\,\bd{card}(J) = n}W_J$$
+This finishes the proof.
+\end{proof}
+
+\begin{lemma}\label{lemma:representability_of_open_chart}
+Let $V = k^{\oplus I}$ be a free $k$-module, where $I$ is a set, and let $n$ be a positive integer. Fix a subset $J$ of $I$ such that $\bd{card}(J) = n$. Then $\mathrm{Grass}_{V}^J$ is representable by a scheme $\Spec k\big[x_{ji}\,\big|\,i\in I\setminus J,1\leq j\leq n \big]$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $\{e_i\}_{i\in I}$ be the canonical basis of $k^{\oplus I}$ and let $\{f_j\}_{j=1}^n$ be the canonical basis of $k^{\oplus n}$. Fix a $k$-algebra $A$. Suppose that $\phi:A^{\oplus I}\twoheadrightarrow A^{\oplus n}$ represents element of $\mathrm{Grass}_{V,n}(A)$. Then $\phi$ can be encoded as a matrix $M_{\phi} = [a_{ji}]_{1\leq j\leq n,\,i\in I}$ with entries in $A$ such that
+$$\phi(e_i) = \sum_{j=1}^na_{ji}f_j$$
+Note that $\phi_1,\phi_2:A^{\oplus I}\twoheadrightarrow A^{\oplus n}$ represent the same element of $\mathrm{Grass}_{V,n}(A)$ if and only if there exists $n\times n$ invertible matrix $M$ with entries in $A$ such that $M\cdot M_{\phi_1} = M_{\phi_2}$. Thus for every quotient in $\mathrm{Grass}_{V}^J(A)$ there exists a unique representative $\phi:A^{\oplus I}\twoheadrightarrow A^{\oplus n}$ such that $M_{\phi} = [a_{ji}]_{1\leq j\leq n,\,i\in I}$ and $[a_{ji}]_{1\leq j\leq n,i\in J}$ is the identity matrix. Therefore, we have an identification
+$$\mathrm{Grass}_V^J(A) = \big\{[a_{ji}]_{1\leq j\leq n,\,i\in I}\,\big|\,a_{ji}\in A\mbox{ and }[a_{ji}]_{1\leq j\leq n,i\in J}\mbox{ is the identity matrix}\big\}$$
+This identification is natural in $A$. Hence the $k$-functor $\mathrm{Grass}_V^J$ is representable by a $k$-scheme $\Spec k\big[x_{ji}\,\big|\,i\in I\setminus J,1\leq j\leq n \big]$.
+\end{proof}
+
+\begin{lemma}
+Let $\theta:V\ra W$ be a $k$-modules and let $n$ be a positive integer. Then the morphism of $k$-functors $\mathrm{Grass}_{\theta,n}$
+\end{lemma}
+
+
+
+
 
 
 

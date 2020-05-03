@@ -195,7 +195,7 @@ in which vertical arrows are canonically defined. Moreover, by assumptions right
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-The statement holds, if $X,Y$ are affine. Note that semi-separatedness of a scheme over commutative ring is equivalent to the fact that intersection of every pair of its open affine subschemes is affine. Now Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor} implies that the result holds if $X$ is affine and $Y$ is quasi-compact and semi-separated over $k$. Next and by symmetry in Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor}, we derive that the result holds if $X,Y$ are quasi-compact and semi-separated over $k$.
+The statement holds, if $X,Y$ are affine. Note that semi-separatedness of a scheme over commutative ring is equivalent to the fact that intersection of every pair of its open affine subschemes is affine. Now Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor} implies that the result holds if $X$ is affine and $Y$ is quasi-compact and semi-separated over $k$. Next by symmetry in Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor}, we derive that the result holds if $X,Y$ are quasi-compact and semi-separated over $k$.
 \end{proof}
 
 \begin{proposition}\label{proposition:regular_functions_on_k_qc_semiseparated_k_schemes}
@@ -245,39 +245,41 @@ It implies that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{   \cO_{\bd{M}\times_k\bd{M}\times_kX}(\bd{M}\times_k \bd{M}\times_k X) & \cO_{\bd{M}\times_kX}(\bd{M}\times_k X) \\
-    \cO_{\bd{M}\times_kX}(\bd{M}\times_k X)                & \cO_X(X)  \\} ;
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=8em,text height=1.5ex, text depth=0.25ex] 
+{   \Gamma\left(\bd{M}\times_k \bd{M}\times_k X, \cO_{\bd{M}\times_k\bd{M}\times_kX}\right) & \Gamma\left(\bd{M}\times_k X, \cO_{\bd{M}\times_kX}\right) \\
+    \Gamma\left(\bd{M}\times_k X, \cO_{\bd{M}\times_kX}\right)                              & \Gamma\left(X,\cO_X\right)  \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
-(m-1-2) edge node[above] {$ \left(1_{\bd{M}}\times_k a\right)^{\#}_{\bd{M}\times_kX} $} (m-1-1)
-(m-2-2) edge node[below] {$a^{\#}_X  $} (m-2-1)
-(m-2-1) edge node[left] {$ \left(\mu\times_k1_X\right)^{\#}_{\bd{M}\times_kX} $} (m-1-1)
-(m-2-2) edge node[right] {$ a^{\#}_X $} (m-1-2);
+(m-1-2) edge node[above] {$ \Gamma\left(\bd{M}\times_kX, \left(1_{\bd{M}}\times_k a\right)^{\#}\right) $} (m-1-1)
+(m-2-2) edge node[below] {$\Gamma\left(X,a^{\#}\right)  $} (m-2-1)
+(m-2-1) edge node[left] {$ \Gamma\left(\bd{M}\times_kX, \left(\mu\times_k1_X\right)^{\#}\right) $} (m-1-1)
+(m-2-2) edge node[right] {$ \Gamma\left(X,a^{\#}\right) $} (m-1-2);
 \end{tikzpicture}
 \end{center}
 is commutative. Since $\bd{M}$, $X$ are quasi-compact and semi-separated, canonical identifications of Theorem \ref{theorem:regular_functions_on_products} can be used. This implies that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{   \cO_{\bd{M}}(\bd{M})\otimes_k\cO_{\bd{M}}(\bd{M})\otimes_k\cO_{X}(X) & \cO_{\bd{M}}(\bd{M})\otimes_k\cO_X(X) \\
-    \cO_{\bd{M}}(\bd{M})\otimes_k\cO_X(X)               & \cO_X(X)  \\} ;
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=8em,text height=1.5ex, text depth=0.25ex] 
+{   \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_k\Gamma\left(\bd{M},\cO_{\bd{M}}\right) \otimes_k \Gamma\left(X,\cO_{X}\right) & \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_k\Gamma\left(X,\cO_X\right) \\
+    \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_k\Gamma\left(X,\cO_X\right)               & \Gamma\left(X,\cO_X\right)  \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
-(m-1-2) edge node[above] {$ 1_{\cO_{\bd{M}}(\bd{M})}\otimes_k a^{\#}_X $} (m-1-1)
-(m-2-2) edge node[below] {$ a^{\#}_X $} (m-2-1)
-(m-2-1) edge node[left] {$ \mu^{\#}_{\bd{M}}\otimes_k1_{\cO_X(X)} $} (m-1-1)
-(m-2-2) edge node[right] {$ a^{\#}_X $} (m-1-2);
+(m-1-2) edge node[above] {$ 1_{\Gamma\left(\bd{M},\cO_{\bd{M}}\right)} \otimes_k \Gamma\left(X,a^{\#}\right) $} (m-1-1)
+(m-2-2) edge node[below] {$ \Gamma\left(X,a^{\#}\right) $} (m-2-1)
+(m-2-1) edge node[left] {$ \Gamma\left(\bd{M},\mu^{\#}\right) \otimes_k 1_{\Gamma\left(X,\cO_X\right)} $} (m-1-1)
+(m-2-2) edge node[right] {$ \Gamma\left(X,a^{\#}\right) $} (m-1-2);
 \end{tikzpicture}
 \end{center}
 is commutative. Fix a $k$-basis $\{r_i\}_{i\in I}$ of $\Gamma\left(X,\cO_X)\right)$. Pick a regular function $r$ on $X$ and write
 $$a^{\#}_X(r) = \sum_{i\in F}\phi_i\otimes_kr_i$$
-where $F$ is a finite subset of $I$ and $\phi_i$ are regular functions on $\bd{M}$ for $i\in F$. Let $W$ be a $k$-subspace of $\Gamma(X,\cO_X)$ spanned by $\{r_i\}_{i\in F}$ and $r$. Then we equality
+where $F$ is a finite subset of $I$ and $\phi_i$ are regular functions on $\bd{M}$ for $i\in F$. Let $W$ be a $k$-subspace of $\Gamma(X,\cO_X)$ spanned by $\{r_i\}_{i\in F}$ and $r$. Then from the commutative square we infer the equality
 $$\sum_{i\in F}\phi_i\otimes_ka^{\#}(r_i) = \sum_{i\in F}\mu^{\#}(\phi_i)\otimes_kr_i \in \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_k \Gamma\left(\bd{M},\cO_{\bd{M}}\right) \otimes_k W$$
-Therefore, we have $a^{\#}(r_i)\in \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$ for every $i\in F$. We deduce that $a^{\#}(W) \subseteq \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$. Now for each $k$-algebra $A$ and $A$-point $f$ of $k$-scheme $\bd{M}^{\mathrm{op}} = \bd{M}$ and for every $s\in \Gamma(X,\cO_X)$ Theorem \ref{theorem:regular_functions_on_products} and description of $\rho$ in Example \ref{example:k_monoid_action_on_regular_functions} imply
-$$\rho(f) =  \left(f^{\#}_{\bd{M}}\otimes_k 1_{\Gamma(X,\cO_X)}\right)\cdot a^{\#}_X$$
+Therefore, we have $a^{\#}(r_i)\in \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$ for every $i\in F$. We deduce that
+$$a^{\#}(W) \subseteq \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$$
+Now for each $k$-algebra $A$ and $A$-point $f$ of $k$-scheme $\bd{M}^{\mathrm{op}} = \bd{M}$ Theorem \ref{theorem:regular_functions_on_products} and description of $\rho$ in Example \ref{example:k_monoid_action_on_regular_functions} imply
+$$\rho(f) =  \big(\Gamma\left(\bd{M},f^{\#}\right)\otimes_k 1_{\Gamma(X,\cO_X)}\big)\cdot \Gamma\left(X,a^{\#}\right)$$
 Thus for every $A$-point $f$ of $\bd{M}^{\mathrm{op}}$ we have
 $$\rho(f)\left(W\right) \subseteq A\otimes_kW$$
-Thus $W$ is a linear $\bd{M}^{\mathrm{op}}$-subrepresentation of $\Gamma(X,\cO_X)$ and $r\in W$. This proves that each element of $\Gamma(X,\cO_X)$ is contained in a finite dimensional subrepresentation of $\bd{M}^{\mathrm{op}}$. So the statement holds for one dimensional vector subspaces of $\Gamma(X,\cO_X)$. If the statement holds for two finite dimensional vector subspaces of $\Gamma(X,\cO_X)$, then it also holds for their sum. Thus the assertion holds for arbitrary finite dimensional vector subspace of $\Gamma(X,\cO_X)$.
+Thus $W$ is a linear $\bd{M}^{\mathrm{op}}$-subrepresentation of $\Gamma(X,\cO_X)$ and $r\in W$. This proves that each element of $\Gamma(X,\cO_X)$ is contained in a finite dimensional subrepresentation of $\bd{M}^{\mathrm{op}}$. This means that the statement holds for one dimensional vector subspaces of $\Gamma(X,\cO_X)$. If the statement holds for two finite dimensional vector subspaces of $\Gamma(X,\cO_X)$, then it also holds for their sum. Thus the assertion holds for arbitrary finite dimensional vector subspace of $\Gamma(X,\cO_X)$.
 \end{proof}
 
 
@@ -625,6 +627,7 @@ The fact that $Z$ is locally free over $k$ and {\cite[Theorem 6.2]{kfunctors}} i
 $$\widehat{\cO_{\bd{G},e_{\bd{G}}}} \ra  \widehat{\cO_{\bd{H},e_{\bd{H}}}}$$
 induced by $f^{\#}$ is an isomorphism. Hence by Lemma \ref{lemma:infinitesimal_isomorphisms} $f$ is an open immersion of locally algebraic groups. Since $\bd{G}$ is geometrically connected, we deduce that $f$ is an isomorphism. Thus $j$ is an isomorphism and this means that $b:\bd{G}\times_k Z\ra X$ factors through $i:Z\hookrightarrow X$.
 \end{proof}
+
 
 
 
