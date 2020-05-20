@@ -210,7 +210,7 @@ is a formal $\bd{M}$-scheme. We denote it by $\widehat{Z}$.
 \end{example}
 
 \begin{definition}
-Let $\bd{M}$ be a monoid $k$-scheme and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. We say that $\cZ$ is \textit{locally Noetherian} if for all $n\in \NN$ scheme $Z_n$ is locally Noetherian.
+Let $\bd{M}$ be a monoid $k$-scheme and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. We say that $\cZ$ is \textit{locally noetherian} if for all $n\in \NN$ scheme $Z_n$ is locally Noetherian.
 \end{definition}
 
 \begin{definition}
@@ -241,16 +241,14 @@ Let $\bd{M}$ be a monoid $k$-scheme. Suppose that $\cZ = \{Z_n\}_{n\in \NN}$ and
 \end{center}
 is commutative.
 \end{definition}
-\noindent
-Since group $k$-scheme is also a monoid $k$-scheme, definitions above can be applied to group $k$-schemes.
 
 \begin{definition}
-Let $\bd{G}$ be a group $k$-scheme. Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{G}$-scheme. Then there we have the corresponding telescope of monoidal categories
+Let $\bd{M}$ be a monoid $k$-scheme. Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be locally noetherian a formal $\bd{M}$-scheme. Then we have the corresponding telescope of monoidal categories
 \begin{center}   
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{... &  \Qcoh_{\bd{G}}(Z_{n+1})  &  \Qcoh_{\bd{G}}(Z_n) & ... & \Qcoh_{\bd{G}}(Z_2) & \Qcoh_{\bd{G}}(Z_1) & \Qcoh_{\bd{G}}(Z_0)  \\};
+{... &  \Coh_{\bd{M}}(Z_{n+1})  &  \Coh_{\bd{M}}(Z_n) & ... & \Coh_{\bd{M}}(Z_2) & \Coh_{\bd{M}}(Z_1) & \Coh_{\bd{M}}(Z_0)  \\};
 \path[->,line width=1.0pt,font=\scriptsize]    
 (m-1-1) edge node[auto]  {$  $} (m-1-2)
 (m-1-2) edge node[auto]  {$  $} (m-1-3)
@@ -260,10 +258,10 @@ Let $\bd{G}$ be a group $k$-scheme. Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a f
 (m-1-6) edge node[auto]  {$  $} (m-1-7);
 \end{tikzpicture}
 \end{center}
-and cocontinuous monoidal functors given by restricting $\bd{G}$-equivariant quasi-coherent sheaves to closed $\bd{G}$-subschemes. Then we define \textit{a category $\Qcoh(\cZ)$ of quasi-coherent sheaves on $\cZ$} as a monoidal category which is a $2$-limit of the telescope above. This category is defined uniquely up to a monoidal equivalence.
+and cocontinuous monoidal functors given by restricting $\bd{M}$-equivariant coherent sheaves to closed $\bd{M}$-subschemes. Then we define \textit{a category $\Coh_{\bd{M}}(\cZ)$ of coherent $\bd{M}$-equivariant sheaves on $\cZ$} as a monoidal category which is a $2$-limit of the telescope above. This category is defined uniquely up to a monoidal equivalence.
 \end{definition}
 \noindent
-Let $Z$ be a $\bd{G}$-scheme and let $\cI$ be a quasi-coherent ideal of $Z^{\bd{G}}$. We have a commutative diagram
+Fix now a monoid $k$-scheme $\bd{M}$. Let $Z$ be a locally noetherian $\bd{M}$-scheme and suppose that $Z^{\bd{M}}$ exists. Suppose that $\cI$ is a coherent ideal of $Z^{\bd{M}}$. We have a commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -282,17 +280,19 @@ Let $Z$ be a $\bd{G}$-scheme and let $\cI$ be a quasi-coherent ideal of $Z^{\bd{
 (m-1-4) edge node[above] {$ $} (m-2-3);
 \end{tikzpicture}
 \end{center}
-in the category of $\bd{G}$-schemes. Thus restriction functors $\Qcoh_{\bd{G}}(Z) \ra \Qcoh_{\bd{G}}(V(\cI^n))$ for $n\in \NN$ induce a unique cocontinuous monoidal functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh(\widehat{Z})$.
+in the category of $\bd{M}$-schemes. Thus restriction functors $\Coh_{\bd{M}}(Z) \ra \Coh_{\bd{M}}(V(\cI^n))$ for $n\in \NN$ induce a unique cocontinuous monoidal functor $\Coh_{\bd{M}}(Z)\ra \Coh_{\bd{M}}(\widehat{Z})$.
 
 \begin{definition}
-Let $Z$ be a $\bd{G}$-scheme. Then a unique cocontinuous monoidal functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh(\widehat{Z})$ is called \textit{the comparison functor}.
+Let $Z$ be a locally noetherian $\bd{M}$-scheme such that $Z^{\bd{M}}$ exists. Then a unique cocontinuous monoidal functor $\Coh_{\bd{M}}(Z)\ra \Coh_{\bd{M}}(\widehat{Z})$ is called \textit{the comparison functor}.
 \end{definition}
+\noindent
+Since group $k$-scheme is also a monoid $k$-scheme, definitions above can be applied to group $k$-schemes.
 
 \begin{definition}
 Let $\bd{M}$ be a monoid $k$-scheme with group of units $\bd{G}$. Let $\cZ = \{Z_n\}_{n\in \mathbb{N}}$ be a formal $\bd{M}$-scheme. A $\bd{M}$-scheme $Z$ is called \textit{an algebraization of $\cZ$} if the following two conditions are satisfied.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item $\cZ$ is isomorphic to $\widehat{Z}$ in the category of formal $\bd{M}$-schemes.
-\item The comparison functor $\Qcoh_{\bd{G}}(Z)\ra \Qcoh\left(\widehat{Z}\right)$ is an equivalence of monoidal categories.
+\item The comparison functor $\Coh_{\bd{G}}(Z)\ra \Coh_{\bd{G}}\left(\widehat{Z}\right)$ is an equivalence of monoidal categories.
 \end{enumerate}
 \end{definition}
 
@@ -310,13 +310,13 @@ Let $\bd{M}$ be an affine monoid $k$-scheme and let $X$ be a $\bd{M}$-scheme. Su
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-Let $\alpha:\bd{M} \times X\ra X$ be the action of $\bd{M}$ on $X$. Fix open subset $U$ of $X$. If $U$ is $\bd{M}$-stable, then $U\cap V(\cI)$ is $\bd{M}$-stable. So suppose that $U\cap V(\cI)$ is $\bd{M}$-stable. Since $\cI$ has nilpotent sections and $\bd{M}$ is affine, we derive that closed immersions $U\cap V(\cI)\hookrightarrow U$ and $\bd{M}\times \left(U\cap V(\cI)\right) \hookrightarrow \bd{M}\times U$ induce homeomorphisms on topological spaces. Consider the commutative diagram
+Let $\alpha:\bd{M} \times_k X\ra X$ be the action of $\bd{M}$ on $X$. Fix open subset $U$ of $X$. If $U$ is $\bd{M}$-stable, then $U\cap V(\cI)$ is $\bd{M}$-stable. So suppose that $U\cap V(\cI)$ is $\bd{M}$-stable. Since $\cI$ has nilpotent sections and $\bd{M}$ is affine, we derive that closed immersions $U\cap V(\cI)\hookrightarrow U$ and $\bd{M}\times_k \left(U\cap V(\cI)\right) \hookrightarrow \bd{M}\times_k U$ induce homeomorphisms on topological spaces. Consider the commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}\times U & X     \\
-  \bd{M}\times \left(U\cap V(\cI)\right) & U\cap V(\cI)   \\} ;
+{ \bd{M}\times_k U & X     \\
+  \bd{M}\times_k \left(U\cap V(\cI)\right) & U\cap V(\cI)   \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$ \alpha_{\mid U\cap V(\cI)}  $} (m-1-2)
 (m-2-1) edge node[below] {$   $} (m-2-2);
@@ -325,7 +325,7 @@ Let $\alpha:\bd{M} \times X\ra X$ be the action of $\bd{M}$ on $X$. Fix open sub
 (m-2-2) edge node[right] {$ $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-where the bottom horizontal arrow is the induced action on $U\cap V(\cI)$ and vertical morphisms are homeomorphisms. The commutativity of the diagram implies that $\alpha\left(\bd{M}\times U\right)$ is contained set-theoretically in $U$. Since $U$ is open in $X$, we derive that morphism of schemes $\alpha_{\mid \bd{M}\times U}$ factors through $U$. Hence $U$ is $\bd{M}$-stable.
+where the bottom horizontal arrow is the induced action on $U\cap V(\cI)$ and vertical morphisms are homeomorphisms. The commutativity of the diagram implies that $\alpha\left(\bd{M}\times_k U\right)$ is contained set-theoretically in $U$. Since $U$ is open in $X$, we derive that morphism of schemes $\alpha_{\mid \bd{M}\times_k U}$ factors through $U$. Hence $U$ is $\bd{M}$-stable.
 \end{proof}
 
 \begin{corollary}\label{corollary:monoid_stable_open_affine_correspondence}
@@ -368,12 +368,12 @@ Let $\bd{M}$ be a monoid $k$-scheme with zero $\bd{o}$ and let $X$ be a $\bd{M}$
 \begin{proof}
 The multiplication $\bd{o}\cdot (-):\fP_X\ra \fP_X$ factors as an $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\twoheadrightarrow \fP_{X^{\bd{M}}}$ composed with a closed immersion $\fP_{X^{\bd{M}}}\hookrightarrow \fP_X$. The $\fP_{\bd{M}}$-equivariant epimorphism $\fP_X\ra \fP_{X^{\bd{M}}}$ corresponds to a $\bd{M}$-equivariant morphism $\pi_{\bd{M}}:X\ra X^{\bd{M}}$ of $k$-schemes such that $\pi_{\bd{M}}$ restricted to $X^{\bd{M}}$ is the identity $1_{X^{\bd{M}}}$. This proves \textbf{(1)}.\\
 For the proof of \textbf{(2)} note that $\bd{o}\cdot (-):\fP_X\ra \fP_X$ is defined similarly for $\bd{M}$ and $\bd{N}$ (provided that $\bd{o}$ is a $k$-point of $\bd{N}$). Thus $\pi_{\bd{M}} = \pi_{\bd{N}}$.\\
-Suppose now that $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme. Consider the action $\alpha:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Since $X$ is locally linear and $\bd{M}$ is affine, we derive that $\alpha$ is an affine morphism of $k$-schemes. Now $\bd{o}\cdot (-):X\ra X$ is given as a composition 
+Suppose now that $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme. Consider the action $\alpha:\bd{M}\times_k X\ra X$ of $\bd{M}$ on $X$. Since $X$ is locally linear and $\bd{M}$ is affine, we derive that $\alpha$ is an affine morphism of $k$-schemes. Now $\bd{o}\cdot (-):X\ra X$ is given as a composition 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{X & \bd{o}\times X & \bd{M}\times X & X \\} ;
+{X & \bd{o}\times_k X & \bd{M}\times_k X & X \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[above] {$\cong$} (m-1-2)
 (m-1-3) edge node[above] {$\alpha$} (m-1-4);
@@ -381,7 +381,7 @@ Suppose now that $\bd{M}$ is affine and $X$ is locally linear $\bd{M}$-scheme. C
 (m-1-2) edge node[above] {$ $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-The morphism above is affine (as a composition of affine morphisms). Since the composition of $\pi$ with a closed immersion $X^{\bd{M}}\hookrightarrow X$ is $\bd{o}\times(-)$ and hence an affine morphism, we derive that $\pi$ is affine. This proves \textbf{(3)}.
+The morphism above is affine (as a composition of affine morphisms). Since the composition of $\pi$ with a closed immersion $X^{\bd{M}}\hookrightarrow X$ is $\bd{o}\times_k(-)$ and hence an affine morphism, we derive that $\pi$ is affine. This proves \textbf{(3)}.
 \end{proof}
 \noindent
 Let us note the immediate consequence of this result.
@@ -415,28 +415,28 @@ This is an immediate consequence of Corollary \ref{corollary:each_formal_scheme_
 
 \begin{definition}
 Let $T$ be an affine algebraic group over $k$. Suppose that there exists $n\in \NN$ such that for every algebraically closed extension $K$ of $k$ there exists an isomorphism
-$$T_K \cong  \Spec K \times \underbrace{\mathbb{G}_{m}\times \mathbb{G}_{m}\times ...\times \mathbb{G}_{m}}_{n\,\mathrm{times}} $$
+$$T_K \cong  \Spec K \times_k \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{n\,\mathrm{times}} $$
 of group schemes over $K$. Then $T$ is called \textit{a torus over $k$}.
 \end{definition}
 
 \begin{example}\label{example:split_torus}
-If $T \cong \underbrace{\mathbb{G}_{m}\times \mathbb{G}_{m}\times ...\times \mathbb{G}_{m}}_{n\,\mathrm{times}}$, then $T$ is a torus. We call toruses $T$ of this form \textit{split toruses}.
+If $T \cong \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{n\,\mathrm{times}}$, then $T$ is a torus. We call toruses $T$ of this form \textit{split toruses}.
 \end{example}
 
 \begin{example}\label{example:non_split_torus}
 Define
 $$\bd{S}^1 = \Spec k[x,y]/(x^2+y^2-1)$$
 a scheme over $k$ and let $\fP_{\bd{S}^1}$ be its functor of points. Then for every $k$-algebra $A$ we have
-$$\fP_{\bd{S}^1}(A) = \big\{(u,v)\in A\times A\,\big|\,u^2+v^2=1\big\}$$
-There is also a morphism $\fP_{\bd{S}^1}\times \fP_{\bd{S}^1}\ra \fP_{\bd{S}^1}$ of $k$-functors given by
-$$\fP_{\bd{S}^1}(A)\times \fP_{\bd{S}^1}(A)\ra \fP_{\bd{S}^1}\ni \left((u_1,v_1),(u_2,v_2)\right)\mapsto (u_1u_2-v_1v_2,u_1v_2+u_2v_1)\in \fP_{\bd{S}^1}(A)$$
+$$\fP_{\bd{S}^1}(A) = \big\{(u,v)\in A\times_k A\,\big|\,u^2+v^2=1\big\}$$
+There is also a morphism $\fP_{\bd{S}^1}\times_k \fP_{\bd{S}^1}\ra \fP_{\bd{S}^1}$ of $k$-functors given by
+$$\fP_{\bd{S}^1}(A)\times_k \fP_{\bd{S}^1}(A)\ra \fP_{\bd{S}^1}\ni \left((u_1,v_1),(u_2,v_2)\right)\mapsto (u_1u_2-v_1v_2,u_1v_2+u_2v_1)\in \fP_{\bd{S}^1}(A)$$
 for every $k$-algebra $A$. This makes $\fP_{\bd{S}^1}$ into a group $k$-functor. Thus $\bd{S}^1$ with the group structure described above is an affine algebraic group over $k$. We call it \textit{the circle group over $k$}.\\
 Now suppose that $\mathrm{char}(k)=2$ and $K$ is an algebraically closed extension of $k$. Consider an element $i\in K$ such that $i^2 = -1$. For every $K$-algebra $A$ we have a map
 $$\fP_{\bd{S}^1}(A)\ni (u,v)\mapsto u+iv\in A^*$$
 First note that this map is bijective. Indeed, its inverse is given by
 $$A^*\ni a \mapsto \left(\frac{1}{2}(a+a^{-1}),\frac{1}{2i}(a-a^{-1})\right) \in \fP_{\bd{S}^1}(A)$$
-Moreover, the map $\fP_{\bd{S}^1}(A)\ra A^*$ is a homomorphism of abstract groups. Thus $\fP_{\bd{S}^1}$ resricted to the category $\Alg_K$ of $K$-algebras is isomorphic with $\fP_{\Spec K\times \mathbb{G}_{m}}$ as a group $k$-functor. Hence
-$$\bd{S}^1_K \cong \Spec K\times \mathbb{G}_{m}$$
+Moreover, the map $\fP_{\bd{S}^1}(A)\ra A^*$ is a homomorphism of abstract groups. Thus $\fP_{\bd{S}^1}$ resricted to the category $\Alg_K$ of $K$-algebras is isomorphic with $\fP_{\Spec K\times_k \mathbb{G}_{m}}$ as a group $k$-functor. Hence
+$$\bd{S}^1_K \cong \Spec K\times_k \mathbb{G}_{m}$$
 as algebraic group schemes over $K$. Hence $\bd{S}^1$ is a torus over $k$.\\
 Now assume that $k = \RR$. Then abstract groups
 $$\fP_{\bd{S}^1}(\RR) = \big\{z\in \CC\,\big|\,|z|=1\big\} \subseteq \CC^*,\,\RR^*$$
@@ -463,13 +463,13 @@ If $\lambda$ is in  $\bd{Irr}(\ol{T})$, then $A_{\lambda}$ is a subset of $S$. M
 $$\ZZ^N = \coprod_{\lambda\in \bd{Irr}(T)}A_{\lambda}$$
 and $A_{\lambda_0} = \{0\}$, where $\lambda_0$ is the class of the trivial representation of $T$.
 \item If $\ol{T}$ has a zero, then there exists a homomorphism $f:\ZZ^N\ra \ZZ$ of abelian groups such that $f_{\mid S\setminus \{0\}}>0$. In particular, $f$ induces a closed immersion
-$$\Spec K\times \mathbb{G}_{m} = \Spec K[\ZZ]\hookrightarrow \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) = T_K$$
+$$\Spec K\times_k \mathbb{G}_{m} = \Spec K[\ZZ]\hookrightarrow \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) = T_K$$
 of group $K$-schemes that extends to a zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 Since $T$ is a torus, we derive that
-$$T_K = \Spec K \times \underbrace{\mathbb{G}_{m}\times \mathbb{G}_{m}\times ...\times \mathbb{G}_{m}}_{N\,\mathrm{times}} = \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right)$$
+$$T_K = \Spec K \times_k \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{N\,\mathrm{times}} = \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right)$$
 and hence
 $$\ol{T}_K = \Spec \left(\bigoplus_{s\in S}K\cdot \chi^s\right)$$
 for some abstract submonoid $S$ of $\ZZ^N$. Moreover, the open immersion $T_K\hookrightarrow \ol{T}_K$ is induced by the inclusion $S \hookrightarrow \ZZ^N$. This proves \textbf{(1)}.\\
@@ -536,7 +536,7 @@ has trivial isotypic component of type $\lambda$. We have $n_{\lambda_0} = 0$, w
 Let $K$ be an algebraically closed extension of $k$. Pick $A_{\lambda}$ and $f$ as in Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} and define
 $$n_{\lambda} = \sup_{m\in A_{\lambda}}f(m)$$
 We have
-$$K\otimes_kV_{\lambda_1}\otimes_k...\otimes_kV_{\lambda_n} = \bigoplus_{(m_1,...,m_n)\in A_{\lambda_1}\times ...\times A_{\lambda_n}}K\cdot \chi^{m_1+...+m_n}$$
+$$K\otimes_kV_{\lambda_1}\otimes_k...\otimes_kV_{\lambda_n} = \bigoplus_{(m_1,...,m_n)\in A_{\lambda_1}\times_k ...\times_k A_{\lambda_n}}K\cdot \chi^{m_1+...+m_n}$$
 and since $m_1,...m_n\in A_{\lambda_1}\cup ...\cup A_{\lambda_n}\subseteq S\setminus \{0\}$ we derive that
 $$f(m_1+...+m_n) = f(m_1) + ... + f(m_n) \geq n > n_{\lambda} = \sup_{m\in A_{\lambda}}f(m)$$
 This implies that $V_{\lambda}$ is not an isotypic component of $V_{\lambda_1}\otimes_k...\otimes_kV_{\lambda_n}$.
@@ -614,8 +614,8 @@ $$0 \subseteq \cJ^n/\cJ^{n+1} \subseteq  ... \subseteq \cJ/\cJ^{n+1} \subseteq \
 has subquotients that are of finite type over $\cO_{Z^{\bd{M}}} = \cA/\cJ$. This implies that $\cA/\cJ^{n+1}$ is a coherent $\cO_{Z^{\bd{M}}}$-algebra for every $n\in \NN$. The claim that $\pi$ is of finite type is local on $Z^{\bd{M}}$, hence we may assume that $Z^{\bd{M}}$ is quasi-compact. This reduces the question to the noetherian $Z^{\bd{M}}$. The sheaf $\cJ/\cJ^2\subseteq \cA/\cJ$ is coherent over $\cO_{Z^{\bd{M}}}$. Since $Z^{\bd{M}}$ is noetherian, there exists coherent $\cO_{Z^{\bd{M}}}$-subsheaf $\cM\subseteq \cJ$ such that the morphism $\cM\twoheadrightarrow \cJ/\cJ^2$ is surjective. Fix an algebraically closed $K$ extension of $k$ and denote
 $$\cA_K = K\otimes_k\cA,\cJ_K = K\otimes_k\cJ,\cM_K = K\otimes_k\cM$$
 Since $\bd{M}$ is a Kempf torus and by \textbf{(3)} Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\mathbb{A}^1_K\hookrightarrow \bd{M}_K$ of monoid $K$-schemes that preserve zero. This implies that we have $\NN$-grading $\cA_K = \bigoplus_{i\geq 0}\cA_K[i]$ that gives rise to the action of $\mathbb{A}^1_K$. Moreover, by Propostion \ref{proposition:retraction_for_monoids_with_zero} we deduce that
-$$\Spec K\times Z^{\bd{M}} = \left(\Spec K \times Z\right)^{\bd{M}_K} = \left(\Spec K \times Z\right)^{\mathbb{A}^1_K}$$
-as $K$-schemes. This shows that $\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1} \cA_K[i]$ is an ideal with positive grading. We have surjection $\cM_K\twoheadrightarrow \cJ_K/\cJ_K^2$. By graded Nakayama's lemma, the ideal $\cJ_K$  is generated by $\cM_K$. Then by induction on degrees we deduce that $\cA_K$ is generated by $\cM_K$ as a $K\otimes_k\cO_{Z^{\bd{M}}}$-algebra. Thus $1_{\Spec K}\times\pi$ is of finite type and by faitfully flat descent also $\pi$ is of finite type.
+$$\Spec K\times_k Z^{\bd{M}} = \left(\Spec K \times_k Z\right)^{\bd{M}_K} = \left(\Spec K \times_k Z\right)^{\mathbb{A}^1_K}$$
+as $K$-schemes. This shows that $\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1} \cA_K[i]$ is an ideal with positive grading. We have surjection $\cM_K\twoheadrightarrow \cJ_K/\cJ_K^2$. By graded Nakayama's lemma, the ideal $\cJ_K$  is generated by $\cM_K$. Then by induction on degrees we deduce that $\cA_K$ is generated by $\cM_K$ as a $K\otimes_k\cO_{Z^{\bd{M}}}$-algebra. Thus $1_{\Spec K}\times_k\pi$ is of finite type and by faitfully flat descent also $\pi$ is of finite type.
 \end{proof}
 
 \begin{theorem}
@@ -643,11 +643,11 @@ of coherent $\cO_{Z^{\bd{M}}}$-modules with $\bd{G}$-linearizations such that th
 \item For each $n\in \NN$ sheaf $\cM_n$ is a module over $\cA/\cJ^{n+1}$.
 \item For each $n\in \NN$ the kernel of the surjection $\cM_{n+1}\twoheadrightarrow \cM_n$ is $\cJ^{n+1}\cM_{n+1}$.
 \end{enumerate}
-We fix an algebraically closed field $K$ containing $k$. By \textbf{(3)} of Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\Spec K\times \mathbb{G}_m\hookrightarrow T_K$ of group $K$-schemes that induces zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes. By Proposition \ref{proposition:retraction_for_monoids_with_zero} we have
-$$\Spec K\times Z^{\bd{M}} = \left(\Spec K\times Z\right)^{\bd{M}_K} = \left(\Spec K\times Z\right)^{\mathbb{A}^1_K}$$
+We fix an algebraically closed field $K$ containing $k$. By \textbf{(3)} of Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\Spec K\times_k \mathbb{G}_m\hookrightarrow T_K$ of group $K$-schemes that induces zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes. By Proposition \ref{proposition:retraction_for_monoids_with_zero} we have
+$$\Spec K\times_k Z^{\bd{M}} = \left(\Spec K\times_k Z\right)^{\bd{M}_K} = \left(\Spec K\times_k Z\right)^{\mathbb{A}^1_K}$$
 This implies that
 $$\cA_K = K\otimes_k\cA = \bigoplus_{i\geq 0}\cA_K[i],\,\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1}\cA_K[i]$$
-where gradation is induced by the action of $\mathbb{A}^1_K$. For every $n\in \NN$ the action of $\Spec K\times \mathbb{G}_m$ on $K\otimes_k\cM_n$ induced by the closed immersion $\Spec K\times \mathbb{G}_m \hookrightarrow \ol{T}_K\hookrightarrow \bd{M}_K$ of group $K$-schemes gives rise to a gradation
+where gradation is induced by the action of $\mathbb{A}^1_K$. For every $n\in \NN$ the action of $\Spec K\times_k \mathbb{G}_m$ on $K\otimes_k\cM_n$ induced by the closed immersion $\Spec K\times_k \mathbb{G}_m \hookrightarrow \ol{T}_K\hookrightarrow \bd{M}_K$ of group $K$-schemes gives rise to a gradation
 $$K\otimes_k\cM_n = \bigoplus_{i\in \ZZ}\left(K\otimes_k\cM_n\right)[i]$$
 \end{proof}
 
@@ -716,74 +716,98 @@ represents some other object of $\Coh_{\bd{G}}(\widehat{Z})$. As for $\{\cM_n\}_
 
 
 \section{$\bd{M}$-equivariant quasi-coherent sheaves}
+\noindent
+In this section we fix a monoid $k$-scheme $\bd{M}$ and a $k$-scheme $X$ with an action $a:\bd{M} \times_k X \ra X$. We denote by $\pi: \bd{M}\times_kX\ra X$ the projection on $X$.
 
 \begin{definition}
-Let $\bd{M}$ be a monoid $k$-scheme and $X$ be a $k$-scheme together with $\bd{M}$-action $a:\bd{M}\times X\ra X$. Fix a quasi-coherent sheaf $\cF$ on $X$. A $\bd{M}$-linearization of $\cF$ is an isomorphism $\phi:\bd{pr}_X^*\cF\ra a^*\cF$ such that, the following condition holds:
-\begin{center}
-$(\mu\times_S1_X)^*\phi=(1_G\times_Sa)^*\phi\, \bd{pr}_{(G\times_SX)}^*\phi$
-\end{center}
-where $\mu:G\times_SG\ra G$ is the multiplication and $\bd{pr}_{(G\times_SX)}:G\times_S(G\times_SX)\ra G\times_SX$ is a projection. A pair $(\cF,\phi)$ is called a $G$-sheaf.\\
-Suppose that $(\cF_1,\phi_1)$ and $(\cF_2,\phi_2)$ are $G$-sheaves. A morphism $f:(\cF_1,\phi_1)\ra (\cF_2,\phi_2)$ is a morphism $f:\cF_1\ra \cF_2$ of $\cO_X$-modules that commutes with $G$-linearizations. Thus we have a category $\Mod_G(\cO_X)$ of $G$-sheaves.
+Fix a quasi-coherent sheaf $\cF$ on $X$. An $\bd{M}$-linearization of $\cF$ is an isomorphism $\phi:\pi^*\cF \ra a^* \cF$ such that the equality
+$$(\mu\times_k1_X)^*\phi = (1_{\bd{M}} \times_k a)^*\phi \cdot \pi_{2,3}^*\phi$$
+holds, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$ and $\pi_{2,3}:\bd{M}\times_k \bd{M} \times_k X \ra \bd{M} \times_kX$ is the projection on last two factors. Then $\phi$ is called \textit{an $\bd{M}$-linearization on $\cF$} and a pair $(\cF,\phi)$ is called \textit{a quasi-coherent $\bd{M}$-sheaf}.
 \end{definition}
 
-\begin{proposition}[compatibility with identity]
-Let $\cF$ be a sheaf of $\cO_X$-modules and $\phi:\bd{pr}_X^*\cF\ra a^*\cF$ be a $G$-linearization. Assume that $e:S\ra G$ is an identity of $G$. Let $i_e:X\ra G\times_SX$ be a morphism induced by $e$ and $1_X$. Then $i^*_e\phi=1_{\cF}$.
+\begin{proposition}\label{proposition:compatibility_with_identity}
+Let $\cF$ be a quasi-coherent sheaf on $X$ and $\phi:\pi^*\cF\ra a^*\cF$ be a $\bd{M}$-linearization. Assume that $e:\Spec k\ra G$ is an identity of $\bd{M}$. Let $i_e = \langle e, 1_X\rangle :X\ra \bd{M} \times_kX$ be a morphism induced by $e$ and $1_X$. Then $i^*_e\phi = 1_{\cF}$.
 \end{proposition}
 \begin{proof}
-Let $j:X\ra G\times_SG\times_SX$ be a morphism induced by $e$ and $1_X$. Observe that:
-\begin{center}
-$i_e^*\phi=j^*(\mu\times_S1_X)^*\phi=j^*((1_G\times_Sa)^*\phi\bd{pr}^*_{(G\times_SX)}\phi)=i^*_e\phi i^*_e\phi$
-\end{center}
-Thus $i_e^*\phi=1_{\cF}$.
+Let $j = \langle e, e, 1_X\rangle:X \ra \bd{M} \times_k \bd{M} \times_kX$ be a morphism induced by $e$ and $1_X$. Observe that
+$$i_e^*\phi=j^*(\mu\times_k1_X)^*\phi = j^* \bigg(\big(1_{\bd{M}} \times_k a\big)^*\phi \cdot \pi^*_{2,3}\phi\bigg)=i^*_e\phi \cdot i^*_e\phi$$
+Since $\phi$ is an isomorphism, we derive that $i_e^*\phi=1_{\cF}$.
 \end{proof}
 
-\begin{proposition}[canonical linearization of the structure sheaf]
-Let ${\bd{pr}_X}_{\#}:\bd{pr}^*_X\cO_X\ra \cO_{G\times_SX}$, $a_{\#}:a^*\cO_X\ra \cO_{G\times_SX}$ be adjoints of sheaf parts $\bd{pr}_X^{\#}:\cO_X\ra {\bd{pr}_X}_*\cO_{G\times_SX}$, $a^{\#}:\cO_X\ra a_*\cO_{G\times_SX}$ of morphisms $\bd{pr}_X$ and $a$ respectively. Then $\phi_{\cO_X}=a_{\#}^{-1}{\bd{pr}_X}_{\#}$ is a $G$-linearization of the structure sheaf $\cO_X$.
+\begin{definition}
+Let $(\cF_1,\phi_1)$ and $(\cF_2,\phi_2)$ be quasi-coherent $\bd{M}$-sheaves. Suppose that $f:\cF_1\ra \cF_2$ is a morphism of quasi-coherent sheaves on $X$ such that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \pi^*\cF_1 & a^*\cF_1     \\
+  \pi^*\cF_2 & a^*\cF_2             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \phi_1 $} (m-1-2)
+(m-2-1) edge node[below] {$ \phi_2 $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi^*f $} (m-2-1)
+(m-1-2) edge node[right] {$ a^*f  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Then $f$ is called \textit{a morphism of quasi-coherent $\bd{M}$-sheaves}. We denote by $\Qcoh_{\bd{M}}(X)$ the category of quasi-coherent $\bd{M}$-sheaves and call it \textit{the category of quasi-coherent $\bd{M}$-sheaves}.
+\end{definition}
+
+\begin{definition}
+Let $X$ be locally noetherian, then we denote by $\Coh_{\bd{M}}(X)$ the full subcategory of $\Qcoh_{\bd{M}}(X)$ that consists of quasi-coherent $\bd{M}$-sheaves $(\cF,\phi)$ such that $\cF$ is coherent on $X$. We call it \textit{the category of coherent $\bd{M}$-sheaves}.
+\end{definition}
+
+\begin{proposition}\label{proposition:canonical linearization of the structure sheaf}
+Let $\pi_{\#}:\pi^*_X\cO_X \ra \cO_{\bd{M} \times_kX}$ and $a_{\#}:a^*\cO_X \ra \cO_{\bd{M} \times_k X}$ be the canonical isomorphisms induced by morphisms $\pi$ and $a$, respectively. Then $\phi  = a_{\#}^{-1}\cdot {\pi}_{\#}$ is an $\bd{M}$-linearization of the structure sheaf $\cO_X$.
 \end{proposition}
 \begin{proof}
 First we introduce convienient notation. If $(f,f^{\#}):(Y,\cO_Y)\ra (Z,\cO_Z)$ is a morphism of ringed spaces, then we denote $f_{\#}:f^*\cO_Z\ra \cO_Y$ adjoint of $f^{\#}:\cO_Z\ra f_*\cO_Y$. This is consistent with notation from the statement. Note that $f_{\#}$ is always an isomorphism.\\
-We have:
-\begin{center}
-$(1_G\times_Sa)^*({\bd{pr}_X}_{\#})\bd{pr}_{(G\times_SX)}^*(a_{\#})^{-1}=$\\$=(1_G\times_Sa)_{\#}^{-1}(1_G\times_Sa)_{\#}(1_G\times_Sa)^*({\bd{pr}_X}_{\#})({\bd{pr}_{(G\times_SX)}}_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}\bd{pr}_{(G\times_SX)}^*(a_{\#}))^{-1}=$\\$=(1_G\times_Sa)_{\#}^{-1}(\bd{pr}_X(1_G\times_Sa))_{\#}(a\bd{pr}_{(G\times_SX)})_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}=(1_G\times_Sa)_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}$
-\end{center}
+We have
+$$(1_{\bd{M}} \times_k a)^*\pi_{\#} \cdot \pi_{2,3}^*a_{\#}^{-1} =$$
+$$(1_{\bd{M}} \times_ka)_{\#}^{-1}(1_{\bd{M}} \times_ka)_{\#}(1_{\bd{M}} \times_ka)^*({\pi}_{\#})({\pi_{2,3}}_{\#}^{-1}{\pi_{2,3}}_{\#}\pi_{2,3}^*(a_{\#}))^{-1}= $$ $$=(1_{\bd{M}}\times_k a)_{\#}^{-1}(\pi(1_G\times_ka))_{\#}(a\pi_{(G\times_kX)})_{\#}^{-1}{\pi_{(G\times_kX)}}_{\#}=(1_G\times_ka)_{\#}^{-1}{\pi_{(G\times_kX)}}_{\#}$$
 Hence:
 \begin{center}
-$(1_G\times_Sa)^*(a_{\#}^{-1}{\bd{pr}_X}_{\#})\bd{pr}_{(G\times_SX)}^*(a_{\#}^{-1}{\bd{pr}_X}_{\#})=$\\$=(1_G\times_Sa)^*(a_{\#}^{-1})(1_G\times_Sa)_{\#}^{-1}{\bd{pr}_{(G\times_SX)}}_{\#}\bd{pr}_{(G\times_SX)}^*({\bd{pr}_X}_{\#})=(a(1_G\times_Sa))_{\#}^{-1}(\bd{pr}_X\bd{pr}_{(G\times_SX)})_{\#}=$\\$=(a(\mu\times_S1_X))^{-1}_{\#}(\bd{pr}_X(\mu\times_S1_X))_{\#}=(\mu\times_S1_X)^*(a_{\#})^{-1}(\mu\times_S1_X)^{-1}_{\#}(\mu\times_S1_X)_{\#}(\mu\times_S1_X)^*({\bd{pr}_X}_{\#})=$\\$=(\mu\times_S1_X)^*(a_{\#})^{-1}(\mu\times_S1_X)^*({\bd{pr}_X}_{\#})=(\mu\times_S1_X)^*(a_{\#}^{-1}{\bd{pr}_X}_{\#})$
+$(1_G\times_ka)^*(a_{\#}^{-1}{\pi_X}_{\#})\pi_{(G\times_kX)}^*(a_{\#}^{-1}{\pi_X}_{\#})=$\\$=(1_G\times_ka)^*(a_{\#}^{-1})(1_G\times_ka)_{\#}^{-1}{\pi_{(G\times_kX)}}_{\#}\pi_{(G\times_kX)}^*({\pi_X}_{\#})=(a(1_G\times_ka))_{\#}^{-1}(\pi_X\pi_{(G\times_kX)})_{\#}=$\\$=(a(\mu\times_k1_X))^{-1}_{\#}(\pi_X(\mu\times_k1_X))_{\#}=(\mu\times_k1_X)^*(a_{\#})^{-1}(\mu\times_k1_X)^{-1}_{\#}(\mu\times_k1_X)_{\#}(\mu\times_k1_X)^*({\pi_X}_{\#})=$\\$=(\mu\times_k1_X)^*(a_{\#})^{-1}(\mu\times_k1_X)^*({\pi_X}_{\#})=(\mu\times_k1_X)^*(a_{\#}^{-1}{\pi_X}_{\#})$
 \end{center}
-This means that $(\mu\times_S1_X)^*\phi_{\cO_X}=(1_G\times a)^*\phi_{\cO_X}\bd{pr}_{(G\times_SX)}^*\phi_{\cO_X}$
+This means that $(\mu\times_k1_X)^*\phi_{\cO_X}=(1_G\times_k a)^*\phi_{\cO_X}\pi_{(G\times_kX)}^*\phi_{\cO_X}$
 \end{proof}
 
 \begin{proposition}
 The forgetful functor $\Mod_G(\cO_X)\ra \Mod(\cO_X)$ creates finite products and colimits.\\
-Moreover, if $\bd{pr}^*_X$ and $a^*$ are exact, then the functor above creates all finite limits.
+Moreover, if $\pi^*_X$ and $a^*$ are exact, then the functor above creates all finite limits.
 \end{proposition}
 \begin{proof}
-The first assertion is a straighforward consequence of the fact that $\bd{pr}_X^*$ and $a^*$ preserve finite products and colimits. The second assertion follows by the same argument using additional assumptions. 
+The first assertion is a straighforward consequence of the fact that $\pi_X^*$ and $a^*$ preserve finite products and colimits. The second assertion follows by the same argument using additional assumptions. 
 \end{proof}
 
 \begin{corollary}
-Suppose that $\bd{pr}^*_X$ and $a^*$ are exact. Then $\Mod_G(\cO_X)$ is an $\bd{Ab}5$-category.
+Suppose that $\pi^*_X$ and $a^*$ are exact. Then $\Mod_G(\cO_X)$ is an $\bd{Ab}5$-category.
 \end{corollary}
 \begin{proof}
 The result is a consequence of the general rule. If a category admits a functor to some $\bd{Ab}5$-category and this functor creates colimits and finite limits, then the  category itself is an $\bd{Ab}5$-category.
 \end{proof}
 
 \begin{proposition}
-Let $f:X\ra Y$ be a $G$-equivariant morphism of locally ringed spaces over $S$ admiting action of some $S$-group $G$. For a $G$-sheaf $\cG$ of $\cO_Y$-modules together with a linearization $\phi$ there exists a linearization of $f^*\cG$ given by $(1_G\times f)^*\phi$. This gives a lift $f^*:\Mod_G(\cO_Y)\ra \Mod_G(\cO_X)$ of a pullback $f^*:\Mod(\cO_Y)\ra \Mod(\cO_X)$.
+Let $f:X\ra Y$ be a $G$-equivariant morphism of locally ringed spaces over $S$ admiting action of some $S$-group $G$. For a $G$-sheaf $\cG$ of $\cO_Y$-modules together with a linearization $\phi$ there exists a linearization of $f^*\cG$ given by $(1_G\times_k f)^*\phi$. This gives a lift $f^*:\Mod_G(\cO_Y)\ra \Mod_G(\cO_X)$ of a pullback $f^*:\Mod(\cO_Y)\ra \Mod(\cO_X)$.
 \end{proposition}
 \begin{proof}
-Let $b:G\times_SY\ra Y$ denote an action of $G$ on $Y$.\\
+Let $b:G\times_kY\ra Y$ denote an action of $G$ on $Y$.\\
 Observe that:
 \begin{center}
-$(1_G\times_Sa)^*((1_G\times_Sf)^*\phi))\bd{pr}_{(G\times_SX)}^*((1_G\times_Sf)^*\phi)=(1_G\times_Sfa)^*\phi (\bd{pr}_{(G\times_SY)}(1_{(G\times_SG)}\times_Sf))^*\phi=$\\$=(1_{(G\times_SG)}\times_Sf)^*((1_G\times_Sb)^*\phi \bd{pr}_{(G\times_SY)}^*\phi)=(1_{(G\times_SG)}\times_Sf)^*(\mu\times_S1_Y)^*\phi=(\mu\times_S1_X)^*(1_G\times_Sf)^*\phi$
+$(1_G\times_ka)^*((1_G\times_kf)^*\phi))\pi_{(G\times_kX)}^*((1_G\times_kf)^*\phi)=(1_G\times_kfa)^*\phi (\pi_{(G\times_kY)}(1_{(G\times_kG)}\times_kf))^*\phi=$\\$=(1_{(G\times_kG)}\times_kf)^*((1_G\times_kb)^*\phi \pi_{(G\times_kY)}^*\phi)=(1_{(G\times_kG)}\times_kf)^*(\mu\times_k1_Y)^*\phi=(\mu\times_k1_X)^*(1_G\times_kf)^*\phi$
 \end{center}
-Thus indeed $(1_G\times_Sf)^*\phi$ is a $G$-linearization on $f^*\cF$. 
+Thus indeed $(1_G\times_kf)^*\phi$ is a $G$-linearization on $f^*\cF$. 
 \end{proof}
 
 \begin{remark}
 Exactly the same results are derived in the category of complex analytic spaces, smooth manifolds and (not necessarly locally) ringed topological spaces. Definitions and proofs are the same after replacing fiber product over $S$ by product in the corresponding category.
 \end{remark}
 
+\begin{theorem}
+Let $\bd{M}$ be a monoid $k$-scheme and let $X$ be a $k$-scheme equipped with an action $a:\bd{M} \times_k X \ra X$ of $\bd{M}$. Suppose that $\cF$ is a quasi-coherent sheaf on $X$. We denote by $\pi: \bd{M}\times_kX\ra X$ the projection on $X$.
+an isomorphism $\phi:\pi^*\cF \ra a^* \cF$ such that the equality
+$$(\mu\times_k1_X)^*\phi = (1_{\bd{M}} \times_k a)^*\phi \cdot \pi_{2,3}^*\phi$$
+holds, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$ and $\pi_{2,3}:\bd{M}\times_k \bd{M} \times_k X \ra \bd{M} \times_kX$ is the projection on last two factors.
+\end{theorem}
 
 
 

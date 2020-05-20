@@ -6,6 +6,54 @@
 \date{}
 \maketitle
 
+\begin{theorem}[Rigidity]\label{theorem:rigidity_result}
+Let $\bd{G}$ be an anti-affine algebraic group, let $Z$ be a separated $k$-scheme with $\bd{G}$-action and let $f:\bd{G}\times_kY\ra Z$ be a $\bd{G}$-equivariant morphism of $k$-schemes. Suppose that $e$ is the unit of $\bd{G}$ and $y$ is a $k$-point of $Y$. Denote the $k$-point $f(e,y)$ of $Z$ by $z$ and suppose that the restriction $f_{\mid \bd{G}\times_k \Spec k(y)}$ factors through the inclusion $\Spec k(z) \hookrightarrow Z$. Then $f$ equals
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{    \bd{G}\times_kY & Y & \Spec k(e)\times_kY & & Z               \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \mathrm{pr}_Y $} (m-1-2)
+(m-1-2) edge node[above] {$ \cong $} (m-1-3)
+(m-1-3) edge node[above] {$ f_{\mid \Spec k(e)\times_kY} $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+\end{theorem}
+\begin{proof}
+Let $\cJ \subseteq \cO_Z$ be the quasi-coherent ideal determining the closed immersion $\Spec k(z)\hookrightarrow Z$ and let $\cI$ be the quasi-coherent ideal determining $\bd{G}\times_k\Spec k(y)$ as a closed subscheme of $\bd{G}\times_kY$. Then $f^{-1}\cJ\cdot\cO_Z\subseteq \cI$ and hence $f^{-1}\cJ^n\cdot\cO_Z\subseteq \cI^n$ for every positive integer $n$. This implies that for each positive integer $n$ the morphism $f_{\mid \bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}_y^n}$ factors through a morphism
+$$h_n:\bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}_y^n \ra \Spec \cO_{Z,z}/\ideal{m}_z^n$$
+Since $h_n$ is a morphism into an affine $k$-scheme, it is uniquely determined by $k$-algebra morphism induced on global sections
+$$\Gamma(h^{\#}_n,\Spec \cO_{Z,z}/\ideal{m}_z^n):\cO_{Z,z}/\ideal{m}_z^n\ra \Gamma\left(\bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y,\cO_{\bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y}\right)$$
+By Theorem \ref{theorem:regular_functions_on_products} we have canonical identification
+$$\Gamma\left(\bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y,\cO_{\bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y}\right) = \Gamma\left(\bd{G},\cO_\bd{G}\right)\otimes_k\cO_{Y,y}/\ideal{m}_y^n = \cO_{Y,y}/\ideal{m}^n_y$$
+This implies that $\Gamma(h^{\#}_n,\Spec \cO_{Z,z}/\ideal{m}_z^n)$ factors through $\cO_{Y,y}/\ideal{m}^n_y$ and hence $f_{\mid \bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y}$ equals
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{    \bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y & \Spec \cO_{Y,y}/\ideal{m}_y^n & \Spec k(e)\times_k\Spec \cO_{Y,y}/\ideal{m}_y^n & & & Z               \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \mathrm{pr}_n $} (m-1-2)
+(m-1-2) edge node[above] {$ \cong $} (m-1-3)
+(m-1-3) edge node[above] {$ f_{\mid \Spec k(e)\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y} $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+for every positive integer $n$. Now consider a closed subscheme $i:E\hookrightarrow \bd{G}\times_kY$ that is a kernel of a pair consisting of $f$ and the morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{    \bd{G}\times_kY & Y & \Spec k(e)\times_kY & & Z               \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \mathrm{pr}_Y $} (m-1-2)
+(m-1-2) edge node[above] {$ \cong $} (m-1-3)
+(m-1-3) edge node[above] {$ f_{\mid \Spec k(e)\times_kY} $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+Then by what we proved above we deduce that $\bd{G}\times_k\Spec \cO_{Y,y}/\ideal{m}^n_y$ is a subscheme of $E$ for every positive integer $n$. This implies that $\bd{G}\times_k\Spec \cO_{Y,y}$ is a subscheme of $E$.
+
+\end{proof}
 
 \small
 \bibliographystyle{alpha}

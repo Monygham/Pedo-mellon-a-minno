@@ -643,7 +643,7 @@ Since the diagonal of $\fY$ is representable, we derive that $\fZ$ is isomorphic
 
 \section{Example: Grassmannians}
 \noindent
-In this section we use representability results to prove the existence of grassmannian $k$-scheme. We start by recalling the notion of quotient.
+In this section we use abstract results from previous sections to prove the existence of $k$-scheme representing grassmanian $k$-functor (to be defined below). We start by recalling the notion of quotient.
 
 \begin{definition}
 Let $\cC$ be a category and let $X$ be an object of $\cC$. Suppose that $f_1:X\twoheadrightarrow X_1$ and $f_2:X\twoheadrightarrow X_2$ are epimorphisms in $\cC$. We say that $f_1$ and $f_2$ are \textit{equivalent} if there exists a commutative triangle 
@@ -675,7 +675,7 @@ This makes $\mathrm{Grass}_{V,n}$ into a $k$-functor. We call it \textit{the gra
 \end{definition}
 
 \begin{theorem}\label{theorem:representability_of_grassmannian}
-Let $V$ be a $k$-module and let $n$ be a positive integer. Then the $k$-functor $\mathrm{Grass}_{V,n}$ is representable.
+Let $V$ be a $k$-module and let $n$ be a positive integer. Then the $k$-functor $\mathrm{Grass}_{V,n}$ is representable and if $V$ is finitely generated, then it is represented by a scheme locally of finite type over $k$.
 \end{theorem}
 \noindent
 We start with the following general result.
@@ -786,7 +786,7 @@ This finishes the proof.
 \end{proof}
 
 \begin{lemma}\label{lemma:representability_of_open_chart}
-Let $V$ be a $k$-module and let $n$ be a positive integer. Suppose that $u:k^{\oplus n}\ra V$ is a morphism of $k$-modules. Then $\mathrm{Grass}_{V}^u$ is representable by a $k$-scheme.
+Let $V$ be a $k$-module and let $n$ be a positive integer. Suppose that $u:k^{\oplus n}\ra V$ is a morphism of $k$-modules. Then $\mathrm{Grass}_{V}^u$ is representable by a $k$-scheme. Moreover, if $V$ is finitely generated over $k$, then it is represented by a $k$-scheme of finite type.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
 Pick $k$-algebra $A$ and let $\phi:A\otimes_kV\twoheadrightarrow U$ be a morphism of $A$-modules that represents an element of $\mathrm{Grass}_{V}^u(A)$. Let $v$ be an inverse of $A$-module isomorphism $\phi\cdot \left(1_A\otimes_ku\right)$. Then $\theta = v\cdot \phi:A\otimes_kV\twoheadrightarrow A^{\oplus n}$ represents the same element of $\mathrm{Grass}_{V}^u(A)$ as $\phi$. Moreover, it is a unique representative of this element having the property that $\theta \cdot \left(1_A\otimes_k u\right) = 1_{A^{\oplus n}}$. Thus we derive that
@@ -813,7 +813,9 @@ $$\Alg_k\ni A\mapsto \Hom_A\left(A\otimes_kW,A^{\oplus n}\right)\in \Set$$
 Indeed, we have chain of bijections
 $$\fP_{\underbrace{\Spec \Sym(W)\times_k ... \times_k \Spec \Sym(W)}_{n\,\mathrm{times}}}\left(A\right) \cong \Mor_k\left(\Spec A, \Spec \Sym(W)\right)^n \cong$$
 $$\cong \Hom_k\left(W,A\right)^n \cong \Hom_k\left(W, A^{\oplus n}\right) \cong \Hom_A\left(A\otimes_k W,A^{\oplus n}\right)$$
-natural in $k$-algebra $A$.
+natural in $k$-algebra $A$. Note that if $W$ is finitely generated, then
+$$\underbrace{\Spec \Sym(W)\times_k ... \times_k \Spec \Sym(W)}_{n\,\mathrm{times}}$$
+is of finite type over $k$.
 \end{proof}
 
 \begin{lemma}\label{lemma:sheaf_property_for_grassmannian}
@@ -867,6 +869,66 @@ is commutative. Note that $\theta_{ij}$ is a unique isomorphism that makes the t
 
 \begin{proof}[Proof of the theorem]
 By Lemma \ref{lemma:sheaf_property_for_grassmannian} we derive that $\mathrm{Grass}_{V.n}$ is a Zariski local $k$-functor. Now the theorem follows from Theorem \ref{theorem:representability_basic_result} in the light of Lemma \ref{lemma:standard_open_cover_of_grassmannian} and Lemma \ref{lemma:representability_of_open_chart}.
+\end{proof}
+
+\begin{definition}
+Let $V$ be a $k$-module and let $n$ be a positive integer. Then a $k$-scheme $\bd{Gr}(V,n)$ that represents the $k$-functor $\mathrm{Grass}_{V,n}$ is called \textit{the grassmannian scheme of rank $n$ quotients of $V$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:separatedness_of_grassmannian}
+Let $V$ be a $k$-module and let $n$ be a positive integer. Then the grassmannian $k$-scheme $\bd{Gr}(V,n)$ is separated over $k$.
+\end{theorem}
+\noindent
+For the proof we need one easy result.
+
+\begin{lemma}\label{lemma:representability_of_vanishing_locus}
+Let $A$ be a commutative ring and let $\psi:W\ra U$ be a morphism of $A$-modules. Suppose that $U$ is projective and finitely generated. Let $\fX$ be an $k$-subfunctor of $\fP_{\Spec A}$ such that
+$$\fX(B) = \big\{f:A\ra B\,\big|\,1_B\otimes_A\psi = 0\big\}$$
+Then $\fX$ is represented by a closed subscheme of $\Spec A$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Since every projective and finitely generated $A$-module is a direct summand of a finitely generated and free $A$-module, we may assume that $U = A^{\oplus n}$ for some positive integer $n$. Let $p_i:A^{\oplus n}\ra A$ be the projection on $i$-th factor for $1\leq i\leq n$. Then $\fX$ is represented by the vanishing locus of
+$$\ideal{a} = \sum_{i=1}^n p_i\left(\psi\left(W\right)\right) \subseteq \Spec A$$
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+For the proof it suffices to show that the diagonal
+$$\mathrm{Grass}_{V,n}\hookrightarrow \mathrm{Grass}_{V,n}\times \mathrm{Grass}_{V,n}$$
+is a closed immersion of $k$-functors. Consider a $k$-algebra $A$ and let morphism $\tau:\fP_{\Spec A}\ra \mathrm{Grass}_{V,n} \times \mathrm{Grass}_{V,n}$ of $k$-functors be determined by a pair of quotients of $A\otimes_kV$ given by
+$$\big(\phi_1:A\otimes_kV_1\twoheadrightarrow U_1,\phi_2:A\otimes_kV\twoheadrightarrow U_2\big)$$
+Consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \fX                       & \mathrm{Grass}_{V,n}           \\
+   \fP_{\Spec A}             & \mathrm{Grass}_{V,n}\times \mathrm{Grass}_{V,n}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$ \tau $} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$\bd{diagonal}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Out goal is to show that the left hand side vertical arrow is a closed immersion. Suppose that $K_i = \Ker(\phi_i)$ and $v_i:K_i\hookrightarrow A\otimes_kV$ is the canonical inclusion for $i=1,2$. Note that the short exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  0 & K_i & A\otimes_kV & U_i & 0      \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-1-2) edge node[above] {$ v_i $} (m-1-3)
+(m-1-3) edge node[above] {$ \phi_i  $} (m-1-4)
+(m-1-4) edge node[above] {$  $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is split exact for $i=1,2$. Indeed, this follows from the fact that $U_i$ is projective for $i=1,2$. Thus for every $A$-algebra $B$ given by a morphism of $k$-algebras $f:A\ra B$ we have $f\in \fX(B)$ if and only if $B\otimes_AK_1$ and $B\otimes_AK_2$ are isomorphic as a subobjects of $B\otimes_kV$. Note that this holds precisely if and only if $1_B\otimes_A\left(\phi_1\cdot v_2\right) = 0$ and $1_B\otimes_A\left(\phi_2\cdot v_1\right)$ because these equalities are equivalent with
+$$B\otimes_AK_1 \subseteq B\otimes_AK_2,\,B\otimes_AK_2\subseteq B\otimes_AK_1$$
+Lemma \ref{lemma:representability_of_vanishing_locus} implies that $k$-functors $\fX_1,\fX_2$ given by
+$$\fX_1(B) = \big\{f:A\ra B\,\big|\,1_B\otimes_A\left(\phi_1\cdot v_2\right) = 0\big\},\,\fX_2(B) =  \big\{f:A\ra B\,\big|\,1_B\otimes_A\left(\phi_2\cdot v_1\right) = 0\big\}$$
+are represented by closed subschemes of $\Spec A$. Clearly $\fX$ is an intersection of $\fX_1$ and $\fX_2$ inside $\fP_{\Spec A}$ and hence this $k$-functor is represented by a closed subscheme of $\Spec A$.
 \end{proof}
 
 \section{Closed immersions and hom $k$-functors}
@@ -978,8 +1040,9 @@ exist and morphism $\iMor_k(1_{\fP_X},j)$ of $k$-functors is a monomorphism. Our
 \end{center}
 Since $\iMor_k\left(1_{\fP_X},j\right)$ is a monomorphism, we may consider $\fU$ as a $k$-subfunctor of $\fP_{\Spec A}$. For every $k$-algebra $B$ subset $\fU(B)\subseteq \Mor_k(A,B)= \Mor_k\left(\Spec B,\Spec A\right)$ consists of $A$-algebras $B$ with structure morphisms $f:A\ra B$ such that $\tau_B$ factors through $j_B:\fY'_B\ra \fY_B$. Since $X$ is a locally free $k$-scheme, we deduce that $(\fP_{X})_A$ is a functor of points of a locally free $A$-scheme
 $$\Spec A\times_{\Spec k}X$$
-Pick an open affine cover $\bigcup_{i\in I}X_i$ of this $A$-scheme such that $\Gamma(X_i,\cO_X)$ is a free $A$-module. Now Lemma \ref{lemma:covers_and_factorizations} implies that $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Next by Lemma \ref{lemma:for_affine_local_factorization} we deduce that $\left(\tau_{\mid X_i}\right)_B$  factors through $j_B$ for given $i\in I$ if and only if $f(\ideal{a}_i)=0$ for some ideal $\ideal{a}_i\subseteq A$ independent of $f$. Thus $\fU$ consists of all morphisms $f:A\ra B$ of $k$-algebras such that $f(\ideal{a})=0$ where $\ideal{a} = \sum_{i\in I}\ideal{a}_i$. Therefore, $\fU\hookrightarrow \fP_{\Spec A}$ is isomorphic with $\fP_{V(\ideal{a})} = \fP_{\Spec A/\ideal{a}}\hookrightarrow \fP_{\Spec A}$ induced by the quotient map $A\ra A/\ideal{a}$ and hence $\iMor_k(1_{\fP_X},j)$ is a closed immersion of $k$-functors.
+Pick an open affine cover $\bigcup_{i\in I}X_i$ of this $A$-scheme such that $\Gamma(X_i,\cO_X)$ is a free $A$-module. Now Lemma \ref{lemma:covers_and_factorizations} implies that $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Next by Lemma \ref{lemma:for_affine_local_factorization} we deduce that $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for given $i\in I$ if and only if $f(\ideal{a}_i)=0$ for some ideal $\ideal{a}_i\subseteq A$ independent of $f$. Thus $\fU$ consists of all morphisms $f:A\ra B$ of $k$-algebras such that $f(\ideal{a})=0$ where $\ideal{a} = \sum_{i\in I}\ideal{a}_i$. Therefore, $\fU\hookrightarrow \fP_{\Spec A}$ is isomorphic with $\fP_{V(\ideal{a})} = \fP_{\Spec A/\ideal{a}}\hookrightarrow \fP_{\Spec A}$ induced by the quotient map $A\ra A/\ideal{a}$ and hence $\iMor_k(1_{\fP_X},j)$ is a closed immersion of $k$-functors.
 \end{proof}
+
 
 
 
