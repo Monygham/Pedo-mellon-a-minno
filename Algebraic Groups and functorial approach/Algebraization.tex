@@ -756,68 +756,6 @@ is commutative. Then $f$ is \textit{a morphism of quasi-coherent $\bd{M}$-sheave
 Let $\cA$ be a quasi-coherent $\bd{M}$-algebra and let $(\cA,\phi)$ be a quasi-coherent $\bd{M}$-sheaf such that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_X$-algebras. Then $(\cA,\phi)$ is \textit{a quasi-coherent $\bd{M}$-algebra}. If $(\cA_1,\phi_1)$ and $(\cA_2,\phi_2)$ are quasi-coherent $\bd{M}$-algebras and $f:\cA_1\ra \cA_2$ is both a morphism of $\cO_X$-algebras and $\bd{M}$-sheaves, then we say that $f$ is \textit{a morphism of quasi-coherent $\bd{M}$-algebras}.
 \end{definition}
 \noindent
-\noindent
-Our next goal is to prove certain result that explains notion of a quasi-coherent $\bd{M}$-algebra. Let $p:\tilde{X}\ra X$ be an affine morphism, which is a relative spectrum of a quasi-coherent algebra $\cA$ on $X$. Consider cartesian squares
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex]
-{ a^*\tilde{X}    & \tilde{X}  & \pi^*\tilde{X}  & \tilde{X}     \\
-  \bd{M}\times_kX & X          & \bd{M}\times_kX & X             \\};
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ a' $} (m-1-2)
-(m-2-1) edge node[below] {$ a $} (m-2-2)
-(m-1-1) edge node[left] {$ p'' $} (m-2-1)
-(m-1-2) edge node[right] {$ p $} (m-2-2)
-(m-1-3) edge node[above] {$ \pi' $} (m-1-4)
-(m-2-3) edge node[below] {$ \pi $} (m-2-4)
-(m-1-3) edge node[left] {$ p' $} (m-2-3)
-(m-1-4) edge node[right] {$ p $} (m-2-4);
-\end{tikzpicture}
-\end{center}
-Note that $p'':a^*\tilde{X}\ra \bd{M}\times_k X,p':\pi^*\tilde{X}\ra \bd{M}\times_kX$ are affine morphisms, which are relative spectra of quasi-coherent algebras $a^*\cA$ and $\pi^*\cA$, respectively. Suppose that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_{\bd{M}\times_kX}$-algebras. It induces an isomorphism $\tilde{\phi}:\pi^*\tilde{X}\ra a^*\tilde{X}$ of affine schemes over $\bd{M}\times_kX$. Next we have a morphism given by a composition
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex]
-{ \bd{M}\times_k\tilde{X} & \pi^*\tilde{X} & a^*\tilde{X} & \tilde{X}  \\};
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[auto]  {$ \cong  $} (m-1-2)
-(m-1-2) edge node[auto]  {$ \tilde{\phi} $} (m-1-3)
-(m-1-3) edge node[auto]  {$ a' $} (m-1-4);
-\end{tikzpicture}
-\end{center}
-We denote it by $a_{\phi}$. Note that the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}\times_k\tilde{X}    &   \tilde{X}    \\
-  \bd{M}\times_kX            &   X           \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[above] {$ a_{\phi} $} (m-1-2)
-(m-2-1) edge node[below] {$ a $} (m-2-2)
-(m-1-1) edge node[left]  {$ 1_{\bd{M}}\times_kp $} (m-2-1)
-(m-1-2) edge node[right] {$ p  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is cartesian. Moreover, if we have a commutative triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \tilde{X}_1    &       &  \tilde{X}_2    \\
-                 &   X   &        \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[above] {$ \tilde{f}  $} (m-1-3)
-(m-1-1) edge node[below = 2pt, left] {$ p_1  $} (m-2-2)
-(m-1-3) edge node[below = 2pt, right]  {$ p_2  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-then 
-Note that $\Qcoh_{\bd{M}}(X)$ admits the structure of a monoidal category such that the forgetful functor $\Qcoh_{\bd{M}}(X)\ra \Qcoh(X)$ is a strict monoidal functor. Indeed, if $(\cF_1,\phi_1)$ are $(\cF_2,\phi_2)$ quasi-coherent $\bd{M}$-sheaves, then we define their tensor product as $\bd{M}$-sheaf $\left(\cF_1\otimes_{\cO_X}\cF_2,\phi_1\otimes_{\cO_{\bd{M}\times_kX}}\phi_2\right)$. In particular, algebras with respect to this monoidal structure are quasi-coherent $\bd{M}$-sheaves $(\cA,\phi)$ such that $\cA$ is a quasi-coherent $\cO_X$-algebra and $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_X$-algebras. 
-
-
 
 
 \begin{definition}
@@ -892,6 +830,95 @@ is commutative.
 \end{theorem}
 \begin{proof}
 \end{proof}
+\noindent
+Our next goal is to prove certain result that explains notion of a quasi-coherent $\bd{M}$-algebra. Let $p:\tilde{X}\ra X$ be an affine morphism, which is a relative spectrum of a quasi-coherent algebra $\cA$ on $X$. Consider cartesian squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex]
+{ a^*\tilde{X}    & \tilde{X}  & \pi^*\tilde{X}  & \tilde{X}     \\
+  \bd{M}\times_kX & X          & \bd{M}\times_kX & X             \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ a' $} (m-1-2)
+(m-2-1) edge node[below] {$ a $} (m-2-2)
+(m-1-1) edge node[left] {$ p'' $} (m-2-1)
+(m-1-2) edge node[right] {$ p $} (m-2-2)
+(m-1-3) edge node[above] {$ \pi' $} (m-1-4)
+(m-2-3) edge node[below] {$ \pi $} (m-2-4)
+(m-1-3) edge node[left] {$ p' $} (m-2-3)
+(m-1-4) edge node[right] {$ p $} (m-2-4);
+\end{tikzpicture}
+\end{center}
+Note that $p'':a^*\tilde{X}\ra \bd{M}\times_k X,p':\pi^*\tilde{X}\ra \bd{M}\times_kX$ are affine morphisms, which are relative spectra of quasi-coherent algebras $a^*\cA$ and $\pi^*\cA$, respectively. Suppose that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_{\bd{M}\times_kX}$-algebras. It induces an isomorphism $\tilde{\phi}:\pi^*\tilde{X}\ra a^*\tilde{X}$ of affine schemes over $\bd{M}\times_kX$. Next we have a morphism given by a composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex]
+{ \bd{M}\times_k\tilde{X} & \pi^*\tilde{X} & a^*\tilde{X} & \tilde{X}  \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[auto]  {$ \cong  $} (m-1-2)
+(m-1-2) edge node[auto]  {$ \tilde{\phi} $} (m-1-3)
+(m-1-3) edge node[auto]  {$ a' $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+We denote it by $a_{\phi}$. Note that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}\times_k\tilde{X}    &   \tilde{X}    \\
+  \bd{M}\times_kX            &   X           \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[above] {$ a_{\phi} $} (m-1-2)
+(m-2-1) edge node[below] {$ a $} (m-2-2)
+(m-1-1) edge node[left]  {$ 1_{\bd{M}}\times_kp $} (m-2-1)
+(m-1-2) edge node[right] {$ p  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. Moreover, if we have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \tilde{X}_1    &       &  \tilde{X}_2    \\
+                 &   X   &        \\};
+\path[->,line width=1.0pt,font=\scriptsize]    
+(m-1-1) edge node[above] {$ \tilde{f}  $} (m-1-3)
+(m-1-1) edge node[below = 2pt, left] {$ p_1  $} (m-2-2)
+(m-1-3) edge node[below = 2pt, right]  {$ p_2  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+then 
+Note that $\Qcoh_{\bd{M}}(X)$ admits the structure of a monoidal category such that the forgetful functor $\Qcoh_{\bd{M}}(X)\ra \Qcoh(X)$ is a strict monoidal functor. Indeed, if $(\cF_1,\phi_1)$ are $(\cF_2,\phi_2)$ quasi-coherent $\bd{M}$-sheaves, then we define their tensor product as $\bd{M}$-sheaf $\left(\cF_1\otimes_{\cO_X}\cF_2,\phi_1\otimes_{\cO_{\bd{M}\times_kX}}\phi_2\right)$. In particular, algebras with respect to this monoidal structure are quasi-coherent $\bd{M}$-sheaves $(\cA,\phi)$ such that $\cA$ is a quasi-coherent $\cO_X$-algebra and $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_X$-algebras.\\
+\section{}
+
+\begin{proposition}
+Let $\bd{M}$ be a monoid $k$-scheme that acts on a $k$-scheme $X$. Denote by $a:\bd{M}\times_kX\ra X$ the action morphism. Let $p:\tilde{X}\ra X$ be an affine morphism. Consider the cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex]
+{ a^*\tilde{X}    & \tilde{X}     \\
+  \bd{M}\times_kX & X                     \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ a' $} (m-1-2)
+(m-2-1) edge node[below] {$ a $} (m-2-2)
+(m-1-1) edge node[left] {$ p' $} (m-2-1)
+(m-1-2) edge node[right] {$ p $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+and suppose that $\phi:\bd{M}\times_k\tilde{X}\ra a^*\tilde{X}$ is an isomorphism of schemes over $X$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item The composition $a' \cdot \phi$ is an action of $\bd{M}$ on $\tilde{X}$.
+\item 
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Denote $\tilde{a} = a'\cdot \phi$. Then
+$$\tilde{a}\cdot \left(\tilde{a}\times_k1_{\bd{M}}\right) = \left(a'\cdot \phi\right)\cdot \left(a'\times_k1_{\bd{M}}\right) \cdot \left(\phi\times_k 1_{\bd{M}}\right)$$
+\end{proof}
+Note that $p'':a^*\tilde{X}\ra \bd{M}\times_k X,p':\pi^*\tilde{X}\ra \bd{M}\times_kX$ are affine morphisms, which are relative spectra of quasi-coherent algebras $a^*\cA$ and $\pi^*\cA$, respectively. Suppose that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_{\bd{M}\times_kX}$-algebras. It induces an isomorphism $\tilde{\phi}:\pi^*\tilde{X}\ra a^*\tilde{X}$ of affine schemes over $\bd{M}\times_kX$. Next we have
+
 
 
 
