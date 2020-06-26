@@ -1,0 +1,568 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Fibered categories and equivariant objects}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In these notes we often work with two distinct categories. In order to make our notation clear we denote by $h^{\cC}:\cC\ra \widehat{\cC}$ the Yoneda embedding for category $\cC$. In particular, if $X$ is an object of $\cC$, then $h^{\cC}_X$ is a presheaf associated with $X$.
+
+\section{Fibered categories}
+
+\begin{definition}
+Let $p:\cE\ra \cB$ be a functor and let $\phi:\xi\ra \eta$ be a morphism of $\cE$. Suppose that for every object $\zeta$ of $\cE$ the square of classes
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=7em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor_{\cE}(\zeta,\xi) &  \Mor_{\cE}(\zeta,\eta)    \\
+  \Mor_{\cB}\big(p(\zeta),p(\xi)\big) &  \Mor_{\cB}\big(p(\zeta),p(\eta)\big)           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \Mor_{\cE}\left(1_{\zeta},\phi\right)  $} (m-1-2)
+(m-2-1) edge node[below] {$ \Mor_{\cB}\left(1_{p(\zeta)},p(\phi)\right) $} (m-2-2)
+(m-1-1) edge node[left]  {$ \mbox{ induced by }p $} (m-2-1)
+(m-1-2) edge node[right] {$ \mbox{ induced by }p $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. Then $\phi$ is \textit{a cartesian morphism of $p$}.
+\end{definition}
+\noindent
+One can rephrase definition above in terms of presheaves as follows. Morphism $\phi:\xi\ra \eta$ is cartesian with respect to $p$ if the following square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ h_{\xi}^{\cE} &  h_{\eta}^{\cE}    \\
+  h^{\cB}_{p(\xi)}\cdot p &  h^{\cB}_{p(\eta)}\cdot p           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ h^{\cE}_\phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_{p(\phi)}\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$\mbox{ induced by }p $} (m-2-1)
+(m-1-2) edge node[right] {$\mbox{ induced by }p  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian in the category $\widehat{\cE}$.
+
+\begin{fact}\label{fact:uniqueness_of_pullbacks}
+Let $p:\cE\ra \cB$ be a functor, let $f:X\ra Y$ be a morphism of $\cB$ and let $\eta$ be an object of $\cE$. Suppose that $\phi_1:\xi_1\ra \eta,\phi_2:\xi_2\ra \eta$ are morphisms of $\cE$ that are cartesian with respect to $p$ and assume that $p(\phi_1) = p(\phi_2)$. Then there exists a unique morphism $\theta:\xi_1\ra \xi_2$ such that $\phi_1 = \phi_2\cdot \theta$. Moreover, $\theta$ is an isomorphism.
+\end{fact}
+\begin{proof}
+We use the presheaf reformulation of a definition of cartesian morphisms of $p$. It implies that there exists a unique natural transformation $\sigma:h^{\cE}_{\xi_1}\ra h^{\cE}_{\xi_2}$ such that $h^{\cE}_{\phi_1} = h^{\cE}_{\phi_2}\cdot \sigma$. Moreover, $\sigma$ is a natural isomorphism. Since $h^{\cE}:\cE\ra \widehat{\cE}$ is full and faithful, we derive that there exists a unique morphism $\theta:\xi_1 \ra \xi_2$ such that $h^{\cE}_{\theta} = \sigma$. Then $\theta$ satisfies the assertion.
+\end{proof}
+
+\begin{definition}
+Let $p:\cE\ra \cB$ be a functor, let $f:X\ra Y$ be a morphism of $\cB$ and let $\eta$ be an object of $\cE$ such that $p(\eta) = Y$. A pair $(\xi,\phi)$ such that $\xi$ is an object of $\cE$ and $\phi:\xi\ra \eta$ is a morphism of $\cE$ is called \textit{a pullback of $\eta$ along $f$} if the following conditions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item $p(\phi) = f$
+\item $\phi$ is cartesian morphism of $p$.
+\end{enumerate}
+\end{definition}
+\noindent
+Note that Fact \ref{fact:uniqueness_of_pullbacks} implies that pullbacks are unique up to a unique isomorphism.
+
+\begin{definition}
+Let $p:\cE\ra \cB$ be a functor. Then $p$ is \textit{a fibered category} if and only if for every morphism $f:X\ra Y$ of $\cB$ and every object $\eta$ of $\cE$ such that $p(\eta) = Y$ there exists a pullback of $\eta$ along $f$. If $p:\cE\ra \cB$ is a fibered category, then we say that \textit{$\cE$ is fibered over $\cB$ with respect to $p$}.
+\end{definition}
+\noindent
+Now we give some examples of fibered categories. The first is a prototypical for the notion of a cartesian category. It shows that any category $\cB$ with fiber products gives rise in a canonical way to a fibered category over $\cB$ with cartesian arrows as cartesian squares in $\cB$.
+
+\begin{example}[the fibered category of arrows]\label{example:the_fibered_category_of_arrows}
+Let $\cB$ be a category. We define the category $\mathrm{Arr}(\cB)$ of arrows of $\cB$ as follows. Objects of $\mathrm{Arr}(\cB)$ are morphisms $\pi:\tilde{X}\ra X$ of $\cB$. Now if $\pi:\tilde{X}\ra X$ and $\psi:\tilde{Y}\ra Y$ are objects of $\mathrm{Arr}(\cB)$, then a morphism $\pi\ra \psi$ is a pair $(f,\phi)$ such that $f:X\ra Y$ and $\phi:\tilde{X}\ra \tilde{Y}$ are morphisms in $\cB$ making the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \tilde{X} &  \tilde{Y}    \\
+  X &  Y           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1)
+(m-1-2) edge node[right] {$  \psi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutative. There exists a functor $p_{\mathrm{Arr}}:\mathrm{Arr}(\cB)\ra \cB$ given by formula $p_{\mathrm{Arr}}\big((f,\phi)\big) = f$. Suppose now that $f:X\ra Y$ and $\psi:\tilde{Y}\ra Y$ are morphisms of $\cB$ and there exists a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \tilde{X} &  \tilde{Y}    \\
+  X &  Y           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1)
+(m-1-2) edge node[right] {$  \psi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+It is a direct consequence of the definition that $(f,\phi)$ is a cartesian morphisms of $p_{\mathrm{Arr}}$ if and only if the square above is cartesian. Thus $p_{\mathrm{Arr}}$ is a fibered category provided that $\cB$ admits fiber products.
+\end{example}
+
+\begin{definition}
+Suppose that $p_1:\cE_1\ra \cB$ and $p_2:\cE_2\ra \cB$ are fibered categories. Then a functor $F:\cE_1\ra \cE_2$ is \textit{a morphism of fibered categories} if the following two assertions are satisfied.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item $p_1 = F\cdot p_2$ or in other words $F$ is a functor over $\cB$.
+\item Image under $F$ of a cartesian morphism of $p_1$ is a cartesian morphism of $p_2$.
+\end{enumerate}
+\end{definition}
+\noindent
+Next example is closely related to the previous one, but is of more topological flavour.
+
+\begin{example}[the fibered category vector bundles]\label{example:the_fibered_category_of_vector_bundles}
+Let $\Top$ be the category of topological spaces. We define a subcategory $\bd{VectBund}_{\RR}$ of $\mathrm{Arr}(\Top)$ of vector bundles as follows. Objects of $\bd{VectBund}_{\RR}$ are topological $\RR$-vector bundles $\pi:\cV \ra X$. Now if $\pi:\cV \ra X$ and $\psi:\cW \ra Y$ are topological $\RR$-vector bundles, then a morphism $\pi\ra \psi$ is a pair $(f,\phi)$ such that $f:X\ra Y$ is a continuous map and $\phi:\cV \ra \cW$ is a continuous making the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \cV &  \cW    \\
+  X &  Y           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1)
+(m-1-2) edge node[right] {$  \psi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutative and moreover, $\phi$ induces an $\RR$-linear map on fibers i.e. for each point $x$ in $X$ map $\phi$ induces an $\RR$-linear map $\pi^{-1}(x)\ra \psi^{-1}\left(f(x)\right)$. Since topological vector bundles are stable under continuous change of base, we obtain a fibered category $\bd{VectBund}_{\RR}\ra \Top$ as the restriction of $p_{\mathrm{Arr}}:\mathrm{Arr}(\Top)\ra \Top$. Thus we have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \bd{VectBund}_{\RR} &        & \mathrm{Arr}(\Top)  \\
+          &\Top &  \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-3);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[swap] {$  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{\mathrm{Arr}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+According to Example \ref{example:the_fibered_category_of_arrows} the inclusion $\bd{VectBund}_{\RR}\hookrightarrow \mathrm{Arr}(\Top)$ is a morphism of fibered categories.
+\end{example}
+
+\section{Example: Principial Bundles}
+\noindent
+We devote this section to another important example of a fibered category. We fix a category with finite limits $\cB$ and a group object $G$ of $\cB$.
+
+\begin{definition}
+Let $\cP$ be an object of $\cB$ equipped with an action of $G$, let $T$ be an object of $\cB$ with trivial action of $G$ and let $\pi:\cP\ra T$ be a $G$-equivariant morphism (with respect to these $G$-actions). Consider a sieve $S$ on $T$. Suppose for every arrow $g:\widetilde{T}\ra T$ in $S$ there exists a $G$-equivariant isomorphism $\phi_f:G\times \widetilde{T}\ra f^*\cP$ satisfying $\mathrm{pr}_{\widetilde{T}} = \psi\cdot \phi_f$, where
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ f^*\cP &  \cP    \\
+  \widetilde{T} &  T           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$ \psi $} (m-2-1)
+(m-1-2) edge node[right] {$ \pi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is a cartesian square in $\cB$ and $\mathrm{pr}_{\widetilde{T}}:G\times \widetilde{T} \ra \widetilde{T}$ is the projection. Then we say that \textit{$S$ trivializes $\pi$}.
+\end{definition}
+\noindent
+In the remaining part of this section we fix a Grothendieck topology $\cJ$ on $\cB$.
+
+\begin{definition}
+Let $\cP$ be an object of $\cB$ equipped with an action of $G$, let $T$ be an object of $\cB$ with trivial action of $G$ and let $\pi:\cP \ra T$ be a $G$-equivariant morphism (with respect to these $G$-actions). Suppose that there exists a covering sieve $S$ in $\cJ(T)$ that trivializes $\pi$. Then $\pi$ is called \textit{ a principial $G$-bundle with respect to $\cJ$}.
+\end{definition}
+\noindent
+Now we define a subcategory $\mathbb{B}G$ of $\mathrm{Arr}(\cB)$ (Example \ref{example:the_fibered_category_of_arrows}) that depends on the site $(\cB,\cJ)$. Its objects are principial $G$-bundles with respect to $\cJ$ and if $\pi:\cP\ra T$ and $\psi:Q \ra Z$ are principial $G$-bundles with respect to $\cJ$, then a morphism $\pi\ra \psi$ is a pair $(f,\phi)$ such that $f:T\ra Z$ and $\phi:\cP\ra Q$ are morphisms in $\cB$ such that $\phi$ is $G$-equivariant and the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \cP &  Q           \\
+  T   &  Z           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1)
+(m-1-2) edge node[right] {$  \psi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. We have a functor $p_{G,\cJ}:\mathbb{B}G\ra \cB$ given by the restriction of $p_{\mathrm{Arr}}$ to $\mathbb{B}G$. In other words if $(f,\phi)$ is a morphism of $\mathbb{B}G$, then $p_{G,\cJ}\big((f,\phi)\big) = f$. Let $\psi:Q\ra Z$ be a principial $G$-bundle with respect to $\cJ$ and let $f:T\ra Z$ be a morphism. Consider the cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ f^*Q &  Q           \\
+  T   &  Z           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1)
+(m-1-2) edge node[right] {$  \psi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in $\cB$. Then by the universal property there exists a unique action of $G$ on $f^*Q$ such that the square above consists of $G$-equivariant morphisms ($T,Z$ are equipped with trivial $G$-actions). Moreover, with respect to this action $\psi:f^*Q\ra T$ becomes a principial $G$-bundle with respect to $\cJ$. Indeed, if $S$ is in $\cJ(Z)$ and $S$ trivializes $\psi$, then its pullback $f^*S$ trivializes $\pi$ and is an element of $\cJ(T)$ (by definition of a Grothendieck topology). This shows that $p_{G,\cJ}:\mathbb{B}G\ra \cB$ is a fibered category. Moreover, we have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \mathbb{B}G &        & \mathrm{Arr}(\cB)  \\
+          &\cB &  \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-3);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[below = 6pt, left = 1pt] {$ p_{G,\cJ}  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{\mathrm{Arr}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+and by Example \ref{example:the_fibered_category_of_arrows} the inclusion $\mathbb{B}G\hookrightarrow \mathrm{Arr}(\cB)$ is a morphism of fibered categories.
+
+\begin{definition}
+$p_{G,\cJ}:\mathbb{B}G\ra \cB$ is called \textit{the fibered category of principial $G$-bundles on $(\cB,\cJ)$}.
+\end{definition}
+\noindent
+From now suppose that $X$ is an object of $\cB$ equipped with an action $a:G\times X\ra X$ of $G$. We define a category $[X/G]$ as follows. Its objects are pairs $(\pi,\phi)$, that can be presented by diagrams
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \cP &  X           \\
+  T   &             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \alpha  $} (m-1-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+such that $\pi$ is a principial $G$-bundle with respect to $\cJ$ and $\phi$ is a $G$-equivariant morphism. Suppose that $(\pi:\cP\ra T,\alpha:\cP\ra X)$ and $(\psi:Q\ra Z,\beta:Q\ra X)$ are two such objects. Then a morphism $(\pi,\alpha)\ra (\psi,\beta)$ is a morphism $(f,\phi):\pi\ra \psi$ in $\mathbb{B}G$ such that $\alpha = \beta\cdot f$. Clearly this makes $[X/G]$ into a subcategory of $\mathbb{B}G$. We denote by $p_{G,\cJ,X}:[X/B]\ra \cB$ the restriction of the functor $p_{G,\cJ}:\mathbb{B}G\ra \cB$. By description of cartesian morphisms of $p_{G,\cJ}$ we deduce that $p_{G,\cJ,X}$ is a fibered category. We have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ [X/G]  &        & \mathbb{B}G  \\
+          &\cB &  \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-3);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[below = 6pt, left = 1pt] {$ p_{G,\cJ,X}  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{G,\cJ} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+and the inclusion $\mathbb{B}G\hookrightarrow \mathrm{Arr}(\cB)$ is a morphism of fibered categories. Note that if $\bd{1}$ is a terminal object of $\cB$ equipped with trivial action of $G$, then we have a canonical isomorphism $[\bd{1}/G] \cong \mathbb{B}G$ of categories over $\cB$.
+
+\begin{definition}
+$p_{G,\cJ,X}:\mathbb{B}G\ra \cB$ is called \textit{the quotient fibered category of $G$-object $X$ on $(\cB,\cJ)$}.
+\end{definition}
+
+\section{Pseudo-functors and fibered categories of elements}
+\noindent
+Pseudo-functors are certain non-strict 2-functors. In this section we introduce a procedure that enables to construct a fibered category out of a pseudo-functor. We start by defining this notion.
+
+\begin{definition}
+Let $\cB$ be a category. Consider the tuple of collections
+$$F = \big(\{F(X)\}_{X\in \mathrm{Ob}(\cB)},\{F(f)\}_{f\in \Mor(\cB)},\{\Theta^{f,g}\}_{f,g\in \Mor(\cB),\,\mathrm{cod}(f)=\mathrm{dom}(g)},\{\epsilon^X\}_{X\in \mathrm{Ob}(\cB)}\big)$$
+of the following data.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item For each object $X$ of $\cB$ a category $F(X)$.
+\item For each arrow $f:X\ra Y$ a functor $F(f):F(Y)\ra F(X)$.
+\item For each object $X$ of $\cB$ a natural isomorphism $\epsilon^X:1_{F(X)} \ra F(1_{X})$.
+\item For any two composable morphisms $f:X\ra Y$ and $g:Y\ra Z$ of $\cB$ a natural isomorphism $\Theta^{g,f}: F(f)\cdot F(g) \ra F(g\cdot f)$
+\end{enumerate}
+Suppose that these data are subject to the following conditions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item For every arrow $f:X\ra Y$ in $\cB$ we have
+$$1_{F(f)} = \Theta^{f,1_X} \cdot \epsilon^X_{F(f)},\,1_{F(f)} = \Theta^{1_Y,f} \cdot F(f)\left(\epsilon^Y\right)$$
+\item For any three morphisms $f:X\ra Y,g:Y\ra Z,h:Z\ra W$ of $\cB$ the square of functors and natural isomorphisms
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ F(f)\cdot F(g)\cdot F(h) & F(f)\cdot F\left(h\cdot g\right)      \\
+  F\left(g\cdot f\right)\cdot F(h) & F\left(h\cdot g\cdot f\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  F(f)\big(\Theta^{h,g}\big)  $} (m-1-2)
+(m-2-1) edge node[below] {$ \Theta^{h,g\cdot f} $} (m-2-2)
+(m-1-1) edge node[left] {$  \Theta^{g,f}_{F(h)}  $} (m-2-1)
+(m-1-2) edge node[right] {$ \Theta^{h\cdot g,f} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{enumerate}
+Then $F$ is called \textit{a pseudo-functor on $\cB$}
+\end{definition}
+\noindent
+Now we show how to construct a fibered category from a pseudo-functor. Suppose that $\cB$ is a category and
+$$F = \big(\{F(X)\}_{X\in \mathrm{Ob}(\cB)},\{F(f)\}_{f\in \Mor(\cB)},\{\Theta^{f,g}\}_{f,g\in \Mor(\cB),\,\mathrm{cod}(f)=\mathrm{dom}(g)},\{\epsilon^X\}_{X\in \mathrm{Ob}(\cB)}\big)$$
+is a pseudo-functor on $\cB$. We define a category $\bigint_{\cB}F$. Its objects are pairs $(X,\xi)$ such that $X$ is an object of $\cB$ and $\xi$ is an object of $F(X)$. If $(X,\xi)$ and $(Y,\eta)$ are objects of $\bigint_{\cB}F$, then a morphism between these objects is a pair $(f,\sigma)$ such that $f:X\ra Y$ is a morphism of $\cB$ and $\sigma:\xi\ra F(f)(\eta)$ is a morphism of $F(X)$. Now suppose that $(f,\sigma):(X,\xi)\ra (Y,\eta)$ and $(g,\tau):(Y,\eta)\ra (Z,\zeta)$ are morphisms of $\bigint_{\cB}F$. Then we define their composition by formula
+$$(g,\tau)\cdot (f,\sigma) = \big(g\cdot f, \Theta^{g,f}_{\zeta}\cdot F(f)\left(\tau\right)\cdot \sigma\big)$$
+
+\begin{fact}
+$\bigint_{\cB}F$ is a well defined category.
+\end{fact}
+\begin{proof}
+We first verify that the composition of morphisms in $\bigint_{\cB}F$ is associative. Suppose that $(f,\sigma):(X,\xi)\ra (Y,\eta),(g,\tau):(Y,\eta)\ra (Z,\zeta),(h,\rho):(Z,\zeta)\ra (W,\omega)$ are morphisms of $\bigint_{\cB}F$. Then
+$$\big((h,\rho)\cdot (g,\tau)\big)\cdot (f,\sigma) = \big(h\cdot g,\Theta^{h,g}_{\omega}\cdot F(g)\left(\rho\right)\cdot \tau\big)\cdot (f,\sigma) = $$
+$$ = \bigg(h\cdot g\cdot f,\Theta^{h\cdot g,f}_{\omega}\cdot F(f)\big(\Theta^{h,g}_{\omega}\cdot F(g)\left(\rho\right)\cdot \tau \big)\cdot \sigma\bigg) = \bigg(h\cdot g\cdot f,\Theta^{h\cdot g,f}_{\omega}\cdot F(f)\big(\Theta^{h,g}_{\omega}\big)\cdot F(f)\big(F(g)\left(\rho\right)\big)\cdot F(f)\big(\tau\big)\cdot \sigma \bigg)$$
+and
+$$(h,\rho)\cdot \big((g,\tau) \cdot (f,\sigma) \big) = (h, \rho)\cdot \bigg(g\cdot f, \Theta^{g,f}_{\zeta}\cdot F(f)\big(\tau\big)\cdot \sigma\bigg) = $$
+$$ = \big(h\cdot g\cdot f, \Theta^{h, g\cdot f}_{\omega}\cdot F(g\cdot f)\big(\rho\big)\cdot \Theta^{g,f}_{\zeta}\cdot F(f)\big(\tau\big)\cdot \sigma \big) = \big(h\cdot g\cdot f, \Theta^{h, g\cdot f}_{\omega}\cdot  \Theta^{g,f}_{F(h)(\omega)} \cdot F(f)\big(F(g)\left(\rho\right)\big)\cdot F(f)\big(\tau\big)\cdot \sigma \big)$$
+Since $\Theta^{h\cdot g,f}_{\omega}\cdot F(f)\big(\Theta^{h,g}_{\omega}\big) = \Theta^{h, g\cdot f}_{\omega}\cdot  \Theta^{g,f}_{F(h)(\omega)}$, we deduce that
+$$\big((h,\rho)\cdot (g,\tau)\big)\cdot (f,\sigma) = (h,\rho)\cdot \big((g,\tau) \cdot (f,\sigma) \big)$$
+and hence the composition in $\bigint_{\cB}F$ is associative. Next we prove that for each object $(X,\xi)$ of $\bigint_{\cB}F$ there exists an identity morphism. We claim that $(1_X,\epsilon^X_{\xi}):(X,\xi)\ra (X,\xi)$ is the identity. Indeed, for morphisms $(f,\sigma):(X,\xi)\ra (Y,\eta)$ and $(g,\tau):(Z,\zeta)\ra (X,\xi)$ we have
+$$(f,\sigma) \cdot (1_X,\epsilon^X_{\xi}) = \big(f,\Theta^{f,1_X}_{\eta}\cdot F(1_X)\left(\sigma \right)\cdot \epsilon^X_{\xi}\big) =  \big(f,\Theta^{f,1_X}_{\eta}\cdot \epsilon^X_{F(f)(\eta)}\cdot \sigma\big) = (f,\sigma)$$
+and
+$$(1_X,\epsilon^X_{\xi}) \cdot (g,\tau) = \big(g,\Theta^{1_X,g}_{\xi} \cdot F(g)\left(\epsilon^X_{\xi}\right)\cdot \tau \big) = (g,\tau)$$
+Therefore, $\bigint_{\cB}F$ is a category.
+\end{proof}
+\noindent
+Next we define a functor $p_F:\bigint_{\cB}F\ra \cB$ by formula
+$$p_F\bigg((f,\sigma):(X,\xi)\ra (Y,\tau)\bigg) = f:X\ra Y$$
+This is clearly a well defined functor. Now we prove the following statement.
+\begin{flushleft}
+\textit{The functor $p_F:\bigint_{\cB}F\ra \cB$ is a fibered category.}
+\end{flushleft}
+\begin{proof}
+Let $f:X\ra Y$ be a morphism in $\cB$ and $\eta$ be an object of $F(Y)$. Thus $(Y,\eta)$ is an object of $\bigint_{\cB}F$. It suffices to show that $(Y,\eta)$ admits a pullback along $f$. We claim that
+$$\big(f,1_{F(f)(\eta)}\big):\big(X,F(f)(\eta)\big)\ra (Y,\eta)$$
+is a cartesian morphism of $p_F$ that yields a pullback of $\eta$ along $f$. To prove the claim consider an object $(Z,\zeta)$ of $\bigint_{\cB}F$ and suppose that $(g,\tau):(Z,\zeta)\ra (Y,\eta)$ is a morphism of $\bigint_{\cB}F$ such that $g$ factors through $f$. Then there exists $h:Z\ra X$ such that $f\cdot h = g$. Note that $\tau:\zeta\ra F(g)(\eta)$. Since $g = f\cdot h$, we have
+$$\tau = \Theta^{f,h}_{\eta}\cdot \left(\Theta^{f,h}_{\eta}\right)^{-1}\cdot \tau = \Theta^{f,h}_{\eta}\cdot F(h)\big(1_{F(f)(\eta)}\big) \cdot  \left(\Theta^{f,h}_{\eta}\right)^{-1}\cdot \tau$$
+and hence
+$$(g,\tau) = \big(f, 1_{F(f)(\eta)} \big) \cdot \bigg(h,\left(\Theta^{f,h}_{\eta}\right)^{-1}\cdot \tau \bigg)$$
+Thus $(g,\tau)$ factors through $\big(f,1_{F(f)(\eta)}\big)$ and the formula above shows that this factorization is unique. Hence $\big(f,1_{F(f)(\eta)}\big)$ is a cartesian morphism of $p_F$.
+\end{proof}
+
+\begin{definition}
+Let $\cB$ be a category and let $F$ be a pseudo-functor on $\cB$. A fibered category $p_F:\bigint_{\cB}F\ra \cB$ constructed above is called \textit{the fibered category of elements of the pseudo-functor $F$}.
+\end{definition}
+\noindent
+It is possible to construct a pseudo-functor out of a fibered category. We will give a brief outline of this construction. For this we introduce notation that will be also used in other considerations.
+
+\begin{definition}
+Let $p:\cE\ra \cB$ be a fibered category. For every object $X$ of $\cB$ we denote by $p^{-1}(X)$ a subcategory of $\cE$ consisting of all morphisms $\phi:\xi\ra \eta$ such that $p(\phi) = 1_X$. Then $p^{-1}(X)$ is called \textit{the fiber of $p$ over $X$}.
+\end{definition}
+\noindent
+Suppose now that $p:\cE\ra \cB$ is a fibered category. Let $f:X\ra Y$ be a morphism. For every object $\eta$ in $p^{-1}(Y)$ we pick its pullback $\tilde{f}_{\eta}:f^*\eta\ra \eta$ along $f$. By universal property of cartesian morphisms we deduce that this induces a functor $f^*:p^{-1}(Y)\ra p^{-1}(X)$. Universal property of cartesian morphisms implies also the following assertions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item For each object $X$ of $\cB$ we may choose $(1_X)^* = 1_{p^{-1}(X)}$.
+\item For any two composable morphisms $f:X\ra Y$ and $g:Y\ra Z$ of $\cB$ there exists a unique natural isomorphism $\Theta^{g,f}: f^*g^* \ra (g\cdot f)^*$ of functors such that for every $\zeta$ in $p^{-1}(Z)$ we have commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ f^*g^*\zeta       &  g^*\zeta & \zeta    \\
+  (g\cdot f)^*\zeta &           & \zeta    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \tilde{f}_{g^*{\zeta}}  $} (m-1-2)
+(m-1-2) edge node[above] {$ \tilde{g}_{\zeta}  $} (m-1-3)
+(m-1-1) edge node[left] {$ \Theta^{g,f}_{\zeta}  $} (m-2-1)
+(m-1-3) edge node[right] {$ 1_{\zeta}  $} (m-2-3)
+(m-2-1) edge node[below] {$ \widetilde{g\cdot f}_{\zeta}  $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+From \textbf{(1)}, \textbf{(2)} and Fact \ref{fact:uniqueness_of_pullbacks} one can deduce that the collection
+$$\big(\{p^{-1}(X)\}_{X\in \mathrm{Ob}(\cB)},\{f^*\}_{f\in \Mor(\cB)},\{\Theta^{f,g}\}_{f,g\in \Mor(\cB),\,\mathrm{cod}(f)=\mathrm{dom}(g)},\{1_{p^{-1}(X)}\}_{X\in \mathrm{Ob}(\cB)}\big)$$
+is a pseudo-functor.
+
+\begin{remark}\label{fibered_categories_and_pseudo_functors}
+The construction of the fibered category of elements is a part of $2$-equivalence between appropriately defined category of pseudo-functors on $\cB$ and the category of fibered categories over $\cB$.
+\end{remark}
+
+\section{Example: Quasi-coherent sheaves}
+\noindent
+Note that all examples of fibered categories given so far were fibered subcategories of the fibered category of arrows $p_{\mathrm{Arr}}:\mathrm{Arr}(\cB)\ra \cB$ for a given category $\cB$ with fibered-products. In this section we employ the procedure that produces a fibered category out of a pseudo-functor to obtain an important example of a category fibered over $\Sch_k$ (the category of schemes over a ring $k$), which is not of this type.\\
+Let $f:X\ra Y$ be a morphism of $k$-schemes. We have an adjunction
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ \Qcoh(X)& \perp  &\Qcoh(Y)  \\};
+\path[solid,->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge [bend left=30] node[auto]  {$ f_* $} (m-1-3)
+(m-1-3) edge [bend left=30] node[auto]  {$ f^* $} (m-1-1);
+\end{tikzpicture}
+\end{center}
+It is determined by the bijection
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \Hom_{\cO_Y}\big(f^*\cG,\cF\big) & \Hom_{\cO_X}\big(\cG,f_*\cF\big) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \Phi^f_{\cG,\cF}  $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+Suppose now that $f:X\ra Y$ and $g:Y\ra Z$ are morphisms of $k$-schemes. Since $(g\cdot f)_* = g_*\cdot f_*$, there exists a unique natural isomorphism $\Theta^{g,f}: f^*g^* \ra (g\cdot f)^*$ such that for every quasi-coherent sheaf $\cF$ in $\Qcoh(X)$ and every quasi-coherent sheaf $\cH$ in $\Qcoh(Z)$ we have
+$$\Phi^{g\cdot f}_{\cH,\cF} = \Phi^g_{\cH,f_*\cF}\cdot \Phi^f_{g^*\cH,\cF}  \cdot \Hom_{\cO_X}\big(\Theta^{g,f}_{\cH},1_{\cF}\big)$$
+Now we have the following result.
+
+\begin{fact}\label{fact:quasi_coherent_sheaves_are_pseudo_functor_associativity}
+Suppose that $f:X\ra Y$, $g:Y\ra Z$ and $h:Z\ra W$ are morphism of $k$-schemes. Then the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ f^*g^*h^*                      & f^*\left(h\cdot g\right)^*       \\
+  \left(g\cdot f\right)^*h^*     & \left(h\cdot g\cdot f\right)^*   \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f^*\Theta^{h,g}     $} (m-1-2)
+(m-2-1) edge node[below] {$ \Theta^{h,g\cdot f} $} (m-2-2)
+(m-1-1) edge node[left]  {$ \Theta^{g,f}_{h^*}  $} (m-2-1)
+(m-1-2) edge node[right] {$ \Theta^{h\cdot g,f} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+of functors and natural isomorphisms is commutative.
+\end{fact}
+\begin{proof}
+Suppose that $\cF$ is an object of $\Qcoh(X)$ and $\cK$ is an object of $\Qcoh(W)$. Then
+$$\Phi^h_{\cK,g_*f_*\cF}\cdot \Phi^g_{h^*\cK,f_*\cF}\cdot \Phi^f_{g^*h^*\cK,\cF} \cdot \Hom_{\cO_X}\big(\Theta^{g,f}_{h^*\cK},1_{\cF}\big) \cdot \Hom_{\cO_X}\big(\Theta^{h,g\cdot f}_{\cK},1_{\cF}\big)  = $$
+$$= \Phi^h_{\cK,g_*f_*\cF}\cdot \Phi^{g\cdot f}_{h^*\cK,\cF} \cdot \Hom_{\cO_X}\big(\Theta^{g,f}_{h^*\cK},1_{\cF}\big) = \Phi^{h\cdot g\cdot f}_{\cK,\cF}$$
+
+and
+$$\Phi^h_{\cK,g_*f_*\cF}\cdot \Phi^g_{h^*\cK,f_*\cF}\cdot \Phi^f_{g^*h^*\cK,\cF}\cdot \Hom_{\cO_X}\big(f^*\Theta^{h,g}_{\cK},1_{\cF}\big)\cdot \Hom_{\cO_X}\big(\Theta^{h\cdot g,f}_{\cK},1_{\cF}\big) = $$
+$$ = \Phi^h_{\cK,g_*f_*\cF}\cdot \Phi^g_{h^*\cK,f_*\cF}\cdot \Hom_{\cO_X}\big(\Theta^{h,g}_{\cK},1_{f_*\cF}\big) \cdot  \Phi^f_{(h\cdot g)^*\cK,\cF} \cdot \Hom_{\cO_X}\big(\Theta^{h\cdot g,f}_{\cK},1_{\cF}\big) = $$
+$$ = \Phi^{h\cdot g}_{\cK,f_*\cF} \cdot  \Phi^f_{(h\cdot g)^*\cK,\cF} \cdot \Hom_{\cO_X}\big(\Theta^{h\cdot g,f}_{\cK},1_{\cF}\big) = \Phi^{h\cdot g\cdot f}_{\cK,\cF} $$
+Therefore, we derive that
+$$\Phi^h_{\cK,g_*f_*\cF}\cdot \Phi^g_{h^*\cK,f_*\cF}\cdot \Phi^f_{g^*h^*\cK,\cF}\cdot \Hom_{\cO_X}\big(\Theta^{g,f}_{h^*\cK},1_{\cF}\big)\cdot \Hom_{\cO_X}\big(\Theta^{h,g\cdot f}_{\cK},1_{\cF}\big) = $$
+$$ = \Phi^h_{\cK,g_*f_*\cF}\cdot \Phi^g_{h^*\cK,f_*\cF}\cdot \Phi^f_{g^*h^*\cK,\cF}\cdot \Hom_{\cO_X}\big(f^*\Theta^{h,g}_{\cK},1_{\cF}\big)\cdot \Hom_{\cO_X}\big(\Theta^{h\cdot g,f}_{\cK},1_{\cF}\big)$$
+and hence
+$$\Hom_{\cO_X}\big(\Theta^{h,g\cdot f}_{\cK} \cdot \Theta^{g,f}_{h^*\cK},1_{\cF}\big) = \Hom_{\cO_X}\big(\Theta^{g,f}_{h^*\cK},1_{\cF}\big)\cdot \Hom_{\cO_X}\big(\Theta^{h,g\cdot f}_{\cK},1_{\cF}\big) =$$
+$$= \Hom_{\cO_X}\big(f^*\Theta^{h,g}_{\cK},1_{\cF}\big) \cdot \Hom_{\cO_X}\big(\Theta^{h\cdot g,f}_{\cK},1_{\cF}\big) = \Hom_{\cO_X}\big( \Theta^{h\cdot g,f}_{\cK} \cdot f^*\Theta^{h,g}_{\cK},1_{\cF}\big)$$
+Since this equality holds for every quasi-coherent sheaf $\cF$ on $X$, we deduce that
+$$\Theta^{h,g\cdot f}_{\cK} \cdot \Theta^{g,f}_{h^*\cK} = \Theta^{h\cdot g,f}_{\cK} \cdot f^*\Theta^{h,g}_{\cK}$$
+for every quasi-coherent sheaf $\cK$. This proves the assertion.
+\end{proof}
+\noindent
+Note that for every $k$-scheme $X$ we may assume that $\left(1_X\right)_* = 1_{\Qcoh(X)} = \left(1_X\right)^*$ and $\Phi^{1_X}_{\cG,\cF} = \Hom_{\cO_X}\left(1_\cF,1_\cG\right)$.
+
+\begin{fact}\label{fact:quasi_coherent_sheaves_are_pseudo_functor_unit}
+Let $f:X\ra Y$ and $g:Z\ra X$ be morphisms of $k$-schemes. Then
+$$\Theta^{f,1_X} = 1_{f^*},\,\Theta^{1_X,g} = 1_{g^*}$$
+\end{fact}
+\begin{proof}
+Suppose that $\cF$ is an object of $\Qcoh(X)$ and $\cG$ is an object of $\Qcoh(Y)$. Then
+$$\Phi^{f}_{\cG,\cF} = \Phi^{f\cdot 1_X}_{\cG,\cF} = \Phi^f_{\cG,\cF} \cdot \Phi^{1_X}_{f^*\cG,\cF} \cdot \Hom_{\cO_X}\left(\Theta^{f,1_X}_{\cG},1_{\cF}\right) = \Phi^f_{\cG,\cF} \cdot \Hom_{\cO_X}\left(\Theta^{f,1_X}_{\cG},1_{\cF}\right)$$
+and thus $\Hom_{\cO_X}\left(\Theta^{f,1_X}_{\cG},1_{\cF}\right) = \Hom_{\cO_X}\left(1_{f^*\cG},1_{\cF}\right)$. Since this holds for every quasi-coherent sheaf $\cF$ on $X$, we derive that $\Theta^{f,1_X}_{\cG} = 1_{f^*\cG}$. Thus $\Theta^{f,1_X} = 1_{f^*}$.\\
+Suppose that $\cH$ is an object of $\Qcoh(X)$ and $\cF$ is an object of $\Qcoh(Z)$. Then
+$$\Phi^g_{\cH,\cF} = \Phi^{1_X\cdot g}_{\cH,\cF} = \Phi^{1_X}_{\cH,g_*\cF} \cdot \Phi^g_{\cH,\cF}\cdot \Hom_{\cO_Z}\left(\Theta^{1_X,g}_{\cH},1_{\cF}\right) = \Phi^g_{\cH,\cF}\cdot \Hom_{\cO_Z}\left(\Theta^{1_X,g}_{\cH},1_{\cF}\right)$$
+and thus $\Hom_{\cO_Z}\left(\Theta^{1_X,g}_{\cH},1_{\cF}\right) = \Hom_{\cO_Z}\left(1_{g^*\cH} ,1_{\cF}\right)$. Since this holds for every quasi-coherent sheaf $\cF$ on $Z$, we derive that $\Theta^{1_X,g}_{\cH} = 1_{g^*\cH}$. Thus $\Theta^{1_X,g} = 1_{g^*}$.
+\end{proof}
+\noindent
+Now Facts \ref{fact:quasi_coherent_sheaves_are_pseudo_functor_associativity} and \ref{fact:quasi_coherent_sheaves_are_pseudo_functor_unit} imply that the collection
+$$\big(\{\Qcoh(X)\}_{X\in \Sch_k},\{f^*\}_{f\in \Mor(\Sch_k)},\{\Theta^{f,g}\}_{f,g\in \Mor(\Sch_k),\,\mathrm{cod}(f)=\mathrm{dom}(g)},\{1_{1_{\Qcoh(X)}}\}_{X\in \Sch_k}\big)$$
+forms a pseudo-functor on $\Sch_k$.
+
+\begin{definition}
+\textit{The fibered category of quasi-coherent sheaves on $\Sch_k$} is the fibered category of elements of the pseudo-functor
+$$\big(\{\Qcoh(X)\}_{X\in \Sch_k},\{f^*\}_{f\in \Mor(\Sch_k)},\{\Theta^{f,g}\}_{f,g\in \Mor(\Sch_k),\,\mathrm{cod}(f)=\mathrm{dom}(g)},\{1_{1_{\Qcoh(X)}}\}_{X\in \Sch_k}\big)$$
+\end{definition}
+
+\begin{proposition}\label{proposition:equivariant_morphisms_can_described_by_fibered_categories}
+Let $X,Y$ be objects of $\cB$ equipped with $G$-actions. Suppose that there exists a functor $F$ which makes the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ [X/G]   &             & {}[Y/G] \\
+          & \mathbb{B}G &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ F $} (m-1-3);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[below = 6pt, left = 1pt] {$ p_{G,\cJ,X}  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{G,\cJ,Y} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutative. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item $F$ is a morphism of fibered categories $p_{G,\cJ,X}$ and $p_{G,\cJ,Y}$.
+\item There exists a unique $G$-equivariant morphism $\Phi:X\ra Y$ such that $F$ is induced by $\Phi$. That is $F$ sends
+$$(\pi:\cP\ra T,\alpha:\cP\ra X)$$
+to
+$$(\pi:\cP\ra T,\Phi\cdot \alpha:\cP\ra Y)$$
+\end{enumerate}
+\end{proposition}
+
+\section{Equivariant objects in a fibered category}
+
+\begin{definition}
+Let $p:\cE\ra cB$ be a fibered category, let $M:\cB^{\mathrm{op}}\ra \Mon$ be a presheaf of monoids on $\cB$ and let $X$ be an object of $\cB$ such that the presheaf $h^{\cB}_X$ admits an action of $M$ given by the morphism $\alpha:M\times h^{\cB}_X\ra h^{\cB}_X$. Consider an object $\xi$ in $p^{-1}(X)$. Suppose that there is an action $\beta:M\cdot p \times h^{\cE}_\xi\ra h^{\cE}_\xi$ of a monoid presheaf $M\cdot p$ on $h^{\cE}_\xi$ such that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ M\cdot p\times h_{\xi}^{\cE} &  h_{\xi}^{\cE}    \\
+  M\cdot p\times h^{\cB}_X\cdot p    &  h^{\cB}_{X}\cdot p           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \beta  $} (m-1-2)
+(m-2-1) edge node[below] {$ \alpha_p $} (m-2-2)
+(m-1-1) edge node[left]  {$1_{M\cdot p}\times \big(\mbox{induced by }p\big) $} (m-2-1)
+(m-1-2) edge node[right] {$\mbox{ induced by }p  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Then a pair $(\xi,\beta)$ is called \textit{an $M$-equivariant object over $\alpha$}.
+\end{definition}
+
+\begin{definition}
+Suppose that $(\xi_1,\beta_1)$ and $(\xi_2,\beta_2)$ are objects over $X$ with $M$-equivariant structures. Then a morphism $\phi:\xi_1\ra \xi_2$ in $\cE$ is \textit{$M$-equivariant} if the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ M\cdot p\times h_{\xi_1}^{\cE} &  h_{\xi_1}^{\cE}    \\
+  M\cdot p\times h_{\xi_2}^{\cE} &  h_{\xi_2}^{\cE}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \beta_1  $} (m-1-2)
+(m-2-1) edge node[below] {$ \beta_2  $} (m-2-2)
+(m-1-1) edge node[left]  {$ 1_{M\cdot p}\times h^{\cE}_\phi $} (m-2-1)
+(m-1-2) edge node[right] {$ \phi  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{definition}
+\noindent
+In particular, we have a category $p^{-1}(X)_{M}$ of $M$-equaivariant objects over $X$ and $M$-equivariant morphisms.\\
+Now we assume that $M$ is representable by some monoid object $\bd{M}$ of $\cB$. It turns out that in this special case one can 
+\noindent
+The following result will be extensively used in this section.
+
+\begin{proposition}\label{proposition:products_and_pullbacks_in_fibered_categories}
+Let $p:\cE\ra \cB$ be a fibered category, let $X,Y$ be objects of $\cB$ and let $\xi$ be an object of $\cE$ in $p^{-1}(X)$. Suppose that $\cB$ admits finite products. Then there exists a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cB}_{Y}\cdot p \times h_{\xi}^{\cE} &                 &  h^{\cE}_{pr^*_X\xi}   \\
+                                   &  h^{\cE}_{\xi}  &                        \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \cong  $} (m-1-3)
+(m-1-1) edge node[below = 5pt, left = 2pt] {$  pr_{h^{\cE}_{\xi}}   $} (m-2-2)
+(m-1-3) edge node[below = 5pt, right = 2pt] {$ h^{\cE}_{(\widetilde{pr_X})_{\xi}}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which top row is an isomorphism, where $(\widetilde{pr_X})_{\xi}:pr^*_X\xi\ra \xi$ is a cartesian arrow over $pr_X:Y\times X\ra X$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
