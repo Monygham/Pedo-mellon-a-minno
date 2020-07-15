@@ -734,23 +734,7 @@ $$i_e^*\phi=j^*(\mu\times_k1_X)^*\phi = j^* \bigg(\big(1_{\bd{M}} \times_k a\big
 Since $\phi$ is an isomorphism, we derive that $i_e^*\phi=1_{\cF}$.
 \end{proof}
 
-\begin{definition}
-Let $(\cF_1,\phi_1)$ and $(\cF_2,\phi_2)$ be quasi-coherent $\bd{M}$-sheaves. Suppose that $f:\cF_1\ra \cF_2$ is a morphism of quasi-coherent sheaves on $X$ such that the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \pi^*\cF_1 & a^*\cF_1     \\
-  \pi^*\cF_2 & a^*\cF_2             \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[above] {$ \phi_1 $} (m-1-2)
-(m-2-1) edge node[below] {$ \phi_2 $} (m-2-2)
-(m-1-1) edge node[left] {$ \pi^*f $} (m-2-1)
-(m-1-2) edge node[right] {$ a^*f  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative. Then $f$ is \textit{a morphism of quasi-coherent $\bd{M}$-sheaves}. We denote by $\Qcoh_{\bd{M}}(X)$ the category of quasi-coherent $\bd{M}$-sheaves and call it \textit{the category of quasi-coherent $\bd{M}$-sheaves}.
-\end{definition}
+
 
 \begin{definition}
 Let $\cA$ be a quasi-coherent $\bd{M}$-algebra and let $(\cA,\phi)$ be a quasi-coherent $\bd{M}$-sheaf such that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_X$-algebras. Then $(\cA,\phi)$ is \textit{a quasi-coherent $\bd{M}$-algebra}. If $(\cA_1,\phi_1)$ and $(\cA_2,\phi_2)$ are quasi-coherent $\bd{M}$-algebras and $f:\cA_1\ra \cA_2$ is both a morphism of $\cO_X$-algebras and $\bd{M}$-sheaves, then we say that $f$ is \textit{a morphism of quasi-coherent $\bd{M}$-algebras}.

@@ -11,9 +11,58 @@
 In these notes we often work with two distinct categories. In order to make our notation clear we denote by $h^{\cC}:\cC\ra \widehat{\cC}$ the Yoneda embedding for category $\cC$. In particular, if $X$ is an object of $\cC$, then $h^{\cC}_X$ is a presheaf associated with $X$.
 
 \section{Fibered categories}
+\noindent
+We fix a functor $p:\cE\ra \cB$. We introduce now some convenient notation that will help clarifying our definitions. Consider a morphism $\phi:\xi\ra \eta$ of $\cE$ such that $p(\phi) = f$ and $f:X\ra Y$. We depict this situation by the square diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \xi      &  \eta      \\
+  X        &  Y         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2);
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Note that to every such square there corresponds a commutative square 
+\begin{center}
+v\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cE}_\xi      &  h^{\cE}_\eta      \\
+  h^{\cB}_X\cdot p        &  h^{\cB}_Y\cdot p         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ h^{\cE}_\phi $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_f\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+of presheaves on $\cE$.
 
 \begin{definition}
-Let $p:\cE\ra \cB$ be a functor and let $\phi:\xi\ra \eta$ be a morphism of $\cE$. Suppose that for every object $\zeta$ of $\cE$ the square of classes
+Consider a square 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \xi      &  \eta      \\
+  X        &  Y         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2);
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+We call the square \textit{cartesian} and $\phi$ \textit{a cartesian morphism with respect to $p$} if the corresponding square of presheaves on $\cE$ is cartesian in the category of presheaves.
+\end{definition}
+\noindent
+One can rephrase definition above in terms of presheaves as follows. Morphism $\phi:\xi\ra \eta$ is cartesian with respect to $p$ if the square 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -23,28 +72,11 @@ Let $p:\cE\ra \cB$ be a functor and let $\phi:\xi\ra \eta$ be a morphism of $\cE
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$ \Mor_{\cE}\left(1_{\zeta},\phi\right)  $} (m-1-2)
 (m-2-1) edge node[below] {$ \Mor_{\cB}\left(1_{p(\zeta)},p(\phi)\right) $} (m-2-2)
-(m-1-1) edge node[left]  {$ \mbox{ induced by }p $} (m-2-1)
-(m-1-2) edge node[right] {$ \mbox{ induced by }p $} (m-2-2);
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is cartesian. Then $\phi$ is \textit{a cartesian morphism of $p$}.
-\end{definition}
-\noindent
-One can rephrase definition above in terms of presheaves as follows. Morphism $\phi:\xi\ra \eta$ is cartesian with respect to $p$ if the following square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ h_{\xi}^{\cE} &  h_{\eta}^{\cE}    \\
-  h^{\cB}_{p(\xi)}\cdot p &  h^{\cB}_{p(\eta)}\cdot p           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ h^{\cE}_\phi  $} (m-1-2)
-(m-2-1) edge node[below] {$ \left(h^{\cB}_{p(\phi)}\right)_p $} (m-2-2)
-(m-1-1) edge node[left]  {$\mbox{ induced by }p $} (m-2-1)
-(m-1-2) edge node[right] {$\mbox{ induced by }p  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is cartesian in the category $\widehat{\cE}$.
+of classes is cartesian for every object $\zeta$ of $\cE$.
 
 \begin{fact}\label{fact:uniqueness_of_pullbacks}
 Let $p:\cE\ra \cB$ be a functor, let $f:X\ra Y$ be a morphism of $\cB$ and let $\eta$ be an object of $\cE$. Suppose that $\phi_1:\xi_1\ra \eta,\phi_2:\xi_2\ra \eta$ are morphisms of $\cE$ that are cartesian with respect to $p$ and assume that $p(\phi_1) = p(\phi_2)$. Then there exists a unique morphism $\theta:\xi_1\ra \xi_2$ such that $\phi_1 = \phi_2\cdot \theta$. Moreover, $\theta$ is an isomorphism.
@@ -361,7 +393,7 @@ From \textbf{(1)}, \textbf{(2)} and Fact \ref{fact:uniqueness_of_pullbacks} one 
 $$\big(\{p^{-1}(X)\}_{X\in \mathrm{Ob}(\cB)},\{f^*\}_{f\in \Mor(\cB)},\{\Theta^{f,g}\}_{f,g\in \Mor(\cB),\,\mathrm{cod}(f)=\mathrm{dom}(g)},\{1_{p^{-1}(X)}\}_{X\in \mathrm{Ob}(\cB)}\big)$$
 is a pseudo-functor.
 
-\begin{remark}\label{fibered_categories_and_pseudo_functors}
+\begin{remark}\label{remark:fibered_categories_and_pseudo_functors}
 The construction of the fibered category of elements is a part of $2$-equivalence between appropriately defined category of pseudo-functors on $\cB$ and the category of fibered categories over $\cB$.
 \end{remark}
 
@@ -452,7 +484,462 @@ forms a pseudo-functor on $\Sch_k$.
 \begin{definition}
 \textit{The fibered category of quasi-coherent sheaves on $\Sch_k$} is the fibered category of elements of the pseudo-functor
 $$\big(\{\Qcoh(X)\}_{X\in \Sch_k},\{f^*\}_{f\in \Mor(\Sch_k)},\{\Theta^{f,g}\}_{f,g\in \Mor(\Sch_k),\,\mathrm{cod}(f)=\mathrm{dom}(g)},\{1_{1_{\Qcoh(X)}}\}_{X\in \Sch_k}\big)$$
+We denote it by $\Qcoh \ra \Sch_k$.
 \end{definition}
+\noindent
+For every $k$-scheme $X$ we have a category $\Alg\left(\Qcoh(X)\right)$ of quasi-coherent $\cO_X$-algebras. If $f:X\ra Y$ is a morphism of $k$-schemes, then we have an adjuntion
+\begin{center}   
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ \Alg\left(\Qcoh(X)\right)& \perp  & \Alg\left(\Qcoh(Y)\right)  \\};
+\path[solid,->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge [bend left=30] node[auto]  {$ f_* $} (m-1-3)
+(m-1-3) edge [bend left=30] node[auto]  {$ f^* $} (m-1-1);
+\end{tikzpicture}
+\end{center}
+Using similar argument as above one can show that there exists a canonical structure of a pseudo-functor on the collection
+$$\big(\{\Alg\left(\Qcoh(X)\right)\}_{X\in \Sch_k},\{f^*\}_{f\in \Mor(\Sch_k)}\big)$$
+
+\begin{definition}
+\textit{The fibered category of quasi-coherent algebras on $\Sch_k$} is the fibered category of elements of the canonical pseudo-functor determined by the collection
+$$\big(\{\Alg\left(\Qcoh(X)\right)\}_{X\in \Sch_k},\{f^*\}_{f\in \Mor(\Sch_k)}\big)$$
+We denote it by $\Alg\left(\Qcoh\right)\ra \Sch_k$.
+\end{definition}
+\noindent
+For every $k$-scheme we also have a canonical functor $|-|:\Alg\left(\Qcoh(X)\right)\ra \Qcoh(X)$ that forgets about an algebra structure. The collection of all these functors for all $k$-schemes gives rise to a morphism of fibered categories
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \Alg\left(\Qcoh\right) &        & \Qcoh  \\
+          &\Sch_k &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$|-|  $} (m-1-3)
+(m-1-1) edge node[swap] {$  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Finally note that for every $k$-scheme $X$ we have relative affine spectrum functor $\Spec_X:\Alg\left(\Qcoh(X)\right)\ra \Sch_X$. Moreover, if $f:X\ra Y$ is a morphism of $k$-schemes and $\cA$ is a quasi-coherent $\cO_Y$-algebra, then the canonical square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \Spec_X f^*\cA & \Spec_Y\cA     \\
+  X             & Y             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$  $} (m-2-1)
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. Thus the collection of all these functors for all $k$-scheme gives rise to a morphism of fibered categories
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \Alg\left(\Qcoh\right) &        & \bd{Arr}(\Sch_k)  \\
+          &\Sch_k &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \Spec  $} (m-1-3)
+(m-1-1) edge node[swap] {$  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+\section{Equivariant objects in fibered categories}
+\noindent
+Let $k$ be a commutative ring. The following notion is very useful for studying actions of algebraic groups and monoids.
+
+\begin{definition}
+Let $X$ be a $k$-scheme and let $\bd{M}$ be a monoid $k$-scheme with an action $a:\bd{M}\times_kX\ra X$ on $X$. We denote by $\pi:\bd{M}\times_kX\ra X$ the projection. Consider a pair $(\cF,\tau)$ consisting of a quasi-coherent sheaf $\cF$ on $X$ and an isomorphism $\tau:\pi^*\cF \ra a^* \cF$. We call it \textit{a quasi-coherent $\bd{M}$-sheaf on $(X,a)$} if the following equality
+$$(\mu\times_k1_X)^*\phi = (1_{\bd{M}} \times_k a)^*\phi \cdot \pi_{2,3}^*\phi$$
+holds, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$ and $\pi_{2,3}:\bd{M}\times_k \bd{M} \times_k X \ra \bd{M} \times_kX$ is the projection on last two factors.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a $k$-scheme and let $\bd{M}$ be a monoid $k$-scheme with an action $a:\bd{M}\times_kX\ra X$ on $X$. We denote by $\pi:\bd{M}\times_kX\ra X$ the projection. Let $(\cF_1,\tau_1)$ and $(\cF_2,\tau_2)$ be quasi-coherent $\bd{M}$-sheaves on $(X,a)$. Suppose that $\phi:\cF_1\ra \cF_2$ is a morphism of quasi-coherent sheaves on $X$ such that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \pi^*\cF_1 & a^*\cF_1     \\
+  \pi^*\cF_2 & a^*\cF_2             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \tau_1 $} (m-1-2)
+(m-2-1) edge node[below] {$ \tau_2 $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi^*\phi $} (m-2-1)
+(m-1-2) edge node[right] {$ a^*\phi  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Then $\phi$ is \textit{a morphism of quasi-coherent $\bd{M}$-sheaves on $(X,a)$}. We denote by $\Qcoh_{\bd{M}}(X)$ the category of quasi-coherent $\bd{M}$-sheaves and call it \textit{the category of quasi-coherent $\bd{M}$-sheaves on $(X,a)$}.
+\end{definition}
+\noindent
+Our goal in this section is to explain somewhat nonintuitive notion of quasi-coherent $\bd{M}$-sheaf. For this we use the machinery of fibered categories. We fix a fibered category $p:\cE \ra \cB$ . If $f:X\ra Y$ and $\eta$ is an object of $p^{-1}(Y)$, then we denote by $\tilde{f}_{\eta}:f^*\eta\ra \eta$ a pullback of $\eta$. That is the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ f^*\eta      &  \eta      \\
+  X        &  Y         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \widetilde{f}_{\eta} $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2);
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. Using some choice of pullback we obtain a functor $f^*:p^{-1}(Y)\ra p^{-1}(X)$. We start with the following observation.
+
+\begin{remark}\label{remark:unique_identification}
+Consider morphisms $f_1,f_2,g_1,g_2$ in $\cB$ such that $g_1\cdot f_1 = g_2\cdot f_2$ with $\mathrm{cod}(g_1) = Y = \mathrm{cod}(g_2)$. For every object $\eta$ in $p^{-1}(Y)$ we have a unique identification $f_1^*g_1^*\eta \cong f_2^*g_2^*\eta$ such that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ f_2^*g_2^*\eta \cong f_1^*g_1^*\eta &  g_1^*\eta                \\
+  g_2^*\eta                       &  \eta           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \widetilde{f_1}_{g_1^*\eta} $} (m-1-2)
+(m-2-1) edge node[below] {$ \widetilde{g_2}_{\eta} $} (m-2-2)
+(m-1-1) edge node[left]  {$ \widetilde{f_2}_{g_2^*\eta} $} (m-2-1)
+(m-1-2) edge node[right] {$ \widetilde{g_2}_{\eta} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{remark}
+\noindent
+Now we have the following result.
+
+\begin{fact}\label{fact:identification_of_product_and_pullback_along_the_projection}
+Let $X,\bd{M}$ be objects of $\cB$ and let $\xi$ be an object of $\cE$ in $p^{-1}(X)$. Assume that the cartesian product of $X$ and $\bd{M}$ exists in $\cB$ and denote by $\pi:\bd{M}\times X\ra X$ the projection. Then there exists a unique morphism (depicted by dotted arrow) such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cE}_{\pi^*\xi}         &                                          &                   \\
+                             & h^{\cB}_\bd{M}\cdot p\times h^{\cE}_\xi       &  h^{\cE}_\xi      \\
+  h^{\cB}_{\bd{M}\times X}\cdot p & h^{\cB}_\bd{M}\cdot p\times h^{\cB}_X\cdot p  &  h^{\cB}_X\cdot p \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[bend left] node[above] {$ h^{\cE}_{\widetilde{\pi}_{\xi}} $} (m-2-3)
+(m-1-1) edge node[left] {$ p_{\mathrm{hom}}  $} (m-3-1)
+(m-3-1) edge node[below] {$ = $} (m-3-2)
+(m-2-2) edge node[above]  {$ pr_{h^{\cE}_{\xi}} $} (m-2-3)
+(m-3-2) edge node[below]  {$ pr_{h^{\cB}_X\cdot p} $} (m-3-3)
+(m-2-2) edge node[left]  {$ 1_{h^{\cB}_\bd{M}\cdot p}\times p_{\mathrm{hom}} $} (m-3-2)
+(m-2-3) edge node[right] {$ p_{\mathrm{hom}} $} (m-3-3)
+(m-3-1) edge[bend right] node[below] {$ \left(h^{\cB}_{\pi}\right)_p $} (m-3-3);
+\path[densely dotted,->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative, where $pr_{h^{\cE}_{\xi}}$ and $pr_{h^{\cB}_X\cdot p}$ are projections. Moreover, this morphism is an isomorphism.
+\end{fact}
+\begin{proof}
+This is a consequence of the fact that both squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cB}_{\bd{M}}\cdot p \times h_{\xi}^{\cE}                &  h_{\xi}^{\cE}      &   h^{\cE}_{\pi^*\xi}              &  h^{\cE}_{\xi}            \\
+  h^{\cB}_\bd{M}\cdot p   \times h_{X}^{\cB}\cdot p           &  h_{X}^{\cB}\cdot p &   h^{\cB}_{\bd{M}\times X}\cdot p &  h^{\cB}_{X}\cdot p              \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ pr_{h^{\cE}_{\xi}} $} (m-1-2)
+(m-2-1) edge node[below] {$ pr_{h^{\cB}_{X}\cdot p} $} (m-2-2)
+(m-1-1) edge node[left]  {$ 1_{h^{\cB}_\bd{M}\cdot p}\times p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2)
+(m-1-3) edge node[above] {$ h^{\cE}_{\widetilde{\pi}_{\xi}} $} (m-1-4)
+(m-2-3) edge node[below] {$ \left(h^{\cB}_{\pi}\right)_p $} (m-2-4)
+(m-1-3) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-3)
+(m-1-4) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-4);;
+\end{tikzpicture}
+\end{center}
+are cartesian.
+\end{proof}
+\noindent
+Fix now two objects $\bd{M}$ and $X$ on $\cB$ such that product of $\bd{M}$ and $X$ exists. Denote by $\pi: \bd{M} \times X \ra X$ the projection on $X$. Let $a:\bd{M} \times X\ra X$ be a morphism in $\cB$, let $\xi$ be an object in $p^{-1}(X)$ and let $\sigma:h^{\cB}_\bd{M} \cdot p \times h^{\cE}_{\xi}\ra h^{\cE}_{\xi}$ be a morphism of presheaves on $\cE$. Suppose that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cB}_{{\bd{M}}}\cdot p \times h_{\xi}^{\cE}                &  h_{\xi}^{\cE}                \\
+  h_{\bd{M}\times X}^{\cB}\cdot p           &  h_{X}^{\cB}\cdot p           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \sigma $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_a\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. According to Fact \ref{fact:identification_of_product_and_pullback_along_the_projection} we deduce that $\sigma$ is representable by some morphism $\alpha^{\sigma}:\pi^*\xi\ra \xi$ of $\cE$. By universal property of cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ a^*\xi      &  \xi      \\
+  \bd{M}\times X        &  X         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \widetilde{a}_{\xi} $} (m-1-2)
+(m-2-1) edge node[below] {$ a $} (m-2-2);
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+we deduce that there exists a unique morphism $\tau^{\sigma}:\pi^*\xi\ra a^*\xi$ in $p^{-1}\left(\bd{M}\times X\right)$ such that $\alpha^{\sigma} = \widetilde{a}_{\xi}\cdot \tau^{\sigma}$. Using this notation and Fact \ref{fact:identification_of_product_and_pullback_along_the_projection} we can now state the following result.
+
+\begin{proposition}\label{proposition:equivalent_description_of_equivariance_in_representable_case}
+Let $\bd{M}$ be a monoid object in $\cB$ and let $X$ be an object of $\cB$ equipped with an action $a:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Denote by $\pi:\bd{M}\times X\ra X$ the projection on $X$. Consider an object $\xi$ in $p^{-1}(X)$ and let $\sigma:h^{\cB}_\bd{M} \cdot p \times h^{\cE}_{\xi}\ra h^{\cE}_{\xi}$ be a morphism of presheaves on $\cE$. Suppose that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cB}_{{\bd{M}}}\cdot p \times h_{\xi}^{\cE}                &  h_{\xi}^{\cE}                \\
+  h_{\bd{M}\times X}^{\cB}\cdot p           &  h_{X}^{\cB}\cdot p           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \sigma $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_a\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Then the following assertions are equivalent.
+\begin{enumerate}[label= \emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $\sigma$ is an action of monoid presheaf $h^{\cB}_{\bd{M}}\cdot p$ on a presheaf $h^{\cE}_{\xi}$.
+\item Morphism $\tau^{\sigma}$ satisfies (up to identifications described in Remark \ref{remark:unique_identification}) the identities
+$$(\mu \times 1_X)^*\tau^{\sigma} = (1_{\bd{M}} \times  a)^*\tau^{\sigma} \cdot \pi_{2,3}^*\tau^{\sigma},\,\langle e, 1_{X} \rangle^*\tau^{\sigma} = 1_{\xi}$$
+where $\mu: \bd{M} \times \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$, $\pi_{2,3}:\bd{M}\times  \bd{M} \times  X \ra \bd{M} \times X$ is the projection on last two factors and $e:\bd{1}\ra \bd{M}$ is the unit of $\bd{M}$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Our first goal is to prove that
+$$\sigma \cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p} \times \sigma \right) = \sigma \cdot \left(1_{h^{\cB}_{\mu}\cdot p} \times 1_{h^{\cE}_{\xi}} \right)$$
+if and only if
+$$\left(1_{\bd{M}}\times a\right)^*\tau^{\sigma}\cdot \pi^*_{23}\tau^\sigma = \left(\mu\times 1_X\right)^*\tau^{\sigma}$$
+First note that the commutative square of presheaves
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cB}_{\bd{M}}\cdot p \times  h_{a^*\xi}^{\cE} &  h^{\cB}_{\bd{M}}\cdot p \times  h_{\xi}^{\cE}   \\
+ h^{\cB}_{\bd{M}\times \bd{M}\times X}\cdot p & h^{\cB}_{\bd{M}\times X}\cdot p  \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_{h^{\cB}_{\bd{M}}\cdot p} \times h^{\cE}_{\widetilde{a}_{\xi}} $} (m-1-2)
+(m-2-1) edge node[below] {$ h^{\cB}_{1_{\bd{M}}\times a} $} (m-2-2)
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+on $\cE$ is cartesian. Next according to Fact \ref{fact:identification_of_product_and_pullback_along_the_projection} we infer that projections $$pr_{h^{\cE}_{a^*\xi}}:h^{\cB}_{\bd{M}}\cdot p \times  h_{a^*\xi}^{\cE} \ra h_{a^*\xi}^{\cE},\,pr_{h^{\cE}_{\xi}}:h^{\cB}_{\bd{M}}\cdot p \times  h_{\xi}^{\cE} \ra h_{\xi}^{\cE}$$
+are representable by morphisms $\widetilde{\pi_{23}}_{a^*\xi}:\pi^*_{23}a^*\xi \ra a^*\xi,\,\widetilde{\pi}_{\xi}:\pi^*\xi\ra \xi$ in $\cE$, respectively. Thus $1_{h^{\cB}_{\bd{M}}\cdot p} \times h^{\cE}_{\widetilde{a}_{\xi}}$ is representable by a cartesian morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \pi^*_{23}a^*\xi & \left(1_{\bd{M}}\times a \right)^*\pi^*\xi & \pi^*\xi   \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \cong $} (m-1-2)
+(m-1-2) edge node[above] {$ \widetilde{\left(1_{\bd{M}}\times a\right)}_{\pi^*\xi} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where $\cong$ is the identification described in Remark \ref{remark:unique_identification}. Since we have equality
+$$\sigma \cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p} \times \sigma \right) = h^{\cE}_{\widetilde{a}_{\xi}}\cdot h^{\cE}_{\tau^{\sigma}}\cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p} \times h^{\cE}_{\widetilde{a}_{\xi}} \right) \cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p} \times h^{\cE}_{\tau^{\sigma}} \right)$$
+we derive that $\sigma \cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p} \times \sigma \right)$ is representable (again up to identifications of Remark \ref{remark:unique_identification}) by a morphism
+$$\widetilde{a}_{\xi}\cdot \tau^{\sigma}\cdot \widetilde{\left(1_{\bd{M}}\times a\right)}_{\pi^*\xi}\cdot \pi^*_{23}\tau^\sigma = \widetilde{a}_{\xi} \cdot \widetilde{\left(1_{\bd{M}}\times a\right)}_{a^*\xi}\cdot \left(1_{\bd{M}}\times a\right)^*\tau^{\sigma}\cdot \pi^*_{23}\tau^\sigma$$
+in $\cE$. Next note that the square of presheaves on $\cE$
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cB}_{\bd{M}}\cdot p \times h^{\cB}_{\bd{M}}\cdot p  \times h_{\xi}^{\cE} &  h^{\cB}_{{\bd{M}}\cdot p}\times h_{\xi}^{\cE}                \\
+h^{\cB}_{\bd{M}\times \bd{M}\times X} \cdot p &  h^{\cB}_{{\bd{M}\times X}\cdot p}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ h^{\cB}_{\mu}\cdot p \times 1_{h^{\cE}_{\xi}} $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_{\mu \times 1_X}\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$ \textbf{can}\times p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. According to Fact \ref{fact:identification_of_product_and_pullback_along_the_projection} we infer that projections $$pr_{h^{\cB}_{\bd{M}}\cdot p  \times h_{\xi}^{\cE}}:h^{\cB}_{\bd{M}}\cdot p \times h^{\cB}_{\bd{M}}\cdot p  \times h_{\xi}^{\cE} \ra h^{\cB}_{\bd{M}}\cdot p  \times h_{\xi}^{\cE},\,pr_{h^{\cE}_{\xi}}:h^{\cB}_{\bd{M}}\cdot p  \times h_{\xi}^{\cE} \ra h_{\xi}^{\cE}$$
+are representable by morphisms $\widetilde{\pi_{23}}_{\pi^*\xi}:\pi^*_{23}\pi^*\xi \ra \pi^*\xi,\,\widetilde{\pi}_{\xi}:\pi^*\xi\ra \xi$ in $\cE$, respectively. Thus $h^{\cB}_{\mu}\cdot p \times 1_{h^{\cE}_{\xi}}$ is representable by a cartesian morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \pi^*_{23}\pi^*\xi & (\mu \times 1_X)^*\pi^*\xi & \pi^*\xi   \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \cong $} (m-1-2)
+(m-1-2) edge node[above] {$ \widetilde{\left(\mu\times 1_X\right)}_{\pi^*\xi} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where $\cong$ is the identification described in Remark \ref{remark:unique_identification}. Since we have equality
+$$\sigma \cdot \left(1_{h^{\cB}_{\mu}\cdot p} \times 1_{h^{\cE}_{\xi}} \right) = h^{\cE}_{\widetilde{a}_{\xi}}\cdot h^{\cE}_{\tau^{\sigma}}\cdot \left(1_{h^{\cB}_{\mu}\cdot p} \times 1_{h^{\cE}_{\xi}} \right)$$
+we derive that $\sigma \cdot \left(1_{h^{\cB}_{\mu}\cdot p} \times 1_{h^{\cE}_{\xi}} \right)$ is representable (again up to identifications of Remark \ref{remark:unique_identification}) by a morphism
+$$\widetilde{a}_{\xi}\cdot \tau^{\sigma}\cdot \widetilde{\left(\mu\times 1_X\right)}_{\pi^*\xi} = \widetilde{a}_{\xi}\cdot \widetilde{\left(\mu\times 1_X\right)}_{a^*\xi}\cdot \left(\mu\times 1_X\right)^*\tau^{\sigma}$$
+We deduce that
+$$\sigma \cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p} \times \sigma \right) = \sigma \cdot \left(1_{h^{\cB}_{\mu}\cdot p} \times 1_{h^{\cE}_{\xi}} \right)$$
+if and only if
+$$\widetilde{a}_{\xi} \cdot \widetilde{\left(1_{\bd{M}}\times a\right)}_{a^*\xi}\cdot \left(1_{\bd{M}}\times a\right)^*\tau^{\sigma}\cdot \pi^*_{23}\tau^\sigma =  \widetilde{a}_{\xi}\cdot \widetilde{\left(\mu\times 1_X\right)}_{a^*\xi}\cdot \left(\mu\times 1_X\right)^*\tau^{\sigma}$$
+Since $a\cdot (1_{\bd{M}}\times a) = a\cdot (\mu \times 1_X)$ and according to Remark \ref{remark:unique_identification}, we have canonical identification $\widetilde{a}_{\xi} \cdot \widetilde{\left(1_{\bd{M}}\times a\right)}_{a^*\xi} = \widetilde{a}_{\xi}\cdot \widetilde{\left(\mu\times 1_X\right)}_{a^*\xi}$. Therefore, we deduce that the formula above holds if and only if
+$$\left(1_{\bd{M}}\times a\right)^*\tau^{\sigma}\cdot \pi^*_{23}\tau^\sigma = \left(\mu\times 1_X\right)^*\tau^{\sigma}$$
+This proves our first claim. Now it suffices to prove that
+$$\sigma \cdot \langle h^{\cB}_{e}\cdot p, 1_{h^{\cE}_{\xi}} \rangle = 1_{h^{\cE}_{\xi}}$$
+if and only if $\langle e, 1_X\rangle^*\tau^{\sigma} = 1_{\xi}$. Note that the square of presheaves on $\cE$
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ h_{\xi}^{\cE}       &  h^{\cB}_{{\bd{M}}\cdot p}\times h_{\xi}^{\cE}                \\
+  h^{\cB}_{X} \cdot p &  h^{\cB}_{{\bd{M}\times X}\cdot p}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \langle h^{\cB}_{e}\cdot p, 1_{h^{\cE}_{\xi}} \rangle $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_{\langle e, 1_X\rangle}\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. Thus according to Fact \ref{fact:identification_of_product_and_pullback_along_the_projection} we derive that $\langle h^{\cB}_{e}\cdot p, 1_{h^{\cE}_{\xi}} \rangle$ is representable by morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \xi & \langle e, 1_X\rangle^*\pi^*\xi & \pi^*\xi   \\};
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \cong $} (m-1-2)
+(m-1-2) edge node[above] {$ \widetilde{\langle e, 1_X\rangle}_{\pi^*\xi} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where $\cong$ is the identification described in Remark \ref{remark:unique_identification}. Therefore, the morphism $\sigma \cdot \langle h^{\cB}_{e}\cdot p, 1_{h^{\cE}_{\xi}} \rangle$ is representable (up to identifications of Remark \ref{remark:unique_identification}) by
+$$\widetilde{a}_{\xi}\cdot \tau^{\sigma}\cdot \widetilde{\langle e, 1_X\rangle}_{\pi^*\xi} = \widetilde{a}_{\xi}\cdot \widetilde{\langle e, 1_X\rangle}_{a^*\xi}\cdot \langle e, 1_X\rangle^*\tau^{\sigma} =  \langle e, 1_X\rangle^*\tau^{\sigma}$$
+Thus
+$$\sigma \cdot \langle h^{\cB}_{e}\cdot p, 1_{h^{\cE}_{\xi}} \rangle = 1_{h^{\cE}_{\xi}}$$
+if and only if
+$$\langle e, 1_X \rangle^*\tau^{\sigma} = 1_{\xi}$$
+This finishes the proof.
+\end{proof}
+
+\begin{fact}\label{fact:morphisms_of_equivariant_objects}
+Let $\bd{M},X$ be objects of $\cB$ such that the cartesian product of $\bd{M}$ and $X$ exist. Let $a:\bd{M}\times X\ra X$ be a morphism. Denote by $\pi:\bd{M}\times X\ra X$ the projection on $X$. Consider objects $\xi_1,\xi_2$ in $p^{-1}(X)$ and let $\sigma_1:h^{\cB}_\bd{M} \cdot p \times h^{\cE}_{\xi_1}\ra h^{\cE}_{\xi_1},\sigma_2:h^{\cB}_\bd{M} \cdot p \times h^{\cE}_{\xi_2} \ra h^{\cE}_{\xi_2}$ be morphisms of presheaves on $\cE$. Suppose that squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ h^{\cB}_{{\bd{M}}}\cdot p \times h_{\xi_1}^{\cE} &  h_{\xi_1}^{\cE}      & h^{\cB}_{{\bd{M}}}\cdot p \times h_{\xi_2}^{\cE} & h_{\xi_2}^{\cE}     \\
+  h_{\bd{M}\times X}^{\cB}\cdot p                &  h_{X}^{\cB}\cdot p     & h_{\bd{M}\times X}^{\cB}\cdot p                  &  h_{X}^{\cB}\cdot p \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \sigma_1 $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_a\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2)
+
+(m-1-3) edge node[above] {$ \sigma_2 $} (m-1-4)
+(m-2-3) edge node[below] {$ \left(h^{\cB}_a\right)_p $} (m-2-4)
+(m-1-3) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-3)
+(m-1-4) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-4);
+\end{tikzpicture}
+\end{center}
+are commutative. Let $\phi:\xi_1\ra \xi_2$ be a morphism in $\cE$. Then the following assertions are equivalent.
+\begin{enumerate}[label= \emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item The square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  h^{\cB}_{{\bd{M}}}\cdot p \times h_{\xi_1}^{\cE} &  h_{\xi_1}^{\cE}      \\
+   h^{\cB}_{{\bd{M}}}\cdot p \times h_{\xi_2}^{\cE} &  h_{\xi_2}^{\cE}             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \sigma_1 $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma_2 $} (m-2-2)
+(m-1-1) edge node[left] {$ 1_{h^{\cB}_{\bd{M}}\times h^{\cE}_{\phi}} $} (m-2-1)
+(m-1-2) edge node[right] {$ h^{\cE}_{\xi}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\item The square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \pi^*\xi_1 & a^*\xi_1     \\
+  \pi^*\xi_2 & a^*\xi_2             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \tau^{\sigma_1} $} (m-1-2)
+(m-2-1) edge node[below] {$ \tau^{\sigma_2} $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi^*\phi $} (m-2-1)
+(m-1-2) edge node[right] {$ a^*\phi  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{enumerate}
+\end{fact}
+\begin{proof}
+Note that up to identifications of Remark \ref{remark:unique_identification} and according to Fact \ref{fact:identification_of_product_and_pullback_along_the_projection}  morphism $h^{\cE}_{\phi}\cdot \sigma_1$ is representable by
+$$\phi\cdot \alpha^{\sigma_1} = \phi\cdot \widetilde{a}_{\xi_1}\cdot \tau^{\sigma_1} = \widetilde{a}_{\xi_2}\cdot a^*\phi \cdot \tau^{\sigma_1}$$
+and on the other hand morphism $\sigma_2\cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p}\times h^{\cE}_{\phi}\right)$ is representable by
+$$\alpha^{\sigma_2}\cdot \pi^*\phi = \widetilde{a}_{\xi_2}\cdot \tau^{\sigma_2}\cdot \pi^*\phi$$
+Since $\widetilde{a}_{\xi_2}$ is cartesian with respect to $p$, we derive that
+$$h^{\cE}_{\phi}\cdot \sigma_1 = \sigma_2\cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p}\times h^{\cE}_{\phi}\right)$$
+if and only if
+$$a^*\phi \cdot \tau^{\sigma_1} = \tau^{\sigma_2}\cdot \pi^*\phi$$
+This proves the assertion.
+\end{proof}
+\noindent
+Clearly Proposition \ref{proposition:equivalent_description_of_equivariance_in_representable_case} and Fact \ref{fact:morphisms_of_equivariant_objects} give intuitive explanation of the notion of quasi-coherent $\bd{M}$-sheaf on a $k$-scheme $X$ equipped with an action of a monoid $k$-scheme $\bd{M}$. Indeed, it suffices to apply the two results above to the fibered category $\Qcoh \ra \Sch_k$. Guided by these two results we formulate a general notion of equivariant object in a fibered category.
+
+\begin{definition}
+Let $M:\cB^{\mathrm{op}}\ra \Mon$ be a presheaf of monoids on $\cB$ and assume that for some object $X$ of $\cB$ the presheaf $h^{\cB}_X$ admits an action of $M$ given by the morphism $\alpha:M\times h^{\cB}_X\ra h^{\cB}_X$. Consider an object $\xi$ in $p^{-1}(X)$. Suppose that there is an action $\sigma:M\cdot p \times h^{\cE}_\xi\ra h^{\cE}_\xi$ of a monoid presheaf $M\cdot p$ on $h^{\cE}_\xi$ such that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ M\cdot p\times h_{\xi}^{\cE} &  h_{\xi}^{\cE}    \\
+  M\cdot p\times h^{\cB}_X\cdot p    &  h^{\cB}_{X}\cdot p           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \sigma  $} (m-1-2)
+(m-2-1) edge node[below] {$ \alpha_p $} (m-2-2)
+(m-1-1) edge node[left]  {$1_{M\cdot p}\times p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$p_{\mathrm{hom}}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Then a pair $(\xi,\sigma)$ is called \textit{an $M$-equivariant object over $\alpha$}.
+\end{definition}
+
+\begin{definition}
+Let $M:\cB^{\mathrm{op}}\ra \Mon$ be a presheaf of monoids on $\cB$ and assume that for some object $X$ of $\cB$ the presheaf $h^{\cB}_X$ admits an action of $M$ given by the morphism $\alpha:M\times h^{\cB}_X\ra h^{\cB}_X$. Suppose that $(\xi_1,\sigma_1)$ and $(\xi_2,\sigma_2)$ are objects over $X$ with $M$-equivariant structures. Then a morphism $\phi:\xi_1\ra \xi_2$ in $\cE$ is \textit{$M$-equivariant} if the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ M\cdot p\times h_{\xi_1}^{\cE} &  h_{\xi_1}^{\cE}    \\
+  M\cdot p\times h_{\xi_2}^{\cE} &  h_{\xi_2}^{\cE}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \sigma_1  $} (m-1-2)
+(m-2-1) edge node[below] {$ \sigma_2  $} (m-2-2)
+(m-1-1) edge node[left]  {$ 1_{M\cdot p}\times h^{\cE}_\phi $} (m-2-1)
+(m-1-2) edge node[right] {$ \phi  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{definition}
+\noindent
+We denote the category of $M$-equivariant objects over $\alpha$ with respect to the fibered category $p:\cE\ra \cB$ by $p^{-1}(X)_{M}$. Now we can state our remark after Fact \ref{fact:morphisms_of_equivariant_objects} in a more precise manner.
+
+\begin{corollary}\label{corollary:isomorphism_between_equivariant_quasi_coherent_sheaves_and_equivariant_objects_in_fibered_category_of_quasi_coherent_sheaves}
+If $\bd{M}$ is a monoid $k$-scheme that acts on a $k$-scheme $X$ via $a:\bd{M}\times X\ra X$, then the category $\Qcoh(X)_{\bd{M}}$ is isomorphic to the category of $h^{\Sch_k}_{\bd{M}}$-objects over $h^{\Sch_k}_a$ with respect to the fibered category $\Qcoh\ra \Sch_k$.
+\end{corollary}
+\begin{proof}
+This is a consequence of Proposition \ref{proposition:equivalent_description_of_equivariance_in_representable_case} and Fact \ref{fact:morphisms_of_equivariant_objects}.
+\end{proof}
+
+\section{Equivariant sheaves of quasi-coherent algebras}
+\noindent
+In this section we fix a commutative ring $k$.    
+Let $\bd{M}$ be a monoids scheme and let $X$ be a $k$-scheme together with an action $a:\bd{M}\times_kX\ra X$ of $\bd{M}$.
+
+
+\section{Empty section}
 
 \begin{proposition}\label{proposition:equivariant_morphisms_can_described_by_fibered_categories}
 Let $X,Y$ be objects of $\cB$ equipped with $G$-actions. Suppose that there exists a functor $F$ which makes the triangle
@@ -479,67 +966,14 @@ $$(\pi:\cP\ra T,\Phi\cdot \alpha:\cP\ra Y)$$
 \end{enumerate}
 \end{proposition}
 
-\section{Equivariant objects in a fibered category}
 
-\begin{definition}
-Let $p:\cE\ra cB$ be a fibered category, let $M:\cB^{\mathrm{op}}\ra \Mon$ be a presheaf of monoids on $\cB$ and let $X$ be an object of $\cB$ such that the presheaf $h^{\cB}_X$ admits an action of $M$ given by the morphism $\alpha:M\times h^{\cB}_X\ra h^{\cB}_X$. Consider an object $\xi$ in $p^{-1}(X)$. Suppose that there is an action $\beta:M\cdot p \times h^{\cE}_\xi\ra h^{\cE}_\xi$ of a monoid presheaf $M\cdot p$ on $h^{\cE}_\xi$ such that the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ M\cdot p\times h_{\xi}^{\cE} &  h_{\xi}^{\cE}    \\
-  M\cdot p\times h^{\cB}_X\cdot p    &  h^{\cB}_{X}\cdot p           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \beta  $} (m-1-2)
-(m-2-1) edge node[below] {$ \alpha_p $} (m-2-2)
-(m-1-1) edge node[left]  {$1_{M\cdot p}\times \big(\mbox{induced by }p\big) $} (m-2-1)
-(m-1-2) edge node[right] {$\mbox{ induced by }p  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative. Then a pair $(\xi,\beta)$ is called \textit{an $M$-equivariant object over $\alpha$}.
-\end{definition}
 
-\begin{definition}
-Suppose that $(\xi_1,\beta_1)$ and $(\xi_2,\beta_2)$ are objects over $X$ with $M$-equivariant structures. Then a morphism $\phi:\xi_1\ra \xi_2$ in $\cE$ is \textit{$M$-equivariant} if the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ M\cdot p\times h_{\xi_1}^{\cE} &  h_{\xi_1}^{\cE}    \\
-  M\cdot p\times h_{\xi_2}^{\cE} &  h_{\xi_2}^{\cE}           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \beta_1  $} (m-1-2)
-(m-2-1) edge node[below] {$ \beta_2  $} (m-2-2)
-(m-1-1) edge node[left]  {$ 1_{M\cdot p}\times h^{\cE}_\phi $} (m-2-1)
-(m-1-2) edge node[right] {$ \phi  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative.
-\end{definition}
-\noindent
-In particular, we have a category $p^{-1}(X)_{M}$ of $M$-equaivariant objects over $X$ and $M$-equivariant morphisms.\\
-Now we assume that $M$ is representable by some monoid object $\bd{M}$ of $\cB$. It turns out that in this special case one can 
-\noindent
-The following result will be extensively used in this section.
 
-\begin{proposition}\label{proposition:products_and_pullbacks_in_fibered_categories}
-Let $p:\cE\ra \cB$ be a fibered category, let $X,Y$ be objects of $\cB$ and let $\xi$ be an object of $\cE$ in $p^{-1}(X)$. Suppose that $\cB$ admits finite products. Then there exists a commutative triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ h^{\cB}_{Y}\cdot p \times h_{\xi}^{\cE} &                 &  h^{\cE}_{pr^*_X\xi}   \\
-                                   &  h^{\cE}_{\xi}  &                        \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \cong  $} (m-1-3)
-(m-1-1) edge node[below = 5pt, left = 2pt] {$  pr_{h^{\cE}_{\xi}}   $} (m-2-2)
-(m-1-3) edge node[below = 5pt, right = 2pt] {$ h^{\cE}_{(\widetilde{pr_X})_{\xi}}  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-in which top row is an isomorphism, where $(\widetilde{pr_X})_{\xi}:pr^*_X\xi\ra \xi$ is a cartesian arrow over $pr_X:Y\times X\ra X$.
-\end{proposition}
-\begin{proof}
-\end{proof}
+
+
+
+
+
 
 
 
