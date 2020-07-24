@@ -175,6 +175,261 @@ commutative and moreover, $\phi$ induces an $\RR$-linear map on fibers i.e. for 
 According to Example \ref{example:the_fibered_category_of_arrows} the inclusion $\bd{VectBund}_{\RR}\hookrightarrow \mathrm{Arr}(\Top)$ is a morphism of fibered categories.
 \end{example}
 
+\section{Example: Principal Bundles}
+\noindent
+We devote this section to another important example of a fibered category. We fix a category with finite limits $\cB$ and a monoid object $\bd{M}$ of $\cB$. We denote by $\mu:\bd{M}\times \bd{M}\ra \bd{M}$ and $e:\bd{1}\ra \bd{M}$ the multiplication and unit of $\bd{M}$, respectively.
+
+\begin{definition}
+Let $\cP$ be an object of $\cB$ equipped with an action of $\bd{M}$, let $T$ be an object of $\cB$ with trivial action of $\bd{M}$ and let $\pi:\cP\ra T$ be an $\bd{M}$-equivariant morphism with respect to these $\bd{M}$-actions. We say that $\bd{M}$-equivariant morphism $\pi$ is \textit{a trivial principal $\bd{M}$-bundle on $T$} if there exists an $\bd{M}$-equivariant isomorphism $\phi:\cP\ra \bd{M}\times T$ such that $\bd{M}\times T$ is equipped with an action of $\bd{M}$ given by $\mu\times 1_T$ and the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \cP &        & \bd{M}\times T  \\
+          &T &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$\phi $} (m-1-3)
+(m-1-1) edge node[below = 6pt, left = 1pt] {$ \pi  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ \mathrm{pr}_T $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\end{definition}
+
+\begin{definition}
+Let $\cP$ be an object of $\cB$ equipped with an action of $\bd{M}$, let $T$ be an object of $\cB$ with trivial action of $\bd{M}$ and let $\pi:\cP\ra T$ be a $\bd{M}$-equivariant morphism with respect to these $\bd{M}$-actions. Consider a sieve $S$ on $T$. For every arrow $g:\widetilde{T}\ra T$ in $S$ we construct a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ g^*\cP &  \cP    \\
+  \widetilde{T} &  T           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-2)
+(m-2-1) edge node[below] {$ g $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi_g $} (m-2-1)
+(m-1-2) edge node[right] {$ \pi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in $\cB$. We consider $g$ as an $\bd{M}$-equivariant morphism with respect to trivial $\bd{M}$-actions on $T$ and $\widetilde{T}$. Then there exists a unique action of $\bd{M}$ on $g^*\cP$ which makes $\pi_g$ into an $\bd{M}$-equivariant morphism in such a way that the square consists of objects of $\cB$ with $\bd{M}$-actions and $\bd{M}$-equivariant morphisms. Suppose that $\bd{M}$-equivariant morphism $\pi_g$ is a trivial principal $\bd{M}$-bundle on $\widetilde{T}$ for every $g$ in $S$. Then we say that \textit{$S$ trivializes $\pi$}.
+\end{definition}
+\noindent
+In the remaining part of this section we fix a Grothendieck topology $\cJ$ on $\cB$.
+
+\begin{definition}
+Let $\cP$ be an object of $\cB$ equipped with an action of $\bd{M}$, let $T$ be an object of $\cB$ with trivial action of $\bd{M}$ and let $\pi:\cP \ra T$ be a $\bd{M}$-equivariant morphism with respect to these $\bd{M}$-actions. Suppose that there exists a covering sieve $S$ in $\cJ(T)$ that trivializes $\pi$. Then $\pi$ is called \textit{a principal $\bd{M}$-bundle with respect to $\cJ$}.
+\end{definition}
+\noindent
+Now we define a category $\mathbb{B}\bd{M}$ that depends on the site $(\cB,\cJ)$. Its objects are principal $\bd{M}$-bundles with respect to $\cJ$ and if $\pi:\cP\ra T$ and $\psi:Q \ra Z$ are principal $\bd{M}$-bundles with respect to $\cJ$, then a morphism $\pi\ra \psi$ is a pair $(f,\phi)$ such that $f:T\ra Z$ and $\phi:\cP\ra Q$ are morphisms in $\cB$ such that $\phi$ is $\bd{M}$-equivariant and the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \cP &  Q           \\
+  T   &  Z           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1)
+(m-1-2) edge node[right] {$  \psi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. We have a functor $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ given by $p_{\bd{M},\cJ}\big((f,\phi)\big) = f$. Let $\psi:Q\ra Z$ be a principal $\bd{M}$-bundle with respect to $\cJ$ and let $f:T\ra Z$ be a morphism. Consider the cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ f^*Q &  Q           \\
+  T   &  Z           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1)
+(m-1-2) edge node[right] {$  \psi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in $\cB$. Then by the universal property there exists a unique action of $\bd{M}$ on $f^*Q$ such that the square above consists of $\bd{M}$-equivariant morphisms ($T,Z$ are equipped with trivial $\bd{M}$-actions). Moreover, with respect to this action $\psi:f^*Q\ra T$ becomes a principal $\bd{M}$-bundle with respect to $\cJ$. Indeed, if $S$ is in $\cJ(Z)$ and $S$ trivializes $\psi$, then its pullback $f^*S$ trivializes $\pi$ and is an element of $\cJ(T)$ (by definition of a Grothendieck topology). This shows that $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ is a fibered category. Moreover, we have a functor $\mathbb{B}\bd{M}\ra \mathrm{Arr}(\cB)$ that forgets about $\bd{M}$-actions. Hence there exists commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \mathbb{B}\bd{M} &        & \mathrm{Arr}(\cB)  \\
+          &\cB &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ $} (m-1-3)
+(m-1-1) edge node[below = 6pt, left = 1pt] {$ p_{\bd{M},\cJ}  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{\mathrm{Arr}} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+According to Example \ref{example:the_fibered_category_of_arrows} and description of cartesian morphisms of $p_{\bd{M},\cJ}$ the functor $\mathbb{B}\bd{M}\ra \mathrm{Arr}(\cB)$ described above is a morphism of fibered categories.
+
+\begin{definition}
+$p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ is called \textit{the fibered category of principal $\bd{M}$-bundles on $(\cB,\cJ)$}.
+\end{definition}
+\noindent
+Suppose that $X$ is an object of $\cB$ equipped with an action $a:\bd{M}\times X\ra X$ of $\bd{M}$. We define a category $[X/\bd{M}]$ depending on $a$ and the site $(\cB,\cJ)$ as follows. Its objects are pairs $(\pi,\alpha)$ such that $\pi$ is a principal $\bd{M}$-bundle with respect to $\cJ$ and $\alpha$ is an $\bd{M}$-equivariant morphism. We depict them by diagrams
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \cP &  X           \\
+  T   &             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \alpha  $} (m-1-2)
+(m-1-1) edge node[left] {$\pi $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+Suppose that $(\pi:\cP\ra T,\alpha:\cP\ra X)$ and $(\psi:Q\ra Z,\beta:Q\ra X)$ are two such objects. Then a morphism $(\pi,\alpha)\ra (\psi,\beta)$ is a morphism $(f,\phi):\pi\ra \psi$ in $\mathbb{B}\bd{M}$ such that $\alpha = \beta \cdot \phi$. We have a functor $[X/\bd{M}] \ra \mathbb{B}\bd{M}$ which sends $(\pi, \alpha)$ to $\pi$. We denote by $p_{a,\cJ}:[X/\bd{M}]\ra \cB$ the composition of this functor $[X/\bd{M}] \ra \mathbb{B}\bd{M}$ with $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$. By description of cartesian morphisms of $p_{\bd{M},\cJ}$ we deduce that $p_{a,\cJ}$ is a fibered category. We have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ [X/\bd{M}]  &        & \mathbb{B}\bd{M}  \\
+          &\cB &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-3)
+(m-1-1) edge node[below = 6pt, left = 1pt] {$ p_{a,\cJ}  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{\bd{M},\cJ} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+and the functor $[X/\bd{M}]\ra \mathbb{B}\bd{M}$ described above is a morphism of fibered categories. Note that if $\bd{1}$ is a terminal object of $\cB$ equipped with trivial action of $\bd{M}$, then we have a canonical isomorphism $[\bd{1}/\bd{M}] \cong \mathbb{B}\bd{M}$ of categories over $\cB$.
+
+\begin{definition}
+$p_{a,\cJ}:\mathbb{B}\bd{M}\ra \cB$ is called \textit{the quotient fibered category of $\bd{M}$-object $X$ on $(\cB,\cJ)$}.
+\end{definition}
+\noindent
+Results below show that up to some mild assumptions on Grothendieck topology $\cJ$ fibered category $p_{a,\cJ}:[X/\bd{M}]\ra \cB$ encapsulates all essential information concerning action of $\bd{M}$ on $X$. We start with the following observation.
+
+\begin{fact}\label{fact:functor_over_principal_bundles_is_morphism_of_quotient_fibered_categories}
+Let $X,Y$ be objects of $\cB$ equipped with actions $a:\bd{M}\times X\ra X$ and $b:\bd{M}\times Y\ra Y$ of $\bd{M}$. Consider a functor $F:[X/\bd{M}]\ra [Y/\bd{M}]$ such that the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ [X/\bd{M}]   &             & {}[Y/\bd{M}] \\
+          & \mathbb{B}\bd{M} &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ F $} (m-1-3)
+(m-1-1) edge node[below = 6pt, left = 1pt] {$ $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative, where two other sides are canonical functors. Then $F$ is a morphism of fibered categories $p_{a,\cJ}$ and $p_{b,\cJ}$.
+\end{fact}
+\begin{proof}
+The commutativity of the triangle implies that $F\cdot p_{b,\cJ} = p_{a,\cJ}$. Since a morphism in $[X/\bd{M}]$ is cartesian with respect to $p_{a,\cJ}$ if and only if its image under the canonical functor $[X/\bd{M}]\ra \mathbb{B}\bd{M}$ is cartesian with respect to $p_{\bd{M},\cJ}$ and the same holds for $p_{b,\cJ}$, we derive that $F$ sends cartesian morphisms of $p_{a,\cJ}$ to cartesian morphisms of $p_{b,\cJ}$. 
+\end{proof}
+\noindent
+Let $X,Y$ be objects of $\cB$ equipped with actions $a:\bd{M}\times X\ra X$ and $b:\bd{M}\times Y\ra Y$ of $\bd{M}$. We denote the class of functors in Fact \ref{fact:functor_over_principal_bundles_is_morphism_of_quotient_fibered_categories} by $\Mor_{\mathbb{B}\bd{M}}\left([X/\bd{M}],[Y/\bd{M}]\right)$. We also denote (by abuse of notation) the class of $\bd{M}$-equivariant morphism $(X,a)\ra (Y,b)$ by $\Mor_{\bd{M}}\left(X,Y\right)$.
+
+\begin{theorem}\label{theorem:equivariant_morphisms_can_described_by_fibered_categories}
+Let $(\cB,\cJ)$ be a Grothendieck site and assume that representable presheaves on $\cB$ are separated with respect to $\cJ$. Let $X,Y$ be objects of $\cB$ equipped with $\bd{M}$-actions $a:\bd{M}\times X\ra X$ and $b:\bd{M}\times Y\ra Y$, respectively. Then there exists a bijection
+$$\Mor_{\bd{M}}\left(X,Y\right)\cong \Mor_{\mathbb{B}\bd{M}}\big([X/\bd{M}],[Y/\bd{M}]\big)$$
+that sends an $\bd{M}$-equivariant morphism $f$ to a functor $F:[X/\bd{M}]\ra [Y/\bd{M}]$ given by
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=1em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \cP &  X &   &     & \cP   &   Y         \\
+      &    &{} & {}  &       &           \\
+   T  &    &   &     &  T    &           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ d $} (m-1-2)
+(m-1-1) edge node[left] {$ \pi  $} (m-3-1)
+
+(m-1-5) edge node[above]  {$ f\cdot d $} (m-1-6)
+(m-1-5) edge node[left] {$ \pi $} (m-3-5);
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-2-3) edge node[above]  {$ F $} (m-2-4);
+\end{tikzpicture}
+\end{center}
+\end{theorem}
+\begin{proof}
+We first describe certain object of $[X/\bd{M}]$. Observe that $(\bd{M}\times X,\mu\times 1_X)$ is an object of $\cB$ equipped with the action of $\bd{M}$. Next the projection $\mathrm{pr}_X:\bd{M}\times X\ra X$ can be considered as an $\bd{M}$-equivariant morphism from this $\bd{M}$-object to $X$ with the trivial action of $\bd{M}$. Since the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}\times \bd{M}\times X &  \bd{M}\times X    \\
+  \bd{M}\times X              &  X           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_{\bd{M}} \times a $} (m-1-2)
+(m-2-1) edge node[below] {$ a  $} (m-2-2)
+(m-1-1) edge node[left]  {$ \mu\times 1_X $} (m-2-1)
+(m-1-2) edge node[right] {$ a $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative, we derive that $a$ is an $\bd{M}$-equivariant morphism $\left(\bd{M}\times X,\mu\times 1_X\right)\ra \left(X,a\right)$. This gives $(\mathrm{pr}_X,a)$ the structure of an object of $[X/\bd{M}]$. Fix a functor $F$ in $\Mor_{\mathbb{B}\bd{M}}\big([X/\bd{M}],[Y/\bd{M}]\big)$. The functor $F$ sends $\left(\mathrm{pr}_X,a\right)$ to some object of $[Y/\bd{M}]$. This object is necessarily of the form $(\mathrm{pr}_X,\alpha)$ for some $\bd{M}$-equivariant morphism $\alpha:\left(\bd{M}\times X,\mu\times 1_X\right) \ra \left(Y,b\right)$. Indeed, this follows from the fact that $F$ is over $\mathbb{B}\bd{M}$. Now if $F$ is determined by some $\bd{M}$-equivariant morphism $f$ as it is described in the statement, then $\alpha = f\cdot a$ and hence $f = \alpha \cdot \langle e,1_X\rangle$. This proves that the map $\Mor_{\bd{M}}\big(X,Y\big)\ra \Mor_{\mathbb{B}\bd{M}}\big([X/\bd{M}],[Y/\bd{M}]\big)$ described in the statement is injective. Our goal is to show that it is surjective. That is our goal is to show that for the functor $F$ in $\Mor_{\mathbb{B}\bd{M}}\big([X/\bd{M}],[Y/\bd{M}]\big)$ a morphism $f = \alpha \cdot \langle e, 1_X\rangle$ is $\bd{M}$-equivariant and determines $F$ as it is described in the statement. First we fix some object $T$ of $\cB$ and the projection $\mathrm{pr}_T:\bd{M}\times T\ra T$ considered as a trivial principal $\bd{M}$-bundle. Let $(\mathrm{pr}_T,c)$ be an object of $[X/\bd{M}]$. Then $c$ is an $\bd{M}$-equivariant morphism $c:\left(\bd{M}\times T,\mu\times 1_T\right) \ra (X,a)$. Functor $F$ sends $(\mathrm{pr}_T,c)$ to some object $(\mathrm{pr}_T,\gamma)$. We claim that $\gamma = f \cdot c$. Let $\mathrm{pr}_{23}:\bd{M}\times \bd{M}\times T\ra \bd{M}\times T$ be the projection on the last two factors. There are diagrams
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}\times \bd{M} \times T  &  \bd{M}\times T  & X    &   \bd{M}\times \bd{M}\times T     &  \bd{M}\times X  & X          \\
+  \bd{M}\times T                &  T               &      &   \bd{M}\times T                  &  X               &          \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \mu\times 1_T $} (m-1-2)
+(m-2-1) edge node[below] {$ \mathrm{pr}_T $} (m-2-2)
+(m-1-1) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-1)
+(m-1-2) edge node[right] {$ \mathrm{pr}_T $} (m-2-2)
+(m-1-2) edge node[above] {$ c $} (m-1-3)
+
+(m-1-4) edge node[above] {$ 1_{\bd{M}}\times c $} (m-1-5)
+(m-2-4) edge node[below] {$ c $} (m-2-5)
+(m-1-4) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-4)
+(m-1-5) edge node[right] {$ \mathrm{pr}_X $} (m-2-5)
+(m-1-5) edge node[above] {$ a $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+representing morphisms
+$$(\mathrm{pr}_T,\mu\times 1_T):\left(\mathrm{pr}_{23},c\cdot (\mu\times 1_T)\right)\ra \left(\mathrm{pr}_T,c\right),\,(c,1_{\bd{M}}\times c):\left(\mathrm{pr}_{23},a\cdot (1_{\bd{M}}\times c)\right) \ra \left(\mathrm{pr}_X,a\right)$$
+in $[X/\bd{M}]$. Moreover, $c$ is $\bd{M}$-equivariant $\left(\bd{M}\times T,\mu\times 1_T\right) \ra (X,a)$ and hence we derive that $c\cdot \left(\mu\times 1_T\right) = a\cdot \left(c\times 1_{\bd{M}}\right)$. Thus the morphisms in $[X/\bd{M}]$ described above have common domain. Since $F$ is over $\mathbb{B}\bd{M}$, we derive that their images under $F$ are 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}\times \bd{M} \times T  &  \bd{M}\times T  & X    &   \bd{M}\times \bd{M}\times T     &  \bd{M}\times X  & X          \\
+  \bd{M}\times T                &  T               &      &   \bd{M}\times T                  &  X               &          \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \mu\times 1_T $} (m-1-2)
+(m-2-1) edge node[below] {$ \mathrm{pr}_T $} (m-2-2)
+(m-1-1) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-1)
+(m-1-2) edge node[right] {$ \mathrm{pr}_T $} (m-2-2)
+(m-1-2) edge node[above] {$ \gamma $} (m-1-3)
+
+(m-1-4) edge node[above] {$ 1_{\bd{M}}\times c $} (m-1-5)
+(m-2-4) edge node[below] {$ c $} (m-2-5)
+(m-1-4) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-4)
+(m-1-5) edge node[right] {$ \mathrm{pr}_X $} (m-2-5)
+(m-1-5) edge node[above] {$ \alpha $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+This implies that $\gamma \cdot (\mu\times 1_T) = \alpha \cdot (1_{\bd{M}}\times c)$. We deduce that
+$$\gamma = \gamma \cdot (\mu \times 1_T)\cdot \langle e, 1_{\bd{M}\times X}\rangle = \alpha \cdot (1_{\bd{M}}\times c) \cdot  \langle e, 1_{\bd{M}\times X}\rangle = \alpha \cdot \langle e,1_X\rangle \cdot c = f\cdot c$$
+and the claim is proved. We apply this to $\alpha$ to derive that $\alpha = f\cdot a$. Next recall that $\alpha \cdot \left(\mu \times 1_X\right) = b\cdot \left(1_{\bd{M}} \times \alpha \right)$ because $\alpha$ is an $\bd{M}$-equivariant morphism $\left(\bd{M}\times X, \mu\times 1_X\right)\ra (Y,b)$. Thus
+$$b\cdot \left(1_{\bd{M}}\times f\right) = b\cdot \left(1_{\bd{M}}\times \alpha\right)\cdot \left(1_{\bd{M}}\times \langle e, 1_X\rangle \right) = \alpha \cdot \left(\mu \times 1_X\right)\cdot \left(1_{\bd{M}}\times \langle e, 1_X\rangle \right) = \alpha$$
+Hence $f\cdot a = \alpha = b\cdot \left(1_{\bd{M}}\times f\right)$. Thus $f$ is $\bd{M}$-equivariant and $F$ is given as in the statement on the subcategory of $[X/\bd{M}]$ consisting of trivial principal $\bd{M}$-bundles. Now consider any principal $\bd{M}$-bundle $\pi:\cP\ra T$ with respect to $\cJ$ and let $d:\cP\ra X$ be a $\bd{M}$-equivariant morphism to $(X,a)$. We know that $F$ sends $(\pi,d)$ to some object of $[Y/\bd{M}]$ of the form $(\pi,\delta)$. It suffices to prove that $\delta = f\cdot d$. For this consider a sieve $S$ in $\cJ(T)$ such that $S$ trivializes $\pi$. Pick $g:\widetilde{T}\ra T$ in $S$ and a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ g^*\cP &  \cP    \\
+  \widetilde{T} &  T           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ g'  $} (m-1-2)
+(m-2-1) edge node[below] {$ g $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi_g $} (m-2-1)
+(m-1-2) edge node[right] {$ \pi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Then $(\pi_g,d\cdot g')$ is an object of $[X/\bd{M}]$. Since $F$ is over $\mathbb{B}\bd{M}$, we derive that $F(\pi_g,d\cdot g') = (\pi_g,\delta \cdot g')$. By definition $\pi_g$ is trivial $\bd{M}$-bundle. Thus (from what we proved above) we have
+$$\delta\cdot g' = f\cdot d\cdot g'$$
+This holds for pullback $g'$ of every $g$ in $S$ along $\pi$. These pullbacks $\{g'\}_{g\in S}$ generate some sieve $S'$ on $\cP$ and the formula
+$$\delta\cdot h = f\cdot d\cdot h$$
+holds for every $h$ in $S'$. Moreover, $S'$ is a covering sieve on a site $(\cB,\cJ)$ i.e. $S'\in \cJ(\cP)$. According to the assumption on $\cJ$ we infer that $h^{\cB}_{\cP} = \Mor_{\cB}\left(-,\cP\right):\cB^{\mathrm{op}}\ra \Set$ is a separated presheaf with respect to $\cJ$. Thus the formula
+$$\delta\cdot h = f\cdot d\cdot h$$
+which holds for every $h$ in $S'$ implies that $\delta = f\cdot d$.
+\end{proof}
+
 \section{Pseudo-functors and fibered categories of elements}
 \noindent
 Pseudo-functors are certain non-strict 2-functors. In this section we introduce a procedure that enables to construct a fibered category out of a pseudo-functor. We start by defining this notion.
@@ -259,7 +514,7 @@ Let $\cB$ be a category and let $F$ be a pseudo-functor on $\cB$. A fibered cate
 It is possible to construct a pseudo-functor out of a fibered category. We will give a brief outline of this construction. For this we introduce notation that will be also used in other considerations.
 
 \begin{definition}
-Let $p:\cE\ra \cB$ be a fibered category. For every object $X$ of $\cB$ we denote by $p^{-1}(X)$ a subcategory of $\cE$ consisting of all morphisms $\phi:\xi\ra \eta$ such that $p(\phi) = 1_X$. Then $p^{-1}(X)$ is called \textit{the fiber of $p$ over $X$}.
+Let $p:\cE\ra \cB$ be a fibered category. For every object $X$ of $\cB$ we denote by $p^{-1}(X)$ a subcategory of $\cE$ consisting of all morphisms $\phi:\xi\ra \eta$ such that $p(\phi) = 1_X$. We call this category \textit{the fiber of $p$ over $X$}.
 \end{definition}
 \noindent
 Suppose now that $p:\cE\ra \cB$ is a fibered category. Let $f:X\ra Y$ be a morphism. For every object $\eta$ in $p^{-1}(Y)$ we pick its pullback $\tilde{f}_{\eta}:f^*\eta\ra \eta$ along $f$. By universal property of cartesian morphisms we deduce that this induces a functor $f^*:p^{-1}(Y)\ra p^{-1}(X)$. Universal property of cartesian morphisms implies also the following assertions.
@@ -400,7 +655,7 @@ We denote it by $\Alg\left(\Qcoh\right)\ra \Sch_k$.
 \end{definition}
 
 \begin{remark}\label{remark:from_qc_algebras_to_qc_sheaves_over_schemes}
-For every $k$-scheme we also have a canonical functor $|-|:\Alg\left(\Qcoh(X)\right)\ra \Qcoh(X)$ that forgets about an algebra structure. The collection of all these functors for all $k$-schemes gives rise to a morphism of fibered categories
+For every $k$-scheme $X$ we also have a canonical functor $|-|:\Alg\left(\Qcoh(X)\right)\ra \Qcoh(X)$ that forgets about an algebra structure. The collection of all these functors for all $k$-schemes gives rise to a morphism of fibered categories
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -416,7 +671,7 @@ For every $k$-scheme we also have a canonical functor $|-|:\Alg\left(\Qcoh(X)\ri
 \end{remark}
 
 \begin{remark}\label{remark:from_qc_algebras_to_the_category_of_arrows_over_schemes}
-Note that $\mathrm{Arr}(\Sch_k)$ admits a fibered subcategory that consists of affine morphisms $\pi:\widetilde{X}\ra X$ of $k$-schemes. We denote this fibered category by $\bd{Aff}\left(\Sch_k\right)\ra \Sch_k$. For every $k$-scheme $X$ we have the relative affine spectrum functor $\Spec_X:\Alg\left(\Qcoh(X)\right)\ra \bd{Aff}_X$. It is an equivalence of categories. Moreover, if $f:X\ra Y$ is a morphism of $k$-schemes and $\cA$ is a quasi-coherent $\cO_Y$-algebra, then the canonical square
+Note that $\mathrm{Arr}(\Sch_k)$ admits a fibered subcategory that consists of affine morphisms $\pi:\widetilde{X}\ra X$ of $k$-schemes. We denote this fibered category by $\bd{Aff}\left(\Sch_k\right)\ra \Sch_k$. For every $k$-scheme $X$ we have the relative affine spectrum functor $\Spec_X:\Alg\left(\Qcoh(X)\right)\ra \bd{Aff}_X$, where $\bd{Aff}_X$ is the category of schemes affine over $X$. It is an equivalence of categories and note that $\bd{Aff}_X$ is the fiber of $\bd{Aff}\left(\Sch_k\right)\ra \Sch_k$ over $X$. Moreover, if $f:X\ra Y$ is a morphism of $k$-schemes and $\cA$ is a quasi-coherent $\cO_Y$-algebra, then the canonical square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -430,7 +685,7 @@ Note that $\mathrm{Arr}(\Sch_k)$ admits a fibered subcategory that consists of a
 (m-1-2) edge node[right] {$  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is cartesian. Thus the collection of all these functors for all $k$-schemes gives rise to a morphism of fibered categories
+is cartesian. Thus the collection of functors $\Spec_X$ for all $k$-schemes $X$ gives rise to a morphism of fibered categories
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -447,12 +702,12 @@ is cartesian. Thus the collection of all these functors for all $k$-schemes give
 
 \section{Equivariant objects in fibered categories}
 \noindent
-Let $k$ be a commutative ring. The following notion is very useful for studying actions of algebraic groups and monoids.
+Let $k$ be a commutative ring. We fix a monoid $k$-scheme $\bd{M}$ with multiplication morphism $\mu$. The following notion is useful for studying actions of algebraic groups and monoids.
 
 \begin{definition}
 Let $X$ be a $k$-scheme and let $\bd{M}$ be a monoid $k$-scheme with an action $a:\bd{M}\times_kX\ra X$ on $X$. We denote by $\pi:\bd{M}\times_kX\ra X$ the projection. Consider a pair $(\cF,\tau)$ consisting of a quasi-coherent sheaf $\cF$ on $X$ and an isomorphism $\tau:\pi^*\cF \ra a^* \cF$. We call it \textit{a quasi-coherent $\bd{M}$-sheaf on $(X,a)$} if the following equality
 $$(\mu\times_k1_X)^*\phi = (1_{\bd{M}} \times_k a)^*\phi \cdot \pi_{2,3}^*\phi$$
-holds, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$ and $\pi_{2,3}:\bd{M}\times_k \bd{M} \times_k X \ra \bd{M} \times_kX$ is the projection on last two factors.
+holds, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$ and $\pi_{2,3}:\bd{M}\times_k \bd{M} \times_k X \ra \bd{M} \times_kX$ is the projection on the last two factors.
 \end{definition}
 
 \begin{definition}
@@ -502,7 +757,7 @@ Consider morphisms $f_1,f_2,g_1,g_2$ in $\cB$ such that $g_1\cdot f_1 = g_2\cdot
 (m-1-1) edge node[above] {$ \widetilde{f_1}_{g_1^*\eta} $} (m-1-2)
 (m-2-1) edge node[below] {$ \widetilde{g_2}_{\eta} $} (m-2-2)
 (m-1-1) edge node[left]  {$ \widetilde{f_2}_{g_2^*\eta} $} (m-2-1)
-(m-1-2) edge node[right] {$ \widetilde{g_2}_{\eta} $} (m-2-2);
+(m-1-2) edge node[right] {$ \widetilde{g_1}_{\eta} $} (m-2-2);
 \end{tikzpicture}
 \end{center}
 is commutative.
@@ -556,7 +811,7 @@ This is a consequence of the fact that both squares
 are cartesian.
 \end{proof}
 \noindent
-Fix now two objects $\bd{M}$ and $X$ on $\cB$ such that product of $\bd{M}$ and $X$ exists. Denote by $\pi: \bd{M} \times X \ra X$ the projection on $X$. Let $a:\bd{M} \times X\ra X$ be a morphism in $\cB$, let $\xi$ be an object in $p^{-1}(X)$ and let $\sigma:h^{\cB}_\bd{M} \cdot p \times h^{\cE}_{\xi}\ra h^{\cE}_{\xi}$ be a morphism of presheaves on $\cE$. Suppose that the square
+Fix now two objects $\bd{M}$ and $X$ of $\cB$ such that the product of $\bd{M}$ and $X$ exists. Denote by $\pi: \bd{M} \times X \ra X$ the projection on $X$. Let $a:\bd{M} \times X\ra X$ be a morphism in $\cB$, let $\xi$ be an object in $p^{-1}(X)$ and let $\sigma:h^{\cB}_\bd{M} \cdot p \times h^{\cE}_{\xi}\ra h^{\cE}_{\xi}$ be a morphism of presheaves on $\cE$. Suppose that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -604,10 +859,10 @@ Let $\bd{M}$ be a monoid object in $\cB$ and let $X$ be an object of $\cB$ equip
 \end{center}
 is commutative. Then the following assertions are equivalent.
 \begin{enumerate}[label= \emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item $\sigma$ is an action of monoid presheaf $h^{\cB}_{\bd{M}}\cdot p$ on a presheaf $h^{\cE}_{\xi}$.
+\item $\sigma$ is an action of a monoid presheaf $h^{\cB}_{\bd{M}}\cdot p$ on a presheaf $h^{\cE}_{\xi}$.
 \item Morphism $\tau^{\sigma}$ satisfies (up to identifications described in Remark \ref{remark:unique_identification}) the identities
 $$(\mu \times 1_X)^*\tau^{\sigma} = (1_{\bd{M}} \times  a)^*\tau^{\sigma} \cdot \pi_{2,3}^*\tau^{\sigma},\,\langle e, 1_{X} \rangle^*\tau^{\sigma} = 1_{\xi}$$
-where $\mu: \bd{M} \times \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$, $\pi_{2,3}:\bd{M}\times  \bd{M} \times  X \ra \bd{M} \times X$ is the projection on last two factors and $e:\bd{1}\ra \bd{M}$ is the unit of $\bd{M}$.
+where $\mu: \bd{M} \times \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$, $\pi_{2,3}:\bd{M}\times  \bd{M} \times  X \ra \bd{M} \times X$ is the projection on the last two factors and $e:\bd{1}\ra \bd{M}$ is the unit of $\bd{M}$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -624,7 +879,7 @@ First note that the commutative square of presheaves
  h^{\cB}_{\bd{M}\times \bd{M}\times X}\cdot p & h^{\cB}_{\bd{M}\times X}\cdot p  \\};
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$ 1_{h^{\cB}_{\bd{M}}\cdot p} \times h^{\cE}_{\widetilde{a}_{\xi}} $} (m-1-2)
-(m-2-1) edge node[below] {$ h^{\cB}_{1_{\bd{M}}\times a} $} (m-2-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_{1_{\bd{M}}\times a}\right)_p $} (m-2-2)
 (m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
 (m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
 \end{tikzpicture}
@@ -679,7 +934,7 @@ We deduce that
 $$\sigma \cdot \left(1_{h^{\cB}_{\bd{M}}\cdot p} \times \sigma \right) = \sigma \cdot \left(1_{h^{\cB}_{\mu}\cdot p} \times 1_{h^{\cE}_{\xi}} \right)$$
 if and only if
 $$\widetilde{a}_{\xi} \cdot \widetilde{\left(1_{\bd{M}}\times a\right)}_{a^*\xi}\cdot \left(1_{\bd{M}}\times a\right)^*\tau^{\sigma}\cdot \pi^*_{23}\tau^\sigma =  \widetilde{a}_{\xi}\cdot \widetilde{\left(\mu\times 1_X\right)}_{a^*\xi}\cdot \left(\mu\times 1_X\right)^*\tau^{\sigma}$$
-Since $a\cdot (1_{\bd{M}}\times a) = a\cdot (\mu \times 1_X)$ and according to Remark \ref{remark:unique_identification}, we have canonical identification $\widetilde{a}_{\xi} \cdot \widetilde{\left(1_{\bd{M}}\times a\right)}_{a^*\xi} = \widetilde{a}_{\xi}\cdot \widetilde{\left(\mu\times 1_X\right)}_{a^*\xi}$. Therefore, we deduce that the formula above holds if and only if
+Since $a\cdot (1_{\bd{M}}\times a) = a\cdot (\mu \times 1_X)$ and according to Remark \ref{remark:unique_identification}, we have canonical identification $\widetilde{a}_{\xi} \cdot \widetilde{\left(1_{\bd{M}}\times a\right)}_{a^*\xi} = \widetilde{a}_{\xi}\cdot \widetilde{\left(\mu\times 1_X\right)}_{a^*\xi}$ of these cartesian morphisms. Therefore, we deduce that the formula above holds if and only if
 $$\left(1_{\bd{M}}\times a\right)^*\tau^{\sigma}\cdot \pi^*_{23}\tau^\sigma = \left(\mu\times 1_X\right)^*\tau^{\sigma}$$
 This proves our first claim. Now it suffices to prove that
 $$\sigma \cdot \langle h^{\cB}_{e}\cdot p, 1_{h^{\cE}_{\xi}} \rangle = 1_{h^{\cE}_{\xi}}$$
@@ -840,244 +1095,7 @@ In this section we fix a commutative ring $k$.
 Let $\bd{M}$ be a monoids scheme and let $X$ be a $k$-scheme together with an action $a:\bd{M}\times_kX\ra X$ of $\bd{M}$.
 
 
-\section{Example: Principal Bundles}
-\noindent
-We devote this section to another important example of a fibered category. We fix a category with finite limits $\cB$ and a monoid object $\bd{M}$ of $\cB$. We denote by $\mu:\bd{M}\times \bd{M}\ra \bd{M}$ and $e:\bd{1}\ra \bd{M}$ the multiplication and unit of $\bd{M}$, respectively.
 
-\begin{definition}
-Let $\cP$ be an object of $\cB$ equipped with an action of $\bd{M}$, let $T$ be an object of $\cB$ with trivial action of $\bd{M}$ and let $\pi:\cP\ra T$ be an $\bd{M}$-equivariant morphism with respect to these $\bd{M}$-actions. We say that $\bd{M}$-equivariant morphism $\pi$ is \textit{a trivial principal $\bd{M}$-bundle on $T$} if there exists an $\bd{M}$-equivariant isomorphism $\phi:\cP\ra \bd{M}\times T$ such that $\bd{M}\times T$ is equipped with an action of $\bd{M}$ given by $\mu\times 1_T$ and the triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
-{  \cP &        & \bd{M}\times T  \\
-          &T &  \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$\phi $} (m-1-3)
-(m-1-1) edge node[below = 6pt, left = 1pt] {$ \pi  $} (m-2-2)
-(m-1-3) edge node[below = 6pt, right = 1pt] {$ \mathrm{pr}_T $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative.
-\end{definition}
-
-\begin{definition}
-Let $\cP$ be an object of $\cB$ equipped with an action of $\bd{M}$, let $T$ be an object of $\cB$ with trivial action of $\bd{M}$ and let $\pi:\cP\ra T$ be a $\bd{M}$-equivariant morphism with respect to these $\bd{M}$-actions. Consider a sieve $S$ on $T$. For every arrow $g:\widetilde{T}\ra T$ in $S$ we construct a cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ g^*\cP &  \cP    \\
-  \widetilde{T} &  T           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$   $} (m-1-2)
-(m-2-1) edge node[below] {$ g $} (m-2-2)
-(m-1-1) edge node[left] {$ \pi_g $} (m-2-1)
-(m-1-2) edge node[right] {$ \pi $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-in $\cB$. We consider $g$ as an $\bd{M}$-equivariant morphism with respect to trivial $\bd{M}$-actions on $T$ and $\widetilde{T}$. Then there exists a unique action of $\bd{M}$ on $g^*\cP$ which makes $\pi_g$ into an $\bd{M}$-equivariant morphism in such a way that the square consists of objects of $\cB$ with $\bd{M}$-actions and $\bd{M}$-equivariant morphisms. Suppose that $\bd{M}$-equivariant morphism $\pi_g$ is a trivial principal $\bd{M}$-bundle on $\widetilde{T}$ for every $g$ in $S$. Then we say that \textit{$S$ trivializes $\pi$}.
-\end{definition}
-\noindent
-In the remaining part of this section we fix a Grothendieck topology $\cJ$ on $\cB$.
-
-\begin{definition}
-Let $\cP$ be an object of $\cB$ equipped with an action of $\bd{M}$, let $T$ be an object of $\cB$ with trivial action of $\bd{M}$ and let $\pi:\cP \ra T$ be a $\bd{M}$-equivariant morphism with respect to these $\bd{M}$-actions. Suppose that there exists a covering sieve $S$ in $\cJ(T)$ that trivializes $\pi$. Then $\pi$ is called \textit{a principal $\bd{M}$-bundle with respect to $\cJ$}.
-\end{definition}
-\noindent
-Now we define a category $\mathbb{B}\bd{M}$ that depends on the site $(\cB,\cJ)$. Its objects are principal $\bd{M}$-bundles with respect to $\cJ$ and if $\pi:\cP\ra T$ and $\psi:Q \ra Z$ are principal $\bd{M}$-bundles with respect to $\cJ$, then a morphism $\pi\ra \psi$ is a pair $(f,\phi)$ such that $f:T\ra Z$ and $\phi:\cP\ra Q$ are morphisms in $\cB$ such that $\phi$ is $\bd{M}$-equivariant and the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \cP &  Q           \\
-  T   &  Z           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
-(m-2-1) edge node[below] {$ f $} (m-2-2)
-(m-1-1) edge node[left] {$\pi $} (m-2-1)
-(m-1-2) edge node[right] {$  \psi $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative. We have a functor $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ given by $p_{\bd{M},\cJ}\big((f,\phi)\big) = f$. Let $\psi:Q\ra Z$ be a principal $\bd{M}$-bundle with respect to $\cJ$ and let $f:T\ra Z$ be a morphism. Consider the cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ f^*Q &  Q           \\
-  T   &  Z           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \phi  $} (m-1-2)
-(m-2-1) edge node[below] {$ f $} (m-2-2)
-(m-1-1) edge node[left] {$\pi $} (m-2-1)
-(m-1-2) edge node[right] {$  \psi $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-in $\cB$. Then by the universal property there exists a unique action of $\bd{M}$ on $f^*Q$ such that the square above consists of $\bd{M}$-equivariant morphisms ($T,Z$ are equipped with trivial $\bd{M}$-actions). Moreover, with respect to this action $\psi:f^*Q\ra T$ becomes a principal $\bd{M}$-bundle with respect to $\cJ$. Indeed, if $S$ is in $\cJ(Z)$ and $S$ trivializes $\psi$, then its pullback $f^*S$ trivializes $\pi$ and is an element of $\cJ(T)$ (by definition of a Grothendieck topology). This shows that $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ is a fibered category. Moreover, we have a functor $\mathbb{B}\bd{M}\ra \mathrm{Arr}(\cB)$ that forgets about $\bd{M}$-actions. Hence there exists commutative triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
-{  \mathbb{B}\bd{M} &        & \mathrm{Arr}(\cB)  \\
-          &\cB &  \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ $} (m-1-3)
-(m-1-1) edge node[below = 6pt, left = 1pt] {$ p_{\bd{M},\cJ}  $} (m-2-2)
-(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{\mathrm{Arr}} $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-According to Example \ref{example:the_fibered_category_of_arrows} and description of cartesian morphisms of $p_{\bd{M},\cJ}$ the functor $\mathbb{B}\bd{M}\ra \mathrm{Arr}(\cB)$ described above is a morphism of fibered categories.
-
-\begin{definition}
-$p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ is called \textit{the fibered category of principal $\bd{M}$-bundles on $(\cB,\cJ)$}.
-\end{definition}
-\noindent
-From now suppose that $X$ is an object of $\cB$ equipped with an action $a:\bd{M}\times X\ra X$ of $\bd{M}$. We define a category $[X/\bd{M}]$ depending on $a$ and the site $(\cB,\cJ)$ as follows. Its objects are pairs $(\pi,\alpha)$ such that $\pi$ is a principal $\bd{M}$-bundle with respect to $\cJ$ and $\alpha$ is a $\bd{M}$-equivariant morphism. We depict them by diagrams
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \cP &  X           \\
-  T   &             \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \alpha  $} (m-1-2)
-(m-1-1) edge node[left] {$\pi $} (m-2-1);
-\end{tikzpicture}
-\end{center}
-Suppose that $(\pi:\cP\ra T,\alpha:\cP\ra X)$ and $(\psi:Q\ra Z,\beta:Q\ra X)$ are two such objects. Then a morphism $(\pi,\alpha)\ra (\psi,\beta)$ is a morphism $(f,\phi):\pi\ra \psi$ in $\mathbb{B}\bd{M}$ such that $\alpha = \beta \cdot \phi$. We have a functor $[X/\bd{M}] \ra \mathbb{B}\bd{M}$ which sends $(\pi, \alpha)$ to $\pi$. We denote by $p_{a,\cJ}:[X/B]\ra \cB$ the composition of this functor $[X/\bd{M}] \ra \mathbb{B}\bd{M}$ with $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$. By description of cartesian morphisms of $p_{\bd{M},\cJ}$ we deduce that $p_{a,\cJ}$ is a fibered category. We have a commutative triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
-{ [X/\bd{M}]  &        & \mathbb{B}\bd{M}  \\
-          &\cB &  \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$  $} (m-1-3)
-(m-1-1) edge node[below = 6pt, left = 1pt] {$ p_{a,\cJ}  $} (m-2-2)
-(m-1-3) edge node[below = 6pt, right = 1pt] {$ p_{\bd{M},\cJ} $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-and the functor $[X/\bd{M}]\ra \mathbb{B}\bd{M}$ described above is a morphism of fibered categories. Note that if $\bd{1}$ is a terminal object of $\cB$ equipped with trivial action of $\bd{M}$, then we have a canonical isomorphism $[\bd{1}/\bd{M}] \cong \mathbb{B}\bd{M}$ of categories over $\cB$.
-
-\begin{definition}
-$p_{\bd{M},\cJ,X}:\mathbb{B}\bd{M}\ra \cB$ is called \textit{the quotient fibered category of $\bd{M}$-object $X$ on $(\cB,\cJ)$}.
-\end{definition}
-\noindent
-Results below show that up to some mild assumptions on Grothendieck topology $\cJ$ fibered category $p_{a,\cJ}:[X/\bd{M}]\ra \cB$ encapsulates all essential information concerning action of $\bd{M}$ on $X$. We start with the following observation.
-
-\begin{fact}\label{fact:functor_over_principal_bundles_is_morphism_of_quotient_fibered_categories}
-Let $X,Y$ be objects of $\cB$ equipped with actions $a:\bd{M}\times X\ra X$ and $b:\bd{M}\times Y\ra Y$ of $\bd{M}$. Consider a functor $F:[X/\bd{M}]\ra [Y/\bd{M}]$ such that the triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
-{ [X/\bd{M}]   &             & {}[Y/\bd{M}] \\
-          & \mathbb{B}\bd{M} &  \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ F $} (m-1-3)
-(m-1-1) edge node[below = 6pt, left = 1pt] {$ $} (m-2-2)
-(m-1-3) edge node[below = 6pt, right = 1pt] {$ $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative, where two other sides are canonical functors. Then $F$ is a morphism of fibered categories $p_{a,\cJ}$ and $p_{b,\cJ}$.
-\end{fact}
-\begin{proof}
-The commutativity of the triangle implies that $F\cdot p_{b,\cJ} = p_{a,\cJ}$. Since a morphism in $[X/\bd{M}]$ is cartesian with respect to $p_{a,\cJ}$ if and only if its image under the canonical functor $[X/\bd{M}]\ra \mathbb{B}\bd{M}$ is cartesian with respect to $p_{\bd{M},\cJ}$ and the same holds for $p_{b,\cJ}$, we derive that $F$ sends cartesian morphisms of $p_{a,\cJ}$ to cartesian morphisms of $p_{b,\cJ}$. 
-\end{proof}
-\noindent
-Let $X,Y$ be objects of $\cB$ equipped with actions $a:\bd{M}\times X\ra X$ and $b:\bd{M}\times Y\ra Y$ of $\bd{M}$. We denote the class of functors in Fact \ref{fact:functor_over_principal_bundles_is_morphism_of_quotient_fibered_categories} by $\Mor_{\mathbb{B}\bd{M}}\left([X/\bd{M}],[Y/\bd{M}]\right)$. We also denote (by abuse of notation) the class of $\bd{M}$-equivariant morphism $(X,a)\ra (Y,b)$ by $\Mor_{\bd{M}}\left(X,Y\right)$.
-
-
-\begin{theorem}\label{theorem:equivariant_morphisms_can_described_by_fibered_categories}
-Let $(\cB,\cJ)$ be a Grothendieck site and assume that representable presheaves on $\cB$ are separated with respect to $\cJ$. Let $X,Y$ be objects of $\cB$ equipped with $\bd{M}$-actions $a:\bd{M}\times X\ra X$ and $b:\bd{M}\times Y\ra Y$, respectively. Then there exists a bijection
-$$\Mor_{\bd{M}}\left(X,Y\right)\cong \Mor_{\mathbb{B}\bd{M}}\big([X/\bd{M}],[Y/\bd{M}]\big)$$
-that sends an $\bd{M}$-equivariant morphism $f$ to a functor $F:[X/\bd{M}]\ra [Y/\bd{M}]$ such that
-\end{theorem}
-\begin{proof}
-Note that $(\bd{M}\times X,\mu\times 1_X)$ is an object of $\cB$ equipped with the action of $\bd{M}$. Next the projection $\pi:\bd{M}\times X\ra X$ can be considered as a $\bd{M}$-equivariant morphism from this $\bd{M}$-object to $X$ with the trivial action of $\bd{M}$. Since the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}\times \bd{M}\times X &  \bd{M}\times X    \\
-  \bd{M}\times X              &  X           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ 1_{\bd{M}} \times a $} (m-1-2)
-(m-2-1) edge node[below] {$ a  $} (m-2-2)
-(m-1-1) edge node[left]  {$ \mu\times 1_X $} (m-2-1)
-(m-1-2) edge node[right] {$ a $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative, we derive that $a$ is $\bd{M}$-equivariant morphism $\left(\bd{M}\times X,\mu\times 1_X\right)\ra \left(X,a\right)$. This gives $(\mathrm{pr}_X,a)$ the structure of an object of $[X/\bd{M}]$. The functor $F$ sends it to some object of $[Y/\bd{M}]$. This object is necessarily of the form $(\mathrm{pr}_X,\alpha)$ for some $\bd{M}$-equivariant morphism $\alpha:\left(\bd{M}\times X,\mu\times 1_X\right) \ra \left(Y,b\right)$. Indeed, this follows from the fact that $F$ is over $\mathbb{B}\bd{M}$. We define $f = \alpha \cdot \langle e, 1_X\rangle$. Consider now some object $T$ of $\cB$ and the projection $\mathrm{pr}_T:\bd{M}\times T\ra T$ considered as a trivial principal $\bd{M}$-bundle. Let $(\mathrm{pr}_T,c)$ be an object of $[X/\bd{M}]$. Then $c$ is an $\bd{M}$-equivariant morphism $c:\left(\bd{M}\times T,\mu\times 1_T\right) \ra (X,a)$. Functor $F$ sends $(\mathrm{pr}_T,c)$ to some object $(\mathrm{pr}_T,\gamma)$. We claim that $\gamma = f \cdot c$. Let $\mathrm{pr}_{23}:\bd{M}\times \bd{M}\times T\ra \bd{M}\times T$ be the projection on the last two factors. There are diagrams
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}\times \bd{M} \times T  &  \bd{M}\times T  & X    &   \bd{M}\times \bd{M}\times T     &  \bd{M}\times X  & X          \\
-  \bd{M}\times T                &  T               &      &   \bd{M}\times T                  &  X               &          \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \mu\times 1_T $} (m-1-2)
-(m-2-1) edge node[below] {$ \mathrm{pr}_T $} (m-2-2)
-(m-1-1) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-1)
-(m-1-2) edge node[right] {$ \mathrm{pr}_T $} (m-2-2)
-(m-1-2) edge node[above] {$ c $} (m-1-3)
-
-(m-1-4) edge node[above] {$ 1_{\bd{M}}\times c $} (m-1-5)
-(m-2-4) edge node[below] {$ c $} (m-2-5)
-(m-1-4) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-4)
-(m-1-5) edge node[right] {$ \mathrm{pr}_T $} (m-2-5)
-(m-1-5) edge node[above] {$ a $} (m-1-6);
-\end{tikzpicture}
-\end{center}
-representing morphisms
-$$(\mathrm{pr}_T,\mu\times 1_T):\left(\mathrm{pr}_{23},c\cdot (\mu\times 1_T)\right)\ra \left(\mathrm{pr}_T,c\right),\,(c,1_{\bd{M}}\times c):\left(\mathrm{pr}_{23},a\cdot (1_{\bd{M}}\times c)\right) \ra \left(\mathrm{pr}_X,a\right)$$
-in $[X/\bd{M}]$. Moreover, $c$ is $\bd{M}$-equivariant $\left(\bd{M}\times T,\mu\times 1_T\right) \ra (X,a)$ and we derive that $c\cdot \left(\mu\times 1_T\right) = a\cdot \left(c\times 1_{\bd{M}}\right)$. Thus the morphisms in $[X/\bd{M}]$ described above have common domain. Since $F$ is over $\mathbb{B}\bd{M}$, we derive that their images under $F$ are 
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}\times \bd{M} \times T  &  \bd{M}\times T  & X    &   \bd{M}\times \bd{M}\times T     &  \bd{M}\times X  & X          \\
-  \bd{M}\times T                &  T               &      &   \bd{M}\times T                  &  X               &          \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \mu\times 1_T $} (m-1-2)
-(m-2-1) edge node[below] {$ \mathrm{pr}_T $} (m-2-2)
-(m-1-1) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-1)
-(m-1-2) edge node[right] {$ \mathrm{pr}_T $} (m-2-2)
-(m-1-2) edge node[above] {$ \gamma $} (m-1-3)
-
-(m-1-4) edge node[above] {$ 1_{\bd{M}}\times c $} (m-1-5)
-(m-2-4) edge node[below] {$ c $} (m-2-5)
-(m-1-4) edge node[left]  {$ \mathrm{pr}_{23} $} (m-2-4)
-(m-1-5) edge node[right] {$ \mathrm{pr}_X $} (m-2-5)
-(m-1-5) edge node[above] {$ \alpha $} (m-1-6);
-\end{tikzpicture}
-\end{center}
-This implies that $\gamma \cdot (\mu\times 1_T) = \alpha \cdot (1_{\bd{M}}\times c)$. We deduce that
-$$\gamma \cdot (\mu \times 1_T)\cdot \langle e, 1_{\bd{M}\times X}\rangle = \alpha \cdot (1_{\bd{M}}\times c) \cdot  \langle e, 1_{\bd{M}\times X}\rangle = \alpha \cdot \langle e,1_X\rangle \cdot c = f\cdot c$$
-and the claim is proved. We apply this to $\alpha$ to derive that $\alpha = f\cdot a$. Next recall that $\alpha \cdot \left(\mu \times 1_X\right) = b\cdot \left(1_{\bd{M}} \times \alpha \right)$ because $\alpha$ is an $\bd{M}$-equivariant morphism $\left(\bd{M}\times X, \mu\times 1_X\right)\ra (Y,b)$. Thus
-$$b\cdot \left(1_{\bd{M}}\times f\right) = b\cdot \left(1_{\bd{M}}\times \alpha\right)\cdot \left(1_{\bd{M}}\times \langle e, 1_X\rangle \right) = \alpha \cdot \left(\mu \times 1_X\right)\cdot \left(1_{\bd{M}}\times \langle e, 1_X\rangle \right) = \alpha$$
-Hence $f\cdot a = \alpha = b\cdot \left(1_{\bd{M}}\times f\right)$. Thus $f$ is $\bd{M}$-equivariant. Now consider any principial $\bd{M}$-bundle $\pi:\cP\ra T$ with respect to $\cJ$ and let $d:\cP\ra X$ be a $\bd{M}$-equivariant morphism to $(X,a)$. We know that $F$ sends $(\pi,d)$ to some object of $[Y/\bd{M}]$ of the form $(\pi,\delta)$. It suffices to prove that $\delta = f\cdot d$. For this consider a sieve $S$ in $\cJ(T)$ such that $S$ trivializes $\pi$. Pick $g:\widetilde{T}\ra T$ in $S$ and a cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ g^*\cP &  \cP    \\
-  \widetilde{T} &  T           \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ g'  $} (m-1-2)
-(m-2-1) edge node[below] {$ g $} (m-2-2)
-(m-1-1) edge node[left] {$ \pi_g $} (m-2-1)
-(m-1-2) edge node[right] {$ \pi $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-Then $(\pi_g,d\cdot g')$ is an object of $[X/\bd{M}]$. Since $F$ is over $\mathbb{B}\bd{M}$, we derive that $F(\pi_g,d\cdot g') = (\pi_g,\delta \cdot g')$. By definition $\pi_g$ is trivial $\bd{M}$-bundle. Thus we have
-$$\delta\cdot g' = f\cdot d\cdot g'$$
-This holds for pullback $g'$ of every $g$ in $S$ along $\pi$. These pullbacks $\{g'\}_{g\in S}$ generate some sieve $S'$ on $\cP$ and the formula
-$$\delta\cdot h = f\cdot d\cdot h$$
-holds for every $h$ in $S'$. Moreover, $S'$ is a covering sieve i.e. $S'\in \cJ(\cP)$. According to assumption on $\cJ$ we infer that $h^{\cP} = \Mor_{\cB}\left(-,\cP\right):\cB^{\mathrm{op}}\ra \Set$ is a separated presheaf with respect to $\cJ$. Thus the formula
-$$\delta\cdot h = f\cdot d\cdot h$$
-which holds for every $h$ in $S'$ implies that $\delta = f\cdot d$.
-\end{proof}
 
 
 
