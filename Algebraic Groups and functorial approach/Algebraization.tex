@@ -9,6 +9,10 @@
 \date{}
 \maketitle
 
+\section{Introduction}
+\noindent
+In these notes we prove some results concerning algebraization of formal schemes in equivariant setting.
+
 \section{Some $2$-categorical limits}
 \noindent
 Consider a category $\cC$ and its endofunctor $T:\cC\ra \cC$. Our goal is to construct certain $2$-categorical limit associated with a pair $(\cC,T)$. Consider pairs $\left(X,u\right)$ consisting of an object $X$ of $\cC$ and an isomorphism $u:T(X)\ra X$ in $\cC$. If $\left(X,u\right)$ and $\left(Y,w\right)$ are two such pairs, then a morphism $f:(X,u) \ra (Y,u)$ is a morphism $f:X\ra Y$ in $\cC$ such that the following square
@@ -164,11 +168,9 @@ be a telescope of monoidal categories and monoidal cocontinuous functors. Then i
 We decompose the task of constructing its $2$-limit as follows. First note that one may form a product $\cC = \prod_{n\in \NN}\cC_n$. Next the functors $\{F_n\}_{n\in \NN}$ induce an endofunctor $T = \prod_{n\in \NN}F_n\times t$, where $\bd{1}$ is the terminal category (it has single object and single identity arrow) and $t:\cC_0\rightarrow \bd{1}$ is the unique functor. Consider the category $\cC(T)$. We define $\{\pi_n:\cC(T)\ra \cC_n\}_{n\in \NN}$ to be a family of functors given by coordinates of $\pi:\cC(T)\ra \cC$ and $\{\sigma_n:F_n\cdot \pi_{n+1}\Rightarrow \pi_n\}_{n\in \NN}$ to be a family of natural isomorphisms given by coordinates of $\sigma:\pi\cdot T\Rightarrow \pi$. Now this data form a $2$-limit of the telescope by compilation of Theorem \ref{theorem:endoscope_monoidal_2_limit} and Theorem \ref{theorem:endoscope_colimits}.
 \end{proof}
 
-
-
 \section{Formal $\bd{M}$-schemes}
 \noindent
-This section is devoted to introducing some notions from formal geometry that are central in this notes. 
+This section is devoted to introducing some notions from formal geometry that play a fundamental role in these notes. 
 
 \begin{definition}
 Let $\bd{M}$ be a monoid $k$-scheme. \textit{A formal $\bd{M}$-scheme} consists of a sequence $\cZ = \{Z_n\}_{n\in \NN}$ of $\bd{M}$-schemes together with $\bd{M}$-equivariant closed immersions
@@ -713,195 +715,6 @@ All these facts imply that $\cM$ corresponds to a coherent sheaf on $Z$ with $\b
 \end{center}
 represents some other object of $\Coh_{\bd{G}}(\widehat{Z})$. As for $\{\cM_n\}_{n\in \NN}$ we can construct finite type $\cA$-module $\cN$ with $\bd{G}$-linearization such that $\cN/\cJ^{n+1}\cN = \cN_n$ for every $n\in \NN$. Pick a morphism $f:\cM\ra \cN$ of $\cA$-modules with $\bd{G}$-linearization. For every $\lambda$ in $\bd{Irr}(T)$ morphism $f[\lambda]:\cM[\lambda]\ra \cN[\lambda]$ is equal (by virtue of constructions of $\cN$ and $\cM$) to a morphism $\left(1_{\cA/\cJ^{n+1}}\otimes_{\cA}f\right)[\lambda]$ for sufficiently large $n\in \NN$. This implies that the comparison functor is full and faithful.
 \end{proof}
-
-
-\section{Quasi-coherent $\bd{M}$-sheaves}
-\noindent
-In this section we fix a monoid $k$-scheme $\bd{M}$ and a $k$-scheme $X$ with an action $a:\bd{M} \times_k X \ra X$. We denote by $\pi: \bd{M}\times_kX\ra X$ the projection on $X$.
-
-\begin{definition}
-Consider a pair $(\cF,\phi)$ consisting of a quasi-coherent sheaf $\cF$ on $X$ and an isomorphism $\phi:\pi^*\cF \ra a^* \cF$. We call it \textit{a quasi-coherent $\bd{M}$-sheaf} if the following equality
-$$(\mu\times_k1_X)^*\phi = (1_{\bd{M}} \times_k a)^*\phi \cdot \pi_{2,3}^*\phi$$
-holds, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$ and $\pi_{2,3}:\bd{M}\times_k \bd{M} \times_k X \ra \bd{M} \times_kX$ is the projection on last two factors.
-\end{definition}
-
-\begin{proposition}\label{proposition:compatibility_with_identity}
-Let $(\cF,\phi)$ be a quasi-coherent $\bd{M}$-sheaf on $X$. Assume that $e:\Spec k\ra G$ is an identity of $\bd{M}$. Let $i_e = \langle e, 1_X\rangle :X\ra \bd{M} \times_kX$ be a morphism induced by $e$ and $1_X$. Then $i^*_e\phi = 1_{\cF}$.
-\end{proposition}
-\begin{proof}
-Let $j = \langle e, e, 1_X\rangle:X \ra \bd{M} \times_k \bd{M} \times_kX$ be a morphism induced by $e$ and $1_X$. Observe that
-$$i_e^*\phi=j^*(\mu\times_k1_X)^*\phi = j^* \bigg(\big(1_{\bd{M}} \times_k a\big)^*\phi \cdot \pi^*_{2,3}\phi\bigg)=i^*_e\phi \cdot i^*_e\phi$$
-Since $\phi$ is an isomorphism, we derive that $i_e^*\phi=1_{\cF}$.
-\end{proof}
-
-
-
-\begin{definition}
-Let $\cA$ be a quasi-coherent $\bd{M}$-algebra and let $(\cA,\phi)$ be a quasi-coherent $\bd{M}$-sheaf such that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_X$-algebras. Then $(\cA,\phi)$ is \textit{a quasi-coherent $\bd{M}$-algebra}. If $(\cA_1,\phi_1)$ and $(\cA_2,\phi_2)$ are quasi-coherent $\bd{M}$-algebras and $f:\cA_1\ra \cA_2$ is both a morphism of $\cO_X$-algebras and $\bd{M}$-sheaves, then we say that $f$ is \textit{a morphism of quasi-coherent $\bd{M}$-algebras}.
-\end{definition}
-\noindent
-
-
-\begin{definition}
-Let $X$ be locally noetherian, then we denote by $\Coh_{\bd{M}}(X)$ the full subcategory of $\Qcoh_{\bd{M}}(X)$ that consists of quasi-coherent $\bd{M}$-sheaves $(\cF,\phi)$ such that $\cF$ is coherent on $X$. We call it \textit{the category of coherent $\bd{M}$-sheaves}.
-\end{definition}
-
-\begin{proposition}\label{proposition:canonical linearization of the structure sheaf}
-Let $\pi_{\#}:\pi^*_X\cO_X \ra \cO_{\bd{M} \times_kX}$ and $a_{\#}:a^*\cO_X \ra \cO_{\bd{M} \times_k X}$ be the canonical isomorphisms induced by morphisms $\pi$ and $a$, respectively. Then $\phi  = a_{\#}^{-1}\cdot {\pi}_{\#}$ is an $\bd{M}$-linearization of the structure sheaf $\cO_X$.
-\end{proposition}
-\begin{proof}
-First we introduce convienient notation. If $(f,f^{\#}):(Y,\cO_Y)\ra (Z,\cO_Z)$ is a morphism of ringed spaces, then we denote $f_{\#}:f^*\cO_Z\ra \cO_Y$ adjoint of $f^{\#}:\cO_Z\ra f_*\cO_Y$. This is consistent with notation from the statement. Note that $f_{\#}$ is always an isomorphism.\\
-We have
-$$(1_{\bd{M}} \times_k a)^*\pi_{\#} \cdot \pi_{2,3}^*a_{\#}^{-1} =$$
-$$(1_{\bd{M}} \times_ka)_{\#}^{-1}(1_{\bd{M}} \times_ka)_{\#}(1_{\bd{M}} \times_ka)^*({\pi}_{\#})({\pi_{2,3}}_{\#}^{-1}{\pi_{2,3}}_{\#}\pi_{2,3}^*(a_{\#}))^{-1}= $$ $$=(1_{\bd{M}}\times_k a)_{\#}^{-1}(\pi(1_G\times_ka))_{\#}(a\pi_{(G\times_kX)})_{\#}^{-1}{\pi_{(G\times_kX)}}_{\#}=(1_G\times_ka)_{\#}^{-1}{\pi_{(G\times_kX)}}_{\#}$$
-Hence:
-\begin{center}
-$(1_G\times_ka)^*(a_{\#}^{-1}{\pi}_{\#})\pi_{(G\times_kX)}^*(a_{\#}^{-1}{\pi}_{\#})=$\\$=(1_G\times_ka)^*(a_{\#}^{-1})(1_G\times_ka)_{\#}^{-1}{\pi_{(G\times_kX)}}_{\#}\pi_{(G\times_kX)}^*({\pi}_{\#})=(a(1_G\times_ka))_{\#}^{-1}(\pi\pi_{(G\times_kX)})_{\#}=$\\$=(a(\mu\times_k1_X))^{-1}_{\#}(\pi(\mu\times_k1_X))_{\#}=(\mu\times_k1_X)^*(a_{\#})^{-1}(\mu\times_k1_X)^{-1}_{\#}(\mu\times_k1_X)_{\#}(\mu\times_k1_X)^*({\pi}_{\#})=$\\$=(\mu\times_k1_X)^*(a_{\#})^{-1}(\mu\times_k1_X)^*({\pi}_{\#})=(\mu\times_k1_X)^*(a_{\#}^{-1}{\pi}_{\#})$
-\end{center}
-This means that $(\mu\times_k1_X)^*\phi_{\cO_X}=(1_G\times_k a)^*\phi_{\cO_X}\pi_{(G\times_kX)}^*\phi_{\cO_X}$
-\end{proof}
-
-\begin{proposition}
-The forgetful functor $\Mod_G(\cO_X)\ra \Mod(\cO_X)$ creates finite products and colimits.\\
-Moreover, if $\pi^*_X$ and $a^*$ are exact, then the functor above creates all finite limits.
-\end{proposition}
-\begin{proof}
-The first assertion is a straighforward consequence of the fact that $\pi^*$ and $a^*$ preserve finite products and colimits. The second assertion follows by the same argument using additional assumptions. 
-\end{proof}
-
-\begin{corollary}
-Suppose that $\pi^*_X$ and $a^*$ are exact. Then $\Mod_G(\cO_X)$ is an $\bd{Ab}5$-category.
-\end{corollary}
-\begin{proof}
-The result is a consequence of the general rule. If a category admits a functor to some $\bd{Ab}5$-category and this functor creates colimits and finite limits, then the  category itself is an $\bd{Ab}5$-category.
-\end{proof}
-
-\begin{proposition}
-Let $f:X\ra Y$ be a $G$-equivariant morphism of locally ringed spaces over $S$ admiting action of some $S$-group $G$. For a $G$-sheaf $\cG$ of $\cO_Y$-modules together with a linearization $\phi$ there exists a linearization of $f^*\cG$ given by $(1_G\times_k f)^*\phi$. This gives a lift $f^*:\Mod_G(\cO_Y)\ra \Mod_G(\cO_X)$ of a pullback $f^*:\Mod(\cO_Y)\ra \Mod(\cO_X)$.
-\end{proposition}
-\begin{proof}
-Let $b:G\times_kY\ra Y$ denote an action of $G$ on $Y$.\\
-Observe that:
-\begin{center}
-$(1_G\times_ka)^*((1_G\times_kf)^*\phi))\pi_{(G\times_kX)}^*((1_G\times_kf)^*\phi)=(1_G\times_kfa)^*\phi (\pi_{(G\times_kY)}(1_{(G\times_kG)}\times_kf))^*\phi=$\\$=(1_{(G\times_kG)}\times_kf)^*((1_G\times_kb)^*\phi \pi_{(G\times_kY)}^*\phi)=(1_{(G\times_kG)}\times_kf)^*(\mu\times_k1_Y)^*\phi=(\mu\times_k1_X)^*(1_G\times_kf)^*\phi$
-\end{center}
-Thus indeed $(1_G\times_kf)^*\phi$ is a $G$-linearization on $f^*\cF$. 
-\end{proof}
-
-\begin{remark}
-Exactly the same results are derived in the category of complex analytic spaces, smooth manifolds and (not necessarly locally) ringed topological spaces. Definitions and proofs are the same after replacing fiber product over $S$ by product in the corresponding category.
-\end{remark}
-
-
-\begin{theorem}
-Let $\cA$ be a quasi-coherent algebra on $X$. Then the map
-$$\phi \mapsto a_{\phi}$$
-induces a bijection between the set of $\bd{M}$-sheaf structures $(\cA,\phi)$ such that $\phi$ is a morphism of algebras over $\cO_{\bd{M}\times_kX}$ and the set of actions $\tilde{a}:\bd{M}\times_k\Spec_X\cA\ra \Spec_X\cA$ of $\bd{M}$ such that the square
-\begin{center}   
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}\times_k\Spec_X\cA   &   \Spec_X\cA  \\
-  \bd{M}\times_kX            &   X           \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[above] {$ \tilde{a} $} (m-1-2)
-(m-2-1) edge node[below] {$ a $} (m-2-2)
-(m-1-1) edge node[left]  {$   $} (m-2-1)
-(m-1-2) edge node[right] {$   $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is commutative.
-\end{theorem}
-\begin{proof}
-\end{proof}
-\noindent
-Our next goal is to prove certain result that explains notion of a quasi-coherent $\bd{M}$-algebra. Let $p:\tilde{X}\ra X$ be an affine morphism, which is a relative spectrum of a quasi-coherent algebra $\cA$ on $X$. Consider cartesian squares
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex]
-{ a^*\tilde{X}    & \tilde{X}  & \pi^*\tilde{X}  & \tilde{X}     \\
-  \bd{M}\times_kX & X          & \bd{M}\times_kX & X             \\};
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ a' $} (m-1-2)
-(m-2-1) edge node[below] {$ a $} (m-2-2)
-(m-1-1) edge node[left] {$ p'' $} (m-2-1)
-(m-1-2) edge node[right] {$ p $} (m-2-2)
-(m-1-3) edge node[above] {$ \pi' $} (m-1-4)
-(m-2-3) edge node[below] {$ \pi $} (m-2-4)
-(m-1-3) edge node[left] {$ p' $} (m-2-3)
-(m-1-4) edge node[right] {$ p $} (m-2-4);
-\end{tikzpicture}
-\end{center}
-Note that $p'':a^*\tilde{X}\ra \bd{M}\times_k X,p':\pi^*\tilde{X}\ra \bd{M}\times_kX$ are affine morphisms, which are relative spectra of quasi-coherent algebras $a^*\cA$ and $\pi^*\cA$, respectively. Suppose that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_{\bd{M}\times_kX}$-algebras. It induces an isomorphism $\tilde{\phi}:\pi^*\tilde{X}\ra a^*\tilde{X}$ of affine schemes over $\bd{M}\times_kX$. Next we have a morphism given by a composition
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex]
-{ \bd{M}\times_k\tilde{X} & \pi^*\tilde{X} & a^*\tilde{X} & \tilde{X}  \\};
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[auto]  {$ \cong  $} (m-1-2)
-(m-1-2) edge node[auto]  {$ \tilde{\phi} $} (m-1-3)
-(m-1-3) edge node[auto]  {$ a' $} (m-1-4);
-\end{tikzpicture}
-\end{center}
-We denote it by $a_{\phi}$. Note that the square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{M}\times_k\tilde{X}    &   \tilde{X}    \\
-  \bd{M}\times_kX            &   X           \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[above] {$ a_{\phi} $} (m-1-2)
-(m-2-1) edge node[below] {$ a $} (m-2-2)
-(m-1-1) edge node[left]  {$ 1_{\bd{M}}\times_kp $} (m-2-1)
-(m-1-2) edge node[right] {$ p  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-is cartesian. Moreover, if we have a commutative triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ \tilde{X}_1    &       &  \tilde{X}_2    \\
-                 &   X   &        \\};
-\path[->,line width=1.0pt,font=\scriptsize]    
-(m-1-1) edge node[above] {$ \tilde{f}  $} (m-1-3)
-(m-1-1) edge node[below = 2pt, left] {$ p_1  $} (m-2-2)
-(m-1-3) edge node[below = 2pt, right]  {$ p_2  $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-then 
-Note that $\Qcoh_{\bd{M}}(X)$ admits the structure of a monoidal category such that the forgetful functor $\Qcoh_{\bd{M}}(X)\ra \Qcoh(X)$ is a strict monoidal functor. Indeed, if $(\cF_1,\phi_1)$ are $(\cF_2,\phi_2)$ quasi-coherent $\bd{M}$-sheaves, then we define their tensor product as $\bd{M}$-sheaf $\left(\cF_1\otimes_{\cO_X}\cF_2,\phi_1\otimes_{\cO_{\bd{M}\times_kX}}\phi_2\right)$. In particular, algebras with respect to this monoidal structure are quasi-coherent $\bd{M}$-sheaves $(\cA,\phi)$ such that $\cA$ is a quasi-coherent $\cO_X$-algebra and $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_X$-algebras.\\
-\section{}
-
-\begin{proposition}
-Let $\bd{M}$ be a monoid $k$-scheme that acts on a $k$-scheme $X$. Denote by $a:\bd{M}\times_kX\ra X$ the action morphism. Let $p:\tilde{X}\ra X$ be an affine morphism. Consider the cartesian square
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex]
-{ a^*\tilde{X}    & \tilde{X}     \\
-  \bd{M}\times_kX & X                     \\};
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ a' $} (m-1-2)
-(m-2-1) edge node[below] {$ a $} (m-2-2)
-(m-1-1) edge node[left] {$ p' $} (m-2-1)
-(m-1-2) edge node[right] {$ p $} (m-2-2);
-\end{tikzpicture}
-\end{center}
-and suppose that $\phi:\bd{M}\times_k\tilde{X}\ra a^*\tilde{X}$ is an isomorphism of schemes over $X$. Then the following are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
-\item The composition $a' \cdot \phi$ is an action of $\bd{M}$ on $\tilde{X}$.
-\item 
-\end{enumerate}
-\end{proposition}
-\begin{proof}
-Denote $\tilde{a} = a'\cdot \phi$. Then
-$$\tilde{a}\cdot \left(\tilde{a}\times_k1_{\bd{M}}\right) = \left(a'\cdot \phi\right)\cdot \left(a'\times_k1_{\bd{M}}\right) \cdot \left(\phi\times_k 1_{\bd{M}}\right)$$
-\end{proof}
-Note that $p'':a^*\tilde{X}\ra \bd{M}\times_k X,p':\pi^*\tilde{X}\ra \bd{M}\times_kX$ are affine morphisms, which are relative spectra of quasi-coherent algebras $a^*\cA$ and $\pi^*\cA$, respectively. Suppose that $\phi:\pi^*\cA\ra a^*\cA$ is an isomorphism of $\cO_{\bd{M}\times_kX}$-algebras. It induces an isomorphism $\tilde{\phi}:\pi^*\tilde{X}\ra a^*\tilde{X}$ of affine schemes over $\bd{M}\times_kX$. Next we have
 
 
 

@@ -8,7 +8,8 @@
 
 \section{Introduction}
 \noindent
-In these notes we often work with two distinct categories. In order to make our notation clear we denote by $h^{\cC}:\cC\ra \widehat{\cC}$ the Yoneda embedding for category $\cC$. In particular, if $X$ is an object of $\cC$, then $h^{\cC}_X$ is a presheaf associated with $X$.
+These notes are devoted to study fibered categories with special emphasis on equivariant objects. Specifically they aim at explaining the notion of equivariant qausi-coherent sheaf ({\cite[definition 1.6]{mumford1994geometric}}). With respect to this task we fill some details which are absent (although the possibility of their precise development is indicated) in Vistoli's excellent exposition {\cite[Part 1]{fantechi2005fundamental}}. In addition we give extensive treatment of fibered categories of principal bundles over any Grothendieck site culminated in Theorem \ref{theorem:equivariant_morphisms_can_described_by_fibered_categories}, which is (as we imagine) part of a folklore, but for which we did not have any reference.\\ 
+In these notes we often work with several distinct categories and in particular, we consider Yoneda embeddings for all these categories at the same time. In order to make our notation clear we denote by $h^{\cC}:\cC\ra \widehat{\cC}$ the Yoneda embedding for category $\cC$. In particular, if $X$ is an object of $\cC$, then $h^{\cC}_X$ is a presheaf associated with $X$.
 
 \section{Fibered categories}
 \noindent
@@ -459,7 +460,7 @@ Let $k$ be a commutative ring. We fix a monoid $k$-scheme $\bd{M}$. The followin
 
 \begin{definition}
 Let $X$ be a $k$-scheme and let $\bd{M}$ be a monoid $k$-scheme with an action $a:\bd{M}\times_kX\ra X$ on $X$. We denote by $\pi:\bd{M}\times_kX\ra X$ the projection. Consider a pair $(\cF,\tau)$ consisting of a quasi-coherent sheaf $\cF$ on $X$ and a morphism $\tau:\pi^*\cF \ra a^* \cF$. We call it \textit{a quasi-coherent $\bd{M}$-sheaf on $(X,a)$} if the following equalities
-$$(\mu \times 1_X)^*\tau^{\sigma} = (1_{\bd{M}} \times  a)^*\tau^{\sigma} \cdot \pi_{2,3}^*\tau^{\sigma},\,\langle e, 1_{X} \rangle^*\tau^{\sigma} = 1_{\cF}$$
+$$(\mu \times 1_X)^*\tau = (1_{\bd{M}} \times  a)^*\tau \cdot \pi_{2,3}^*\tau,\,\langle e, 1_{X} \rangle^*\tau = 1_{\cF}$$
 hold, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$, $\pi_{2,3}:\bd{M}\times_k  \bd{M} \times_k  X \ra \bd{M} \times_k X$ is the projection on the last two factors and $e:\bd{1}\ra \bd{M}$ is the unit of $\bd{M}$.
 \end{definition}
 
@@ -480,6 +481,12 @@ Let $X$ be a $k$-scheme and let $\bd{M}$ be a monoid $k$-scheme with an action $
 \end{center}
 is commutative. Then $\phi$ is \textit{a morphism of quasi-coherent $\bd{M}$-sheaves on $(X,a)$}. We denote by $\Qcoh_{\bd{M}}(X)$ the category of quasi-coherent $\bd{M}$-sheaves and call it \textit{the category of quasi-coherent $\bd{M}$-sheaves on $(X,a)$}.
 \end{definition}
+\noindent
+Let us give some example.
+
+\begin{example}\label{example:equivariant_sheaves_on_points}
+For this example recall \cite{Monoid_k_functors}. Suppose that $\bd{M}$ is an affine monoid $k$-scheme. We consider $\Spec k$ equipped with the trivial $\bd{M}$-action. Then $\Qcoh_{\bd{M}}\left(\Spec k\right)$ is isomorphic with $\bd{co}\Mod(\bd{M})$ and hence by {\cite[Theorem 15.1]{Monoid_k_functors}} with $\bd{Rep}(\bd{M})$.
+\end{example}
 \noindent
 Our goal in this section is to explain somewhat nonintuitive notion of quasi-coherent $\bd{M}$-sheaf on a $k$-scheme $X$ equipped with action of $\bd{M}$. For this we use the machinery of fibered categories. We fix a fibered category $p:\cE \ra \cB$ . If $f:X\ra Y$ and $\eta$ is an object of $p^{-1}(Y)$, then we denote by $\tilde{f}_{\eta}:f^*\eta\ra \eta$ a pullback of $\eta$. That is the square
 \begin{center}
@@ -812,74 +819,92 @@ $$a^*\phi \cdot \tau^{\sigma_1} = \tau^{\sigma_2}\cdot \pi^*\phi$$
 This proves the assertion.
 \end{proof}
 \noindent
-Guided by these two results we formulate a general notion of equivariant object in a fibered category.
+Guided by these two results we formulate a general notion of an equivariant object in a fibered category.
 
 \begin{definition}
-Let $M:\cB^{\mathrm{op}}\ra \Mon$ be a presheaf of monoids on $\cB$ and assume that for some object $X$ of $\cB$ the presheaf $h^{\cB}_X$ admits an action of $M$ given by the morphism $\alpha:M\times h^{\cB}_X\ra h^{\cB}_X$. Consider an object $\xi$ in $p^{-1}(X)$. Suppose that there is an action $\sigma:M\cdot p \times h^{\cE}_\xi\ra h^{\cE}_\xi$ of a monoid presheaf $M\cdot p$ on $h^{\cE}_\xi$ such that the square
+Let $\bd{M}$ be a monoid object in $\cB$ and let $X$ be an object of $\cB$ equipped with an action $a:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Suppose that there is an action $\sigma:h^{\cB}_{\bd{M}} \cdot p \times h^{\cE}_\xi\ra h^{\cE}_\xi$ of a monoid presheaf $h^{\cB}_{\bd{M}} \cdot p$ on $h^{\cE}_\xi$ such that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ M\cdot p\times h_{\xi}^{\cE} &  h_{\xi}^{\cE}    \\
-  M\cdot p\times h^{\cB}_X\cdot p    &  h^{\cB}_{X}\cdot p           \\} ;
+{ h^{\cB}_{{\bd{M}}}\cdot p \times h_{\xi}^{\cE}                &  h_{\xi}^{\cE}                \\
+  h_{\bd{M}\times X}^{\cB}\cdot p           &  h_{X}^{\cB}\cdot p           \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ \sigma  $} (m-1-2)
-(m-2-1) edge node[below] {$ \alpha_p $} (m-2-2)
-(m-1-1) edge node[left]  {$1_{M\cdot p}\times p_{\mathrm{hom}} $} (m-2-1)
-(m-1-2) edge node[right] {$p_{\mathrm{hom}}  $} (m-2-2);
+(m-1-1) edge node[above] {$ \sigma $} (m-1-2)
+(m-2-1) edge node[below] {$ \left(h^{\cB}_a\right)_p $} (m-2-2)
+(m-1-1) edge node[left]  {$ p_{\mathrm{hom}} $} (m-2-1)
+(m-1-2) edge node[right] {$ p_{\mathrm{hom}} $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is commutative. Then a pair $(\xi,\sigma)$ is called \textit{an $M$-equivariant object over $\alpha$}.
+is commutative. Then a pair $(\xi,\sigma)$ is called \textit{an $\bd{M}$-equivariant object over $a$}.
 \end{definition}
 
 \begin{definition}
-Let $M:\cB^{\mathrm{op}}\ra \Mon$ be a presheaf of monoids on $\cB$ and assume that for some object $X$ of $\cB$ the presheaf $h^{\cB}_X$ admits an action of $M$ given by the morphism $\alpha:M\times h^{\cB}_X\ra h^{\cB}_X$. Suppose that $(\xi_1,\sigma_1)$ and $(\xi_2,\sigma_2)$ are objects over $X$ with $M$-equivariant structures. Then a morphism $\phi:\xi_1\ra \xi_2$ in $\cE$ is \textit{$M$-equivariant} if the square
+Let $\bd{M}$ be a monoid object in $\cB$ and let $X$ be an object of $\cB$ equipped with an action $a:\bd{M}\times X\ra X$ of $\bd{M}$ on $X$. Suppose that $(\xi_1,\sigma_1)$ and $(\xi_2,\sigma_2)$ are objects over $X$ with $\bd{M}$-equivariant structures. Then a morphism $\phi:\xi_1\ra \xi_2$ in $\cE$ is \textit{$\bd{M}$-equivariant} if the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ M\cdot p\times h_{\xi_1}^{\cE} &  h_{\xi_1}^{\cE}    \\
-  M\cdot p\times h_{\xi_2}^{\cE} &  h_{\xi_2}^{\cE}           \\} ;
+{ h^{\cB}_{\bd{M}}\cdot p\times h_{\xi_1}^{\cE} &  h_{\xi_1}^{\cE}    \\
+  h^{\cB}_{\bd{M}}\cdot p\times h_{\xi_2}^{\cE} &  h_{\xi_2}^{\cE}           \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$ \sigma_1  $} (m-1-2)
 (m-2-1) edge node[below] {$ \sigma_2  $} (m-2-2)
-(m-1-1) edge node[left]  {$ 1_{M\cdot p}\times h^{\cE}_\phi $} (m-2-1)
+(m-1-1) edge node[left]  {$ 1_{h^{\cB}_{\bd{M}} \cdot p}\times h^{\cE}_\phi $} (m-2-1)
 (m-1-2) edge node[right] {$ \phi  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is commutative. By abuse of notation we denote by $p^{-1}_{\bd{M}}(X)$ \textit{the category of $M$-equivariant objects over $\alpha$ with respect to the fibered category $p$}.
+is commutative. By abuse of notation we denote by $p^{-1}_{\bd{M}}(X)$ \textit{the category of $\bd{M}$-equivariant objects over $a$ with respect to the fibered category $p$}.
 \end{definition}
 \noindent
 Now we apply Proposition \ref{proposition:equivalent_description_of_equivariance_in_representable_case} and Fact \ref{fact:morphisms_of_equivariant_objects} to the fibered category $\Qcoh\ra \Sch_k$. We deduce the following.
 
 \begin{corollary}\label{corollary:isomorphism_between_equivariant_quasi_coherent_sheaves_and_equivariant_objects_in_fibered_category_of_quasi_coherent_sheaves}
-Suppose that $\bd{M}$ is a monoid $k$-scheme that acts on a $k$-scheme $X$ through morphism $a:\bd{M}\times_k X\ra X$ of $k$-schemes. Then the category $\Qcoh_{\bd{M}}(X)$ is isomorphic to the category of $h^{\Sch_k}_{\bd{M}}$-objects over $h^{\Sch_k}_a$ with respect to the fibered category $\Qcoh\ra \Sch_k$.
+Suppose that $\bd{M}$ is a monoid $k$-scheme that acts on a $k$-scheme $X$ through a morphism $a:\bd{M}\times_k X\ra X$ of $k$-schemes. Then the category $\Qcoh_{\bd{M}}(X)$ is isomorphic to the category of $\bd{M}$-equivariant objects over $a$ with respect to the fibered category $\Qcoh\ra \Sch_k$.
 \end{corollary}
 
 \section{Example: The fibered category of equivariant objects over the category of actions}\label{section:fibered_category_over_the_category_of_actions}
 \noindent
-Fix a category $\cB$ and a monoid presheaf $M$ on $\cB$. We define a category $\bd{Act}_{M}(\cB)$ as follows. An object of $\bd{Act}_{M}(\cB)$ is a pair $(X,\alpha)$ such that $X$ is an object of $\cB$ and $\alpha:M\times h^{\cB}_X\ra h^{\cB}_X$ is an action of $M$ on $h^{\cE}_X$. Next if $(X,\alpha)$ and $(Y,\beta)$ are objects of $\bd{Act}_{M}(\cB)$, then a morphism in $\bd{Act}_{M}(\cB)$ between them consists of a morphism $f:X\ra Y$ in $\cB$ such that $h^{\cE}_f$ is $M$-equivariant with respect to $M$-actions $\alpha$ and $\beta$.
-
-\begin{definition}
-Let $\cB$ be a category and let $M$ be a monoid presheaf on $\cB$. We call $\bd{Act}_M(\cB)$ \textit{the category of actions of $M$ on $\cB$}.
-\end{definition}
-\noindent
-Let $\cB$ be a category with finite products and let $\bd{M}$ be a monoid object in $\cB$. Then (for future reference) we denote by $\bd{Act}_{\bd{M}}(\cB)$ the category of actions of the presheaf $h^{\cB}_{\bd{M}}$ of monoids representable by $\bd{M}$ on $\cB$. Let us note the following result.
-
-\begin{proposition}\label{proposition:creation_of_limits_for_actions_of_monoids}
-Let $\cB$ be a category and let $M$ be a monoid presheaf on $\cB$. Consider the canonical functor $\bd{Act}_{M}(\cB)\ra \cB$ that forgets about action of $M$. This functor creates limits.
-\end{proposition}
-\begin{proof}
-Note that limits in the category of presheaves are determined levelwise, for an abstract monoid $M$ (a monoid object in $\Set$) the forgetful functor from $M$-sets to $\Set$ creates all limits and the Yoneda embedding preserves limits. The assertion is a consequence of these facts. 
-\end{proof}
-\noindent
-We are ready to start the main discussion of this section. Let $p:\cE\ra \cB$ be a fibered category and let $M$ be a presheaf of monoids on $\cB$. We construct a fibered category $p_{M}:\cE_M\ra \bd{Act}_{M}(\cB)$ out of $p:\cE\ra \cB$ and $M$. First we construct a category $\cE_M$. The class of objects of $\cE_M$ is the union of all $M$-equivariant objects over objects of $\bd{Act}_M(\cB)$. Now suppose that $(\xi,\sigma)$ and $(\eta,\tau)$ are $M$-equivariant object over objects $(X,\alpha)$ and $(Y,\beta)$ in $\bd{Act}_{M}(\cB)$, respectively. A morphism in $\cE_M$ between these objects consists of a morphism $\phi:\xi\ra \eta$ in $\cE$ such that $h^{\cE}_{\phi}$ is $M\cdot p$-equivariant with respect to $\sigma$ and $\tau$. We also have a functor $p_M:\cE_M\ra \bd{Act}_{M}(\cB)$ that sends $\phi$ to $p(\phi)$, which is $M$-equivariant with respect to $\alpha$ and $\beta$. This means that we have a square diagram
+Fix a category $\cB$ with finite products and a monoid object $\bd{M}$ in $\cB$. We define a category $\bd{Act}_{\bd{M}}(\cB)$ as follows. An object of $\bd{Act}_{\bd{M}}(\cB)$ is a pair $(X,a)$ such that $X$ is an object of $\cB$ and $a:\bd{M}\times X \ra X$ is an action of $\bd{M}$ on $X$. Next if $(X,a)$ and $(Y,b)$ are objects of $\bd{Act}_{M}(\cB)$, then a morphism in $\bd{Act}_{M}(\cB)$ between them consists of a morphism $f:X\ra Y$ such that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ (\xi,\sigma)      &  (\eta,\tau)      \\
-  (X,\alpha)        &  (Y,\beta)         \\} ;
+{ \bd{M} \times X &  X    \\
+  \bd{M} \times Y &  Y         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ a  $} (m-1-2)
+(m-2-1) edge node[below] {$ b  $} (m-2-2)
+(m-1-1) edge node[left]  {$ 1_{\bd{M}}\times f $} (m-2-1)
+(m-1-2) edge node[right] {$ f  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+
+\begin{definition}
+Let $\cB$ be a category with finite products and let $\bd{M}$ be a monoid object in $\cB$. We call $\bd{Act}_{\bd{M}}(\cB)$ \textit{the category of actions of $\bd{M}$ in $\cB$}.
+\end{definition}
+\noindent
+Let us note the following result.
+
+\begin{proposition}\label{proposition:creation_of_limits_for_actions_of_monoids}
+Let $\cB$ be a category with finite limits and let $\bd{M}$ be a monoid object on $\cB$. The forgetful functor $\bd{Act}_{\bd{M}}(\cB)\ra \cB$ creates limits.
+\end{proposition}
+\begin{proof}
+We left the proof for the reader as an exercise.
+\end{proof}
+
+\begin{corollary}\label{corollary:creation_of_limits_for_actions_on_presheaf_category}
+Let $\cB$ be a category and let $\bd{M}$ be a monoid object on $\cB$. Then the forgetful functor $\bd{Act}_{h^{\cB}_{\bd{M}}}\left(\widehat{\cB}\right)\ra \widehat{\cB}$ creates limits.
+\end{corollary}
+\noindent
+We are ready to start the main discussion of this section. Let $p:\cE\ra \cB$ be a fibered category and let $\bd{M}$ be a monoid object in $\cB$. Assume that $\cB$ has finite products. We construct a fibered category $p_{\bd{M}}:\cE_\bd{M}\ra \bd{Act}_{\bd{M}}(\cB)$ out of $p:\cE\ra \cB$ and $\bd{M}$. First we construct a category $\cE_\bd{M}$. The class of objects of $\cE_\bd{M}$ is the union of all $\bd{M}$-equivariant objects over objects of $\bd{Act}_\bd{M}(\cB)$. Now suppose that $(\xi,\sigma)$ and $(\eta,\rho)$ are $\bd{M}$-equivariant object over objects $(X,a)$ and $(Y,b)$ in $\bd{Act}_{\bd{M}}(\cB)$, respectively. A morphism in $\cE_\bd{M}$ between these objects consists of a morphism $\phi:\xi\ra \eta$ in $\cE$ such that $h^{\cE}_{\phi}$ is $h^{\cB}_{\bd{M}}\cdot p$-equivariant with respect to $\sigma$ and $\rho$. We also have a functor $p_\bd{M}:\cE_\bd{M}\ra \bd{Act}_{\bd{M}}(\cB)$ that sends $\phi$ to $p(\phi)$ (clearly $p(\phi)$ is $\bd{M}$-equivariant with respect to $a$ and $b$). This means that we have a square diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ (\xi,\sigma)      &  (\eta,\rho)      \\
+  (X,a)        &  (Y,b)         \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$ \phi $} (m-1-2)
 (m-2-1) edge node[below] {$ p(\phi) $} (m-2-2);
@@ -888,7 +913,7 @@ We are ready to start the main discussion of this section. Let $p:\cE\ra \cB$ be
 (m-1-2) edge node[right] {$  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-Next let us assume that $f:X\ra Y$ is a morphism of $\bd{Act}_{M}(\cB)$ between $(X,\alpha)$ and $(Y,\beta)$. Suppose that $(\eta,\tau)$ is object with $M$-equivariant structure over $\beta$ and consider a cartesian square
+Next let us assume that $f:X\ra Y$ is a morphism of $\bd{Act}_{\bd{M}}(\cB)$ between $(X,a)$ and $(Y,b)$. Suppose that $(\eta,\rho)$ is object with $\bd{M}$-equivariant structure over $b$ and consider a cartesian square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -903,13 +928,13 @@ Next let us assume that $f:X\ra Y$ is a morphism of $\bd{Act}_{M}(\cB)$ between 
 (m-1-2) edge node[right] {$  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-with respect to $p$. Then by Proposition \ref{proposition:creation_of_limits_for_actions_of_monoids} there exists a unique $M$-equivariant structure $(f^*\eta,\sigma)$ that gives rise to a square diagram
+with respect to $p$. Then by Corollary \ref{corollary:creation_of_limits_for_actions_on_presheaf_category} there exists a unique $\bd{M}$-equivariant structure $(f^*\eta,\sigma)$ that gives rise to a square diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ (f^*\eta,\sigma)    &  (\eta,\tau)      \\
-  (X,\alpha)          &  (Y,\beta)         \\} ;
+{ (f^*\eta,\sigma)    &  (\eta,\rho)      \\
+  (X,a)          &  (Y,b)         \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$ \widetilde{f}_{\eta} $} (m-1-2)
 (m-2-1) edge node[below] {$ f $} (m-2-2);
@@ -918,13 +943,11 @@ with respect to $p$. Then by Proposition \ref{proposition:creation_of_limits_for
 (m-1-2) edge node[right] {$  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-with respect to $p_M$. This square is cartesian with respect to $p_M$.
+with respect to $p_\bd{M}$. This square is cartesian with respect to $p_\bd{M}$.
 
 \begin{definition}
-Let $p:\cE \ra \cB$ be a fibered category and let $M$ be a presheaf of monoids on $\cB$. The fibered category $p_M:\cE_M\ra \bd{Act}_M(\cB)$ is called \textit{the fibered category of $M$-equivariant objects}.
+Let $p:\cE \ra \cB$ be a fibered category and let $\bd{M}$ be a presheaf of monoids on $\cB$. The fibered category $p_\bd{M}:\cE_\bd{M}\ra \bd{Act}_\bd{M}(\cB)$ is called \textit{the fibered category of $\bd{M}$-equivariant objects}.
 \end{definition}
-\noindent
-Suppose that $p:\cE \ra \cB$ be a fibered category and assume that $\bd{M}$ is a monoid object of $\cB$ (in particular, we assume that $\cB$ admits terminal object). Then we denote the fibered category of $h^{\cB}_{\bd{M}}$ equivariant objects by $p_{\bd{M}}:\cE_{\bd{M}}\ra \bd{Act}_{\bd{M}}(\cB)$.
 
 \begin{example}\label{example:the_fibered_category_of_equivariant_objects_with_respect_to_a_monoid_in_category_of_arrows}
 Let $\cB$ be a category with finite limits and let $\bd{M}$ be a monoid object of $\cB$. Consider the fibered category of arrows $p_{\mathrm{Arr}(\cB)}:\mathrm{Arr}(\cB)\ra \cB$. By Proposition \ref{proposition:creation_of_limits_for_actions_of_monoids} the category $\bd{Act}_{\bd{M}}(\cB)$ admits finite limits and there exists an isomorphism
@@ -943,10 +966,47 @@ Let $\cB$ be a category with finite limits and let $\bd{M}$ be a monoid object o
 \end{center}
 of fibered categories.
 \end{example}
+\noindent
+It is useful to describe $\sigma$ in terms described in Proposition \ref{proposition:equivalent_description_of_equivariance_in_representable_case}.
+
+\begin{proposition}\label{proposition:equivariant_pullbacks_description}
+Let $p:\cE \ra \cB$ be a fibered category and let $\bd{M}$ be a monoid object of $\cB$. Suppose that $(X,a)$ and $(Y,b)$ are objects of $\bd{Act}_{\bd{M}}(\cB)$ and $f:X\ra Y$ is a morphism in this category. Let $(\eta,\rho)$ be an $\bd{M}$-equivariant object over $b$ and let
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ (f^*\eta,\sigma)    &  (\eta,\rho)      \\
+  (X,a)               &  (Y,b)         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \widetilde{f}_{\eta} $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2);
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left]  {$  $} (m-2-1)
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+be a cartesian square with respect to $p_{\bd{M}}:\cE_{\bd{M}}\ra \bd{Act}_{\bd{M}}\left(\cB\right)$. Then (under identifications of Remark \ref{remark:unique_identification}) we have
+$$\tau^{\sigma} = \left(1_{\bd{M}}\times f\right)^*\tau^{\rho}$$
+\end{proposition}
+\begin{proof}
+We use the same notational convention as in Proposition \ref{proposition:equivalent_description_of_equivariance_in_representable_case}. We denote by $\pi_X:\bd{M}\times X\ra X$ and $\pi_Y:\bd{M}\times Y\ra Y$ projections on $X$ and $Y$, respectively. Now $\alpha^{\sigma}:\pi^*_Xf^*\eta \ra a^*f^*\eta$ is the unique morphism in $\cE$ such that $p(\alpha^\sigma) = a$ and (up to identifications described in Remark \ref{remark:unique_identification})
+$$\tilde{f}_{\eta}  \cdot \alpha^{\sigma} = \alpha^{\rho}\cdot \widetilde{\left(1_{\bd{M}}\times f\right)}_{\pi^*_Y\eta}$$
+Under identifications described in Remark \ref{remark:unique_identification} and definitions of $\alpha^{\sigma},\alpha^{\rho}$ we have
+$$\tilde{f}_{\eta} \cdot \tilde{a}_{f^*\eta} \cdot \tau^{\sigma} = \tilde{f}_{\eta}  \cdot \alpha^{\sigma} = \alpha^{\rho}\cdot \widetilde{\left(1_{\bd{M}}\times f\right)}_{\pi^*_Y\eta} = \tilde{b}_{\eta} \cdot \tau^{\rho}\cdot \widetilde{\left(1_{\bd{M}}\times f\right)}_{\pi^*_Y\eta} = \tilde{b}_{\eta}\cdot \widetilde{\left(1_{\bd{M}}\times f\right)}_{b^*\eta} \cdot \left(1_{\bd{M}}\times f\right)^*\tau^{\rho}$$
+and
+$$\tilde{f}_{\eta} \cdot \tilde{a}_{f^*\eta} = \tilde{b}_{\eta}\cdot \widetilde{\left(1_{\bd{M}}\times f\right)}_{b^*\eta}$$
+also this last morphism is cartesian with respect to $p$. Thus we derive that $\tau^{\sigma} = \left(1_{\bd{M}}\times f\right)^*\tau^{\rho}$.
+\end{proof}
 
 \section{Applications to equivariant quasi-coherent sheaves}
 \noindent
-This section is devoted to applications in algebraic geometry. We fix a commutative ring $k$ and a monoid $k$-scheme $\bd{M}$. We are interested in a fibered category $\Alg(\Qcoh)_{\bd{M}}\ra \bd{Act}_{\bd{M}}\left(\Sch_k\right)$ constructed from the fibered category $\Alg(\Qcoh)\ra \Sch_k$ by means of procedure described in Section \ref{section:fibered_category_over_the_category_of_actions}. 
+This section is devoted to applications in algebraic geometry. We fix a commutative ring $k$ and a monoid $k$-scheme $\bd{M}$. Let us first note the following consequence of Proposition \ref{proposition:equivariant_pullbacks_description}.
+
+\begin{corollary}\label{corollary:pullbacks_of_equivariant_sheaves}
+Let $X,Y$ be $k$-schemes equipped with actions of $\bd{M}$. Suppose that $f:X\ra Y$ is an $\bd{M}$-equivariant morphism. Then $f^*:\Qcoh(Y)\ra \Qcoh(X)$ induces a functor $f^*:\Qcoh_{\bd{M}}(Y)\ra \Qcoh_{\bd{M}}(X)$ that sends a quasi-coherent $\bd{M}$-sheaf $(\cG,\tau)$ on $Y$ to $\big(f^*\cG,\left(1_{\bd{M}}\times_k f\right)^*\tau\big)$.
+\end{corollary}
+\noindent
+We are interested in a fibered category $\Alg(\Qcoh)_{\bd{M}}\ra \bd{Act}_{\bd{M}}\left(\Sch_k\right)$ constructed from the fibered category $\Alg(\Qcoh)\ra \Sch_k$ by means of procedure described in Section \ref{section:fibered_category_over_the_category_of_actions}. 
 
 \begin{definition}
 Let $X$ be a $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$. By abuse of notation we denote the fiber of $\Alg(\Qcoh)_{\bd{M}}\ra \Sch_k$ over $(X,a)$ by $\Alg(\Qcoh)_{\bd{M}}(X)$. We call it \textit{the category of quasi-coherent of $\bd{M}$-algebras on $(X,a)$}.
@@ -954,7 +1014,7 @@ Let $X$ be a $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$. 
 
 \begin{remark}\label{remark:description_of_equivariant_qc_algebras_in_the_usual_way}
 We describe $\Alg(\Qcoh)_{\bd{M}}(X)$ for $X$ with $\bd{M}$-action $a$ in terms that are used in algebraic geometry. We denote by $\pi:\bd{M}\times_kX\ra X$ the projection. By Proposition \ref{proposition:equivalent_description_of_equivariance_in_representable_case} an object of $\Alg\left(\Qcoh\right)_{\bd{M}}(X)$ (that is a quasi-coherent $\bd{M}$-algebra) is a pair $(\cA,\tau)$ consisting of a quasi-coherent algebra $\cA$ on $X$ and a morphism $\tau:\pi^*\cA \ra a^* \cA$ such that the following equalities
-$$(\mu \times 1_X)^*\tau^{\sigma} = (1_{\bd{M}} \times  a)^*\tau^{\sigma} \cdot \pi_{2,3}^*\tau^{\sigma},\,\langle e, 1_{X} \rangle^*\tau^{\sigma} = 1_{\cA}$$
+$$(\mu \times 1_X)^*\tau = (1_{\bd{M}} \times  a)^*\tau \cdot \pi_{2,3}^*\tau,\,\langle e, 1_{X} \rangle^*\tau = 1_{\cA}$$
 hold, where $\mu: \bd{M} \times_k \bd{M} \ra \bd{M}$ is the multiplication on $\bd{M}$, $\pi_{2,3}:\bd{M}\times_k  \bd{M} \times_k  X \ra \bd{M} \times_k X$ is the projection on the last two factors and $e:\bd{1}\ra \bd{M}$ is the unit of $\bd{M}$. Next according to Fact \ref{fact:morphisms_of_equivariant_objects} a morphism in $\Alg\left(\Qcoh\right)_{\bd{M}}(X)$ between $(\cA_1,\tau_1)$ and $(\cA_2,\tau_2)$ is a morphism $\phi:\cA_1\ra \cA_2$ of quasi-coherent sheaves on $X$ such that the square
 \begin{center}
 \begin{tikzpicture}
@@ -1180,7 +1240,7 @@ Our next goal is to explain that the category of quasi-coherent $\bd{M}$-sheaves
 \begin{remark}\label{remark:monoidal_structure_on_equivariant_sheaves}
 Let $X$ be a $k$-scheme equipped with an action $a:\bd{M}\times_kX\ra X$ of $\bd{M}$ and denote by $\pi:\bd{M}\times_kX\ra X$ the projection. Let $(\cF_1,\tau_1)$ and $(\cF_2,\tau_2)$ be quasi-coherent $\bd{M}$-sheaves on $X$. Then 
 $$\big(\cF_1\otimes_{\cO_X}\cF_2,\tau_1\otimes_{\cO_X}\tau_2\big)$$
-is a quasi-coherent $\bd{M}$-sheaf on $X$. This shows that $(-)\otimes_{\cO_X}(-):\Qcoh(X)\times \Qcoh(X)\ra \Qcoh(X)$ admits a lift to a functor $\Qcoh_{\bd{M}}(X)\times \Qcoh_{\bd{M}}(X) \ra \Qcoh_{\bd{M}}(X)$. This bifunctor together with $\left(\cO_X,a_{\#}\cdot \pi_{\#}^{-1}\right)$ and lifts of the associator isomorphisms, left and right units isomorphism and the symmetry isomorphism for $\Qcoh(X)$ give rise to a symmetric monoidal structure on $\Qcoh_{\bd{M}}(X)$. Note that the forgetful functor $\Qcoh_{\bd{M}}(X)\ra \Qcoh(X)$ is symmetric monoidal functor. Moreover, we have the category of (commutative) algebras $\Alg\left(\Qcoh_{\bd{M}}(X)\right)$ in $\Qcoh_{\bd{M}}(X)$ with respect to this symmetric monoidal structure. By definition it follows that this category is isomorphic with $\Alg\left(\Qcoh\right)_{\bd{M}}(X)$.
+is a quasi-coherent $\bd{M}$-sheaf on $X$. This shows that $(-)\otimes_{\cO_X}(-):\Qcoh(X)\times \Qcoh(X)\ra \Qcoh(X)$ admits a lift to a functor $\Qcoh_{\bd{M}}(X)\times \Qcoh_{\bd{M}}(X) \ra \Qcoh_{\bd{M}}(X)$. This bifunctor together with $\left(\cO_X,a_{\#}\cdot \pi_{\#}^{-1}\right)$ and lifts of the associator isomorphisms, left and right units isomorphism and the symmetry isomorphism for $\Qcoh(X)$ give rise to a symmetric monoidal structure on $\Qcoh_{\bd{M}}(X)$. Note that the forgetful functor $\Qcoh_{\bd{M}}(X)\ra \Qcoh(X)$ is symmetric monoidal functor. Moreover, we have the category of (commutative) algebras $\Alg\left(\Qcoh_{\bd{M}}(X)\right)$ in $\Qcoh_{\bd{M}}(X)$ with respect to this symmetric monoidal structure. By definition it follows that this category is isomorphic with $\Alg\left(\Qcoh\right)_{\bd{M}}(X)$. Finally, if $f:X\ra Y$ is an $\bd{M}$-equivariant morphism of $k$-schemes equipped with $\bd{M}$-actions, then $f^*:\Qcoh_{\bd{M}}(Y)\ra \Qcoh_{\bd{M}}(X)$ is a monoidal functor.
 \end{remark}
 \noindent
 It is interesting to note that under mild assumptions the category of quasi-coherent $\bd{M}$-sheaves on a $k$-scheme with $\bd{M}$-action is an abelian category.
@@ -1284,7 +1344,7 @@ Now suppose that \textbf{(iv)} holds. Then there exists a morphism $\tau:\pi^*\c
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \pi^*\cI & pi^*\cO_X & \pi^*\cO_Z     \\
+{ \pi^*\cI & \pi^*\cO_X & \pi^*\cO_Z     \\
   a^*\cI   & a^*\cO_X  & a^*\cO_Z           \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[below] {$  $} (m-1-2)
@@ -1299,6 +1359,24 @@ Now suppose that \textbf{(iv)} holds. Then there exists a morphism $\tau:\pi^*\c
 \end{center}
 is commutative. Moreover, $\sigma$ is a morphism of $\cO_{\bd{M}\times_k X}$-algebras. The epimorphism $\cO_X\twoheadrightarrow \cO_Z$ is a cokernel of $\cI\hookrightarrow \cO_X$ in $\Qcoh(X)$. By Theorem \ref{theorem:forgetful_functor_from_equivariant_sheaves_to_qc_sheaves_creates_colimits_and_finite_limits} there exists a unique lift of this cokernel to $\Qcoh_{\bd{M}}(X)$. Since $\sigma$ is a unique morphism of quasi-coherent sheaves on $\bd{M}\times_k X$ that makes the diagram above commutative, we derive that $\cO_X\twoheadrightarrow \cO_Z$ is a cokernel of $\cI\hookrightarrow \cO_X$ in $\Qcoh_{\bd{M}}(X)$ with respect to the structure of $\bd{M}$-sheaf determined by $\sigma$. Thus $(\cO_Z,\sigma)$ is quasi-coherent $\bd{M}$-sheaf on $X$. Since $\sigma$ is a morphism of $\cO_{\bd{M}\times_k X}$-algebras, we derive that $(\cO_Z,\sigma)$ is a quasi-coherent $\bd{M}$-algebra on $X$. Thus $\textbf{(iv)}\Rightarrow \textbf{(iii)}$.\\
 Assume that $a$ is flat and \textbf{(iii)} holds. Since $\cI\hookrightarrow \cO_X$ is a kernel in $\Qcoh(X)$ of $\cO_X\twoheadrightarrow \cO_Z$, we derive by Theorem \ref{theorem:forgetful_functor_from_equivariant_sheaves_to_qc_sheaves_creates_colimits_and_finite_limits} that there exists a structure of $\bd{M}$-sheaf on $\cI$ such that $\cI\hookrightarrow \cO_X$ is a morphism in $\Qcoh_{\bd{M}}(X)$. This shows that if $a$ is flat, then \textbf{(iii)} implies \textbf{(iv)}.
+\end{proof}
+
+\begin{definition}
+Let $X$ be a locally noetherian $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$. Then we denote by $\Coh_{\bd{M}}(X)$ the full subcategory of $\Qcoh_{\bd{M}}(X)$ consisting of quasi-coherent $\bd{M}$-sheaves $(\cF,\tau)$ such that $\cF$ is coherent sheaf on $X$. We call it \textit{the category of coherent $\bd{M}$-sheaves on $(X,a)$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:coherent_equivariant_sheaves_properties}
+Let $X$ be a locally noetherian $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$. Then the following assertions hold.
+\begin{enumerate}[label= \emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item The functor $\Coh_{\bd{M}}(X)\ra \Coh(X)$ creates finite colimits and if $a$ is flat, then it also creates finite limits.
+\item There exists monoidal structure on $\Coh_{\bd{M}}(X)$ such that the embedding $\Coh_{\bd{M}}(X)\hookrightarrow \Qcoh_{\bd{M}}(X)$ is a strict monoidal functor.
+\end{enumerate}
+If in addition $Y$ is a locally noetherian $k$-scheme equipped with action of $\bd{M}$ and $f:X\ra Y$ is an $\bd{M}$-equivariant morphism, then $f^*\Qcoh_{\bd{M}}(Y)\ra \Qcoh_{\bd{M}}(X)$ restricts to a functor $f^*:\Coh_{\bd{M}}(Y)\ra \Coh_{\bd{M}}(X)$.
+\end{corollary}
+\begin{proof}
+The statement \textbf{(1)} is a consequence of Theorem \ref{theorem:forgetful_functor_from_equivariant_sheaves_to_qc_sheaves_creates_colimits_and_finite_limits} and the fact that the functor $\Coh(X)\hookrightarrow \Qcoh(X)$ creates both finite limits and finite colimits.\\
+Next \textbf{(2)} follows from the form of the monoidal structure described in Remark \ref{remark:monoidal_structure_on_equivariant_sheaves}. Concretely, if $(\cF_1,\tau_1)$ and $(\cF_2,\tau_2)$ are coherent $\bd{M}$-sheaves, then $\left(\cF_1\otimes_{\cO_X}\cF_2,\tau_1\otimes_{\cO_X}\tau_2\right)$ is coherent $\bd{M}$-sheaf and $\left(\cO_X,a_{\#}^{-1}\cdot \pi_{\#}\right)$ is coherent $\bd{M}$-sheaf, where $\pi:\bd{M}\times_kX\ra X$ denotes the projection.\\
+The last part of the statement follows from Corollary \ref{corollary:pullbacks_of_equivariant_sheaves}.
 \end{proof}
 
 \section{Example: Principal Bundles}
@@ -1337,7 +1415,7 @@ Let $\cP$ be an object of $\cB$ equipped with an action of $\bd{M}$, let $T$ be 
 (m-1-2) edge node[right] {$ \pi $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-in $\cB$. We consider $g$ as an $\bd{M}$-equivariant morphism with respect to trivial $\bd{M}$-actions on $T$ and $\widetilde{T}$. Then there exists a unique action of $\bd{M}$ on $g^*\cP$ which makes $\pi_g$ into an $\bd{M}$-equivariant morphism in such a way that the square consists of objects of $\cB$ with $\bd{M}$-actions and $\bd{M}$-equivariant morphisms. Suppose that $\bd{M}$-equivariant morphism $\pi_g$ is a trivial principal $\bd{M}$-bundle on $\widetilde{T}$ for every $g$ in $S$. Then we say that \textit{$S$ trivializes $\pi$}.
+in $\cB$. We consider $g$ as an $\bd{M}$-equivariant morphism with respect to trivial $\bd{M}$-actions on $T$ and $\widetilde{T}$. Then (Proposition \ref{proposition:creation_of_limits_for_actions_of_monoids}) there exists a unique action of $\bd{M}$ on $g^*\cP$ which makes $\pi_g$ into an $\bd{M}$-equivariant morphism in such a way that the square consists of objects of $\cB$ with $\bd{M}$-actions and $\bd{M}$-equivariant morphisms. Suppose that $\bd{M}$-equivariant morphism $\pi_g$ is a trivial principal $\bd{M}$-bundle on $\widetilde{T}$ for every $g$ in $S$. Then we say that \textit{$S$ trivializes $\pi$}.
 \end{definition}
 \noindent
 In the remaining part of this section we fix a Grothendieck topology $\cJ$ on $\cB$.
@@ -1374,7 +1452,7 @@ is commutative. We have a functor $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ given
 (m-1-2) edge node[right] {$  \psi $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-in $\cB$. Then by the universal property there exists a unique action of $\bd{M}$ on $f^*Q$ such that the square above consists of $\bd{M}$-equivariant morphisms ($T,Z$ are equipped with trivial $\bd{M}$-actions). Moreover, with respect to this action $\psi:f^*Q\ra T$ becomes a principal $\bd{M}$-bundle with respect to $\cJ$. Indeed, if $S$ is in $\cJ(Z)$ and $S$ trivializes $\psi$, then its pullback $f^*S$ trivializes $\pi$ and is an element of $\cJ(T)$ (by definition of a Grothendieck topology). This shows that $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ is a fibered category. Moreover, we have a functor $\mathbb{B}\bd{M}\ra \mathrm{Arr}(\cB)$ that forgets about $\bd{M}$-actions. Hence there exists commutative triangle
+in $\cB$. Then by Proposition \ref{proposition:creation_of_limits_for_actions_of_monoids} there exists a unique action of $\bd{M}$ on $f^*Q$ such that the square above consists of $\bd{M}$-equivariant morphisms ($T,Z$ are equipped with trivial $\bd{M}$-actions). Moreover, with respect to this action $\psi:f^*Q\ra T$ becomes a principal $\bd{M}$-bundle with respect to $\cJ$. Indeed, if $S$ is in $\cJ(Z)$ and $S$ trivializes $\psi$, then its pullback $f^*S$ trivializes $\pi$ and is an element of $\cJ(T)$ (by definition of a Grothendieck topology). This shows that $p_{\bd{M},\cJ}:\mathbb{B}\bd{M}\ra \cB$ is a fibered category. Moreover, we have a functor $\mathbb{B}\bd{M}\ra \mathrm{Arr}(\cB)$ that forgets about $\bd{M}$-actions. Hence there exists commutative triangle
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -1590,6 +1668,8 @@ which holds for every $h$ in $S'$ implies that $\delta = f\cdot d$.
 
 
 
-
+\small
+\bibliographystyle{alpha}
+\bibliography{../zzz}
 
 \end{document}
