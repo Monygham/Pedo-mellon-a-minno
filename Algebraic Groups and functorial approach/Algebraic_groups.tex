@@ -8,11 +8,11 @@
 
 \section{Introduction}
 \noindent
-In these notes we group schemes over fields. For background we refer to \cite{kfunctors} and \cite{Monoid_k_functors}. The first section is devoted to some general result concerning global regular functions on products of $k$-schemes for a commutative ring. In all other sections $k$ denotes a field.
+In these notes we group schemes over fields. For background we refer to \cite{kfunctors} and \cite{Monoid_k_functors}. Let $k$ be a field..
 
 \section{Regular functions on products of quasi-compact and semi-separated schemes}
 \noindent
-Let $k$ be a commutative ring. We start with the following notion.
+We start with the following notion.
 
 \begin{definition}
 Let $Y$ be a scheme and let $X$ be a $Y$-scheme. If the diagonal $X\ra X\times_Y X$ is affine, then we say that $X$ is \textit{semi-separated} over $Y$.
@@ -41,30 +41,34 @@ Let $o$ be the origin of the affine line $\mathbb{A}^1_k$. Consider the followin
 Then $X$ is an affine line with double origin. Then the diagonal $X\ra X\times_k X$ is affine but not a closed immersion. Hence $X$ is semi-separated but not separated.
 \end{example}
 
-\begin{theorem}\label{theorem:regular_functions_on_products}
-Let $X,Y$ be quasi-compact and semi-separated $k$-schemes. Denote by $\pi_X$ and $\pi_Y$ projections from $X\times_kY$ to $X$ and $Y$, respectively. Then the canonical morphism
-$$\Gamma(X,\cO_X)\otimes_k\Gamma(Y,\cO_Y)\ni f\otimes_k g\mapsto \pi_X^{\#}(f)\cdot \pi_Y^{\#}(g)\in \Gamma\left(X\times_kY,\cO_{X\times_kY}\right)$$
+\begin{theorem}\label{theorem:sections_of_qc_sheaves_on_products}
+Let $X,Y$ be quasi-compact and semi-separated $k$-schemes. Denote by $\pi_X$ and $\pi_Y$ projections from $X\times_kY$ to $X$ and $Y$, respectively. Let $\cF$ and $\cG$ be quasi-coherent sheaves on $X$ and $Y$, respectively. Then the canonical morphism
+$$\Gamma(X,\cF)\otimes_k\Gamma(Y,\cG)\ni s\otimes t \mapsto \pi_X^*s \otimes \pi_Y^{*}t \in \Gamma\left(X\times_kY,\pi_X^*\cF\otimes_{\cO_{X\times_kY}}\pi^*_Y\cG\right)$$
 is an isomorphism.
 \end{theorem}
 \noindent
 The theorem follows from the following result.
 
-\begin{lemma}\label{lemma:regular_functions_and_open_covers_of_a_factor}
+\begin{lemma}\label{lemma:sections_and_open_covers_of_a_factor}
 Let $X,Y$ be $k$-schemes and let $\{V_i\}_{i=1}^n$ be a finite open cover of $Y$. Suppose that the canonical morphism
-$$\Gamma(X,\cO_X)\otimes_k\Gamma\left(V_i\cap V_j,\cO_{V_i \cap V_j}\right) \ra \Gamma\left( X \times_k \left(V_i\cap V_j\right),\cO_{X\times_k\left(V_i \cap V_j\right)}\right)$$
+$$\Gamma(X,\cF)\otimes_k\Gamma\left(V_i\cap V_j,\cG \right) \ra \Gamma\left( X \times_k \left(V_i\cap V_j\right),\pi_X^*\cF\otimes_{\cO_{X\times_kY}}\pi^*_Y\cG\right)$$
 is an isomorphism for any $i,j\in \{1,...,n\}$. Then the canonical morphism
-$$\Gamma(X,\cO_X)\otimes_k\Gamma(Y,\cO_Y) \ra \Gamma\left(X\times_kY,\cO_{X\times_kY}\right)$$
+$$\Gamma(X,\cF)\otimes_k\Gamma(Y,\cG)\ra \Gamma\left(X\times_kY,\pi_X^*\cF\otimes_{\cO_{X\times_kY}}\pi^*_Y\cG\right)$$
 is an isomorphism.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-For each $i\in \{1,...,n\}$ we have the restriction $r_i:\Gamma\left(X \times_kY,\cO_{X \times_kY}\right)\ra \Gamma\left(X\times_kV_i,\cO_{X\times_kY}\right)$ we denote by $p_i$ the restriction $\Gamma\left(Y,\cO_{Y}\right)\ra \Gamma\left(V_i,\cO_{Y}\right)$ tensored with $\Gamma(X,\cO_X)$. For $i, j \in \{1,...,n\}$ we have the restriction $r_{i,j}:\Gamma\left(X \times_kV_i,\cO_{X \times_kY}\right)\ra \Gamma\left(X\times_k\left(V_i\cap V_j\right),\cO_{X\times_kY}\right)$ and we denote by $p_{i,j}$ the restriction $\Gamma\left(V_i,\cO_{Y}\right)\ra \Gamma\left(V_i\cap V_j ,\cO_{Y}\right)$ tensored with $\Gamma(X,\cO_X)$. Consider the commutative diagram
+For each $i\in \{1,...,n\}$ we have the restriction
+$$r_i:\Gamma\left(X \times_kY, \pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG \right) \ra \Gamma\left(X\times_kV_i, \pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG \right)$$
+and we denote by $p_i$ the restriction $\Gamma\left( Y,\cG \right) \ra \Gamma\left(V_i,\cG \right)$ tensored with $\Gamma(X,\cO_X)$. For $i, j \in \{1,...,n\}$ we have the restriction
+$$r_{i,j}:\Gamma\left(X \times_kV_i,\pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG\right)\ra \Gamma\left(X\times_k\left(V_i\cap V_j\right),\pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG\right)$$
+and we denote by $p_{i,j}$ the restriction $\Gamma\left(V_i,\cG\right)\ra \Gamma\left(V_i\cap V_j ,\cG\right)$ tensored with $\Gamma(X,\cF)$. Consider the commutative diagram
 \begin{center}
-\hspace*{-1.5cm}
+\hspace*{-2.8cm}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
-{ \Gamma\left(X\times_k Y,\cO_{X\times_k Y}\right) & \Oplus_{i=1}^n\Gamma\left(X\times_k V_i,\cO_{X\times_k Y}\right)   &  \Oplus_{1\leq i < j\leq n}\Gamma\left(X\times_k \left(V_i\cap V_j\right),\cO_{X\times_kY}\right) \\
- \Gamma\left(X,\cO_X\right)\otimes_k\Gamma\left(Y,\cO_{Y}\right) &  \Oplus_{i=1}^n\Gamma\left(X,\cO_X\right) \otimes_k \Gamma\left(V_i,\cO_{V_i}\right)   & \Oplus_{1\leq i <j \leq n} \Gamma\left(X,\cO_X\right)\otimes_k \Gamma\left(V_i\cap V_j,\cO_{V_i\cap V_j}\right)  \\} ;
+{ \Gamma\left(X\times_k Y,\pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG \right) & \Oplus_{i=1}^n\Gamma\left(X\times_k V_i,\pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG\right)   &  \Oplus_{1\leq i < j\leq n}\Gamma\left(X\times_k \left(V_i\cap V_j\right),\pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG\right) \\
+ \Gamma\left(X,\cF\right)\otimes_k\Gamma\left(Y,\cG\right) &  \Oplus_{i=1}^n\Gamma\left(X,\cF\right) \otimes_k \Gamma\left(V_i,\cG\right)   & \Oplus_{1\leq i <j \leq n} \Gamma\left(X,\cF\right)\otimes_k \Gamma\left(V_i\cap V_j,\cG\right)  \\} ;
 \path[->,line width=0.8pt,font=\scriptsize]
 (m-1-1) edge node[above] {$\langle r_i\rangle_{i=1}^n  $} (m-1-2)
 (m-1-2) edge[transform canvas={yshift=0.6ex}] node[above]  {$\langle r_{i,j}\cdot \mathrm{pr}_i\rangle_{1\leq i<j\leq n}  $} (m-1-3)
@@ -77,20 +81,26 @@ For each $i\in \{1,...,n\}$ we have the restriction $r_i:\Gamma\left(X \times_kY
 (m-2-3) edge node[right] {$ \cong $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-in which vertical arrows are canonically defined. Moreover, by assumptions right and middle vertical arrows are isomorphisms. Note also that both rows are kernel diagrams. Indeed, for the top row this follows from the sheaf property of $\cO_{X\times_k Y}$ and for the bottom row this follows from the fact that $\Gamma(X,\cO_X)$ is flat over $k$ (it is a field) together with the sheaf property of $\cO_Y$. These imply that the left vertical arrow is an isomorphism. This proves the assertion.
+in which vertical arrows are canonically defined. Moreover, by assumptions right and middle vertical arrows are isomorphisms. Note also that both rows are kernel diagrams. Indeed, for the top row this follows from the sheaf property of $\pi^*_X\cF\otimes_{\cO_{X \times_kY}} \pi^*_Y\cG$ and for the bottom row this follows from the fact that $\Gamma(X,\cF)$ is flat over $k$ ($k$ is a field) together with the sheaf property of $\cG$. These imply that the left vertical arrow is an isomorphism and this completes the proof.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-The statement holds, if $X,Y$ are affine. Note that semi-separatedness of a scheme over commutative ring is equivalent to the fact that intersection of every pair of its open affine subschemes is affine. Now Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor} implies that the result holds if $X$ is affine and $Y$ is quasi-compact and semi-separated over $k$. Next by symmetry in Lemma \ref{lemma:regular_functions_and_open_covers_of_a_factor}, we derive that the result holds if $X,Y$ are quasi-compact and semi-separated over $k$.
+The statement holds, if $X,Y$ are affine. Note that semi-separatedness of a scheme over commutative ring is equivalent to the fact that intersection of every pair of its open affine subschemes is affine. Now Lemma \ref{lemma:sections_and_open_covers_of_a_factor} implies that the result holds if $X$ is affine and $Y$ is quasi-compact and semi-separated over $k$. Next by symmetry in Lemma \ref{lemma:sections_and_open_covers_of_a_factor}, we derive that the result holds if $X,Y$ are quasi-compact and semi-separated over $k$.
 \end{proof}
 
+\begin{corollary}\label{corollary:regular_functions_on_products}
+Let $X,Y$ be quasi-compact and semi-separated $k$-schemes. Denote by $\pi_X$ and $\pi_Y$ projections from $X\times_kY$ to $X$ and $Y$, respectively. Then the canonical morphism
+$$\Gamma(X,\cO_X)\otimes_k\Gamma(Y,\cO_Y)\ni f\otimes_k g\mapsto \pi_X^{\#}(f)\cdot \pi_Y^{\#}(g)\in \Gamma\left(X\times_kY,\cO_{X\times_kY}\right)$$
+is an isomorphism.
+\end{corollary}
+
 \begin{corollary}\label{corollary:functorial_reformulation_of_regular_functions_on_products}
-Let $\Sch_k^{\mathrm{qcss}}$ be the category of quasi-compact and semi-separated schemes over $k$. Then the contravariant functor
+Let $\Sch_k^{\mathrm{qc,ss}}$ be the category of quasi-compact and semi-separated schemes over $k$. Then the contravariant functor
 $$\Sch_k^{\mathrm{qc},\mathrm{ss}}\ni X \mapsto \Gamma(X,\cO_X)\in \left(\Alg_k\right)^{\mathrm{op}}$$
 preserves products.
 \end{corollary}
 \begin{proof}
-This is a reformulation of Theorem \ref{theorem:regular_functions_on_products}.
+This is a reformulation of Corollary \ref{corollary:regular_functions_on_products}.
 \end{proof}
 
 \section{General properties of groups schemes over a field}
@@ -190,7 +200,7 @@ natural in $A$.
 \begin{proof}
 Since $k$-functor $\fO_k$ is representable by $\mathbb{A}^1_k$ {\cite[Fact 3.2]{Monoid_k_functors}} and morphisms $\Spec A\times X\ra \mathbb{A}^1_A$ of $A$-schemes corresponds to regular functions on $\Spec A \times_k X$, we derive that there is an identification
 $$\Mor_A\left((\fP_X)_A,\fO_A\right) = \Gamma\left(\Spec A\times_k X,\cO_{\Spec A\times_k X}\right)$$
-natural in $k$-algebra $A$. Now by Theorem \ref{theorem:regular_functions_on_products} and assumptions on $X$ we deduce that for every $k$-algebra there is an identification
+natural in $k$-algebra $A$. Now by Corollary \ref{corollary:regular_functions_on_products} and assumptions on $X$ we deduce that for every $k$-algebra there is an identification
 $$\iMor_k\left(\fP_X,\fO_k\right)(A) =  A\otimes_k\Gamma(X,\cO_X)$$
 natural in $A$.
 \end{proof}
@@ -239,7 +249,7 @@ It implies that the square
 (m-2-2) edge node[right] {$ \Gamma\left(X,a^{\#}\right) $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-is commutative. Since $\bd{M}$, $X$ are quasi-compact and semi-separated, canonical identifications of Theorem \ref{theorem:regular_functions_on_products} can be used. This implies that the square
+is commutative. Since $\bd{M}$, $X$ are quasi-compact and semi-separated, canonical identifications of Corollary \ref{corollary:regular_functions_on_products} can be used. This implies that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -259,7 +269,7 @@ where $F$ is a finite subset of $I$ and $\phi_i$ are regular functions on $\bd{M
 $$\sum_{i\in F}\phi_i\otimes_ka^{\#}(r_i) = \sum_{i\in F}\mu^{\#}(\phi_i)\otimes_kr_i \in \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_k \Gamma\left(\bd{M},\cO_{\bd{M}}\right) \otimes_k W$$
 Therefore, we have $a^{\#}(r_i)\in \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$ for every $i\in F$. We deduce that
 $$a^{\#}(W) \subseteq \Gamma\left(\bd{M},\cO_{\bd{M}}\right)\otimes_kW$$
-Now for each $k$-algebra $A$ and $A$-point $f$ of $k$-scheme $\bd{M}^{\mathrm{op}} = \bd{M}$ Theorem \ref{theorem:regular_functions_on_products} and description of $\rho$ in Example \ref{example:k_monoid_action_on_regular_functions} imply
+Now for each $k$-algebra $A$ and $A$-point $f$ of $k$-scheme $\bd{M}^{\mathrm{op}} = \bd{M}$ Corollary \ref{corollary:regular_functions_on_products} and description of $\rho$ in Example \ref{example:k_monoid_action_on_regular_functions} imply
 $$\rho(f) =  \big(\Gamma\left(\bd{M},f^{\#}\right)\otimes_k 1_{\Gamma(X,\cO_X)}\big)\cdot \Gamma\left(X,a^{\#}\right)$$
 Thus for every $A$-point $f$ of $\bd{M}^{\mathrm{op}}$ we have
 $$\rho(f)\left(W\right) \subseteq A\otimes_kW$$
@@ -287,7 +297,7 @@ Let $f:\bd{H}\ra \bd{G}$ be a morphism of locally algebraic groups over $k$. Sup
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Since $f$ is quasi-compact, we deduce that $i:\bd{K} \hookrightarrow \bd{G}$ is a closed immersion determined by the kernel of $f^{\#}:\cO_{\bd{G}}\ra f_*\cO_{\bd{H}}$ and $g^{\#}:\cO_{\bd{K}}\ra g_*\cO_{\bd{H}}$ is injective morphism of sheaves. Moreover, $g$ is quasi-compact. We derive by Theorem \ref{theorem:regular_functions_on_products} and Proposition \ref{proposition:group_schemes_over_a_field_are_separated} that the square
+Since $f$ is quasi-compact, we deduce that $i:\bd{K} \hookrightarrow \bd{G}$ is a closed immersion determined by the kernel of $f^{\#}:\cO_{\bd{G}}\ra f_*\cO_{\bd{H}}$ and $g^{\#}:\cO_{\bd{K}}\ra g_*\cO_{\bd{H}}$ is injective morphism of sheaves. Moreover, $g$ is quasi-compact. We derive by Corollary \ref{corollary:regular_functions_on_products} and Proposition \ref{proposition:group_schemes_over_a_field_are_separated} that the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
