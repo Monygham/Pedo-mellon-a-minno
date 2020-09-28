@@ -998,15 +998,9 @@ $$\tilde{f}_{\eta} \cdot \tilde{a}_{f^*\eta} = \tilde{b}_{\eta}\cdot \widetilde{
 also this last morphism is cartesian with respect to $p$. Thus we derive that $\tau^{\sigma} = \left(1_{\bd{M}}\times f\right)^*\tau^{\rho}$.
 \end{proof}
 
-\section{Applications to equivariant quasi-coherent sheaves}
+\section{Applications to equivariant quasi-coherent algebras}
 \noindent
-This section is devoted to applications in algebraic geometry. We fix a commutative ring $k$ and a monoid $k$-scheme $\bd{M}$. Let us first note the following consequence of Proposition \ref{proposition:equivariant_pullbacks_description}.
-
-\begin{corollary}\label{corollary:pullbacks_of_equivariant_sheaves}
-Let $X,Y$ be $k$-schemes equipped with actions of $\bd{M}$. Suppose that $f:X\ra Y$ is an $\bd{M}$-equivariant morphism. Then $f^*:\Qcoh(Y)\ra \Qcoh(X)$ induces a functor $f^*:\Qcoh_{\bd{M}}(Y)\ra \Qcoh_{\bd{M}}(X)$ that sends a quasi-coherent $\bd{M}$-sheaf $(\cG,\tau)$ on $Y$ to $\big(f^*\cG,\left(1_{\bd{M}}\times_k f\right)^*\tau\big)$.
-\end{corollary}
-\noindent
-We are interested in a fibered category $\Alg(\Qcoh)_{\bd{M}}\ra \bd{Act}_{\bd{M}}\left(\Sch_k\right)$ constructed from the fibered category $\Alg(\Qcoh)\ra \Sch_k$ by means of procedure described in Section \ref{section:fibered_category_over_the_category_of_actions}. 
+This section and the next one is devoted to applications in algebraic geometry. We fix a commutative ring $k$ and a monoid $k$-scheme $\bd{M}$. We are interested in a fibered category $\Alg(\Qcoh)_{\bd{M}}\ra \bd{Act}_{\bd{M}}\left(\Sch_k\right)$ constructed from the fibered category $\Alg(\Qcoh)\ra \Sch_k$ by means of procedure described in Section \ref{section:fibered_category_over_the_category_of_actions}. 
 
 \begin{definition}
 Let $X$ be a $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$. By abuse of notation we denote the fiber of $\Alg(\Qcoh)_{\bd{M}}\ra \Sch_k$ over $(X,a)$ by $\Alg(\Qcoh)_{\bd{M}}(X)$. We call it \textit{the category of quasi-coherent of $\bd{M}$-algebras on $(X,a)$}.
@@ -1234,6 +1228,14 @@ Next let $\tau:\pi^*\cO_X\ra a^*\cO_X$ be a morphism giving the canonical struct
 $$\widetilde{a}\cdot \Spec_{\bd{M}\times_kX}\left(a_{\#}^{-1}\right) = \widetilde{a} \cdot \Spec_{\bd{M}\times_kX}\left(\tau\cdot \pi_{\#}^{-1}\right)$$
 and this implies that $a_{\#}^{-1} = \tau\cdot \pi_{\#}^{-1}$. Hence $\tau = a^{-1}_{\#}\cdot \pi_{\#}$ because $\widetilde{a}$ is cartesian with respect to $\bd{Aff}\left(\Sch_k\right)\ra \Sch_k$ and the functor $\Spec_{\bd{M}\times_kX}:\Alg\big(\Qcoh\left(\bd{M}\times_kX\right)\big)\ra \bd{Aff}_{\bd{M}\times_kX}$ is an equivalence of categories.
 \end{proof}
+
+\section{Applications to equivariant quasi-coherent sheaves}
+\noindent
+We fix a commutative ring $k$ and a monoid $k$-scheme $\bd{M}$ with the multiplication $\mu:\bd{M}\times_k\bd{M}\ra \bd{M}$ and the unit $e:\Spec k\ra \bd{M}$. Let us first note the following consequence of Proposition \ref{proposition:equivariant_pullbacks_description}.
+
+\begin{corollary}\label{corollary:pullbacks_of_equivariant_sheaves}
+Let $X,Y$ be $k$-schemes equipped with actions of $\bd{M}$. Suppose that $f:X\ra Y$ is an $\bd{M}$-equivariant morphism. Then $f^*:\Qcoh(Y)\ra \Qcoh(X)$ induces a functor $f^*:\Qcoh_{\bd{M}}(Y)\ra \Qcoh_{\bd{M}}(X)$ that sends a quasi-coherent $\bd{M}$-sheaf $(\cG,\tau)$ on $Y$ to $\big(f^*\cG,\left(1_{\bd{M}}\times_k f\right)^*\tau\big)$.
+\end{corollary}
 \noindent
 Our next goal is to explain that the category of quasi-coherent $\bd{M}$-sheaves carries a canonical symmetric monoidal structure. 
 
@@ -1319,15 +1321,15 @@ This follows from Theorem \ref{theorem:forgetful_functor_from_equivariant_sheave
 \end{proof}
 
 \begin{definition}
-Let $X$ be a $k$-scheme equipped with an action $a:\bd{M}\times_kX\ra X$ of $\bd{M}$. Consider a locally closed subscheme $Z$ of $X$. Then $Z$ is called $\bd{M}$-invariant if the restriction of $a$ to $\bd{M}\times_kZ$ factors scheme-theoreticaly through $Z$.
+Let $X$ be a $k$-scheme equipped with an action $a:\bd{M}\times_kX\ra X$ of $\bd{M}$. Consider a locally closed subscheme $Z$ of $X$. Then $Z$ is called $\bd{M}$-stable if the restriction of $a$ to $\bd{M}\times_kZ$ factors scheme-theoreticaly through $Z$.
 \end{definition}
 \noindent
-Now we discuss relation between quasi-coherent $\bd{M}$-ideals and $\bd{M}$-invariant closed subschemes.
+Now we discuss relation between quasi-coherent $\bd{M}$-ideals and $\bd{M}$-stable closed subschemes.
 
-\begin{proposition}\label{proposition:invariant_closed_subschemes}
+\begin{proposition}\label{proposition:stable_closed_subschemes}
 Let $X$ be a $k$-scheme equipped with an action $a:\bd{M}\times_kX\ra X$ of $\bd{M}$ and denote by $\pi:\bd{M}\times_kX\ra X$ the projection. Suppose that $Z$ is a closed subscheme $Z$ of $X$ and recall that $\cO_X$ carries the canonical $\bd{M}$-sheaf structure. Consider the following assertions.
 \begin{enumerate}[label= \emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item $Z$ is an $\bd{M}$-invariant closed subscheme of $X$.
+\item $Z$ is an $\bd{M}$-stable closed subscheme of $X$.
 \item There exists a unique structure of quasi-coherent $\bd{M}$-algebra on $\cO_Z$.
 \item There exists a structure of quasi-coherent $\bd{M}$-algebra on $\cO_Z$ and the canonical epimorphism $\cO_X\twoheadrightarrow \cO_Z$ is a morphism of $\bd{M}$-sheaves.
 \item Let $\cI$ be a quasi-coherent ideal of $Z$. There exists a unique structure of quasi-coherent $\bd{M}$-sheaf on $\cI$ such that $\cI\hookrightarrow \cO_X$ is a morphism of $\bd{M}$-sheaves.
@@ -1375,13 +1377,63 @@ If in addition $Y$ is a locally noetherian $k$-scheme equipped with action of $\
 \end{corollary}
 \begin{proof}
 The statement \textbf{(1)} is a consequence of Theorem \ref{theorem:forgetful_functor_from_equivariant_sheaves_to_qc_sheaves_creates_colimits_and_finite_limits} and the fact that the functor $\Coh(X)\hookrightarrow \Qcoh(X)$ creates both finite limits and finite colimits.\\
-Next \textbf{(2)} follows from the form of the monoidal structure described in Remark \ref{remark:monoidal_structure_on_equivariant_sheaves}. Concretely, if $(\cF_1,\tau_1)$ and $(\cF_2,\tau_2)$ are coherent $\bd{M}$-sheaves, then $\left(\cF_1\otimes_{\cO_X}\cF_2,\tau_1\otimes_{\cO_X}\tau_2\right)$ is coherent $\bd{M}$-sheaf and $\left(\cO_X,a_{\#}^{-1}\cdot \pi_{\#}\right)$ is coherent $\bd{M}$-sheaf, where $\pi:\bd{M}\times_kX\ra X$ denotes the projection.\\
+Next \textbf{(2)} follows from the form of the monoidal structure described in Remark \ref{remark:monoidal_structure_on_equivariant_sheaves}. Concretely, if $(\cF_1,\tau_1)$ and $(\cF_2,\tau_2)$ are coherent $\bd{M}$-sheaves, then $\left(\cF_1\otimes_{\cO_X}\cF_2,\tau_1\otimes_{\cO_X}\tau_2\right)$ is a coherent $\bd{M}$-sheaf and $\left(\cO_X,a_{\#}^{-1}\cdot \pi_{\#}\right)$ is a coherent $\bd{M}$-sheaf, where $\pi:\bd{M}\times_kX\ra X$ denotes the projection.\\
 The last part of the statement follows from Corollary \ref{corollary:pullbacks_of_equivariant_sheaves}.
 \end{proof}
 
-\begin{proposition}\label{proposition:}
-Suppose that $\bd{M}$ is affine monoid $k$-scheme. Let $X$ be a $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$ and let $(\cF,\tau)$ be a quasi-coherent $\bd{M}$-sheaf. Assume that $X$ is quasi-compact and semi-separated. If $\tau$ is an isomorphism of sheaves, then $\Gamma\left(X,\tau^{-1}\right)\cdot a^*:\Gamma\left(X,\cF\right) \ra k[\bd{M}]\otimes_k \Gamma\left(X,\cF\right)$ is a coaction of $k[\bd{M}]$.
+\begin{proposition}\label{proposition:affine_monoid_actions_on_schemes_induce_coactions}
+Suppose that $\bd{M}$ is affine monoid $k$-scheme. Let $X$ be a $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$ and let $(\cF,\tau)$ be a quasi-coherent $\bd{M}$-sheaf. Assume that $X$ is quasi-compact and semi-separated. If $\tau$ is an isomorphism of sheaves, then 
+$$\Gamma\left(\bd{M}\times_kX,\tau^{-1}\right)\cdot \Gamma\left( X,\eta_{\cF} \right):\cF(X) \ra k[\bd{M}]\otimes_k \cF(X)$$
+is a coaction of $k[\bd{M}]$, where $\eta_{\cF}:\cF \ra a_*a^*\cF$ is the unit of the adjunction $a^* \dashv a_*$.
 \end{proposition}
+\begin{proof}
+We use {\cite[Theorem 2.4]{Group_schemes_over_field}}, which describes global sections of outer tensor products of quasi-coherent sheaves. Denote $c = \Gamma\left(\bd{M}\times_kX,\tau^{-1}\right)\cdot \Gamma\left( X,\eta_{\cF} \right)$. Note that $\Gamma\left(X,\eta_{\cF}\right)(s) = a^*s$ for every $s\in \cF(X)$. Fix now $s\in \cF(X)$. Suppose that
+$$c(s) = \sum_{i=1}^na_i\otimes s_i$$
+where $a_i \in k[\bd{M}]$ and $s_i \in \cF(X)$ for all $i$. Then
+$$\big(1_{k[\bd{M}]}\otimes_k c\big)\big(c(s)\big) = \sum_{i=1}^na_i\otimes c(s_i) =  \sum_{i=1}^n\bigg( \Gamma\left(\bd{M}\times_k \bd{M} \times_kX, \pi_{23}^*\tau^{-1}\right)\big(a_i \otimes a^*s_i\big) \bigg) =$$
+$$= \Gamma\left(\bd{M}\times_k \bd{M} \times_kX, \pi_{23}^*\tau^{-1}\right)\big(\left(1_{\bd{M}}\times_k a\right)^*c(s)\big) =$$
+$$= \bigg(\Gamma\left(\bd{M}\times_k \bd{M} \times_kX, \pi_{23}^*\tau^{-1}\right) \cdot \Gamma\left(\bd{M} \times_k \bd{M} \times_k X, \left(1_{\bd{M}}\times_k a\right)^*\tau^{-1}\right)\bigg) \big(\left(1_{\bd{M}}\times_k a\right)^*a^*s)\big)$$
+and
+$$\big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\big(c(s)\big) = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\bigg(\sum_{i=1}^na_i\otimes s_i\bigg) =$$
+$$=\Gamma\left(\bd{M}\times_k\bd{M}\times_kX, (\mu\times_k 1_X)^*\tau^{-1}\right)\big(\mu\times_k 1_X\big)^*a^*s$$
+where $\Delta_{\bd{M}}$ is the comultiplication of $k[\bd{M}]$. Since $\pi_{23}^*\tau^{-1} \cdot \left(1_{\bd{M}}\times_k a\right)^*\tau^{-1} = (\mu\times_k 1_X)^*\tau^{-1}$, we derive that
+$$\big(1_{k[\bd{M}]}\otimes_k c\big)\big(c(s)\big) = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\big(c(s)\big)$$
+for $s\in \cF(X)$. Next suppose that $\xi_{\bd{M}}:k\ra k[\bd{M}]$ is the counit of $k[\bd{M}]$. Then
+$$\sum_{i=1}^n \xi_{\bd{M}}(a_i) \cdot s_i = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)\big(\langle e ,1_X\rangle^*a^*s\big) = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)(s) = 1_{\cF(X)}(s) = s$$
+Thus
+$$\big(\xi_{\bd{M}} \otimes_k 1_{\cF(X)}\big)\big(c(s)\big) = 1\otimes s$$
+for $s\in \cF(X)$. Since these two equations holds for every $s$ in $\cF(X)$, we deduce that $c$ is the coaction.
+\end{proof}
+
+\begin{proposition}\label{proposition:equivariant_sheaves_on_schemes_with_trivial_actions}
+Suppose that $\bd{M}$ is affine monoid $k$-scheme. Let $X$ be a $k$-scheme equipped with trivial $\bd{M}$-action i.e. the action given by the projection $\pi:\bd{M}\times_kX\ra X$ and let $\cF$ be a quasi-coherent sheaf on $X$. If $\tau:\pi^*\cF\ra a^*\cF$ is an isomorphism of sheaves, then the following assertions are equivalent.
+\begin{enumerate}[label= \emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $(\cF,\tau)$ is a $\bd{M}$-sheaf.
+\item Let $\eta:\cF\ra \pi_*\pi^*\cF$ be the unit of $\pi^* \dashv \pi_*$. For every open affine subcheme $U$ of $X$ morphism
+$$\Gamma\left(U,\pi_*\tau^{-1}\cdot \eta_{\cF}\right):\cF(U)\ra k[\bd{M}]\otimes_k\cF(U)$$
+is a coaction of $k[\bd{M}]$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The proof is similar to the one of Proposition \ref{proposition:affine_monoid_actions_on_schemes_induce_coactions} above. Fix open affine subset $U$ of $X$. Denote $c = \Gamma\left(\pi_*\tau^{-1}\cdot \eta_{\cF}, U\right)$. Now pick $s\in \cF(U)$ and suppose that
+$$c(s) = \sum_{i=1}^na_i\otimes s_i$$
+where $a_i \in k[\bd{M}]$ and $s_i \in \cF(U)$ for all $i$. Then
+$$\big(1_{k[\bd{M}]}\otimes_k c\big)\big(c(s)\big) = \sum_{i=1}^na_i\otimes c(s_i) =  \sum_{i=1}^n\bigg( \Gamma\left(\bd{M}\times_k \bd{M} \times_kU, \pi_{23}^*\tau^{-1}\right)\big(a_i \otimes \pi^*s_i\big) \bigg) =$$
+$$= \Gamma\left(\bd{M}\times_k \bd{M} \times_kU, \pi_{23}^*\tau^{-1}\right)\big(\left(1_{\bd{M}}\times_k \pi\right)^*c(s)\big) =$$
+$$= \bigg(\Gamma\left(\bd{M}\times_k \bd{M} \times_kU, \pi_{23}^*\tau^{-1}\right) \cdot \Gamma\left(\bd{M} \times_k \bd{M} \times_k U, \left(1_{\bd{M}}\times_k \pi\right)^*\tau^{-1}\right)\bigg) \big(\left(1_{\bd{M}}\times_k \pi\right)^*\pi^*s)\big)$$
+and
+$$\big(\Delta_{\bd{M}}\otimes_k 1_{\cF(U)}\big)\big(c(s)\big) = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(U)}\big)\bigg(\sum_{i=1}^na_i\otimes s_i\bigg) =$$
+$$=\Gamma\left(\bd{M}\times_k\bd{M}\times_kU, (\mu\times_k 1_U)^*\tau^{-1}\right)\big(\mu\times_k 1_U\big)^*\pi^*s$$
+where $\Delta_{\bd{M}}$ is the comultiplication of $k[\bd{M}]$. Thus
+$$\big(1_{k[\bd{M}]}\otimes_k c\big)\cdot c = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\cdot c$$
+if and only if 
+$$\Gamma\big(\bd{M}\times_k\bd{M}\times_kU,\pi_{23}^*\tau^{-1}\big) \cdot \Gamma\big(\bd{M}\times_k\bd{M}\times_kU,\left(1_{\bd{M}}\times_k \pi\right)^*\tau^{-1}\big) = \Gamma\big(\bd{M}\times_k\bd{M}\times_kU,(\mu\times_k 1_X)^*\tau^{-1}\big)$$
+Next suppose that $\xi_{\bd{M}}:k\ra k[\bd{M}]$ is the counit of $k[\bd{M}]$. Then
+$$\sum_{i=1}^n \xi_{\bd{M}}(a_i) \cdot s_i = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)\big(\langle e ,1_X\rangle^*\pi^*s\big) = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)(s)$$
+Thus $\big(\xi_{\bd{M}} \otimes_k 1_{\cF(U)}\big)\cdot c$ is the canonical isomorphism $\cF(U)\ra k\otimes_k\cF(U)$ if and only if 
+$$\Gamma\big(U, \langle e, 1_X\rangle^*\tau^{-1}\big) = \Gamma\big(U,1_{\cF}\big)$$
+Since these hold for every open affine subset $U$ of $X$, we deduce that \textbf{(i)} and \textbf{(ii)} are equivalent.
+\end{proof}
 
 \section{Example: Principal Bundles}
 \noindent
