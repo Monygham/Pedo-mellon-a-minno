@@ -1381,60 +1381,6 @@ Next \textbf{(2)} follows from the form of the monoidal structure described in R
 The last part of the statement follows from Corollary \ref{corollary:pullbacks_of_equivariant_sheaves}.
 \end{proof}
 
-\begin{proposition}\label{proposition:affine_monoid_actions_on_schemes_induce_coactions}
-Suppose that $\bd{M}$ is affine monoid $k$-scheme. Let $X$ be a $k$-scheme equipped with $\bd{M}$-action $a:\bd{M}\times_kX\ra X$ and let $(\cF,\tau)$ be a quasi-coherent $\bd{M}$-sheaf. Assume that $X$ is quasi-compact and semi-separated. If $\tau$ is an isomorphism of sheaves, then 
-$$\Gamma\left(\bd{M}\times_kX,\tau^{-1}\right)\cdot \Gamma\left( X,\eta_{\cF} \right):\cF(X) \ra k[\bd{M}]\otimes_k \cF(X)$$
-is a coaction of $k[\bd{M}]$, where $\eta_{\cF}:\cF \ra a_*a^*\cF$ is the unit of the adjunction $a^* \dashv a_*$.
-\end{proposition}
-\begin{proof}
-We use {\cite[Theorem 2.4]{Group_schemes_over_field}}, which describes global sections of outer tensor products of quasi-coherent sheaves. Denote $c = \Gamma\left(\bd{M}\times_kX,\tau^{-1}\right)\cdot \Gamma\left( X,\eta_{\cF} \right)$. Note that $\Gamma\left(X,\eta_{\cF}\right)(s) = a^*s$ for every $s\in \cF(X)$. Fix now $s\in \cF(X)$. Suppose that
-$$c(s) = \sum_{i=1}^na_i\otimes s_i$$
-where $a_i \in k[\bd{M}]$ and $s_i \in \cF(X)$ for all $i$. Then
-$$\big(1_{k[\bd{M}]}\otimes_k c\big)\big(c(s)\big) = \sum_{i=1}^na_i\otimes c(s_i) =  \sum_{i=1}^n\bigg( \Gamma\left(\bd{M}\times_k \bd{M} \times_kX, \pi_{23}^*\tau^{-1}\right)\big(a_i \otimes a^*s_i\big) \bigg) =$$
-$$= \Gamma\left(\bd{M}\times_k \bd{M} \times_kX, \pi_{23}^*\tau^{-1}\right)\big(\left(1_{\bd{M}}\times_k a\right)^*c(s)\big) =$$
-$$= \bigg(\Gamma\left(\bd{M}\times_k \bd{M} \times_kX, \pi_{23}^*\tau^{-1}\right) \cdot \Gamma\left(\bd{M} \times_k \bd{M} \times_k X, \left(1_{\bd{M}}\times_k a\right)^*\tau^{-1}\right)\bigg) \big(\left(1_{\bd{M}}\times_k a\right)^*a^*s)\big)$$
-and
-$$\big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\big(c(s)\big) = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\bigg(\sum_{i=1}^na_i\otimes s_i\bigg) =$$
-$$=\Gamma\left(\bd{M}\times_k\bd{M}\times_kX, (\mu\times_k 1_X)^*\tau^{-1}\right)\big(\mu\times_k 1_X\big)^*a^*s$$
-where $\Delta_{\bd{M}}$ is the comultiplication of $k[\bd{M}]$. Since $\pi_{23}^*\tau^{-1} \cdot \left(1_{\bd{M}}\times_k a\right)^*\tau^{-1} = (\mu\times_k 1_X)^*\tau^{-1}$, we derive that
-$$\big(1_{k[\bd{M}]}\otimes_k c\big)\big(c(s)\big) = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\big(c(s)\big)$$
-for $s\in \cF(X)$. Next suppose that $\xi_{\bd{M}}:k\ra k[\bd{M}]$ is the counit of $k[\bd{M}]$. Then
-$$\sum_{i=1}^n \xi_{\bd{M}}(a_i) \cdot s_i = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)\big(\langle e ,1_X\rangle^*a^*s\big) = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)(s) = 1_{\cF(X)}(s) = s$$
-Thus
-$$\big(\xi_{\bd{M}} \otimes_k 1_{\cF(X)}\big)\big(c(s)\big) = 1\otimes s$$
-for $s\in \cF(X)$. Since these two equations holds for every $s$ in $\cF(X)$, we deduce that $c$ is the coaction.
-\end{proof}
-
-\begin{proposition}\label{proposition:equivariant_sheaves_on_schemes_with_trivial_actions}
-Suppose that $\bd{M}$ is affine monoid $k$-scheme. Let $X$ be a $k$-scheme equipped with trivial $\bd{M}$-action i.e. the action given by the projection $\pi:\bd{M}\times_kX\ra X$ and let $\cF$ be a quasi-coherent sheaf on $X$. If $\tau:\pi^*\cF\ra a^*\cF$ is an isomorphism of sheaves, then the following assertions are equivalent.
-\begin{enumerate}[label= \emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item $(\cF,\tau)$ is a $\bd{M}$-sheaf.
-\item Let $\eta:\cF\ra \pi_*\pi^*\cF$ be the unit of $\pi^* \dashv \pi_*$. For every open affine subcheme $U$ of $X$ morphism
-$$\Gamma\left(U,\pi_*\tau^{-1}\cdot \eta_{\cF}\right):\cF(U)\ra k[\bd{M}]\otimes_k\cF(U)$$
-is a coaction of $k[\bd{M}]$.
-\end{enumerate}
-\end{proposition}
-\begin{proof}
-The proof is similar to the one of Proposition \ref{proposition:affine_monoid_actions_on_schemes_induce_coactions} above. Fix open affine subset $U$ of $X$. Denote $c = \Gamma\left(\pi_*\tau^{-1}\cdot \eta_{\cF}, U\right)$. Now pick $s\in \cF(U)$ and suppose that
-$$c(s) = \sum_{i=1}^na_i\otimes s_i$$
-where $a_i \in k[\bd{M}]$ and $s_i \in \cF(U)$ for all $i$. Then
-$$\big(1_{k[\bd{M}]}\otimes_k c\big)\big(c(s)\big) = \sum_{i=1}^na_i\otimes c(s_i) =  \sum_{i=1}^n\bigg( \Gamma\left(\bd{M}\times_k \bd{M} \times_kU, \pi_{23}^*\tau^{-1}\right)\big(a_i \otimes \pi^*s_i\big) \bigg) =$$
-$$= \Gamma\left(\bd{M}\times_k \bd{M} \times_kU, \pi_{23}^*\tau^{-1}\right)\big(\left(1_{\bd{M}}\times_k \pi\right)^*c(s)\big) =$$
-$$= \bigg(\Gamma\left(\bd{M}\times_k \bd{M} \times_kU, \pi_{23}^*\tau^{-1}\right) \cdot \Gamma\left(\bd{M} \times_k \bd{M} \times_k U, \left(1_{\bd{M}}\times_k \pi\right)^*\tau^{-1}\right)\bigg) \big(\left(1_{\bd{M}}\times_k \pi\right)^*\pi^*s)\big)$$
-and
-$$\big(\Delta_{\bd{M}}\otimes_k 1_{\cF(U)}\big)\big(c(s)\big) = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(U)}\big)\bigg(\sum_{i=1}^na_i\otimes s_i\bigg) =$$
-$$=\Gamma\left(\bd{M}\times_k\bd{M}\times_kU, (\mu\times_k 1_U)^*\tau^{-1}\right)\big(\mu\times_k 1_U\big)^*\pi^*s$$
-where $\Delta_{\bd{M}}$ is the comultiplication of $k[\bd{M}]$. Thus
-$$\big(1_{k[\bd{M}]}\otimes_k c\big)\cdot c = \big(\Delta_{\bd{M}}\otimes_k 1_{\cF(X)}\big)\cdot c$$
-if and only if 
-$$\Gamma\big(\bd{M}\times_k\bd{M}\times_kU,\pi_{23}^*\tau^{-1}\big) \cdot \Gamma\big(\bd{M}\times_k\bd{M}\times_kU,\left(1_{\bd{M}}\times_k \pi\right)^*\tau^{-1}\big) = \Gamma\big(\bd{M}\times_k\bd{M}\times_kU,(\mu\times_k 1_X)^*\tau^{-1}\big)$$
-Next suppose that $\xi_{\bd{M}}:k\ra k[\bd{M}]$ is the counit of $k[\bd{M}]$. Then
-$$\sum_{i=1}^n \xi_{\bd{M}}(a_i) \cdot s_i = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)\big(\langle e ,1_X\rangle^*\pi^*s\big) = \Gamma\big(X, \langle e,1_X \rangle^*\tau^{-1}\big)(s)$$
-Thus $\big(\xi_{\bd{M}} \otimes_k 1_{\cF(U)}\big)\cdot c$ is the canonical isomorphism $\cF(U)\ra k\otimes_k\cF(U)$ if and only if 
-$$\Gamma\big(U, \langle e, 1_X\rangle^*\tau^{-1}\big) = \Gamma\big(U,1_{\cF}\big)$$
-Since these hold for every open affine subset $U$ of $X$, we deduce that \textbf{(i)} and \textbf{(ii)} are equivalent.
-\end{proof}
-
 \section{Example: Principal Bundles}
 \noindent
 We devote this whole section to another important example of a fibered category. We fix a category with finite limits $\cB$ and a monoid object $\bd{M}$ of $\cB$. We denote by $\mu:\bd{M}\times \bd{M}\ra \bd{M}$ and $e:\bd{1}\ra \bd{M}$ the multiplication and unit of $\bd{M}$, respectively.

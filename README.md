@@ -8,9 +8,9 @@ Compilation of each latex file requires file
 in your working directory. The file is located at the top of the repository.
 
 ## References
-Each directory contains
+Top directory contains
 `zzz.bib`
-with bibtex formats required for creating bibliography for latex files located inside directory.
+with bibtex formats required for creating bibliography for latex files located inside each directory.
 
 ## Prerequisites
 Each directory contains file
