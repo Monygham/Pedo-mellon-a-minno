@@ -1,0 +1,229 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Bia{\l}ynicki-Birula functors}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In this notes we study Bia{\l}ynicki-Birula functors. In the first section we prove some results concerning the forgetful functor $\bd{Rep}(\bd{M})\ra \bd{Rep}(\bd{G})$, where $\bd{M}$ is an affine monoid $k$-scheme and $\bd{G}$ is its group of units (we assume that $\bd{G}$ is open and schematically dense in $\bd{M}$). These results will be used in following sections.\\
+We assume that $k$ is a field.
+
+\section{Relations between representations of a monoid and its group of units}
+\noindent
+In this section we study the relation between the category $\bd{Rep}(\bd{M})$ of representations of an affine monoid $k$-scheme $\bd{M}$ and the category $\bd{Rep}(\bd{G})$ of representations of its group of units $\bd{G}$. Let $i:k[\bd{M}]\ra k[\bd{G}]$ be the morphism of $k$-bialgebras induced by $\bd{G}\hookrightarrow \bd{M}$. Let us first note the following elementary result.
+
+\begin{fact}\label{fact:monoid_bialgebra_injects_into_group_bialgebra_if_units_are_open_and_schematically_dense}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $\bd{G}$ be its group of units. Assume that $\bd{G}$ is open and schematically dense in $\bd{M}$. Then $i$ is an injective morphism of $k$-algebras.
+\end{fact}
+\begin{proof}
+This follows from {\cite[Proposition 9.19]{gortz2010algebraic}}.
+\end{proof}
+
+\begin{fact}\label{fact:forgetful_from_reps_of_monoid_to_reps_of_units_creates_colimits_and_finite_limits}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $\bd{G}$ be its group of units. Then the forgetful functor $\bd{Rep}(\bd{M})\ra \bd{Rep}(\bd{G})$ creates colimits and finite limits.
+\end{fact}
+\begin{proof}
+This follows from {\cite[Theorem 14.3, Theorem 14.4]{Monoid_k_functors}} and the commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{  \bd{Rep}(\bd{M}) &        & \bd{Rep}(\bd{G})  \\
+          &\Vect_k &  \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$  $} (m-1-3)
+(m-1-1) edge node[swap] {$  $} (m-2-2)
+(m-1-3) edge node[below = 6pt, right = 1pt] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+of functors.
+\end{proof}
+\noindent
+The theorem below characterizes representations of $\bd{G}$ which are contained in the image of the forgetful functor $\bd{Rep}(\bd{M})\ra \bd{Rep}(\bd{G})$. 
+
+\begin{theorem}\label{theorem:characterization_of_monoid_representations}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $\bd{G}$ be its group of units. Assume that $\bd{G}$ is open and schematically dense in $\bd{M}$. Let $V$ be a $\bd{G}$-representation. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $V$ is in the image of the forgetful functor $\bd{Rep}(\bd{M}) \ra \bd{Rep}(\bd{G})$.
+\item The coaction $d:V \ra k[\bd{G}]\otimes_kV$ factors through $i\otimes_k1_V:k[\bd{M}]\otimes_kV\hookrightarrow k[\bd{G}]\otimes_kV$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+In the proof we denote by $\Delta_{\bd{M}}$ and $\Delta_{\bd{G}}$ comultiplications of $k[\bd{M}]$ and $k[\bd{G}]$, respectively. We also denote by $\xi_{\bd{M}}$ and $\xi_{\bd{G}}$ counits of $k[\bd{M}]$ and $k[\bd{G}]$, respectively. According to Fact \ref{fact:monoid_bialgebra_injects_into_group_bialgebra_if_units_are_open_and_schematically_dense} $i$ is an injective morphism of $k$-algebras.\\
+Clearly $\textbf{(i)}\Rightarrow \textbf{(ii)}$. We prove the converse. Suppose that \textbf{(ii)} holds. Let $c:V\ra k[\bd{M}]\otimes_kV$ be a unique morphism such that $d = (i\otimes_k1_V) \cdot c$. It suffices to prove that $c$ is the coaction of the bialgebra $k[\bd{M}]$ on $V$. Observe that
+$$\left(i\otimes_k i \otimes_k 1_V\right)\cdot \left(1_{k[\bd{M}]} \otimes_k c\right)\cdot c = \left(i\otimes_k d \right)\cdot c = \left(1_{k[\bd{G}]}\otimes_k d\right)\cdot d = \left(\Delta_{\bd{G}}\otimes_k1_V\right) \cdot d =$$
+$$=\left(\Delta_{\bd{G}}\otimes_k1_V\right) \cdot \big(\left(i\otimes_k 1_V\right) \cdot c\big) = \left((\Delta_{\bd{G}}\cdot i )\otimes_k1_V\right) \cdot c = \left(i \otimes_k i \otimes_k 1_V\right) \cdot \left(\Delta_{\bd{M}}\otimes_k 1_V\right)\cdot c$$
+Since $i\otimes_k i \otimes_k 1_V$ is a monomorphism, we deduce that $\left(1_{k[\bd{M}]} \otimes_k c\right)\cdot c =  \left(\Delta_{\bd{M}}\otimes_k 1_V\right)\cdot c$. Moreover, we have
+$$(\xi_{\bd{G}}\otimes_k 1_V)\cdot d = (\xi_{\bd{G}}\otimes_k 1_V)\cdot \left((i \otimes_k 1_V) \cdot c\right) = (\xi_{\bd{M}}\otimes_k1_V)\cdot c$$
+and hence $(\xi_{\bd{M}}\otimes_k1_V)\cdot c$ is the canonical isomorphism $V\cong k\otimes_kV$. Thus $c$ is the coaction of $k[\bd{M}]$ and $d = (i\otimes_k1_V) \cdot c$. Therefore, $V$ is in the image of $\bd{Rep}(\bd{M})\ra \bd{Rep}(\bd{G})$.
+\end{proof}
+
+\begin{theorem}\label{theorem:full_subcategory_closed_under_subobjects_and_quotients}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $\bd{G}$ be its group of units. Assume that $\bd{G}$ is open and schematically dense in $\bd{M}$. Then $\bd{Rep}(\bd{M})$ is a full subcategory of $\bd{Rep}(\bd{G})$ closed under subobjects and quotients.
+\end{theorem}
+\begin{proof}
+In the proof we denote by $\Delta_{\bd{M}}$ and $\Delta_{\bd{G}}$ comultiplications of $k[\bd{M}]$ and $k[\bd{G}]$, respectively. We also denote by $\xi_{\bd{M}}$ and $\xi_{\bd{G}}$ counits of $k[\bd{M}]$ and $k[\bd{G}]$, respectively. According to Fact \ref{fact:monoid_bialgebra_injects_into_group_bialgebra_if_units_are_open_and_schematically_dense} $i$ is an injective morphism of $k$-algebras.\\
+We first prove that $\bd{Rep}(\bd{M})$ is a full subcategory of $\bd{Rep}(\bd{G})$. For this consider $\bd{M}$-representations $V,W$ and a their morphism $f:V\ra W$ as $\bd{G}$-representations. Let $c_V$ and $c_W$ be coactions of $k[\bd{M}]$ on $V$ and $W$, respectively. Our goal is to prove that $f$ is a morphism of $\bd{M}$-representations. Consider the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ k[\bd{G}]\otimes_kV    & k[\bd{G}]\otimes_kW     \\
+  k[\bd{M}]\otimes_kV    & k[\bd{M}]\otimes_kW            \\
+  V                      & W                       \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_{k[\bd{G}]} \otimes_k f  $} (m-1-2)
+(m-3-1) edge node[below] {$ f  $} (m-3-2)
+
+(m-3-1) edge node[left] {$ c_V  $} (m-2-1)
+(m-2-1) edge node[left] {$ i\otimes_k1_V  $} (m-1-1)
+
+(m-3-2) edge node[right] {$ c_W  $} (m-2-2)
+(m-2-2) edge node[right] {$ i\otimes_k1_W  $} (m-1-2);
+\path[densely dotted,->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[above] {$ 1_{k[\bd{M}]}\otimes_k f $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which the outer square is commutative. Our goal is to prove that the bottom square is commutative. We have
+$$\left(i\otimes_k1_W\right) \cdot c_W\cdot f = \left(1_{k[\bd{G}]} \otimes_k f\right)\cdot \left(i\otimes_k1_V\right) \cdot c_V = \left(i\otimes_k1_W\right) \cdot \left(1_{k[\bd{M}]} \otimes_k f\right) \cdot  c_V$$
+Since $i\otimes_k1_W$ is a monomorphism, we deduce that $c_W\cdot f = \left(1_{k[\bd{M}]} \otimes_k f\right) \cdot c_V$. Hence $f$ is a morphism of $\bd{M}$-representations.\\
+Next we prove that $\bd{Rep}(\bd{M})$ is a subcategory of $\bd{Rep}(\bd{G})$ that is closed under subquotients. Consider an $\bd{M}$-representation $V$ and its quotient $\bd{G}$-representations $q:V\twoheadrightarrow W$. We show that $W$ is a quotient $\bd{M}$-representation of $V$. Let $c_V$ be the coaction of $\bd{M}$ on $V$ and let $d_W$ be the coaction of $\bd{G}$ on $W$. We have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ k[\bd{G}]\otimes_kV    & k[\bd{G}]\otimes_kW     \\
+  k[\bd{M}]\otimes_kV    &             \\
+  V                      & W                       \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ 1_{k[\bd{G}]} \otimes_k q  $} (m-1-2)
+(m-3-1) edge node[below] {$ q  $} (m-3-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-3-1) edge node[left] {$ c_V  $} (m-2-1)
+(m-2-1) edge node[left] {$ i\otimes_k1_V  $} (m-1-1)
+
+(m-3-2) edge node[right] {$ d_W  $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+and hence $d_W(W)\subseteq k[\bd{M}]\otimes_kW$. Thus Theorem \ref{theorem:characterization_of_monoid_representations} implies that $W$ is a representation of $\bd{M}$ and $q$ is a morphism of $\bd{M}$-representations. This shows that $\bd{Rep}(\bd{M})$ is a subcategory of $\bd{Rep}(\bd{G})$ closed under quotients. Next let $j:U\hookrightarrow V$ be a $\bd{G}$-subrepresentation of a $\bd{M}$-representation $V$. By what we proved above the cokernel $q:V\twoheadrightarrow W$ of $j$ in $\bd{Rep}(\bd{G})$ is contained in $\bd{Rep}(\bd{M})$. Since both $\bd{Rep}(\bd{M})$ and $\bd{Rep}(\bd{G})$ are abelian and the forgetful functor $\bd{Rep}(\bd{M})\ra \bd{Rep}(\bd{G})$ is exact, we derive that the kernel of $q$ in $\bd{Rep}(\bd{M})$ coincides with its kernel in $\bd{Rep}(\bd{G})$. Thus $U$ is a $\bd{M}$-representation and $j:U\hookrightarrow V$ is a morphism of $\bd{M}$-representations. Hence $\bd{Rep}(\bd{M})$ is the category of $\bd{Rep}(\bd{G})$ closed under subobjects.
+\end{proof}
+
+\begin{theorem}
+Let $\bd{M}$ be an affine monoid $k$-scheme and let $\bd{G}$ be its group of units. Assume that $\bd{G}$ is open and schematically dense in $\bd{M}$. Let $V$ be a $\bd{G}$-representation of $\bd{G}$. There exists an $\bd{M}$-representation $W$ and a surjective morpism $q:V\twoheadrightarrow W$ of $\bd{G}$-representations such that for every $\bd{M}$-representation $U$ and a morphism $f:V\ra U$ of $\bd{G}$-representations there exists a unique morphism $\tilde{f}:W\ra U$ of $\bd{M}$-representations making the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ V    &  U    \\
+  W    &             \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ q  $} (m-2-1);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f $} (m-1-2)
+(m-2-1) edge node[below = 3pt, right = 1pt] {$ \tilde{f} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+commutative.
+\end{theorem}
+\begin{proof}
+Assume first that $V$ is finite dimensional. Let $\cK$ be a set of $\bd{G}$-subrepresentations of $V$ that consists of all $K \subseteq V$ such that $V/K$ carries a structure of $\bd{M}$-representation. Clearly $\cK = \emptyset$ because $\{0\}\in \cK$. Since $V$ is finite dimensional, there exists a finite subset $\{K_1,...,K_n\}\subseteq \cK$ such that
+$$\bigcap_{i=1}^nK_i = \bigcap_{K\in \cK}K$$
+Then a morphism
+$$V/\left( \bigcap_{K \in \cK}K \right)\ni v \mapsto \big(v\,\mathrm{mod}\,K_i\big)_{1\leq i\leq n} \in \bigoplus_{i=1}^nV/K_i$$
+is a monomorphism and hence by Theorem \ref{theorem:full_subcategory_closed_under_subobjects_and_quotients} the quotient $W = V/\left( \bigcap_{K \in \cK}K \right)$ is an $\bd{M}$-representation. Let $q:V \twoheadrightarrow W$ be the canonical epimorphism. Consider now a morphism $f:V\ra U$ of $\bd{G}$-representations, where $U$ is an $\bd{M}$-representation. Then $\Image(f)$ is a $\bd{G}$-subrepresentation of $U$ and by Theorem \ref{theorem:full_subcategory_closed_under_subobjects_and_quotients} we derive that $\Image(f)$ is an $\bd{M}$-representation. This implies that $\Ker(f)$ is in $\cK$. Hence $f$ factors through $q$. Thus there exists a unique morphism $\tilde{f}:W\ra U$ of $\bd{G}$-representations such that $\tilde{f}\cdot q = f$. This completes the proof in case when $V$ is finite dimensional.\\
+Now consider the general $V$. Let $\cF$ be the set of all finite dimensional $\bd{G}$-representations of $V$. According to {\cite[Corollary 15.2]{Monoid_k_functors}} we deduce that $V = \mathrm{colim}_{F\in \cF}F$. By the case considered above we deduce that for every $F$ in $\cF$ there exists a universal morphism $q_F:F\ra W_F$ of $\bd{G}$-representations into an $\bd{M}$-representation $W_F$. Note that if $F_1\subseteq F_2$ are two elements of $\cF$, then
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ F_1    &  W_{F_1}    \\
+  F_2    &  W_{F_2}           \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ q_{F_1}  $} (m-1-2)
+(m-2-1) edge node[below] {$ q_{F_2}  $} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$  $} (m-2-1);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[right] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Thus $\{W_F\}_{F\in \cF}$ together with morphisms $W_{F_1}\ra W_{F_2}$ for $F_1\subseteq F_2$ in $\cF$ form a diagram parametrized by the poset $\cF$. The category $\bd{Rep}(\bd{M})$ has small colimits ({\cite[Corollary 14.5]{Monoid_k_functors}}) and we define $W = \mathrm{colim}_{F\in \cF}W_F$. This is also a colimit of this diagram in the category $\bd{Rep}(\bd{G})$ by Fact \ref{fact:forgetful_from_reps_of_monoid_to_reps_of_units_creates_colimits_and_finite_limits}. We also define $q = \mathrm{colim}_{F\in \cF}q_F:V = \mathrm{colim}_{F\in \cF}F \ra W$.  Since a colimit of a family of epimorphisms is an epimorphism, we derive that $q$ is an epimorphism of $\bd{G}$-representations. Suppose now that $f:V\ra U$ is a morphism of $\bd{G}$-representations and $U$ is an $\bd{M}$-representation. Then $f_{\mid F}$ uniquely factors through $q_F$ for every $F$ in $\cF$. Hence by universal property of colimits we derive that $f$ factors through $q$ in a unique way. This completes the proof.
+\end{proof}
+
+\section{Bia{\l}ynicki-Birula functors and its representability for locally linear schemes}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+\end{document}
