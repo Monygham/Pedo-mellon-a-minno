@@ -15,6 +15,138 @@ We assume that $k$ is a field. In these notes we use the following notational co
 Since the Yoneda embedding $\Sch_k\hookrightarrow \widehat{\Sch_k}$ is full and faithful, we identify $\Sch_k$ with the subcategory of $\widehat{\Sch_k}$ consisting of representable presheaves on $\Sch_k$. In particular, if $X$ is a $k$-scheme, then we denote by the same symbol the presheaf representable by $X$.
 \end{remark}
 
+\section{Tannakian formalism for quotient stacks}
+\noindent
+In this section we discuss an application of the main result of \cite{hall2019}. For this we need to briefly discuss \textit{algebraic stacks}, although for our purposes there is no need to use any technical details of this language. We refer the interested reader to the excellent exposition \cite{olsson2016algebraic} of this subject. We note the following facts.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item \textit{An algebraic stack} is a category fibered over $\Sch_k$ satisfying certain extra conditions described in {\cite[Definition 4.6.1]{olsson2016algebraic}} and {\cite[Definition 8.1.4]{olsson2016algebraic}}. By  {\cite[Definition 8.2.1, Example 8.2.3]{olsson2016algebraic}} there are well defined notions of \textit{locally noetherian, noetherian and excellent algebraic stacks}. 
+\item \textit{A morphism of algebraic stacks} is a morphism of fibered categories over $\Sch_k$. If $\cX$ and $\cY$ are algebraic stack, then we denote by $\Mor\left(\cX,\cY\right)$ the corresponding category of morphisms.
+\item For every locally noetherian algebraic stack $\cX$ there exists an abelian monoidal category $\Coh(\cX)$ of coherent sheaves on $\cX$ ({\cite[Definition 9.1.14]{olsson2016algebraic}}). If $\cX$ and $\cY$ are locally noetherian algebraic stacks, then we denote by $\Hom_{r,\otimes,\cong}\left(\Coh(\cX),\Coh(\cY)\right)$ the category of right exact, monoidal functors $\Coh(\cX)\ra \Coh(\cY)$ with natural isomorphism as morphisms.
+\item If $f:\cX\ra \cY$ is a morphism of locally noetherian algebraic stacks, then $f$ induces the functor $f^*:\Coh(\cY)\ra \Coh(\cX)$ such that $f^*\in \Hom_{r,\otimes,\cong}\left(\Coh(\cX),\Coh(\cY)\right)$.
+\item Let $\bd{G}$ be a locally algebraic group $k$-scheme and let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. We consider $\Sch_k$ as a Grothendieck site with respect to \textit{fppf topology} ({\cite[Example 2.1.14]{olsson2016algebraic}}). Next the quotient fibered category $[X/\bd{G}]$ ({\cite[Definition 9.5]{Fibered_categories_and_equivariant_objects}}) with respect to this topology is an algebraic stack by {\cite[Example 8.1.12]{olsson2016algebraic}}.
+\item In \textbf{(5)} if $k$-scheme $X$ is locally noetherian (noetherian, excellent), then $[X/\bd{G}]$ is a locally noetherian (noetherian, excellent) by {\cite[Definition 8.2.1, Example 8.2.3]{olsson2016algebraic}} and {\cite[Example 8.1.12]{olsson2016algebraic}}.
+\item In \textbf{(5)} if $k$-scheme $X$ is locally noetherian, then there exists an equivalence of monoidal categories $\Coh\left([X/\bd{G}]\right) \cong \Coh_{\bd{G}}(X)$ ({\cite[Exercise 9.H]{olsson2016algebraic}}). Moreover, this equivalence is functorial with respect to $\bd{G}$-equivariant morphism. That is if $Y$ is another locally noetherian $k$-scheme with action of $\bd{G}$ and $f:X\ra Y$ is a $\bd{G}$-equivariant morphism, then $f$ induces a morphism $[f/\bd{G}]:[X/\bd{G}]\ra [Y\bd{G}]$ by {\cite[Theorem 9.7]{Fibered_categories_and_equivariant_objects}} and the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Coh([Y/\bd{G}]) &  \Coh([X/\bd{G}])    \\
+  \Coh_{\bd{G}}(Y) &  \Coh_{\bd{G}}(X)           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ [f/\bd{G}]^*  $} (m-1-2)
+(m-2-1) edge node[below] {$ f^*  $} (m-2-2)
+(m-1-1) edge node[left] {$ \cong $} (m-2-1)
+(m-1-2) edge node[right] {$ \cong  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+of categories and functors is commutative.
+\item If $\bd{G}$ is smooth and affine over $k$, then $[X/\bd{G}]$ has \textit{affine stabilizers}.
+\end{enumerate}
+
+\begin{remark}\label{remark:coherent_sheaves_on_principal_bundles_are_finite_dim_representations}
+Let $\Spec k$ be a point equipped with the trivial action of a smooth and affine group $\bd{G}$. Then \textbf{(7)} together with {\cite[Example 4.7]{Algebraization}} impy that $\Coh([\Spec k/\bd{G}])$ can be identified with the category $\bd{Repf}_{\bd{G}}$ of finite dimensional representations of $\bd{G}$.
+\end{remark}
+\noindent
+Let us state the main result of \cite{hall2019}.
+
+\begin{theorem}[{\cite[Theorem 1.1]{hall2019}}]\label{theorem:hall_rydh_main_theorem}
+Let $\cX$ be a noetherian algebraic stack with affine stabilizers. For every locally excellent algebraic stack $\cT$ the functor
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor\left(\cX,\cT\right) &  \Hom_{r,\otimes,\cong}\left(\Coh(\cT),\Coh(\cX)\right)     \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$f \mapsto f^* $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is an equivalence of categories.
+\end{theorem}
+\noindent
+Keeping our previous remarks in mind we deduce the following result.
+
+\begin{corollary}\label{corollary:tannakian_formalism_after_Rydh}
+Let $\bd{G}$ be an smooth affine group $k$-scheme and let $X,Z$ be $k$-schemes equipped with an action of $\bd{G}$. Suppose that $Z$ is noetherian and $X$ is locally of finite type over $k$. Then
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor\left([Z/\bd{G}],[X/\bd{G}]\right) &  \Hom_{r,\otimes,\cong}\bigg(\Coh\big([X/\bd{G}]\big),\Coh\big([Z/\bd{G}]\big)\bigg)     \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$f \mapsto f^* $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is an equivalence of categories.
+\end{corollary}
+\begin{proof}
+Note that $[Z/\bd{G}]$ is a noetherian algebraic stack according to \textbf{(5)} and \textbf{(6)}. It has affine stabilizers according to \textbf{(8)}. Similary by \textbf{(5)} $[X/\bd{G}]$ is an algebraic stack. Moreover, it is locally excellent according to the fact that $X$ is locally excellent (it is locally of finite type over $k$ and $k$ is a field) and \textbf{(6)}. Then by Theorem \ref{theorem:hall_rydh_main_theorem} we derive that the functor in the statement is an equivalence of categories. 
+\end{proof}
+
+\begin{corollary}\label{corollary:equivariant_morphisms_from_categories_Rydh_version}
+Let $\bd{G}$ be an smooth affine group $k$-scheme and let $X,Z$ be $k$-schemes equipped with an action of $\bd{G}$. Suppose that $Z$ is noetherian and $X$ is locally of finite type over $k$. Then we have a bijection
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \big\{f:Z\ra X\,\big|\,f\mbox{ is }\bd{G}\mbox{-equivariant}\big\}  & \big\{F\in \Hom_{r,\otimes,\cong}\left(\Coh_{\bd{G}}(X),\Coh_{\bd{G}}(Z)\right)\,\big|\,F\cdot p_X^* = p_Z^*\big\}   \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$f\mapsto f^* $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+where $p_X^*:\bd{Repf}(\bd{G})\ra \Coh_{\bd{G}}(X)$ and $p_Z^*:\bd{Repf}(\bd{G})\ra \Coh_{\bd{G}}(Z)$ are functors induced by $\bd{G}$-equivariant morphisms $p_X:X\ra \Spec k$ and $p_Z:Z\ra \Spec k$, respectively.
+\end{corollary}
+\begin{proof}
+Since fppf topology is subcanonical, {\cite[Theorem 9.7]{Fibered_categories_and_equivariant_objects}} shows that there exists a bijection
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \big\{f:Z\ra X\,\big|\,f\mbox{ is }\bd{G}\mbox{-equivariant}\big\} &  \big\{h:[Z/\bd{G}]\ra [X/\bd{G}]\,\big|\,[p_X/\bd{G}] \cdot h = [p_Y/\bd{G}]\big\}    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$f \mapsto [f/\bd{G}] $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+Corollary \ref{corollary:tannakian_formalism_after_Rydh} implies that there exists a bijection
+\begin{center}
+\hspace*{-2.0cm}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \big\{h:[Z/\bd{G}]\ra [X/\bd{G}]\,\big|\,[p_X/\bd{G}] \cdot h = [p_Y/\bd{G}]\big\} & \big\{F\in \Hom_{r,\otimes,\cong}\left(\Coh([X/\bd{G}]),\Coh([Z/\bd{G}])\right)\,\big|\,F\cdot [p_X/\bd{G}]^* = [p_Z,\bd{G}]^*\big\}     \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$h \mapsto h^* $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+Next \textbf{(7)} implies that there exists a bijection
+\begin{center}
+\hspace*{-2.0cm}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \big\{F\in \Hom_{r,\otimes,\cong}\left(\Coh([X/\bd{G}]),\Coh([Z/\bd{G}])\right)\,\big|\,F\cdot [p_X/\bd{G}]^* = [p_Z,\bd{G}]^*\big\} & \big\{F\in \Hom_{r,\otimes,\cong}\left(\Coh_{\bd{G}}(X),\Coh_{\bd{G}}(Z)\right)\,\big|\,F\cdot p_X^* = p_Z^*\big\}    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+and for a $\bd{G}$-equivariant morphism $f:Z\ra X$ the image of $[f/\bd{G}]^*:\Coh([X/\bd{G}])\ra \Coh([Z/\bd{G}])$ under this bijection is $f^*:\Coh_{\bd{G}}(X)\ra \Coh_{\bd{G}}(Z)$. These imply that the map of classes
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \big\{f:Z\ra X\,\big|\,f\mbox{ is }\bd{G}\mbox{-equivariant}\big\}  & \big\{F\in \Hom_{r,\otimes,\cong}\left(\Coh_{\bd{G}}(X),\Coh_{\bd{G}}(Z)\right)\,\big|\,F\cdot p_X^* = p_Z^*\big\}   \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$f\mapsto f^* $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a bijection.
+\end{proof}
+\noindent
+Note that Corollary \ref{corollary:equivariant_morphisms_from_categories_Rydh_version} relies on some asumptions regarding $\bd{G}$, $X$ and $Z$. It is worth noting that Joachim Jelisiejew and the author were able to obtain a slightly more general (yet unpublished) result.
+
+\begin{theorem}[{\cite[Theorem A.2]{jelisiejew2020bialynicki}}]\label{theorem:equivariant_morphisms_from_categories_Jelisiejew_et_al_version}
+Let $\bd{G}$ be an affine algebraic group over $k$. Let $Z,X$ be $k$-schemes equipped with an action of $\bd{G}$ and assume that $X$ is quasi-compact and quasi-separated. Suppose that $F:\Qcoh_{\bd{G}}(X)\ra \Qcoh_{\bd{G}}(Z)$ is a cocontinuous, monoidal functor such that $F\cdot p_X^* = p_Z^*$. Then there exists a unique $\bd{G}$-equivariant morphism $f:Z\ra X$ such that $f^* = F$.
+\end{theorem}
+
 \section{Relations between representations of a monoid and its group of units}
 \noindent
 In this section we study the relation between the category $\bd{Rep}(\bd{M})$ of representations of an affine monoid $k$-scheme $\bd{M}$ and the category $\bd{Rep}(\bd{G})$ of representations of its group of units $\bd{G}$. Let $i:k[\bd{M}]\ra k[\bd{G}]$ be the morphism of $k$-bialgebras induced by $\bd{G}\hookrightarrow \bd{M}$. Let us first note the following elementary result.
@@ -115,7 +247,7 @@ Next we prove that $\bd{Rep}(\bd{M})$ is a subcategory of $\bd{Rep}(\bd{G})$ tha
 and hence $d_W(W)\subseteq k[\bd{M}]\otimes_kW$. Thus Theorem \ref{theorem:characterization_of_monoid_representations} implies that $W$ is a representation of $\bd{M}$ and $q$ is a morphism of $\bd{M}$-representations. This shows that $\bd{Rep}(\bd{M})$ is a subcategory of $\bd{Rep}(\bd{G})$ closed under quotients. Next let $j:U\hookrightarrow V$ be a $\bd{G}$-subrepresentation of a $\bd{M}$-representation $V$. By what we proved above the cokernel $q:V\twoheadrightarrow W$ of $j$ in $\bd{Rep}(\bd{G})$ is contained in $\bd{Rep}(\bd{M})$. Since both $\bd{Rep}(\bd{M})$ and $\bd{Rep}(\bd{G})$ are abelian and the forgetful functor $\bd{Rep}(\bd{M})\ra \bd{Rep}(\bd{G})$ is exact, we derive that the kernel of $q$ in $\bd{Rep}(\bd{M})$ coincides with its kernel in $\bd{Rep}(\bd{G})$. Thus $U$ is a $\bd{M}$-representation and $j:U\hookrightarrow V$ is a morphism of $\bd{M}$-representations. Hence $\bd{Rep}(\bd{M})$ is the category of $\bd{Rep}(\bd{G})$ closed under subobjects.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group}
 Assume that $\bd{G}$ is open and schematically dense in $\bd{M}$. Let $V$ be a $\bd{G}$-representation of $\bd{G}$. There exists an $\bd{M}$-representation $W$ and a surjective morpism $q:V\twoheadrightarrow W$ of $\bd{G}$-representations such that for every $\bd{M}$-representation $U$ and a morphism $f:V\ra U$ of $\bd{G}$-representations there exists a unique morphism $\tilde{f}:W\ra U$ of $\bd{M}$-representations making the triangle
 \begin{center}
 \begin{tikzpicture}
@@ -159,13 +291,20 @@ Thus $\{W_F\}_{F\in \cF}$ together with morphisms $W_{F_1}\ra W_{F_2}$ for $F_1\
 
 \section{Bia{\l}ynicki-Birula functors}
 \noindent
-In this section we fix an affine group $k$-scheme $\bd{G}$. Let $\bd{M}$ be an affine monoid $k$-scheme with zero $\bd{o}$ such that $\bd{G}$ is its group of units. Note that if $Y$ is a $k$-scheme, then $\bd{M}\times_kY$ admits canonical action of $\bd{M}$ and 
+In this section we fix an affine group $k$-scheme $\bd{G}$. Let $\bd{M}$ be an affine monoid $k$-scheme with zero $\bd{o}$ such that $\bd{G}$ is its group of units.
 
 \begin{definition}
 Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. For every $k$-scheme $Y$ we define
 $$\cD_X(Y) = \big\{\gamma:\bd{M}\times_kY\ra X\,\big|\,\gamma\mbox{ is }\bd{G}\mbox{-equivariant}\big\}$$
 This gives gives rise to a subfunctor $\cD_X$ of $\Mor_{k}\left(\bd{M}\times_k(-),X\right):\Sch_k^{\mathrm{op}}\ra \Set$. We call it \textit{the Bia{\l}ynicki-Birula functor of $X$}.
 \end{definition}
+
+\begin{fact}\label{fact:bb_is_zariski_sheaf}
+Let $X$ be a scheme equipped with an action of $\bd{G}$. Then $\cD_X$ is a Zariski sheaf.
+\end{fact}
+\begin{proof}
+This is a consequence of the fact that $\Mor_{k}\left(\bd{M}\times_k(-),X\right)$ is a Zariski sheaf and if we glue $\bd{G}$-equivariant morphisms, then the result is $\bd{G}$-equivariant. Indeed, this shows that $\cD_X$ is a Zariski subsheaf of $\Mor_{k}\left(\bd{M}\times_k(-),X\right)$.
+\end{proof}
 
 \begin{remark}\label{remark:bb_diagram}
 Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. Then there are canonical morphism of functors
@@ -245,7 +384,7 @@ Our goal is to show that there exists a unique $\bd{G}$-equivariant morphism $\e
 (m-1-1) edge node[left] {$ r_U $} (m-2-1);
 \end{tikzpicture}
 \end{center}
-In order to achieve this it suffices to prove that $\gamma$ factors through $j$. First note that the assumption $\gamma_{\mid \{e\}\times_kY} = j\cdot f$ implies that
+It suffices to prove that $\gamma$ factors through $j$. First note that the assumption $\gamma_{\mid \{e\}\times_kY} = j\cdot f$ implies that
 $$\gamma_{\mid \bd{G}\times_kY} = j\cdot f\cdot pr_{Y}$$
 where $pr_Y:\bd{G}\times_kY\ra Y$ is the projection. This implies that $\gamma_{\mid \bd{G}\times_k}$ factors through $j$. Consider scheme-theoretic preimage $\gamma^{-1}(Z)$. Then $\gamma^{-1}(Z)$ is a closed $\bd{G}$-stable (as an inverse image of a $\bd{G}$-stable closed subscheme under the $\bd{G}$-equivariant morphism) subscheme of $\bd{M}\times_kY$, which contains $\bd{G} \times_k Y$. Since $\bd{G}$ is open, schematically dense in $\bd{M}$ and $k$ is a field, we derive that $\bd{G}\times_kY$ is open and schematically dense in $\bd{M}\times_kY$. Thus $\gamma^{-1}(Z) = \bd{M}\times_kY$ and hence $\gamma$ factors through $j$. 
 \end{proof}
@@ -320,7 +459,7 @@ Our goal is to show that there exists a unique $\bd{G}$-equivariant morphism $\e
 (m-1-1) edge node[left] {$ r_U $} (m-2-1);
 \end{tikzpicture}
 \end{center}
-In order to achieve this it suffices to prove that $\gamma$ factors through $j$. Consider $W = \gamma^{-1}(U)$. Note that $W$ is an open $\bd{G}$-stable (as an inverse image of a $\bd{G}$-stable open subscheme under the $\bd{G}$-equivariant morphism) subscheme of $\bd{M}\times_kY$, which contains $\{\bd{o}\} \times_k Y$. Lemma \ref{lemma:open_stable_subset_of_monoid_that_contains_zero_is_monoid_itself} asserts that for every geometric point $\ol{y}$ of $Y$ we have $W_{\ol{y}} = \bd{M}_{k(\ol{y})}$, where $W_{\ol{y}}$ is the fiber over $\ol{y}$ of the projection $\bd{M}\times_kY\ra Y$ restricted to $W$. Since $W$ is open subscheme of $\bd{M}\times_kY$, this implies that $W = \bd{M}\times_kY$ and hence $\gamma$ factors through $j$.
+Fir this it suffices to prove that $\gamma$ factors through $j$. Consider $W = \gamma^{-1}(U)$. Note that $W$ is an open $\bd{G}$-stable (as an inverse image of a $\bd{G}$-stable open subscheme under the $\bd{G}$-equivariant morphism) subscheme of $\bd{M}\times_kY$, which contains $\{\bd{o}\} \times_k Y$. Lemma \ref{lemma:open_stable_subset_of_monoid_that_contains_zero_is_monoid_itself} asserts that for every geometric point $\ol{y}$ of $Y$ we have $W_{\ol{y}} = \bd{M}_{k(\ol{y})}$, where $W_{\ol{y}}$ is the fiber over $\ol{y}$ of the projection $\bd{M}\times_kY\ra Y$ restricted to $W$. Since $W$ is open subscheme of $\bd{M}\times_kY$, this implies that $W = \bd{M}\times_kY$ and hence $\gamma$ factors through $j$.
 \end{proof}
 \noindent
 As we shall see below both Theorems are extremely useful properties of Bia{\l}ynicki-Birula functors. Now we introduce a formal version of this functor.
@@ -337,13 +476,110 @@ $$\gamma \mapsto \{\gamma_{\mid \bd{M}_n\times_kY}\}_{n\in \NN}$$
 for every $\gamma \in \cD_X(Y)$ and every $k$-scheme $Y$.
 \end{remark}
 
-\section{Representability of Bia{\l}ynicki-Birula functor for locally linear schemes}
+\section{Representability of Bia{\l}ynicki-Birula functor for Kempf monoids}
 \noindent
-We first investigate open covers of Bia{\l}ynicki-Birula functor
+In this section we prove various results concerning representability of Bia{\l}ynicki-Birula functors.
+
+\begin{theorem}\label{theorem:representability_of_bb_for_affine}
+Let $\bd{M}$ be an affine monoid $k$-scheme with open and schematically dense group of units $\bd{G}$. Suppose that $X$ is an affine $k$-scheme equipped with an ation of $\bd{G}$. Then $\cD_X$ is representable and $i_X$ is a closed immersion of $k$-schemes.
+\end{theorem}
+\begin{proof}
+Since $X$ is an affine $k$-scheme, the action of $\bd{G}$ on $X$ corresponds to the coaction of $k[\bd{G}]$ by $c:\Gamma(X,\cO_X)\ra k[\bd{G}]\otimes_k\Gamma(X,\cO_X)$. Note that $c$ is a morphism of $k$-algebras. By Theorem \ref{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group} there exists a universal morphism $q:\Gamma(X,\cO_X)\twoheadrightarrow W$ of $\bd{G}$-representations into a $\bd{M}$-representation. Let $I\subseteq \Gamma(X,\cO_X)$ be the ideal generated by $\Ker(q)$. Fix $f$ in $I$. Then
+$$f = \sum_{i=1}^ng_i\cdot f_i$$
+where $g_i \in k[\bd{G}]$ and $f_i\in \Ker(q)$ for $1\leq i\leq n$. Then
+$$c(f) = c\bigg(\sum_{i=1}^n g_i\cdot f_i\bigg) = \sum_{i=1}^nc(g_i)\cdot c(f_i) \subseteq \bigg(k[\bd{G}]\otimes_k \Gamma(X,\cO_X)\bigg) \cdot \bigg(k[\bd{G}]\otimes_k \Ker(q) \bigg) \subseteq k[\bd{G}]\otimes_k I$$
+Thus $c(I) \subseteq k[\bd{G}]\otimes_kI$ and hence $I$ is a $\bd{G}$-representation. Consider
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  X^+ = V(I) = \Spec \Gamma(X,\cO_X)/I       &  X    \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+Since $\Gamma(X,/cO_X)/I$ is the quotient $\bd{G}$-representation of $W$, we deduce by Theorem \ref{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group} that $\Gamma(X,\cO_X)/I$ is a $\bd{M}$-representation. Hence $X^+$ is a $k$-scheme equipped with action of $\bd{M}$ and $X^+\hookrightarrow X$ is $\bd{G}$-equivariant. Suppose now that $Y$ is an affine $k$-scheme. Then $\bd{M}\times_kY$ is a $\bd{M}$-scheme with respect to the left-hand side action of $\bd{M}$ and hence $\Gamma(\bd{M}\times_kY,\cO_{\bd{M}\times_kY})$ is a $\bd{M}$-representation. Now Theorem \ref{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group} implies that if $\gamma:\bd{M}\times_kY\ra X$ is a $\bd{G}$-equivariant morphism, then a morphism $\gamma^{\#}:\Gamma(X,\cO_X)\ra \Gamma(\bd{M}\times_kY,\cO_{\bd{M}}\times_kY)$ of $k$-algebras and $\bd{G}$-representations factors through $q:\Gamma(X,\cO_X)\twoheadrightarrow W$ and thus by construction of $I$ we have
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \Gamma(X,\cO_X)       &  \Gamma(X,\cO_X)/I &  \Gamma(\bd{M}\times_kY,\cO_{\bd{M}}\times_kY) \\} ;
+\path[->>,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$    $} (m-1-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[above] {$ f  $} (m-1-3);
+\path[->,bend left,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \gamma^{\#}  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+for some morphism $f$ of $k$-algebras and $\bd{G}$-representations. Since both $\Gamma(X,\cO_X)/I$ and $\Gamma(\bd{M}\times_kY,\cO_{\bd{M}}\times_kY)$ are $\bd{M}$-representations and by Theorem \ref{theorem:full_subcategory_closed_under_subobjects_and_quotients} the subcategory $\bd{Rep}(\bd{M})\subseteq \bd{Rep}(\bd{G})$ is full, we derive that $f$ is a morphism of $\bd{M}$-representations. Thus $f$ corresponds to a unique $\bd{M}$-equivariant morphism $\eta:\bd{M}\times_kY\ra X^+$ such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{     &   X^+    \\
+  \bd{M}\times_kY    &   X          \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below] {$ \gamma  $} (m-2-2);
+\path[->,bend left,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[auto] {$ \eta  $} (m-1-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[above] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Now this result can be extended to an arbitrary $k$-scheme $Y$, since $\Mor_k(\bd{M}\times_k(-),X^+)$ is a Zariski sheaf and a morphism that is $\bd{M}$-equivariant locally on the domain is $\bd{M}$-equivariant. Thus for every $h$-scheme $Y$ we have a bijection
+$$\cD_X(Y)\ni \gamma \mapsto \eta \in \big\{\bd{M}\mbox{-equivariant morphisms }\bd{M}\times_kY\ra X^+\big\}$$
+Since we also have a bijection
+$$\big\{\bd{M}\mbox{-equivariant morphisms }\bd{M}\times_kY\ra X^+\big\}\ni \eta \mapsto \eta\cdot \langle e, 1_{X^+}\rangle \in \Mor_k(Y,X^+)$$
+and both this bijections are natural, we derive that $\cD_X$ is represented by $X^+$ and moreover, $i_X:\cD_X\ra X$ is a closed immersion $X^+\hookrightarrow X$.
+\end{proof}
+\noindent
+In order to prove more interesting result we need to recall some fact..
 
 \begin{remark}\label{remark:existence_of_fixed_points_for_geom_conn_locally_alg_group}
-Since $\bd{G}$ is geometrically connected and locally algebraic it follows by {\cite[Theorem 7.2]{Group_schemes_over_field}} that for every $k$-scheme $X$ equipped with an action of $\bd{G}$ there exists closed subscheme $X^{\bd{G}}$ of $X$ representing
+Let $\bd{G}$ be a geometrically connected and locally algebraic group over $k$. It follows by {\cite[Theorem 7.2]{Group_schemes_over_field}} that for every $k$-scheme $X$ equipped with an action of $\bd{G}$ there exists closed subscheme $X^{\bd{G}}$ of $X$ representing the fixed point functor.
 \end{remark}
+
+\begin{corollary}\label{corollary:bb_is_representable_on_schemes_with_affine_cover_of_fixed_points}
+Let $\bd{G}$ be a geometrically connected and locally algebraic group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with an action of $\bd{G}$ such that there exists a family $\cU$ of open affine $\bd{G}$-stable open subschemes of $X$ such that
+$$X^{\bd{G}}\subseteq \bigcup_{U\in \cU}U$$
+Then $\cD_X$ is representable.
+\end{corollary}
+\begin{proof}
+Note that $\bd{G}$ is affine group $k$-scheme as a unit group of an affine monoid $\bd{M}$ ({\cite[Proposition 12.4]{Monoid_k_functors}}). Moreover, $\bd{M}$ is a Kempf monoid and hence $\bd{G}$ is open and schematically dense in $\bd{M}$. By Theorem \ref{theorem:representability_of_bb_for_affine} each $\cD_U$ is representable by a $k$-scheme. On the other hand by Theorem \ref{theorem:open_subfunctors_induced_by_open_stable_subschemes} for each $U\in \cU$ we have a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cD_U         &  \cD_X    \\
+  U^{\bd{G}}    &   X^{\bd{G}}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-2)
+(m-2-1) edge node[below] {$   $} (m-2-2)
+(m-1-1) edge node[left] {$ r_U $} (m-2-1)
+(m-1-2) edge node[right] {$ r_X  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+of functors. Since both $U^{\bd{G}}$ and $X^{\bd{G}}$ are $k$-schemes by Remark \ref{remark:existence_of_fixed_points_for_geom_conn_locally_alg_group}, this implies that $\{\cD_U\hookrightarrow \cD_X\}_{U\in \cU}$ is an open cover of $\cD_X$ as a pullback of an open cover $\{U^{\bd{G}}\hookrightarrow X^{\bd{G}}\}_{U\in \cU}$. Hence Fact \ref{fact:bb_is_zariski_sheaf} and {\cite[Theorem 8.9]{gortz2010algebraic}} (or if you like {\cite[Theorem 4.6]{kfunctors}}) imply that $\cD_X$ is representable. 
+\end{proof}
+
+\begin{corollary}\label{corollary:bb_is_representable_on_locally_linear_schemes}
+Let $\bd{G}$ be a geometrically connected and locally algebraic group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a locally linear $\bd{G}$-scheme. Then $\cD_X$ is representable.
+\end{corollary}
+\begin{proof}
+This is a consequence of Corollary \ref{corollary:bb_is_representable_on_schemes_with_affine_cover_of_fixed_points}.
+\end{proof}
+
+\begin{theorem}
+Let $\bd{G}$ be a geometrically connected and locally algebraic group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with action of $\bd{G}$. Then $\widehat{\cD}_X$ is representable.
+\begin{enumerate}[label=\textbf{\emph{(\arabic*)}}, leftmargin=3.0em]
+\item aa
+\end{enumerate}
+\end{theorem}
+
+
+
+
 
 
 
