@@ -533,17 +533,9 @@ Since we also have a bijection
 $$\big\{\bd{M}\mbox{-equivariant morphisms }\bd{M}\times_kY\ra X^+\big\}\ni \eta \mapsto \eta\cdot \langle e, 1_{X^+}\rangle \in \Mor_k(Y,X^+)$$
 and both this bijections are natural, we derive that $\cD_X$ is represented by $X^+$ and moreover, $i_X:\cD_X\ra X$ is a closed immersion $X^+\hookrightarrow X$.
 \end{proof}
-\noindent
-In order to prove more interesting result we need to recall some fact..
-
-\begin{remark}\label{remark:existence_of_fixed_points_for_geom_conn_locally_alg_group}
-Let $\bd{G}$ be a geometrically connected and locally algebraic group over $k$. It follows by {\cite[Theorem 7.2]{Group_schemes_over_field}} that for every $k$-scheme $X$ equipped with an action of $\bd{G}$ there exists closed subscheme $X^{\bd{G}}$ of $X$ representing the fixed point functor.
-\end{remark}
 
 \begin{corollary}\label{corollary:bb_is_representable_on_schemes_with_affine_cover_of_fixed_points}
-Let $\bd{G}$ be a geometrically connected and locally algebraic group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with an action of $\bd{G}$ such that there exists a family $\cU$ of open affine $\bd{G}$-stable open subschemes of $X$ such that
-$$X^{\bd{G}}\subseteq \bigcup_{U\in \cU}U$$
-Then $\cD_X$ is representable.
+Let $\bd{G}$ be a group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with an action of $\bd{G}$ such that there exists a family $\cU$ of open affine $\bd{G}$-stable open subschemes of $X$ such that functors $\{U^{\bd{G}}\}_{U \in \cU}$ form an open cover of $X^{\bd{G}}$. Then $\cD_X$ is representable.
 \end{corollary}
 \begin{proof}
 Note that $\bd{G}$ is affine group $k$-scheme as a unit group of an affine monoid $\bd{M}$ ({\cite[Proposition 12.4]{Monoid_k_functors}}). Moreover, $\bd{M}$ is a Kempf monoid and hence $\bd{G}$ is open and schematically dense in $\bd{M}$. By Theorem \ref{theorem:representability_of_bb_for_affine} each $\cD_U$ is representable by a $k$-scheme. On the other hand by Theorem \ref{theorem:open_subfunctors_induced_by_open_stable_subschemes} for each $U\in \cU$ we have a cartesian square
@@ -560,68 +552,26 @@ Note that $\bd{G}$ is affine group $k$-scheme as a unit group of an affine monoi
 (m-1-2) edge node[right] {$ r_X  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-of functors. Since both $U^{\bd{G}}$ and $X^{\bd{G}}$ are $k$-schemes by Remark \ref{remark:existence_of_fixed_points_for_geom_conn_locally_alg_group}, this implies that $\{\cD_U\hookrightarrow \cD_X\}_{U\in \cU}$ is an open cover of $\cD_X$ as a pullback of an open cover $\{U^{\bd{G}}\hookrightarrow X^{\bd{G}}\}_{U\in \cU}$. Hence Fact \ref{fact:bb_is_zariski_sheaf} and {\cite[Theorem 8.9]{gortz2010algebraic}} (or if you like {\cite[Theorem 4.6]{kfunctors}}) imply that $\cD_X$ is representable. 
+of functors. This implies that $\{\cD_U\hookrightarrow \cD_X\}_{U\in \cU}$ is an open cover of $\cD_X$ as a pullback of an open cover $\{U^{\bd{G}}\hookrightarrow X^{\bd{G}}\}_{U\in \cU}$. Hence Fact \ref{fact:bb_is_zariski_sheaf} and {\cite[Theorem 8.9]{gortz2010algebraic}} (or if you like {\cite[Theorem 4.6]{kfunctors}}) imply that $\cD_X$ is representable. 
 \end{proof}
 
 \begin{corollary}\label{corollary:bb_is_representable_on_locally_linear_schemes}
-Let $\bd{G}$ be a geometrically connected and locally algebraic group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a locally linear $\bd{G}$-scheme. Then $\cD_X$ is representable.
+Let $\bd{G}$ be group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a locally linear $\bd{G}$-scheme. Then $\cD_X$ is representable.
 \end{corollary}
 \begin{proof}
-This is a consequence of Corollary \ref{corollary:bb_is_representable_on_schemes_with_affine_cover_of_fixed_points}.
+This is a consequence of Corollary \ref{corollary:bb_is_representable_on_schemes_with_affine_cover_of_fixed_points}. Indeed, $X$ admits a cover $\cU$ by open $\bd{G}$-stable affine subschemes. Then $\{U^{\bd{G}}\}_{U\in \cU}$ is an open cover of $X^{\bd{G}}$.
 \end{proof}
+\noindent
+In order to prove more interesting result we need to recall some fact.
+
+\begin{remark}\label{remark:existence_of_fixed_points_for_geom_conn_locally_alg_group}
+Let $\bd{G}$ be a geometrically connected and locally algebraic group over $k$. It follows by {\cite[Theorem 7.2]{Group_schemes_over_field}} that for every $k$-scheme $X$ equipped with an action of $\bd{G}$ there exists closed subscheme $X^{\bd{G}}$ of $X$ representing the fixed point functor.
+\end{remark}
 
 \begin{theorem}
 Let $\bd{G}$ be a geometrically connected and locally algebraic group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with action of $\bd{G}$. Then $\widehat{\cD}_X$ is representable.
-\begin{enumerate}[label=\textbf{\emph{(\arabic*)}}, leftmargin=3.0em]
-\item aa
-\end{enumerate}
+
 \end{theorem}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

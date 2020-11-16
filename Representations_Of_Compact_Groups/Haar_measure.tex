@@ -85,7 +85,7 @@ We fix $h$ as in Lemma \ref{lemma:definitiononcompactsets} and we define $\mu^*:
 $$\mu^*(U) = \sup_{K\in \cK,\,K\subseteq U}h(K)$$
 Note that if $U, V$ are open subsets of $G$ and $U\subseteq V$, then $\mu^*(U)\leq \mu^*(V)$. Thus it makes sense to define
 $$\mu^*(A) = \inf \big\{\mu^*(U)\,\big|\,U\mbox{ is an open subset of }G\mbox{ containing }A\big\}$$
-for arbitrary subset $A\subseteq G$. Note that $\mu^*(xA) = \mu^*(A)$ by definition of $\mu^*$ and the corresponding property of $h$. By {\cite[Theorem 1.3]{Measuresonlocallycompactspaces}} we have that Borel sets $\cB(G)$ are $\mu^*$-measurable, $\mu^*_{\mid \cB(G)} = \mu$ is a regular Borel measure on $G$. According to this result if $G$ is $\sigma$-compact, then $\mu$ is inner regular. Clearly $\mu$ is left-invariant and since
+for arbitrary subset $A\subseteq G$. Note that $\mu^*(xA) = \mu^*(A)$ by definition of $\mu^*$ and the corresponding property of $h$. By {\cite[Theorem 1.3]{Measures_on_locally_compact_spaces}} we have that Borel sets $\cB(G)$ are $\mu^*$-measurable, $\mu^*_{\mid \cB(G)} = \mu$ is a regular Borel measure on $G$. According to this result if $G$ is $\sigma$-compact, then $\mu$ is inner regular. Clearly $\mu$ is left-invariant and since
 $$1 = h(Q)\leq \mu(Q)$$
 we derive that it is nonzero measure.
 \end{proof}
@@ -113,7 +113,7 @@ we derive that $H$ is $\sigma$-compact.
 \begin{proof}[Proof of the theorem]
 By Lemma \ref{lemma:sigmacompactopensubgroup} there exists an open subgroup $H$ of $G$ that is $\sigma$-compact. We prove now that there exists $a\in \RR$ such that
 $${\mu_1}_{\mid \cB(H)} = a\cdot {\mu_2}_{\mid \cB(H)}$$
-For this consider $\mu = {\mu_1}_{\mid \cB(H)} + {\mu_2}_{\mid \cB(H)}$ and denote ${\mu_2}_{\mid \cB(H)}$ by $\nu$. Measures $\mu, \nu$ are $\sigma$-finite as they are finite on compact subsets of $H$ and $H$ is $\sigma$-compact space. Moreover, $\nu \ll \mu$ and hence by {\cite[Theorem 5.3]{RadonNikodymHahnJordanLebesguedecomposition}} there exists a Borel function $f:H\ra \CC$ such that
+For this consider $\mu = {\mu_1}_{\mid \cB(H)} + {\mu_2}_{\mid \cB(H)}$ and denote ${\mu_2}_{\mid \cB(H)}$ by $\nu$. Measures $\mu, \nu$ are $\sigma$-finite as they are finite on compact subsets of $H$ and $H$ is $\sigma$-compact space. Moreover, $\nu \ll \mu$ and hence by {\cite[Theorem 5.3]{Radon_Nikodym_Hahn_Jordan_Lebesgue_decomposition}} there exists a Borel function $f:H\ra \CC$ such that
 $$\nu(A) = \int_Afd\mu$$
 for every Borel subset $A$ in $H$. Since $\mu$ and $\nu$ are nonnegative measures, we derive that $f$ is real and nonnegative $\mu$-almost everywhere. Hence we may assume that $f$ takes only nonnegative real values. We define
 $$E = \big\{(x,y)\in H\times H\,\big|\,f(xy) - f(y) \neq 0\big\}$$

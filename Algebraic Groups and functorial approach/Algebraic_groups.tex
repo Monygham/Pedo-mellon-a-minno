@@ -631,7 +631,9 @@ $$\widehat{\cO_{\bd{G},e_{\bd{G}}}} \ra  \widehat{\cO_{\bd{H},e_{\bd{H}}}}$$
 induced by $f^{\#}$ is an isomorphism. Hence by Lemma \ref{lemma:infinitesimal_isomorphisms} $f$ is an open immersion of locally algebraic groups. Since $\bd{G}$ is geometrically connected, we deduce that $f$ is an isomorphism. Thus $j$ is an isomorphism and this means that $b:\bd{G}\times_k Z\ra X$ factors through $i:Z\hookrightarrow X$.
 \end{proof}
 
-\section{Irreducibility and linearly reductive group schemes over fields}
+\section{Absolutely irreducible representations}
+\noindent
+If $K$ is a field over $k$ and $\bd{G}$ is a group scheme over $k$, then we denote $\Spec K\times_k \bd{G}$ by $\bd{G}_K$.
 
 \begin{definition}
 Let $V$ be a linear representation of a monoid $k$-functor $\fG$. Then $V$ is \textit{irreducible} if it has no nontrivial quotient representations.
@@ -640,25 +642,177 @@ Let $V$ be a linear representation of a monoid $k$-functor $\fG$. Then $V$ is \t
 The next results explains when irreducibility of a linear representation of a group $k$-scheme is preserved by change of a base field.
 
 \begin{theorem}\label{theorem:absolutely_irreducible}
-Let $k$ be an algebraically closed field and let $\bd{G}$ be a group scheme over $k$. Suppose that $V$ is a finite dimensional representation of $\bd{G}$. Then the following assertions are equivalent.
+Let $\bd{G}$ be a group scheme over $k$. Suppose that $V$ is a finite dimensional representation of $\bd{G}$. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item For every field extension $K$ of $k$ the representation $K\otimes_kV$ of $\Spec K\times_k\bd{G}$ is irreducible.
-\item For every finite field extension $K$ of $k$ the representation $K\otimes_kV$ of $\Spec K\times_k\bd{G}$ is irreducible.
-\item For some algebraically closed extension $K$ of $k$ the representation $K\otimes_kV$ of $\Spec K\times_k\bd{G}$ is irreducible.
+\item For every field extension $K$ of $k$ the representation $K\otimes_kV$ of $\bd{G}_K$ is irreducible.
+\item For every finite field extension $K$ of $k$ the representation $K\otimes_kV$ of $\bd{G}_K$ is irreducible.
+\item For some algebraically closed extension $K$ of $k$ the representation $K\otimes_kV$ of $\bd{G}_K$ is irreducible.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 In order to prove the theorem we introduce certain action of $\bd{G}$ associated with the representation $V$. For this denote by $\rho:\fP_{\bd{G}}\ra \cL_V$ the morphism of monoid $k$-functors that makes $V$ into a $\bd{G}$-representation. Then for every positive integer $n$ morphism $\rho$ induces an action of $\fP_{\bd{G}}$ on grassmannian $k$-functor $\mathrm{Grass}_{V,n}$ (for the definition c.f. {\cite[Section 6]{kfunctors}}). Indeed, for each $k$-algebra $A$ we have an $A$-module automorphism $\rho(g):A\otimes_kV \ra A\otimes_kV$ and hence $\rho(g)$ permutes projective quotients of rank $n$ of $A\otimes_kV$. Since by {\cite[Theorem 6.3]{kfunctors}} and {\cite[Theorem 6.5]{kfunctors}} the $k$-functor $\mathrm{Grass}_{V,n}$ is representable by a separated $k$-scheme $\bd{Gr}(V,n)$ locally of finite type over $k$, we derive that there exists the corresponding action of $\bd{G}$ on $\bd{Gr}(V,n)$. Theorem \ref{theorem:fixed_points_existence} implies that the fixed points $k$-scheme $\bd{Gr}(V,n)^{\bd{G}}$ exists and is a closed subscheme of $\bd{Gr}(V,n)$. In particular, $\bd{Gr}(V,n)^{\bd{G}}$ is locally of finite type. Next if $A$ is a $k$-algebra, then $A$-points of $\bd{Gr}(V,n)^{\bd{G}}$ can be identified with quotients $\phi:A\otimes_kV\twoheadrightarrow U$ such that for every morphism of $k$-algebras $f:A\ra B$ and $g\in \fP_{\bd{G}}(B)$ we have
 $$\rho(g)\left(\Ker(\phi)\right) = \Ker(\phi)$$
-Now let $K$ be a field extension of $k$. Then from remarks above we deduce that $\bd{Gr}(V,n)^{\bd{G}}$ has a $K$-point for some $0 < n <\mathrm{dim}_k(V)$ if and only if $K\otimes_kV$ is not an irreducible linear representation of $\Spec K\times_k\bd{G}$. Since for every $0 < n < \mathrm{dim}_k(V)$ scheme $\bd{Gr}(V,n)^{\bd{G}}$ is locally of finite type, we derive that
+Now let $K$ be a field extension of $k$. Then from remarks above we deduce that $\bd{Gr}(V,n)^{\bd{G}}$ has a $K$-point for some $0 < n <\mathrm{dim}_k(V)$ if and only if $K\otimes_kV$ is not an irreducible linear representation of $\bd{G}_K$. Since for every $0 < n < \mathrm{dim}_k(V)$ scheme $\bd{Gr}(V,n)^{\bd{G}}$ is locally of finite type, we derive that
 $$\bd{Gr}(V,n)^{\bd{G}}= \emptyset\,\Leftrightarrow\,\mbox{there are no $K$-points of $\bd{Gr}(V,n)^{\bd{G}}$ for finite extensions $K$ of $k$}$$
 $$\Leftrightarrow\,\mbox{there are no $K$-points of $\bd{Gr}(V,n)^{\bd{G}}$ for some algebraically closed extension $K$ of $k$}$$
-Thus we deduce that for every field extension $K$ of $k$ representation $K\otimes_kV$ of $\Spec K\times_k\bd{G}$ is irreducible if and only if for every finite extension $K$ of $k$ representation $K\otimes_kV$ of $\Spec K\times_k\bd{G}$ is irreducible if and only if for some algebraically closed  extension $K$ of $k$ representation $K\otimes_kV$ of $\Spec K\times_k\bd{G}$ is irreducible.
+Thus we deduce that for every field extension $K$ of $k$ representation $K\otimes_kV$ of $\bd{G}_K$ is irreducible if and only if for every finite extension $K$ of $k$ representation $K\otimes_kV$ of $\bd{G}_K$ is irreducible if and only if for some algebraically closed  extension $K$ of $k$ representation $K\otimes_kV$ of $\bd{G}_K$ is irreducible.
 \end{proof}
 
 \begin{definition}
 Let $V$ be a linear representation of a group $k$-scheme $\bd{G}$. Then $V$ is \textit{absolutely irreducible} if equivalent conditions in Theorem \ref{theorem:absolutely_irreducible} are satisfied.
 \end{definition}
+
+\section{Linearly reductive group schemes over fields}
+\noindent
+In this section we introduce important class of affine group $k$-schemes. Let $\bd{G}$ be an affine group $k$-scheme and let $\Delta_{\bd{G}}:k[\bd{G}]\ra k[\bd{G}]\otimes_kk[\bd{G}]$ be the corresponding comultiplication. If $K$ is a field over $k$ and $\bd{G}$ is a group scheme over $k$, then we denote $\Spec K\times_k \bd{G}$ by $\bd{G}_K$.
+
+\begin{proposition}[{\cite[3.4 and 3.7]{jantzen2003representations}}]\label{proposition:forgetful_functor_to_vector_space_admits_a_right_adjoint}
+Let $\bd{G}$ be an affine group $k$-scheme. Then a functor
+$$\Vect_k \ni V\mapsto \left(k[\bd{G}]\otimes_kV,\Delta_{\bd{G}}\otimes_k V \right)\in \bd{Rep}(\bd{G})$$
+is right adjoint to the forgetful functor $\bd{Rep}(\bd{G})\ra \Vect_k$.
+\end{proposition}
+
+\begin{corollary}\label{corollary:canonical_injective_objects_in_representations_of_groups}
+Let $\bd{G}$ be an affine group $k$-scheme. For every vector $k$-space the $\bd{G}$-representation
+$$\left(k[\bd{G}]\otimes_kV,\Delta_{\bd{G}}\otimes_k1_V\right)$$
+is an injective object of $\bd{Rep}(\bd{G})$.
+\end{corollary}
+\begin{proof}
+The functor
+$$\Vect_k \ni V\mapsto \left(k[\bd{G}]\otimes_kV,\Delta_{\bd{G}}\otimes_k V \right)\in \bd{Rep}(\bd{G})$$
+is right adjoint to the forgetful functor $\bd{Rep}(\bd{G})\ra \Vect_k$ by Proposition \ref{proposition:forgetful_functor_to_vector_space_admits_a_right_adjoint}. Moreover, the forgetful functor $\bd{Rep}(\bd{G})\ra \Vect_k$ is exact. Now right adjoint to an exact functor between abelian categories sends injective objects to injective objects. Since every vector space over $k$ is injective, we derive that $\left(k[\bd{G}]\otimes_kV,\Delta_{\bd{G}}\otimes_k1_V\right)$ is an injective object in $\bd{Rep}(\bd{G})$ for every vector space $V$ over $k$.
+\end{proof}
+
+\begin{proposition}[{\cite[3.7]{jantzen2003representations}}]\label{proposition:tensor_products_of_representations_and_its_trivial_version_with_regular_representation_are_isomorphic}
+Let $V$ be a representation of an affine group $k$-scheme $\bd{G}$ with respect to coaction $c:V\ra k[\bd{G}]\otimes_kV$. Denote by $V_{tr}$ the trivial representation of $\bd{G}$ with $V$ as the underlying vector $k$-space. Then
+$$k[\bd{G}]\otimes_kV \ni f\otimes v \mapsto f\cdot c(f) \in k[\bd{G}]\otimes_kV$$
+is an isomorphism of tensor products of $\bd{G}$-representations.
+\end{proposition}
+
+\begin{corollary}\label{corollary:canonical_injective_objects_in_representations_of_groups_enhanced}
+Let $\bd{G}$ be an affine group $k$-scheme and let $V$ be a $\bd{G}$-representation. Then the tensor product $k[\bd{G}]\otimes_kV$ of $\bd{G}$-representations is an injective object in $\bd{Rep}(\bd{G})$.
+\end{corollary}
+\begin{proof}
+This is a consequence of Corollary \ref{corollary:canonical_injective_objects_in_representations_of_groups} and Proposition \ref{proposition:tensor_products_of_representations_and_its_trivial_version_with_regular_representation_are_isomorphic}.
+\end{proof}
+
+\begin{theorem}\label{theorem:characterization_of_fully_reducible_groups}
+Let $\bd{G}$ be an affine group $k$-scheme. Then the following are equvalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $\bd{Rep}(\bd{G})$ is a semisimple abelian category.
+\item Let $k$ be a trivial $\bd{G}$-representation and let $i:k\hookrightarrow k[\bd{G}]$ be the inclusion of constant functions. Then $i$ is a split monomorphism of $\bd{G}$-representations.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+In order to prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$ it suffices to note that in semisimple abelian categories all monomorphisms split.\\
+Suppose that \textbf{(ii)} holds. Pick a $\bd{G}$-representation $V$. Since $i:k\hookrightarrow k[\bd{G}]$ is a split monomorphism, we derive that the tensor product
+$$i\otimes_kV:k\otimes_kV\hookrightarrow k[\bd{G}]\otimes_kV$$
+is a split monomorphism. By Corollary \ref{corollary:canonical_injective_objects_in_representations_of_groups_enhanced} we deduce that $k[\bd{G}]\otimes_kV$ is an injective object of $\bd{Rep}(\bd{G})$. Hence $V \cong k\otimes_kV$ is an injective object of $\bd{Rep}(\bd{G})$, because it is a direct summand of $[\bd{G}]\otimes_kV$. Thus every object of $\bd{Rep}(\bd{G})$ is injective and hence every object of $\bd{Rep}(\bd{G})$ is completely reducible. This completes the proof of the implication $\textbf{(ii}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+\begin{proposition}\label{proposition:invariants_are_stable_under_change_of_base_field}
+Let $\bd{G}$ be an affine group $k$-scheme and let $V$ be a representation of $\bd{G}$. Then for every field $K$ over $k$ the natural map of vector spaces over $K$
+$$K\otimes_kV^{\bd{G}} \ra \left(K\otimes_kV\right)^{\bd{G}_K}$$
+is an isomorphism.
+\end{proposition}
+\begin{proof}
+Note that we have a left exact sequence of $k$-vector spaces defining invariants
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{0 &  V^{\bd{G}} &   V& k[\bd{G}]\otimes_{k}V    \\} ;
+\path[->,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$c-p $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+where $c:V\ra k[\bd{G}] \otimes_{k}V$ is the coaction and $p:V\ra k[\bd{G}] \otimes_{k}V$ is the trivial coaction defined by formula $p(v)=1\otimes v$ for every $v \in V$. Now tensoring the sequence with $K$ over $k$ yields a left exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{0 &  K\otimes_kV^{\bd{G}} &   K\otimes_kV & k[\bd{G}] \otimes_{K}\left(K\otimes_kV\right)   \\} ;
+\path[->,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$c_K - p_K $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+where $c_K$ is the coaction on $K\otimes_kV$ induced by $c$ and $c_K$ is the trivial coaction on $K\otimes_kV$. This shows that $K\otimes_kV^{\bd{G}} \ra \left(K\otimes_kV\right)^{\bd{G}_K}$ is an isomorphism.
+\end{proof}
+
+\begin{theorem}\label{theorem:fully_reducible_groups_and_field_extension}
+Let $\bd{G}$ be an affine group $k$-scheme. Then the following are equvalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $\bd{Rep}(\bd{G})$ is semisimple abelian category.
+\item The category $\bd{Rep}(\bd{G}_K)$ is semisimple abelian for every field extension $K$ of $k$.
+\item The category $\bd{Rep}(\bd{G}_K)$ is semisimple abelian for some field extension $K$ of $k$.
+\item The category $\bd{Rep}(\bd{G}_K)$ is semisimple abelian for some algebraically closed field extension $K$ of $k$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Implications $\textbf{(i)}\Rightarrow \textbf{(ii)},\,\textbf{(ii)}\Rightarrow \textbf{(iii)}$ and $\textbf{(iii)}\Rightarrow \textbf{(iv)}$ follow from Theorem \ref{theorem:characterization_of_fully_reducible_groups}, since split monomorphisms are preserved by the flat base change.\\
+Suppose now that \textbf{(iv)} holds. Fix a finite dimensional representation $V$ of $\bd{G}$. Let $W$ be an arbitrary subrepresentation of $V$ and denote by $j:W\hookrightarrow V$ the inclusion. If $\Hom_{k}(V,W)$ and $\Hom_{k}(W,W)$ are equipped with the usual structures of representations of $\bd{G}$, then $\Hom_{k}(j,1_W)$ is a surjective morphism of representations. This means that 
+$$\Hom_{K}(1_K\otimes_kj,1_K\otimes_k1_W):\Hom_{K}(K\otimes_kV,K\otimes_KW) \twoheadrightarrow  \Hom_{K}(K\otimes_kW,K\otimes_kW)$$
+is surjective morphism of representations of $\bd{G}_K$. Since $\bd{Rep}(\bd{G}_K)$ is semisimple, we derive that the functor of invariants $(-)^{\bd{G}_K}$ is exact. Hence the induced morphism
+$$\Hom_{K}(1_K\otimes_kj,1_K\otimes_k1_W)^{\bd{G}_K}:\Hom_{K}(K\otimes_kV,K\otimes_KW)^{\bd{G}_K} \twoheadrightarrow \Hom_{K}(K\otimes_kW,K\otimes_kW)^{\bd{G}_K}$$
+of $K$-vector spaces is surjective. According to Proposition , we deduce that the morphism 
+$$K\otimes_k\Hom_{k}(V,W)^{\bd{G}} \twoheadrightarrow K\otimes_k \Hom_{k}(W,W)^{\bd{G}}$$
+induced by $j$ is surjective. By faithfully flat descent, we derive that 
+$$\Hom_{\bd{G}}(j,1_W):\Hom_{\bd{G}}(V,W)= \Hom_{k}(V,W)^{\bd{G}}\twoheadrightarrow \Hom_{k}(W,W)^{\bd{G}}=\Hom_{\bd{G}}(W,W)$$
+is surjective. This means that there exists a morphism of representations $r:V\ra W$ such that $r\cdot j = 1_W$. Hence $j$ splits. Therefore, every representation of $\bd{G}$ of finite dimension over $k$ is completely reducible. Since every representation of $\bd{G}$ is a sum of its finitely dimensional subrepresentations, we derive that every representation of $\bd{G}$ is a sum of its completely reducible subrepresentations. Hence every representation of $\bd{G}$ is completely reducible and this means that $\bd{Rep}(\bd{G})$ is semisimple abelian category.
+\end{proof}
+
+\begin{definition}
+Let $\bd{G}$ be an affine group $k$-scheme and suppose that equivalent conditions of Theorem \ref{theorem:fully_reducible_groups_and_field_extension} are satisfied for $\bd{G}$. Then we say that $\bd{G}$ is \textit{fully reducible group over $k$}.
+\end{definition}
+
+\begin{definition}
+Let $\bd{G}$ be a fully reducible group $k$-scheme. Suppose that $\bd{G}$ is smooth and algebraic over $k$. Then we say that $\bd{G}$ is \textit{linearly reductive group over $k$}.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

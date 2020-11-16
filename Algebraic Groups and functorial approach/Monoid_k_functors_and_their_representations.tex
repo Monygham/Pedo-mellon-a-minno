@@ -9,9 +9,9 @@
 \section{Introduction and notation}
 \noindent
 In these notes we study algebraic structures in the category of $k$-functors with special emphasis on monoid objects.\\
-Throughout these notes $k$ is a fixed commutative ring and $\Alg_k$ denote the category of commutative $k$-algebras. If $A, B$ are $k$-algebras, then we denote by $\Mor_k(A, B)$ the set of all morphisms $A\ra B$ of $k$-algebras. Similarly if $X, Y$ are $k$-schemes (i.e. schemes together with morphism to $\Spec k$), then we denote by $\Mor_k(X,Y)$ the set of all morphisms $X\ra Y$ of $k$-schemes (morphisms of schemes that preserve structure morphisms to $\Spec k$). If $M$ is a monoid, then we denote by $M^*$ the group of units of $M$. If $R$ is a ring, then we denote by $R^{\times}$ its multplicative monoid. Let $A$ be a $k$-algebra and let $V$ be an $A$-module and $v$ be an element of $V$. Then for $A$-algebra $B$ we denote by $v_B$ the element $1\otimes v$ of $B\otimes_AV$. If $V$ is an $A$-module, then we denote $\Hom_A(V,A)$ by $V^{\vee}$. Thus we have a contravariant functor
+Throughout these notes $k$ is a fixed commutative ring and $\Alg_k$ denote the category of commutative $k$-algebras. If $A, B$ are $k$-algebras, then we denote by $\Mor_k(A, B)$ the set of all morphisms $A\ra B$ of $k$-algebras. Similarly if $X, Y$ are $k$-schemes, then we denote by $\Mor_k(X,Y)$ the set of all morphisms $X\ra Y$ of $k$-schemes. If $M$ is an abstract monoid, then we denote by $M^*$ the group of units of $M$. If $R$ is a ring, then we denote by $R^{\times}$ its multiplicative monoid. Let $A$ be a $k$-algebra and let $V$ be an $A$-module and $v$ be an element of $V$. Then for $A$-algebra $B$ we denote by $v_B$ the element $1\otimes v$ of $B\otimes_AV$. If $V$ is an $A$-module, then we denote $\Hom_A(V,A)$ by $V^{\vee}$. Thus we have a contravariant functor
 $$(-)^{\vee}:\Mod(A)^{\mathrm{op}}\ra \Mod(A)$$
-
+Moreover, if $v$ is an element of an $A$-module $V$ and $w$ is an element of $V^{\vee}$, then we denote by $\langle v, w\rangle$ the evaluation of $w$ on $v$. 
 
 \section{Algebraic structures in the category of $k$-functors}
 \noindent
@@ -71,7 +71,7 @@ In particular, since $|-|$ carries the structure $\fK$-algebra $\fO_k$, we deriv
 No we introduce regular functions on $k$-functors.
 
 \begin{definition}
-Let $\fX$ be a $k$-functor and assume that $\iMor_k\left(\fX, \fO_k\right)$ is a set. Then $\Mor_k\left(\fX, \fO_k\right)$ is a $k$-algebra with respect to the structure induced by $\fO_k$. We call this $k$-algebra \textit{the $k$-algebra of global regular functions on $\fX$}. Its elements are called \textit{global regular functions on $\fX$}.
+Let $\fX$ be a $k$-functor and assume that $\Mor_k\left(\fX, \fO_k\right)$ is a set. Then $\Mor_k\left(\fX, \fO_k\right)$ is a $k$-algebra with respect to the structure induced by $\fO_k$. We call this $k$-algebra \textit{the $k$-algebra of global regular functions on $\fX$}. Its elements are called \textit{global regular functions on $\fX$}.
 \end{definition}
 
 \begin{definition}
@@ -81,6 +81,12 @@ Let $\fX$ be a $k$-functor. Suppose that $A$ is a $k$-algebra, $x\in \fX(A)$ and
 For given $k$-functor $\fX$ we describe $k$-algebra operations on $\Mor_k\left(\fX,\fO_k\right)$ in terms of values of its elements on points of $\fX$. For this consider $\alpha \in k$ and $f$, $g_1\in \Mor_k\left(\fX, \fO_k\right)$. We have formulas
 $$\left(f+g\right)(x) = f(x)+g(x),\,\left(f\cdot g\right)(x) = f(x)\cdot g(x),\,\left(\alpha \cdot f\right)(x) = \alpha \cdot f(x)$$
 in which right hand side are $k$-algebra operations in $A$.
+
+\begin{remark}\label{remark:values_of_regular_functions_for_affine_k_schemes}
+Let $B$ be a $k$-algebra. Then we have an isomorphism $B\cong \Mor_k\left(\fP_{\Spec B},\fO_k\right)$ of $k$-algebras that sends $b\in B$ to a morphism $\fP_{\Spec B}\ra \fO_k$ of $k$-functors given by formula
+$$\fP_{\Spec B}(A) = \Mor_k\left(B,A\right)\ni f \mapsto f(b)\in A = \fO_k(A)$$
+for every $k$-algebra $A$. This is a consequence of Yoneda lemma.
+\end{remark}
 
 \begin{example}\label{example:regular_functions_as_an_algebra_over_structure_algebra}
 Let $\fX$ be a $k$-functor and assume that $\iMor_k(\fX,\fO_k)$ exists. Fix $k$-algebra $A$. Note that $\Mor_A(\fX_A,\fO_A)$ is an $A$-algebra of global regular functions on $\fX_A$. Moreover, if $B$ is an $A$-algebra, then
@@ -446,7 +452,8 @@ for every $k$-algebra. Then $\phi_{\mathrm{a}}$ is a morphism of $\fO_k$-modules
 \begin{remark}\label{remark:representability_of_additive_functor}
 Let $V$ be a finitely generated, projective $k$-module. Then for each $k$-algebra $A$ we have an isomorphism
 $$\fP_{\Spec \Sym(V^{\vee})}(A) = \Mor_k\left(\Sym(V^{\vee}), A\right) = \Hom_k\left(V^{\vee},A\right) \cong A\otimes_kV$$
-Clearly this isomorphism is natural in $A$. Thus $V_{\mathrm{a}}$ is representable by a $k$-scheme $\Spec \Sym(V^{\vee})$.
+Clearly this isomorphism is natural in $A$. Thus $V_{\mathrm{a}}$ is representable by a $k$-scheme $\Spec \Sym(V^{\vee})$. Hence according to Remark \ref{remark:values_of_regular_functions_for_affine_k_schemes} the $k$-algebra of global regular functions on $V_{\mathrm{a}}$ is $\Sym(V^{\vee})$. In particular, elements of $V^{\vee}$ can be identified with global regular functions on $V_{\mathrm{a}}$. Concretely if $w\in V^{\vee}$, then its value on $A$-point $a\otimes v\in A\otimes_kV$ of $V_{\mathrm{a}}$ is
+$$a\cdot \langle v, w\rangle\in A$$
 \end{remark}
 
 \begin{proposition}\label{proposition:inclusion_of_k_modules_into_O_k_modules}
@@ -506,7 +513,8 @@ commutative for every morphism $f:A\ra B$ of $k$-algebras. This induces an ideni
 \begin{remark}\label{remark:representability_of_linear_monoid}
 Suppose that $V$ is a finitely generated, projective $k$-module. Then for each $k$-algebra $A$ we have an isomorphism
 $$\cL_V(A) = \Hom_A\left(V,A\otimes_kV\right) \cong A\otimes_kV^{\vee}\otimes_kV$$
-Clearly this isomorphism is natural in $A$. Hence $\cL_V$ is isomorphic with $\left(V^{\vee}\otimes_kV\right)_{\mathrm{a}}$ and thus (Remark \ref{remark:representability_of_additive_functor}) it is representable by a $k$-scheme $\Spec \Sym(V\otimes_kV^{\vee})$.
+Clearly this isomorphism is natural in $A$. Hence $\cL_V$ is isomorphic with $\left(V^{\vee}\otimes_kV\right)_{\mathrm{a}}$ and thus (Remark \ref{remark:representability_of_additive_functor}) it is representable by a $k$-scheme $\Spec \Sym(V\otimes_kV^{\vee})$. Now by Remark \ref{remark:values_of_regular_functions_for_affine_k_schemes} the $k$-module $V\otimes_kV^{\vee}$ generates the $k$-algebra of global regular functions on $\cL_V$. Concretely if $\phi\in \Hom_A(A\otimes_kV,A\otimes_kV)$ for some $k$-algebra $A$ is an $A$-point of $\cL_V$, then for $v\in V$ and $w\in V^{\vee}$ the value of $v\otimes w$ on $\phi$ is
+$$\langle \phi(v_A),w_A\rangle \in A$$
 \end{remark}
 
 \begin{definition}
@@ -639,7 +647,7 @@ Let $\fX$ be a $k$-functor and let $\alpha:\fG\times \fX \ra \fX$ be an action o
 \noindent
 Let us note one important consequence of this result.
 
-\begin{corollary}\label{corollary:action_on_regular_k_functor}
+\begin{corollary}\label{corollary:action_on_global_regular_functions_on_monoid}
 Let $\fG$ be a monoid $k$-functor. The action of $\fG\times \fG^{\mathrm{op}}$ on $\fG$ induces the action of $\fG^{\mathrm{op}}\times \fG$ on $\fO_k$-algebra $k$-functor $\iMor_k\left(\fX,\fO_k\right)$ by morphisms of $\fO_k$-algebras.
 \end{corollary}
 
@@ -774,7 +782,7 @@ Follows from {\cite[Fact 4.1]{kfunctors}}.
 Recall that by Example \ref{example:units_k_functor_for_a_monoid} each monoid $k$-functor $\fG$ has its group $k$-functor $\fG^*$ of units.
 
 \begin{proposition}
-Let $\bd{M}$ be an affine monoid $k$-scheme. Then the $k$-functor of units $\fP_{\bd{M}}^*$ is representable (by an affine $k$-scheme).
+Let $\bd{M}$ be a monoid $k$-scheme. Then the $k$-functor of units $\fP_{\bd{M}}^*$ is representable. If $\bd{M}$ is affine, then $\fP_{\bd{M}}^*$ is representable by an affine $k$-scheme.
 \end{proposition}
 \begin{proof}
 Note that $\fP_{\bd{M}}^*$ fits into a cartesian square
@@ -1109,7 +1117,16 @@ Let $k$ be a field. Let $(V,\rho)$ be a linear representation of an affine monoi
 This follows from Theorems \ref{theorem:comodules_equivalent_to_representations} and \ref{theorem:rationality_of_comodules}.
 \end{proof}
 
-
+\begin{proposition}\label{proposition:in_affine_monoid_of_finite_type_over_field_is_a_submonoid_of_general_linear_monoid}
+Let $\bd{M}$ be an affine monoid of finite type over a field $k$. Then $\bd{M}$ is a closed submonoid $k$-scheme of $\cL_V$ for some finite dimensional representation $V$ of $\bd{M}$.
+\end{proposition}
+\begin{proof}
+Note that $k[\bd{M}]$ is the $k$-algebra of global regular functions on a $k$-functor $\fP_{\bd{M}}$ by Remark \ref{remark:values_of_regular_functions_for_affine_k_schemes} and it is a $\bd{M}$-representation by Corollary \ref{corollary:action_on_global_regular_functions_on_monoid}. By assumptions the algebra $k[\bd{M}]$ is finitely generated over $k$. By Corolary \ref{corollary:each_linear_representation_is_rational} there exists a $\bd{M}$-subrepresentation $V$ of $k[\bd{M}]$ that generates $k[\bd{M}]$ as a $k$-algebra. This $\bd{M}$-subrepresentation gives rise to a morphism $\rho:\fP_{\bd{M}}\ra \cL_V$ of monoid $k$-functors. We are going to prove that $\rho$ is a closed immersion of $k$-functors. Since $V$ is finitely dimensional, according to Remark \ref{remark:general_linear_monoid} we derive that $\cL_V$ is representable by $\Spec \Sym(V\otimes_kV^{\vee})$. Hence $\rho$ is determined by the morphism of $k$-algebras $\rho^{\#}:\Sym(V\otimes_kV^{\vee})\ra k[\bd{M}]$. For every $v\in V$ and every $w\in V^\vee$ we have
+$$\rho^{\#}(v\otimes w) = c_{v,w}$$
+where $c_{v.w}$ is the matrix coefficient of $\rho$ corresponding to $v$ and $w$. Using this we are going to prove that $\rho^{\#}$ is surjective. For this fix $v\in V$ and let $w\in V^{\vee}$ be the restriction of the counit $\xi:k[\bd{M}]\ra k$ to $V$. Pick a $k$-algebra $A$ and an $A$-point $m:\Spec A\ra \bd{M}$ of $\bd{M}$. Denote by $e:\Spec k\ra \bd{M}$ the unit of $\bd{M}$ and note that $w_A$ is the evaluation on an $A$-point $e_A:\Spec A\ra \bd{M}$ given by the composition of $\Spec A\ra \Spec k$ and $e:\Spec k\ra \bd{M}$. Then
+$$c_{v,w}(m) = \langle \rho(m)\cdot v_A,w_A \rangle = \left(\rho(m)\cdot v_A\right)(e_A) = v(e_A\cdot m) =  v(m)$$
+for every $v\in V$. This proves that $c_{v,w} = v$ and hence $\rho^{\#}$ is surjective. Therefore, $\rho$ is a closed immersion of $k$-functors.
+\end{proof}
 
 
 

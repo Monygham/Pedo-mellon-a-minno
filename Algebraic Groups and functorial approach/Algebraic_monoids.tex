@@ -1,0 +1,142 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Algebraic monoids}
+\date{}
+\maketitle
+
+\section{The unit group of an algebraic monoid}
+
+\begin{theorem}\label{theorem:generically_finite_morphisms_are_finite_on_some_neighborhood}
+Let $f:X\ra Y$ be a dominant morphism of finite type between irreducible schemes. Suppose that $\eta$ is a generic point and assume that the generic fiber $f^{-1}(\eta)$ is finite. Then there exists an open and nonempty subset $V$ of $Y$ such that the restriction $f^{-1}(V)\ra V$ of $V$ is finite.
+\end{theorem}
+\noindent
+For the proof we need the following local version of the theorem.
+
+\begin{lemma}\label{lemma:generically_finite_means_finite_on_some_neighborhood_local_version}
+Let $A$ be a ring such that $\Spec A$ is irreducible and let $B$ be an $A$-algebra of finite type. Suppose that a unique minimal prime ideal $\ideal{p}$ of $A$ is nilpotent and $k(\ideal{p})\otimes_AB$ is finite over $k(\ideal{p})$, where $k(\ideal{p})$ denotes the residue field of $\ideal{p}$ in $A$. Then there exists nonzero $s$ in $A$ such that $B_s$ is a finite $A_s$-module.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $b_1,...,b_n$ be generators of $B$ as an $A$-algebra. Then
+$$\ol{b_i} = b_i\,\mathrm{mod}\,\ideal{p}B$$
+for $1 \leq i\leq n$ are generators of $B/\ideal{p}B$ as an $A/\ideal{p}$ algebra. Since $k(\ideal{p})\otimes_AB$ is finite over $k(\ideal{p})$ for each $i$ there exists positive integer $m_i$ and a polynomial
+$$f_i(x) = s_{m_i}x^{m_i}+s_{m_i-1}x^{m_i-1}+...+s_0\in \left(A/\ideal{p}\right)[x]$$
+such that $s_{m_i}\neq 0$ and $f_i(\ol{b_i}) = 0$. Let $s\in A$ be an element such that
+$$\ol{s} = s\,\mathrm{mod}\,\ideal{p} = s_{m_1}\cdot s_{m_2}\cdot ...\cdot s_{m_n}$$
+Clearly $s$ is nonzero and $B_s/\left(\ideal{p}B\right)_s = \left(B/\ideal{p}B\right)_s$ is a finite $A_s$-algebra. Hence there exists a finite $A_s$-submodule $M$ of $B_s$ such that
+$$B_s = M + \left(\ideal{p}B\right)_s = M + \ideal{p}B_s$$
+Since $\ideal{p}$ is nilpotent, there exists $N\in \mathbb{N}$ such that $\ideal{p}^N = 0$. Thus
+$$B_s = M + \ideal{p}B_s = M + \ideal{p}M + \ideal{p}^2B_s = ... = M + \ideal{p}M + ... + \ideal{p}^{N-1}M + \ideal{p}^NB_s = M + \ideal{p}M + ... + \ideal{p}^{N-1}M$$
+is a finite $A_s$-module.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Pick an open, nonempty, affine neighborhood $W$ of $\eta$. Since $f$ is of finite type, we derive that
+$$f^{-1}(W) = \bigcup_{i=1}^nU_i$$
+where each $U_i$ is nonempty open affine subscheme of $X$ and moreover, the morphism $U_i\ra V$ induced by $f$ is of finite type. According to Lemma \ref{lemma:generically_finite_means_finite_on_some_neighborhood_local_version} for each $i$ there exists an open, affine and nonempty subscheme $W_i\subseteq W$ such that the morphism $f^{-1}(W_i)\cap U_i\ra W_i$ induced by $f$ is finite. Thus replacing $W$ by the intersection of $W_1,...,W_n$ we may assume that each $U_i\ra W$ is finite. Consider
+$$F = f^{-1}(W) \setminus \left(\bigcap_{i=1}^nU_i\right)$$
+Then $F$ is a closed subset of $f^{-1}(W)$ and it does not contain the generic point $\xi$ of $X$. Since each restriction $U_i\ra W$ of $f$ is finite, we derive that $f\big(U_i\cap F\big)$ is closed in $W$ for every $1\leq i\leq n$ and does not contain $\eta = f(\xi)$ ($f$ is dominant). Thus $f(F)$ is a closed subset of $W$ and $\eta \not \in f(F)$. Hence $V = W\setminus f(F)$ is an open neighborhood of $\eta$ and $f^{-1}(V) \subseteq \bigcap_{i=1}^nU_i$. Thus the restriction $f^{-1}(V)\ra V$ of $f$ is finite.
+\end{proof}
+
+\begin{theorem}\label{theorem:units_are_open_in_a_geometrically_integral_monoid}
+Let $\bd{M}$ be a geometrically integral algebraic monoid $k$-scheme. Suppose that $\bd{G}$ is a group of units of $\bd{M}$ and $i:\bd{G}\hookrightarrow \bd{M}$ is the canonical monomorphism. Then $i$ is an open immersion.
+\end{theorem}
+\begin{proof}
+Assume that $k$ is algebraically closed. Denote by $\mu:\bd{M}\times_k\bd{M}\ra \bd{M}$ and $e:\Spec k\ra \bd{M}$ the multiplication and the unit, respectively. Since $\bd{M}$ is integral and of finite type over $k$, we derive that $\bd{M}\times_k\bd{M}$ is integral and
+$$\mathrm{dim}\left(\bd{M}\times_k\bd{M}\right) = 2\cdot \mathrm{dim}\left(\bd{M}\right)$$
+Moreover, $\mu$ is surjective (which can be checked on $k$-functors of points). Pick any irreducible component $Z$ of $\mu^{-1}(e)$. By {\cite[Lemma 14.109]{gortz2010algebraic}} we deduce $$\mathrm{dim}\left(Z\right) \geq \mathrm{dim}\left(\mu^{-1}(\eta)\right)$$
+where $\eta$ is the generic point of $\bd{M}$. Since 
+$$\mathrm{dim}\left(\mu^{-1}(\eta)\right) = \mathrm{dim}\left(\bd{M}\times_k\bd{M}\right) - \mathrm{dim}\left(\bd{M}\right) =  2\cdot \mathrm{dim}\left(\bd{M}\right) - \mathrm{dim}\left(\bd{M}\right) = \mathrm{dim}\left(\bd{M}\right)$$
+we deduce that $\mathrm{dim}\left(Z\right) \geq \mathrm{dim}(\bd{M})$. Moreover, we have $\bd{G} \cong \mu^{-1}(e)$ as $k$-schemes and this isomorphism is given by the restriction $\pi:\mu^{-1}(e)\ra \bd{G}$ to $\mu^{-1}(e)$ of the projection $\mathrm{pr}:\bd{M}\times_k\bd{M}\ra \bd{M}$ on the first factor (this can be checked on $k$-functors of points). Hence $\bd{G}$ is of finite type over $k$ as it is isomorphic with a closed subscheme of $\bd{M}\times_k\bd{M}$ and each irreducible component $Z$ of $\bd{G}$ is of dimension at least $ \mathrm{dim}(\bd{M})$. Now we fix an irreducible component $Z$ of $\bd{G}$ and consider it as a closed subscheme of $\bd{G}$ with reduced structure. Then the morphism $i_{\mid Z}:Z\hookrightarrow \bd{M}$ is a monomorphism of finite type and $\mathrm{dim}(Z) \geq \mathrm{dim}(\bd{M})$. Hence $i_{\mid Z}$ is dominant. Since $i$ is a monomorphism, this implies that $\bd{G}$ has only one irreducible component and $i:\bd{G}\hookrightarrow \bd{M}$ is dominant. By Theorem \ref{theorem:generically_finite_morphisms_are_finite_on_some_neighborhood} there exists an open and nonempty subset $V$ of $\bd{M}$ such that the morphism $i^{-1}(V)\hookrightarrow V$ induced by $i$ is finite. Finite monomorphisms are closed immersions and dominant, closed immersions with integral scheme as a codomain are isomorphisms. Thus $i^{-1}(V)\ra V$ is an isomorphism. Now pick a $k$-point $g$ of $\bd{G}$. Since $\bd{G}$ is a group $k$-scheme, we derive that $g\cdot (-):\bd{M}\ra \bd{M}$ is an automorphism of $k$-scheme $\bd{M}$. This implies that $i^{-1}(g \cdot V)\ra g\cdot V$ is an isomorphism. This holds for every $k$-point of $\bd{G}$ and 
+$$i(\bd{G})\subseteq \bigcup_{g\in \bd{G}(k)}g\cdot V$$
+where $\bd{G}(k)$ is the set of $k$-points of $\bd{G}$. Therefore, $i$ is an open immersion.\\
+If $k$ is not algebraically closed, then we pick an algebraically closed extension $K$ of $k$ and consider $1_{\Spec K}\times_k i$. This is an open immersion according to the case considered above. By faithfuly flat descent $i$ is an open immersion. 
+\end{proof}
+\noindent
+The more general result for algebraically closed fields is {\cite[Theorem 1]{brion2014algebraic}}. Let us also note the following theorems.
+
+\begin{theorem}[{\cite[Chapitre 2, {\&}2, Corollaire 3.6]{demazure1970groupes}}]\label{theorem:units_are_open_in_an_affine_algebraic_monoid}
+Let $\bd{M}$ be an affine, algebraic monoid $k$-scheme. Suppose that $\bd{G}$ is a group of units of $\bd{M}$. Then there exists a regular function $f$ on $\bd{M}$ such that canonical morphism $\bd{G}\hookrightarrow \bd{M}$ is the inclusion of open subscheme of $\bd{M}$ on which $f$ is nonzero.
+\end{theorem}
+\noindent
+The converse is also true.
+
+\begin{theorem}[{\cite[Theorem 2]{brion2014algebraic}}]\label{theorem:units_are_affine_then_monoid_is_affine}
+Let $\bd{M}$ be a geometrically integral algebraic monoid over a field $k$ and let $\bd{G}$ be an group of units of $\bd{M}$. If $\bd{G}$ is affine, then $\bd{M}$ is affine.
+\end{theorem}
+
+\section{Kempf monoids}
+\noindent
+In this section we discuss an important class of monoid $k$-schemes.
+
+\begin{proposition}
+Let $\bd{M}$ be a monoid $k$-scheme with zero $\bd{o}$ and with group $\bd{G}$ of units. Suppose that for some field $K$ over $k$ there exists a closed immersion
+$$i:\mathbb{A}^1_K\hookrightarrow \Spec K\times_k\bd{M}$$
+of monoid $K$-schemes sending the zero of $\mathbb{A}^1_K$ to the unique zero $\bd{o}_K$ of $\Spec K\times_{\Spec k}\bd{M}$ lying over $\bd{o}$. Let $U$ be an open $\bd{G}$-stable subscheme of $\bd{M}$. Then the following are equivalent.
+\begin{enumerate}[label=\textbf{\emph{(\roman*)}}, leftmargin=3.0em]
+\item $\bd{o}$ is contained in $U$
+\item $U = \bd{M}$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Suppose that \textbf{(i)} holds. Denote
+$$\Spec K\times_k \bd{M},\,\Spec K\times_k \bd{G},\,\Spec K\times_kU$$
+by $\bd{M}_K,\,\bd{G}_K,\,U_K$, respectively. Note that $i\left(\mathbb{G}_{m,K}\right)\subseteq \bd{G}_K$. Fix a field $L$ over $K$ and a morphism $j:\Spec L \hookrightarrow \bd{M}_K$. Next consider the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \mathbb{A}^1_{L} = \mathbb{A}^1_K\times_K\Spec L       &  \bd{M}_K\times_k \bd{M}_K & \bd{M}_K    \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ i \times_K j   $} (m-1-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[below] {$ \mu_K  $} (m-1-3);
+\path[->,bend left,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where the second morphism $\mu_K:\bd{M}_K\times_k \bd{M}_K\ra \bd{M}_K$ is the multiplication. Clearly $f$ is $\mathbb{G}_{m,L}$-equivariant. Hence $f^{-1}(U_K)$ is an open $\mathbb{G}_{m,L}$-stable subscheme of $\mathbb{A}^1_{L}$ containing zero of this monoid $L$-scheme because $\bd{o}_K \in U_K$ by \textbf{(i)}. Since the only open $\mathbb{G}_{m,L}$-stable subscheme of $\mathbb{A}^1_{L}$ containing zero is $\mathbb{A}^1_{L}$, we derive that $f^{-1}(U_K) = \mathbb{A}^1_{L}$. Thus the image of $j$ is in $U_K$. Hence $U_K = \bd{M}_K$ because $j:\Spec L\ra \bd{M}_K$ and $L$ are arbitrary. By faithfuly flat descent, we derive that $U = \bd{M}$ i.e. we deduced \textbf{(ii)}.\\
+The implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ is obvious.
+\end{proof}
+
+\begin{definition}
+Let $\bd{M}$ be an affine, geometrically integral monoid of finite type over $k$. Assume that $\bd{M}$ admits a zero $\bd{o}$. Suppose that for some field $K$ over $k$ there exists a closed immersion
+$$i:\mathbb{A}^1_K\hookrightarrow \Spec K\times_k\bd{M}$$
+of monoid $K$-schemes sending the zero of $\mathbb{A}^1_K$ to the unique zero $\bd{o}_K$ of $\Spec K\times_{\Spec k}\bd{M}$ lying over $\bd{o}$. Then $\bd{M}$ is called \textit{a Kempf monoid}.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+\end{document}
