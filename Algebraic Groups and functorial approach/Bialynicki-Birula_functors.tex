@@ -294,7 +294,7 @@ Thus $\{W_F\}_{F\in \cF}$ together with morphisms $W_{F_1}\ra W_{F_2}$ for $F_1\
 In this section we fix an affine group $k$-scheme $\bd{G}$. Let $\bd{M}$ be an affine monoid $k$-scheme with zero $\bd{o}$ such that $\bd{G}$ is its group of units.
 
 \begin{definition}
-Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. For every $k$-scheme $Y$ we define
+Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. For every $k$-scheme $Y$ (considered as $\bd{G}$-scheme with the trivial $\bd{G}$-action) we define
 $$\cD_X(Y) = \big\{\gamma:\bd{M}\times_kY\ra X\,\big|\,\gamma\mbox{ is }\bd{G}\mbox{-equivariant}\big\}$$
 This gives gives rise to a subfunctor $\cD_X$ of $\Mor_{k}\left(\bd{M}\times_k(-),X\right):\Sch_k^{\mathrm{op}}\ra \Set$. We call it \textit{the Bia{\l}ynicki-Birula functor of $X$}.
 \end{definition}
@@ -337,7 +337,7 @@ and this determines an action of $\bd{M}$ on $\cD_X$. Moreover, with respect to 
 \begin{remark}\label{remark:functoriality_of_bb_functor}
 Let $X,Y$ be $k$-schemes equipped with actions of $\bd{G}$ and let $f:X\ra Y$ be a $\bd{G}$-equivariant morphism, then there exists a morphism of functors $\cD_f:\cD_X\ra \cD_Y$ given by
 $$\cD_f(\gamma) = f\cdot \gamma$$
-for every element $\gamma$ of the functor $\cD_X$.
+for every element $\gamma$ of the functor $\cD_X$. Moreover, $\cD_f$ preserves the action of $\bd{M}$ described in Remark \ref{remark:action_of_a_monoid_on_bb_functor} above.
 \end{remark}
 \noindent
 Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. It is useful to discuss subfunctors of $\cD_X$ defined by closed $\bd{G}$-stable subschemes of $X$.
@@ -408,40 +408,14 @@ Let $X$ be a $k$-scheme equipped with an action of the group $\bd{G}$ of units o
 \end{center}
 is cartesian in the category of presheaves on $\Sch_k$.
 \end{theorem}
-\noindent
-As we shall see this result follows from the following.
-
-\begin{lemma}\label{lemma:open_stable_subset_of_monoid_that_contains_zero_is_monoid_itself}
-Let $K$ be an algebraicaly closed field over $k$. Suppose that
-$$\bd{M}_K = \Spec K \times_k\bd{M},\bd{G}_K =\Spec K \times_k\bd{G}$$
-and let $\bd{o}_K$ be the unique $K$-point of $\bd{M}_K$ lying over $\bd{o}$. Let $V$ be an open $\bd{G}_K$-stable subscheme of $\bd{M}_K$ such that $\bd{o}_K\in V$. Then $V = \bd{M}_K$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Since $\bd{M}$ is a Kempf monoid, there exists a closed embedding of monoids $v:\mathbb{A}^1_K\hookrightarrow \bd{M}_K$ preserving zeros such that $v_{\mid \mathbb{G}_{m,K}}\subseteq \bd{G}_K$. Fix a point $p \in \bd{M}_K$ and let $u:\Spec k(p)\ra \bd{M}_K$ be the associated morphism of $K$-schemes. Consider the composition
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=4em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{  \mathbb{A}^1_{k(p)} = \mathbb{A}^1_K\times_K\Spec k(p)       &  \bd{M}_K\times_K\bd{M}_K & \bd{M}_K    \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ v\times_K u   $} (m-1-2);
-\path[right hook->,line width=1.0pt,font=\scriptsize]
-(m-1-2) edge node[above] {$   $} (m-1-3);
-\path[->,bend left,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ h  $} (m-1-3);
-\end{tikzpicture}
-\end{center}
-where the second morphism is the multiplication. Clearly $h$ is $\bd{G}_{m,k(p)}$-equivariant. Hence $h^{-1}(V)$ is an open $\bd{G}_{m,k(p)}$-stable subscheme of $\mathbb{A}^1_{k(p)}$ containing zero of this monoid $k(p)$-scheme (because $\bd{o}_K\in V$ by assumption). Since the only open $\bd{G}_{m,k(p)}$-stable subscheme of $\mathbb{A}^1_{k(p)}$ containing zero is $\mathbb{A}^1_{k(p)}$, we derive that $h^{-1}(V) = \mathbb{A}^1_{k(p)}$. Thus $p\in V$. Since $p$ is arbitrary point of $\bd{M}_K$, we derive that $V = \bd{M}_K$.
-\end{proof}
-
-\begin{proof}[Proof of the theorem]
-The fact that the square is commutative follows by examination of definitions in Remarks \ref{remark:bb_diagram} and \ref{remark:functoriality_of_bb_functor}. Pick $k$-scheme $Y$, $f\in U^{\bd{G}}$ and $\gamma \in \cD_X(Y)$ such that $j^{\bd{G}}(f) = r_X(\gamma)$. This is depicted in the diagram
+\begin{proof}
+The fact that the square is commutative follows by examination of definitions in Remarks \ref{remark:bb_diagram} and \ref{remark:functoriality_of_bb_functor}. Pick $k$-scheme $Y$, $f\in U^{\bd{G}}(Y)$ and $\gamma \in \cD_X(Y)$ such that $j^{\bd{G}}(f) = r_X(\gamma)$. This is depicted in the diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 {         &   \gamma   \\
-  f       &    j\cdot f = \gamma_{\mid \{\bd{o}\}\times_kX}          \\} ;
+  f       &    j\cdot f = \gamma_{\mid \{\bd{o}\}\times_kY}          \\} ;
 \path[|->,line width=1.0pt,font=\scriptsize]
 (m-2-1) edge node[below] {$ j^{\bd{G}}  $} (m-2-2)
 (m-1-2) edge node[right] {$ r_X  $} (m-2-2);
@@ -453,28 +427,123 @@ Our goal is to show that there exists a unique $\bd{G}$-equivariant morphism $\e
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { \eta                            &  \gamma = j\cdot \eta    \\
-  f = \eta_{\mid \{\bd{o}\}\times_kX} &              \\} ;
+  f = \eta_{\mid \{\bd{o}\}\times_kY} &              \\} ;
 \path[|->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$ \cD_j  $} (m-1-2)
 (m-1-1) edge node[left] {$ r_U $} (m-2-1);
 \end{tikzpicture}
 \end{center}
-Fir this it suffices to prove that $\gamma$ factors through $j$. Consider $W = \gamma^{-1}(U)$. Note that $W$ is an open $\bd{G}$-stable (as an inverse image of a $\bd{G}$-stable open subscheme under the $\bd{G}$-equivariant morphism) subscheme of $\bd{M}\times_kY$, which contains $\{\bd{o}\} \times_k Y$. Lemma \ref{lemma:open_stable_subset_of_monoid_that_contains_zero_is_monoid_itself} asserts that for every geometric point $\ol{y}$ of $Y$ we have $W_{\ol{y}} = \bd{M}_{k(\ol{y})}$, where $W_{\ol{y}}$ is the fiber over $\ol{y}$ of the projection $\bd{M}\times_kY\ra Y$ restricted to $W$. Since $W$ is open subscheme of $\bd{M}\times_kY$, this implies that $W = \bd{M}\times_kY$ and hence $\gamma$ factors through $j$.
+Fir this it suffices to prove that $\gamma$ factors through $j$. Consider $W = \gamma^{-1}(U)$. Note that $W$ is an open $\bd{G}$-stable (as an inverse image of a $\bd{G}$-stable open subscheme under the $\bd{G}$-equivariant morphism) subscheme of $\bd{M}\times_kY$, which contains $\{\bd{o}\} \times_k Y$. {\cite[Theorem 3.8]{Algebraic_monoids}} asserts that for every geometric point $\ol{y}$ of $Y$ we have $W_{\ol{y}} = \bd{M}_{k(\ol{y})}$, where $W_{\ol{y}}$ is the fiber over $\ol{y}$ of the projection $\bd{M}\times_kY\ra Y$ restricted to $W$. Since $W$ is an open subscheme of $\bd{M}\times_kY$, this implies that $W = \bd{M}\times_kY$ and hence $\gamma$ factors through $j$.
 \end{proof}
 \noindent
-As we shall see below both Theorems are extremely useful properties of Bia{\l}ynicki-Birula functors. Now we introduce a formal version of this functor.
+As we shall see below both Theorems are extremely useful properties of Bia{\l}ynicki-Birula functors.
+
+\section{Formal Bia{\l}ynicki-Birula functors}
+\noindent
+We introduce a formal version of the Bia{\l}ynicki-Birula functor. We fix an affine group $k$-scheme $\bd{G}$. Let $\bd{M}$ be an affine monoid $k$-scheme with zero $\bd{o}$ such that $\bd{G}$ is its group of units.
 
 \begin{definition}
-Let $\bd{M}$ be an affine monoid $k$-scheme with zero $\bd{o}$ and let $\bd{G}$ be its group of units. For every $n\in \NN$ let $\bd{M}_n\hookrightarrow \bd{M}$ be an $n$-th infinitesimal neighborhood of $\bd{o}$ in $\bd{M}$. Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. For every $k$-scheme $Y$ we define
+Let $\bd{M}$ be an affine monoid $k$-scheme with zero $\bd{o}$ and let $\bd{G}$ be its group of units. For every $n\in \NN$ let $\bd{M}_n\hookrightarrow \bd{M}$ be an $n$-th infinitesimal neighborhood of $\bd{o}$ in $\bd{M}$. Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. For every $k$-scheme $Y$ (considered as $\bd{G}$-scheme with the trivial $\bd{G}$-action) we define
 $$\widehat{\cD}_X(Y) = \big\{\{\gamma_n:\bd{M}_n\times_kY\ra X\}_{n\in \NN}\,\big|\,\forall_{n\in \NN}\,\gamma_n\mbox{ is }\bd{G}\mbox{-equivariant and }{\gamma_{n+1}}_{\mid \bd{M}_n\times_kY} = \gamma_n\big\}$$
 This gives gives rise to a functor $\widehat{\cD}_X$. We call it \textit{the formal Bia{\l}ynicki-Birula functor of $X$}.
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{remark:functoriality_of_formal_bb_functor}
+Let $X,Y$ be $k$-schemes equipped with actions of $\bd{G}$ and let $f:X\ra Y$ be a $\bd{G}$-equivariant morphism, then there exists a morphism of functors $\widehat{\cD}_f:\widehat{\cD}_X\ra \widehat{\cD}_Y$ given by
+$$\widehat{\cD}_f\big(\{\gamma_n\}_{n\in \NN}\big) = \{f\cdot \gamma_n\}_{n\in \NN}$$
+for every element $\gamma$ of the functor $\widehat{\cD}_X$. 
+\end{remark}
+
+\begin{remark}\label{remark:comparison_between_formal_and_algebraic_bb_functors}
 Let $\bd{M}$ be an affine monoid $k$-scheme with zero $\bd{o}$ and let $\bd{G}$ be its group of units. Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. Then there exists a canonical morphism of functors $\cD_X\ra \widehat{\cD}_X$ given by
 $$\gamma \mapsto \{\gamma_{\mid \bd{M}_n\times_kY}\}_{n\in \NN}$$
 for every $\gamma \in \cD_X(Y)$ and every $k$-scheme $Y$.
 \end{remark}
+
+\begin{remark}\label{remark:formal_bb_diagram}
+Let $X$ be a $k$-scheme equipped with an action of $\bd{G}$. We define a morphism $\widehat{r}_X:\widehat{\cD}_X\ra X^{\bd{G}}$ by formula
+$$\widehat{\cD}_X(Y)\ni \{\gamma_n\}_{n\in \NN} \mapsto \gamma_0 \in X^{\bd{G}}(Y)$$
+for every $k$-scheme $Y$. This morphism fits into a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{  \cD_X &            & \widehat{\cD}_X    \\
+         & X^{\bd{G}} &                    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-3)
+(m-1-1) edge node[left = 4pt, below = -1pt] {$ r_X $} (m-2-2)
+(m-1-3) edge node[right = 4pt, below = -1pt] {$ \widehat{r}_X $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where horizontal morphism is described in Remark \ref{remark:comparison_between_formal_and_algebraic_bb_functors}. 
+\end{remark}
+\noindent
+The next result is analogous to Theorem \ref{theorem:open_subfunctors_induced_by_open_stable_subschemes}, although its proof is much simpler.
+
+\begin{proposition}\label{proposition:open_subfunctors_induced_by_open_stable_subschemes_for_formal_bb}
+Let $X$ be a $k$-scheme equipped with an action of the group $\bd{G}$. If $j:U\hookrightarrow X$ is an open $\bd{G}$-stable subscheme of $X$, then the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \widehat{\cD}_U         &  \widehat{\cD}_X    \\
+  U^{\bd{G}}    &   X^{\bd{G}}           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \cD_j  $} (m-1-2)
+(m-2-1) edge node[below] {$ j^{\bd{G}}  $} (m-2-2)
+(m-1-1) edge node[left] {$ \widehat{r}_U $} (m-2-1)
+(m-1-2) edge node[right] {$ \widehat{r}_X  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian in the category of presheaves on $\Sch_k$.
+\end{proposition}
+\begin{proof}
+The fact that the square is commutative follows by examination of definitions in Remarks \ref{remark:functoriality_of_formal_bb_functor} and \ref{remark:functoriality_of_formal_bb_functor}. Pick $k$-scheme $Y$, $f\in U^{\bd{G}}(Y)$ and $\{\gamma_n\}_{n\in \NN} \in \widehat{\cD}_X(Y)$ such that $j^{\bd{G}}(f) = \widehat{r}_X\big(\{\gamma_n\}_{n\in \NN}\big))$. This is depicted in the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{         &   \{\gamma_n\}_{n\in \NN}   \\
+  f       &    j\cdot f = \gamma_0          \\} ;
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below] {$ j^{\bd{G}}  $} (m-2-2)
+(m-1-2) edge node[right] {$ \widehat{r}_X  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Our goal is to show that there exists a unique family of $\bd{G}$-equivariant morphism $\eta_n:\bd{M}_n\times_kY\ra U$ for $n\in \NN$ such that $\widehat{\cD}_j\big(\{\eta_n\}_{n\in \NN}\big) = \{\gamma_n\}_{n\in \NN}$ and $\widehat{r}_U\big(\{\eta_n\}_{n\in \NN}) = f$. This is depicted by the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \{\eta_n\}_{n\in \NN} &  \{\gamma_n\}_{n\in \NN} = \{j\cdot \eta_n\}_{n\in \NN}    \\
+  f = \eta_0            &              \\} ;
+\path[|->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \cD_j  $} (m-1-2)
+(m-1-1) edge node[left] {$ r_U $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+Fir this it suffices to prove that $\gamma_n$ factors through $j$ for every $n\in \NN$. Note that all maps $\{\gamma_n\}_{n\in \NN}$ are equal set-theoretically and $\gamma_0 = j\cdot  f$ factors through $j$. Thus $\gamma_n$ factors through $j$ for every $n\in \NN$.
+\end{proof}
+
+\begin{theorem}\label{theorem:comparison_between_formal_and_algebraic_bb_functor_is_injective}
+Let $\bd{G}$ be a group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with an action of $\bd{G}$. Then the canonical morphism $\cD_X\ra \widehat{\cD}_X$ is a monomorphism of functors.
+\end{theorem}
+\noindent
+For the proof it is useful to make the following observation (essentially the same observation was made in the proof of Theorem \ref{theorem:closed_subfunctors_induced_by_closed_stable_subschemes}).
+
+\begin{lemma}\label{lemma:extending_monoid_actions_on_closed_group_stable_subschemes}
+Let $X$ be a $k$-scheme equipped with an action of a monoid $k$-scheme $\bd{M}$. Suppose that $j:Z\hookrightarrow X$ is closed $\bd{G}$-equivariant immersion, where $\bd{G}$ is a group of units of $\bd{M}$. If $\bd{G}$ is schematically dense in $\bd{M}$, then the action of $\bd{G}$ on $Z$ extends to the action of $\bd{M}$ in such a way that $j$ becomes $\bd{M}$-equivariant.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $a:\bd{M}\times_kX\ra X$ be the action of $\bd{M}$ on $X$. Since $j$ is $\bd{G}$-equivariant, we derive that $\bd{G}\times_kZ\subseteq a^{-1}(Z)$. Moreover, $\bd{G}\times_kZ$ is open and schematically dense in $\bd{M}\times_kZ$. Hence $\bd{M}\times_kZ\subseteq a^{-1}(Z)$ and thus $a_{\mid \bd{M}\times_kZ}$ factors through $j:Z\hookrightarrow X$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Let $Y$ be a $k$-scheme and let $\gamma,\eta:\bd{M}\times_kY\ra X$ be $\bd{G}$-equivariant morphisms. Suppose that $\gamma_{\mid \bd{M}_n\times_kY} = \eta_{\mid \bd{M}_n\times_kY}$ for every $n\in \NN$. Consider the kernel (equalizer) $j:E\hookrightarrow \bd{M}\times_kY$ of the pair $(\gamma,\eta)$. Then $E$ admits an action of $\bd{G}$ such that $i$ is $\bd{G}$-equivariant locally closed immersion and $\bd{M}_n\times_kY\subseteq E$ for every $n\in \NN$. Fix a point $y$ in $Y$. Let $\bd{M}_y$ and $E_y$ be fibers of the projection $\mathrm{pr}:\bd{M}\times_kY\ra Y$ and $\mathrm{pr}\cdot j$, respectively. Then $E_y\subseteq \bd{M}_y$ is a locally closed $\bd{G}_y$-equivariant subscheme, where $\bd{G}_y = \bd{G}\times_k \Spec k(y)$. Since $\bd{M}_y = \bd{M}\times_k\Spec k(y)$ is a Kempf monoid over $k(y)$ with group of units $\bd{G}_y$ and moreover, $E_y$ contains all infinitesimal neighborhoods of the zero in $\bd{M}_y$, we deduce by {\cite[Theorem 3.8]{Algebraic_monoids}} that $E_y = \bd{M}_y$. This implies that a locally closed immersion $j:E\hookrightarrow \bd{M}\times_kY$ is bijective. Hence it is a closed immersion. Now Lemma \ref{lemma:extending_monoid_actions_on_closed_group_stable_subschemes} implies that $E$ is a locally linear $\bd{M}$-scheme and $j$ is $\bd{M}$-equivariant. Note that $j$ induces an isomorphism $\widehat{E}\cong \reallywidehat{\bd{M}\times_kY}$ of formal $\bd{M}$-schemes. Hence according to {\cite[Corollary 7.4]{Algebraization}} we infer that $j$ is an isomorphism. This proves that $\gamma = \eta$. Therefore, the map
+$$\cD_X(Y)\ra \widehat{\cD}_X(Y)$$
+is injective. As $Y$ is arbitrary we infer that the canonical morphism $\cD_X\ra \widehat{\cD}_X$ of Remark \ref{remark:comparison_between_formal_and_algebraic_bb_functors} is a monomorphism of functors.
+\end{proof}
 
 \section{Representability of Bia{\l}ynicki-Birula functor for Kempf monoids}
 \noindent
@@ -498,7 +567,7 @@ Thus $c(I) \subseteq k[\bd{G}]\otimes_kI$ and hence $I$ is a $\bd{G}$-representa
 (m-1-1) edge node[above] {$ $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-Since $\Gamma(X,/cO_X)/I$ is the quotient $\bd{G}$-representation of $W$, we deduce by Theorem \ref{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group} that $\Gamma(X,\cO_X)/I$ is a $\bd{M}$-representation. Hence $X^+$ is a $k$-scheme equipped with action of $\bd{M}$ and $X^+\hookrightarrow X$ is $\bd{G}$-equivariant. Suppose now that $Y$ is an affine $k$-scheme. Then $\bd{M}\times_kY$ is a $\bd{M}$-scheme with respect to the left-hand side action of $\bd{M}$ and hence $\Gamma(\bd{M}\times_kY,\cO_{\bd{M}\times_kY})$ is a $\bd{M}$-representation. Now Theorem \ref{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group} implies that if $\gamma:\bd{M}\times_kY\ra X$ is a $\bd{G}$-equivariant morphism, then a morphism $\gamma^{\#}:\Gamma(X,\cO_X)\ra \Gamma(\bd{M}\times_kY,\cO_{\bd{M}}\times_kY)$ of $k$-algebras and $\bd{G}$-representations factors through $q:\Gamma(X,\cO_X)\twoheadrightarrow W$ and thus by construction of $I$ we have
+Since $\Gamma(X,\cO_X)/I$ is the quotient $\bd{G}$-representation of $W$, we deduce by Theorem \ref{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group} that $\Gamma(X,\cO_X)/I$ is a $\bd{M}$-representation. Hence $X^+$ is a $k$-scheme equipped with action of $\bd{M}$ and $X^+\hookrightarrow X$ is $\bd{G}$-equivariant. Suppose now that $Y$ is an affine $k$-scheme. Then $\bd{M}\times_kY$ is a $\bd{M}$-scheme with respect to the left-hand side action of $\bd{M}$ and hence $\Gamma(\bd{M}\times_kY,\cO_{\bd{M}\times_kY})$ is a $\bd{M}$-representation. Now Theorem \ref{theorem:monoid_representations_are_reflective_subcategory_in_representations_of_units_group} implies that if $\gamma:\bd{M}\times_kY\ra X$ is a $\bd{G}$-equivariant morphism, then a morphism $\gamma^{\#}:\Gamma(X,\cO_X)\ra \Gamma(\bd{M}\times_kY,\cO_{\bd{M}}\times_kY)$ of $k$-algebras and $\bd{G}$-representations factors through $q:\Gamma(X,\cO_X)\twoheadrightarrow W$ and thus by construction of $I$ we have
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -527,7 +596,7 @@ for some morphism $f$ of $k$-algebras and $\bd{G}$-representations. Since both $
 (m-1-2) edge node[above] {$  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is commutative. Now this result can be extended to an arbitrary $k$-scheme $Y$, since $\Mor_k(\bd{M}\times_k(-),X^+)$ is a Zariski sheaf and a morphism that is $\bd{M}$-equivariant locally on the domain is $\bd{M}$-equivariant. Thus for every $h$-scheme $Y$ we have a bijection
+is commutative. Now this result can be extended to an arbitrary $k$-scheme $Y$, since $\Mor_k(\bd{M}\times_k(-),X^+)$ is a Zariski sheaf and a morphism that is $\bd{M}$-equivariant locally on the domain is $\bd{M}$-equivariant. Thus for every $k$-scheme $Y$ we have a bijection
 $$\cD_X(Y)\ni \gamma \mapsto \eta \in \big\{\bd{M}\mbox{-equivariant morphisms }\bd{M}\times_kY\ra X^+\big\}$$
 Since we also have a bijection
 $$\big\{\bd{M}\mbox{-equivariant morphisms }\bd{M}\times_kY\ra X^+\big\}\ni \eta \mapsto \eta\cdot \langle e, 1_{X^+}\rangle \in \Mor_k(Y,X^+)$$
@@ -562,18 +631,166 @@ Let $\bd{G}$ be group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ 
 This is a consequence of Corollary \ref{corollary:bb_is_representable_on_schemes_with_affine_cover_of_fixed_points}. Indeed, $X$ admits a cover $\cU$ by open $\bd{G}$-stable affine subschemes. Then $\{U^{\bd{G}}\}_{U\in \cU}$ is an open cover of $X^{\bd{G}}$.
 \end{proof}
 \noindent
-In order to prove more interesting result we need to recall some fact.
+Now we prove our main result.
 
-\begin{remark}\label{remark:existence_of_fixed_points_for_geom_conn_locally_alg_group}
-Let $\bd{G}$ be a geometrically connected and locally algebraic group over $k$. It follows by {\cite[Theorem 7.2]{Group_schemes_over_field}} that for every $k$-scheme $X$ equipped with an action of $\bd{G}$ there exists closed subscheme $X^{\bd{G}}$ of $X$ representing the fixed point functor.
-\end{remark}
-
-\begin{theorem}
-Let $\bd{G}$ be a geometrically connected and locally algebraic group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with action of $\bd{G}$. Then $\widehat{\cD}_X$ is representable.
-
+\begin{theorem}\label{theorem:representability_of_bb_functors}
+Let $\bd{G}$ be a group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a $k$-scheme equipped with an action of $\bd{G}$. Then the following results hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item $\widehat{\cD}_X$ is representable. Moreover, the morphism $\widehat{r}_X:\widehat{\cD}_X\ra X^{\bd{G}}$ is affine and if $X$ is locally noetherian, then it is of finite type.
+\item If $X$ is of finite type over $k$, then the canonical morphism $\cD_X\ra \widehat{\cD}_X$ is an isomorphism of functors.
+\end{enumerate}
 \end{theorem}
+\begin{proof}
+Consider the ideal $\cI$ in $\cO_X$ corresponding to a closed subscheme $X^{\bd{G}}$ of $X$. We define $X_n$ as a closed subscheme of $X$ determined by the ideal $\cI^n$ and we denote by $\cI_{n}$ the ideal of $X_0$ in $X_n$. Then $\widehat{X} = \{X_n\}_{n\in \NN}$ is a formal $\bd{G}$-scheme. Moreover, by {\cite[Corollary 5.1]{Algebraization}} each $X_n$ is a locally linear $\bd{G}$-scheme and hence by Corollary \ref{corollary:bb_is_representable_on_locally_linear_schemes} there exists a $k$-scheme $Z_n$ equipped with $\bd{M}$-action that represents $\cD_{X_n}$. Note that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  Z_n    &  Z_{n+1}    \\
+   X_n    & X_{n+1}           \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-2)
+(m-2-1) edge node[below] {$   $} (m-2-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ i_n $} (m-2-1)
+(m-1-2) edge node[right] {$ i_{n+1}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian according to Theorem \ref{theorem:closed_subfunctors_induced_by_closed_stable_subschemes} for each $n\in \NN$. This implies that the vanishing closed subscheme of $i_{n+1}^{-1}\cI^n_{n+1}\cdot \cO_{Z_{n+1}}$ in $Z_{n+1}$ is $Z_n$. Since the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  Z_0    &  Z_{n+1}    \\
+   X_0    & X_{n+1}           \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-2)
+(m-2-1) edge node[below] {$   $} (m-2-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ i_0 $} (m-2-1)
+(m-1-2) edge node[right] {$ i_{n+1}  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian as a combination of cartesian squares, we derive that the vanishing closed subscheme of $i_{n+1}^{-1}\cI_{n+1}\cdot \cO_{Z_{n+1}}$ in $Z_{n+1}$ is $Z_0$. Note that $$\big(i_{n+1}\cI_{n+1}\cdot \cO_{Z_{n+1}}\big)^n = i_{n+1}^{-1}\cI_{n+1}^n\cO_{Z_{n+1}}$$
+Thus $\cZ = \{Z_n\}_{n\in \NN}$ is a formal $\bd{G}$-scheme. According to Remarks \ref{remark:action_of_a_monoid_on_bb_functor} and \ref{remark:functoriality_of_bb_functor}, we derive that it is a formal $\bd{M}$-scheme. Now the commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{Z_0 &  ... &  Z_n &  Z_{n+1} &  ...         \\
+ X_0 & ... &  X_n  & X_{n+1}  & ...  & X\\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize] 
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-2-1) edge node[above] {$ $} (m-2-2)
+(m-2-2) edge node[above] {$ $} (m-2-3)
+(m-2-3) edge node[above] {$ $} (m-2-4)
+(m-2-4) edge node[above] {$ $} (m-2-5)
+(m-2-5) edge node[above] {$ $} (m-2-6);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ i_0$} (m-2-1)
+(m-1-3) edge node[left] {$ i_n$} (m-2-3)
+(m-1-4) edge node[left] {$ i_{n+1}$} (m-2-4);
+\end{tikzpicture}
+\end{center}
+shows that $\{i_n\}_{n\in \NN}$ is a morphism of formal $\bd{G}$-schemes. Since $\bd{M}$ is a Kempf monoid, {\cite[Theorem 7.1]{Algebraization}} implies that there exists a locally linear $\bd{M}$-scheme $Z$ such that $\widehat{Z} = \{Z_n\}_{n\in \NN}$. Here our argument ramifies. We first provide the proof of \textbf{(1)} and later deal with \textbf{(2)}.
+\begin{itemize}
+\item Consider a $k$-scheme $Y$ and a family $\{\gamma_n:\bd{M}_n\times_kY\ra X\}_{n\in \NN}\in \widehat{\cD}_X(Y)$. Note that $\gamma_n$ uniquely factors through $X_n$ and hence there exists a unique $\bd{M}$-equivariant morphism $\delta_n:\bd{M}_n\times_kY\ra Z_n$. Hence the family $\{\delta_n\}_{n\in \NN}$ is a morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{\bd{M}_0\times_kY &  ... & \bd{M}_n\times_kY &  \bd{M}_{n+1}\times_kY &  ...          \\
+ Z_0 & ... &  Z_n  & Z_{n+1}  & ...  \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize] 
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-2-1) edge node[above] {$ $} (m-2-2)
+(m-2-2) edge node[above] {$ $} (m-2-3)
+(m-2-3) edge node[above] {$ $} (m-2-4)
+(m-2-4) edge node[above] {$ $} (m-2-5);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ \delta_0$} (m-2-1)
+(m-1-3) edge node[left] {$ \delta_n$} (m-2-3)
+(m-1-4) edge node[left] {$ \delta_{n+1}$} (m-2-4);
+\end{tikzpicture}
+\end{center}
+of a formal $\bd{M}$-schemes. According to {\cite[Example 7.3]{Algebraization}} and {\cite[Corollary 7.4]{Algebraization}} there exists a unique $\bd{M}$-equivariant morphism $\delta:\bd{M}\times_kY\ra Z$ such that $\delta_{\mid \bd{M}_n\times_kY}$ induces $\delta_n:\bd{M}_n\times_kY\ra Z_n$ for every $n\in \NN$. Note that $\delta$ as a $\bd{M}$-equivariant morphism is uniquely determined by a morphism $\eta = \delta \cdot \langle e,1_Y \rangle$ of $k$-schemes, where $e:\Spec k\ra \bd{M}$ is the unit of $\bd{M}$. This proves that
+$$\widehat{\cD}_X(Y) \ni \{\gamma_n:\bd{M}_n\times_kY\ra X\}_{n\in \NN} \mapsto \eta \in \Mor_k(Y,Z)$$
+is a bijection natural in $Y$. Thus $\widehat{\cD}_X$ is representable by $Z$. Note that $\widehat{r}_X:\widehat{\cD}_X\ra X^{\bd{G}}$ is representable by the canonical retraction $r_Z:Z\ra Z^{\bd{M}} = X^{\bd{G}}$. Hence $\widehat{r}_X$ is affine and if $X$ is locally noetherian, then $\widehat{Z} = \cZ$ is a locally noetherian formal $\bd{M}$-scheme and hence by {\cite[Theorem 7.5]{Algebraization}} we derive that $\widehat{r}_X$ is of finite type.
+\item Assume That $X$ is of finite type over $k$. Then $\cZ$ is locally noetherian formal $\bd{M}$-scheme and {\cite[Theorem 7.5]{Algebraization}} implies that the canonical retraction ({\cite[Proposition 5.2]{Algebraization}}) $r:Z\ra Z^{\bd{M}} = X^{\bd{G}}$ is of finite type. Since $X^{\bd{G}}$ is closed subscheme of $X$, we dervie that $Z$ is of finite type over $k$. Next {\cite[Theorem 7.6]{Algebraization}} implies that the comparison functor $\Coh_{\bd{G}}(Z)\ra \Coh_{\bd{G}}(\cZ)$ is an equivalence of categories. Therefore, we derive that there exists a unique monoidal and finitely cocontinuous functor $F:\Coh_{\bd{G}}(X)\ra \Coh_{\bd{G}}(Z)$ such that for every $n\in \NN$ we have the commutative square of monoidal, finitely cocontinuous functors
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  \Coh_{\bd{G}}(Z)    & \Coh_{\bd{G}}(Z_n)     \\
+   \Coh_{\bd{G}}(X)    & \Coh_{\bd{G}}(X_n)           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-2)
+(m-2-1) edge node[below] {$   $} (m-2-2)
+(m-2-1) edge node[left] {$ F $} (m-1-1)
+(m-2-2) edge node[right] {$ i_n^*  $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+where horizontal functors are pullbacks along closed immersions $X_n\hookrightarrow X$ and $Z_n\hookrightarrow Z$. In particular, it follows that $F\cdot p^*_X = p^*_Z$, where $p_X:X\ra \Spec k,\,p_Z:Z\ra \Spec k$ are structural morphism and $p_X^*:\bd{Repf}(\bd{G})\ra \Coh_{\bd{G}}(X),p_Z^*:\bd{Repf}(\bd{G})\ra \Coh_{\bd{G}}(Z)$ are pullbacks of coherent $\bd{G}$-sheaves (i.e. finite dimensional $\bd{G}$-representations by {\cite[Example 4.7]{Algebraization}}) from $\Spec k$ (eqipped with the trivial $\bd{G}$-action). Corollary \ref{corollary:equivariant_morphisms_from_categories_Rydh_version} implies that there exists a unique $\bd{G}$-equivariant morphism $f:Z\ra X$ such that for every $n\in \NN$ we have a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  Z_n    & Z     \\
+   X_n    & X           \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-2)
+(m-2-1) edge node[below] {$   $} (m-2-2);
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ i_n $} (m-2-1)
+(m-1-2) edge node[right] {$ f  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Consider a $k$-scheme $Y$ and a family $\{\gamma_n:\bd{M}_n\times_kY\ra X\}_{n\in \NN}\in \widehat{\cD}_X(Y)$. Then $\gamma_n$ factors through the composition of $i_n:Z_n\ra X_n$ and the closed immersion $X_n\hookrightarrow X$ for every $n\in \NN$. Thus a family $\{\gamma_n\}_{n\in \NN}$ determines and is determined by a unique family $\{\delta_n:\bd{M}_n\times_kY\ra Z_n\}_{n\in \NN}$ of $\bd{M}$-equivariant morphisms. As above {\cite[Example 7.3]{Algebraization}} and {\cite[Corollary 7.4]{Algebraization}} show that there is a $\bd{M}$-equivariant morphism $\delta:\bd{M}\times_kY\ra Z$ such that $\delta_{\mid \bd{M}_n\times_kY}$ induces $\delta_n$ for every $n\in \NN$. Define $\gamma = f\cdot \delta$. Then $\gamma:\bd{M}\times_kY\ra X$ is a $\bd{G}$-equivariant morphism and $\gamma_{\mid \bd{M}_n\times_kY} = \gamma_n$ for every $n\in \NN$. This shows that the map
+$$\cD_X(Y)\ra \widehat{\cD}_X(Y)$$
+is surjective for every $k$-scheme $Y$. By Theorem \ref{theorem:comparison_between_formal_and_algebraic_bb_functor_is_injective} we derive that it is injective and hence the canonical morphism $\cD_X\ra \widehat{\cD}_X$ is an isomorphism.
+\end{itemize}
+\end{proof}
+\noindent
+It is easy to strengthen \textbf{(2)} in Theorem \ref{theorem:representability_of_bb_functors}.
 
-
+\begin{corollary}\label{corollary:formal_and_algebraic_bb_functor_are_isomorphic_for_k_schemes_locally_of_finite_type}
+Let $\bd{G}$ be a group $k$-scheme and $\bd{M}$ be a Kempf monoid having $\bd{G}$ as a group of units. Suppose that $X$ is a scheme locally of finite type over $k$ equipped with an action of $\bd{G}$. Then the canonical morphism $\cD_X\ra \widehat{\cD}_X$ is an isomorphism. In particular, $\cD_X$ is representable and $r_X:\cD_X\ra X^{\bd{G}}$ is affine and of finite type.
+\end{corollary}
+\begin{proof}
+Let $a:\bd{G}\times_kX\ra X$ be an action of $\bd{G}$ on $X$. Consider an open affine subscheme $V$ of $X$. Then $a$ induces a surjective morphism $a_V:\bd{G}\times_k V\twoheadrightarrow a(\bd{G}\times_k V) = \bd{G}\cdot V$. Since $\bd{G}\times_k V$ is affine $k$-scheme, it is quasi-compact. The image of a quasi-compact topological space under a continuous map is quasi-compact. Thus $\bd{G}\cdot V$ is quasi-compact. Since $X$ is locally of finite type over $k$, we derive that $\bd{G}\cdot V$ is of finite type over $k$. It is also $\bd{G}$-stable. This proves that $X$ admits an open cover $\cU$ by an open $\bd{G}$-stable subschemes of finite type over $k$. By Remark \ref{remark:formal_bb_diagram} we have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{  \cD_X &            & \widehat{\cD}_X    \\
+         & X^{\bd{G}} &                    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-3)
+(m-1-1) edge node[left = 4pt, below = -1pt] {$ r_X $} (m-2-2)
+(m-1-3) edge node[right = 4pt, below = -1pt] {$ \widehat{r}_X $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+and according to Theorem \ref{theorem:open_subfunctors_induced_by_open_stable_subschemes} and Proposition \ref{proposition:open_subfunctors_induced_by_open_stable_subschemes_for_formal_bb} for every $U$ in $\cU$ base change of the triangle above along open immersion $U^{\bd{G}}\hookrightarrow X^{\bd{G}}$ yields a triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{  \cD_U &            & \widehat{\cD}_U    \\
+         & U^{\bd{G}} &                    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$   $} (m-1-3)
+(m-1-1) edge node[left = 4pt, below = -1pt] {$ r_U $} (m-2-2)
+(m-1-3) edge node[right = 4pt, below = -1pt] {$ \widehat{r}_U $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which the horizontal morphism $\cD_U\ra \widehat{\cD}_U$ is an isomorphism by \textbf{(2)} in Theorem \ref{theorem:representability_of_bb_functors} and the fact that $U$ is $\bd{G}$-scheme of finite type over $k$. Since $\widehat{\cD}_X$ is representable by \textbf{(1)} in Theorem \ref{theorem:representability_of_bb_functors}, it follows that $\cD_X$ is representable and the canonical morphism $\cD_X\ra \widehat{\cD}_X$ is an isomorphism of functors. Thus $r_X$ and $\widehat{r}_X$ are isomorphic and this completes the proof.
+\end{proof}
 
 
 

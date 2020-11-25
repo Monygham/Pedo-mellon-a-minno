@@ -11,7 +11,7 @@
 
 \section{Introduction}
 \noindent
-In these notes we prove results concerning algebraization of formal schemes in equivariant setting. First we describe $2$-limits of telescopes of categories. Then we introduce formal $\bd{M}$-schemes for a monoid $k$-scheme $\bd{M}$ and the notion of algebraization of such a formal object, which is an essential application of the notion of $2$-categorical limit for the telescope of categories of coherent sheaves associated with this formal scheme. In next sections we prepare ground to prove algebraization results. For this we discuss locally linear $\bd{M}$-schemes and relate them to formal $\bd{M}$-schemes. We also prove some results concerning toric monoid $k$-schemes. The last section of these notes is devoted to prove algebraization theorems for formal $\bd{M}$-schemes for Kempf monoid $k$-schemes. 
+In these notes we prove results concerning algebraization of formal schemes in equivariant setting. First we describe $2$-limits of telescopes of categories. Then we introduce formal $\bd{M}$-schemes for a monoid $k$-scheme $\bd{M}$ and the notion of algebraization of such a formal object, which is an essential application of the notion of $2$-categorical limit for the telescope of categories of coherent sheaves associated with this formal scheme. In next sections we prepare ground to prove algebraization results. For this we discuss locally linear $\bd{M}$-schemes and relate them to formal $\bd{M}$-schemes. The last section of these notes is devoted to prove algebraization theorems for formal $\bd{M}$-schemes for Kempf monoid $k$-schemes. 
 
 \section{Some $2$-categorical limits}
 \noindent
@@ -582,80 +582,6 @@ in which vertical morphisms $r_n:Z_n\twoheadrightarrow Z_0$ are affine $\bd{M}$-
 This is an immediate consequence of Corollary \ref{corollary:each_formal_scheme_consists_of_locally_linear_schemes_if_group_is_affine} and Proposition \ref{proposition:retraction_for_monoids_with_zero}.
 \end{proof}
 
-\section{Toruses and toric monoid $k$-schemes}
-
-\begin{definition}
-Let $T$ be an affine algebraic group over $k$. Suppose that there exists $n\in \NN$ such that for every algebraically closed extension $K$ of $k$ there exists an isomorphism
-$$T_K \cong  \Spec K \times_k \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{n\,\mathrm{times}} $$
-of group schemes over $K$. Then $T$ is called \textit{a torus over $k$}.
-\end{definition}
-
-\begin{example}\label{example:split_torus}
-If $T \cong \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{n\,\mathrm{times}}$, then $T$ is a torus. We call toruses $T$ of this form \textit{split toruses}.
-\end{example}
-
-\begin{example}\label{example:non_split_torus}
-Define
-$$\bd{S}^1 = \Spec k[x,y]/(x^2+y^2-1)$$
-a scheme over $k$ and let $\fP_{\bd{S}^1}$ be its functor of points. Then for every $k$-algebra $A$ we have
-$$\fP_{\bd{S}^1}(A) = \big\{(u,v)\in A\times_k A\,\big|\,u^2+v^2=1\big\}$$
-There is also a morphism $\fP_{\bd{S}^1}\times_k \fP_{\bd{S}^1}\ra \fP_{\bd{S}^1}$ of $k$-functors given by
-$$\fP_{\bd{S}^1}(A)\times_k \fP_{\bd{S}^1}(A)\ra \fP_{\bd{S}^1}\ni \left((u_1,v_1),(u_2,v_2)\right)\mapsto (u_1u_2-v_1v_2,u_1v_2+u_2v_1)\in \fP_{\bd{S}^1}(A)$$
-for every $k$-algebra $A$. This makes $\fP_{\bd{S}^1}$ into a group $k$-functor. Thus $\bd{S}^1$ with the group structure described above is an affine algebraic group over $k$. We call it \textit{the circle group over $k$}.\\
-Now suppose that $\mathrm{char}(k) \neq 2$ and $K$ is an algebraically closed extension of $k$. Consider an element $i\in K$ such that $i^2 = -1$. For every $K$-algebra $A$ we have a map
-$$\fP_{\bd{S}^1}(A)\ni (u,v)\mapsto u+iv\in A^*$$
-First note that this map is bijective. Indeed, its inverse is given by
-$$A^*\ni a \mapsto \left(\frac{1}{2}(a+a^{-1}),\frac{1}{2i}(a-a^{-1})\right) \in \fP_{\bd{S}^1}(A)$$
-Moreover, the map $\fP_{\bd{S}^1}(A)\ra A^*$ is a homomorphism of abstract groups. Thus $\fP_{\bd{S}^1}$ resricted to the category $\Alg_K$ of $K$-algebras is isomorphic with $\fP_{\Spec K\times_k \mathbb{G}_{m}}$ as a group $k$-functor. Hence
-$$\bd{S}^1_K \cong \Spec K\times_k \mathbb{G}_{m}$$
-as algebraic group schemes over $K$. Hence $\bd{S}^1$ is a torus over $k$.\\
-Now assume that $k = \RR$. Then abstract groups
-$$\fP_{\bd{S}^1}(\RR) = \big\{z\in \CC\,\big|\,|z|=1\big\} \subseteq \CC^*,\,\RR^*$$
-are not isomorphic. Indeed, the left hand side group has infinite torsion subgroup and the right hand side group has torsion subgroup equal to $\{-1,1\}$. This implies that over $\RR$ algebraic groups $\bd{S}^1$ and $\mathbb{G}_{m}$ are not isomorphic. Hence $\bd{S}^1$ is not a split torus over $\RR$.
-\end{example}
-
-\begin{corollary}\label{corollary:toruses_are_linearly_reductive}
-Let $T$ be a torus over $k$. Then $T$ is a linearly reductive algebraic group.
-\end{corollary}
-
-\begin{definition}
-Let $T$ be a torus over $k$ and let $\ol{T}$ be a linearly reductive monoid having $T$ as the group of units. Then $\ol{T}$ is \textit{a toric monoid over $k$}
-\end{definition}
-
-\begin{theorem}\label{theorem:toric_monoids_properties_Kempf_torus}
-Let $\ol{T}$ be a toric monoid over $k$ with group of units $T$ and let $K$ be an algebraically closed extension of $k$. Suppose that $N$ is a dimension of $T$.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
-\item The group of characters of $T_K$ is isomorphic to $\ZZ^N$ and there exists an abstract submonoid $S$ of $\ZZ^N$ such that the open immersion
-$$T_K = \Spec\left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) \hookrightarrow \Spec\left(\bigoplus_{m\in S}K\cdot \chi^m\right) = \ol{T}_K$$
-is induced by the inclusion $S\hookrightarrow \ZZ^N$.
-\item Let $\{V_{\lambda}\}_{\lambda\in \bd{Irr}(T)}$ be a set of irreducible representation of $T$ such that $V_{\lambda}$ is in isomorphism class $\lambda$. For every $\lambda$ there exists a finite subset $A_{\lambda}$ of $\ZZ^N$ such that
-$$K\otimes_kV_{\lambda} = \bigoplus_{m\in A_{\lambda}}K\cdot \chi^m$$
-If $\lambda$ is in  $\bd{Irr}(\ol{T})$, then $A_{\lambda}$ is a subset of $S$. Moreover, we have
-$$\ZZ^N = \coprod_{\lambda\in \bd{Irr}(T)}A_{\lambda}$$
-and $A_{\lambda_0} = \{0\}$, where $\lambda_0$ is the class of the trivial representation of $T$.
-\item If $\ol{T}$ has a zero, then there exists a homomorphism $f:\ZZ^N\ra \ZZ$ of abelian groups such that $f_{\mid S\setminus \{0\}}>0$. In particular, $f$ induces a closed immersion
-$$\Spec K\times_k \mathbb{G}_{m} = \Spec K[\ZZ]\hookrightarrow \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right) = T_K$$
-of group $K$-schemes that extends to a zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes.
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-Since $T$ is a torus, we derive that
-$$T_K = \Spec K \times_k \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{N\,\mathrm{times}} = \Spec \left(\bigoplus_{m\in \ZZ^N}K\cdot \chi^m\right)$$
-and hence
-$$\ol{T}_K = \Spec \left(\bigoplus_{s\in S}K\cdot \chi^s\right)$$
-for some abstract submonoid $S$ of $\ZZ^N$. Moreover, the open immersion $T_K\hookrightarrow \ol{T}_K$ is induced by the inclusion $S \hookrightarrow \ZZ^N$. This proves \textbf{(1)}.\\
-We have identification
-$$k[T] = \bigoplus_{\lambda\in \bd{Irr}(T)}V_{\lambda}^{n_{\lambda}}$$
-of $T$-representations, where $n_{\lambda}\in \NN\setminus \{0\}$ for each $\lambda$. Thus
-$$\bigoplus_{m\in \ZZ^N}K\cdot \chi^m = K\otimes_kk[T] = \bigoplus_{\lambda\in \bd{Irr}(T)}\left(K\otimes_kV_{\lambda}\right)^{n_{\lambda}}$$
-This implies that $n_{\lambda} = 1$ for every $\lambda$ and moreover, we derive that
-$$K\otimes_kV_{\lambda} = \bigoplus_{m\in A_{\lambda}}K\cdot \chi^m$$
-for some finite set $A_{\lambda}\subseteq \ZZ^N$. We also have $A_{\lambda_0} = \{0\}$ and $A_{\lambda}\subseteq S\setminus \{0\}$ for $\lambda \in \bd{Irr}(\ol{T})$. This proves \textbf{(2)}.\\
-Since $\ol{T}$ admits a zero, we derive that
-$$\ideal{m} = \bigoplus_{m \in S\setminus\{0\}}K\cdot \chi^s \subseteq \bigoplus_{m\in \ZZ^N}K\cdot \chi^m$$
-is an ideal. This implies that $S\setminus \{0\}$ is closed under addition. In particular, there exists a homomorphism of abelian groups $f:\ZZ^N\ra \ZZ$ such that $f_{\mid S\setminus \{0\}}>0$. This implies \textbf{(3)}.
-\end{proof}
-
 \section{Isotypic decompositions}
 \noindent
 The following result will be used in the next section.
@@ -707,14 +633,14 @@ for $\lambda \neq \eta_i$ and $1\leq i\leq n$. This implies that $\big(\Gamma(U,
 Now we are ready to prove certain results concerning \textit{algebraizations} of formal $\bd{M}$-schemes for Kempf monoids.
 
 \begin{theorem}\label{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood}
-Let $\bd{M}$ be a Kempf monoid and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists a locally linear $\bd{M}$-scheme $Z$ equipped with an action of $\bd{M}$ such that $\widehat{Z}$ is isomorphic to $\cZ$ and
+Let $\bd{M}$ be a Kempf monoid and let $\cZ = \{Z_n\}_{n\in \NN}$ be a formal $\bd{M}$-scheme. Then there exists a locally linear $\bd{M}$-scheme $Z$ such that $\widehat{Z}$ is isomorphic to $\cZ$. Moreover, we have that
 $$Z = \mathrm{colim}_{n\in \NN}Z_n$$
 in category of $\bd{M}$-schemes affine over $Z_0$.
 \end{theorem}
 \begin{proof}[Setup]
 Monoid $\bd{M}$ is affine and admits zero $\bd{o}$. By Corollary \ref{corollary:restraction_for_formal_schemes_and_pointed_submonoids} a formal $\bd{M}$-scheme $\cZ = \{Z_n\}_{n\in \NN}$ corresponds to a sequence of surjections
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}v
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
 { ... &  \cA_{n+1} & \cA_n & ...& \cA_1 & \cA_0 = \cO_{Z_0} \\} ;
@@ -745,7 +671,7 @@ $$\bigotimes_{i=1}^nV_{\lambda_i}$$
 has trivial isotypic component of type $\lambda$. We have $n_{\lambda_0} = 0$, where $\lambda_0$ is an isomorphism type of the trivial representation of $T$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Let $K$ be an algebraically closed extension of $k$. Pick $A_{\lambda}$ and $f$ as in Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} and define
+Let $K$ be an algebraically closed extension of $k$. Pick $A_{\lambda}$ and $f$ as in {\cite[Theorem 2.3]{Algebraic_monoids}} and define
 $$n_{\lambda} = \sup_{m\in A_{\lambda}}f(m)$$
 We have
 $$K\otimes_kV_{\lambda_1}\otimes_k...\otimes_kV_{\lambda_n} = \bigoplus_{(m_1,...,m_n)\in A_{\lambda_1}\times_k ...\times_k A_{\lambda_n}}K\cdot \chi^{m_1+...+m_n}$$
@@ -799,10 +725,47 @@ $$\cJ_m/\cJ_n=\cI_n^{m+1}=(\cJ^{m+1}+\cJ_n)/\cJ_n$$
 Both $\cJ_m$ and $\cJ^{m+1}$ are $\bd{Irr}(\ol{T})$-graded by their isotypic $\ol{T}$-components and for given $\lambda\in \bd{Irr}(\ol{T})$ and for $n \geq n_{\lambda}$ the isotypic component $\cJ_n[\lambda]$ is zero by Lemma \ref{lemma:stabilization_for_formal_schemes}. Hence $\cJ_m=\cJ^{m+1}$ for every $m \in \NN$.
 We define
 $$Z=\Spec_{Z_0}\cA$$
-and we denote by $r:Z\to Z_0$ the structural morphism. The scheme $Z$ inherits a $\bd{M}$-action from $\cA$. For every $n\in \NN$ the zero-set of $\cJ^{n+1}$ in $\cA$ is a $\bd{M}$-scheme isomorphic to $Z_n = \Spec_{Z_0}\cA_n$. Hence $\cZ$ is isomorphic to $\widehat{Z}$ and this proves the theorem.
+and we denote by $r^Z:Z\to Z_0$ the structural morphism. The scheme $Z$ inherits a $\bd{M}$-action from $\cA$. For every $n\in \NN$ the zero-set of $\cJ^{n+1}$ in $\cA$ is a $\bd{M}$-scheme isomorphic to $Z_n = \Spec_{Z_0}\cA_n$. Hence $\cZ$ is isomorphic to $\widehat{Z}$ and the proof is complete.
 \end{proof}
+
+\begin{theorem}\label{theorem:uniqueness_of_algebraization_for_formal_schemes_over_Kampf_monoid}
+Let $\bd{M}$ be a Kempf monoid. Suppose that $Z$ and $W$ are locally linear $\bd{M}$-schemes such that $\widehat{Z}$ and $ \widehat{W}$ are isomorphic as $\bd{M}$-formal schemes. Then $Z$ is $\bd{M}$-equivariantly isomorphic to $W$.
+\end{theorem}
+\begin{proof}
+Pick a locally linear $\bd{M}$-scheme $W$. Let $r^W:W\ra W^{\bd{M}}$ be the affine retraction (Proposition \ref{proposition:retraction_for_monoids_with_zero}). According to Theorem \ref{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood} there exists a locally linear $\bd{M}$-scheme $Z$ such that formal $\bd{M}$-schemes $\widehat{Z} = \{Z_n\}_{n\in \NN}$ and $\widehat{W} = \{W_n\}_{n\in \NN}$ are isomorphic. Moreover
+$$Z = \mathrm{colim}_{n\in \NN}Z_n$$
+in the category of $\bd{M}$-schemes affine over $Z^{\bd{M}}$, where $Z$ is affine over $Z^{\bd{M}}$ via the affine retraction $r^Z:Z\ra Z^{\bd{M}}$ (again by Proposition \ref{proposition:retraction_for_monoids_with_zero}). It suffices to prove that $Z$ is $\bd{M}$-equivariantly isomorphic with $W$. By the universal property of colimits there exists a $\bd{M}$-equivariant morphism $f:Z\ra W$ such that $r^W\cdot f = r^Z$ and $f_{\mid Z_n}$ is isomorphic to the closed immersion $W_n\hookrightarrow W$ for every $n\in \NN$. We consider now $Z$ and $W$ as $\bd{M}$-schemes affine over the same base $Z^{\bd{M}} = W^{\bd{M}}$ equipped with the trivial $\bd{M}$-action. Then $Z,W$ correspond to quasi-coherent $\bd{M}$-algebras $\cA,\cB$ on $Z^{\bd{M}}=W^{\bd{M}}$, respectively, and moreover, there are quasi-coherent $\bd{M}$-ideals $\cI\subseteq \cA$, $\cJ\subseteq \cB$ such that $$\cA/\cI = \cO_{Z^{\bd{M}}} = \cO_{W^{\bd{M}}} = \cB/\cJ$$
+Then $f$ corresponds to a morphism $h:\cB\ra \cA$ of quasi-coherent $\bd{M}$-algebras such that $h(\cJ)\subseteq \cI$ and for every $n\in \NN$ morphism $h$ induces an isomorphism $$\cB/\cJ^{n+1}\cong \cA/\cI^{n+1}$$
+of quasi-coherent $\bd{M}$-algebras. Pick now an algebraically closed extension $K$ of $k$ and a zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \Spec K\times_k\bd{M}$ of monoid $K$-schemes (this follows from the fact that $\bd{M}$ is a Kempf monoid {\cite[Corollary 3.7]{Algebraic_monoids}}). Then we have induced $\NN$-gradings on
+$$K\otimes_k\cA= \cA_K = \bigoplus_{i\in \NN}\cA_K[i],\,K\otimes_k\cB = \cB_K =  \bigoplus_{i\in \NN}\cB_K[i]$$
+and $h_K = 1_K \otimes_k h$ is $\NN$-graded homomorphism of algebras. Since the closed immersion of monoid $K$-schemes considered above is zero preserving and according to Proposition \ref{proposition:retraction_for_monoids_with_zero}, we deduce that
+$$\Spec K\times_k Z^{\bd{M}} = \left(\Spec K \times_k Z\right)^{\bd{M}_K} = \left(\Spec K \times_k Z\right)^{\mathbb{A}^1_K}$$
+as $K$-schemes and hence
+$$\cI_K = K\otimes_k\cI = \bigoplus_{i>0}\cA_K[i],\,\cJ_K = K\otimes_k\cJ = \bigoplus_{i>0}\cB_K[i]$$
+Moreover, $h_K$ induces isomorphisms of $\NN$-graded algebras
+$$\cB_K/\cJ_K^{n+1}\cong \cA_K/\cI_K^{n+1}$$
+for every $n\in \NN$. These imply that for every $i\in \NN$ morphism $h_K[i]:\cB_K[i]\ra \cA_K[i]$ is an isomorphism and hence $h_K$ is an isomorphism. By faithfully flat descent we deduce that $h$ is an isomorphism of quasi-coherent algebras on $\Spec K\times_kZ^{\bd{M}} = \Spec K\times_k W^{\bd{M}}$. Thus $f$ is a $\bd{M}$-equivariant isomorphism.
+\end{proof}
+
+\begin{example}\label{example:formal_Kempf_monoid_and_its_algebraization}
+Let $\bd{M}$ be a Kempf monoid and let $Y$ be a $k$-scheme. We consider $Y$ as a $\bd{M}$-scheme with the trivial $\bd{M}$-action. Since $\bd{M}$ is a Kempf monoid it admits the zero $\bd{o}$. For every $n\in \NN$ let $\bd{M}_n$ be the $n$-th infinitesimal neighborhood of $\bd{o}$ in $\bd{M}$. Note that $\bd{M}_n$ is a closed $\bd{M}$-stable subscheme of $\bd{M}$ for every $n\in \NN$. Hence we have a formal $\bd{M}$-scheme  
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{M}_0 &  \bd{M}_1\times_kY & ... & \bd{M}_n\times_kY & \bd{M}_{n+1}\times_kY & ... \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+Observe that $\bd{M}\times_kY$ is a locally linear $\bd{M}$-scheme and it is the unique locally linear $\bd{M}$-scheme such that $\reallywidehat{\bd{M}\times_kY} = \big\{\bd{M}_n\times_kY\big\}_{n\in \NN}$.
+\end{example}
 \noindent
-Let us note the following interesting consequence of the previous theorem.
+Let us note the following interesting consequence of previous theorems.
 
 \begin{corollary}\label{corollary:morphisms_of_locally_linear_schemes_are_morphisms_of_formal_neighborhoods}
 Let $\bd{M}$ be a Kempf monoid and let $Z,W$ be locally linear $\bd{M}$-schemes. Then the canonical map
@@ -868,7 +831,7 @@ in which the rightmost square is cartesian and $p_n:Z_n\ra W_n\times_{W_0}Z_0$ i
 (m-2-2) edge node[right] {$  $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-is commutative. Theorem \ref{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood} states that 
+is commutative. Theorems \ref{theorem:uniqueness_of_algebraization_for_formal_schemes_over_Kampf_monoid} and \ref{theorem:every_formal_over_kempf_monoid_is_formal_neighborhood} imply that 
 $$Z = \mathrm{colim}_{n\in \NN}Z_n$$
 in the category of $\bd{M}$-schemes which are affine over $Z_0$. Thus by the universal property of colimit we deduce that $q$ exists. Now composing $q$ with the morphism $q:W\times_{W_0}Z_0\ra W$ coming from the cartesian square
 \begin{center}
@@ -907,15 +870,15 @@ Since $r$ is affine (Proposition \ref{proposition:retraction_for_monoids_with_ze
 \end{center}
 is locally noetherian. Hence $\cJ/\cJ^{n+1}$ is $\cA/\cJ^{n+1}$-module of finite type. Thus $\{\cJ^i/\cJ^{i+1}\}_{1\leq i\leq n}$ are finite type $\cA/\cJ$-modules. The series
 $$0 \subseteq \cJ^n/\cJ^{n+1} \subseteq  ... \subseteq \cJ/\cJ^{n+1} \subseteq \cA/\cJ^{n+1}$$
-has subquotients that are of finite type over $\cO_{Z^{\bd{M}}} = \cA/\cJ$. This implies that $\cA/\cJ^{n+1}$ is a coherent $\cO_{Z^{\bd{M}}}$-algebra for every $n\in \NN$. The claim that $\pi$ is of finite type is local on $Z^{\bd{M}}$, hence we may assume that $Z^{\bd{M}}$ is quasi-compact. This reduces the question to the noetherian $Z^{\bd{M}}$. The sheaf $\cJ/\cJ^2\subseteq \cA/\cJ^2$ is coherent over $\cO_{Z^{\bd{M}}}$. Since $Z^{\bd{M}}$ is noetherian, there exists coherent $\cO_{Z^{\bd{M}}}$-subsheaf $\cM\subseteq \cJ$ such that the morphism $\cM\twoheadrightarrow \cJ/\cJ^2$ is surjective. Fix an algebraically closed extension $K$ of $k$ and denote
+has subquotients that are of finite type over $\cO_{Z^{\bd{M}}} = \cA/\cJ$. This implies that $\cA/\cJ^{n+1}$ is a coherent $\cO_{Z^{\bd{M}}}$-algebra for every $n\in \NN$. The claim that $r$ is of finite type is local on $Z^{\bd{M}}$, hence we may assume that $Z^{\bd{M}}$ is quasi-compact. This reduces the question to the noetherian $Z^{\bd{M}}$. The sheaf $\cJ/\cJ^2\subseteq \cA/\cJ^2$ is coherent over $\cO_{Z^{\bd{M}}}$. Since $Z^{\bd{M}}$ is noetherian, there exists coherent $\cO_{Z^{\bd{M}}}$-subsheaf $\cM\subseteq \cJ$ such that the morphism $\cM\twoheadrightarrow \cJ/\cJ^2$ is surjective. Fix an algebraically closed extension $K$ of $k$ and denote
 $$\cA_K = K\otimes_k\cA,\cJ_K = K\otimes_k\cJ,\cM_K = K\otimes_k\cM$$
-Since $\bd{M}$ is a Kempf monoid and by \textbf{(3)} Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\mathbb{A}^1_K\hookrightarrow \bd{M}_K$ of monoid $K$-schemes that preserve zero. This implies that we have $\NN$-grading $\cA_K = \bigoplus_{i\geq 0}\cA_K[i]$ that gives rise to the action of $\mathbb{A}^1_K$. Moreover, by Propostion \ref{proposition:retraction_for_monoids_with_zero} we deduce that
+Since $\bd{M}$ is a Kempf monoid and by {\cite[Corollary 3.7]{Algebraic_monoids}} there exists a closed immersion $\mathbb{A}^1_K\hookrightarrow \bd{M}_K$ of monoid $K$-schemes that preserve zero. This implies that we have $\NN$-grading $\cA_K = \bigoplus_{i\geq 0}\cA_K[i]$ that gives rise to the action of $\mathbb{A}^1_K$. Moreover, by Proposition \ref{proposition:retraction_for_monoids_with_zero} we deduce that
 $$\Spec K\times_k Z^{\bd{M}} = \left(\Spec K \times_k Z\right)^{\bd{M}_K} = \left(\Spec K \times_k Z\right)^{\mathbb{A}^1_K}$$
 as $K$-schemes. This shows that $\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1} \cA_K[i]$ is an ideal with positive grading. We have surjection $\cM_K\twoheadrightarrow \cJ_K/\cJ_K^2$. By graded version of Nakayama's lemma, the ideal $\cJ_K$  is generated by $\cM_K$. Then by induction on degrees we deduce that $\cA_K$ is generated by $\cM_K$ as a $K\otimes_k\cO_{Z^{\bd{M}}}$-algebra. Thus $1_{\Spec K}\times_k r$ is of finite type and by faitfully flat descent also $r$ is of finite type.
 \end{proof}
 
 \begin{theorem}\label{theorem:comparison_functor_is_an_equivalence}
-Let $\bd{M}$ be a Kempf monoid with group of unit $\bd{G}$ and let $Z$ be a locally linear $\bd{M}$-scheme. Suppose that $\pi:Z\ra Z^{\bd{M}}$ is the canonical retraction. If $Z$ is locally noetherian, then the comparison functor
+Let $\bd{M}$ be a Kempf monoid with group of unit $\bd{G}$ and let $Z$ be a locally linear $\bd{M}$-scheme. Suppose that $r:Z\ra Z^{\bd{M}}$ is the canonical retraction. If $Z$ is locally noetherian, then the comparison functor
 $$\Coh_{\bd{G}}(Z)\ra \Coh_{\bd{G}}(\widehat{Z})$$
 is an equivalence of monoidal categories.
 \end{theorem}
@@ -944,7 +907,7 @@ to sections on $U$ is a coaction of $k[\bd{G}]$ on $\cM_n(U)$.
 \item $\cM_n \ra k[\bd{G}]\otimes_k\cM_n$ is the morphism of $\cA$-modules, where $k[\bd{G}]\otimes_k\cM_n$ carries the structure of an $\cA$-module induced by restriction of its $k[\bd{G}]\otimes_k\cA_n$-module structure along the morphism $\cA_n\ra k[\bd{G}]\otimes_k\cA_n$ that corresponds to the action of $\bd{G}$ on $Z_n$.
 \item For every $n\in \NN$ the epimorphism $\cM_{n+1} \twoheadrightarrow \cM_n$ preserves coaction described in \textbf{(3)}.
 \end{enumerate}
-We fix an algebraically closed field $K$ containing $k$. By \textbf{(3)} of Theorem \ref{theorem:toric_monoids_properties_Kempf_torus} there exists a closed immersion $\Spec K\times_k \mathbb{G}_m\hookrightarrow T_K$ of group $K$-schemes that induces zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes. By Proposition \ref{proposition:retraction_for_monoids_with_zero} we have
+We fix an algebraically closed field $K$ containing $k$. By {\cite[Corollary 3.7]{Algebraic_monoids}} there exists a closed immersion $\Spec K\times_k \mathbb{G}_m\hookrightarrow T_K$ of group $K$-schemes that induces zero preserving closed immersion $\mathbb{A}^1_K\hookrightarrow \ol{T}_K$ of monoid $K$-schemes. By Proposition \ref{proposition:retraction_for_monoids_with_zero} we have
 $$\Spec K\times_k Z^{\bd{M}} = \left(\Spec K\times_k Z\right)^{\bd{M}_K} = \left(\Spec K\times_k Z\right)^{\mathbb{A}^1_K}$$
 This implies that
 $$\cA_K = K\otimes_k\cA = \bigoplus_{i\geq 0}\cA_K[i],\,\cJ_K = K\otimes_k\cJ = \bigoplus_{i\geq 1}\cA_K[i]$$

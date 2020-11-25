@@ -2,7 +2,7 @@
 
 \begin{document}
 
-\title{Algebraic group schemes over field}
+\title{Algebraic groups}
 \date{}
 \maketitle
 
@@ -662,7 +662,7 @@ Thus we deduce that for every field extension $K$ of $k$ representation $K\otime
 Let $V$ be a linear representation of a group $k$-scheme $\bd{G}$. Then $V$ is \textit{absolutely irreducible} if equivalent conditions in Theorem \ref{theorem:absolutely_irreducible} are satisfied.
 \end{definition}
 
-\section{Linearly reductive group schemes over fields}
+\section{Linearly reductive and reductive algebraic groups}
 \noindent
 In this section we introduce important class of affine group $k$-schemes. Let $\bd{G}$ be an affine group $k$-scheme and let $\Delta_{\bd{G}}:k[\bd{G}]\ra k[\bd{G}]\otimes_kk[\bd{G}]$ be the corresponding comultiplication. If $K$ is a field over $k$ and $\bd{G}$ is a group scheme over $k$, then we denote $\Spec K\times_k \bd{G}$ by $\bd{G}_K$.
 
@@ -772,6 +772,54 @@ Let $\bd{G}$ be an affine group $k$-scheme and suppose that equivalent condition
 \begin{definition}
 Let $\bd{G}$ be a fully reducible group $k$-scheme. Suppose that $\bd{G}$ is smooth and algebraic over $k$. Then we say that $\bd{G}$ is \textit{linearly reductive group over $k$}.
 \end{definition}
+\noindent
+Recall {\cite[6.46]{milne2017algebraic}} the notion of \textit{reductive algebraic group}.
+
+\begin{theorem}[{\cite[Corollary 22.43, 22.46]{milne2017algebraic}}]
+Let $\bd{G}$ be a geometrically integral algebraic group over $k$. If $\bd{G}$ is linearly reductive, then it is reductive.
+\end{theorem}
+
+\section{Toruses}
+
+\begin{definition}
+Let $T$ be an affine algebraic group over $k$. Suppose that there exists $n\in \NN$ such that for every algebraically closed extension $K$ of $k$ there exists an isomorphism
+$$T_K \cong  \Spec K \times_k \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{n\,\mathrm{times}} $$
+of group schemes over $K$. Then $T$ is called \textit{a torus over $k$}.
+\end{definition}
+
+\begin{example}\label{example:split_torus}
+If $T \cong \underbrace{\mathbb{G}_{m}\times_k \mathbb{G}_{m}\times_k ...\times_k \mathbb{G}_{m}}_{n\,\mathrm{times}}$, then $T$ is a torus. We call toruses $T$ of this form \textit{split toruses}.
+\end{example}
+
+\begin{example}\label{example:non_split_torus}
+Define
+$$\bd{S}^1 = \Spec k[x,y]/(x^2+y^2-1)$$
+a scheme over $k$ and let $\fP_{\bd{S}^1}$ be its functor of points. Then for every $k$-algebra $A$ we have
+$$\fP_{\bd{S}^1}(A) = \big\{(u,v)\in A\times_k A\,\big|\,u^2+v^2=1\big\}$$
+There is also a morphism $\fP_{\bd{S}^1}\times_k \fP_{\bd{S}^1}\ra \fP_{\bd{S}^1}$ of $k$-functors given by
+$$\fP_{\bd{S}^1}(A)\times_k \fP_{\bd{S}^1}(A)\ra \fP_{\bd{S}^1}\ni \left((u_1,v_1),(u_2,v_2)\right)\mapsto (u_1u_2-v_1v_2,u_1v_2+u_2v_1)\in \fP_{\bd{S}^1}(A)$$
+for every $k$-algebra $A$. This makes $\fP_{\bd{S}^1}$ into a group $k$-functor. Thus $\bd{S}^1$ with the group structure described above is an affine algebraic group over $k$. We call it \textit{the circle group over $k$}.\\
+Now suppose that $\mathrm{char}(k) \neq 2$ and $K$ is an algebraically closed extension of $k$. Consider an element $i\in K$ such that $i^2 = -1$. For every $K$-algebra $A$ we have a map
+$$\fP_{\bd{S}^1}(A)\ni (u,v)\mapsto u+iv\in A^*$$
+First note that this map is bijective. Indeed, its inverse is given by
+$$A^*\ni a \mapsto \left(\frac{1}{2}(a+a^{-1}),\frac{1}{2i}(a-a^{-1})\right) \in \fP_{\bd{S}^1}(A)$$
+Moreover, the map $\fP_{\bd{S}^1}(A)\ra A^*$ is a homomorphism of abstract groups. Thus $\fP_{\bd{S}^1}$ resricted to the category $\Alg_K$ of $K$-algebras is isomorphic with $\fP_{\Spec K\times_k \mathbb{G}_{m}}$ as a group $k$-functor. Hence
+$$\bd{S}^1_K \cong \Spec K\times_k \mathbb{G}_{m}$$
+as algebraic group schemes over $K$. Hence $\bd{S}^1$ is a torus over $k$.\\
+Now assume that $k = \RR$. Then abstract groups
+$$\fP_{\bd{S}^1}(\RR) = \big\{z\in \CC\,\big|\,|z|=1\big\} \subseteq \CC^*,\,\RR^*$$
+are not isomorphic. Indeed, the left hand side group has infinite torsion subgroup and the right hand side group has torsion subgroup equal to $\{-1,1\}$. This implies that over $\RR$ algebraic groups $\bd{S}^1$ and $\mathbb{G}_{m}$ are not isomorphic. Hence $\bd{S}^1$ is not a split torus over $\RR$.
+\end{example}
+
+\begin{corollary}\label{corollary:toruses_are_linearly_reductive}
+Let $T$ be a torus over $k$. Then $T$ is a linearly reductive algebraic group.
+\end{corollary}
+\begin{proof}
+Pick an algebraically closed extension $K$ of $k$. It is well known fact that
+$$T_K = \underbrace{\mathbb{G}_{m,K}\times_K \mathbb{G}_{m,K}\times_K ...\times_K \mathbb{G}_{m,K}}_{n\,\mathrm{times}}$$
+is a fully reductive group. Thus by Theorem \ref{theorem:fully_reducible_groups_and_field_extension} we deduce that $T$ is a fully reducible group. Clearly it is smooth and and algebraic over $k$. Hence $T$ is a linearly reductive group.
+\end{proof}
+
 
 
 
