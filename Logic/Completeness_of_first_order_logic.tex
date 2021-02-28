@@ -8,33 +8,36 @@
 
 \section{Introduction}
 \noindent
-This notes are devoted to study classical first order logic and its completeness and were influenced by presentations in \cite{enderton2001mathematical} and \cite{lyndon1966notes}. We start by defining first order languages, their terms and formulas and proving unique readability theorems for these parts of syntax. Next we introduce classical semantics for first order languages and a deductive system for classical first order logic. Our deductive system is of Hilbert’s type. There are other deductive systems for classical predicate logic. They are all equivalent, but have different properties from the point of view of automatic theorem proving. There is a whole branch of logic devoted to study of such systems called proof theory. After introduction of semantics and deductive system we are able to state and prove soundness theorem. Next we investigate some fundamental metaproperties of the deductive system and introduce the notion of consistent sets of formulas. Then we prove Henkin’s theorem on existence of models for consistent sets of formulas. The proof is taken from the Lyndon’s book \cite{lyndon1966notes}, but more details are provided. Next we prove completeness theorem due to Gödel. As a corollary we deduce standard compactness theorem.
+This notes are devoted to study classical first order logic and its completeness and were influenced by presentations in \cite{enderton2001mathematical} and \cite{lyndon1966notes}. We start by defining first order languages, their terms and formulas and proving unique readability theorems for these parts of syntax. Next we introduce classical semantics for first order languages and a (Hilbert’s type) deductive system for classical first order logic. After introduction of semantics and the deductive system we are able to state and prove soundness theorem. Next we investigate some fundamental metaproperties of the deductive system and introduce the notion of consistent sets of formulas. Then we prove Henkin’s theorem on existence of models for consistent sets of formulas. The proof is taken from the Lyndon’s book \cite{lyndon1966notes}, but more details are provided. Next we prove completeness theorem due to Gödel. We extend these results to languages with identity. As a corollary we deduce standard compactness theorem.\\
+Throughout these notes we fix a set of five elements
+$$\{\neg, \ra, \forall, (, )\}$$
+and we call it \textit{the set of logical constants}.
 
 \section{First order languages and their syntax}
 
 \begin{definition}
 \textit{A signature} consists of the following data. A set $R$ of \textit{relation symbols} equipped with a decomposition
 $$R = \coprod_{n\in \NN_+}R_n$$
-where elements of $R_n$ are called \textit{$n$-ary relation symbols} and of a set $F$ of \textit{function symbols} equipped with a decomposition
+where elements of $R_n$ are called \textit{$n$-ary relation symbols} and a set $F$ disjoint with $R$ of \textit{function symbols} equipped with a decomposition
 $$F = \coprod_{n\in \NN}F_n$$
-where elements of $F_n$ are called \textit{$n$-ary function symbols}. Elements of $F_0$ are called \textit{constants}.
+where elements of $F_n$ are called \textit{$n$-ary function symbols}. Elements of $F_0$ are called \textit{constants}. We also assume that the set of logical constants is disjoint with $R\cup F$.
 \end{definition}
 
 \begin{definition}
-\textit{A first order language $\cL$} consists of the following data. A signature called \textit{the signature of $\cL$} and an infinite set $\bd{V}$ called \textit{the set of variables of $\cL$}.
+\textit{A first order language $\cL$} consists of the following data. A signature called \textit{the signature of $\cL$} and an infinite set $\bd{V}$ disjoint with the signature of $\cL$ called \textit{the set of variables of $\cL$}. We assume that the set of logical constants is disjoint with $\bd{V}$.
 \end{definition}
 \noindent
-In what follows we fix a first order language $\cL$ given by the set of relation symbols $R$, the set of function symbols $F$ and the set of variables $\bd{V}$.
+In what follows we fix a first order language $\cL$ given by the set of relation symbols $R$, the set of function symbols $F$ and the set of variables $\bd{V}$. 
 
 \begin{definition}
 The set of all words over the alphabet consisting of
 $$\{\neg, \ra, \forall, (, )\} \cup R \cup F \cup \bd{V}$$
-is called \textit{the set of expressions of $\cL$}. The set $\{\neg, \ra, \forall, (, )\}$ is called \textit{the set of logical constants}.
+is called \textit{the set of expressions of $\cL$}.
 \end{definition}
 \noindent
 For each expression $e$ of $\cL$ we denote by $|e|$ the length of $e$. Hence $|e|$ is the total number of occurrences of symbols $\{\neg, \ra, \forall, (, )\} \cup R \cup F \cup \bd{V}$.
 
-\begin{definition}
+v\begin{definition}
 We define \textit{terms of $\cL$} by recursion.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item Every variable of $\cL$ is a term.
@@ -67,19 +70,19 @@ reader.
 Let $t$ be a term and let $s$ be its terminal segment. Then $s$ is a concatenation of terms.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-The proof goes on induction on $|t|$. If $|t| = 1$, then the assertion holds because $t$ is a variable. Next suppose that $|t| \geq 1$ and $s$ is a nonempty terminal segment of $t$. By Lemma \ref{lemma:term_presentation} we can write $t = ft_1...t_m$, where $m$ is a positive integer, $f \in F_m$ and $t_1,...,t_m$ are terms. Then
+The proof goes on induction on $|t|$. If $|t| = 1$, then the assertion holds because $t$ is a variable or a constant. Next suppose that $|t| \geq 1$ and $s$ is a nonempty terminal segment of $t$. By Lemma \ref{lemma:term_presentation} we can write $t = ft_1...t_m$, where $m$ is a positive integer, $f \in F_m$ and $t_1,...,t_m$ are terms. Then
 either $s = t$ or
 $$s = s_it_{i+1}...t_m$$
 where $s_i$ is a terminal segment of a term $t_i$ for some $1 \leq i \leq m$. Since $|t_i|<|t|$, we derive by induction that $s_i$ is a concatenation of terms. Thus $s$ is a concatenation of terms.
 \end{proof}
 
 \begin{lemma}
-Let $t,s$ be terms. If $s$ is an initial term of $t$, then $t$ is equal to $s$.
+Let $t,s$ be terms. If $s$ is an initial segment of $t$, then $t$ is equal to $s$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
 We define $\ZZ$-valued function $K$ on a set of words over the alphabet consisting of $F \cup \bd{V}$. We set
 $$K(s) =\begin{cases}1 & \mbox{ if }s\mbox{ is a variable}\\
-1-n & \mbox{ if }s\mbox{ is a function symbol}
+1-n & \mbox{ if }s\mbox{ is an $n$-ary function symbol}
 \end{cases}$$
 Next we extend $K$ to more complicated words over $F \cup \bd{V}$ by
 $$K(s_1 ...s_m) = K(s_1) + ... + K(s_m)$$
@@ -103,7 +106,7 @@ and by repeating this argument we obtain $t_2 = s_2 ,...,t_n = s_n$.
 \begin{definition}
 \textit{An atomic formula of $\cL$} is an expression of $\cL$ of the form
 $$rt_1...t_n$$
-where $r$ is $n$-ary relation symbol and $t_1, ...,t_n$ are terms of $\cL$.
+where $r$ is an $n$-ary relation symbol and $t_1, ...,t_n$ are terms of $\cL$.
 \end{definition}
 
 \begin{definition}
@@ -147,7 +150,7 @@ The fact that each formula of $\cL$ is of one of the types enumerated above foll
 Let $\phi$ be a formula of $\cL$. Then no proper initial segment of $\phi$ is a formula.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-We define a $\ZZ$-valued function $K$ on the set of words over the alphabet consisting of union of the set $\{\forall, \neg, \ra, (,)\}$ and the set of terms of $\cL$. We set
+We define a $\ZZ$-valued function $K$ on the set of words over the alphabet consisting of the union of logical constants, $R$ and the set of terms of $\cL$. We set
 $$K(s) = \begin{cases}
 1 & \mbox{ if }s\mbox{ is a term}\\
 1-n & \mbox{ if }s\mbox{ is $n$-ary relation symbol}\\
@@ -162,7 +165,7 @@ $$K(s_1...s_m) = K(s_1) +...+ K(s_m)$$
 By recursion it follows that for every formula $\gamma$ of $\cL$ we have $K(\gamma) = 1$. Assume now that $\beta$ is a proper initial segment of a formula $\gamma$ of $\cL$. We show that $K(\beta) < 1$. By Lemma \ref{lemma:presentation_of_formulas} we have the following options.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item $\gamma$ is an atomic formula. Then $\gamma$ is a concatenation of $\beta$ and (according to Lemma \ref{lemma:terminal_segment_of_a_term_is_a_concatenation_of_terms}) a concatenation of terms $w$. We have $K(w) \geq 1$ and hence $K(\beta) = K(\gamma)- K(w) = 1 - K(w) < 1$.
-\item $\gamma$ is of the form $(\neg \phi)$ for some formula $\phi$ of $\cL$. Then $\beta$ is either an initial segment of $(\neg$ or a concatenation of $(\neg$ with some proper initial segment $\alpha$ of $\phi$. In the first case $K(\beta) = -1$. In the second case $K(\beta) = K(\gamma) - (K(\phi) - K(\alpha)) -1 = K(\alpha)-1$ and it suffices to show that $K(\alpha) \leq 1$ for every proper initial segment $\alpha$ of $\phi$.
+\item $\gamma$ is of the form $(\neg \phi)$ for some formula $\phi$ of $\cL$. Then $\beta$ is either an initial segment of $(\neg$ or a concatenation of $(\neg$ with some initial segment $\alpha$ of $\phi$. In the first case $K(\beta) = -1$. In the second case $K(\beta) = K(\gamma) - (K(\phi) - K(\alpha)) -1 = K(\alpha)-1$ and it suffices to show that $K(\alpha) \leq 1$ for every proper initial segment $\alpha$ of $\phi$.
 \item $\gamma$ is of the form $(\phi \ra \psi)$ for some formulas $\phi, \psi$ of $\cL$. Examination of possible cases shows that this option reduces to proving that $K(\alpha) \leq 1$ for every initial segment $\alpha$ of $\phi$ or $\psi$.
 \item $\gamma$ is of the form $\forall x \phi$ for some variable $x$ and some formula $\phi$ of $\cL$. Examination of possible cases shows that this option reduces to proving that $K(\alpha) < 1$ for proper initial segment $\alpha$ of $\phi$.
 \end{enumerate}
@@ -170,7 +173,7 @@ Options considered above imply that the assertion that for every proper initial 
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-Lemma \ref{lemma:presentation_of_formulas} implies that each formula of $\cL$ admits precisely one presentation of given type. It suffices to show uniqueness. The uniqueness part of description \textbf{(1)} follows from Lemma \ref{lemma:terminal_segment_of_a_term_is_a_concatenation_of_terms}. For \textbf{(2)} and \textbf{(3)} it is a consequence of Lemma \ref{lemma:no_formula_is_a_proper_initial_segment_of_any_other_formula}. For \textbf{(4)} the uniqueness is clear.
+Lemma \ref{lemma:presentation_of_formulas} implies that each formula of $\cL$ admits precisely one presentation of given type. It suffices to show uniqueness. The uniqueness part of description \textbf{(1)} follows from Lemma \ref{lemma:terminal_segment_of_a_term_is_a_concatenation_of_terms}. For \textbf{(2)} it is obvious and for \textbf{(3)} it is a consequence of Lemma \ref{lemma:no_formula_is_a_proper_initial_segment_of_any_other_formula}. For \textbf{(4)} the uniqueness is clear.
 \end{proof}
 \noindent
 We define the function $\bd{Fr}$ that sends each formula of $\cL$ to some subset of $\bd{V}$. This definition is based on Theorem \ref{theorem:unique_readability_of_formulas}. Let $\gamma$ be a formula of $\cL$. If $\gamma$ is an atomic formula, then $\bd{Fr}(\gamma)$ is a set of all variables occurring in $\gamma$. If $\gamma$ is of the form $(\neg \phi)$, then we define $\bd{Fr}(\gamma) = \bd{Fr}(\phi)$. If $\gamma$ is of the form $(\phi \ra \psi)$, then $\bd{Fr}(\gamma) = \bd{Fr}(\phi)\cup \bd{Fr}(\psi)$. Finally if $\gamma$ is of the form $\forall x\phi$, then $\bd{Fr}(\gamma) = \bd{Fr}(\phi) \setminus \{x\}$.
@@ -189,8 +192,8 @@ Let $\phi$ be a formula of $\cL$. If $\bd{Fr}(\phi)=\emptyset$, then $\phi$ is c
 Let $R = \coprod_{n\in \NN_+}R_n$ and $F = \coprod_{n\in \NN}F_n$ form a signature. \textit{A model $\fU$ of this signature} consists of the following data.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item A nonempty set $|\fU|$ called \textit{the universe of $\fU$} or \textit{the underlying set of $\fU$}.
-\item For each $n$-ary relation symbol $r$ of $\Sigma$ a relation $r^\fU \subseteq \underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}}$.
-\item For each $n$-ary function symbol $f$ of $\Sigma$ a function $f^\fU:\underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}} \ra |\fU|$.
+\item For each $n$-ary relation symbol $r$ in $R$ a relation $r^\fU \subseteq \underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}}$.
+\item For each $n$-ary function symbol $f$ in $F$ a function $f^\fU:\underbrace{|\fU| \times ... \times |\fU|}_{n\,\mathrm{times}} \ra |\fU|$.
 \end{enumerate}
 If $\cL$ is a language, then \textit{a model of $\cL$} is a model of the signature of $\cL$.
 \end{definition}
@@ -205,7 +208,7 @@ Let $\fU$ be a model of $\cL$ and $s:\bd{V}\ra |\fU|$ be an interpretation. Then
 $$s(ft_1...t_n)= f^{\fU}(s(t_1),...,s(t_n))$$
 We also define statements $\fU \vDash \gamma[s]$ for every formula $\gamma$ of $\cL$ simultaneously for all interpretations $s:\bd{V} \ra |\fU|$. The definition is recursion on the number of occurrances of $\forall, \neg, \ra$ in $\gamma$.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
-\item If $\gamma$ is of the form $rt_1 ...t_n$ for some $n$-ary relation symbol $r$ and terms $t_1,...,t_n$ of $\cL$, then $\fU \vDash \gamma[s]$ holds for some interpretation $s$ if and only if $\left(s(t_1),...,s(t_n)\right) \in r^\fU$ holds.
+\item If $\gamma$ is of the form $rt_1 ...t_n$ for some $n$-ary relation symbol $r$ and terms $t_1,...,t_n$ of $\cL$, then $\fU \vDash \gamma[s]$ holds for some interpretation $s$ if and only if $\left(s(t_1),...,s(t_n)\right) \in r^\fU$.
 \item If $\gamma$ is of the form $(\neg \phi)$ for some formula $\phi$ of $\cL$, then $\fU \vDash \gamma[s]$ holds for some interpretation $s$ if and only if $\fU \vDash \phi[s]$ does not hold.
 \item If $\gamma$ is of the form $(\phi \ra \psi)$ for some formulas $\phi, \psi$ of $\cL$, then $\fU \vDash \gamma[s]$ holds for some interpretation $s$ if and only if $\fU \vDash \psi[s]$ holds or $\fU \vDash \phi[s]$ does not hold.
 \item If $\gamma$ is of the form $\forall x \phi$, then $\fU \vDash \gamma[s]$ holds if and only if for every interpretation $\tilde{s}$ such that $\tilde{s}_{\mid \bd{V}\setminus \{x\}} = s_{\mid \bd{V}\setminus \{x\}}$ statement $\fU \vDash \phi[\tilde{s}]$ holds.
@@ -261,14 +264,13 @@ Let $\Gamma$ be a set of sentences of $\cL$ and let $\fU$ be a model of $\cL$. I
 
 \section{A deductive system}
 \noindent
-We fix a first order language $\cL$. We describe a deductive system $\vdash$ for the set of formulas of $\cL$. First we need to describe the set $\Lambda_\cL$ of its axioms.\\
-For the first definition we assume that the reader is familiar with classical sentential logic.
+We fix a first order language $\cL$. We describe a deductive system $\vdash$ for the set of formulas of $\cL$. First we need to describe the set $\Lambda_\cL$ of its axioms. For the first definition we assume that the reader is familiar with classical sentential logic.
 
 \begin{definition}
-Let $\Phi$ be a tautology of classical sentential logic (with connectives $\neg, \ra$) and let $p_1,...,p_n$ be all propositional variables occurring in $\Phi$. Let $\phi_1,...,\phi_n$ be formulas of $\cL$. \textit{A tautology of $\cL$} is a formula $\phi$ of $\cL$ obtained from $\Phi$ by replacing each occurrence of $p_i$ by $\phi_i$ for $i = 1, ..., n$.
+Let $\Phi$ be a tautology of classical sentential logic (with connectives $\neg, \ra$) and let $p_1,...,p_n$ be all propositional variables occurring in $\Phi$. Let $\phi_1,...,\phi_n$ be formulas of $\cL$. A formula $\phi$ of $\cL$ obtained from $\Phi$ by replacing each occurrence of $p_i$ by $\phi_i$ for $i = 1, ..., n$ is called \textit{a tautology of $\cL$}.
 \end{definition}
 \noindent
-Tautologies form a basis for the first group of axioms of $\vdash$. For the second group of axioms we need the notion of substitutabilty, which we now define.
+Tautologies form a basis for the first class of axioms of $\vdash$. For the second class of axioms we need the notion of substitutabilty, which we now define.
 
 \begin{definition}
 Let $x$ be a variable and let $t$ be a term of $\cL$. We define \textit{substitutability of $t$ for a variable $x$ in a formula $\gamma$ of $\cL$} by means of Theorem \ref{theorem:unique_readability_of_formulas} as follows.
@@ -276,7 +278,8 @@ Let $x$ be a variable and let $t$ be a term of $\cL$. We define \textit{substitu
 \item If $\gamma$ is an atomic formula, then $t$ is substitutable for $x$ in $\gamma$.
 \item If $\gamma$ is of the form $(\neg \phi)$, then $t$ is substitutable for $x$ in $\gamma$ if and only if $t$ is substitutable for $x$ in $\phi$.
 \item If $\gamma$ is of the form $(\phi \ra  \psi)$, then $t$ is substitutable for $x$ in $\gamma$ if and only if $t$ is substitutable for $x$ in $\phi$ and $t$ is substitutable for $x$ in $\psi$.
-\item If $\gamma$ is of the form $\forall y \phi$ for $y \in \bd{V}\setminus \{x\}$, then $t$ is substitutable for $x$ in $\gamma$ if and only if $t$ is substitutable for $x$ in $\phi$ and $y$ does not occurre in $t$.
+\item If $\gamma$ is of the form $\forall y \phi$ for $y \in \bd{V}\setminus \{x\}$ and $x\in \bd{Fr}(\phi)$, then $t$ is substitutable for $x$ in $\gamma$ if and only if $t$ is substitutable for $x$ in $\phi$ and $y$ does not occurre in $t$.
+\item If $\gamma$ is of the form $\forall y \phi$ for $y \in \bd{V}\setminus \{x\}$ and $x\not \in \bd{Fr}(\phi)$, then $t$ is substitutable for $x$ in $\gamma$.
 \item If $\gamma$ is of the form $\forall x \phi$, then $t$ is substitutable for $x$ in $\gamma$.
 \end{enumerate}
 \end{definition}
@@ -287,10 +290,11 @@ Now we can define the substitution procedure.
 Let $x$ be a variable and let $t$ be a term of $\cL$. Suppose that $t$ is substitutable for $x$ in $\gamma$. Then we define a formula $[\gamma]^x_t$ of $\cL$ by means of Theorem \ref{theorem:unique_readability_of_formulas} as follows.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item If $\gamma$ is an atomic formula, then $[\gamma]^x_t$ is obtained from $\gamma$ by replacing each occurrence of variable $x$ by $t$.
-\item If $\gamma$ is of the form $(\neg \phi)$, then $[\gamma]^x_t$ is of the form $(\neg [\phi]^x_t)$.
-\item If $\gamma$ is of the form $(\phi \ra \psi)$, then $[\gamma]^x_t$ is of the form $([\phi]^x_t \ra [\psi]^x_t)$.
-\item If $\gamma$ is of the form $\forall y \phi$ for $y \in \bd{V} \setminus \{x\}$, then $[\gamma]^x_t$ is of the form $\forall y [\phi]^x_t$.
-\item If $\gamma$ is of the form $\forall x\phi$, then $[\gamma]^x_t$ is of the form $\forall x\phi$.
+\item If $\gamma$ is of the form $(\neg \phi)$, then $[\gamma]^x_t$ is $(\neg [\phi]^x_t)$.
+\item If $\gamma$ is of the form $(\phi \ra \psi)$, then $[\gamma]^x_t$ is $([\phi]^x_t \ra [\psi]^x_t)$.
+\item If $\gamma$ is of the form $\forall y \phi$ for $y \in \bd{V}\setminus \{x\}$ and $x\in \bd{Fr}(\phi)$, then $[\gamma]^x_t$ is $\forall y [\phi]^x_t$.
+\item If $\gamma$ is of the form $\forall y \phi$ for $y \in \bd{V}\setminus \{x\}$ and $x\not \in \bd{Fr}(\phi)$, then $[\gamma]^x_t$ is $\gamma$.
+\item If $\gamma$ is of the form $\forall x\phi$, then $[\gamma]^x_t$ is $\gamma$.
 \end{enumerate}
 We say that $[\gamma]^x_t$ is obtained by \textit{substitution of $x$ by $t$ in $\gamma$}.
 \end{definition}
@@ -329,7 +333,7 @@ Let $\Gamma$ be a set of formulas of $\cL$ and let $\phi$ be a formula of $\cL$.
 
 \section{Soundness theorem}
 
-\begin{theorem}[Soundness Theorem]\label{theorem:soundness_theorem}
+\begin{theorem}[Soundness of $\vdash$]\label{theorem:soundness_theorem}
 Let $\Gamma$ be a set of formulas of a first order language $\cL$. If for some formula $\phi$ of $\cL$ we have $\Gamma \vdash \phi$, then also $\Gamma \vDash \phi$.
 \end{theorem}
 
@@ -387,7 +391,7 @@ Every deduction of $\phi$ from $\Gamma$ is a deduction of $\phi$ from $\Delta$.
 \end{proof}
 
 \begin{proposition}[Compactness of $\vdash$]\label{proposition:compactness_of_deductive}
-Let $\cL$ be a first order language. Let $\Gamma$ be a set of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. Suppose that $\Gamma \vdash \phi$. Then there exists finite subset $\{\phi_1,..., \phi_m\}$ of $\Gamma$ such that $\{\phi_1, ...\phi_m\} \vdash \phi$.
+Let $\cL$ be a first order language. Let $\Gamma$ be a set of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. Suppose that $\Gamma \vdash \phi$. Then there exists finite subset $\Delta$ of $\Gamma$ such that $\Delta \vdash \phi$.
 \end{proposition}
 \begin{proof}
 Every deduction of $\phi$ from $\Gamma$ involves only finitely many formulas in $\Gamma$.
@@ -402,7 +406,7 @@ $$\{\psi_1,...,\psi_m\} \vdash \phi$$
 Now for each $i$ there exists a deduction of $\psi_i$ from $\Gamma$. We concatenate these deductions for $i = 1,...,m$ and further concatenate them with a deduction of $\phi$ from $\{\psi_1,...,\psi_m\}$. This yields a deduction of $\phi$ from $\Gamma$.
 \end{proof}
 
-\begin{theorem}[Deduction Theorem]\label{theorem:deduction_theorem}
+\begin{theorem}[Deduction]\label{theorem:deduction_theorem}
 Let $\cL$ be a first order language. Let $\Gamma$ be a set of formulas of $\cL$ and let $\phi, \psi$ be formulas of $\cL$. Then $\Gamma \cup \{\phi\} \vdash \psi$ if and only if $\Gamma \vdash (\phi \ra \psi)$.
 \end{theorem}
 \begin{proof}
@@ -417,7 +421,9 @@ $$\left((\phi \ra D_k )\right)$$
 is a deduction of $(\phi \ra D_k)$ from $\Gamma$.
 \item There exist $i, j < k$ such that $D_j = (D_i \ra D_k)$. Note that
 $$\bigg(\big(\phi \ra (D_i \ra D_k)\big) \ra \big((\phi \ra D_i ) \ra (\phi \ra D_k)\big)\bigg)$$
-is a tautology of $\cL$ and hence one can write a deduction of $(\phi \ra D_k)$ from $\{(\phi \ra D_i),(\phi \ra D_j)\}$. By induction $\Gamma \vdash (\phi \ra D_i)$ and $\Gamma \vdash (\phi \ra D_j)$. Thus also $\Gamma \vdash (\phi \ra D_k)$ according to Proposition \ref{proposition:transitivity_of_deductive}.
+is a tautology of $\cL$ and hence one can write a deduction of $(\phi \ra D_k)$ from
+$$\{(\phi \ra D_i),(\phi \ra D_j)\}$$
+By induction $\Gamma \vdash (\phi \ra D_i)$ and $\Gamma \vdash (\phi \ra D_j)$. Thus also $\Gamma \vdash (\phi \ra D_k)$ according to Proposition \ref{proposition:transitivity_of_deductive}.
 \end{enumerate}
 This proves that $\Gamma \vdash (\phi \ra D_k)$ for all $k$. Hence $\Gamma \vdash (\phi \ra D_n)$. Since $D_n = \psi$, we derive that $\Gamma \vdash (\phi \ra \psi)$.
 \end{proof}
@@ -428,16 +434,16 @@ Let $\cL$ be a first order language and let $\bd{V}$ be the set of variables of 
 \noindent
 Let $I$ be an automorphism of $\cL$. Then $I$ can be extended to a unique bijection on the set of expressions of $\cL$. We denote this extension by $I$.
 
-\begin{theorem}[Invariance under automorphisms]\label{theorem:invariance_under_automorphisms}
+\begin{theorem}[Stability under automorphisms]\label{theorem:stability_under_automorphisms}
 Let $\cL$ be a first order language and let $\bd{V}$ be the set of variables of $\cL$. Suppose that $I$ is an automorphism of $\cL$. Then the following assertions hold.
 \begin{enumerate}[label=\textbf{\emph{(\arabic*)}}, leftmargin=3.0em]
 \item Set of terms of $\cL$, set of atomic formulas of $\cL$, set of formulas of $\cL$, set of tautologies of $\cL$ and set of
-axioms $\Lambda_{\cL}$ of $\vdash$ are all invariant with respect to $I$.
+axioms $\Lambda_{\cL}$ of $\vdash$ are all stable with respect to $I$.
 \item Let $\Gamma$ be a set of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. If $(D_1 , ..., D_n)$ is a deduction of $\phi$ from $\Gamma$, then $(I(D_1 ), ...I(D_n))$ is a deduction of $I(\phi)$ from $I(\Gamma)$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-The proof of invariance of sets of terms and formulas of $\cL$ goes by the usual recursive method. From the fact that terms of $\cL$ are invariant under $I$ we deduce that also atomic formulas of $\cL$ are invariant under $I$. For tautologies and other types of axioms of $\vdash$ direct examination works. The details of \textbf{(1)} are left to the reader.\\
+The proof of stability of sets of terms and formulas of $\cL$ goes by the usual recursive method. From the fact that terms of $\cL$ are invariant under $I$ we deduce that also atomic formulas of $\cL$ are invariant under $I$. For tautologies and other types of axioms of $\vdash$ direct examination works. The details of \textbf{(1)} are left to the reader.\\
 We prove \textbf{(2)}. Let $(D_1 , ..., D_n)$ be a deduction of $\phi$ from $\Gamma$. Fix $k=1, 2, ..., n$. If $D_k$ is an axiom of $\vdash$, then $I(D_k)$ is an axiom of $\vdash$. If $D_k$ is an element of $\Gamma$, then $I(D_k) \in I(\Gamma)$. Finally suppose that there are $i, j < k$ such that $D_j = (D_i \ra D_k)$. Then $I(D_j) = \left(I(D_i) \ra I(D_k)\right)$. This shows that $(I(D_1), ..., I(D_n))$ is a deduction of $I(\phi)$ from $I(\Gamma)$.
 \end{proof}
 
@@ -479,7 +485,7 @@ Consider a formula $\phi$ of $\cL$. We have either $\fU \vDash \phi[s]$ or $\fU 
 \end{proof}
 
 \begin{definition}
-Let $\cL$ be a first order language and let $\Gamma$ be a set of formulas of $\cL$. We say that $\Gamma$ is \textit{maximally consistent} if there are no consistent sets of formulas of $\cL$ properly containing $\Gamma$.
+Let $\cL$ be a first order language and let $\Gamma$ be a set of formulas of $\cL$. We say that $\Gamma$ is \textit{maximally consistent} if it is consistent and there are no consistent sets of formulas of $\cL$ properly containing $\Gamma$.
 \end{definition}
 
 \begin{proposition}
@@ -508,8 +514,7 @@ Suppose that $I$ is a linearly ordered set. Assume that $\{\Delta_i\}_{i\in I}$ 
 \section{Consistency theorem}
 
 \begin{theorem}[Henkin’s consistency theorem]\label{theorem:consistency_theorem}
-Every consistent set of formulas of first order language
-has a model.
+Every consistent set of formulas of a first order language has a model.
 \end{theorem}
 \noindent
 The proof of the theorem contains a lot of tedious details although the main idea is quite clear
@@ -538,7 +543,7 @@ and sends variables
 $$(\bd{Var}(D_1) \cup ... \cup \bd{Var}(D_n)\big) \cap \bd{V}_{\cM}$$
 to variables in
 $$\bd{V}_{\cL} \setminus \big(\bd{Var}(D_1) \cup ... \cup \bd{Var}(D_n)\big)$$
-By Theorem \ref{theorem:invariance_under_automorphisms} we derive that $(I(D_1),...,I(D_n))$ is a deduction of $I(\phi)$ from
+By Theorem \ref{theorem:stability_under_automorphisms} we derive that $(I(D_1),...,I(D_n))$ is a deduction of $I(\phi)$ from
 $$\big\{I(\gamma)\,\big|\,\gamma \in \Gamma \cap \{D_1,...,D_n\}\big\}$$
 By definition of $I$ we have $I(\phi) = \phi$, $I(D_k) = D_k$ if $D_k \in \Gamma$ and $I(D_k)$ is a formula of $\cL$ for every $k$. Thus $\left(I(D_1),...,I(D_n)\right)$ is a deduction of $\phi$ from $\Gamma$ in $\cL$. Hence $\Gamma \vdash_{\cL} \phi$.
 \end{proof}
@@ -593,15 +598,16 @@ Let $\Gamma$ be a consistent set of formulas of $\cL$. Then there exist a variab
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item $\Gamma \subseteq \Delta$.
 \item If $(\neg\forall x\phi) \in \Gamma$, then there exists a variable $z$ in $\cM$ substitutable for $x$ in $\phi$ such that $(\neg[\phi]^x_z) \in \Delta$.
-\item $\Delta$ is consistent in $\cM$.
+\item $\Delta$ is consistent subset of
+$\cM$.
 \end{enumerate}
 \end{lemma}
 \begin{proof}[Proof of the lemma]
 We define variable extension $\cM$ of $\cL$. We enlarge $\bd{V}_{\cL}$ to $\bd{V}_{\cM}$ by adding for each formula of the form $(\neg\forall x\phi) \in \Gamma$ a unique variable $z_{\phi,x}$. Hence
-$$\bd{V}_{\cM} = \bd{V}_{\cL} \cup \big\{z_{\phi,x}\,\big|\,\mbox{ if }(\neg\forall x\phi) \in \Gamma\mbox{ for some }x \in \bd{V}_{\cL}\mbox{ and a formula }\phi\mbox{ of }\cL\big\}$$
+$$\bd{V}_{\cM} = \bd{V}_{\cL} \cup \big\{z_{\phi,x}\,\big|\,\mbox{ where }(\neg\forall x\phi) \in \Gamma\mbox{ for }x \in \bd{V}_{\cL}\mbox{ and a formula }\phi\mbox{ in }\cL\big\}$$
 We define
-$$\Delta = \Gamma \cup \big\{(\neg[\phi]^x_{z_{\phi,x}})\,\big|\,\mbox{ if $(\neg\forall x\phi) \in \Gamma$}\big\}$$
-Then $\Delta$ is a set of formulas of $\cM$ and \textbf{(1)} and \textbf{(2)} are satisfied. Suppose that $\Delta$ is inconsistent set of formulas of $\cM$. By compactness of $\vdash_{\cM}$ we derive that $\Delta$ has a finite inconsistent (with respect to $\vdash_{\cM}$) subset. By Lemma \ref{lemma:deduction_in_variable_extensions_of_a_formula_that_belongs_to_extended_language} we derive that $\Gamma$ is consistent set with respect to $\vdash_{\cM}$. Thus there exists a finite subset $$\bigg\{\left(\neg[\phi_1]^{x_1}_{z_{\phi_1,x_1}}\right),...,\left(\neg[\phi_n]^{x_n}_{z_{\phi_n,x_n}}\right),\left(\neg[\phi_{n+1}]^{x_{n+1}}_{z_{\phi_{n+1},x_{n+1}}}\right)\bigg\} \subseteq \bigg\{\left(\neg[\phi]^x_{z_{\phi,x}}\right)\,\bigg| \mbox{ if } \left(\neg\forall x\phi\right) \in \Gamma\bigg\}$$
+$$\Delta = \Gamma \cup \big\{(\neg[\phi]^x_{z_{\phi,x}})\,\big|\,\mbox{ for $(\neg\forall x\phi) \in \Gamma$}\big\}$$
+Then $\Delta$ is a set of formulas of $\cM$ and \textbf{(1)} and \textbf{(2)} are satisfied. Suppose that $\Delta$ is inconsistent set of formulas of $\cM$. By compactness of $\vdash_{\cM}$ we derive that $\Delta$ has a finite inconsistent (with respect to $\vdash_{\cM}$) subset. By Lemma \ref{lemma:deduction_in_variable_extensions_of_a_formula_that_belongs_to_extended_language} we derive that $\Gamma$ is consistent set with respect to $\vdash_{\cM}$. Thus there exists a finite subset $$\bigg\{\left(\neg[\phi_1]^{x_1}_{z_{\phi_1,x_1}}\right),...,\left(\neg[\phi_n]^{x_n}_{z_{\phi_n,x_n}}\right),\left(\neg[\phi_{n+1}]^{x_{n+1}}_{z_{\phi_{n+1},x_{n+1}}}\right)\bigg\} \subseteq \bigg\{\left(\neg[\phi]^x_{z_{\phi,x}}\right)\,\bigg| \mbox{ for } \left(\neg\forall x\phi\right) \in \Gamma\bigg\}$$
 such that its union with $\Gamma$ is inconsistent with respect to $\vdash_{\cM}$ and the union
 $$\Xi = \Gamma \cup \bigg\{\left(\neg[\phi_1]^{x_1}_{z_{\phi_1,x_1}}\right),...,\left(\neg[\phi_n]^{x_n}_{z_{\phi_n,x_n}}\right)\bigg\}$$
 is consistent with respect to $\vdash_{\cM}$. Write $\phi = \phi_{n+1}$ and $x = x_{n+1}$. We have that $\Xi \cup \bigg\{\left(\neg[\phi]^x_{z_{\phi,x}}\right)\bigg\}$ is inconsistent with respect to $\vdash_{\cM}$. We denote by $\perp$ any formula of $\cM$ that is a negation of a tautology of $\cM$. Then
@@ -610,8 +616,8 @@ By Theorem \ref{theorem:deduction_theorem} we derive that
 $$\Xi \vdash_{\cM} \bigg(\left(\neg[\phi]^x_{z_{\phi,x}}\right) \ra \perp\bigg)$$
 Since formula
 $$\bigg (\big((\neg[\phi]^x_{z_{\phi,x}}) \ra \perp \big) \ra [\phi]^x_{z_{\phi,x}}\bigg)$$
-is a tautology of $\cM$, we deduce that $\Xi \vdash_{\cM} [\phi]^x_{z_{\phi,x}}$. By Theorem \ref{theorem:generalization_rule} we derive that $\Xi \vdash_{\cM} \forall z_{\phi,x} [\phi]^x_{z_{\phi,x}}$ (indeed, $z_{\phi,x}$ does not occurre as a free variable in any formula of $\Xi$). By Lemma \ref{lemma:alpha_conversion} we have $\forall z_{\phi,x} [\phi]^x_{z_{\phi,x}} \vdash_{\cM} \forall x\phi$ and hence by Theorem \ref{theorem:deduction_theorem} we have $\vdash_{\cM} (\forall z_{\phi,x} [\phi]^x_{z_{\phi,x}} \ra \forall x\phi)$. Thus $\Xi \vdash_{\cM} \forall x\phi$. On the other hand $(\neg\forall x\phi) \in \Gamma$ and hence this formula is an element of $\Xi$. Thus
-$$\Xi \vdash_{\cM} \forall x\phi, \Xi \vdash_{\cM} (\neg\forall x\phi)$$
+is a tautology of $\cM$, we deduce that $\Xi \vdash_{\cM} [\phi]^x_{z_{\phi,x}}$. By Theorem \ref{theorem:generalization_rule} we derive that $\Xi \vdash_{\cM} \forall z_{\phi,x} [\phi]^x_{z_{\phi,x}}$ (indeed, $z_{\phi,x}$ does not occurre as a free variable in any formula of $\Xi$). By Lemma \ref{lemma:alpha_conversion} we have $\forall z_{\phi,x} [\phi]^x_{z_{\phi,x}} \vdash_{\cM} \forall x\phi$ and hence by Proposition \ref{proposition:transitivity_of_deductive} we have $\Xi \vdash_{\cM} \forall x\phi$. On the other hand $(\neg\forall x\phi) \in \Gamma$ and hence this formula is an element of $\Xi$. Thus
+$$\Xi \vdash_{\cM} \forall x\phi,\, \Xi \vdash_{\cM} (\neg\forall x\phi)$$
 and therefore, $\Xi$ is inconsistent with respect to $\vdash_{\cM}$. This is a contradiction.
 \end{proof}
 
@@ -626,21 +632,21 @@ Then $\Gamma$ has a model.
 \begin{proof}[Proof of the lemma]
 We construct a model $\fU$ for $\cL$. The universe $|\fU|$ is a disjoint copy
 $$\big\{\ol{t}\,\big|\,t\mbox{ is a term of }\cL\big\}$$
-of the set of terms of $\cL$. If $f$ is a $n$-ary function symbol of $\cL$ and $t_1,...,t_n$ are elements of $|\fU|$, then we define
+of the set of terms of $\cL$. If $f$ is an $n$-ary function symbol of $\cL$ and $\ol{t}_1,...,\ol{t}_n$ are elements of $|\fU|$, then we define
 $$f^{\fU}(\ol{t}_1,...,\ol{t}_n) = \ol{ft_1...t_n}$$
-If $r$ is $n$-ary relation symbol of $\cL$ and $t_1$,...,$t_n$ are elements of $|\fU|$, then
+If $r$ is $n$-ary relation symbol of $\cL$ and $\ol{t}_1$,...,$\ol{t}_n$ are elements of $|\fU|$, then
 $$\left(\ol{t}_1,...,\ol{t}_n\right)\in r^{\fU}\,\Leftrightarrow\,rt_1...t_n \in \Gamma$$
 Moreover, for every variable $x$ in $\bd{V}_{\cL}$ we define $s(x) = \ol{x}$. This gives rise to an interpretation $s:\bd{V}_{\cL}\ra |\fU|$. We prove that for every formula $\gamma$ of $\cL$ the following holds
 $$\fU \vDash \gamma[s] \,\Leftrightarrow\, \gamma \in \Gamma$$
 The proof goes by induction on the number of symbols $\forall , \neg, \ra$ occurring in $\gamma$.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
-\item By definition of $\fU$ the assertion holds if $\gamma$ is an atomic formula.
+\item By definition of $\fU$ and $s$ the assertion holds if $\gamma$ is an atomic formula.
 \item $\gamma$ is of the form $(\neg\phi)$ for some formula $\phi$ of $\cL$. By induction we have $\fU \vDash \phi[s]$ if and only if $\phi \in \Gamma$. From this we deduce that $\fU \vDash (\neg\phi)[s]$ if and only if $(\neg\phi) \in \Gamma$.
 \item $\gamma$ is of the form $(\phi \ra \psi)$ for some formulas $\phi, \psi$ of $\cL$. Then apply the same argument as in \textbf{(2)}. Details are left for the reader.
 \item $\gamma$ is of the form $\forall x\phi$ for some formula $\phi$ of $\cL$ and a variable $x$. This is the most complicated
 case.
 \begin{itemize}
-\item Suppose first that $\fU \nvDash \forall x\phi[s]$. Then there exists interpretation $\tilde{s}:\bd{V}_{\cL} \ra |\fU|$ and a term $t$ of $\cL$ such that $\tilde{s}(y) = s(y)$ for every variable $y \neq x$, $\tilde{s}(x) = \ol{t}$ and $\fU \nvDash \phi[\tilde{s}]$. We pick formula $\alpha(\phi)$ for $\phi, x$ and $t$ as in Lemma \ref{lemma:alphabetic_variants}. Then $\alpha(\phi) \vdash_{\cL} \phi$ and $t$ is substitutable for $x$ in $\alpha(\phi)$. Theorem \ref{theorem:soundness_theorem} implies that $\alpha(\phi) \vDash \phi$. Since
+\item Suppose first that $\fU \nvDash \forall x\phi[s]$. Then there exists interpretation $\tilde{s}:\bd{V}_{\cL} \ra |\fU|$ and a term $t$ of $\cL$ such that $\tilde{s}(y) = s(y)$ for every variable $y \neq x$, $\tilde{s}(x) = \ol{t}$ and $\fU \nvDash \phi[\tilde{s}]$. We pick a formula $\alpha(\phi)$ for $\phi, x$ and $t$ as in Lemma \ref{lemma:alphabetic_variants}. Then $\alpha(\phi) \vdash_{\cL} \phi$ and $t$ is substitutable for $x$ in $\alpha(\phi)$. Theorem \ref{theorem:soundness_theorem} implies that $\alpha(\phi) \vDash \phi$. Since
 $$\fU \nvDash \phi[\tilde{s}]$$
 we deduce that
 $$\fU \nvDash \alpha(\phi)[\tilde{s}]$$
@@ -659,7 +665,7 @@ $$\fU \vDash \gamma[s] \,\Leftrightarrow\, \gamma \in \Gamma$$
 for every formula $\gamma$ of $\cL$, we deduce that $\fU$ together with $s$ is a model for $\Gamma$.
 \end{proof}
 \noindent
-Now we are ready to combine our results in final argument.
+Now we are ready to combine our results in the final argument.
 
 \begin{proof}[Proof of the theorem]
 Let $\Gamma$ be a consistent set of formulas of some first order language $\cL$. We may assume by Proposition \ref{proposition:Lindenbaum_lemma} that $\Gamma$ is maximally consistent. We write $\Delta_0 = \Gamma_0 = \Gamma$ and $\cL_0 = \cL$. Suppose that $\cL_n$ is a first order language and $\Delta_n$ is a maximally consistent set of formulas of $\cL_n$ for some $n\in \NN$. Then by Lemma \ref{lemma:superconsistent_extension} there exists a variable extension $\cL_{n+1}$ of $\cL_n$ and a consistent set $\Gamma_{n+1}$ of formulas of $\cL_{n+1}$ containing $\Delta_n$ such that for every formula $\phi$ in $\cL_n$ if $(\neg\forall x\phi) \in \Delta_n$ for some variable $x$, then there exists a variable $z$ in $\cL_{n+1}$ substitutable for $x$ in $\phi$ with the property that $(\neg[\phi]^x_z) \in \Gamma_{n+1}$. By Proposition \ref{proposition:Lindenbaum_lemma} there exists a maximally consistent set $\Delta_{n+1}$ of formulas of $\cL_{n+1}$ that contains $\Gamma_{n+1}$. Note that
@@ -670,8 +676,81 @@ Then $\Delta$ is maximally consistent set of formulas of $\cM$ and if $\phi$ is 
 \Delta$ for some variable $x$ in $\cM$, then there exists a variable $z$ in $\cM$ substitutable for $x$ in $\phi$ such that $(\neg[\phi]^x_z) \in \Delta$. Now according to Lemma \ref{lemma:model_existence_lemma} we derive that $\Delta$ has a model. Since $\Gamma$ is a subset of $\Delta$, model of $\Delta$ with respect to $\cM$ is a model of $\Gamma$ with respect to $\cL$. Indeed, this holds because $\cM$ is a variable extension of $\cL$.
 \end{proof}
 
+\begin{corollary}[Gödel's completeness theorem]\label{corollary:Gödels_completeness_theorem}
+Let $\cL$ be a first order language. Then for every set $\Gamma$ of formulas of $\cL$ and for every formula $\phi$ of $\cL$ we have $\Gamma \vdash \phi$ if and only if $\Gamma \vDash \phi$.
+\end{corollary}
+\begin{proof}
+By Theorem \ref{theorem:soundness_theorem} relation $\Gamma \vdash \phi$ implies $\Gamma \vDash \phi$. Suppose that $\Gamma \nvdash \phi$. Then $\Gamma\cup \{(\neg \phi)\}$ is consistent. Thus according to Theorem \ref{theorem:consistency_theorem} we deduce that there exists a model $\fU$ of $\cL$ and an interpretation $s:\bd{V}\ra |\fU|$ which form a model of $\Gamma \cup \{(\neg \phi)\}$. This implies that $\Gamma \nvDash \phi$. This completes the proof that $\Gamma \vdash \phi$ is equivalent with $\Gamma \vDash \phi$.
+\end{proof}
 
- 
+\section{First order languages with identity}
+\noindent
+Consider a first order language with the set of variables $\bd{V}$ and with the signature consisting of relation symbols $R$ and function symbols $F$. Assume that there is a $2$-ary relation symbol $=$ of $\cL$. For terms $t,t'$ instead of writing $=tt'$ we write $t = t'$ in this section. We denote by $I$ the union of the following classes of formulas.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item $t = t$ for every term $t$. 
+\item $(t_1 = t_2 \ra t_2 = t_1)$ for all terms $t_1,t_2$.
+\item $\big(t_1 = t_2 \ra \left(t_2 = t_3\ra t_1 = t_2\right)\big)$ for all terms $t_1,t_2,t_3$.
+\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left (... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(ft_1...t_n = ft'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms and $f$ is an $n$-ary function symbol.
+\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left (... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(rt_1...t_n \ra rt'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms and $r$ is an $n$-ary relation symbol.
+\end{enumerate}
+
+\begin{definition}
+Suppose that $\Gamma$ is set of its formulas and $\phi$ is a formula of $\cL$. Then $\Gamma \vdash_I \phi$ if $\Gamma\cup I \vdash \phi$.
+\end{definition}
+
+\begin{definition}
+A first order language $\cL$ equipped with $2$-ary relation symbol $=$, set of formulas $I$ and a deductive system $\vdash_I$ described as above is called \textit{a first order language with identity}.
+\end{definition}
+
+\begin{definition}
+Let $\cL$ be a a first order language with identity. Then a set of formulas $\Gamma$ of $\cL$ is \textit{consistent} if there exists a formula $\psi$ of $\cL$ such that $\Gamma \nvdash_I \psi$.
+\end{definition}
+
+\begin{definition}
+Let $\cL$ be a first order language with identity. Consider $\cL$ as a first order language (without identity) and let $\fU$ be its model. If $=^\fU$ is the standard identity of elements of the underlying set $|\fU|$ of $\fU$, then we say that $\fU$ is \textit{a model of $\cL$}.
+\end{definition}
+
+\begin{definition}
+Let $\Gamma$ be a set of formulas of a first order language $\cL$ with identity. Let $\fU$ be a model of $\cL$ and let $s: \bd{V} \ra |\fU|$ be an interpretation. Suppose that for all $\phi$ in $\Gamma$ we have $\fU \vDash \phi[s]$. Then we say that $\fU$ together with $s$ is \textit{a model for $\Gamma$}.
+\end{definition}
+
+\begin{theorem}[Henkin’s consistency theorem for languages with identity]\label{theorem:consistency_theorem_for_languages_with_identity}
+Every consistent set of formulas of a first order language with identity has a model.
+\end{theorem}
+\begin{proof}
+Let $\cL$ be a first order language with identity and let $\Gamma$ be a consistent set of formulas of $\vdash_I$. Then by Theorem \ref{theorem:consistency_theorem} there exist a model $\fU$ of $\cL$ as a first order language (without identity) and an interpretation $s:\bd{V}\ra |\fU|$ which form a model of $\Gamma \cup I$. Now consider the set
+$$\big\{s(t)\in |\fU|\,\big|\,\mbox{$t$ is a term of $\cL$}\big\}$$
+Observe that this set is closed under operations $\{f^\fU\}_{f\in F}$. Thus one can restrict functions $\{f^\fU\}_{f\in F}$ and relations $\{r^{\fU}\}_{r\in R}$ to this set. This gives rise to a submodel of $\fU$. Clearly $s$ takes values in this submodel and hence this submodel together with the restriction of $s$ is a model of $\Gamma \cup I$. Thus without loss of generality we may assume that
+$$|\fU| = \big\{s(t)\in |\fU|\,\big|\,\mbox{$t$ is a term of $\cL$}\big\}$$
+Note that $=^\fU$ is not required to be the identity on $|\fU|$. Nevertheless $\fU$ and $s$ form a model of $I$. This means that $=^\fU$ is an equivalence relation on $|\fU|$ such that
+$$(u_1,...,u_n)\in r^{\fU}\,\Leftrightarrow\,(u'_1,...,u'_n)\in r^{\fU}$$
+and
+$$f^{\fU}(u_1,...,u_n) =^{\fU} f^{\fU}(u'_1,...,u'_n)$$
+for every $n\in \NN$, $r\in R_n$, $f\in F_n$ and elements $u_1,...,u_n,u'_1,...,u'_n \in |\fU|$ such that $u_i =^{\fU} u'_i$ for $1\leq i\leq n$. Now we define a model $\fE$ of $\cL$ as the first order language with the identity. We define $|\fE|$ as the set of equivalence classes of relation $=^{\fU}$. According to the fact that $=^{\fU}$ is compatible with relations $\{r^{\fU}\}_{r\in R}$ and functions $\{f^{\fU}\}_{f\in F}$ on $|\fU|$ we derive that $r^\fU$ for $r\in R_n$ gives rise to $r^\fE\subseteq |\fE|^n$ and each $f^{\fU}$ for $f\in F_n$ induces a function $f^\fE:|\fE|^n\ra |\fE|$. Observe that $=^\fE$ is the identity on $|\fE|$. Hence $\fE$ is a model of $\cL$ as the first order language with the identity. Denote by $q:|\fU|\twoheadrightarrow |\fE|$ the quotient map with respect to $=^{\fU}$. Then we have
+$$q\big(f^{\fU}(u_1,...,u_n)\big) = f^{\fE}(q(u_1),...,q(u_n))$$
+and
+$$\big(q(u_1),...,q(u_n)\big)\in r^{\fE}\,\Leftrightarrow\,(u_1,...,u_n)\in r^{\fU}$$
+for every $n\in \NN$, $f\in F_n$, $r\in R_n$ and $u_1,...,u_n\in |\fU|$. We claim that the previous assertion together with surjectivity of $q$ imply that for every intepretation $p:\bd{V}\ra |\fU|$ and every formula $\phi$ of $\cL$ we have
+$$\fU \vDash \phi[p]\,\Leftrightarrow\,\fE\vDash\phi[q\cdot p]$$
+The proof of this claim follows by induction on the number of occurances of $\neg, \ra,\forall$ in $\phi$. We left it for the reader. In particular, it follows that
+$$\fU \vDash \phi[s]\,\Leftrightarrow\,\fE\vDash\phi[q\cdot s]$$
+for every formula $\phi$ of $\cL$. Since $\fU$ with $s$ form a model of $\Gamma$ as the set of formulas of $\cL$ considered as the first order language, we deduce that $\fE$ with $q\cdot s$ form a model of $\Gamma$ as the set of formulas of $\cL$ considered as the first order language with identity. 
+\end{proof}
+
+\begin{definition}
+Let $\cL$ be a first order language with identity. We define $\vDash_I$ as the restriction of $\vDash$ to the class of models of the language $\cL$ as the first order language with identity.
+\end{definition}
+
+\begin{corollary}[Gödel's completeness theorem for languages with identity]\label{corollary:Gödels_completeness_theorem_for_languages_with_identity}
+Let $\cL$ be a first order language with identity. Then for every set $\Gamma$ of formulas of $\cL$ and for every formula $\phi$ of $\cL$ we have $\Gamma \vdash_I \phi$ if and only if $\Gamma \vDash_I \phi$.
+\end{corollary}
+\begin{proof}
+By Theorem \ref{theorem:soundness_theorem} and definitions of $\vdash_I$ and $\vDash_I$ we have
+$$\Gamma\vdash_I \phi\,\Rightarrow\,\Gamma\cup I\vdash \phi\,\Rightarrow\,\Gamma\cup I\vDash \phi\,\Rightarrow\,\Gamma\vDash_I\phi$$
+Suppose now that $\Gamma \nvdash_I \phi$. Then $\Gamma\cup \{(\neg \phi)\}$ is consistent with respect to $\vdash_I$. Thus according to Theorem \ref{theorem:consistency_theorem_for_languages_with_identity} we deduce that there exists a model $\fU$ of $\cL$ considered as the first order language with identity and an interpretation $s:\bd{V}\ra |\fU|$ which form a model of $\Gamma \cup \{(\neg \phi)\}$. This implies that $\Gamma \nvDash_I \phi$. This completes the proof that $\Gamma \vdash_I \phi$ is equivalent with $\Gamma \vDash_I \phi$.
+\end{proof}
+
+
 
 
 
