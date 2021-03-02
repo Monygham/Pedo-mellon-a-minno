@@ -220,7 +220,7 @@ Let $\Gamma$ be a set of formulas of $\cL$ and let $\phi$ be a formula of $\cL$.
 \end{definition}
 
 \begin{definition}
-Let $\Gamma$ be a set of formulas of $\cL$. Let $\fU$ be a model of $\cL$ and let $s: \bd{V} \ra |\fU|$ be an interpretation. Suppose that for all $\phi$ in $\Gamma$ we have $\fU \vDash \phi[s]$. Then we say that $\fU$ together with $s$ is \textit{a model for $\Gamma$}.
+Let $\Gamma$ be a set of formulas of $\cL$. Let $\fU$ be a model of $\cL$ and let $s: \bd{V} \ra |\fU|$ be an interpretation. Suppose that for all $\phi$ in $\Gamma$ we have $\fU \vDash \phi[s]$. Then we say that $\Gamma$ is \textit{satisfiable}.
 \end{definition}
 
 \begin{proposition}\label{proposition:only_free_variables_matter_for_interpretation}
@@ -514,7 +514,7 @@ Suppose that $I$ is a linearly ordered set. Assume that $\{\Delta_i\}_{i\in I}$ 
 \section{Consistency theorem}
 
 \begin{theorem}[Henkin’s consistency theorem]\label{theorem:consistency_theorem}
-Every consistent set of formulas of a first order language has a model.
+Every consistent set of formulas of a first order language is satisfiable.
 \end{theorem}
 \noindent
 The proof of the theorem contains a lot of tedious details although the main idea is quite clear
@@ -627,7 +627,7 @@ Let $\Gamma$ be a set of formulas of $\cL$. Assume that the following assertions
 \item $\Gamma$ is maximally consistent.
 \item If $(\neg\forall x\phi) \in \Gamma$, then there exists a variable $z$ substitutable for $x$ in $\phi$ such that $(\neg[\phi]^x_z) \in \Gamma$.
 \end{enumerate}
-Then $\Gamma$ has a model.
+Then $\Gamma$ is satisfiable.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
 We construct a model $\fU$ for $\cL$. The universe $|\fU|$ is a disjoint copy
@@ -662,7 +662,7 @@ and this finishes the proof of \textbf{(4)}.
 \end{enumerate}
 From the fact that
 $$\fU \vDash \gamma[s] \,\Leftrightarrow\, \gamma \in \Gamma$$
-for every formula $\gamma$ of $\cL$, we deduce that $\fU$ together with $s$ is a model for $\Gamma$.
+for every formula $\gamma$ of $\cL$, we deduce that $\Gamma$ is satisfiable.
 \end{proof}
 \noindent
 Now we are ready to combine our results in the final argument.
@@ -673,14 +673,14 @@ $$\Delta_n \subseteq \Gamma_{n+1} \subseteq \Delta_{n+1}$$
 Now let $\cM$ be a first order language with the same signature as $\cL$ and with set of variables equal to the union of all sets of variables of $\cL_n$ for all $n\in \NN$. We define
 $$\Delta = \bigcup_{n\in \NN} \Delta_n = \bigcup_{n\in \NN} \Gamma_n$$
 Then $\Delta$ is maximally consistent set of formulas of $\cM$ and if $\phi$ is a formula of $\cM$ such that $(\neg\forall x\phi) \in
-\Delta$ for some variable $x$ in $\cM$, then there exists a variable $z$ in $\cM$ substitutable for $x$ in $\phi$ such that $(\neg[\phi]^x_z) \in \Delta$. Now according to Lemma \ref{lemma:model_existence_lemma} we derive that $\Delta$ has a model. Since $\Gamma$ is a subset of $\Delta$, model of $\Delta$ with respect to $\cM$ is a model of $\Gamma$ with respect to $\cL$. Indeed, this holds because $\cM$ is a variable extension of $\cL$.
+\Delta$ for some variable $x$ in $\cM$, then there exists a variable $z$ in $\cM$ substitutable for $x$ in $\phi$ such that $(\neg[\phi]^x_z) \in \Delta$. Now according to Lemma \ref{lemma:model_existence_lemma} we derive that $\Delta$ is satisfiable. Since $\Gamma$ is a subset of $\Delta$, it is satisfiable. Indeed, this holds because $\cM$ is a variable extension of $\cL$.
 \end{proof}
 
 \begin{corollary}[Gödel's completeness theorem]\label{corollary:Gödels_completeness_theorem}
 Let $\cL$ be a first order language. Then for every set $\Gamma$ of formulas of $\cL$ and for every formula $\phi$ of $\cL$ we have $\Gamma \vdash \phi$ if and only if $\Gamma \vDash \phi$.
 \end{corollary}
 \begin{proof}
-By Theorem \ref{theorem:soundness_theorem} relation $\Gamma \vdash \phi$ implies $\Gamma \vDash \phi$. Suppose that $\Gamma \nvdash \phi$. Then $\Gamma\cup \{(\neg \phi)\}$ is consistent. Thus according to Theorem \ref{theorem:consistency_theorem} we deduce that there exists a model $\fU$ of $\cL$ and an interpretation $s:\bd{V}\ra |\fU|$ which form a model of $\Gamma \cup \{(\neg \phi)\}$. This implies that $\Gamma \nvDash \phi$. This completes the proof that $\Gamma \vdash \phi$ is equivalent with $\Gamma \vDash \phi$.
+By Theorem \ref{theorem:soundness_theorem} relation $\Gamma \vdash \phi$ implies $\Gamma \vDash \phi$. Suppose that $\Gamma \nvdash \phi$. Then $\Gamma\cup \{(\neg \phi)\}$ is consistent. Thus according to Theorem \ref{theorem:consistency_theorem} we deduce that there exists a model $\fU$ of $\cL$ and an interpretation $s:\bd{V}\ra |\fU|$ such that for every formula $\gamma \in \Gamma \cup \{(\neg \phi)\}$ we have $\fU \vDash \gamma[s]$. This implies that $\Gamma \nvDash \phi$. This completes the proof that $\Gamma \vdash \phi$ is equivalent with $\Gamma \vDash \phi$.
 \end{proof}
 
 \section{First order languages with identity}
@@ -711,30 +711,28 @@ Let $\cL$ be a first order language with identity. Consider $\cL$ as a first ord
 \end{definition}
 
 \begin{definition}
-Let $\Gamma$ be a set of formulas of a first order language $\cL$ with identity. Let $\fU$ be a model of $\cL$ and let $s: \bd{V} \ra |\fU|$ be an interpretation. Suppose that for all $\phi$ in $\Gamma$ we have $\fU \vDash \phi[s]$. Then we say that $\fU$ together with $s$ is \textit{a model for $\Gamma$}.
+Let $\Gamma$ be a set of formulas of a first order language $\cL$ with identity. Let $\fU$ be a model of $\cL$ and let $s: \bd{V} \ra |\fU|$ be an interpretation. Suppose that for all $\phi$ in $\Gamma$ we have $\fU \vDash \phi[s]$. Then we say that $\Gamma$ is \textit{satisfiable}.
 \end{definition}
 
 \begin{theorem}[Henkin’s consistency theorem for languages with identity]\label{theorem:consistency_theorem_for_languages_with_identity}
-Every consistent set of formulas of a first order language with identity has a model.
+Every consistent set of formulas of a first order language with identity is satisfiable.
 \end{theorem}
 \begin{proof}
-Let $\cL$ be a first order language with identity and let $\Gamma$ be a consistent set of formulas of $\vdash_I$. Then by Theorem \ref{theorem:consistency_theorem} there exist a model $\fU$ of $\cL$ as a first order language (without identity) and an interpretation $s:\bd{V}\ra |\fU|$ which form a model of $\Gamma \cup I$. Now consider the set
+Let $\cL$ be a first order language with identity and let $\Gamma$ be a consistent set of formulas of $\vdash_I$. Then by Theorem \ref{theorem:consistency_theorem} there exist a model $\fU$ of $\cL$ as a first order language (without identity) and an interpretation $s:\bd{V}\ra |\fU|$ such that for every $\phi \in \Gamma\cup I$ we have $\fU\vDash \phi[s]$. Now consider the set
 $$\big\{s(t)\in |\fU|\,\big|\,\mbox{$t$ is a term of $\cL$}\big\}$$
-Observe that this set is closed under operations $\{f^\fU\}_{f\in F}$. Thus one can restrict functions $\{f^\fU\}_{f\in F}$ and relations $\{r^{\fU}\}_{r\in R}$ to this set. This gives rise to a submodel of $\fU$. Clearly $s$ takes values in this submodel and hence this submodel together with the restriction of $s$ is a model of $\Gamma \cup I$. Thus without loss of generality we may assume that
-$$|\fU| = \big\{s(t)\in |\fU|\,\big|\,\mbox{$t$ is a term of $\cL$}\big\}$$
-Note that $=^\fU$ is not required to be the identity on $|\fU|$. Nevertheless $\fU$ and $s$ form a model of $I$. This means that $=^\fU$ is an equivalence relation on $|\fU|$ such that
-$$(u_1,...,u_n)\in r^{\fU}\,\Leftrightarrow\,(u'_1,...,u'_n)\in r^{\fU}$$
+Observe that this set is closed under operations $\{f^\fU\}_{f\in F}$. Thus one can restrict functions $\{f^\fU\}_{f\in F}$ and relations $\{r^{\fU}\}_{r\in R}$ to this set. This gives rise to a submodel $\fT$ of $\fU$. Clearly $s$ takes values in $\fT$ and hence $\fT$ together with the restriction $\hat{s}:\bd{V}\ra |\fT|$ of $s$ satisfies $\fT \vDash \phi[\hat{s}]$ for every $\phi \in \Gamma \cup I$. Note that $=^\fT$ is not required to be the identity on $|\fT|$. Nevertheless $\fT$ and $\hat{s}$ satisfy $\fT \vDash \phi[\hat{s}]$ for every $\phi \in I$. This means that $=^\fT$ is an equivalence relation on $|\fT|$ such that
+$$(u_1,...,u_n)\in r^{\fT}\,\Leftrightarrow\,(u'_1,...,u'_n)\in r^{\fT}$$
 and
-$$f^{\fU}(u_1,...,u_n) =^{\fU} f^{\fU}(u'_1,...,u'_n)$$
-for every $n\in \NN$, $r\in R_n$, $f\in F_n$ and elements $u_1,...,u_n,u'_1,...,u'_n \in |\fU|$ such that $u_i =^{\fU} u'_i$ for $1\leq i\leq n$. Now we define a model $\fE$ of $\cL$ as the first order language with the identity. We define $|\fE|$ as the set of equivalence classes of relation $=^{\fU}$. According to the fact that $=^{\fU}$ is compatible with relations $\{r^{\fU}\}_{r\in R}$ and functions $\{f^{\fU}\}_{f\in F}$ on $|\fU|$ we derive that $r^\fU$ for $r\in R_n$ gives rise to $r^\fE\subseteq |\fE|^n$ and each $f^{\fU}$ for $f\in F_n$ induces a function $f^\fE:|\fE|^n\ra |\fE|$. Observe that $=^\fE$ is the identity on $|\fE|$. Hence $\fE$ is a model of $\cL$ as the first order language with the identity. Denote by $q:|\fU|\twoheadrightarrow |\fE|$ the quotient map with respect to $=^{\fU}$. Then we have
-$$q\big(f^{\fU}(u_1,...,u_n)\big) = f^{\fE}(q(u_1),...,q(u_n))$$
+$$f^{\fT}(u_1,...,u_n) =^{\fT} f^{\fU}(u'_1,...,u'_n)$$
+for every $n\in \NN$, $r\in R_n$, $f\in F_n$ and elements $u_1,...,u_n,u'_1,...,u'_n \in |\fT|$ such that $u_i =^{\fT} u'_i$ for $1\leq i\leq n$. Now we define a model $\fE$ of $\cL$ as the first order language with the identity. We define $|\fE|$ as the set of equivalence classes of relation $=^{\fT}$. According to the fact that $=^{\fT}$ is compatible with relations $\{r^{\fT}\}_{r\in R}$ and functions $\{f^{\fT}\}_{f\in F}$ on $|\fT|$ we derive that $r^\fT$ for $r\in R_n$ gives rise to $r^\fE\subseteq |\fE|^n$ and each $f^{\fT}$ for $f\in F_n$ induces a function $f^\fE:|\fE|^n\ra |\fE|$. Observe that $=^\fE$ is the identity on $|\fE|$. Hence $\fE$ is a model of $\cL$ as the first order language with the identity. Denote by $q:|\fT|\twoheadrightarrow |\fE|$ the quotient map with respect to $=^{\fT}$. Then we have
+$$q\big(f^{\fT}(u_1,...,u_n)\big) = f^{\fE}(q(u_1),...,q(u_n))$$
 and
-$$\big(q(u_1),...,q(u_n)\big)\in r^{\fE}\,\Leftrightarrow\,(u_1,...,u_n)\in r^{\fU}$$
-for every $n\in \NN$, $f\in F_n$, $r\in R_n$ and $u_1,...,u_n\in |\fU|$. We claim that the previous assertion together with surjectivity of $q$ imply that for every intepretation $p:\bd{V}\ra |\fU|$ and every formula $\phi$ of $\cL$ we have
-$$\fU \vDash \phi[p]\,\Leftrightarrow\,\fE\vDash\phi[q\cdot p]$$
+$$\big(q(u_1),...,q(u_n)\big)\in r^{\fE}\,\Leftrightarrow\,(u_1,...,u_n)\in r^{\fT}$$
+for every $n\in \NN$, $f\in F_n$, $r\in R_n$ and $u_1,...,u_n\in |\fT|$. We claim that the previous assertion together with surjectivity of $q$ imply that for every intepretation $p:\bd{V}\ra |\fT|$ and every formula $\phi$ of $\cL$ we have
+$$\fT \vDash \phi[p]\,\Leftrightarrow\,\fE\vDash\phi[q\cdot p]$$
 The proof of this claim follows by induction on the number of occurances of $\neg, \ra,\forall$ in $\phi$. We left it for the reader. In particular, it follows that
-$$\fU \vDash \phi[s]\,\Leftrightarrow\,\fE\vDash\phi[q\cdot s]$$
-for every formula $\phi$ of $\cL$. Since $\fU$ with $s$ form a model of $\Gamma$ as the set of formulas of $\cL$ considered as the first order language, we deduce that $\fE$ with $q\cdot s$ form a model of $\Gamma$ as the set of formulas of $\cL$ considered as the first order language with identity. 
+$$\fT \vDash \phi[\hat{s}]\,\Leftrightarrow\,\fE\vDash\phi[q\cdot \hat{s}]$$
+for every formula $\phi$ of $\cL$. Since $\fT \vDash \phi[\hat{s}]$ for every $\phi$ in $\Gamma$, we deduce that $\fE\vDash \phi[q\cdot \hat{s}]$ for every $\phi$ in $\Gamma$. Thus $\Gamma$ is satisfiable.
 \end{proof}
 
 \begin{definition}
@@ -747,10 +745,25 @@ Let $\cL$ be a first order language with identity. Then for every set $\Gamma$ o
 \begin{proof}
 By Theorem \ref{theorem:soundness_theorem} and definitions of $\vdash_I$ and $\vDash_I$ we have
 $$\Gamma\vdash_I \phi\,\Rightarrow\,\Gamma\cup I\vdash \phi\,\Rightarrow\,\Gamma\cup I\vDash \phi\,\Rightarrow\,\Gamma\vDash_I\phi$$
-Suppose now that $\Gamma \nvdash_I \phi$. Then $\Gamma\cup \{(\neg \phi)\}$ is consistent with respect to $\vdash_I$. Thus according to Theorem \ref{theorem:consistency_theorem_for_languages_with_identity} we deduce that there exists a model $\fU$ of $\cL$ considered as the first order language with identity and an interpretation $s:\bd{V}\ra |\fU|$ which form a model of $\Gamma \cup \{(\neg \phi)\}$. This implies that $\Gamma \nvDash_I \phi$. This completes the proof that $\Gamma \vdash_I \phi$ is equivalent with $\Gamma \vDash_I \phi$.
+Suppose now that $\Gamma \nvdash_I \phi$. Then $\Gamma\cup \{(\neg \phi)\}$ is consistent with respect to $\vdash_I$. Thus according to Theorem \ref{theorem:consistency_theorem_for_languages_with_identity} we deduce that there exists a model $\fU$ of $\cL$ considered as the first order language with identity and an interpretation $s:\bd{V}\ra |\fU|$ such that $\fU \vDash \phi[s]$ for every $\phi$ in $\Gamma$. This implies that $\Gamma \nvDash_I \phi$. This completes the proof that $\Gamma \vdash_I \phi$ is equivalent with $\Gamma \vDash_I \phi$.
+\end{proof}
+
+\section{Application: compactness theorem}
+
+\begin{corollary}[Compactness for $\vDash$]\label{theorem:compactness_without_identity}
+Let $\cL$ be a first order language and let $\Gamma$ be a set of formulas of $\cL$. Suppose that $\Gamma \vDash \phi$ for some formula $\phi$ in $\cL$. Then there exists a finite subset $\Delta$ of $\Gamma$ such that $\Delta \vDash \phi$.
+\end{corollary}
+\begin{proof}
+By Corollary \ref{corollary:Gödels_completeness_theorem} we deduce that $\Gamma \vDash \phi$ implies that $\Gamma \vdash \phi$. Hence by Proposition \ref{proposition:compactness_of_deductive} we derive that there exists a finite subset $\Delta$ of $\Gamma$ such that $\Delta \vdash \phi$. Again by Corollary \ref{corollary:Gödels_completeness_theorem} we infer $\Delta \vDash \phi$.
 \end{proof}
 
 
+\begin{corollary}[Compactness for $\vDash_I$]\label{theorem:compactness_for_languages_with_identity}
+Let $\cL$ be a first order language with identity and let $\Gamma$ be a set of formulas of $\cL$. Suppose that $\Gamma \vDash_I \phi$ for some formula $\phi$ in $\cL$. Then there exists finite subset $\Delta$ of $\Gamma$ such that $\Delta \vDash_I \phi$.
+\end{corollary}
+\begin{proof}
+By Corollary \ref{corollary:Gödels_completeness_theorem_for_languages_with_identity} we deduce that $\Gamma \vDash_I \phi$ implies that $\Gamma \vdash_I \phi$. Hence by Proposition \ref{proposition:compactness_of_deductive} and by definition of $\vdash_I$ we derive that there exists a finite subset $\Delta$ of $\Gamma$ such that $\Delta \vdash_I \phi$. Again by Corollary \ref{corollary:Gödels_completeness_theorem_for_languages_with_identity} we infer $\Delta \vDash_I \phi$.
+\end{proof}
 
 
 
