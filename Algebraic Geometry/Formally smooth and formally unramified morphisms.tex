@@ -1,0 +1,625 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Formally smooth and formally unramified morphisms}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+This notes are devoted to notions of formally smooth and formally unramified morphisms. These two classes are defined in terms of infinitesimal lifting properties. In the first section we introduce the sheaf of infinitesimal liftings and prove that it is a pseudo-torsor over certain sheaf of groups. In the second section formally smooth and unramified morphisms are defined. Next we study their properties in terms of sequences of differentials. Finally in the last section with the aid of \cite{Topics_in_fields} we prove Cohen's structure theorem for noetherian regular rings in equicharacteristic case and characterize formally smooth and formally unramified extension of fields. 
+
+\section{Infinitesimal lifting property}
+
+\begin{definition}
+Let $X$ be a topological space and let $\cG$ be a sheaf of groups on $X$. A $\cG$-sheaf $\cF$ with an action $p:\cG\times \cF\ra \cF$ is \textit{a $\cG$-pseudo-torsor} if for every open subset $U\subseteq X$ such that $\cF(U)$ is nonempty the action $p(U):\cG(U)\times \cF(U)\ra \cF(U)$ is transitive and free.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a topological space and let $\cG$ be a sheaf of groups on $X$. A $\cG$-pseudo-torsor $p:\cG\times \cF\ra \cF$ is \textit{a $\cG$-torsor} if there exists an open cover $X=\bigcup_{i\in I}U_i$ such that $\cF(U_i)$ is nonempty for every $i\in I$.
+\end{definition}
+\noindent
+Let $X$ be a topological space and let $\cG$ be a sheaf of groups on $X$. Morphisms of $\cG$-pseudo-torsors and $\cG$-torsors are morphisms of corresponding $\cG$-sheaves. 
+
+\begin{proposition}\label{proposition:torsors_are_cech_cocycles}
+Let $X$ be a topological space and let $\cG$ be a sheaf of groups on $X$. To give a $\cG$-torsor on $X$ it is the same as to give an open cover $X=\bigcup_{i\in I}U_i$ and for every $i,j\in I$ an element $g_{ij}\in \cG(U_i\cap U_j)$ such that
+$$g_{ij}\cdot g_{jk}=g_{ik}$$
+for every $i,j,k\in I$.
+\end{proposition}
+\begin{proof}
+Suppose that $\cP$ is a $\cG$-torsor. Then there exists an open cover $X=\bigcup_{i\in I}U_i$ such that $\cP(U_i)$ is nonempty. Therefore, there exists a family of isomorphisms $\phi_i:\cG_{\mid U_i}\ra \cP_{\mid U_i}$ of $\cG_{\mid U_i}$-sheaves on $U_i\cap U_j$ we have that $\phi^{-1}_j\cdot \phi_i$ are defined by right multiplication by some $g_{ij}\in \cG(U_i\cap U_j)$. Clearly these $\{g_{ij}\}_{i,j\in I}$ satisfy cocycle the condition.
+\end{proof}
+
+\begin{corollary}\label{corollary:torsors_over_sheaves_of_abelian_groups_are_classified_by_first_cech_cohomology}
+Let $X$ be a topological space and let $\cG$ be a sheaf of abelian groups on $X$. Then there is a bijection
+$$\big\{\mbox{$\cG$-torsors up to an isomorphisms}\big\}\cong \check{\mathrm{H}}^1(X,\cG)$$
+\end{corollary}
+\begin{proof}
+The bijection in the statement is given by the construction described in Proposition \ref{proposition:torsors_are_cech_cocycles} and its proof. We left the details to the reader.
+\end{proof}
+
+\begin{definition}
+Suppose that $X$ is a topological space and $\cG$ is a sheaf of groups on $X$. We say that $\cG$-torsor is \textit{trivial} if it is isomorphic to the $\cG$-torsor defined by action of $\cG$ on itself by left multiplication. 
+\end{definition}
+
+v\begin{corollary}\label{corollary:torsors_over_quasi_coherent_modules_on_affine_schemes_are_trivial}
+Suppose that $Z$ is an affine scheme and $\cG$ is a quasi-coherent $\cO_Z$-module. Consider $\cG$ as a sheaf of abelian groups on $Z$. Then every $\cG$-torsor is trivial.
+\end{corollary}
+\begin{proof}
+This follows from Corollary \ref{corollary:torsors_over_sheaves_of_abelian_groups_are_classified_by_first_cech_cohomology} and the fact that
+$$\check{\mathrm{H}}^1(Z,\cG) = \mathrm{H}^1(Z,\cG) = 0$$
+as $Z$ is affine scheme and $\cG$ is quasi-coherent.
+\end{proof}
+
+\begin{definition}
+Let $f:X\ra Y$ be a morphism of schemes. Consider $Z$ a scheme over $Y$ and a closed immersion $i:Z_{\ideal{I}}\ra Z$ of schemes determined by the ideal $\ideal{I}\subseteq \cO_Z$ such that $\ideal{I}^2 = 0$. Fix a morphism $u:Z_{\ideal{I}}\ra X$. A sheaf of sets on $Z$ given by formula
+$$U\mapsto \{f\in \Sch_Y(U,X) \mid f\cdot i_{\mid U}=u_{\mid U}\}$$
+where $U\subseteq Z$ is an open subset of $Z$ is called \textit{the sheaf of local infinitesimal liftings for $(u,i,f)$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:sheaf_of_infinitesimal_liftings_is_canonically_pseudo_torsor}
+Let $f:X\ra Y$ be a morphism of schemes. Consider $Z$ a scheme over $Y$ and a closed immersion $i:Z_{\ideal{I}}\ra Z$ of schemes determined by the ideal $\ideal{I}\subseteq \cO_Z$ such that $\ideal{I}^2 = 0$. Fix a morphism $u:Z_{\ideal{I}}\ra X$. Let $\cG = i_* \shHom_{\cO_{Z_{\ideal{I}}}}(u^*\Omega_{X/Y},\ideal{I})$ be a sheaf of abelian goups on $Z$. Then there exists a structure of a $\cG$-pseudo-torsor on the sheaf of local infinitesimal liftings corresponding for $(u,i,f)$.  
+\end{theorem}
+\begin{proof}
+We denote by $\cP$ the sheaf of local infinitesimal liftings for $(u,i,f)$. Suppose that $U\subseteq Z$, $V\subset X$ and $W\subset Y$  are open affine subsets such that $u(U)\subseteq V$ and $f(V)\subseteq W$. Write $\Spec C = U\subseteq Z$, $\ideal{I}(U)=\ideal{c}$ and $V = \Spec B$, $W = \Spec A$. Then we have
+$$\cP(U)\subseteq \Sch_W(U,V) = \Mor_A(B,C),\,\Omega_{V/W}=\widetilde{\Omega_{B/A}}$$
+and $u$ is induced by some morphism $v:B\ra C/\ideal{c}$ of $A$-algebras. We also denote by $q:C\twoheadrightarrow C/\ideal{c}$ the canonical surjection. Suppose now that $h_1,h_2:B\ra C$ correspond to sections of $\cP$ over $U$. Observe that the image of $d=h_1-h_2$ is contained in $\ideal{c}$. Consider $\ideal{c}$ as a $B$-module with structure induced by $v:B\ra C/\ideal{c}$. Then we have
+$$d(b_1b_2) = h_1(b_1b_2)-h_2(b_1b_2) = h_1(b_1)h_1(b_2)-h_2(b_1)h_2(b_2) =$$
+$$= h_1(b_1)(h_1(b_2)-h_2(b_2))+h_2(b_2)(h_1(b_1)-h_2(b_1))=v(b_1)d(b_2)-v(b_2)d(b_1)$$
+for $b_1,b_2\in B$. Hence $d:B\ra \ideal{c}$ is a derivation. Moreover, $d(a)=0$ for every $a$ in $A$. Therefore, $h_1-h_2$ can be uniquely interpreted as derivation $\bd{Der}_A(B,v_*\ideal{c})$. Conversely if $d\in \bd{Der}_A(B,v_*\ideal{c})$ is a derivation, then for some $h:B\ra C$ corresponding to a section $\cP$ over $U$ the sum $h+d:B\ra C$ also gives a section of $\cP$ over $U$. Indeed, for this we need only to verify multiplication preservance. Note that
+$$(h+d)(b_1b_2)=h(b_1)h(b_2)+v(b_1)d(b_2)+v(b_2)d(b_2)=$$
+$$= h(b_1)h(b_2)+h(b_1)d(b_2)+h(b_2)d(b_2)=(h(b_1)+d(b_1))(h(b_2)+d(b_2))$$
+for every $b_1,b_2\in B$. We proved that if $\cP(U)$ is nonempty, then there is a canonical action of $\bd{Der}_A(B,v_*\ideal{c})$ on $\cP(U)$ that is transitive and free. Since $$\bd{Der}_A(B,v_*\ideal{c})\cong \Hom_B(\Omega_{B/A},v_*\ideal{c})=\Hom_{C/\ideal{c}}(C/\ideal{c}\otimes_B\Omega_{B/A},\ideal{c})= i_*\shHom_{\cO_{Z_{\ideal{I}}}}(u^*\Omega_{X/Y},\ideal{I})(U)=\cG(U)$$
+we deduce that if $\cP(U)$ is nonempty, then we get a canonical structure of a transitive and free $\cG(U)$-set on $\cP(U)$. If $\cP(U)$ is empty for some $U$, then we pick a unique map $\cG(U)\times \cP(U)\ra \cP(U)$. This makes $\cP$ into a sheaf equipped with a $\cG$-action. By construction $\cP$ is a $\cG$-pseudo-torsor with respect to this structure.
+\end{proof}
+
+\section{Formally smooth and  formally unramified morphisms}
+
+\begin{definition}
+Let $f:X\ra Y$ be a morphism of schemes.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item $f$ is \textit{formally smooth} if for every affine scheme $Z$ over $Y$ and every closed immersion $i:Z_{\ideal{I}}\ra Z$ determined by the ideal $\ideal{I}\subseteq \cO_Z$ such that $\ideal{I}^2=0$ the map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor_Y(Z,X)&  &   \Mor_Y(Z_{\ideal{I}},X)                    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\Mor_Y(i,1_X)  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is surjective.
+\item $f$ is \textit{formally unramified}  if for every affine scheme $Z$ over $Y$ and every closed immersion $i:Z_{\ideal{I}}\ra Z$ determined by the ideal $\ideal{I}\subseteq \cO_Z$ such that $\ideal{I}^2=0$ the map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor_Y(Z,X)&  &   \Mor_Y(Z_{\ideal{I}},X)                    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\Mor_Y(i,1_X)  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is injective.
+\item $f$ is \textit{formally {\'e}tale} if it is formally smooth and formally unramified.
+\end{enumerate} 
+\end{definition}
+
+\begin{fact}\label{fact:open_immersions_are_formally_etale}
+Open immersions are formally {\'e}tale.
+\end{fact}
+\begin{proof}
+This is left to the reader.
+\end{proof}
+
+\begin{fact}\label{fact:extension_of_formally_smooth_and_unramified_for_nilpotent_ideals}
+Let $f:X\ra Y$ be a morphism of schemes. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item $f$ is formally smooth if and only if for every affine scheme $Z$ over $Y$ and every closed immersion $i:Z_{\ideal{I}}\ra Z$ determined by the nilpotent ideal $\ideal{I}\subseteq \cO_Z$ the map $\Mor_Y(i,1_X)$ is surjective.  
+\item $f$ is formally unramified if and only if for every affine scheme $Z$ over $Y$ and a closed immersion $i:Z_{\ideal{I}}\ra Z$ determined by the nilpotent ideal $\ideal{I}\subseteq \cO_Z$ the map $\Mor_Y(i,1_X)$ is injective.
+\end{enumerate} 
+\end{fact}
+\begin{proof}
+Suppose that $i:Z_{\ideal{I}}\ra Z$ is a closed immersion determined by the sheaf of ideals $\ideal{I}$ such that $\ideal{I}^n=0$. Then we denote by $Z_k = Z_{\ideal{I}^k}$ the closed subcheme of $Z$ determined by the ideal $\ideal{I}^k$. Let $i_k:Z_k\ra Z_{k+1}$ be the closed immersion induced by the inclusion $\ideal{I}^{k+1} \subseteq \ideal{I}^k$. Consider a map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \Mor_Y(Z_{k+1},X)&  &   \Mor_Y(Z_{k},X)                    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\Mor_Y(i_k,1_X)  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+Then
+$$\Mor_Y(i,1_X) = \Mor_Y(i_{n-1},1_X)\cdot ...\cdot \Mor_Y(i_{2},1_X)\cdot \Mor_Y(i_{1},1_X)$$
+Thus if $f$ is formally smooth (unramified), then $\Mor_Y(i,1_X)$ is surjective (injective).
+\end{proof}
+
+\begin{proposition}
+Formally smooth and formally unramified morphisms are closed under compositions and base change. Moreover, the class of formally unramified morphisms is local on the base and domain.
+\end{proposition}
+\begin{proof}
+The first part is an exercise in category theory. The second is a consequence of Fact \ref{fact:open_immersions_are_formally_etale}.
+\end{proof}
+
+\begin{proposition}
+Let $f:X\ra Y$ be a formally smooth morphism. Suppose that $U\subseteq X$ and $V\subseteq Y$ are open subsets such that $f(U)\subseteq V$. Then the morphism $U\ra V$ induced by $f$ is formally smooth.
+\end{proposition}
+\begin{proof}
+Since formally smooth morphisms are stable under base change, the morphism $f^{-1}(V)\ra V$ induced by $f$ is formally smooth. Moreover, $U \hookrightarrow X $ is formally {\'e}tale by Fact \ref{fact:open_immersions_are_formally_etale}. Thus $U\ra V$ as the composition of two formally smooth morphisms is formally smooth.
+\end{proof}
+
+\begin{proposition}\label{proposition:formally_smooth_morphisms_are_local_on_base_and_target}
+Class of formally smooth and locally of finite presentation morphisms is local on the base and target. 
+\end{proposition}
+\begin{proof}
+Suppose that $f:X\ra Y$ is a morphism locally of finite presentation. Assume that $X = \bigcup_{i\in I}U_i$ is an open cover such that $f_{\mid U_i}$ is formally smooth for every $i\in I$. Let $Z$ be an affine scheme over $Y$ and $i:Z_{\ideal{I}}\ra Z$ be a closed immersion determined by the ideal $\ideal{I}\subseteq \cO_Z$ such that $\ideal{I}^2=0$. Fix a morphism $u:Z_{\ideal{I}}\ra X$. Denote the sheaf of infinitesimal liftings corresponding to $(u,i,f)$ by $\cP$ and let $\cG=i_*\shHom_{\cO_Z}(u^*\Omega_{X/Y},\ideal{I})$ be a sheaf of abelian groups on $Z$. Then $\cP(U_i)$ is nonempty for every $i\in I$, since $f_{\mid U_i}$ is formally smooth. Therefore, $\cP$ admits a structure of a $\cG$-torsor by Theorem \ref{theorem:sheaf_of_infinitesimal_liftings_is_canonically_pseudo_torsor}. The fact that $f$ is locally of finite presentation implies that the sheaf $\Omega_{X/Y}$ is of finite presentation. Therefore, $\cG = i_*\shHom_{\cO_Z}(u^*\Omega_{X/Y},\ideal{I})$ is quasi-coherent on $Z$. $Z$ is affine and hence by Corollary \ref{corollary:torsors_over_quasi_coherent_modules_on_affine_schemes_are_trivial} the sheaf $\cP$ is the trivial $\cG$-torsor. In particular, there exists a global section of $\cP$. This means that there exists a global lift of $u$ to $Z$. This shows that morphisms which are formally smooth and locally of finite presentation are local on the domain. It is straightforward to see that this implies that they are local on the target.
+\end{proof}
+
+\section{Properties of formally smooth morphisms}
+
+\begin{theorem}\label{theorem:splitting_of_the_first_sequence_for_formally_smooth_morphisms}
+Suppose that $f:X\ra Y$ and $g:Y\ra Z$ are morphisms of schemes. If $f$ is formally smooth, then the differential sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{0 & f^*\Omega_{Y/Z}       &\Omega_{X/Z}& \Omega_{X/Y}&          0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is exact. Moreover, for every $x$ in $X$ there exists an open neighbourhod $U\subseteq X$ of $x$ such that the sequence is split exact on $U$.
+\end{theorem}
+\begin{proof}
+Observe that the question is local. Therefore, we may assume that all schemes occuring in the statement are affine. Assume further that we have a morphism of $A$-algebras $f:B\ra C$ such that $\Spec f:\Spec C\ra \Spec B$ is formally smooth. Our aim is to prove that the natural map:
+$$\bd{Der}_A(C,M)\ra \bd{Der}_A(B,f_*M)$$
+induced by $f$ is surjective for every $C$-module $M$. For this we define $C$-algebra $C\ltimes M$. The underlying $C$-module of $C\ltimes M$ is $C\oplus M$ and the multiplication is given by formula
+$$(c_1,m_1)\cdot (c_2,m_2)=(c_1c_2,c_2m_1+c_1m_2)$$
+Then the embedding $i:C\hookrightarrow  C\ltimes M$ of $C$ on the first summand of $C\oplus M$ induces $C$-algebra structure on $C\ltimes M$. Moreover, there exists a surjective morphism $q:C\ltimes M\ra C$ given by $q(c,m)=c$. Its kernel is a nilpotent ideal. A derivation $d \in \bd{Der}_A(B,f_*M)$ gives rise to a morphism $g:B\ra C\ltimes M$ given by $b\mapsto (f(b),d(b))$. Hence there exists a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  C   &       & \Spec C                  \\
+       \Spec C\ltimes M &       & \Spec B                  \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \Spec 1_C$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec q$} (m-2-1)
+(m-1-3) edge node[right] {$\Spec f$} (m-2-3)
+(m-2-1) edge node[below] {$\Spec g$} (m-2-3);
+\end{tikzpicture}
+\end{center}
+and since $\Spec f$ is formally smooth, there exists a morphism $s:C\ra C\ltimes M$ of $B$-algebras such that the diagram 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  C   &       & \Spec C                  \\
+       \Spec C\ltimes M &       & \Spec B                  \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \Spec 1_C$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec q$} (m-2-1)
+(m-1-3) edge node[right] {$\Spec f$} (m-2-3)
+(m-2-1) edge node[below] {$\Spec g$} (m-2-3);
+\path[densely dashed,->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below=7pt,right=2pt] {$ \Spec s $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is commutative. One can easily verify that the additive morphism $\pi_M\cdot s:C\ra M$ is an $A$-derivation of $C$ in $M$ such that $\pi_M\cdot s\cdot f = d$. This shows that the map
+$$\bd{Der}_A(C,M)\ra \bd{Der}_A(B,f_*M)$$
+induced by $f$ is surjective for every $C$-module $M$.
+\end{proof}
+
+\begin{theorem}\label{theorem:splitting of conormal sequence}
+Suppose that $f:X\ra Y$ is a morphism of schemes. Let $i:Z\ra X$ be a closed immersion of schemes such that $fi$ is formally smooth. Then the conormal sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{0 &  \cI_Z/\cI^2_Z       &i^*\Omega_{X/Y}& \Omega_{Z/Y}&          0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}  
+is exact. Moreover, for every $z$ in $Z$ there exists an open neighbourhood $U\subseteq Z$ of $z$ such that the sequence is split exact on $U$.
+\end{theorem}
+\begin{proof}
+Observe that the question is local. Therefore, we may assume that all schemes occuring in the statement are affine. Assume that we have $A$-algebra $B$ and an ideal $\ideal{b}\subseteq B$. Consider the surjection $w:B/\ideal{b}^2 \twoheadrightarrow B/\ideal{b}$ and suppose that $ B/\ideal{b}$ is formally smooth over $A$. Then we have a lift
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  B/\ideal{b}   &       & \Spec  B/\ideal{b}                  \\
+       \Spec B/\ideal{b}^2  &       &                   \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$1_{\Spec  B/\ideal{b}}$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec w $} (m-2-1);
+\path[densely dashed,->,line width=1.0pt]
+(m-2-1) edge node[below=7pt,right=2pt] {$ \Spec s $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+Next consider a diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  B/\ideal{b}   &       & \Spec  B/\ideal{b}^2                  \\
+       \Spec B/\ideal{b}^2  &       &                   \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\Spec  w$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec w $} (m-2-1);
+\path[densely dashed,->,line width=1.0pt]
+(m-2-1) edge node[below=7pt,right=2pt] {$  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+Let $\cP$ be the sheaf of local infinitesimal liftings for $\Spec w$ and the morphism $\Spec B/\ideal{b}\ra \Spec A$. Its global sections are presented in the diagram above by the dashed arrow. Then $1_{\Spec B/\ideal{b}^2}$ and $\Spec \left(s\cdot w\right)$ are global sections of $\cP$. Then $\cP$ is a $\cG$-torsor, where
+$$\cG=(\Spec w)^*\shHom_{\cO_{\Spec B/\ideal{b}^2}}((\Spec w)^*\Omega_{(\Spec  B/\ideal{b}^2)/\Spec A}, \widetilde{\ideal{b}/\ideal{b}^2})$$
+according to Theorem \ref{theorem:sheaf_of_infinitesimal_liftings_is_canonically_pseudo_torsor}. We have
+$$\cG(\Spec B/\ideal{b}^2)=\Hom_{B/\ideal{b}^2}(\Omega_{(B/\ideal{b}^2)/A},w_*\ideal{b}/\ideal{b}^2)=\bd{Der}_A(B/\ideal{b}^2,w_*\ideal{b}/\ideal{b}^2)$$
+Hence there exists an $A$-derivation $B/\ideal{b}^2\ra \ideal{b}/\ideal{b}^2$ given by $1_{B/\ideal{b}^2}-s \cdot w$. Let $q:B\twoheadrightarrow B/\ideal{b}^2$ be the canonical surjection and define $d=(1_{B/\ideal{b}^2}-s\cdot w)\cdot q:B\ra \ideal{b}/\ideal{b}^2$. Thus $d\in \bd{Der}_A(B,w_*\ideal{b}/\ideal{b}^2)$. Since $d$ induces an identity on $\ideal{b}/\ideal{b}^2$, the corresponding morphism in $\Hom_C(C\otimes_B\Omega_{B/A},\ideal{b}/\ideal{b}^2)$ is a splitting for the sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \ideal{b}/\ideal{b}^2       &C\otimes_B\Omega_{B/A}& \Omega_{C/A}&          0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4);
+\end{tikzpicture}
+\end{center}  
+\end{proof}
+
+\begin{theorem}\label{theorem:if_conormal_sequence_is_split_exact_then_morphisms_is_formally_smooth}
+Suppose that $f:\Spec B\ra \Spec A$ is a formally smooth morphism. Let $\ideal{b} \subseteq B$ be an ideal and let $i:\Spec B/\ideal{b}\ra \Spec B$ be a closed immersion corresponding to this ideal. Suppose that the conormal sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \widetilde{\ideal{b}/\ideal{b}^2}       &i^*\Omega_{\Spec B/\Spec A}& \Omega_{\Spec (B/\ideal{b})/\Spec A}&          0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+is split exact. Then $f\cdot i$ is formally smooth.  
+\end{theorem}
+\begin{proof}
+Let $q:B\twoheadrightarrow B/\ideal{b}$ be a surjection giving $i$ and denote by $w:B/\ideal{b}^2\twoheadrightarrow B/\ideal{b}$ the canonical surjection. Since the conormal sequence in the statement splits, we have an $A$-derivation $d:B\ra w_*\ideal{b}/\ideal{b}^2$ that induces the identity on $\ideal{b}/\ideal{b}^2$. There exists an $A$-derivation $\delta:B/\ideal{b}^2\ra w_*\ideal{b}/\ideal{b}^2$ induced by $d$. Consider the extension problem
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  B/\ideal{b}   &       & \Spec  B/\ideal{b}^2                  \\
+       \Spec B/\ideal{b}^2  &       &                   \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$\Spec  w$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec w $} (m-2-1);
+\path[densely dashed,->,line width=1.0pt]
+(m-2-1) edge node[below=7pt,right=2pt] {$  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+and suppose that $\cP$ is the sheaf of local infinitesimal liftings corresponding to $\Spec w$. Then $1_{\Spec B/\ideal{b}^2} \in \cP(\Spec B/\ideal{b}^2)$ and again $\cP$ is a torsor for
+$$\cG = (\Spec w)^*\shHom_{\cO_{\Spec B/\ideal{b}^2}}((\Spec w)^*\Omega_{(\Spec  B/\ideal{b}^2)/\Spec A}, \widetilde{\ideal{b}/\ideal{b}^2})$$
+by Theorem \ref{theorem:sheaf_of_infinitesimal_liftings_is_canonically_pseudo_torsor}. According the fact that
+$$\cG(\Spec B/\ideal{b}^2)=\bd{Der}_A(B/\ideal{b}^2,w_*\ideal{b}/\ideal{b}^2)$$
+we deduce that $h:B/\ideal{b}^2\ra B/\ideal{b}^2$ given by $1_{B/\ideal{b}^2}-\delta$ is in $\cP(\Spec B/\ideal{b}^2)$. Then  $h$ admits a factorization $h = s\cdot w$ for some morphism $s:B/\ideal{b}\ra B/\ideal{b}^2$. Moreover, $w = w\cdot h = w\cdot s\cdot w$ and $w$ is surjective. Hence $1_{B/\ideal{b}} = w \cdot s$. Now we are ready to prove that $f\cdot i$ is formally smooth. Consider a diagram of $A$-algebras
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{    \Spec  R/\ideal{I}   &       & \Spec B/\ideal{b}                  \\  
+                          &       & \Spec B              \\
+       \Spec R            &       & \Spec A                   \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[right] {$ \Spec q $} (m-2-3)
+(m-1-1) edge node[above] {$  $} (m-1-3)
+(m-1-1) edge node[left]  {$ j $} (m-3-1)
+(m-3-1) edge node[below] {$  $} (m-3-3)
+(m-2-3) edge node[right] {$\Spec f  $} (m-3-3);
+\path[densely dashed,->,line width=1.0pt,font=\scriptsize]
+(m-3-1) edge node[above=4pt, left=1pt] {$ \Spec g $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+where $j:\Spec R/\ideal{I}\ra \Spec R$ is a closed immersion and $\ideal{I}^2=0$. Since $B$ is formally smooth over $A$, we have an extension $\Spec g$ for some $g:B\ra R$. Clearly $g(\ideal{b})\subseteq \ideal{I}$. Thus we can write a diagram:
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{    \Spec  R/\ideal{I}   &       & \Spec  B/\ideal{b}                  \\  
+                                    &       &    \Spec B/\ideal{b}^2               \\
+       \Spec R            &       & \Spec A                   \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[right] {$\Spec w$} (m-2-3)
+(m-1-1) edge node[above] {$ $} (m-1-3)
+(m-1-1) edge node[left] {$j $} (m-3-1)
+(m-3-1) edge node[below=7pt,right=2pt] {$ \Spec \ol{g} $} (m-2-3)
+(m-3-1) edge node[below] {$  $} (m-3-3)
+(m-2-3) edge node[right] {$  $} (m-3-3);
+\path[densely dashed,->,line width=1.0pt]
+(m-3-1) edge node[below=7pt,right=2pt] {$  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where $\Spec \ol{g}$ is a morphism induced by $g$ and the dashed arrow is $\Spec (\ol{g}\cdot s)$. Thus the upper-left triangle commutes and this shows that $f\cdot i:\Spec B/\ideal{b}\ra \Spec A$ is formally smooth. 
+\end{proof}
+
+\section{Properties of formally unramified morphisms}
+
+\begin{theorem}\label{theorem:characterization_of_formally_unramified_morphisms_in_terms_of_differentials}
+Suppose that $f:X\ra Y$ is a morphism of schemes. Then $f$ is formally unramified if and only if $\Omega_{X/Y}=0$.
+\end{theorem}
+\begin{proof}
+The question is local on base and domain. Thus we may assume that $X=\Spec B$, $Y=\Spec A$ and $f=\Spec g$ for some morphism of rings $g:A\ra B$.\\
+Suppose that $f$ is formally unramified. Let $M$ be a $B$-module. Consider an $A$-derivation $d:B\ra M$ and suppose that $s:B\ra B \ltimes M$ is a morphism given by $s(b)=(b,0)$. We have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  B   &       & \Spec B               \\
+       \Spec B\ltimes M &       & \Spec A                  \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \Spec 1_B$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec q$} (m-2-1)
+(m-1-3) edge node[right] {$\Spec g$} (m-2-3)
+(m-2-1) edge node[below] {$ $} (m-2-3);
+\path[densely dashed,->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below=7pt,right=2pt] {$ \Spec s $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+in which $q: B\ltimes M \twoheadrightarrow B$ is the quotient morphism. Similarly we have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  B   &       & \Spec B               \\
+       \Spec B\ltimes M &       & \Spec A                  \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \Spec 1_B$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec q$} (m-2-1)
+(m-1-3) edge node[right] {$\Spec g$} (m-2-3)
+(m-2-1) edge node[below] {$ $} (m-2-3);
+\path[densely dashed,->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below=7pt,right=2pt] {$ \Spec \tilde{s} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+where $\tilde{s}(b)=(b,db)$. Since $f$ is formally unramified, we derive that $s = \tilde{s}$ and hence $d = 0$. Thus $\bd{Der}_A(B,M)=0$ for every $B$-module $M$. This shows that $$\Omega_{\Spec B/\Spec A}= \Omega_{B/A} = 0$$
+Suppose now that $\Omega_{\Spec B/\Spec A}$ is zero. Let $C$ be an $A$-algebra and $\ideal{c}\subseteq C$ be an ideal such that $\ideal{c}^2=0$. Assume that we have morphisms $h:B\ra C/\ideal{c}$, $s_1,s_2:B\ra C$ of $A$-algebras such that diagrams
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     \Spec  C/\ideal{c}  &       & \Spec B               \\
+       \Spec C &       & \Spec A                  \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ \Spec h$} (m-1-3)
+(m-1-1) edge node[left] {$\Spec q$} (m-2-1)
+(m-1-3) edge node[right] {$\Spec g$} (m-2-3)
+(m-2-1) edge node[below] {$ $} (m-2-3);
+\path[densely dashed,->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below=7pt,right=2pt] {$ \Spec s_i$} (m-1-3);
+\end{tikzpicture}
+\end{center}
+are commutative for $i=1,2$. Then $d=s_1-s_2$ is a derivation in $\bd{Der}_A(B,h_*\ideal{c})$. Since
+$$\Omega_{B/A} = \Omega_{\Spec B/\Spec A}=0$$
+we derive that $d=0$. Thus $s_1=s_2$. This shows that $f$ is formally unramified.
+\end{proof}
+
+\begin{corollary}\label{corollary:reformulation_of_characterization_of_formally_unramified_in_terms_of_differentials}
+Let $f:X\ra Y$ and $g:Y\ra Z$ be morphisms of schemes. Then $f$ is formally unramified if and only if the morphism:
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{      f^*\Omega_{Y/Z}& \Omega_{X/Z}                   \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is an epimorphism.
+\end{corollary}
+
+\section{Case of the field and Cohen's theorem in equicharacteristic case}
+
+\begin{proposition}\label{proposition:separable_field_extensions_are_formally_smooth}
+Let $k$ be a field and $K$ be its separable extension. Then $K$ is formally smooth $k$-algebra.
+\end{proposition}
+\begin{proof}
+First write $K = \mathrm{colim}_{i\in I}K_i$, where $K_i$ are finitely generated over $k$ and $I$ is a directed set. Since $K$ is separable over $k$, by {\cite[Theorem 4.3]{Topics_in_fields}} each $K_i$ admits separating trancendence basis over $k$. It is easy to verify that fields with separating transcendence basis over $k$ are formally smooth as $k$-algebras. Let
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \ideal{a}_i   &k[K_i]& K_i            \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2);
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-2) edge node[auto] {$q_i $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+be the functorial presentation of $K_i$ i.e. $k[K_i]$ is a free $k$-algebra on the set $K_i$, $q_i(x)=x$ for every $x$ in $K_i$ and $\Ker(q_i)=\ideal{a}_i$. Similarly we can write the functorial presentation for $K$
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \ideal{a}   &k[K]& K           \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2);
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-2) edge node[auto] {$q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+Now it is easy to verify that the conormal sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \ideal{a}/\ideal{a}^2   &K\otimes _k\Omega_{k[K]/k}& \Omega_{K/k} & 0            \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+is a colimit over $i\in I$ of conormal sequences
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ \ideal{a}_i/\ideal{a}^2_i   &K_i\otimes _k\Omega_{k[K_i]/k}& \Omega_{K_i/k} & 0            \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+For every $i\in I$ conormal sequences for $q_i:k[K_i] \twoheadrightarrow K_i$ are exact. Hence the conormal sequence for $q:k[K]\twoheadrightarrow K$ is exact. It is then split exact as a short exact sequence of vector spaces over $K$. By Theorem \ref{theorem:if_conormal_sequence_is_split_exact_then_morphisms_is_formally_smooth} we deduce that $K$ is formally smooth algebra over $k$.
+\end{proof}
+
+\begin{theorem}[Cohen's structure theorem in equicharacteristic case]\label{theorem:Cohens_structure_theorem}
+Let $(A,\ideal{m},K)$ be a local noetherian ring over a field $k$. Then the following are equivalent:
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item The completion $\hat{A}$ of $A$ in $\ideal{m}$-adic topology is the algebra of formal power series over $K$. That is
+$$\hat{A}=K[[x_1,...,x_n]]$$
+\item $A$ is a regular local ring
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ is obvious according to the fact that:
+\begin{center}
+$\mathrm{gr}_{\ideal{m}}(A)\cong \mathrm{gr}_{\hat{\ideal{m}}}(\hat{A})=K[\ol{x}_1,...,\ol{x}_n]$
+\end{center}
+where $\ol{x}_1$,...,$\ol{x}_n$ are classes of $x_1,...,x_n$ in $\hat{\ideal{m}}/\hat{\ideal{m}}^2$.\\
+Suppose that $\textbf{(ii)}$ holds. Using similar argument as above we derive that $(\hat{A},\hat{m})$ is a regular local $k$-algebra. Without loss of generality we assume that $k$ is a prime field. Then $k$ is perfect and $K$ is separable over $k$ by Proposition \ref{proposition:separable_field_extensions_are_formally_smooth}. We have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{      K   &       & K                 \\
+       \hat{A}  &       & k                \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[above] {$1_{K}$} (m-1-1)
+(m-2-1) edge node[left] {$q$} (m-1-1)
+(m-1-3) edge node[above] {$$} (m-2-3)
+(m-2-1) edge node[left] {$$} (m-2-3);
+\path[densely dashed,->,line width=1.0pt]
+(m-1-3) edge node[below=7pt,right=2pt] {$s $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+Hence we obtain a section $s:K\ra\hat{A}$. In particular, $\hat{A}$ is a $K$-algebra. Now pick some system $y_1,...,y_n\in \hat{\ideal{m}}$ of parameters for $\hat{A}$. Fix a polynomial ring $K[x_1,...,x_n]$ and define the morphism of $K$-algebras $\theta:K[x_1,...,x_n]\ra \hat{A}$ by $\theta(x_i)=y_i$ for $1\leq i\leq n$. By the universal property of completion, we have a local morphism $\ol{\theta}:K[[x_1,...,x_n]]\ra \hat{A}$ of local $K$-algebras. Now this morphism induces an isomorphism on associated graded rings. Thus $\ol{\theta}$ is an isomorphism.
+\end{proof}
+
+\begin{theorem}\label{theorem:formally_smooth_noetherian_algebra_over_field_is_regular}
+Let $(A,\ideal{m})$ be local noetherian $k$-algebra. If $A$ is formally smooth over $k$, then $A$ is a regular local ring.
+\end{theorem}
+\begin{proof}
+Composition of formally smooth morphisms is formally smooth. Moreover, every field extension of prime field is formally smooth according to the fact that prime fields are perfect and by virtue of Proposition \ref{proposition:separable_field_extensions_are_formally_smooth}. Using this two properties we may assume that $k$ is a prime field. Let $K$ be the residue field of $A$ and $\hat{A}$ be its completion with respect to $\ideal{m}$-adic topology. Then $K$ is formally smooth over $k$ and we have a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{      K   &       & K                \\
+       \hat{A}  &       & k                 \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[above] {$1_{K}$} (m-1-1)
+(m-2-1) edge node[left] {$q$} (m-1-1)
+(m-1-3) edge node[above] {$ $} (m-2-3)
+(m-2-1) edge node[left] {$ $} (m-2-3);
+\path[densely dashed,->,line width=1.0pt]
+(m-1-3) edge node[below=7pt,right=2pt] {$s $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+Thus we obtain a section $s:K \ra \hat{A}$. Fix elements $x_1,..,x_n\in \ideal{m}$ that modulo $\ideal{m}^2$ form a basis of $\ideal{m}/\ideal{m}^2$ over $K$. Consider the ring of power series $B=K[[t_1,...,t_n]]$ over $K$ and denote by $\ideal{n}$ its unique maximal ideal $(t_1,...,t_n)$. Obviously $s$ induces an isomorphism $\phi:B/\ideal{n}^2\ra A/\ideal{m}^2$. Recall that $A$ was formally smooth over $k$. By this assumption we derive a commutative diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{      A/\ideal{m}^2   &       &  A                  \\
+      B  &       &   k                 \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[above] {$ $} (m-1-1)
+(m-2-1) edge node[left] {$p$} (m-1-1)
+(m-1-3) edge node[above] {$ $} (m-2-3)
+(m-2-1) edge node[left] {$ $} (m-2-3);
+\path[densely dashed,->,line width=1.0pt]
+(m-1-3) edge node[below=7pt,right=2pt] {$  \theta $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+In the diagram above $p$ is a surjective morphism given as the composition of the canonical morphism $p:B\ra B/\ideal{n}^2$ and $\phi$. Now $\theta$ is a local ring morphism. Since $B$ is complete with respect to $\ideal{n}$-adic topology, we deduce that there exists a morphism $\ol{\theta}:\hat{A}\ra B$ induced by $\theta$. Next the morphism $\mathrm{gr}_{\hat{\ideal{m}}}(\hat{A})\ra \mathrm{gr}_{\ideal{n}}(B)$ induced by $\ol{\theta}$ is a surjective morphism of graded $K$-algebras. Moreover, $\mathrm{gr}_{\hat{\ideal{m}}}(\hat{A})$ is generated by $n$-elements in its first gradation and $\mathrm{gr}_{\ideal{n}}(B)$ is a polynomial ring on $n$-variables in the first gradation. Thus we derive that $\ol{\theta}$ induces an isomorphism on associated graded rings. Hence it is an isomorphism by completness of $\hat{A}$ and $B$. Thus $\hat{A}$ is regular. By Theorem \ref{theorem:Cohens_structure_theorem} we infer that $A$ is regular.
+\end{proof}
+
+\begin{corollary}\label{corollary:over_field_formal_smoothness_is_separability}
+Let $k$ be a field and let $K$ be its extension. Then $K$ is formally smooth as a $k$-algebra if and only if $K$ is separable over $k$. 
+\end{corollary}
+\begin{proof}
+Suppose that $K$ is formally smooth over $k$. Let $k\subseteq k'$ be a finite extension contained in $k^{\frac{1}{p}}$. Then the base change $B=K\otimes_kk'$ is formally smooth $k'$-algebra. As it is finite over $K$ it is noetherian. Since $k'$ is purely inseparable over $k$, by {\cite[Proposition 3.2]{Topics_in_fields}} it has only one prime ideal. Thus it is formally smooth local noetherian algebra over some field. By Proposition \ref{theorem:formally_smooth_noetherian_algebra_over_field_is_regular} it is regular and in particular reduced. Since $K\otimes_kk^{\frac{1}{p}}$ is a colimit of its subalgebras of the form $K\otimes_kk'$, we derive that $K\otimes_kk^{\frac{1}{p}}$ is reduced. By {\cite[Theorem 4.3]{Topics_in_fields}} this implies that $K$ is separable over $k$.
+\end{proof}
+
+\begin{theorem}\label{theorem:characterization_of_formally_unramified_field_extensions}
+Let $k$ be a field and let $K$ its extension. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $K$ is formally unramified over $k$.
+\item $K$ is separable algebraic over $k$ if $\mathrm{char}(k)=0$ or $k(K^p)=K$ if $\mathrm{char}(k)=p>0$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Assume \textbf{(i)}. This is equivalent with $\Omega_{K/k}=0$.\\
+ Suppose that $\mathrm{char}(k)=0$, then every extension of $k$ has separating transcendence basis and image of this basis under universal derivation $d_{K/k}:K\ra \Omega_{K/k}$ will be the basis of $K$-vector space $\Omega_{K/k}$. Thus in this case $K$ must be algebraic over $k$. In characteristic zero every extension is separable. Thus $K$ is separable algebraic.\\ 
+Assume now that $\mathrm{char}(k)=p>0$. Fix $x\in K\setminus k(K^p)$ and let $L_x$ be the maximal subfield of $K$ containing $k(K^p)$ and not containing $x$. Then $L_x(x)=K$. Moreover, $x^p \in L_x$ and $x \not \in L_x$. Hence $\Omega_{K/L_x}=K\cdot dx$ and in particular there exists a derivation $d_x:K\ra K$ such that $d_x(x)=1$ and $d_x(L_x)=0$. This derivation is a nontrivial derivation of $K$ over $k$ due to the fact that $k\subseteq L_x$. This is a contradiction with $\Omega_{K/k}=0$.\\
+Suppose that \textbf{(ii)} holds. If $\mathrm{char}(k)=0$ and $K$ is separable algebraic, then $\Omega_{K/k}=0$ by easy computation and an argument involving colimit. If $\mathrm{char}(k)=p>0$, then $\Omega_{K/k} = \Omega_{K/k(K^p)}$ and since $\Omega_{K/k(K^p)} = 0$ as $K = k(K^p)$, we derive that $\Omega_{K/k}=0$.
+\end{proof}
+
+\begin{example}\label{example:formally_unramified_extension_of_fields_which_is_not_algebraic}
+Let $k$ be a field of characteristic $p>0$. Consider a variable $x$ and an infinite tower
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     k(x)   &  k(x^{\frac{1}{p}})     &  ... & k(x^{\frac{1}{p^n}}) & k(x^{\frac{1}{p^{n+1}}}) & ...                  \\};
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ $} (m-1-2)
+(m-1-2) edge node[above] {$ $} (m-1-3)
+(m-1-3) edge node[above] {$ $} (m-1-4)
+(m-1-4) edge node[above] {$ $} (m-1-5)
+(m-1-5) edge node[above] {$ $} (m-1-6);
+\end{tikzpicture}
+\end{center}
+of rational function fields over $k$. Let $K$ be its colimit. Then $K = k(K^p)$ and hence by Theorem \ref{theorem:characterization_of_formally_unramified_field_extensions} we derive that $K$ is formally unramified over $k$. On the other hand $K$ is neither algebraic nor separable extension of $k$. This shows that situation in positive characteristic is dramatically different from characteristic zero.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+
+
+\end{document}
