@@ -89,7 +89,7 @@ $$\pi:A[x_1,...,x_m]/(f_{j_1},...,f_{j_r}) \twoheadrightarrow A[x_1,...,x_m]/(f_
 Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item If $\Spec A[x_1,...,x_m]_{\ideal{q}}/(f_1,...,f_s)_{\ideal{q}} \ra \Spec A_{\ideal{p}}$ is formally smooth, then $\pi_{\ideal{q}}$ is an isomorphism.
-\item If $\pi_{\ideal{q}}$ is an isomorphism, then $\Spec A[x_1,...,x_m]/(f_1,...,f_s)\ra \Spec A$ is smooth of relative dimension $m-r$ at $\ideal{q}$.
+\item If $\pi_{\ideal{q}}$ is an isomorphism, then $\Spec A[x_1,...,x_m]/(f_1,...,f_s)\ra \Spec A$ is smooth of relative dimension $m-r$ at $\ideal{q}$ reduced modulo $f_1,...,f_s$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -137,7 +137,7 @@ in which rows are conormal sequences of $A[x_1,...,x_m]_{\ideal{q}}\twoheadright
 According to the choice of $f_{j_1},...,f_{j_r}$, we derive that
 $$\mathrm{dim}_{k(\ideal{q})}\big(k(\ideal{q})\otimes_{B_{\ideal{q}}}\Omega_{B_\ideal{q}/A_{\ideal{p}}}\big) = m - r = \mathrm{dim}_{k(\ideal{q})}\big(k(\ideal{q})\otimes_{C_{\ideal{q}}}\Omega_{C_{\ideal{q}}/A_{\ideal{p}}}\big)$$
 In particular, the rightmost vertical morphism in the diagram is an epimorphism of vector spaces over $k(\ideal{q})$ of the same finite dimension. Thus it is an isomorphism. This implies that the leftmost morphism in the diagram is an isomorphism. Thus by virtue of Nakayama lemma $\ideal{c}_{\ideal{q}}/\ideal{c}^2_{\ideal{q}}\ra \ideal{b}_{\ideal{q}}/\ideal{b}^2_{\ideal{q}}$ is an epimorphism. Using Nakayama lemma once more we deduce that $\ideal{c}_{\ideal{q}} \hookrightarrow \ideal{b}_{\ideal{q}}$ is an epimorphism and thus $\ideal{c}_{\ideal{q}} = \ideal{b}_{\ideal{q}}$. Hence $\pi_{\ideal{q}}$ is an isomorphism and the proof of \textbf{(1)} is completed.\\
-On the other hand if $\pi_{\ideal{q}}$ is an isomorphism, then $\Ker(\pi)$ is a finitely generated ideal in $C$ that vanishes at $\ideal{q}$. Hence it vanishes on some open neighborhood of $\ideal{q}$ in $\Spec C$ and thus $\Spec \pi$ is an isomorphism on that neighborhood. Thus $\Spec B\ra \Spec A$ is smooth of relative dimension $m-r$ at $\ideal{q}$ and \textbf{(2)} is proved.
+On the other hand if $\pi_{\ideal{q}}$ is an isomorphism, then $\Ker(\pi)$ is a finitely generated ideal in $C$ that vanishes at $\ideal{q}$ modulo $f_{j_1},...,f_{j_r}$. Hence it vanishes on some open neighborhood of $\ideal{q}$ modulo $f_{j_1},...,f_{j_r}$ in $\Spec C$ and thus $\Spec \pi$ is an isomorphism on that neighborhood. Thus $\Spec B\ra \Spec A$ is smooth of relative dimension $m-r$ at $\ideal{q}$ reduced modulo $f_1,...,f_s$ and \textbf{(2)} is proved.
 \end{proof}
 
 \begin{corollary}\label{corollary:characterization_of_smoothness_in_terms_of_formal_smoothness_and_locally_finite_presentation}
@@ -398,6 +398,80 @@ Now according to Lemma \ref{lemma:inequality_of_dimensions} we have
 $$ \mathrm{dim}_x(X) = \mathrm{dim}_{\ol{x}}\big(X_K\big) \leq \mathrm{dim}_{k(\ol{x})}\big(k(\ol{x})\otimes_{\cO_{X_K,\ol{x}}}\Omega_{\cO_{X_K,\ol{x}}/K}\big) = \mathrm{dim}_{k(x)}\big(k(x)\otimes_{\cO_{X,x}}\Omega_{\cO_{X,x}/k}\big)$$
 and the equality holds if and only if $\cO_{X_K,\ol{x}}$ is regular. Thus by Lemma \ref{lemma:for_perfect_fields_regular_implies_smooth} the equality holds if and only if $X_K$ is smooth at $\ol{x}$, but this according to  Proposition \ref{proposition:smooth_morphisms_are_closed_under_base_change_and_composition} and Theorem \ref{theorem:faithfuly_flat_descent_for_smooth_morphisms} is equivalent with smoothness of $X$ at $x$. The proof is complete.
 \end{proof}
+
+\begin{corollary}\label{corollary:relative_smooth_dimension_is_local_dimension}
+Let $X$ be a scheme locally of finite type over a field $k$. Suppose that $X$ is smooth of relative dimension $n$ at some point $x$. Then $\mathrm{dim}_x(X)=n$.
+\end{corollary}
+\begin{proof}
+According to Corollary \ref{corollary:smooth_locuses_are_open} and Theorem \ref{theorem:main_result_concerning_smoothness_over_a_field} we have
+$$n = \mathrm{dim}_{k(x)}\big(k(x)\otimes_{\cO_{X,x}}\Omega_{\cO_{X,x}/k}\big) = \mathrm{dim}_x(X)$$
+\end{proof}
+
+\section{Fiberwise and formal criterions for smoothness}
+
+\begin{theorem}
+Let $f:X\ra Y$ be a morphism of schemes and let $x$ be a point in $X$. Suppose that there exists a neighborhood $U$ of $x$ such that $f_{\mid U}$ is locally of finite presentation. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $f$ is smooth at $x$.
+\item $f$ is flat at $x$ and the fiber $X_{f(x)}$ is smooth at $x$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We will prove that $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Since smoothness is stable under base change, we derive that fiber of $X_{f(x)}$ is smooth. It suffices to prove that $f$ is flat at $x$. This question is local on base and domain. Hence we may assume that $Y$ is affine and $X$ is a closed subscheme of $\mathbb{A}^{n+r}_Y$ determined by ideal generated by polynomials $f_1,...,f_r\in \Gamma(Y,\cO_Y)[x_1,...,x_{n+r}]$ such that the jacobian matrix
+$$\frac{\partial(f_1,...,f_r)}{\partial(x_1,...,x_{n+r})}= \left( \begin{array}{ccc}
+\frac{\partial f_1}{\partial x_1} & ... & \frac{\partial f_1}{\partial x_{n+r}} \\
+... &...  &...  \\
+\frac{\partial f_r}{\partial x_{1}} &...  & \frac{\partial f_r}{\partial x_{n+r}}\end{array} \right)$$
+of rank $r$ at $x$. Consider the set of all nonzero coefficients of polynomials $f_1,...,f_r$ and define $A \subseteq \Gamma(Y,\cO_Y)$ as the $\ZZ$-subalgebra generated by all these coefficients. We define $Y = \Spec A$. Note that polynomials $f_1,...,f_r$ have coefficients in $A$ and hence we can define $X_0$ as a closed subscheme of $\mathbb{A}^{n+r}_{Y_0}$ determined by the ideal generated by $f_1,...,f_r$. Obviously all these can be organized in the following cartesian diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{  X & X_0 \\
+   Y & Y_0 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[auto] {$ g' $} (m-1-2)
+(m-2-1) edge node[below] {$ g $} (m-2-2)
+(m-1-1) edge node[left] {$ f $} (m-2-1)
+(m-1-2) edge node[right] {$ f_0 $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $f_0:X_0\ra Y_0$ is the canonical morphism. Next we define $x_0 = g'(x)$ in $X_0$. It is straightforward to verify that rank of the matrix
+\begin{center}
+\[ \frac{\partial(f_1,...,f_r)}{\partial(x_1,...,x_{n+r})}= \left( \begin{array}{ccc}
+\frac{\partial f_1}{\partial x_1} & ... & \frac{\partial f_1}{\partial x_{n+r}} \\
+... &...  &...  \\
+\frac{\partial f_r}{\partial x_{1}} &...  & \frac{\partial f_r}{\partial x_{n+r}}\end{array} \right)\]
+\end{center}
+in $x_0$ is the same as its rank in $x$. Hence $f_0$ is smooth at $x_0$. Thus it suffices to prove that $f_0$ is flat at $x_0$. Note that $Y_0$ is noetherian. Therefore, without loss of generality we may assume that $Y$ is noetherian. Let $f(x) = y$ and $h:\mathbb{A}^{n+r}_{k(y)} \hookrightarrow \mathbb{A}^{n+r}_Y$ be the canonical monomorphism. Let $\ol{x} = h(x)$ and $\ol{f}_1=h^{\#}(f_1)$,...,$\ol{f}_r=h^{\#}(f_r)$. Note that the closed subscheme $V(f_1,...,f_i)$ of $\mathbb{A}^{n+r}_Y$ determined by the ideal generated by $f_1,...,f_i$ is smooth of relative dimension $n+r-i$ at $x$ and consequently the closed subscheme $V(\ol{f}_1,...,\ol{f}_i)$ of $\mathbb{A}^{n+r}_{k(y)}$ determined by the ideal generated by $\ol{f}_1,...,\ol{f}_i$ is smooth of relative dimension $n+r-i$ at $\ol{x}$. According to Theorem \ref{theorem:main_result_concerning_smoothness_over_a_field} local ring $\cO_{V(\ol{f}_1,...,\ol{f}_i),\ol{x}}$ is regular. This shows that $\ol{f}_1$,...,$\ol{f}_r$ is a regular sequence in $\cO_{\mathbb{A}^{n+r}_{k(y)},\ol{x}}$. Define finitely generated $\cO_{\mathbb{A}^{n+r}_{Y},x}$-modules
+$$C_i=\begin{cases} 
+\cO_{\mathbb{A}^{n+r}_{Y},x} &\mbox{if } i=0\\
+\cO_{V(f_1,...,f_i),x} &\mbox{if } i>0
+\end{cases}$$
+for $0\leq i\leq r$. Then $C_0$ is flat $\cO_{\mathbb{A}^{n+r}_{Y},x}$-module and for every $0\leq i\leq r-1$ multiplication by the germ of $f_{i+1}$ on $C_i$ is a monomorphism after reduction to $k(x)$. By {\cite[Corollary 3.5]{Flatnessingeometry}} if $M$, $N$ are finitely generated $\cO_{\mathbb{A}^{n+r}_{Y},x}$-modules, $N$ is a flat $\cO_{\mathbb{A}^{n+r}_{Y},x}$-module and $\phi:M\ra N$ is $\cO_{\mathbb{A}^{n+r}_{Y},x}$-module morphism such that $\phi\otimes_{\cO_{\mathbb{A}^{n+r}_{Y},x}}1_{k(x)}$ is a monomorphism, then $\phi$ is a monomorphism and $N/\phi(M)$ is flat $\cO_{\mathbb{A}^{n+r}_{Y},x}$-module. Applying this fact we deduce that $C_i$ are flat $\cO_{\mathbb{A}^{n+r}_{Y},x}$-modules for $0\leq i\leq r$ and the germ of $f_{i+1}$ is a nonzero divisor in $C_i$ for $0\leq i\leq r-1$. In particular, $C_r = \cO_{X,x}$ is a flat $\cO_{\mathbb{A}^{n+r}_{Y},x}$-module. Thus $f$ is flat at $x$. \\
+Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. We assume \textbf{(ii)} and want to deduce \textbf{(i)}. Again the question is local both on target and domain.  As above we may assume that $Y$ is affine and $X$ is a closed subscheme of $\mathbb{A}^{m}_Y$ determined by ideal generated by polynomials $f_1,...,f_s\in \Gamma(Y,\cO_Y)[x_1,...,x_{m}]$. Denote $y = f(x)$. Next let $r$ be the rank of the Jacobian matrix
+$$\frac{\partial(f_1,...,f_k)}{\partial(x_1,...,x_{m})}= \left( \begin{array}{ccc}
+\frac{\partial f_1}{\partial x_1} & ... & \frac{\partial f_1}{\partial x_{m}} \\
+... &...  &...  \\
+\frac{\partial f_k}{\partial x_{1}} &...  & \frac{\partial f_k}{\partial x_{m}}\end{array} \right)$$
+at $x$. Let $j_1,...,j_r$ be numbers of rows of that matrix which are linearly independent over $k(x)$. Next we define $Z$ as a closed subscheme of $\mathbb{A}^m_Y$ determined by the ideal generated by $f_{j_1},...,f_{j_r}$. In particular, $Z\ra Y$ is smooth at $x$. We also have the canonical closed immersion $u:X\hookrightarrow Z$. We show that $u^{\#}:\cO_{Z,x} \twoheadrightarrow \cO_{X,x} $ is an isomorphism. By assumption $X_{y}$ is smooth at $x$. Thus Proposition \ref{proposition:jacobian_criterion} implies that $u^{\#}\otimes_{\cO_{Y,y}}1_{k(y)}$ is an isomorphism. Since $\cO_{X,x}$ is flat $\cO_{Y,y}$-module, the exact sequence
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{0& \Ker(u^{\#})       & \cO_{Z,x} & \cO_{X,x}&          0             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-1-2) edge node[auto] {$ $} (m-1-3)
+(m-1-3) edge node[auto] {$ u^{\#} $} (m-1-4)
+(m-1-4) edge node[auto] {$ $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+remains exact after tensoring with $k(y)$ over $\cO_{Y,y}$. Thus $\Ker(u^{\#})\otimes_{\cO_{Y,y}}k(y) = 0$ which means that
+$$\ideal{m}_y\cdot \Ker(u^{\#}) =\Ker(u^{\#})$$
+Note that $\Ker(u^{\#})$ is generated by the germs of $f_j$ at $x$ for $j\neq j_1,...,j_r$. Hence $\Ker(u^{\#})$ is a finitely generated module over $\cO_{Z,x}$. Moreover, $\ideal{m}_y\cdot \cO_{Z,x}$ is contained in the Jacobson radical of $\cO_{Z,x}$. We infer by Nakayama lemma that $\Ker(u^{\#}) = 0$. Thus $u^{\#}$ is an isomorphism of $\cO_{Y,y}$-algebras. By Proposition \ref{proposition:jacobian_criterion} we derive that $f:X\ra Y$ is smooth at $x$.
+\end{proof}
+
 
 \small
 \bibliographystyle{apalike}
