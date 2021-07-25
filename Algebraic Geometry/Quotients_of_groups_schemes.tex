@@ -1,0 +1,130 @@
+\input ../pree
+
+\begin{document}
+
+\title{}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+Throughout this notes $k$ denote a field and $\bd{G}$ denote a group scheme over $k$. We also fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
+
+\section{Categorical and geometric quotients}
+
+\begin{definition}
+Let $q:X\ra Y$ be a morphism of $k$-schemes such that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\bd{G}\times_kX &  X & Y\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a cokernel in the category of $k$-schemes. Then $q:X\ra Y$ is \textit{a categorical quotient of $X$}.
+\end{definition}
+
+\begin{definition}
+Consider a cokernel  
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\bd{G}\times_kX &  X & Y\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+in the category of locally ringed spaces over $k$. If $Y$ is a scheme, then $q:X\ra Y$ is \textit{a geometric quotient of $X$}.
+\end{definition}
+
+\begin{fact}\label{fact:geometric_quotients_are_categorical}
+Every geometric quotient is categorical.
+\end{fact}
+\begin{proof}
+Categorical quotient is a cokernel in the category of $k$-schemes. On the other hand geometric quotient is a cokernel in the category of locally ringed spaces and hence it also satisfies cokernel property in its full subcategory of $k$-schemes. Thus every geometric quotient is categorical.
+\end{proof}
+
+\begin{corollary}\label{corollary:geometric_quotients_are_cokernels_in_ringed_spaces}
+Let $q:X\ra Y$ be a morphism of schemes. The following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item The diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_kX &  X &  Y \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a cokernel diagram of underlying topological spaces and the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_Y & q_*\cO_X & q_*\left(\mathrm{pr}_X\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*a^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_X^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a kernel diagram in the category of sheaves on $Y$.
+\item $q$ is a geometric quotient of $X$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+This is a consequence of {\cite[Theorem 2.9]{LocallyRingedSpaces}}.
+\end{proof}
+\noindent
+Let $q:X\ra Y$ be a morphism of $k$-schemes such that $q\cdot \mathrm{pr}_X = q\cdot a$. For a morphism $g:Y'\ra Y$ of $k$-schemes consider the cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ X' &    X                           \\
+    Y' &   Y                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ g'$} (m-1-2)
+(m-2-1) edge node[below] {$ g$} (m-2-2)
+(m-1-1) edge node[left] {$f' $} (m-2-1)
+(m-1-2) edge node[auto] {$ f$} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+Then there exists a unique action $a':\bd{G} \times_kX' \ra X'$ of $\bd{G}$ on $X'$ such that the square above consists of $\bd{G}$-equivariant morphism (we consider $Y,Y'$ as $\bd{G}$-schemes equipped with trivial $\bd{G}$-actions). Keeping this in mind we have the following.
+
+\begin{definition}
+A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
+\end{definition}
+    
+\section{Types of actions and criterion for smoothness of universal geometric quotients}
+
+\begin{definition}
+The action of $\bd{G}$ on $X$ is
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item \textit{separated} if the morphism $(a, \mathrm{pr_X}):\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image,
+\item \textit{free} if the morphism $(a, \mathrm{pr_X}):\bd{G}\times_kX\ra X\times_kX$ is a closed immersion.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}\label{theorem:separatedness_of_universal_categorical_quotients_of_separated_actions}
+Let $q:X\ra Y$ be a geometric quotient of $X$. If the action of $\bd{G}$ on $X$ is separated and $X$ is a separated $k$-scheme, then $Y$ is separated.
+\end{theorem}
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+    
+\end{document}
