@@ -103,24 +103,108 @@ Let $q:X\ra Y$ be a morphism of $k$-schemes such that $q\cdot \mathrm{pr}_X = q\
 Then there exists a unique action $a':\bd{G} \times_kX' \ra X'$ of $\bd{G}$ on $X'$ such that the square above consists of $\bd{G}$-equivariant morphism (we consider $Y,Y'$ as $\bd{G}$-schemes equipped with trivial $\bd{G}$-actions). Keeping this in mind we have the following.
 
 \begin{definition}
+A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $X$} if for every flat morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
+\end{definition}
+
+\begin{definition}
 A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
     
 \section{Types of actions and criterion for smoothness of universal geometric quotients}
 
 \begin{definition}
-The action of $\bd{G}$ on $X$ is
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
-\item \textit{separated} if the morphism $(a, \mathrm{pr_X}):\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image,
-\item \textit{free} if the morphism $(a, \mathrm{pr_X}):\bd{G}\times_kX\ra X\times_kX$ is a closed immersion.
-\end{enumerate}
+The action of $\bd{G}$ on $X$ is \textit{separated} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image.
 \end{definition}
 
 \begin{theorem}\label{theorem:separatedness_of_universal_categorical_quotients_of_separated_actions}
-Let $q:X\ra Y$ be a geometric quotient of $X$. If the action of $\bd{G}$ on $X$ is separated and $X$ is a separated $k$-scheme, then $Y$ is separated.
+Let $q:X\ra Y$ be a geometric quotient of $X$. Assume that $q$ is universally submersive. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item The action of $\bd{G}$ on $X$ is separated.
+\item $Y$ is separated.
+\end{enumerate}
 \end{theorem}
+\begin{proof}
+We have a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ X\times_Y X &    X \times_k X                           \\
+    Y &   Y \times_k Y                 \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ $} (m-1-2)
+(m-2-1) edge node[below] {$\Delta_Y $} (m-2-2);
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[left] {$ $} (m-2-1)
+(m-1-2) edge node[auto] {$ q\times_k q$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+It follows that $X\times_YX\hookrightarrow X\times_kX$ is a locally closed immersion. Since $q$ is a geometric quotient, we derive  that $\langle a, \mathrm{pr}_X \rangle$ factors as a surjective morphism $\bd{G} \times_k X\twoheadrightarrow X\times_YX$ followed by the immersion $X\times_YX\hookrightarrow X\times_kX$. Thus the action of $\bd{G}$ on $X$ is separated if and only if $X\times_YX$ is a closed subscheme of $X\times_kX$. Since $q$ is universally submersive, we derive that $q\times_kq$ is submersive. As the square above is cartesian we derive that $\Delta_Y(Y) \subseteq Y\times_kY$ is closed if and only if $X\times_YX\subseteq X\times_kX$ is closed. Therefore, $Y$ is separated if and only if the action of $\bd{G}$ on $X$ is separated.
+\end{proof}
+\noindent
+The following result which concerns complete local rings is very useful.   
 
+\begin{definition}
+Let $x$ be a $k$-point of $X$. Suppose that the morphism $\bd{G}\ra X$ given by the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G} = \bd{G}\times_k\Spec k & & \bd{G}\times_kX & X                        \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\mathrm{induced\,by\,}x  $} (m-1-3);
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[auto] {$  $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+is a closed immersion. Then the action of $\bd{G}$ on $X$ has \textit{a closed free orbit at $x$}.
+\end{definition}
 
+\begin{proposition}
+Let $(A,\ideal{m},k)$ be a complete local noetherian $k$-algebra. Suppose that there exists a local morphism $\sigma:A\ra A[[x_1,...,x_n]]$ into a ring of formal power series over $A$. Assume that the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ A & A[[x_1,...,x_n]] & & & A                       \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ \sigma  $} (m-1-2)
+(m-1-2) edge node[auto] {$ f\mapsto f\,\mathrm{mod}\,(x_1,...,x_n)  $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is the identity and the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ A & A[[x_1,...,x_n]] & & \left(A/\ideal{m}\right)[[x_1,...,x_n]] = k[[x_1,...,x_n]]                      \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ \sigma  $} (m-1-2)
+(m-1-2) edge node[auto] {$ f\mapsto f\,\mathrm{mod}\,\ideal{m}  $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+is surjective. Consider elements $y_1,...,y_n$ of $A$ such that $\sigma(y_i)\,\mathrm{mod}\,\ideal{m} = x_i$ for $i=1,...,n$. Then the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ A & A[[x_1,...,x_n]] & & & \left(A/(y_1,...,y_n)\right)[[x_1,...,x_n]]                       \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ \sigma  $} (m-1-2)
+(m-1-2) edge node[auto] {$ f\mapsto f\,\mathrm{mod}\,(y_1,...,y_n)  $} (m-1-5);
+\end{tikzpicture}
+\end{center}
+is an isomorphism.
+\end{proposition}
+\begin{proof}
+For convienience let $\phi$ denote the morphism given by the rule $a\mapsto \sigma(a)\,\mathrm{mod}\,(y_1,...,y_n)$. According to assumptions we have
+$$\sigma(y_i) = x_i + y_i + \sum_{j=1}^nx_j\cdot \ideal{m}[[x_1,...,x_n]]$$
+for each $i$. Thus $\phi(y_i) = \sum_{j=1}^nf_{ij}\cdot x_j$
+where $f_{ij}\in A/(y_1,...,y_n)$ are elements such that 
+$$\mathrm{det}\big(\big[f_{ij}\big]_{1\leq i,j\leq n}\big)$$
+is invertible in $A/(y_1,...,y_n)$.
+    
+\end{proof}
 
 \small
 \bibliographystyle{apalike}
