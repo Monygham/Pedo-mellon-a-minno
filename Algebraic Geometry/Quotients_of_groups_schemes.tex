@@ -161,7 +161,7 @@ is a closed immersion. Then the action of $\bd{G}$ on $X$ has \textit{a closed f
 \end{definition}
 
 \begin{proposition}
-Let $(A,\ideal{m},k)$ be a complete local noetherian $k$-algebra. Suppose that there exists a local morphism $\sigma:A\ra A[[x_1,...,x_n]]$ into a ring of formal power series over $A$. Assume that the composition
+Let $(A,\ideal{m},k)$ be a complete local noetherian $k$-algebra and let $\sigma:A\ra A[[x_1,...,x_n]]$ be a local morphism into a ring of formal power series over $A$. Assume that the composition
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -200,10 +200,17 @@ is an isomorphism.
 For convienience let $\phi$ denote the morphism given by the rule $a\mapsto \sigma(a)\,\mathrm{mod}\,(y_1,...,y_n)$. According to assumptions we have
 $$\sigma(y_i) = x_i + y_i + \sum_{j=1}^nx_j\cdot \ideal{m}[[x_1,...,x_n]]$$
 for each $i$. Thus $\phi(y_i) = \sum_{j=1}^nf_{ij}\cdot x_j$
-where $f_{ij}\in A/(y_1,...,y_n)$ are elements such that 
-$$\mathrm{det}\big(\big[f_{ij}\big]_{1\leq i,j\leq n}\big)$$
-is invertible in $A/(y_1,...,y_n)$.
-    
+where $f_{ij}\in A/(y_1,...,y_n)$ are elements such that the matrix $\big[f_{ij}\big]_{1\leq i,j\leq n}$ is invertible in $A/(y_1,...,y_n)$. Hence
+$$\left(A/(y_1,...,y_n)\right)[[x_1,...,x_n]] = \left(A/(y_1,...,y_n)\right)[[\phi(y_1),...,\phi(y_n)]]$$
+and $\phi$ composed with $\left(A/(y_1,...,y_n)\right)[[\phi(y_1),...,\phi(y_n)]] \twoheadrightarrow A/\left(y_1,...,y_n\right)$ is the quotient morphism $A \twoheadrightarrow A/(y_1,...,y_n)$. From this observations we derive that $\phi$ is surjective. It remains to prove that it is injective. Consider $z$ in $A$ such that $\phi(z) = 0$. Suppose that $z \in (y_1,...,y_n)^m$ for some $m\in \NN$. Write
+$$z = \sum_{\alpha \in \Lambda}c_{\alpha}\cdot y_1^{\alpha_1}...y_n^{\alpha_n}$$
+for some $c_{\alpha}\in A$ where $\Lambda = \{\alpha \in \NN^n\,|\,\alpha_1+...+\alpha_n = m\}$. Hence
+$$0 = \phi(z) = \sum_{\alpha \in \Lambda}\phi(c_{\alpha})\cdot \phi(y_1)^{\alpha_1}...\phi(y_n)^{\alpha_n}$$
+Thus $\phi(c_{\alpha}) \in \left(\phi(y_1),...,\phi(y_n)\right)$ for every $\alpha \in \Lambda$. Since $\phi$ composed with $\left(A/(y_1,...,y_n)\right)[[\phi(y_1),...,\phi(y_n)]] \twoheadrightarrow A/\left(y_1,...,y_n\right)$ is the quotient morphism $A \twoheadrightarrow A/(y_1,...,y_n)$, we derive that 
+$$c_{\alpha}\,\mathrm{mod}\,(y_1,...,y_n) = \phi(c_{\alpha})\,\mathrm{mod}\,\left(\phi(y_1),...,\phi(y_n)\right) = 0$$
+for every $\alpha \in \Lambda$. Thus $c_{\alpha}\in (y_1,...,y_n)$ for every $\alpha \in \Lambda$, which implies that $z \in (y_1,...,y_n)^{m+1}$. Thus we proved that 
+$$\mbox{$\phi(z) = 0$ and $z \in (y_1,...,y_n)^m$}\,\Rightarrow\,z \in (y_1,...,y_n)^{m+1}$$
+By $\ideal{m}$-adic completeness of $A$ this implies that $\phi(z) = 0$ if and only if $z = 0$. Hence $\phi$ is also injective.
 \end{proof}
 
 \small
