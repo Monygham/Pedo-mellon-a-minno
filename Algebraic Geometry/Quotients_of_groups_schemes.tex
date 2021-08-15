@@ -110,7 +110,7 @@ A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $
 A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
     
-\section{Types of actions and criterion for smoothness of universal geometric quotients}
+\section{Types of actions and criteria for smoothness of quotients}
 
 \begin{definition}
 The action of $\bd{G}$ on $X$ is \textit{separated} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image.
@@ -141,11 +141,13 @@ We have a cartesian square
 \end{center}
 It follows that $X\times_YX\hookrightarrow X\times_kX$ is a locally closed immersion. Since $q$ is a geometric quotient, we derive  that $\langle a, \mathrm{pr}_X \rangle$ factors as a surjective morphism $\bd{G} \times_k X\twoheadrightarrow X\times_YX$ followed by the immersion $X\times_YX\hookrightarrow X\times_kX$. Thus the action of $\bd{G}$ on $X$ is separated if and only if $X\times_YX$ is a closed subscheme of $X\times_kX$. Since $q$ is universally submersive, we derive that $q\times_kq$ is submersive. As the square above is cartesian we derive that $\Delta_Y(Y) \subseteq Y\times_kY$ is closed if and only if $X\times_YX\subseteq X\times_kX$ is closed. Therefore, $Y$ is separated if and only if the action of $\bd{G}$ on $X$ is separated.
 \end{proof}
-\noindent
-The following result which concerns complete local rings is very useful.   
+   
+\begin{definition}
+The action of $\bd{G}$ on $X$ is \textit{free} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ is a closed immersion.
+\end{definition}
 
 \begin{definition}
-Let $x$ be a $k$-point of $X$. Suppose that the morphism $\bd{G}\ra X$ given by the composition
+Let $x$ be a $k$-point of $X$. Suppose that \textit{the orbit morphism $\bd{G}\ra X$ of $x$} given by the composition
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -160,13 +162,42 @@ Let $x$ be a $k$-point of $X$. Suppose that the morphism $\bd{G}\ra X$ given by 
 is a closed immersion. Then the action of $\bd{G}$ on $X$ has \textit{a closed free orbit at $x$}.
 \end{definition}
 
-\begin{proposition}
-Let $(A,\ideal{m},k)$ be a complete local noetherian $k$-algebra and let $\sigma:A\ra A[[x_1,...,x_n]]$ be a local morphism into a ring of formal power series over $A$. Assume that the composition
+\begin{fact}
+If the action of $\bd{G}$ on $X$ is free, then every $k$-point of $X$ has a closed free orbit.
+\end{fact}
+\noindent
+The following is important result concerning smoothness of geometric quotients.
+
+\begin{theorem}\label{theorem:free_actions_over_complete_local_rings_give_rise_to_principal_bundles}
+Suppose that $\bd{G}$ is a smooth locally algebraic group over $k$. Let $q:X\ra Y$ be a geometric quotient and assume that $Y$ is the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item Suppose that $x$ is a $k$-point of $X$ which has a closed free orbit. Then there exists a $\bd{G}$-equivariant, {\'e}tale and surjective morphism $f:\bd{G}\times_k Y \ra X$ such that the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_k Y &  & X \\
+                        & Y &    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ f  $} (m-1-3)
+(m-1-1) edge node[below = 4pt, left = 1pt] {$ \mathrm{pr}_{Y} $} (m-2-2)
+(m-1-3) edge node[below = 4pt, right = 1pt] {$ q $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative.
+\item If the action of $\bd{G}$ on $X$ is free, then $f$ is an isomorphism.
+\end{enumerate}
+\end{theorem}
+\noindent
+It is usefull to extract some parts of the argument into lemmas.
+
+\begin{lemma}\label{lemma:free_actions_in_formal_geometry}
+Let $(R,\ideal{m},k)$ be a complete local noetherian $k$-algebra and let $\sigma:R\ra R[[x_1,...,x_n]]$ be a local morphism into a ring of formal power series over $R$. Assume that the composition
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ A & A[[x_1,...,x_n]] & & & A                       \\} ;
+{ R & R[[x_1,...,x_n]] & & & R                       \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ \sigma  $} (m-1-2)
 (m-1-2) edge node[auto] {$ f\mapsto f\,\mathrm{mod}\,(x_1,...,x_n)  $} (m-1-5);
@@ -177,40 +208,85 @@ is the identity and the composition
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ A & A[[x_1,...,x_n]] & & \left(A/\ideal{m}\right)[[x_1,...,x_n]] = k[[x_1,...,x_n]]                      \\} ;
+{ R & R[[x_1,...,x_n]] & & \left(R/\ideal{m}\right)[[x_1,...,x_n]] = k[[x_1,...,x_n]]                      \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ \sigma  $} (m-1-2)
 (m-1-2) edge node[auto] {$ f\mapsto f\,\mathrm{mod}\,\ideal{m}  $} (m-1-4);
 \end{tikzpicture}
 \end{center}
-is surjective. Consider elements $y_1,...,y_n$ of $A$ such that $\sigma(y_i)\,\mathrm{mod}\,\ideal{m} = x_i$ for $i=1,...,n$. Then the composition
+is surjective. Consider elements $y_1,...,y_n$ of $R$ such that $\sigma(y_i)\,\mathrm{mod}\,\ideal{m} = x_i$ for $i=1,...,n$. Then the composition
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ A & A[[x_1,...,x_n]] & & & \left(A/(y_1,...,y_n)\right)[[x_1,...,x_n]]                       \\} ;
+{ R & R[[x_1,...,x_n]] & & & \left(R/(y_1,...,y_n)\right)[[x_1,...,x_n]]                       \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ \sigma  $} (m-1-2)
 (m-1-2) edge node[auto] {$ f\mapsto f\,\mathrm{mod}\,(y_1,...,y_n)  $} (m-1-5);
 \end{tikzpicture}
 \end{center}
 is an isomorphism.
-\end{proposition}
-\begin{proof}
-For convienience let $\phi$ denote the morphism given by the rule $a\mapsto \sigma(a)\,\mathrm{mod}\,(y_1,...,y_n)$. According to assumptions we have
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For convienience let $\phi$ denote the morphism given by the rule $r\mapsto \sigma(r)\,\mathrm{mod}\,(y_1,...,y_n)$. Also denote $R/(y_1,...,y_n)$ by $S$. According to assumptions we have
 $$\sigma(y_i) = x_i + y_i + \sum_{j=1}^nx_j\cdot \ideal{m}[[x_1,...,x_n]]$$
 for each $i$. Thus $\phi(y_i) = \sum_{j=1}^nf_{ij}\cdot x_j$
-where $f_{ij}\in A/(y_1,...,y_n)$ are elements such that the matrix $\big[f_{ij}\big]_{1\leq i,j\leq n}$ is invertible in $A/(y_1,...,y_n)$. Hence
-$$\left(A/(y_1,...,y_n)\right)[[x_1,...,x_n]] = \left(A/(y_1,...,y_n)\right)[[\phi(y_1),...,\phi(y_n)]]$$
-and $\phi$ composed with $\left(A/(y_1,...,y_n)\right)[[\phi(y_1),...,\phi(y_n)]] \twoheadrightarrow A/\left(y_1,...,y_n\right)$ is the quotient morphism $A \twoheadrightarrow A/(y_1,...,y_n)$. From this observations we derive that $\phi$ is surjective. It remains to prove that it is injective. Consider $z$ in $A$ such that $\phi(z) = 0$. Suppose that $z \in (y_1,...,y_n)^m$ for some $m\in \NN$. Write
+where $f_{ij}\in S$ are elements such that the matrix $\big[f_{ij}\big]_{1\leq i,j\leq n}$ is invertible in $S$. Hence
+$$S[[x_1,...,x_n]] = S[[\phi(y_1),...,\phi(y_n)]]$$
+and $\phi$ composed with $S[[\phi(y_1),...,\phi(y_n)]] \twoheadrightarrow S$ is the quotient morphism $R \twoheadrightarrow S$. From this observations we derive that $\phi$ is surjective. It remains to prove that it is injective. Consider $z$ in $R$ such that $\phi(z) = 0$. Suppose that $z \in (y_1,...,y_n)^m$ for some $m\in \NN$. Write
 $$z = \sum_{\alpha \in \Lambda}c_{\alpha}\cdot y_1^{\alpha_1}...y_n^{\alpha_n}$$
-for some $c_{\alpha}\in A$ where $\Lambda = \{\alpha \in \NN^n\,|\,\alpha_1+...+\alpha_n = m\}$. Hence
+for some $c_{\alpha}\in R$ where $\Lambda = \{\alpha \in \NN^n\,|\,\alpha_1+...+\alpha_n = m\}$. Hence
 $$0 = \phi(z) = \sum_{\alpha \in \Lambda}\phi(c_{\alpha})\cdot \phi(y_1)^{\alpha_1}...\phi(y_n)^{\alpha_n}$$
-Thus $\phi(c_{\alpha}) \in \left(\phi(y_1),...,\phi(y_n)\right)$ for every $\alpha \in \Lambda$. Since $\phi$ composed with $\left(A/(y_1,...,y_n)\right)[[\phi(y_1),...,\phi(y_n)]] \twoheadrightarrow A/\left(y_1,...,y_n\right)$ is the quotient morphism $A \twoheadrightarrow A/(y_1,...,y_n)$, we derive that 
+Thus $\phi(c_{\alpha}) \in \left(\phi(y_1),...,\phi(y_n)\right)$ for every $\alpha \in \Lambda$. Since $\phi$ composed with $S[[\phi(y_1),...,\phi(y_n)]] \twoheadrightarrow S$ is the quotient morphism $R \twoheadrightarrow S$, we derive that 
 $$c_{\alpha}\,\mathrm{mod}\,(y_1,...,y_n) = \phi(c_{\alpha})\,\mathrm{mod}\,\left(\phi(y_1),...,\phi(y_n)\right) = 0$$
 for every $\alpha \in \Lambda$. Thus $c_{\alpha}\in (y_1,...,y_n)$ for every $\alpha \in \Lambda$, which implies that $z \in (y_1,...,y_n)^{m+1}$. Thus we proved that 
 $$\mbox{$\phi(z) = 0$ and $z \in (y_1,...,y_n)^m$}\,\Rightarrow\,z \in (y_1,...,y_n)^{m+1}$$
-By $\ideal{m}$-adic completeness of $A$ this implies that $\phi(z) = 0$ if and only if $z = 0$. Hence $\phi$ is also injective.
+By $\ideal{m}$-adic completeness of $R$ this implies that $\phi(z) = 0$ if and only if $z = 0$. Hence $\phi$ is also injective.
+\end{proof}
+
+\begin{lemma}\label{lemma:Hensels_lemma}
+Let $(R,\ideal{m})$ be a complete local noetherian ring and let $R\ra S$ be a local morphism into a local noetherian ring. Suppose that there exists a finitely generated $R$-submodule $N$ of $S$ such that
+$$S = N + \ideal{m}S$$
+Then $S = N$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Pick $s$ in $S$. Since $S = N + \ideal{m}S$, there exists a sequence $\{x_n\}_{n\in \NN}$ such that $x_n\in \ideal{m}^{n}N$ and 
+$$s - \sum_{i\leq n}x_i \in \ideal{m}^{n+1}S$$
+According to the assumption that $(R,\ideal{m})$ is complete with respect to $\ideal{m}$-adic topology and $N$ is finitely generated over $R$, we deduce that $N$ is complete with respect to $\ideal{m}$-adic topology. Hence there exists a unique element $x$ in $N$ such that
+$$x = \sum_{n\in \NN}x_n$$
+where above series is convergent with respect to $\ideal{m}$-adic topology. Note also that
+$$x - \sum_{i\leq n}x_i\in \ideal{m}^{n+1}N$$
+for every $n\in \NN$. Thus we have
+$$s - x = \left(s - \sum_{i\leq n}x_i\right) - \left(x - \sum_{i\leq n}x_i\right) \in \ideal{m}^{n+1}S + \ideal{m}^{n+1}N = \ideal{m}^{n+1}S$$
+for every $n\in \NN$. Hence
+$$x - s \in \bigcap_{n\in \NN}\ideal{m}^nS$$
+Since $R\ra S$ is local morphism and $S$ is a local ring, we deduce that $\ideal{m}S$ is contained in the maximal ideal of $S$. By assumptions $S$ is noetherian. Therefore, $S$ is separated with respect to $\ideal{m}$-adic topology. This implies that
+$$0 = \bigcap_{n\in \NN}\ideal{m}^nS$$
+Thus $s - x = 0$ and we infer that $s$ is an element of $N$. This completes the proof that $S = N$.
+\end{proof}
+
+\begin{lemma}\label{lemma:fiber_over_closed_point_is_orbit}
+Let $q:X\ra Y$ be a geometric quotient and assume that $Y$ is the spectrum of a local $k$-algebra such that the residue field of the closed point $o$ of $Y$ is $k$. Let $x$ be the $k$-point of $X$ with orbit morphism that is a closed immersion, then $q^{-1}(o)$ is the closed subscheme of $X$ determined by the orbit morphism $\bd{G}\hookrightarrow X$ of $x$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Denote by $\bd{G}x$ the closed subscheme determined by the orbit morpism $\bd{G}\hookrightarrow X$ of $x$. Morphism $q$ induces the morphism of residue fields $k(q(x)) \hookrightarrow k(x) = k$ over $k$. This implies that $k(q(x)) = k$ and hence $q(x)$ is a $k$-point of $Y$. Note that $o$ is the unique $k$-point of $Y$. Thus $x\in q^{-1}(o)$. Clearly $q^{-1}(o)$ is a closed $\bd{G}$-stable subscheme of $X$ (it is the preimage of $o$ under the $\bd{G}$-equivariant morphism), that contains $x$.  Since $\bd{G}x$ is the smallest closed $\bd{G}$-stable subscheme of $X$ containing $x$, we deduce that $\bd{G}x\subseteq q^{-1}(o)$. Recall that we have a cokernel diagram 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_kX &  X &  Y \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+in the category of topological spaces.1
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Denote by $o$ the closed point of $Y$ and by $e$ the unit of $\bd{G}$. We also denote $Y = \Spec R$ where $(R,\ideal{m},k)$ is a complete local noetherian $k$-algebra. We first prove \textbf{(1)}. Assume that $x$ is a $k$-point of $X$ which has a closed free orbit. Consider the surjective morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ induced by the orbit morphism $\bd{G}\hookrightarrow X$ of $x$. Since $\bd{G}$ is smooth over $k$, the ring $\cO_{\bd{G},e}$ is regular. Pick a system of parameters $x_1,...,x_n$ of $\cO_{\bd{G},e}$ and let $y_1,...,y_n$ be elements of $\cO_{X,x}$ such that $y_i$ is send to $x_i$ by the morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ for $1\leq i\leq n$. Define $S$ to be the quotient ring $\cO_{X,x}/(y_1,...,y_n)$. The morphism $q$ induces the morphism $q^{\#}:\cO_{Y,o} \ra \cO_{X,x}$ and hence the morphism $\cO_{Y,o}\ra S$. Moreover, we have
+$$S/\ideal{m}_oS = k$$   
 \end{proof}
 
 \small
