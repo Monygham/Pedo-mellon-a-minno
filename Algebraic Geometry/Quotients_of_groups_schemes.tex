@@ -169,7 +169,7 @@ If the action of $\bd{G}$ on $X$ is free, then every $k$-point of $X$ has a clos
 The following is important result concerning smoothness of geometric quotients.
 
 \begin{theorem}\label{theorem:free_actions_over_complete_local_rings_give_rise_to_principal_bundles}
-Suppose that $\bd{G}$ is a smooth locally algebraic group over $k$. Let $q:X\ra Y$ be a geometric quotient and assume that $Y$ is the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
+Suppose that $\bd{G}$ is a smooth locally algebraic group over $k$. Let $q:X\ra Y$ be a geometric quotient locally of finite type and assume that $Y$ is the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item Suppose that $x$ is a $k$-point of $X$ which has a closed free orbit. Then there exists a $\bd{G}$-equivariant, {\'e}tale and surjective morphism $f:\bd{G}\times_k Y \ra X$ such that the triangle
 \begin{center}
@@ -189,7 +189,7 @@ is commutative.
 \end{enumerate}
 \end{theorem}
 \noindent
-It is usefull to extract some parts of the argument into lemmas.
+The proof relies on two algebraic lemmas. The first describe free actions in context of complete rings and the second is a version of Hensel's lemma.
 
 \begin{lemma}\label{lemma:free_actions_in_formal_geometry}
 Let $(R,\ideal{m},k)$ be a complete local noetherian $k$-algebra and let $\sigma:R\ra R[[x_1,...,x_n]]$ be a local morphism into a ring of formal power series over $R$. Assume that the composition
@@ -264,29 +264,57 @@ Since $R\ra S$ is local morphism and $S$ is a local ring, we deduce that $\ideal
 $$0 = \bigcap_{n\in \NN}\ideal{m}^nS$$
 Thus $s - x = 0$ and we infer that $s$ is an element of $N$. This completes the proof that $S = N$.
 \end{proof}
+\noindent
+In what follows we shall denote by $\bd{G}x$ the closed subscheme determined by the orbit morphism $\bd{G}\ra X$ of a $k$-point $x$ of $X$ which has a closed free orbit. For readers convienience we include the following lemma of topological flavour.
 
 \begin{lemma}\label{lemma:fiber_over_closed_point_is_orbit}
-Let $q:X\ra Y$ be a geometric quotient and assume that $Y$ is the spectrum of a local $k$-algebra such that the residue field of the closed point $o$ of $Y$ is $k$. Let $x$ be the $k$-point of $X$ with orbit morphism that is a closed immersion, then $q^{-1}(o)$ is the closed subscheme of $X$ determined by the orbit morphism $\bd{G}\hookrightarrow X$ of $x$. 
+Let $q:X\ra Y$ be a geometric quotient and assume that $Y$ is the spectrum of a local $k$-algebra such that the residue field of the closed point $o$ of $Y$ is $k$. Let $x$ be a $k$-point of $X$ with free closed orbit, then $q^{-1}(o) = \bd{G}x$ as closed subschemes of $X$. 
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Denote by $\bd{G}x$ the closed subscheme determined by the orbit morpism $\bd{G}\hookrightarrow X$ of $x$. Morphism $q$ induces the morphism of residue fields $k(q(x)) \hookrightarrow k(x) = k$ over $k$. This implies that $k(q(x)) = k$ and hence $q(x)$ is a $k$-point of $Y$. Note that $o$ is the unique $k$-point of $Y$. Thus $x\in q^{-1}(o)$. Clearly $q^{-1}(o)$ is a closed $\bd{G}$-stable subscheme of $X$ (it is the preimage of $o$ under the $\bd{G}$-equivariant morphism), that contains $x$.  Since $\bd{G}x$ is the smallest closed $\bd{G}$-stable subscheme of $X$ containing $x$, we deduce that $\bd{G}x\subseteq q^{-1}(o)$. Recall that we have a cokernel diagram 
+Morphism $q$ induces the morphism of residue fields $k(q(x)) \hookrightarrow k(x) = k$ over $k$. This implies that $k(q(x)) = k$ and hence $q(x)$ is a $k$-point of $Y$. Note that $o$ is the unique $k$-point of $Y$. Thus $q(x) = o$. Clearly $q^{-1}(o)$ is a closed $\bd{G}$-stable subscheme of $X$ (it is the preimage of $o$ under $\bd{G}$-equivariant $q$), that contains $x$. Since $\bd{G}x$ is the smallest closed $\bd{G}$-stable subscheme of $X$ containing $x$, we deduce that $\bd{G}x\subseteq q^{-1}(o)$ scheme-theoretically. Consider the pair of arrows
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_kX &  X &  Y \\} ;
+{ \bd{G}\times_kX &  X \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
-(m-1-2) edge node[above] {$ q $} (m-1-3);
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-in the category of topological spaces.1
+Passing to functors of points we obtain that $a^{-1}\left(\bd{G}x\right) = \mathrm{pr}_X\left(\bd{G}.x\right)$. Since $q$ is the cokernel of the pair $(a,\mathrm{pr}_X)$ in the category of topological spaces, we deduce that there exists a closed subset $Z$ of $Y$ such that $q^{-1}(Z) = \bd{G}x$. Clearly $o\in Z$ and hence $q^{-1}(o) \subseteq \bd{G}x$ set-theoretically. On the other hand above we proved that $\bd{G}x\subseteq q^{-1}(o)$ scheme-theoretically. This can only happen if $q^{-1}(o) = \bd{G}x$ as closed subschemes of $X$.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-Denote by $o$ the closed point of $Y$ and by $e$ the unit of $\bd{G}$. We also denote $Y = \Spec R$ where $(R,\ideal{m},k)$ is a complete local noetherian $k$-algebra. We first prove \textbf{(1)}. Assume that $x$ is a $k$-point of $X$ which has a closed free orbit. Consider the surjective morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ induced by the orbit morphism $\bd{G}\hookrightarrow X$ of $x$. Since $\bd{G}$ is smooth over $k$, the ring $\cO_{\bd{G},e}$ is regular. Pick a system of parameters $x_1,...,x_n$ of $\cO_{\bd{G},e}$ and let $y_1,...,y_n$ be elements of $\cO_{X,x}$ such that $y_i$ is send to $x_i$ by the morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ for $1\leq i\leq n$. Define $S$ to be the quotient ring $\cO_{X,x}/(y_1,...,y_n)$. The morphism $q$ induces the morphism $q^{\#}:\cO_{Y,o} \ra \cO_{X,x}$ and hence the morphism $\cO_{Y,o}\ra S$. Moreover, we have
-$$S/\ideal{m}_oS = k$$   
+Denote by $o$ the closed point of $Y$ and by $e$ the unit of $\bd{G}$. We also denote $Y = \Spec R$ where $(R,\ideal{m},k)$ is a complete local noetherian $k$-algebra. We first prove \textbf{(1)}. Assume that $x$ is a $k$-point of $X$ which has a closed free orbit. Consider the surjective morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ induced by the orbit morphism $\bd{G}\hookrightarrow X$ of $x$. Since $\bd{G}$ is smooth over $k$, the ring $\cO_{\bd{G},e}$ is regular. Pick a system of parameters $x_1,...,x_n$ of $\cO_{\bd{G},e}$ and let $y_1,...,y_n$ be elements of $\cO_{X,x}$ such that $y_i$ is send to $x_i$ by the morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ for $1\leq i\leq n$. Define $S$ to be the quotient ring $\cO_{X,x}/(y_1,...,y_n)$. Let $f:\bd{G}\times_k\Spec S\ra X$ be the unique $\bd{G}$-equivariant morphism induced by the surjection $\cO_{X,x}\twoheadrightarrow S$. The morphism $q$ induces the morphism $q^{\#}:\cO_{Y,o} \ra \cO_{X,x}$ and hence the morphism $\cO_{Y,o}\ra S$. By Lemma \ref{lemma:fiber_over_closed_point_is_orbit} we have
+$$S/\ideal{m}_oS = k$$
+where $\ideal{m}_o$ is the maximal ideal of $\cO_{Y,o}$. Next by Lemma \ref{lemma:Hensels_lemma} we derive that $\cO_{Y,o}\ra S$ is surjective. Let $f:\bd{G}\times_k\Spec S\ra X$ be the morphism induced by the surjection $\cO_{X,x}\twoheadrightarrow S$. We have a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_k\Spec S &    X                           \\
+    \Spec S &   Y                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ f $} (m-1-2)
+(m-1-1) edge node[left] {$ \mathrm{pr}_{\Spec S}$} (m-2-1)
+(m-1-2) edge node[auto] {$ q$} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[auto] {$ $} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+where bottom arrow is a closed immersion induced by $\cO_{Y,o}\twoheadrightarrow S$. According to assumptions $q$ is locally of finite type. Moreover, $\bd{G}$ is locally algebraic group over $k$ and hence $\mathrm{pr}_{\Spec S}$ is locally of finite type. These two facts together with the fact that $\Spec S\hookrightarrow Y$ is a closed immersion (and thus is of finite type) imply that $f$ is locally of finite type. Then by Lemma \ref{lemma:free_actions_in_formal_geometry} we deduce that $f$ induces an isomorphism 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{   \widehat{\cO_{X,x}}  &  \hat{S}[[x_1,...,x_n]] = \reallywidehat{S\otimes_k\cO_{\bd{G},e}}             \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$   $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+of completions. Since $f$ is locally of finite type, it follows that $f$ is {\'e}tale at point $(e, u)\in \bd{G}\times_k\Spec S$, where $u$ is the unique closed point of $\Spec S$.
+
 \end{proof}
 
 \small
