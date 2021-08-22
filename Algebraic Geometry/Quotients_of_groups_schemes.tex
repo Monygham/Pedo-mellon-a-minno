@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-Throughout this notes $k$ denote a field and $\bd{G}$ denote a group scheme over $k$. We also fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
+Throughout this notes $k$ denote a field and $\bd{G}$ denote a group scheme over $k$. We denote by $e$ the identity of $\bd{G}$. We also fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
 \section{Categorical and geometric quotients}
 
@@ -122,7 +122,7 @@ A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of
 The action of $\bd{G}$ on $X$ is \textit{separated} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image.
 \end{definition}
 
-\begin{theorem}\label{theorem:separatedness_of_universal_categorical_quotients_of_separated_actions}
+\begin{theorem}\label{theorem:separatedness_of_universally_submersive_geometric_quotients_of_separated_actions}
 Let $q:X\ra Y$ be a geometric quotient of $X$. Assume that $q$ is universally submersive. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 \item The action of $\bd{G}$ on $X$ is separated.
@@ -168,16 +168,16 @@ Let $x$ be a $k$-point of $X$. Suppose that \textit{the orbit morphism $\bd{G}\r
 is a closed immersion. Then the action of $\bd{G}$ on $X$ has \textit{a closed free orbit at $x$}.
 \end{definition}
 
-\begin{fact}
+\begin{fact}\label{fact:all_k_points_have_free_closed_orbit_for_free_actions}
 If the action of $\bd{G}$ on $X$ is free, then every $k$-point of $X$ has a closed free orbit.
 \end{fact}
 \noindent
-The following is important result concerning smoothness of geometric quotients.
+The following result states that over special type of local complete noetherian $k$-algebras free actions correspond to trivial $\bd{G}$-bundles. 
 
-\begin{theorem}\label{theorem:free_actions_over_complete_local_rings_give_rise_to_principal_bundles}
-Let $k$ be an algebraically closed field and let $\bd{G}$ be a smooth group $k$-scheme. Suppose that $q:X\ra Y$ is a geometric quotient locally of finite type and assume that $Y$ is the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
+\begin{theorem}\label{theorem:free_actions_over_complete_local_rings_are_trivial_bundles}
+Suppose that $k$ is an algebraically closed field and $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a geometric quotient locally of finite type and let $Y$ be the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
-\item Suppose that $x$ is a $k$-point of $X$ which has a closed free orbit. Then there exists a $\bd{G}$-equivariant, {\'e}tale and surjective morphism $f:\bd{G}\times_k Y \ra X$ such that the triangle
+\item If $x$ is a $k$-point of $X$ which has a closed free orbit, then there exists a $\bd{G}$-equivariant, {\'e}tale and surjective morphism $f:\bd{G}\times_k Y \ra X$ such that the triangle
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -190,7 +190,19 @@ Let $k$ be an algebraically closed field and let $\bd{G}$ be a smooth group $k$-
 (m-1-3) edge node[below = 4pt, right = 1pt] {$ q $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-is commutative.
+is commutative and the morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ Y = \Spec k \times_k Y & \bd{G}\times_kY  & X                        \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$e\times_k1_Y  $} (m-1-2);
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-2) edge node[auto] {$ f  $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a section of $q$.
 \item If the action of $\bd{G}$ on $X$ is free, then $f$ is an isomorphism.
 \end{enumerate}
 \end{theorem}
@@ -310,9 +322,9 @@ Since $U$ is $\bd{G}$-stable open subset of $X$, we derive that $\mathrm{pr}_X^{
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-Denote by $o$ the closed point of $Y$ and by $e$ the unit of $\bd{G}$. We first prove \textbf{(1)}. Assume that $x$ is a $k$-point of $X$ which has a closed free orbit. Consider the surjective morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ induced by the orbit morphism $\bd{G}\hookrightarrow X$ of $x$. Since $\bd{G}$ is smooth over $k$, the ring $\cO_{\bd{G},e}$ is regular. Pick a system of parameters $x_1,...,x_n$ of $\cO_{\bd{G},e}$ and let $y_1,...,y_n$ be elements of $\cO_{X,x}$ such that $y_i$ is send to $x_i$ by the morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ for $1\leq i\leq n$. Define $S$ to be the quotient ring $\cO_{X,x}/(y_1,...,y_n)$. Let $f:\bd{G}\times_k\Spec S\ra X$ be the unique $\bd{G}$-equivariant morphism induced by the surjection $\cO_{X,x}\twoheadrightarrow S$. The morphism $q$ induces the morphism $q^{\#}:\cO_{Y,o} \ra \cO_{X,x}$ and hence the morphism $\cO_{Y,o}\ra S$. By Lemma \ref{lemma:fiber_over_closed_point_is_orbit} we have
+We first prove \textbf{(1)}. Denote by $o$ the closed point of $Y$. Assume that $x$ is a $k$-point of $X$ which has a closed free orbit. Consider the surjective morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ induced by the orbit morphism $\bd{G}\hookrightarrow X$ of $x$. Since $\bd{G}$ is smooth over $k$, the ring $\cO_{\bd{G},e}$ is regular. Pick a system of parameters $x_1,...,x_n$ of $\cO_{\bd{G},e}$ and let $y_1,...,y_n$ be elements of $\cO_{X,x}$ such that $y_i$ is send to $x_i$ by the morphism $\cO_{X,x}\twoheadrightarrow \cO_{\bd{G},e}$ for $1\leq i\leq n$. Define $S$ to be the quotient ring $\cO_{X,x}/(y_1,...,y_n)$. The morphism $q$ induces the morphism $q^{\#}:\cO_{Y,o} \ra \cO_{X,x}$ and hence the morphism $\cO_{Y,o}\ra S$. By Lemma \ref{lemma:fiber_over_closed_point_is_orbit} we have
 $$S/\ideal{m}_oS = k$$
-where $\ideal{m}_o$ is the maximal ideal of $\cO_{Y,o}$. According to Lemma \ref{lemma:Hensels_lemma} we derive that $\cO_{Y,o}\ra S$ is surjective. Let $f:\bd{G}\times_k\Spec S\ra X$ be the morphism induced by the surjection $\cO_{X,x}\twoheadrightarrow S$. We have a commutative square
+where $\ideal{m}_o$ is the maximal ideal of $\cO_{Y,o}$. According to Lemma \ref{lemma:Hensels_lemma} we derive that $\cO_{Y,o}\ra S$ is surjective. Let $f:\bd{G}\times_k\Spec S\ra X$ be the unique $\bd{G}$-equivariant morphism induced by the surjection $\cO_{X,x}\twoheadrightarrow S$. We have a commutative square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -327,7 +339,7 @@ where $\ideal{m}_o$ is the maximal ideal of $\cO_{Y,o}$. According to Lemma \ref
 (m-2-1) edge node[below] {$j $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-where $j$ is a closed immersion induced by $\cO_{Y,o}\twoheadrightarrow S$. According to assumptions $q$ is locally of finite type. Moreover, $\bd{G}$ is locally algebraic group over $k$ and hence $\mathrm{pr}_{\Spec S}$ is locally of finite type. These two facts together with the fact that $\Spec S\hookrightarrow Y$ is a closed immersion of noetherian schemes (and thus is of finite type) imply that $f$ is locally of finite type. Then by Lemma \ref{lemma:free_actions_in_formal_geometry} we deduce that $f$ induces an isomorphism 
+where $j$ is a closed immersion induced by $\cO_{Y,o}\twoheadrightarrow S$. According to assumptions $q$ is locally of finite type. Moreover, $\bd{G}$ is an algebraic group over $k$ and hence $\mathrm{pr}_{\Spec S}$ is locally of finite type. These two assertions together with the fact that $\Spec S\hookrightarrow Y$ is a closed immersion of noetherian schemes (and thus is of finite type) imply that $f$ is locally of finite type. Then by Lemma \ref{lemma:free_actions_in_formal_geometry} we deduce that $f$ induces an isomorphism 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -337,7 +349,7 @@ where $j$ is a closed immersion induced by $\cO_{Y,o}\twoheadrightarrow S$. Acco
 (m-1-1) edge node[auto] {$   $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-of completions. Since $f$ is locally of finite type, it follows that $f$ is {\'e}tale at a $k$-point of $\bd{G}\times_k\Spec S$ determined by the unique $k$-point of $\Spec S$ and $e\in \bd{G}$. Let $U$ be an {\'e}tale locus of $f$. It contains a $k$-point and hence it is nonempty. Moreover, $U$ is open (it is {\'e}tale locus). Since $f$ is $\bd{G}$-equivariant, we derive that $U$ is $\bd{G}$-stable. Similary $f(U)$ is open $\bd{G}$-stable subset of $X$ and $x \in f(U)$. Thus by Lemma \ref{lemma:open_and_stable_with_k_point_are_entire} we deduce that 
+of complete local rings. Since $f$ is locally of finite type, it follows that $f$ is {\'e}tale at a $k$-point of $\bd{G}\times_k\Spec S$ determined by the unique $k$-point of $\Spec S$ and $e\in \bd{G}$. Let $U$ be an {\'e}tale locus of $f$. It contains a $k$-point and hence it is nonempty. Moreover, $U$ is open (it is {\'e}tale locus) subset of $X$. Since $f$ is $\bd{G}$-equivariant, we derive that $U$ is $\bd{G}$-stable. Similarly $f(U)$ is open $\bd{G}$-stable subset of $X$ and $x \in f(U)$. Thus by Lemma \ref{lemma:open_and_stable_with_k_point_are_entire} we deduce that 
 $$U = \bd{G}\times_k\Spec S,\,f(U) = X$$
 Therefore, $f$ is {\'e}tale and surjective. Now we pullback $q:X\ra Y$ along the closed immersion $\Spec S\hookrightarrow Y$. We obtain a cartesian square
 \begin{center}
@@ -354,10 +366,79 @@ Therefore, $f$ is {\'e}tale and surjective. Now we pullback $q:X\ra Y$ along the
 (m-2-1) edge node[below] {$j $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-Then $f$ factors as a morphism $\bd{G}\times_k\Spec S\ra \tilde{X}$ followed by a closed immersion $\tilde{j}$. Since $f$ is {\'e}tale and surjective, we deduce that $\tilde{j}$ is {\'e}tale and surjective. This implies that $\tilde{j}$ is an isomorphism of schemes.
+Then $f$ factors as a morphism $\bd{G}\times_k\Spec S\ra \tilde{X}$ followed by a closed immersion $\tilde{j}$. Since $f$ is {\'e}tale and surjective, we deduce that $\tilde{j}$ is {\'e}tale and surjective. This implies that $\tilde{j}$ is an isomorphism of schemes. By definition of geometric quotient we derive that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_Y & q_*\cO_X & q_*\left(\mathrm{pr}_X\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*a^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_X^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is the kernel in the category of sheaves on $Y$. Hence $q^{\#}:\cO_Y\ra q_*\cO_X$ is a monomorphism of sheaves. On the other hand we have
+$$q^{\#} = j_*q_*\left(\tilde{j}^{-1}\right)^{\#} \cdot j_*\tilde{q}^{\#} \cdot j^{\#}$$
+and thus $j^{\#}$ is a monomorphism. Since $j$ is a closed immersion, we infer that $j$ is an isomorphism. Therefore, we can identify $\Spec S$ with $Y$. Then $f$ is a morphism which makes the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_k Y &  & X \\
+                        & Y &    \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ f  $} (m-1-3)
+(m-1-1) edge node[below = 4pt, left = 1pt] {$ \mathrm{pr}_{Y} $} (m-2-2)
+(m-1-3) edge node[below = 4pt, right = 1pt] {$ q $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+commutative. This completes the proof of \textbf{(1)}.\\
+For the proof of \textbf{(2)} consider the section $s:Y\hookrightarrow X$ described in \textbf{(1)}. Then $f$ fits into a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{G}\times_kY  &   X\times_YY = X                           \\
+    \bd{G}\times_kX  &   X\times_YX                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[left] {$ 1_{\bd{G}}\times_Y s $} (m-2-1)
+(m-1-2) edge node[auto] {$ 1_{X}\times_Y s$} (m-2-2)
+(m-1-1) edge node[above] {$ f $} (m-1-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]
+(m-2-1) edge node[below] {$\phi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $\phi$ is a closed immersion induced by the closed immersion $\langle a, \mathrm{pr}_X\rangle:\bd{G}\times_kX  \hookrightarrow   X\times_kX$ (the action of $\bd{G}$ on $X$ is free). Thus $f$ is a closed immersion. By \textbf{(1)} it is {\'e}tale and surjective. Therefore, $f$ is an isomorphism.  
 \end{proof}
 
+\begin{definition}
+Let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism into a $k$-scheme $Y$ equipped with the trivial $\bd{G}$-action. Suppose that $q$ is faithfuly flat and the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_kX &    X                           \\
+X &   Y                 \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ \mathrm{pr}_X $} (m-1-2)
+(m-2-1) edge node[below] {$ q $} (m-2-2)
+(m-1-1) edge node[left] {$ q $} (m-2-1)
+(m-1-2) edge node[auto] {$ \mathrm{pr}_X$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian. Then $q$ is \textit{a principal $\bd{G}$-bundle}.
+\end{definition}
+\noindent
+Now we use Theorem \ref{theorem:free_actions_over_complete_local_rings_are_trivial_bundles} to describe principal $\bd{G}$-bundles in the category of locally algebraic $k$-schemes.
 
+\begin{theorem}\label{theorem:principal_bundles_and_free_actions}
+Suppose that $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a morphism locally of finite type between $k$-schemes locally of finite type. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $q$ is a uniform geometric quotient and the action of $\bd{G}$ on $X$ is free.
+\item $q$ is a principal $\bd{G}$-bundle.
+\end{enumerate}
+\end{theorem}
 
 
 \small
