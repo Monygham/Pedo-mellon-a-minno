@@ -2,7 +2,7 @@
 
 \begin{document}
 
-\title{}
+\title{Quotients of algebraic groups}
 \date{}
 \maketitle
 
@@ -10,7 +10,207 @@
 \noindent
 Throughout this notes $k$ denote a field and $\bd{G}$ denote a group scheme over $k$. We denote by $e$ the identity of $\bd{G}$. We also fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
+\section{Basic properties of scheme group quotients}
+\noindent
+The following result gives scheme-theoretic criterion for topological quotient in the case of group scheme actions.
+
+\begin{proposition}\label{proposition:topological_group_quotient_is_implied_by_submersive_and_kernel_pair}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Assume that $q$ is submersive and and the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $a$ and $\mathrm{pr}_X$ is surjective. Then the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_kX &  X &  Y \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a cokernel in the category topological spaces.
+\end{proposition}
+\begin{proof}
+Let $\pi_1$ and $\pi_2$ be distinct projections $X\times_YX\ra X$. Pick points $x_1$ and $x_2$ in $X$ such that $q(x_1) = q(x_2)$. Then there exists a field extension $K$ over $k$ such that $k(x_1)\subseteq K$ and $k(x_2)\subseteq K$. These give rise to $K$-points $\ol{x_1}$ and $\ol{x_2}$ of $X$ such that their images under $q$ is the same $K$-point of $Y$. Since we have an identification
+$$\big(X\times_YX\big)(K) = X(K)\times_{Y(K)}X(K)$$ 
+induced by $\pi_1$ and $\pi_2$, we derive that there exists a $K$-point $\ol{z}$ of $X\times_YX$ such that $\pi_1(\ol{z}) = \ol{x_1}$ and $\pi_2(\ol{z}) = \ol{x_2}$. Let $z$ be the point of $X\times_YX$ corresponding to $\ol{z}$. Then $\pi_1(z) = x_1$ and $\pi_2(z) = x_2$. By assumption $a$ and $\mathrm{pr}_X$ induce surjection $\bd{G}\times_kX\twoheadrightarrow X\times_YX$. Thus there exists a point $u$ of $\bd{G}\times_kX$ such that $a(u) = x_1$ and $\mathrm{pr}_X(u) = x_2$. Thus $x_1$ and $x_2$ are identified by an equivalence relation on the underlying set of $X$ which is determined by the pair $(a, \mathrm{pr}_X)$. Therefore, fibers of $q$ are equivalence classes with respect to this relation. Since $q$ is submersive, this implies that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_kX &  X &  Y \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a cokernel in the category topological spaces.
+\end{proof}
+\noindent
+Now we prove a series results concerning fpqc descent. For this we fix a $k$-scheme $Y$ with the trivial action of $\bd{G}$ and a $\bd{G}$-equivariant morphism $q:X\ra Y$. Let $g:Y'\ra Y$ be a morphism of $k$-schemes and consider the cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ X' &   X                           \\
+    Y' &   Y                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ g' $} (m-1-2)
+(m-2-1) edge node[below] {$ g $} (m-2-2)
+(m-1-1) edge node[left] {$ q' $} (m-2-1)
+(m-1-2) edge node[auto] {$ q $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+of $k$-schemes. Note that $X'$ admits a unique action $a'$ of $\bd{G}$ such that the square above consists of $\bd{G}$-equivariant morphism (we consider $g$ as a $\bd{G}$-equivariant morphism between trivial $\bd{G}$-schemes).
+
+\begin{fact}\label{fact:submersive_and_universally_submersive_descent_along_fpgc}
+Suppose that $g$ is faithfully flat and quasi-compact. Assume that $q'$ is (universally) submersive. Then $q$ is (universally) submersive.
+\end{fact}
+\begin{proof}
+It suffices to prove that submersive morphisms have descent property. This follows from the fact that $g$ (as faithfully flat and quasi-compact morphism) and $q'$ are submersive. Details are left for the reader.
+\end{proof}
+
+\begin{fact}\label{fact:surjection_on_kernel_pairs_descent}
+Suppose that $g$ is faithfully flat and quasi-compact. Then the canonical morphism $X'\times_{Y'}X'\ra X\times_YX$ is faithfully flat and quasi-compact and there is the cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{G}\times_kX' &   \bd{G}\times_kX                           \\
+    X'\times_{Y'}X' &   X\times_YX                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$  $} (m-2-2)
+(m-1-1) edge node[left] {$  $} (m-2-1)
+(m-1-2) edge node[auto] {$  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which the left vertical arrow is induced by $\langle a', \mathrm{pr}_{X'}\rangle:\bd{G}\times_kX'\ra X'\times_kX'$, the right vertical arrow is induced by $\langle a, \mathrm{pr}_X\rangle:\bd{G}\times_kX\ra X\times_kX$ and the bottom horizontal morphism is the canonical morphism.  
+\end{fact}
+\begin{proof}
+Note that squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ X'\times_{Y'}X' &   X'\times_YX' & &  X'\times_YX' &   X\times_YX                           \\
+    Y'           &   Y          & &  X'\times_k X' &   X\times_k X                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$ g $} (m-2-2)
+(m-1-1) edge node[left] {$  $} (m-2-1)
+(m-1-2) edge node[auto] {$  $} (m-2-2)
+(m-1-4) edge node[auto] {$  $} (m-1-5)
+(m-2-4) edge node[below] {$ g'\times_kg'  $} (m-2-5)
+(m-1-4) edge node[left] {$  $} (m-2-4)
+(m-1-5) edge node[auto] {$  $} (m-2-5);
+\end{tikzpicture}
+\end{center}
+are cartesian. Since both $g$ and $g'\times_k g'$ are faithfully flat and quasi-compact, we derive that both morphisms $X'\times_{Y'}X'\ra X'\times_YX'$ and $X'\times_YX'\ra X\times_YX$ are faithfully flat and quasi-compact. Then their composition i.e. the canonical morphism $X'\times_{Y'}X'\ra X\times_YX$ is faithfully flat and quasi-compact.
+\end{proof}
+\noindent
+Finally we need the following notion
+
+\begin{definition}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Consider a pair
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ q_*\cO_{X} & q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*a^{\#}  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_X^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+of morphisms of sheaves of rings on $Y$. Suppose that $q^{\#}:\cO_Y\ra q_*\cO_X$ is a kernel of this pair. Then \textit{$\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:faithfully_flat_descent_for_invariants}
+Suppose that $g$ is faitfully flat and quasi-compact. Assume that $q'$ is quasi-compact, semiseparated and $\cO_{Y'}$ is the sheaf of $\bd{G}$-invariants for $q'$. Then $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$.
+\end{proposition}
+\begin{proof}
+We denote by $a'$ the action of $\bd{G}$ on $X'$. First note that $q$ is semiseparated and quasi-compact morphism as these classes of morphisms admit descent along quasi-compact and faithfully flat morphisms. Since $q$ is quasi-compact, semiseparated and $g$ is flat, we derive that for every quasi-coherent sheaf $\cF$ on $X$ the canonical morphism $q'_*g'^*\cF \ra  g^*q_*\cF$ is an isomorphism. Thus the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_{Y'} & q'_*\cO_{X'} & q'_*\left(\mathrm{pr}_{X'}\right)_*\cO_{\bd{G}\times_kX'} = q'_*a'_*\cO_{\bd{G}\times_k X'} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q'_*{a'}^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q'_*\mathrm{pr}_{X'}^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is isomorphic to the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ g^*\cO_Y & g^*\left(q_*\cO_X\right) & g^*\left(q_*\left(\mathrm{pr}_X\right)_*\cO_{\bd{G}\times_kX}\right) = g^*\left(q_*a_*\cO_{\bd{G}\times_k X}\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ g^*q_*a^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ g^*q_*\mathrm{pr}_X^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ g^*q^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+Since $\cO_{Y'}$ is the sheaf of $\bd{G}$-invariants for $q'$, the first diagram is a kernel diagram. Hence the second is a kernel diagram. According to the fact that $g$ is faithfully flat we deduce that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_{Y} & q_*\cO_{X} & q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*{a}^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_{X}^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is also a kernel diagram. Thus $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$.
+\end{proof}
+
 \section{Categorical and geometric quotients}
+
+\begin{definition}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Suppose that the following conditions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item $q$ is submersive.
+\item The morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$ is surjective.
+\item $\cO_Y$ is the sheaf of $\bd{G}$-invariant for $q$.
+\end{enumerate}
+Then $q$ is \textit{a geometric quotient of $X$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:geometric_quotient_is_ringed_space_quotient}
+Let $q$ be a geometric quotient of $X$. Then the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\bd{G}\times_kX &  X & Y\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is a cokernel in the category of ringed spaces.
+\end{corollary}
+\begin{proof}
+Due to the fact that $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$ it suffices to prove that
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{\bd{G}\times_kX &  X & Y\\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
+(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
+(m-1-2) edge node[above] {$ q $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+is the cokernel in the category of topological spaces. This follows from Proposition \ref{proposition:topological_group_quotient_is_implied_by_submersive_and_kernel_pair}.
+\end{proof}
 
 \begin{definition}
 Let $q:X\ra Y$ be a morphism of $k$-schemes such that the diagram
@@ -28,69 +228,12 @@ Let $q:X\ra Y$ be a morphism of $k$-schemes such that the diagram
 is a cokernel in the category of $k$-schemes. Then $q:X\ra Y$ is \textit{a categorical quotient of $X$}.
 \end{definition}
 
-\begin{definition}
-Consider a cokernel  
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{\bd{G}\times_kX &  X & Y\\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
-(m-1-2) edge node[above] {$ q $} (m-1-3);
-\end{tikzpicture}
-\end{center}
-in the category of locally ringed spaces over $k$. If $Y$ is a scheme, then $q:X\ra Y$ is \textit{a geometric quotient of $X$}.
-\end{definition}
-
 \begin{fact}\label{fact:geometric_quotients_are_categorical}
 Every geometric quotient is categorical.
 \end{fact}
 \begin{proof}
 Categorical quotient is a cokernel in the category of $k$-schemes. On the other hand geometric quotient is a cokernel in the category of locally ringed spaces and hence it also satisfies cokernel property in its full subcategory of $k$-schemes. Thus every geometric quotient is categorical.
 \end{proof}
-
-\begin{corollary}\label{corollary:geometric_quotients_are_cokernels_in_ringed_spaces}
-Let $q:X\ra Y$ be a morphism of schemes. The following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item The diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_kX &  X &  Y \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge[transform canvas={yshift=0.5ex}] node[above] {$ a  $} (m-1-2)
-(m-1-1) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_X $} (m-1-2)
-(m-1-2) edge node[above] {$ q $} (m-1-3);
-\end{tikzpicture}
-\end{center}
-is a cokernel diagram of underlying topological spaces and the diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \cO_Y & q_*\cO_X & q_*\left(\mathrm{pr}_X\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*a^{\#}  $} (m-1-3)
-(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_X^{\#} $} (m-1-3)
-(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-is a kernel diagram in the category of sheaves on $Y$.
-\item $q$ is a geometric quotient of $X$.
-\end{enumerate}
-\end{corollary}
-\begin{proof}
-This is a consequence of {\cite[Theorem 2.9]{LocallyRingedSpaces}}.
-\end{proof}
-\noindent
-In the next result we give a simple example of a universal geometric quotient.
-
-\begin{fact}\label{fact:trivial_bundle_is_universal_geometric_quotient}
-Suppose that $\bd{G}$ is an algebraic group over $k$. Let $Y$ be a $k$-scheme and consider $\bd{G}\times_kY$ with the action of $\bd{G}$ induced by the regular action on the left factor. Then $\mathrm{pr}_Y:\bd{G}\times_kY\ra Y$ is a universal geometric quotient. 
-\end{fact}
 \noindent
 Let $q:X\ra Y$ be a morphism of $k$-schemes such that $q\cdot \mathrm{pr}_X = q\cdot a$. For a morphism $g:Y'\ra Y$ of $k$-schemes consider the cartesian square
 \begin{center}
@@ -102,8 +245,8 @@ Let $q:X\ra Y$ be a morphism of $k$-schemes such that $q\cdot \mathrm{pr}_X = q\
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ g'$} (m-1-2)
 (m-2-1) edge node[below] {$ g$} (m-2-2)
-(m-1-1) edge node[left] {$f' $} (m-2-1)
-(m-1-2) edge node[auto] {$ f$} (m-2-2);
+(m-1-1) edge node[left] {$q' $} (m-2-1)
+(m-1-2) edge node[auto] {$ q$} (m-2-2);
 \end{tikzpicture}
 \end{center} 
 Then there exists a unique action $a':\bd{G} \times_kX' \ra X'$ of $\bd{G}$ on $X'$ such that the square above consists of $\bd{G}$-equivariant morphism (we consider $Y,Y'$ as $\bd{G}$-schemes equipped with trivial $\bd{G}$-actions). Keeping this in mind we have the following.
@@ -115,8 +258,42 @@ A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $
 \begin{definition}
 A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
+\noindent
+In the next result we give a simple example of a universal geometric quotient.
+
+\begin{proposition}\label{proposition:trivial_bundle_is_universal_geometric_quotient}
+Suppose that $\bd{G}$ is a quasi-compact group scheme over $k$. Let $Y$ be a $k$-scheme and consider $\bd{G}\times_kY$ with the action of $\bd{G}$ induced by the regular action on the left factor. Then $\mathrm{pr}_Y:\bd{G}\times_kY\ra Y$ is a universal geometric quotient. 
+\end{proposition}
+\begin{proof}
+Clearly $\mathrm{pr}_Y$ is univerally submersive (it is even universally open). Let $\mu:\bd{G}\times_k\bd{G}\ra \bd{G}$ be the multiplication morphism and let $\pi_{23}:\bd{G}\times_k\bd{G}\times Y\ra \bd{G}\times_kY$ be the projection on the last two factors. Then the morphism 
+$$\bd{G}\times_k\bd{G}\times_kY\ra \left(\bd{G}\times_kY\right)\times_Y\left(\bd{G}\times_kY\right) = \bd{G}\times_k\bd{G}\times_kY$$
+induced by $\langle \mu\times_k1_Y, \pi_{23}\rangle:\bd{G}\times_k\bd{G}\times_kY\ra \left(\bd{G}\times_kY\right)\times_k\left(\bd{G}\times_kY\right)$ is an isomorphism. We show that $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $\mathrm{pr}_Y$. For this pick an affine open subset $V$ of $Y$. It suffices to check that the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \Gamma(V,\cO_{Y}) & \Gamma\left(\bd{G}\times_kV, \cO_{\bd{G}\times_kY}\right) & \Gamma\left(\bd{G}\times_k\bd{G}\times_kV, \cO_{\bd{G}\times_k \bd{G}\times_kY}\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \left(\mu\times_k1_Y\right)^{\#} $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \pi_{23}^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ \mathrm{pr}_Y^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a kernel. Since $\bd{G}$ is quasi-compact and separated (every group $k$-scheme is separated), we derive that the diagram above is isomorphic with
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=6em,text height=1.5ex, text depth=0.25ex] 
+{ \Gamma(V,\cO_{Y}) & \Gamma\left(\bd{G},\cO_{\bd{G}}\right)\otimes_k\Gamma\left(V,\cO_Y\right) & \Gamma\left(\bd{G},\cO_{\bd{G}}\right)\otimes_k\Gamma\left(\bd{G},\cO_{\bd{G}}\right)\otimes_k\Gamma\left(V,\cO_Y\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \chi\otimes f \mapsto \mu^{\#}(\chi)\otimes f $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \chi\otimes f \mapsto 1\otimes \chi\otimes f $} (m-1-3)
+(m-1-1) edge node[above] {$ f\mapsto 1\otimes f $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+\end{proof}
     
-\section{Types of actions and criteria for smoothness of quotients}
+\section{Geometric quotients of separated actions}
 
 \begin{definition}
 The action of $\bd{G}$ on $X$ is \textit{separated} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image.
@@ -147,7 +324,9 @@ We have a cartesian square
 \end{center}
 It follows that $X\times_YX\hookrightarrow X\times_kX$ is a locally closed immersion. Since $q$ is a geometric quotient, we derive  that $\langle a, \mathrm{pr}_X \rangle$ factors as a surjective morphism $\bd{G} \times_k X\twoheadrightarrow X\times_YX$ followed by the immersion $X\times_YX\hookrightarrow X\times_kX$. Thus the action of $\bd{G}$ on $X$ is separated if and only if $X\times_YX$ is a closed subscheme of $X\times_kX$. Since $q$ is universally submersive, we derive that $q\times_kq$ is submersive. As the square above is cartesian we derive that $\Delta_Y(Y) \subseteq Y\times_kY$ is closed if and only if $X\times_YX\subseteq X\times_kX$ is closed. Therefore, $Y$ is separated if and only if the action of $\bd{G}$ on $X$ is separated.
 \end{proof}
-   
+
+\section{Geometric quotients of free actions and principal bundles}
+
 \begin{definition}
 The action of $\bd{G}$ on $X$ is \textit{free} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ is a closed immersion.
 \end{definition}
@@ -172,7 +351,7 @@ is a closed immersion. Then the action of $\bd{G}$ on $X$ has \textit{a closed f
 If the action of $\bd{G}$ on $X$ is free, then every $k$-point of $X$ has a closed free orbit.
 \end{fact}
 \noindent
-The following result states that over special type of local complete noetherian $k$-algebras free actions correspond to trivial $\bd{G}$-bundles. 
+The following result states that over special type of local complete noetherian $k$-algebras geometric quotients of free actions correspond to trivial $\bd{G}$-bundles. 
 
 \begin{theorem}\label{theorem:free_actions_over_complete_local_rings_are_trivial_bundles}
 Suppose that $k$ is an algebraically closed field and $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a geometric quotient locally of finite type and let $Y$ be the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
@@ -182,8 +361,8 @@ Suppose that $k$ is an algebraically closed field and $\bd{G}$ is a smooth algeb
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=2.5em, column sep=1em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_k Y &  & X \\
-                        & Y &    \\} ;
+{ \bd{G}\times_k Y &   & X \\
+                   & Y &    \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ f  $} (m-1-3)
 (m-1-1) edge node[below = 4pt, left = 1pt] {$ \mathrm{pr}_{Y} $} (m-2-2)
@@ -413,18 +592,18 @@ where $\phi$ is a closed immersion induced by the closed immersion $\langle a, \
 \end{proof}
 
 \begin{definition}
-Let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism into a $k$-scheme $Y$ equipped with the trivial $\bd{G}$-action. Suppose that $q$ is faithfuly flat and the square
+Let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism into a $k$-scheme $Y$ equipped with the trivial $\bd{G}$-action. Suppose that $q$ is faithfully flat, quasi-compact morphism and the square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_kX &    X                           \\
-X &   Y                 \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$ \mathrm{pr}_X $} (m-1-2)
+{ \bd{G}\times_kX &    X                 \\
+   X              &    Y                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ a $} (m-1-2)
+(m-1-1) edge node[left] {$ \mathrm{pr}_X $} (m-2-1)
 (m-2-1) edge node[below] {$ q $} (m-2-2)
-(m-1-1) edge node[left] {$ q $} (m-2-1)
-(m-1-2) edge node[auto] {$ \mathrm{pr}_X$} (m-2-2);
+(m-1-2) edge node[right] {$ q $} (m-2-2);
 \end{tikzpicture}
 \end{center}
 is cartesian. Then $q$ is \textit{a principal $\bd{G}$-bundle}.
@@ -439,6 +618,12 @@ Suppose that $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a 
 \item $q$ is a principal $\bd{G}$-bundle.
 \end{enumerate}
 \end{theorem}
+\begin{proof}
+Suppose that \textbf{(i)} holds. Clearly $q$ is locally of finite type. Since $q$ is uniform quotient, we may consider base 
+\end{proof}
+
+
+
 
 
 \small
