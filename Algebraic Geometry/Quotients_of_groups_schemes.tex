@@ -258,6 +258,13 @@ A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $
 \begin{definition}
 A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
+
+\begin{corollary}\label{corollary:geometric_quotients_descent_along_fpqc}
+Let $g:Y'\ra Y$ be a faithfully flat and quasi-compact morphism. Suppose that $q'$ is a geometric quotient, then $q$ is a geometric quotient.
+\end{corollary}
+\begin{proof}
+This follows from Facts \ref{fact:submersive_and_universally_submersive_descent_along_fpgc}, \ref{fact:surjection_on_kernel_pairs_descent} and Proposition \ref{proposition:faithfully_flat_descent_for_invariants}.
+\end{proof}
 \noindent
 In the next result we give a simple example of a universal geometric quotient.
 
@@ -291,6 +298,25 @@ is a kernel. Since $\bd{G}$ is quasi-compact and separated (every group $k$-sche
 (m-1-1) edge node[above] {$ f\mapsto 1\otimes f $} (m-1-2);
 \end{tikzpicture}
 \end{center}
+Thus the first diagram is the kernel diagram if $f\mapsto 1\otimes f$ induces an isomorphism of $\Gamma(V,\cO_Y)$ with subspace of $\Gamma\left(\bd{G},\cO_{\bd{G}}\right)\otimes_k\Gamma\left(V,\cO_Y\right)$ given by formula
+$$\big\{ \chi \in \Gamma\left(\bd{G},\cO_{\bd{G}}\right)\big|\mu^{\#}(\chi) = 1 \otimes \chi\big\}\otimes_k\Gamma\left(V,\cO_Y\right)$$
+Hence it suffices to prove that 
+$$\big\{ \chi \in \Gamma\left(\bd{G},\cO_{\bd{G}}\right)\big|\mu^{\#}(\chi) = 1 \otimes \chi\big\} = \mbox{constant functions on $\bd{G}$}$$
+For this pick a $k$-algebra $A$ and let $g:\Spec A\ra \bd{G}$ be an $A$-point. Next let $e:\Spec A \ra \bd{G}$ be an $A$-point of $\bd{G}$ which corresponds to the identity element of $\bd{G}$. Suppose that a regular function $\chi$ in $\bd{G}$ satisfies $\mu^{\#}(\chi) = 1\otimes \chi$. Then
+$$g^{\#}(\chi) = \langle g, e\rangle^{\#}\mu^{\#}(\chi) =  \langle g, e\rangle^{\#}(1\otimes \chi) = e^{\#}(\chi)$$
+Recall that $e$ is given by the composition of the structural morphism $\Spec A \ra \Spec k$ and the $k$-point $\Spec k\ra \bd{G}$ determined by the identity of $\bd{G}$. Thus $g^{\#}(\chi)$ is an element of $k$. Since this follows for every $g:\Spec A\ra \bd{G}$, we derive that $\chi$ is a constant function. This completes the proof of our claim that 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em,text height=1.5ex, text depth=0.25ex] 
+{ \Gamma(V,\cO_{Y}) & \Gamma\left(\bd{G}\times_kV, \cO_{\bd{G}\times_kY}\right) & \Gamma\left(\bd{G}\times_k\bd{G}\times_kV, \cO_{\bd{G}\times_k \bd{G}\times_kY}\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \left(\mu\times_k1_Y\right)^{\#} $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \pi_{23}^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ \mathrm{pr}_Y^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is the kernel diagram and hence $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $\mathrm{pr}_Y$. Therefore, we proved that $\mathrm{pr}_Y$ is a geometric quotient of $\bd{G}\times_kY$. Consider any morphism $Y' \ra Y$. Then base change of $\mathrm{pr}_Y$ along this morphism is $\mathrm{pr}_{Y'}$. We conclude that $\mathrm{pr}_Y$ is a universal geometric quotient for $\bd{G}\times_kY$. 
 \end{proof}
     
 \section{Geometric quotients of separated actions}
@@ -591,6 +617,19 @@ For the proof of \textbf{(2)} consider the section $s:Y\hookrightarrow X$ descri
 where $\phi$ is a closed immersion induced by the closed immersion $\langle a, \mathrm{pr}_X\rangle:\bd{G}\times_kX  \hookrightarrow   X\times_kX$ (the action of $\bd{G}$ on $X$ is free). Thus $f$ is a closed immersion. By \textbf{(1)} it is {\'e}tale and surjective. Therefore, $f$ is an isomorphism.  
 \end{proof}
 
+\begin{remark}\label{remark:principal_bundles_of_strictly_henselian_rings}
+We expect that Theorem \ref{theorem:free_actions_over_complete_local_rings_are_trivial_bundles} holds for prime spectra of strictly henselian rings.
+\end{remark}
+\noindent
+Now we introduce sufficient condition for smoothness of geometric quotient in case of locally algebraic $k$-schemes.
+
+\begin{corollary}\label{corollary:sufficient_condition_for_smoothness_of_geometric_quotient}
+Suppose that $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a morphism of finite type between $k$-schemes locally of finite type. Assume that $q$ is a uniform geometric quotient of $X$ and $x$ is a $k$-point of $X$ with closed free orbit. Then $q$ is smooth at $x$.
+\end{corollary}
+\begin{proof}
+Since smoothness descent along faithfully flat morphisms, we may assume that $k$ is algebraically closed. Let $y = q(x)$. Then $y$ is a $k$-point of $Y$. Now $1_{\Spec \widehat{\cO_{Y,y}}}\times_kq$ is a geometric quotient and $\widehat{\cO_{Y,y}}$ is a complete local noetherian $k$-algebra with $k$ as a residue field. Moreover, $x$ is a $k$-point of $\Spec \widehat{\cO_{Y,y}}\times_kX$ with a closed free orbit. By Theorem \ref{theorem:free_actions_over_complete_local_rings_are_trivial_bundles} we deduce that $1_{\Spec \widehat{\cO_{Y,y}}}\times_k q$ is smooth. From descent for smoothness we infer that $q$ is smooth at $x$.
+\end{proof}
+
 \begin{definition}
 Let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism into a $k$-scheme $Y$ equipped with the trivial $\bd{G}$-action. Suppose that $q$ is faithfully flat, quasi-compact morphism and the square
 \begin{center}
@@ -612,18 +651,41 @@ is cartesian. Then $q$ is \textit{a principal $\bd{G}$-bundle}.
 Now we use Theorem \ref{theorem:free_actions_over_complete_local_rings_are_trivial_bundles} to describe principal $\bd{G}$-bundles in the category of locally algebraic $k$-schemes.
 
 \begin{theorem}\label{theorem:principal_bundles_and_free_actions}
-Suppose that $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a morphism locally of finite type between $k$-schemes locally of finite type. Then the following assertions are equivalent.
+Suppose that $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a morphism of finite type between $k$-schemes locally of finite type. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item $q$ is a universal geometric quotient and the action of $\bd{G}$ on $X$ is free.
 \item $q$ is a uniform geometric quotient and the action of $\bd{G}$ on $X$ is free.
 \item $q$ is a principal $\bd{G}$-bundle.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Suppose that \textbf{(i)} holds. Clearly $q$ is locally of finite type. Since $q$ is uniform quotient, we may consider base 
+Clearly $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Suppose that \textbf{(ii)} holds. Let $\ol{k}$ be an algebraic closure of $k$. Then $1_{\Spec \ol{k}}\times_kq$ is a uniform quotient and the action of $\Spec \ol{k}\times_k\bd{G}$ on $\Spec \ol{k}\times_kX$ induced by the action of $\bd{G}$ on $X$ is free. Moreover, if $1_{\Spec \ol{k}}\times_kq$ is a principal $\Spec \ol{k}\times_k\bd{G}$-bundle, then $q$ is a $\bd{G}$-bundle. This follows from the observation that property of being a principal bundle descents along faithfuly flat and quasi-compact base extensions. Thus we may assume that $k$ is algebraically closed. Next we pick a $k$-point $y$ of $Y$ and consider base change $1_{\Spec \widehat{\cO_{Y,y}}}\times_Yq$. This is a geometric quotient (because morphism $\Spec \widehat{\cO_{Y,y}}\ra Y$ is flat) and a morphism of finite type. Moreover, the action of $\bd{G}$ on $\Spec \widehat{\cO_{Y,y}}\times_YX$ is free. Since $\widehat{\cO_{Y,y}}$ is a complete noetherian $k$-algebra with residue field $k$, we derive by Theorem \ref{theorem:free_actions_over_complete_local_rings_are_trivial_bundles} that $\Spec \widehat{\cO_{Y,y}}\times_Yq$ is isomorphic as a $\bd{G}$-equivariant morphism with $\mathrm{pr}_{\Spec \widehat{\cO_{Y,y}}}$. By faithfuly flat descent for flat morphism we deduce that $q$ is flat at every point in the fiber $q^{-1}\left(\Spec \cO_{Y,y}\right)$. Since $y$ is an arbitrary $k$-point, it follows that $q$ is flat at every point of $X$ which specializes to a $k$-point. Every point of $X$ is a generization of a $k$-point ($X$ is locally of finite type and $k$ is algebraically closed). Thus $q$ is flat. It is also surjective (as it is a geometric quotient) and quasi-compact (it is of finite type). Therefore, it is faithfully flat and quasi-compact morphism. In order to obtain \textbf{(iii)} it remains to prove that the morphism $\Phi:\bd{G}\times_kX\ra X\times_YX$ induced by $a$ and $\mathrm{pr}_X$ is an isomorphism. Note that it is a closed immersion (the action of $\bd{G}$ on $X$ is closed). Moreover, $1_{\Spec \widehat{\cO_{Y,y}}}\times_Y \Phi$ is an isomorphism due to the fact that $1_{\Spec \widehat{\cO_{Y,y}}}\times_Yq$ is isomorphic as a $\bd{G}$-equivariant morphism with $\mathrm{pr}_{\Spec \widehat{\cO_{Y,y}}}$. By faithfully flat descent we infer that $1_{\Spec \cO_{Y,y}}\times_Y \Phi$ is an isomorphism. This holds for every $k$-point $y$ in $Y$. Thus $\Phi$ induces an isomorphism $\cO_{X\times_YX,\Phi(z)}\ra \cO_{\bd{G}\times_kX,z}$ for every $k$-point $z$ of $X\times_YX$. Hence a closed immersion $\Phi$ is an isomorphism. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(iii)}$.\\
+Assume now that \textbf{(iii)} holds. Then the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_kX &    X                 \\
+    X              &    Y                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[above] {$ a $} (m-1-2)
+(m-1-1) edge node[left] {$ \mathrm{pr}_X $} (m-2-1)
+(m-2-1) edge node[below] {$ q $} (m-2-2)
+(m-1-2) edge node[right] {$ q $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is cartesian and $q$ is faithfully flat and quasi-compact. By Proposition \ref{proposition:trivial_bundle_is_universal_geometric_quotient} morphism $\mathrm{pr}_X$ is a universal geometric quotient. According to Corollary \ref{corollary:geometric_quotients_descent_along_fpqc} we derive that $q$ is universal geometric quotient. Moreover, the cartesian square above shows that the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $a$ and $\mathrm{pr}_X$ is an isomorphism. Thus the action of $\bd{G}$ on $X$ is free. This is \textbf{(i)}. Hence $\textbf{(iii)}\Rightarrow \textbf{(i)}$ holds.
 \end{proof}
 
+\section{Nagata's theorem}
 
-
+\begin{proposition}\label{proposition:every_invariant_vector_in_representation_of_linearly_reductive_admits_nonvanishing_linear_form}
+Let $\bd{G}$ be a smooth algebraic group over $k$. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item $\bd{G}$ is linearly reductive.
+\item For every finitely dimensional linear representation $V$ of $\bd{G}$ and for every invariant vector $v$ in $V$ there exists a
+\end{enumerate}
+\end{proposition}
 
 
 \small
