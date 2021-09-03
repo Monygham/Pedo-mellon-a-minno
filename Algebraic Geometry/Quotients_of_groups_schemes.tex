@@ -681,11 +681,15 @@ is cartesian and $q$ is faithfully flat and quasi-compact. By Proposition \ref{p
 
 \begin{proposition}\label{proposition:every_invariant_vector_in_representation_of_linearly_reductive_admits_nonvanishing_linear_form}
 Let $\bd{G}$ be a smooth algebraic group over $k$. Then the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 \item $\bd{G}$ is linearly reductive.
-\item For every finitely dimensional linear representation $V$ of $\bd{G}$ and for every invariant vector $v$ in $V$ there exists a
+\item For every finitely dimensional linear representation $V$ of $\bd{G}$ and for every nonzero $\bd{G}$-invariant element $v$ in $V$ there exists a $\bd{G}$-invariant linear function $f:V\ra k$ such that $f(v)\neq 0$. 
 \end{enumerate}
 \end{proposition}
+\begin{proof}
+Suppose that \textbf{(i)} holds. Consider a $\bd{G}$-invariant nonzero vector $v$ in a finitely generated representation $V$ of $\bd{G}$. Then $k\cdot v\subseteq V$ is a $\bd{G}$-subrepresentation. Since $\bd{G}$ is linearly reductive, there exists a morphism of $\bd{G}$-representations which is a left inverse of $k\cdot v \hookrightarrow V$. This morphism can be identified with a $\bd{G}$-invariant linear function $f:V\ra k$ such that $f(v) \neq 0$. Hence $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Now suppose that \textbf{(ii)} holds. Pick a finitely generated representation $V$ of $\bd{G}$. Consider a basis $v_1,...,v_n$ of $V^{\bd{G}}$. According to \textbf{(ii)} there exist $\bd{G}$-invariant linear functions $f_1,...,f_n:V\ra k$ such that $f(v_i)\neq 0$ for every $i\in \{1,...,n\}$. Next pick $f:V\ra k^{\oplus n}$ such that $\pi_i \cdot f = f_i$, where $\pi_i$ is the $i$-th projection $k^{\oplus n}\ra k$ for each $i$. Then $f$ is a morphism of $\bd{G}$-representations. We can identify $k^{\oplus n}$ with $V^{\bd{G}}$ in such a way that $f$ becomes a left inverse of the canonical inclusion $V^{\bd{G}}\hookrightarrow V$. This implies that 
+\end{proof}
 
 
 \small
