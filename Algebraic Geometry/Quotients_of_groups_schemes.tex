@@ -810,7 +810,20 @@ Then $q$ is submersive and it is a categorical quotient of $X$.
 \end{theorem}
 \begin{proof}
 Clearly $q(X)$ is closed in $Y$. Hence $V = Y\setminus q(X)$ is open. Moreover, $q^{\#}:\cO_Y\ra q_*\cO_X$ is a monomorphism of sheaves of $k$-algebras. Thus we have a monomorphism $\cO_V\hookrightarrow \left(q_*\cO_X\right)_{q^{-1}(V)}$. We have $\left(q_*\cO_X\right)_{q^{-1}(V)} =0$ and hence $\cO_V =0$. This implies that $V = \emptyset$. Thus $q$ is surjective. Suppose that $Z$ is a subset of $Y$ such that $q^{-1}(Z)$ is a closed subset of $X$. Then $q^{-1}(Z)$ is a $\bd{G}$-stable closed subset and hence $q\left(q^{-1}(Z)\right)$ is closed. Note that $q\left(q^{-1}(Z)\right) = Z$ because $q$ is surjective. Thus $Z$ is closed. This completes the proof that $q$ is submersive.\\
-Now we show that $q$ is a categorical quotient of $X$.
+Now we show that $q$ is a categorical quotient of $X$. For this pick a $\bd{G}$-equivariant morphism $p:X\ra Z$ where $Z$ is a $k$-scheme with the trivial $\bd{G}$-action. Consider open affine cover $\{W_i\}_{i\in I}$ of $Z$. Then $X\setminus p^{-1}(W_i)$ is a closed $\bd{G}$-stable closed for $i\in I$. Define $V_i = Y \setminus q\left(X\setminus p^{-1}(W_i)\right)$ for each $i$. Thus $V_i$ is an open subset of $Y$ for every $i\in I$. Moreover, we have
+$$\bigcap_{i\in I}X\setminus p^{-1}(W_i) = \emptyset$$
+and hence $\{V_i\}_{i\in I}$ form an open cover of $Y$. Note that for every $i\in I$ we have $q^{-1}(V_i)\subseteq p^{-1}(V_i)$. Consider the composition
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ \Gamma\left(W_i,\cO_Z\right) & \Gamma\left(p^{-1}(W_i),\cO_X\right) & \Gamma\left(q^{-1}(V_i),\cO_X\right) \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ p^{\#} $} (m-1-2)
+(m-1-2) edge node[above] {$ f\mapsto f_{\mid q^{-1}(V_i)} $} (m-1-3);
+\end{tikzpicture}
+\end{center}
+for every $i$ in $I$. Since the action of $\bd{G}$ on $Z$ is trivial, we derive that the image of the morphism above consists of $\bd{G}$-invariant functions on $q^{-1}(V_i)$. This means that the morphism above factors uniquely through $q^{\#}_{V_i}:\Gamma\left(V_i,\cO_Y\right)\ra \Gamma\left(q^{-1}(V_i),\cO_X\right)$. Since $W_i$ is affine for every $i$ in $I$, we obtain a unique morphism $f_i:V_i\ra W_i$ such that $f_i\cdot q_{\mid q^{-1}(V_i)} = p_{\mid q^{-1}(V_i)}$ for each $i$. By construction the family $\{f_i\}_{i\in I}$ glue to a morphism $f:Y\ra Z$ such that $f\cdot q = p$. This morphism is unique due to the fact that $f_i$ are unique for every $i$. This finishes the proof of the fact that $q$ is a categorical quotient of $X$.
 \end{proof}
 
 
