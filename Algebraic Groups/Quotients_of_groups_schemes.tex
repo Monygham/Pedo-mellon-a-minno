@@ -677,119 +677,6 @@ Assume now that \textbf{(iii)} holds. Then the square
 is cartesian and $q$ is faithfully flat and quasi-compact. By Proposition \ref{proposition:trivial_bundle_is_universal_geometric_quotient} morphism $\mathrm{pr}_X$ is a universal geometric quotient. According to Corollary \ref{corollary:geometric_quotients_descent_along_fpqc} we derive that $q$ is universal geometric quotient. Moreover, the cartesian square above shows that the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $a$ and $\mathrm{pr}_X$ is an isomorphism. Thus the action of $\bd{G}$ on $X$ is free. This is \textbf{(i)}. Hence $\textbf{(iii)}\Rightarrow \textbf{(i)}$ holds.
 \end{proof}
 
-\section{Geometrically reductive groups and Nagata's theorem}
-\noindent
-We start by proving the following result which give yet another characterization of linearly reductive groups.
-
-\begin{theorem}\label{theorem:characterization_of_linearly_reductive_groups_in_terms_of_existence_of_invariant_linear_forms}
-Let $\bd{G}$ be a smooth affine algebraic group over $k$. Then the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item $\bd{G}$ is linearly reductive.
-\item For every finitely dimensional linear representation $V$ of $\bd{G}$ and for every nonzero $\bd{G}$-invariant element $v$ in $V$ there exists a $\bd{G}$-invariant linear function $f:V\ra k$ such that $f(v)\neq 0$. 
-\end{enumerate}
-\end{theorem}
-\noindent
-We need the following easy result.
-
-\begin{lemma}\label{lemma:every_functional_comes_from_an_invariant_form}
-Let $\bd{G}$ be an algebraic group over $k$ which satisfies \textbf{(ii)}. Suppose that $V$ is a finitely dimensional representation of $\bd{G}$. Then the map
-$$\Hom_{k}\left(V,k\right)^{\bd{G}}\ni f \mapsto f_{\mid V^{\bd{G}}}\in \Hom_k\left(V^{\bd{G}}, k\right)$$
-is an isomorphism of vector spaces over $k$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-The image of the map in the statement is a $k$-vector subspace $W\subseteq \Hom_k\left(V^{\bd{G}}, k\right)$ such that for every nonzero element $v$ in $V^{\bd{G}}$ there exists $f$ in $W$ such that $f(v)\neq 0$ (this is a consequence of \textbf{(ii)}). It follows that $W$ cannot be proper subspace of $\Hom_k\left(V^{\bd{G}}, k\right)$. Hence the map in the statement is an epimorphism. Now fix a nonzero $\bd{G}$-invariant linear function $f:V\ra k$. By \textbf{(ii)} there exists a $\bd{G}$-invariant linear function $w:\Hom_k\left(V,k\right)\ra k$ such that $w(f) = 0$. Note that the canonical isomorphism
-$$V \cong\Hom_k\left(\Hom_k\left(V,k\right),k\right)$$
-of $k$-vector spaces is a morphism of representations of $\bd{G}$. Thus $w$ is defined in terms of evaluation in some $\bd{G}$-invariant vector $v$ in $V$. Therefore, $f(v)\neq 0$ and hence $f_{\mid V^{\bd{G}}} \neq 0$. Thus the map described in the statement is also a monomorphism.
-\end{proof}
-
-\begin{proof}[Proof of the theorem]
-Suppose that \textbf{(i)} holds. Consider a $\bd{G}$-invariant nonzero vector $v$ in a finitely dimensional representation $V$ of $\bd{G}$. Then $k\cdot v\subseteq V$ is a $\bd{G}$-subrepresentation. Since $\bd{G}$ is linearly reductive, there exists a morphism of $\bd{G}$-representations which is a left inverse of $k\cdot v \hookrightarrow V$. This morphism can be identified with a $\bd{G}$-invariant linear function $f:V\ra k$ such that $f(v) \neq 0$. Hence $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
-Now suppose that \textbf{(ii)} holds. Pick an epimorphism $\theta:V\twoheadrightarrow W$ of finitely dimensional representations $V$ of $\bd{G}$. Assume that there exists a nonzero $\bd{G}$-invariant vector $w$ in $W$ such that $w\not \in \theta\left(V^{\bd{G}}\right)$. By Lemma \ref{lemma:every_functional_comes_from_an_invariant_form} there exists $f$ in $\Hom_k\left(W,k\right)^{\bd{G}}$ such that $f_{\mid \theta\left(V^{\bd{G}}\right)} = 0$ and $f(w) \neq 0$. Then $f\cdot \theta$ is a nonzero element of $\Hom\left(V,k\right)^{\bd{G}}$ such that $\left(f\cdot \theta\right)_{\mid V^{\bd{G}}} = 0$. This is impossible according to Lemma \ref{lemma:every_functional_comes_from_an_invariant_form}. Hence $\theta^{\bd{G}}:V^{\bd{G}}\ra W^{\bd{G}}$ is an epimorphism. Now assume that $\theta:V\twoheadrightarrow W$ is an epimorphism of arbitrary linear representations of $\bd{G}$. Since $\bd{G}$ is affine, every linear representation of $\bd{G}$ is rational (i.e. it is a sum of its finitely dimensional subrepresentations). This together with the finitely dimensional case considered above imply that $\theta^{\bd{G}}:V^{\bd{G}}\ra W^{\bd{G}}$ is an epimorphism. Thus the functor $(-)^{\bd{G}}:\bd{Rep}(\bd{G})\ra \Vect_k$ is exact.
-\end{proof}
-\noindent
-The result above motivates the following notion.
-
-\begin{definition}
-Let $\bd{G}$ be a smooth affine algebraic group. Suppose that for every finitely dimensional representation $V$ of $\bd{G}$ and for every nonzero $\bd{G}$-invariant vector $v$ of $V$ there exists a homogenous $\bd{G}$-invariant polynomial $f:V\ra k$ such that $f(v)\neq 0$. Then $\bd{G}$ is \textit{geometrically reductive}.     
-\end{definition}
-\noindent
-We state here the following celebrated result.
-
-\begin{theorem}\label{theorem:haboush_theorem}
-If $\bd{G}$ is reductive, then it is geometrically reductive.
-\end{theorem}
-\noindent
-The result above is due to Haboush and its proof can be found in \cite{Haboush_reductive_is_geom_reductive}.\\
-The following theorem shows that geometric reductivity admits up to an integral extension the same property as linear reductivity (see also Remark \ref{remark:comment_on_surogate_linear_reductivity} below).
-
-\begin{theorem}\label{theorem:surogate_linear_reductivity}
-Suppose that $\bd{G}$ is geometrically reductive. Let $A$ be a $k$-algebra such that $\Spec A$ admits an action of $\bd{G}$ and let $\ideal{a}$ be a $\bd{G}$-stable ideal of $A$. We consider $A^{\bd{G}}/A^{\bd{G}}\cap \ideal{a}$ as a $k$-subalgebra of $\left(A/\ideal{a}\right)^{\bd{G}}$ by means of the canonical inclusion $A^{\bd{G}}/A^{\bd{G}}\cap \ideal{a} \hookrightarrow A/\ideal{a}$. For every element $x \in \left(A/\ideal{a}\right)^{\bd{G}}$ there exists positive integer $r$ such that $x^r \in A^{\bd{G}}/A^{\bd{G}}\cap \ideal{a}$.
-\end{theorem}
-\begin{proof}
-Let $d:A\ra k[\bd{G}]\otimes_kA$ be the coaction of $\bd{G}$ on $A$. Pick an element $x_0\in A$ which maps to $x$ modulo $\ideal{a}$. Consider finitely dimensional vector subspace $V\subseteq A$ over $k$ such that $V$ is a $\bd{G}$-subrepresentation of $A$ and $x_0\in V$. Since $x$ is $x_0$ modulo $\ideal{a}$, we derive that $c(x_0) - 1\otimes x_0$ is in ideal of $k[\bd{G}]\otimes_kA$ generated by $k[\bd{G}]\otimes_k\ideal{a}$. Thus $W = k\cdot x_0+V\cap \ideal{a}\subseteq A$ is finitely dimensional $\bd{G}$-subrepresentation of $A$. Let $\lambda:W\ra k$ be a $k$-linear form such that $\lambda(x_0) = 1$ and $\lambda_{\mid V\cap \ideal{a}} = 0$. Since $\bd{G}$ is geometrically reductive there exists $f\in \Sym_r\left(W\right)^{\bd{G}}$ such that $f(\lambda) = 1$. Since the canonical morphism $\Sym_r(W)\ra A$ is a morphism of representations of $\bd{G}$, we deduce that $f$ is mapped under this morphism to some $\bd{G}$-invariant element $y$ in $A$. Note that $f$ is sum of an $r$-th symmetric power of $x_0$ and some element of $\Sym_r\left(V\cap \ideal{a}\right)$. Thus $y\,\mathrm{mod}\,\ideal{a} = x^r$. Hence $x^r \in A^{\bd{G}}/A^{\bd{G}}\cap \ideal{a}$.
-\end{proof}
-
-\begin{remark}\label{remark:comment_on_surogate_linear_reductivity}
-Let $\bd{G}$ be an algebraic group $\bd{G}$ which acts on $\Spec A$ for some $k$-algebra $A$ and let $\ideal{a}$ be a $\bd{G}$-stable ideal of $A$. Then the sequence
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
-{ 0 & \ideal{a}^{\bd{G}} & A^{\bd{G}} & \left(A/\ideal{a}\right)^{\bd{G}} \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-1) edge node[above] {$  $} (m-1-2)
-(m-1-2) edge node[above] {$  $} (m-1-3)
-(m-1-3) edge node[above] {$  $} (m-1-4);
-\end{tikzpicture}
-\end{center}
-is left exact and it induces a monomorphism $A^{\bd{G}}/\ideal{a}\cap A^{\bd{G}} = A^{\bd{G}}/\ideal{a}^{\bd{G}}\hookrightarrow \left(A/\ideal{a}\right)^{\bd{G}}$. If $\bd{G}$ is linearly reductive, then the sequence is exact and this monomorphism is an isomorphism. Theorem \ref{theorem:surogate_linear_reductivity} states that if $\bd{G}$ is geometrically reductive, then the monomorphism $A^{\bd{G}}/\ideal{a}\cap A^{\bd{G}} \hookrightarrow \left(A/\ideal{a}\right)^{\bd{G}}$ is integral.
-\end{remark}
-\noindent
-Now we are going to formulate the main result of this section.
-
-\begin{theorem}\label{theorem:Nagata_theorem_on_finite_generation_of_invariants}
-Suppose that $\bd{G}$ is geometrically reductive. Let $A$ be a finitely generated $k$-algebra such that $\Spec A$ admits an action of $\bd{G}$. Then $A^{\bd{G}}$ is finitely generated $k$-algebra.
-\end{theorem}
-\noindent
-The theorem above was first proved by Nagata and here we follow Nagata's original proof. In the argument we denote the coaction of $k[\bd{G}]$ on $A$ by $d:A\ra k[\bd{G}]\otimes_kA$. The proof relies on a series of partial results.
-
-\begin{lemma}\label{lemma:integral_and_of_finite_type_over_base_implies_that_base_is_of_finite_type}
-Let $A\hookrightarrow B$ be an integral morphism of $k$-algebras and suppose that $B$ is finitely generated over $k$. Then $A$ is finitely generated.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Suppose that $b_1,...,b_r$ are generators of $B$ as a $k$-algebra. For every $1\leq i \leq r$ we have a polynomial relation
-$$b_i^{n_i} + a_{i,n_i-1}b_i^{n_i-1}+...+a_{i,1}b_i+ a_{i,0} = 0$$
-where $n_i > 0$ and $a_{i,j}\in A$ for $0\leq j\leq n_i-1$. Suppose that $\tilde{A}$ is a $k$-subalgebra of $A$ generated by $a_{i,j}$ for $1\leq i\leq r$ and $0\leq j\leq n_i-1$. Then $B$ is finite over $\tilde{A}$. Since $\tilde{A}\subseteq A\subseteq B$ and $\tilde{A}$ is noetherian, we derive that $A$ is finite over $\tilde{A}$. Hence $A$ is finitely generated over $k$.
-\end{proof}
-
-\begin{lemma}\label{lemma:nagata_theorem_case_of_invariant_zero_divisors}
-Suppose that $\bd{G}$ is geometrically reductive. Let $A$ be a $k$-algebra such that $\Spec A$ admits an action of $\bd{G}$. Assume that $A$ contains $\bd{G}$-invariant zero divisor and that for every proper $\bd{G}$-stable ideal $\ideal{a}$ of $A$ the $k$-algebra $\left(A/\ideal{a}\right)^{\bd{G}}$ is finitely generated over $k$. Then $A^{\bd{G}}$ is finitely generated over $k$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Let $f$ be a $\bd{G}$-invariant zero divisor of $A$. By assumption both $k$-algebras $\left(A/fA\right)^{\bd{G}}$ and $\left(A/\mathrm{ann}(f)\right)^{\bd{G}}$ are finitely generated over $k$. Now by combination of Lemma \ref{lemma:integral_and_of_finite_type_over_base_implies_that_base_is_of_finite_type} and Theorem \ref{theorem:surogate_linear_reductivity} we obtain that $A^{\bd{G}}/A^{\bd{G}}\cap fA$ and $A^{\bd{G}}/A^{\bd{G}}\cap \mathrm{ann}(f)$ are finitely generated over $k$. Let $B$ be a finitely generated $k$-subalgebra of $A^{\bd{G}}$ which maps surjectively onto $A^{\bd{G}}/A^{\bd{G}}\cap fA$ and $A^{\bd{G}}/A^{\bd{G}}\cap \mathrm{ann}(f)$. Let $u_1,...,u_n$ be elements in $A$ such that the image of $B\cdot u_1+...+B\cdot u_n\subseteq A$ modulo $\mathrm{ann}(f)$ contains a finite $B$-module $\left(A/\mathrm{ann}(f)\right)^{\bd{G}}$. Fix $a\in A^{\bd{G}}$. Since $B$ maps surjectively onto $A^{\bd{G}}/A^{\bd{G}}\cap fA$, there exist $b \in B$ and $c\in A$ such that $a - b = fc$. Note that $fc\in A^{\bd{G}}$ and thus
-$$(1\otimes f)\left(d(c) - 1\otimes c\right) = 0$$
-This implies that $c$ is send to $\left(A/\mathrm{ann}(f)\right)^{\bd{G}}$ modulo $\mathrm{ann}(f)$. Then $c \in B\cdot u_1 + ... + B\cdot u_n$. Hence $a - b \in B\cdot fu_1 + ... + B\cdot fu_n$. Therefore, $a\in B[fu_1,...,fu_n]$. This completes the proof that $A^{\bd{G}}$ is finitely generated over $k$.
-\end{proof}
-
-\begin{lemma}\label{lemma:nagata_theorem_case_of_invariant_zero_divisors_with_gradation}
-Suppose that $\bd{G}$ is geometrically reductive. Let $A = \oplus_{n\in \NN}A_n$ be a $\NN$-graded $k$-algebra such that $A$ admits an action of $\bd{G}$. Assume that $A_n$ is a $\bd{G}$-subrepresentation of $A$ for every $n\in \NN$ and that for every proper $\bd{G}$-stable homogenous ideal $\ideal{a}$ of $A$ the $k$-algebra $\left(A/\ideal{a}\right)^{\bd{G}}$ is finitely generated over $k$. If $A$ contains $\bd{G}$-invariant zero divisor, then $A^{\bd{G}}$ is finitely generated over $k$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Let $f$ be a $\bd{G}$-invariant zero divisor of $A$. We may pick $f$ such that it is homogenous. Then both ideals $fA$ and $\mathrm{ann}(f)$ are homogenous, $\bd{G}$-stable and proper in $A$. Now we proceed as in the proof of Lemma \ref{lemma:nagata_theorem_case_of_invariant_zero_divisors}. 
-\end{proof}
-
-\begin{proof}[Proof of the theorem]
-We first prove the theorem in case of $\NN$-graded $k$-algebras and then reduce the general case to this graded case.\\
-Assume that $A = \bigoplus_{n\in \NN}A_n$ is $\NN$-graded in such a way that $A_0 = k$ and $A_n$ is a $\bd{G}$-subrepresentation of $A$ for every $n\in \NN$. Since $A$ is finitely generated over $k$ and by virtue of noetherian induction, we assume that $\left(A/\ideal{a}\right)^{\bd{G}}$ is finitely generated over $k$ for every homogenous $\bd{G}$-stable proper ideal $\ideal{a}$ of $A$. If there are $\bd{G}$-invariant zero divisors of $A$, then by Lemma \ref{lemma:nagata_theorem_case_of_invariant_zero_divisors_with_gradation} we deduce that $A^{\bd{G}}$ is finitely generated over $k$. So we may assume that $A^{\bd{G}}$ contains no zero divisors of $A$. Pick a nonzero homogenous element $f\in A^{\bd{G}}$ of positive degree. If there are no such elements, then $A^{\bd{G}} = A_0 = k$ and the result holds. So we may assume that such an element exists. Note that it is noninvertible. Consider $x\in A$ such that $fx\in A^{\bd{G}}$. Then 
-$$0 = d(fx) - 1\otimes fx = d(f)\cdot d(x) - (1\otimes f)\cdot (1\otimes x) = (1\otimes f)\left(d(x) - 1\otimes x\right)$$
-Since $f$ is not a zero divisor in $A$, we derive that $1\otimes f$ is not a zero divisor in $k[\bd{G}]\otimes_kA$. Thus $d(x) = 1\otimes x$ and $x\in A^{\bd{G}}$. This shows that $fA\cap A^{\bd{G}} = fA^{\bd{G}}$. By Theorem \ref{theorem:surogate_linear_reductivity} $\left(A/fA\right)^{\bd{G}}$ is integral over $A^{\bd{G}}/fA\cap A^{\bd{G}} = A^{\bd{G}}/fA^{\bd{G}}$. Note that $\left(A/fA\right)^{\bd{G}}$ is finitely generated over $k$ by inductive assumption. According to Lemma \ref{lemma:integral_and_of_finite_type_over_base_implies_that_base_is_of_finite_type} we obtain that $A^{\bd{G}}/fA^{\bd{G}}$ is finitely generated over $k$. Clearly
-$$A^{\bd{G}} = \bigoplus_{n\in \NN}A_n^{\bd{G}}$$
-and hence $A^{\bd{G}}/fA^{\bd{G}}$ inherits $\NN$-grading from $A$. The ideal generated by elements of positive degree $\left(A^{\bd{G}}/fA^{\bd{G}}\right)_+$ is finitely generated (as is every ideal in noetherian ring). Hence also
-$$\left(A^{\bd{G}}\right)_+ = \bigoplus_{n\in \NN_+}A_n^{\bd{G}}$$
-is finitely generated (generating set consists of lifts of generators of $\left(A^{\bd{G}}/fA^{\bd{G}}\right)_+$ and $f$). This implies that $A^{\bd{G}}$ is finitely generated over $A_0^{\bd{G}} = k$.\\
-Now assume that $A$ is an arbitrary finitely generated $k$-algebra. By noetherian induction we may assume that $\left(A/\ideal{a}\right)^{\bd{G}}$ is finitely generated over $k$ for every proper $\bd{G}$-stable ideal $\ideal{a}$ of $A$. Pick a finitely dimensional $\bd{G}$-subrepresentation $V$ of $A$ which contains some finite set of generators of $A$ as a $k$-algebra. Define $S = \Sym(V)$ and $S_n = \Sym_n(V)$ for every $n\in \NN$. Then $S$ is $\NN$-graded, $S_0 = k$ and $\bd{G}$ acts on $\Spec S$ in such a way that $S_n$ is a $\bd{G}$-subrepresentation of $S$ for every $S$. By the case considered above $S^{\bd{G}}$ is finitely generated over $k$. The canonical (induced by $V\hookrightarrow A$) surjective morphism $S\twoheadrightarrow A$ of $k$-algebras is also a morphism of representations of $\bd{G}$. Let $I$ be its kernel. Then $I$ is a $\bd{G}$-stable ideal of $S$. By Theorem \ref{theorem:surogate_linear_reductivity} we derive that $A^{\bd{G}}= \left(S/I\right)^{\bd{G}}$ is integral over its finitely generated $k$-subalgebra $S^{\bd{G}}/I\cap S^{\bd{G}}$. Moreover, by Lemma \ref{lemma:nagata_theorem_case_of_invariant_zero_divisors} we may assume that $A^{\bd{G}}$ does not contain zero divisors of $A$. In particular, it is an integral domain. Hence $S^{\bd{G}}/I\cap S^{\bd{G}}$ is a domain. Let $\ol{A^{\bd{G}}}$ be the integral closure of $S^{\bd{G}}/I\cap S^{\bd{G}}$ in the field $Q\left(A^{\bd{G}}\right)$ of fractions of $A^{\bd{G}}$. Since $\ol{A^{\bd{G}}}$ is integral over $A^{\bd{G}}$, Lemma \ref{lemma:integral_and_of_finite_type_over_base_implies_that_base_is_of_finite_type} shows that it suffices to prove that $\ol{A^{\bd{G}}}$ is finitely generated over $k$. For this we show that $\ol{A^{\bd{G}}}$ is a finite $S^{\bd{G}}/I\cap S^{\bd{G}}$-module. Since fields are Nagata rings (see {\cite[Corollary 13.13]{eisenbudcommutativealgebratowardsgeometry}}), we may reduce this question to proving that $Q\left(A^{\bd{G}}\right)$ is a finite extension of the field $Q\left(S^{\bd{G}}/I\cap S^{\bd{G}}\right)$ of fractions of $S^{\bd{G}}/I\cap S^{\bd{G}}$. Since $Q\left(S^{\bd{G}}/I\cap S^{\bd{G}}\right) \subseteq Q\left(A^{\bd{G}}\right)$ is algebraic (due to the fact that $S^{\bd{G}}/I\cap S^{\bd{G}}\hookrightarrow A^{\bd{G}}$ is integral), it suffices to show that $Q\left(A^{\bd{G}}\right)$ is finitely generated field over $Q\left(S^{\bd{G}}/I\cap S^{\bd{G}}\right)$. For this pick a set $T$ of nonzero divisors of $A$. Note that $T$ is a multiplicative subset of $A$. Fix a maximal ideal $\ideal{m}\subseteq T^{-1}A$. Since nonzero elements of $\ideal{m}\cap A^{\bd{G}}$ are zero divisors of $A$, we derive that $\ideal{m}\cap A^{\bd{G}} = 0$. Thus $Q\left(A^{\bd{G}}\right)$ is a subfield of $T^{-1}A/\ideal{m}$. The inclusion $A\hookrightarrow T^{-1}A$ induces an isomorphism between the field of fractions $Q\left(A/\ideal{m}\cap A\right)$ and the field $T^{-1}A/\ideal{m}$. By our assumption $A$ is finitely generated over $k$. Thus $Q\left(A/\ideal{m}\cap A\right)$ is a field finitely generated over $k$. It follows that $Q\left(A^{\bd{G}}\right)$ is a field finitely generated over $k$. This implies that $Q\left(A^{\bd{G}}\right)$ is a field finitely generated over $Q\left(S^{\bd{G}}/I\cap S^{\bd{G}}\right)$. This completes the proof that $A^{\bd{G}}$ is a finitely generated $k$-algebra.
-\end{proof}
-
 \section{Good categorical quotients}
 \noindent
 We first introduce the following important notion.
@@ -825,6 +712,13 @@ and hence $\{V_i\}_{i\in I}$ form an open cover of $Y$. Note that for every $i\i
 \end{center}
 for every $i$ in $I$. Since the action of $\bd{G}$ on $Z$ is trivial, we derive that the image of the morphism above consists of $\bd{G}$-invariant functions on $q^{-1}(V_i)$. This means that the morphism above factors uniquely through $q^{\#}_{V_i}:\Gamma\left(V_i,\cO_Y\right)\ra \Gamma\left(q^{-1}(V_i),\cO_X\right)$. Since $W_i$ is affine for every $i$ in $I$, we obtain a unique morphism $f_i:V_i\ra W_i$ such that $f_i\cdot q_{\mid q^{-1}(V_i)} = p_{\mid q^{-1}(V_i)}$ for each $i$. By construction the family $\{f_i\}_{i\in I}$ glue to a morphism $f:Y\ra Z$ such that $f\cdot q = p$. This morphism is unique due to the fact that $f_i$ are unique for every $i$. This finishes the proof of the fact that $q$ is a categorical quotient of $X$.
 \end{proof}
+
+\begin{definition}
+Let $q:X\ra Y$ be a morphism into a $k$-scheme $Y$ equipped with the trivial $\bd{G}$-action. Suppose that $q$ satisfies conditions \textbf{(1)}-\textbf{(4)} of Theorem \ref{theorem:good_categorical_quotient_is_categorical}. Then $q$ is \textit{a good categorical quotient of $X$}.
+\end{definition}
+
+\begin{proposition}
+\end{proposition}
 
 
 
