@@ -971,15 +971,13 @@ Let $A$ be a $k$-algebra. Consider a morphism $\tau:\Spec A\ra \mathrm{Grass}_{V
 \end{center}
 Pick a $k$-algebra $B$ and a morphism $f:A\ra B$ of $k$-algebras. Note that $f$ makes $B$ into an $A$-algebra. Then $f\in \fX(B)$ if and only if $\left(1_B\otimes_A\phi\right)\cdot \left(1_B\otimes_ku\right)$ is an isomorphism of $B$-modules. Thus by Lemma \ref{lemma:isomorphism_locus_of_module_morphism} we deduce that $f\in \fX(B)$ if and only if $\Spec f:\Spec B\ra \Spec A$ factors through an open subscheme
 $$W_u = \bigg\{\ideal{q}\in \Spec A\,\bigg|\,\big(\phi\cdot \left(1_A\otimes_ku\right)\big)_{\ideal{q}}\mbox{ is an isomorphism of }A_{\ideal{q}}\mbox{-modules}\bigg\} =$$
-$$= \bigg\{\ideal{q}\in \Spec A\,\bigg|\,k(\ideal{q})\otimes_{A_{\ideal{q}}}\big(\phi\cdot \left(1_A\otimes_ku\right)\big)_{\ideal{q}}\mbox{ is an isomorphism of }k(\ideal{q})\mbox{-vector spaces}\bigg\}$$
+$$= \bigg\{\ideal{q}\in \Spec A\,\bigg|\,1_{k(\ideal{q})}\otimes_{A_{\ideal{q}}}\big(\phi\cdot \left(1_A\otimes_ku\right)\big)_{\ideal{q}}\mbox{ is an isomorphism of }k(\ideal{q})\mbox{-vector spaces}\bigg\}$$
 This implies that $\fX \hookrightarrow \Spec A$ is isomorphic to an open immersion $W_u\hookrightarrow \Spec A$.\\
 Pick now $\ideal{q}\in \Spec A$ and an epimorphism $\theta:k^{\oplus I}\twoheadrightarrow V$ for some set $I$. Then there exist $J\subseteq I$ with $\bd{card}(J) = n$ such that the restriction to $k(\ideal{q})^{\oplus J}$ of the morphism
 $$1_{k(\ideal{q})}\otimes_{A_{\ideal{q}}}\big(\phi\cdot \left(1_A\otimes \theta\right)\big)_{\ideal{q}}:k(\ideal{q})^{\oplus I}\ra k(\ideal{q})\otimes_{A_{\ideal{q}}}U_{\ideal{q}}$$
 is an isomorphism of $k(\ideal{q})$-vector spaces. Let $u:k^{\oplus n}\ra V$ be a morphism given as the composition of the canonical monomorphism $k^{\oplus n} = k^{\oplus J}\hookrightarrow k^{\oplus I}$ with $\theta$. Then
 $$\bigg(1_{k(\ideal{q})}\otimes_{A_{\ideal{q}}}\big(\phi\cdot \left(1_A\otimes u\right)\big)_{\ideal{q}}\bigg)$$
-is an isomorphism of $k(\ideal{q})$-vector spaces. Note that module $U_{\ideal{q}}$ is a free $A_{\ideal{q}}$-module of rank $n$. Hence by Lemma \ref{lemma:isomorphism_locus_of_module_morphism} we derive that
-$$\big(\phi\cdot \left(1_A\otimes u\right)\big)_{\ideal{q}}$$
-is an isomorphism of $A_{\ideal{q}}$-modules. Thus $\ideal{q} \in W_u$. Since $\ideal{q}$ is arbitrary, we deduce that
+is an isomorphism of $k(\ideal{q})$-vector spaces. Note that module $U_{\ideal{q}}$ is a free $A_{\ideal{q}}$-module of rank $n$. Hence by Lemma \ref{lemma:isomorphism_locus_of_module_morphism} we derive that $\big(\phi\cdot \left(1_A\otimes u\right)\big)_{\ideal{q}}$ is an isomorphism of $A_{\ideal{q}}$-modules. Thus $\ideal{q} \in W_u$. Since $\ideal{q}$ is arbitrary, we deduce that
 $$\Spec A = \bigcup_{u\in \Hom_{k}(k^{\oplus n},V)}W_u$$
 This finishes the proof.
 \end{proof}
@@ -1081,13 +1079,13 @@ Let $V$ be a $k$-module and let $n$ be a positive integer. Then the grassmannian
 For the proof we need one easy result.
 
 \begin{lemma}\label{lemma:representability_of_vanishing_locus}
-Let $A$ be a commutative ring and let $\psi:W\ra U$ be a morphism of $A$-modules. Suppose that $U$ is projective and finitely generated. Let $\fX$ be an $k$-subfunctor of $\Spec A$ such that
+Let $A$ be a commutative ring and let $\psi:W\ra U$ be a morphism of $A$-modules. Suppose that $U$ is projective and finitely generated over $k$. Let $\fX$ be an $k$-subfunctor of $\Spec A$ such that
 $$\fX(B) = \big\{f:A\ra B\,\big|\,1_B\otimes_A\psi = 0\big\}$$
 Then $\fX$ is represented by a closed subscheme of $\Spec A$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Since every projective and finitely generated $A$-module is a direct summand of a finitely generated and free $A$-module, we may assume that $U = A^{\oplus n}$ for some positive integer $n$. Let $p_i:A^{\oplus n}\ra A$ be the projection on $i$-th factor for $1\leq i\leq n$. Then $\fX$ is represented by the vanishing locus of
-$$\ideal{a} = \sum_{i=1}^n p_i\left(\psi\left(W\right)\right) \subseteq \Spec A$$
+Since every projective and finitely generated $A$-module is a direct summand of a finitely generated and free $A$-module, we may assume that $U = A^{\oplus n}$ for some positive integer $n$. Let $p_i:A^{\oplus n}\ra A$ be the projection on $i$-th factor for $1\leq i\leq n$. Then $\fX$ is represented by the vanishing locus of an ideal
+$$\ideal{a} = \sum_{i=1}^n p_i\left(\psi\left(W\right)\right) \subseteq A$$
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
@@ -1164,7 +1162,7 @@ Since $j$ is a closed immersion of $A$-functors and $X$ is affine $k$-scheme the
 (m-1-2) edge node[right] {$j $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-of $A$-functors. Next let $B$ be an $A$-algebra with the structure morphism $f:A\ra B$. Then $\tau_B$ factors through $j_B$ if and only if the projection $\Spec B\times_{\Spec A}X\ra X$ induced by $f$ factors through $X'$. Let $A[X]$ be the $A$-algebra of global regular functions on $X$ and let $\ideal{J}$ be an ideal in $A[X]$ such that $A[X]/\ideal{J} = A[X']$ is the $A$-algebra of global regular functions of $X'$. With this notation we derive that the projection $\Spec B\times_{\Spec A}X\ra X$ induced by $f$ factors through $X'$ if and only if the morphism $A[X]\ra B\otimes_AA[X]$ induced by $f$ sends every element of $\ideal{J}$ to zero. Since $A[X]$ is a free $A$-module, we write $A[X] = A^{\oplus I}$ for some index set $I$. Then the morphism $A[X]\ra B\otimes_AA[X]$ induced by $f$ is just $f^{\oplus I}:A^{\oplus I}\ra B^{\oplus I}$. We have $f^{\oplus I}\left(\ideal{J}\right)=0$ if and only if $\left(pr^B_i\cdot f^{\oplus I}\right)\left(\ideal{J}\right)=$ for every $i\in I$, where $pr^B_i:B^{\oplus I}\ra B$ is the projection on $i$-th component. Pick $i\in I$ and consider the commutative diagram
+of $A$-functors. Next let $B$ be an $A$-algebra with the structure morphism $f:A\ra B$. Then $\tau_B$ factors through $j_B$ if and only if the projection $\Spec B\times_{\Spec A}X\ra X$ induced by $f$ factors through $X'$. Let $A[X]$ be the $A$-algebra of global regular functions on $X$ and let $\ideal{J}$ be an ideal in $A[X]$ such that $A[X]/\ideal{J} = A[X']$ is the $A$-algebra of global regular functions of $X'$. With this notation we derive that the projection $\Spec B\times_{\Spec A}X\ra X$ induced by $f$ factors through $X'$ if and only if the morphism $A[X]\ra B\otimes_AA[X]$ induced by $f$ sends every element of $\ideal{J}$ to zero. Since $A[X]$ is a free $A$-module, we write $A[X] = A^{\oplus I}$ for some index set $I$. Then the morphism $A[X]\ra B\otimes_AA[X]$ induced by $f$ is just $f^{\oplus I}:A^{\oplus I}\ra B^{\oplus I}$. We have $f^{\oplus I}\left(\ideal{J}\right)=0$ if and only if $\left(pr^B_i\cdot f^{\oplus I}\right)\left(\ideal{J}\right)=0$ for every $i\in I$, where $pr^B_i:B^{\oplus I}\ra B$ is the projection on $i$-th component. Pick $i\in I$ and consider the commutative diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -1178,7 +1176,7 @@ of $A$-functors. Next let $B$ be an $A$-algebra with the structure morphism $f:A
 (m-1-2) edge node[right] {$ pr^B_i $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-In the diagram $pr^A_i$ is the projection on $i$-th component. Diagram implies that $\left(pr^B_i\cdot f^{\oplus I}\right)\left(\ideal{J}\right)=$ for every $i\in I$ if and only if $\left(f\cdot pr_i^A\right)(\ideal{J}) = 0$ for every $i\in I$. This is equivalent with the condition that $f(\ideal{a})=0$ for ideal $\ideal{a}$ in $A$ generated by $\sum_{i\in I}pr_i^A(\ideal{J})$. Thus the lemma is proved.
+In the diagram $pr^A_i$ is the projection on $i$-th component. Diagram implies that $\left(pr^B_i\cdot f^{\oplus I}\right)\left(\ideal{J}\right)=0$ for every $i\in I$ if and only if $\left(f\cdot pr_i^A\right)(\ideal{J}) = 0$ for every $i\in I$. This is equivalent with the condition that $f(\ideal{a})=0$ for ideal $\ideal{a}$ in $A$ generated by $\sum_{i\in I}pr_i^A(\ideal{J})$. Thus the lemma is proved.
 \end{proof}
 
 \begin{lemma}\label{lemma:covers_and_factorizations}
@@ -1187,7 +1185,7 @@ $$X=\bigcup_{i\in I}X_i$$
 Assume that $\tau:X\ra \fY$ is a morphism of $A$-functors. Fix an $A$-algebra $B$. Then $\tau_B$ factors through $j_B$ if and only if $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-If $\tau_B$ factors through $j_B$, then also $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. It suffices to prove the converse. So suppose that $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Since $j$ is a closed immersion of $A$-functors and $X$ is an $A$-scheme, Proposition \ref{proposition:open_closed_immersions} implies that there exists a cartesian square
+If $\tau_B$ factors through $j_B$, then also $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. It suffices to prove the converse. So suppose that $\left(\tau_{\mid X_i}\right)_B$ factors through $j_B$ for every $i\in I$. Since $j$ is a closed immersion of $A$-functors and $X$ is an $A$-scheme, Proposition \ref{proposition:open_closed_immersions_for_arbitrary_k_functors} implies that there exists a cartesian square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
