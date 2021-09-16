@@ -679,11 +679,7 @@ is cartesian and $q$ is faithfully flat and quasi-compact. By Proposition \ref{p
 
 \section{Good categorical quotients}
 \noindent
-We first introduce the following important notion.
-
-\begin{definition}
-Let $Z$ be a closed subset of $X$. Suppose that $\mathrm{pr}_X^{-1}(Z) = a^{-1}(Z)$. Then $Z$ is \textit{a $\bd{G}$-stable closed subset of $X$}. 
-\end{definition}
+We start by the following criterion for categorical quotients.
 
 \begin{theorem}\label{theorem:good_categorical_quotient_is_categorical}
 Let $q:X\ra Y$ be a morphism into a $k$-scheme $Y$ equipped with the trivial $\bd{G}$-action. Assume that the following assertions hold.
@@ -748,11 +744,10 @@ Let $X$ be an affine $k$-scheme and let $\bd{G}$ be a geometrically reductive gr
 \end{enumerate}
 \end{theorem}
 \noindent
-For the proof we need to following.
+For the proof we need to following results.
 
 \begin{lemma}\label{lemma:flat_base_change_for_geometrically_reductive_group_action_on_affine}
-Let $\bd{G}$ be an algebraic group $\bd{G}$ which acts on $\Spec A$ for some $k$-algebra $A$. Fix flat $A^{\bd{G}}$-algebra $B$. Then we have canonical isomorphism
-$$B \cong \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$$
+Let $\bd{G}$ be an algebraic group $\bd{G}$ which acts on $\Spec A$ for some $k$-algebra $A$. Fix a flat $A^{\bd{G}}$-algebra $B$. Then the canonical morphism $B \ra \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$ is an isomorphism of $k$-algebras.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
 For every linear representation $V$ of $\bd{G}$ we have a left exact sequence
@@ -795,11 +790,13 @@ Note that $A\otimes_{A^{\bd{G}}}B\ni x\otimes 1\mapsto c(x)\otimes 1\in k[\bd{G}
 $$B =  A^{\bd{G}}\otimes_{A^{\bd{G}}}B \cong \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$$
 \end{proof}
 
+
 \begin{proof}[Proof of the theorem]
 Since $X$ is quasi-compact, we may verify conditions of Proposition \ref{proposition:finite_intersection_property_for_quasi_compact_suffices_for_good_categorical_quotients}. First let us denote by $A$ the $k$-algebra of global regular functions $\Gamma(X,\cO_X)$. Suppose that $V \subseteq \Spec A^{\bd{G}} = Y$ is an open affine subset. Then $B = \Gamma(V,\cO_Y)$ is a flat $A^{\bd{G}}$-algebra and by Lemma \ref{lemma:flat_base_change_for_geometrically_reductive_group_action_on_affine} we have canonical isomorphism
 $$B \cong \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$$
 This implies that $\Gamma(V,\cO_Y) \cong \Gamma(q^{-1}(V),\cO_X)^{\bd{G}}$ and hence $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$.
 \end{proof}
+
 
 
 
