@@ -735,6 +735,10 @@ As in case of categorical and geometric quotients one can introduce the followin
 A morphism $q:X\ra Y$ is \textit{a universal (uniform) good categorical quotient of $X$} if for every (flat) morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ to $Y'$ is a good categorical quotient of $X'$. 
 \end{definition}
 
+\section{Affine case}
+\noindent
+In this section we make the first important step towards existence of quotients by proving that good categorical quotients exists for affine $k$-schemes equipped with an action of geometrically reducitve groups. 
+
 \begin{proposition}\label{proposition:invariant_functions_separate_closed_sets_for_geometrically_reductive}
 Suppose that $\bd{G}$ is geometrically reductive group and $X$ is an affine $k$-scheme. Let $Z_1,Z_2$ be nonempty closed $\bd{G}$-stable subsets of $X$ such that $Z_1\cap Z_2 = \emptyset$. Then there exists $\bd{G}$-invariant regular function $f$ on $X$ such that $f_{\mid Z_1} = 1$ and $f_{\mid Z_2} = 0$.
 \end{proposition}
@@ -768,7 +772,7 @@ Suppose that $X$ is an affine $k$-scheme and $\bd{G}$ is a geometrically reducti
 \noindent
 For the proof we need to following results.
 
-\begin{lemma}\label{lemma:flat_base_change_for_geometrically_reductive_group_action_on_affine}
+\begin{lemma}\label{lemma:flat_base_change_for_invariants} 
 Let $\bd{G}$ be an algebraic group which acts on $\Spec A$ for some $k$-algebra $A$. Fix a flat $A^{\bd{G}}$-algebra $B$. Then the canonical morphism $B \ra \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$ is an isomorphism of $k$-algebras.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
@@ -784,7 +788,7 @@ For every linear representation $V$ of $\bd{G}$ we have a left exact sequence
 (m-1-3) edge node[above] {$x\mapsto c(x) - 1\otimes x  $} (m-1-5);
 \end{tikzpicture}
 \end{center}
-where $c:V\ra k[\bd{G}]\otimes_kV$ is the coaction. Now we denote by $c$ the coaction on $A$. Thus we have left exact sequences
+where $c:V\ra k[\bd{G}]\otimes_kV$ is the coaction. Now we denote by $d$ the coaction on $A$. Thus we have left exact sequences
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -793,7 +797,7 @@ where $c:V\ra k[\bd{G}]\otimes_kV$ is the coaction. Now we denote by $c$ the coa
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$  $} (m-1-2)
 (m-1-2) edge node[above] {$  $} (m-1-3)
-(m-1-3) edge node[above] {$x\otimes 1\mapsto c(x)\otimes 1 - 1\otimes x\otimes 1  $} (m-1-6);
+(m-1-3) edge node[above] {$x\otimes 1\mapsto d(x)\otimes 1 - 1\otimes x\otimes 1  $} (m-1-6);
 \end{tikzpicture}
 \end{center}
 and
@@ -805,25 +809,60 @@ and
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-1) edge node[above] {$  $} (m-1-2)
 (m-1-2) edge node[above] {$  $} (m-1-3)
-(m-1-3) edge node[above] {$x\otimes 1\mapsto c(x)\otimes 1 - 1\otimes x\otimes 1   $} (m-1-6);
+(m-1-3) edge node[above] {$x\otimes 1\mapsto d(x)\otimes 1 - 1\otimes x\otimes 1   $} (m-1-6);
 \end{tikzpicture}
 \end{center}
-Note that $A\otimes_{A^{\bd{G}}}B\ni x\otimes 1\mapsto c(x)\otimes 1\in k[\bd{G}]\otimes_kA\otimes_{A^{\bd{G}}}B$ is the coaction induced by $c$ on the base change $A\otimes_{A^{\bd{G}}}B$. This implies that there is canonical isomorphism
+Note that $A\otimes_{A^{\bd{G}}}B\ni x\otimes 1\mapsto d(x)\otimes 1\in k[\bd{G}]\otimes_kA\otimes_{A^{\bd{G}}}B$ is the coaction induced by $c$ on the base change $A\otimes_{A^{\bd{G}}}B$. This implies that there is canonical isomorphism
 $$B =  A^{\bd{G}}\otimes_{A^{\bd{G}}}B \cong \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$$
 \end{proof}
 
-\begin{lemma}\label{lemma:surjectivity_of_affine_quotient}
+\begin{lemma}\label{lemma:substitute_of_complete_reducibility_for_geometrically_reductive}
+Let $\bd{G}$ be geometrically reductive group which acts on $\Spec A$ for some $k$-algebra $A$. If $f_1,...,f_n\in A^{\bd{G}}$ and 
+$$f \in \left(\sum_{i=1}^nAf_i\right)\cap A^{\bd{G}}$$
+then there exists positive integer $r$ such that 
+$$f^r \in \sum_{i=1}^nA^{\bd{G}}f_i$$
+Moreover, if $\bd{G}$ is linearly reductive, then $r$ can be chosen to be $1$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $d:A\ra k[\bd{G}]\otimes_kA$ be the coaction of $\bd{G}$ on $A$. The proof goes on induction on $n$. Write $f = a_1f_1+...+a_nf_n$ for $a_1,...,a_n\in A$. Consider $\ideal{a} = \mathrm{ann(f_1)} + Af_2+...+Af_n$. This is a $\bd{G}$-stable ideal in $A$. We show now that $a_1$ is $\bd{G}$-invariant modulo $\ideal{a}$. Indeed, we have
+$$\left(1\otimes f_1\right)\left(d(a_1) - 1\otimes a_1\right) = d(f_1)d(a_1) - 1\otimes f_1a_1 = d(f) - 1\otimes f = 0$$
+Hence 
+$$d(a_1) - 1\otimes a_1 \in k[\bd{G}]\otimes_k \mathrm{ann}(f_1) \subseteq k[\bd{G}]\otimes_k \ideal{a}$$
+and this shows that $a_1$ is $\bd{G}$-invariant modulo $\ideal{a}$. Therefore, according to {\cite[Theorem 2.4]{Geometrically_reductive_and_Nagata}} there exists positive integer $r$ and $a_1'\in A^{\bd{G}}$ such that $a_1^{r} - a_1' \in \ideal{a}$. Thus
+$$f^r \in f_1^ra_1^r + Af_2+...+Af_n = f_1^ra_1' + Af_2+...+Af_n$$
+Now if $n=1$, then we have $f^r = f_1^ra_1' \in A^{\bd{G}}f_1$ and the assertion holds. On the other hand if $n\geq 2$, then we can apply inductive hypothesis to 
+$$f^r - f_1^ra_1'\in \left(Af_2+...+Af_n\right)\cap A^{\bd{G}}$$
+and obtain that 
+$$(f^r - f_1^ra_1')^d \in A^{\bd{G}}f_2 +...+ A^{\bd{G}}f_n$$
+for some positive integer $d$. Then
+$$f^{rd} \in A^{\bd{G}}f_1+ A^{\bd{G}}f_2 +...+ A^{\bd{G}}f_n$$
+and the assertion holds.
+\end{proof}
+
+\begin{lemma}\label{lemma:surjectivity_of_the_affine_quotient}
 Let $\bd{G}$ be geometrically reductive group which acts on $\Spec A$ for some $k$-algebra $A$. Then the morphism $\Spec A\ra \Spec A^{\bd{G}}$ is surjective.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Suppose that there exist $f_1,...,f_n\in A^{\bd{G}}$ such that the ideal generated by $f_1,...,f_n$ in $A^{\bd{G}}$ is proper but the ideal generated by these elements in $A$ is nonproper. Fix $f_1,...,f_n$ as above but with minimal possible $n$.
+Pick a prime ideal $\ideal{p}\in \Spec A^{\bd{G}}$. Consider $f \in A\ideal{p}\cap A^{\bd{G}}$. Then there exist $f_1,...,f_n\in \ideal{p}$ such that
+$$f \in \left(Af_1+...+Af_n\right)\cap A^{\bd{G}}$$
+By Lemma \ref{lemma:substitute_of_complete_reducibility_for_geometrically_reductive} we have
+$$f^r \in A^{\bd{G}}f_1+ ... + A^{\bd{G}}f_n \subseteq \ideal{p}$$
+for some positive integer $r$. Since $\ideal{p}$ is a prime ideal, we derive that $f\in \ideal{p}$. Thus $A\ideal{p}\cap A^{\bd{G}} = \ideal{p}$. Thus we have an injective morphisms $A^{\bd{G}}/\ideal{p} \hookrightarrow A/A\ideal{p}$ of $k$-algebras. This implies that the morphism $k(\ideal{p}) \ra k(\ideal{p})\otimes_{A^{\bd{G}}}A$ is also injective, where $k(\ideal{p})$ is a residue field of $\ideal{p}$ in $A^{\bd{G}}$. We infer that the fiber of $\Spec A\ra \Spec A^{\bd{G}}$ is nonempty. 
 \end{proof}
 
+\begin{lemma}\label{lemma:linearly_reductive_case_for_affine_quotients}
+Let $\bd{G}$ be geometrically reductive group which acts on $\Spec A$ for some $k$-algebra $A$. Suppose that $\ideal{a}$ is an ideal in $A^{\bd{G}}$. Then $\left(A/A\ideal{a}\right)^{\bd{G}}$ is canonically isomorphic with $A^{\bd{G}}/\ideal{a}$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Lemma \ref{lemma:substitute_of_complete_reducibility_for_geometrically_reductive} shows that $A\ideal{a}\cap A^{\bd{G}} = \ideal{a}$. Since $\bd{G}$ is linearly reductive, we have a canonical identification 
+$$\left(A/A\ideal{a}\right)^{\bd{G}} = A^{\bd{G}}/\left(A\ideal{a}\right)^{\bd{G}} = A^{\bd{G}}/A\ideal{a}\cap A^{\bd{G}} = A^{\bd{G}}/\ideal{a}$$
+\end{proof}
 
 \begin{proof}[Proof of the theorem]
-Since $X$ is quasi-compact, we may verify conditions of Proposition \ref{proposition:finite_intersection_property_for_quasi_compact_suffices_for_good_categorical_quotients}. First let us denote by $A$ the $k$-algebra of global regular functions $\Gamma(X,\cO_X)$. Suppose that $V \subseteq \Spec A^{\bd{G}} = Y$ is an open affine subset. Then $B = \Gamma(V,\cO_Y)$ is a flat $A^{\bd{G}}$-algebra and by Lemma \ref{lemma:flat_base_change_for_geometrically_reductive_group_action_on_affine} we have canonical isomorphism
+Since $X$ is quasi-compact, we may verify conditions of Proposition \ref{proposition:finite_intersection_property_for_quasi_compact_suffices_for_good_categorical_quotients}. First let us denote by $A$ the $k$-algebra of global regular functions $\Gamma(X,\cO_X)$. Suppose that $V \subseteq \Spec A^{\bd{G}} = Y$ is an open affine subset. Then $B = \Gamma(V,\cO_Y)$ is a flat $A^{\bd{G}}$-algebra and by Lemma \ref{lemma:flat_base_change_for_invariants}  we have canonical isomorphism
 $$B \cong \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$$
-This implies that $\Gamma(V,\cO_Y) \cong \Gamma(q^{-1}(V),\cO_X)^{\bd{G}}$ and hence $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$. Fix now a closed $\bd{G}$-stable subset $Z$ of $X$. By {\cite[Corollary 5.4]{Algebraic_groups}} there exists a $\bd{G}$-stable ideal $\ideal{a}\subseteq A$ such that its vanishing set is equal to $Z$. Consider a commutative square
+This implies that $\Gamma(V,\cO_Y) \cong \Gamma(q^{-1}(V),\cO_X)^{\bd{G}}$ and hence $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$.\\
+Fix now a closed $\bd{G}$-stable subset $Z$ of $X$. By {\cite[Corollary 5.4]{Algebraic_groups}} there exists a $\bd{G}$-stable ideal $\ideal{a}\subseteq A$ such that its vanishing set is equal to $Z$. Consider a commutative square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -837,9 +876,31 @@ This implies that $\Gamma(V,\cO_Y) \cong \Gamma(q^{-1}(V),\cO_X)^{\bd{G}}$ and h
 (m-1-2) edge node[right] {$  $} (m-2-2);
 \end{tikzpicture}
 \end{center}
-with canonically defined arrows. Note that $\Spec A/\ideal{a} \ra \Spec (A/\ideal{a})^{\bd{G}}$ is surjective and according to {\cite[Theorem 2.4]{Geometrically_reductive_and_Nagata}} morphism
+with canonically defined arrows. Note that $\Spec A/\ideal{a} \ra \Spec (A/\ideal{a})^{\bd{G}}$ is surjective (Lemma \ref{lemma:surjectivity_of_the_affine_quotient}) and according to {\cite[Theorem 2.4]{Geometrically_reductive_and_Nagata}} morphism
 $$\Spec \left(A/\ideal{a}\right)^{\bd{G}}\ra \Spec A^{\bd{G}}/\ideal{a}\cap A^{\bd{G}}$$
-is surjective.
+is surjective. Thus the set-theoretic image of $\Spec A/\ideal{a}$ under the map $\Spec A\ra \Spec A^{\bd{G}}$ is a closed subset given by $\Spec A^{\bd{G}}/\ideal{a}\cap A^{\bd{G}}$. Hence $q(Z)$ is a closed subset of $Y$.\\
+Fix now two closed $\bd{G}$-stable subsets $Z_1,Z_2$ and assume that $Z_1\cap Z_2 = \emptyset$. We claim that $q(Z_1) \cap q(Z_2) = \emptyset$. For this we may assume that $Z_1,Z_2$ are both nonempty. Proposition \ref{proposition:invariant_functions_separate_closed_sets_for_geometrically_reductive} implies that there exists $f \in \Gamma(X,\cO_X)^{\bd{G}}$ such that $f_{\mid Z_1} = 1$ and $f_{\mid Z_2} = 0$. Then $f$ viewed as a function on $Y$ satisfies $f_{\mid q(Z_1)} = 1$ and $f_{\mid q(Z_2)} = 0$. Thus $q(Z_1)\cap q(Z_2) = \emptyset$.\\
+This completes the proof that $q$ is a good categorical quotient. Note that by Lemma \ref{lemma:flat_base_change_for_invariants} $q$ is a uniform good categorical quotient.\\
+If $X$ is of finite type over $k$, then by {\cite[Theorem 3.1]{Geometrically_reductive_and_Nagata}} we deduce that $Y$ which is the prime spectrum of $\Gamma\left(X,\cO_X\right)^{\bd{G}}$ is of finite type over $k$.\\
+If $\bd{G}$ is linearly reductive, then by Lemma \ref{lemma:linearly_reductive_case_for_affine_quotients} we deduce that good categorical quotients in affine case are stable under base changes along closed immersions. Lemma \ref{lemma:flat_base_change_for_invariants} shows that they are closed under flat base changes. Since every morphism can be factored as a flat morphism followed by a closed immersion, we derive that $q$ is a universal good categorical quotient.\\
+Finally if $Z$ is a closed subscheme of $Y$, then the morphism $q^{-1}(Z)\ra Z$ induced by $q$ is submersive. Since $q$ is a uniform good categorical quotient and every morphism can be factored as a flat morphism followed by a closed immersion, we deduce that $q$ is universally submersive.
+\end{proof}
+
+\section{Quotients in quasi-projective case}
+\noindent
+We start by discussing some preliminary result concerning $\bd{G}$-linearizations of quasi-coherent sheaves.
+
+\begin{proposition}\label{proposition:coaction_on_global_sections}
+Let $\cF$ be a quasi-coherent sheaf on $X$ and let $\tau:a^*\cF\ra \mathrm{pr}_X^*\cF$ be a $\bd{G}$-linearization of $\cF$. Suppose that $X$ is quasi-compact and semiseparated. Then the morphism
+$$\Gamma(X,\cF)\ni s \mapsto \tau(a^*s) \in \Gamma(\bd{G}\times_kX,\mathrm{pr}^*_X\cF) = k[\bd{G}]\otimes_k\Gamma(X,\cF)$$
+is a coaction of $\bd{G}$ on $\cF$.
+\end{proposition}
+\begin{proof}
+We denote the morphism in the statement by $c$. Fix $s\in \Gamma(X,\cF)$. Write
+$$c(s) = \sum_{i=1}^na_i\otimes s_i\in k[\bd{G}]\otimes_k\Gamma(X,\cF)$$
+Then
+$$\left(1_{k[\bd{G}]}\otimes_kc\right)\left(c(s)\right) = \sum_{i=1}^na_i\otimes c(s_i) = \sum_{i=1}^na_i\otimes \tau(a^*s_i) = \left(\mathrm{pr}_{23}^*\tau\right)\left(\sum_{i=1}^na_i \otimes a^*s_i\right) = $$
+$$=\left(\mathrm{pr}_{23}^*\tau \cdot \left(1_{\bd{G}}\times_ka\right)^*\tau\right)\left(\left(1_{\bd{G}}\times_ka\right)^*a^*s\right)$$
 \end{proof}
 
 
