@@ -888,7 +888,7 @@ Finally if $Z$ is a closed subscheme of $Y$, then the morphism $q^{-1}(Z)\ra Z$ 
 
 \section{Quotients in quasi-projective case}
 \noindent
-We start by discussing some preliminary result concerning $\bd{G}$-linearizations of quasi-coherent sheaves.
+We start by discussing some preliminary result concerning $\bd{G}$-linearizations of quasi-coherent sheaves. We assume in this section that $\bd{G}$ is an affine group scheme over $k$.
 
 \begin{proposition}\label{proposition:coaction_on_global_sections}
 Let $\cF$ be a quasi-coherent sheaf on $X$ and let $\tau:a^*\cF\ra \mathrm{pr}_X^*\cF$ be a $\bd{G}$-linearization of $\cF$. Suppose that $X$ is quasi-compact and semiseparated. Then the morphism
@@ -900,7 +900,33 @@ We denote the morphism in the statement by $c$. Fix $s\in \Gamma(X,\cF)$. Write
 $$c(s) = \sum_{i=1}^na_i\otimes s_i\in k[\bd{G}]\otimes_k\Gamma(X,\cF)$$
 Then
 $$\left(1_{k[\bd{G}]}\otimes_kc\right)\left(c(s)\right) = \sum_{i=1}^na_i\otimes c(s_i) = \sum_{i=1}^na_i\otimes \tau(a^*s_i) = \left(\mathrm{pr}_{23}^*\tau\right)\left(\sum_{i=1}^na_i \otimes a^*s_i\right) = $$
-$$=\left(\mathrm{pr}_{23}^*\tau \cdot \left(1_{\bd{G}}\times_ka\right)^*\tau\right)\left(\left(1_{\bd{G}}\times_ka\right)^*a^*s\right)$$
+$$=\left(\mathrm{pr}_{23}^*\tau\right)\left(\sum_{i=1}^n\left(1_{\bd{G}}\times_ka\right)^*\left(a_i \otimes s_i\right)\right)=\left(\mathrm{pr}_{23}^*\tau \cdot \left(1_{\bd{G}}\times_ka\right)^*\tau\right)\left(\left(1_{\bd{G}}\times_ka\right)^*a^*s\right) =$$
+$$= \left(\left(\mu\times_k1_X\right)^*\tau\right)\left(\left(\mu\times_k1_X\right)^*a^*s\right) =\left(\mu\times_k1_X\right)^*\left(\tau(a^*s)\right) = \left(\Delta \otimes_k 1_{\Gamma(X,\cF)}\right)\left(c(s)\right)$$
+where $\Delta:k[\bd{G}]\ra k[\bd{G}]\otimes_kk[\bd{G}]$ is the comultiplication. Moreover, we also have
+$$\left(\xi\otimes_k1_{\Gamma(X,\cF)}\right)\left(c(s)\right) = \left(e\times_k1_{X}\right)^*\left(\tau(a^*s)\right) = \left(\left(e\times_k1_{X}\right)^*\tau\right)\left(\left(e\times_k1_{X}\right)^*a^*s\right) =$$
+$$= \left(\left(e\times_k1_{X}\right)^*a^*s\right) = 1\otimes s$$
+where $\xi:k[\bd{G}]\ra k$ is the counit. These imply that $c$ is the coaction of $k[\bd{G}]$ on the space of global sections of $\cF$.
+\end{proof}
+
+\begin{definition}
+Let $\cF$ be a quasi-coherent sheaf on $X$ and let $\tau:a^*\cF\ra \mathrm{pr}_X^*\cF$ be a $\bd{G}$-linearization of $\cF$. Suppose that $X$ is quasi-compact and semiseparated. Then Proposition \ref{proposition:coaction_on_global_sections} shows that $\Gamma(X,\cF)$ is a linear representation of $\bd{G}$. We call it \textit{the linear representation induced by $\bd{G}$-linearization $\tau$}.
+\end{definition}
+\noindent
+Now we study properties of the linear representation induced by $\bd{G}$-linearization in case of a line bundle.
+
+\begin{proposition}\label{proposition:representation_on_global_sections_of_line_bundle_properties}
+Suppose that $X$ is quasi-compact and semiseparated. Let $\cL$ be a line bundle on $X$ and let $\tau:a^*\cL\ra \mathrm{pr}_X^*\cL$ be a $\bd{G}$-linearization of $\cL$. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+\item If $s\in \Gamma(X,\cL)$ is $\bd{G}$-invariant with respect to the structure of linear representation of $\bd{G}$ induced by $\tau$, then the open subscheme 
+$$X_s = \big\{x\in  X\,\big|\,s(x)\neq 0\big\}$$
+of $X$ is $\bd{G}$-stable.
+\item If $t,s\in \Gamma(X,\cL)$ are $\bd{G}$-invariant global sections of with respect to the structure of linear representation of $\bd{G}$ induced by $\tau$, then the regular function $\frac{t}{s}\in \Gamma(X_s,\cO_X)$ is $\bd{G}$-invariant.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Suppose that $s\in \Gamma(X,\cL)$ is $\bd{G}$-invariant with respect to the structure of linear representation of $\bd{G}$ induced by $\tau$. Then $\tau(a^*s) = \mathrm{pr}_X^*s$. Since $\tau$ is an isomorphism of line bundles on $\bd{G}\times_kX$, nonvanishing sets of $a^*s \in \Gamma\left(\bd{G}\times_kX,a^*\cL\right)$ and $\mathrm{pr}_X^*s \in \Gamma\left(\bd{G}\times_kX,\mathrm{pr}_X^*\cL\right)$ coincide. Next the nonvanishing set of $a^*s$ is $a^{-1}(X_s)$. On the other hand the nonvanishing set of $\mathrm{pr}_X^*s$ is $\mathrm{pr}_X^{-1}(X_s)$. Therefore, $a^{-1}(X_s) = \mathrm{pr}_X^{-1}(X_s)$ and hence $X_s$ is open $\bd{G}$-stable subscheme of $X$.
+
+
 \end{proof}
 
 
