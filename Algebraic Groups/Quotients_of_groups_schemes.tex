@@ -2,15 +2,16 @@
 
 \begin{document}
 
-\title{Quotients of algebraic groups}
+\title{Geometric invariant theory}
 \date{}
 \maketitle
 
 \section{Introduction}
 \noindent
-Throughout this notes $k$ denote a field and $\bd{G}$ denote a group scheme over $k$. We denote by $e$ the identity of $\bd{G}$. We also fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
+These notes present core results in geometric invariant theory. We mostly follow monography \cite{mumford1994geometric}. We extensively use the language of schemes.\\
+Throughout these notes we fix a field $k$ and a group scheme $\bd{G}$ over $k$ with the identity $e:\Spec k\ra \bd{G}$ and the multiplication $\mu:\bd{G}\times_k\bd{G}\ra \bd{G}$. We also fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
-\section{Basic properties of scheme group quotients}
+\section{Basic properties of quotients}
 \noindent
 The following result gives scheme-theoretic criterion for topological quotient in the case of group scheme actions.
 
@@ -252,11 +253,24 @@ Let $q:X\ra Y$ be a morphism of $k$-schemes such that $q\cdot \mathrm{pr}_X = q\
 Then there exists a unique action $a':\bd{G} \times_kX' \ra X'$ of $\bd{G}$ on $X'$ such that the square above consists of $\bd{G}$-equivariant morphism (we consider $Y,Y'$ as $\bd{G}$-schemes equipped with trivial $\bd{G}$-actions). Keeping this in mind we have the following.
 
 \begin{definition}
-A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $X$} if for every flat morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
+A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $X$} if for every flat morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
 
+
+\begin{fact}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient.
+\item $q$ is a uniform categorical (geometric) quotient.
+\item For every affine $k$-scheme $Y'$ and a flat morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient.
+\end{enumerate}
+\end{fact}
+\begin{proof}
+
+\end{proof}
+
 \begin{definition}
-A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ is a categorical (geometric) quotient of $X'$. 
+A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
 
 \begin{corollary}\label{corollary:geometric_quotients_descent_along_fpqc}
@@ -358,14 +372,14 @@ The action of $\bd{G}$ on $X$ is \textit{free} if the morphism $\langle a, \math
 \end{definition}
 
 \begin{definition}
-Let $x$ be a $k$-point of $X$. Suppose that \textit{the orbit morphism $\bd{G}\ra X$ of $x$} given by the composition
+Let $x$ be a $k$-point of $X$. We consider $x$ as a morphism $\Spec k\ra X$. Suppose that \textit{the orbit morphism $\bd{G}\ra X$ of $x$} given by the composition
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
 { \bd{G} = \bd{G}\times_k\Spec k & & \bd{G}\times_kX & X                        \\} ;
 \path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$\mathrm{induced\,by\,}x  $} (m-1-3);
+(m-1-1) edge node[auto] {$1_{\bd{G}}\times_kx  $} (m-1-3);
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-3) edge node[auto] {$  $} (m-1-4);
 \end{tikzpicture}
@@ -380,7 +394,7 @@ If the action of $\bd{G}$ on $X$ is free, then every $k$-point of $X$ has a clos
 The following result states that over special type of local complete noetherian $k$-algebras geometric quotients of free actions correspond to trivial $\bd{G}$-bundles. 
 
 \begin{theorem}\label{theorem:free_actions_over_complete_local_rings_are_trivial_bundles}
-Suppose that $k$ is an algebraically closed field and $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a geometric quotient locally of finite type and let $Y$ be the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
+Suppose that $k$ is an algebraically closed field and $\bd{G}$ is a smooth algebraic group over $k$. Let $q:X\ra Y$ be a geometric quotient and a morphism locally of finite type and let $Y$ be the spectrum of a complete local noetherian $k$-algebra such that the residue field of the closed point of $Y$ is $k$. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item If $x$ is a $k$-point of $X$ which has a closed free orbit, then there exists a $\bd{G}$-equivariant, {\'e}tale and surjective morphism $f:\bd{G}\times_k Y \ra X$ such that the triangle
 \begin{center}
@@ -732,7 +746,7 @@ according to \textbf{(4)}. This implies that $q$ is a good categorical quotient.
 As in case of categorical and geometric quotients one can introduce the following notion.
 
 \begin{definition}
-A morphism $q:X\ra Y$ is \textit{a universal (uniform) good categorical quotient of $X$} if for every (flat) morphism $g:Y'\ra Y$ its base change $q':X'\ra Y'$ to $Y'$ is a good categorical quotient of $X'$. 
+A morphism $q:X\ra Y$ is \textit{a universal (uniform) good categorical quotient of $X$} if for every (flat) morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a good categorical quotient of $X'$.
 \end{definition}
 
 \section{Affine case}
@@ -886,7 +900,7 @@ If $\bd{G}$ is linearly reductive, then by Lemma \ref{lemma:linearly_reductive_c
 Finally if $Z$ is a closed subscheme of $Y$, then the morphism $q^{-1}(Z)\ra Z$ induced by $q$ is submersive. Since $q$ is a uniform good categorical quotient and every morphism can be factored as a flat morphism followed by a closed immersion, we deduce that $q$ is universally submersive.
 \end{proof}
 
-\section{Quotients in quasi-projective case}
+\section{Quotients determined by linearization}
 \noindent
 We start by discussing some preliminary result concerning $\bd{G}$-linearizations of quasi-coherent sheaves. We assume in this section that $\bd{G}$ is an affine group scheme over $k$.
 
@@ -968,6 +982,33 @@ Suppose that $\bd{G}$ is geometrically reductive and $X$ is of finite type over 
 \end{enumerate}
 
 \end{theorem}
+
+\begin{definition}
+Let $K$ be a field extension of $k$ and suppose that $\ol{x}$ is a $K$-point of $X$. We consider $\ol{x}$ as a morphism $\Spec K\ra X$. Then the morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_k\Spec K & & \bd{G}\times_kX & X                        \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$1_{\bd{G}}\times_k\ol{x}  $} (m-1-3);
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[auto] {$ a $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+is called \textit{the orbit morphism of $\ol{x}$}.
+\end{definition}
+
+\begin{proposition}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item Fix a point $y$ in $Y$. Consider a geometric point $\ol{y}$ such that $k(\ol{y})$ is algebraically closed field extension of $k(y)$. If $k(\ol{y})$ has sufficiently large trancendence degree over $k$, then the morphism $\bd{G}\times_k\Spec k(\ol{y})\ra X_{\ol{y}}$ induced by the orbit morphism of 
+\item The morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$ is surjective.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We start by proving the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume that \textbf{(i)} holds. Consider a point $z$ in $X\times_YX$. Let $y$ be a point of $Y$ such that $q\left(\mathrm{pr}_X(z)\right) = y = q\left(a(z)\right)$. Fix an algebraically closed extension $K$ of $k(z)$. Then there exists a $K$-point $\ol{z}$ of $X\times_YX$ with $z$ as the underlying point. Suppose that $\ol{x} = \mathrm{pr}_X(\ol{z})$. By possibly enlarging $K$ we may assume according to \textbf{(i)} that the set-theoretic image of the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ of $\ol{x}$ equals to $q^{-1}(y)$. In particular, $\ol{u} = a(\ol{z})$ is contained in the set-theoretic image of $o_{\ol{x}}$.
+\end{proof}
 
 
 
