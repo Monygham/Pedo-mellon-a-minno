@@ -66,6 +66,76 @@ induced by $\pi_1$ and $\pi_2$, we derive that there exists a $K$-point $\ol{z}$
 \end{center}
 is a cokernel in the category topological spaces.
 \end{proof}
+
+\begin{definition}
+Let $K$ be a field extension of $k$ and suppose that $\ol{x}$ is a $K$-point of $X$. We consider $\ol{x}$ as a morphism $\Spec K\ra X$. Then the morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_k\Spec K & & \bd{G}\times_kX & X                        \\} ;
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$1_{\bd{G}}\times_k\ol{x}  $} (m-1-3);
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-3) edge node[auto] {$ a $} (m-1-4);
+\end{tikzpicture}
+\end{center}
+is called \textit{the orbit morphism of $\ol{x}$}.
+\end{definition}
+\noindent
+The following result is usefull.
+
+\begin{proposition}\label{proposition:kernel_morphism_and_geometric_orbits}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item Fix a point $y$ in $Y$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. For every $K$ with sufficiently large transcendence degree over $k$ the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{y}$.
+\item The morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$ is surjective.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We start by proving the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume that \textbf{(i)} holds. Consider a point $z$ in $X\times_YX$. Let $y$ be a point of $Y$ such that $q\left(\mathrm{pr}_X(z)\right) = y = q\left(a(z)\right)$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. We may assume according to \textbf{(i)} that the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{y}$. Now suppose that $L$ is an algebraically closed field containing $K$ such that there exists an $L$-point $\ol{z}$ of $X\times_YX$ with $z$ as the underlying point and the map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}(L) & X_{y}(L) \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+induced by $o_{\ol{x}}$ on $L$-points is surjective. Then there exists an $L$-point $g$ of $\bd{G}$ such that $g\cdot \mathrm{pr}_X(\ol{z}) = a(\ol{z})$. Hence the map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}(L) \times X(L)  & X(L)\times_{Y(L)}X(L)  \\};
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$   $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$ contains $\ol{z}$ in its image. Indeed, $\left(g,\mathrm{pr}_X(\ol{z})\right)$ is sent to $\ol{z}$ under this map. Thus the set-theoretic image of the morphism $\bd{G}\times_kX\ra X\times_YX$ contains $z$. This shows that \textbf{(ii)} holds.\\
+Suppose now that \textbf{(ii)} holds. Pick a point $y$ in $Y$. Let $K$ be an algebraically closed field over $k$ such that there is a surjective map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}(K) \times X(K)  & X(K)\times_{Y(K)}X(K)  \\};
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$   $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$. Assume also that $K$ contains all residue fields of points in $X_y$. Pick a point $x$ in $X_y$ and let $\ol{x}$ be a $K$-point with $x$ as the underlying point. Next fix any other point $z$ in $X_y$ and let $\ol{z}$ be a $K$-point with $z$ as the underlying point. Since the map
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}(K) \times X(K)  & X(K)\times_{Y(K)}X(K)  \\};
+\path[->>,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$   $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is surjective, we derive that there exists $g\in \bd{G}(K)$ such that $g\cdot \ol{x} = \ol{z}$. This implies that the map $\bd{G}(K) \ra X_y(K)$ induced by the orbit map $o_{\ol{x}}$ contains $\ol{z}$ in its image. Therefore, the morphism $\bd{G}\times_k\Spec K\ra X_y$ induced by $o_{\ol{x}}$ contains $z$ in its set-theoretic image. Hence it is surjective, since $z$ is an arbitrary point of $X_y$ 
+\end{proof}
 \noindent
 Now we prove a series results concerning fpqc descent. For this we fix a $k$-scheme $Y$ with the trivial action of $\bd{G}$ and a $\bd{G}$-equivariant morphism $q:X\ra Y$. Let $g:Y'\ra Y$ be a morphism of $k$-schemes and consider the cartesian square
 \begin{center}
@@ -1190,32 +1260,8 @@ Suppose that $\bd{G}$ is geometrically reductive and $X$ is of finite type over 
 
 \end{theorem}
 
-\begin{definition}
-Let $K$ be a field extension of $k$ and suppose that $\ol{x}$ is a $K$-point of $X$. We consider $\ol{x}$ as a morphism $\Spec K\ra X$. Then the morphism
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_k\Spec K & & \bd{G}\times_kX & X                        \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$1_{\bd{G}}\times_k\ol{x}  $} (m-1-3);
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-3) edge node[auto] {$ a $} (m-1-4);
-\end{tikzpicture}
-\end{center}
-is called \textit{the orbit morphism of $\ol{x}$}.
-\end{definition}
 
-\begin{proposition}
-Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item Fix a point $y$ in $Y$. Consider a geometric point $\ol{y}$ such that $k(\ol{y})$ is algebraically closed field extension of $k(y)$. If $k(\ol{y})$ has sufficiently large trancendence degree over $k$, then the morphism $\bd{G}\times_k\Spec k(\ol{y})\ra X_{\ol{y}}$ induced by the orbit morphism of 
-\item The morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$ is surjective.
-\end{enumerate}
-\end{proposition}
-\begin{proof}
-We start by proving the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume that \textbf{(i)} holds. Consider a point $z$ in $X\times_YX$. Let $y$ be a point of $Y$ such that $q\left(\mathrm{pr}_X(z)\right) = y = q\left(a(z)\right)$. Fix an algebraically closed extension $K$ of $k(z)$. Then there exists a $K$-point $\ol{z}$ of $X\times_YX$ with $z$ as the underlying point. Suppose that $\ol{x} = \mathrm{pr}_X(\ol{z})$. By possibly enlarging $K$ we may assume according to \textbf{(i)} that the set-theoretic image of the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ of $\ol{x}$ equals to $q^{-1}(y)$. In particular, $\ol{u} = a(\ol{z})$ is contained in the set-theoretic image of $o_{\ol{x}}$.
-\end{proof}
+
 
 
 
