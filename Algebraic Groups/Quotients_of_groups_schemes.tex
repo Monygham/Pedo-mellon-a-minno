@@ -9,11 +9,30 @@
 \section{Introduction}
 \noindent
 These notes present core results in geometric invariant theory. We mostly follow monography \cite{mumford1994geometric}. We extensively use the language of schemes.\\
-Throughout these notes we fix a field $k$ and a group scheme $\bd{G}$ over $k$ with the identity $e:\Spec k\ra \bd{G}$ and the multiplication $\mu:\bd{G}\times_k\bd{G}\ra \bd{G}$. We also fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
+Throughout these notes we fix a field $k$ and a group scheme $\bd{G}$ over $k$ with the identity $e:\Spec k\ra \bd{G}$ and the multiplication $\mu:\bd{G}\times_k\bd{G}\ra \bd{G}$. 
 
 \section{Basic properties of quotients}
 \noindent
-The following result gives scheme-theoretic criterion for topological quotient in the case of group scheme actions.
+We start by discussing some properties of submersive morphisms.
+
+\begin{fact}\label{fact:submersive_morphisms_are_local_on_target}
+Submersive morphisms of schemes are local on target.
+\end{fact}
+\begin{proof}
+Fix a morphism $q:X\ra Y$ and suppose that there exists an open cover $\cV$ of $Y$ such that for every $V\in \cV$ the restriction $q^{-1}(V)\ra V$ of $q$ is submersive. Clearly $q$ is surjective. Fix a subset $U$ of $Y$ such that $q^{-1}(U)$ is open. A set $q^{-1}(U\cap V) = q^{-1}(U)\cap q^{-1}(V)$ is an open subset of $X$ for every $V\in \cV$. Since the restriction $q^{-1}(V)\ra V$ is submersive for every $V\in \cV$, we derive that $U\cap V$ is open for every $V\in \cV$. Thus
+$$U = \bigcup_{V\in \cV}U\cap V$$
+is open in $X$. Therefore, $q$ is submersive.\\
+On the other hand if $q:X\ra Y$ is submersive, then for every open subscheme $V$ the restriction $q^{-1}(V)\ra V$ is submersive.\\
+\end{proof}
+
+\begin{fact}\label{fact:submersive_and_universally_submersive_descent_along_fpgc}
+Submersive and universally submersive morphisms descent along faithfuly flat and quasi-compact morphisms.
+\end{fact}
+\begin{proof}
+It suffices to prove that submersive morphisms have descent property. This follows from the fact that faithfully flat and quasi-compact morphism are submersive. Details are left for the reader.
+\end{proof}
+\noindent
+In the remaining part of this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$. The following result gives scheme-theoretic criterion for topological quotient in the case of group scheme actions.
 
 \begin{proposition}\label{proposition:topological_group_quotient_is_implied_by_submersive_and_kernel_pair}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Assume that $q$ is submersive and the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $a$ and $\mathrm{pr}_X$ is surjective. Then the diagram
@@ -64,13 +83,6 @@ Now we prove a series results concerning fpqc descent. For this we fix a $k$-sch
 \end{center}
 of $k$-schemes. Note that $X'$ admits a unique action $a'$ of $\bd{G}$ such that the square above consists of $\bd{G}$-equivariant morphism (we consider $g$ as a $\bd{G}$-equivariant morphism between trivial $\bd{G}$-schemes).
 
-\begin{fact}\label{fact:submersive_and_universally_submersive_descent_along_fpgc}
-Suppose that $g$ is faithfully flat and quasi-compact. Assume that $q'$ is (universally) submersive. Then $q$ is (universally) submersive.
-\end{fact}
-\begin{proof}
-It suffices to prove that submersive morphisms have descent property. This follows from the fact that $g$ (as faithfully flat and quasi-compact morphism) and $q'$ are submersive. Details are left for the reader.
-\end{proof}
-
 \begin{fact}\label{fact:surjection_on_kernel_pairs_descent}
 Suppose that $g$ is faithfully flat and quasi-compact. Then the canonical morphism $X'\times_{Y'}X'\ra X\times_YX$ is faithfully flat and quasi-compact and there is the cartesian square
 \begin{center}
@@ -108,6 +120,14 @@ Note that squares
 \end{tikzpicture}
 \end{center}
 are cartesian. Since both $g$ and $g'\times_k g'$ are faithfully flat and quasi-compact, we derive that both morphisms $X'\times_{Y'}X'\ra X'\times_YX'$ and $X'\times_YX'\ra X\times_YX$ are faithfully flat and quasi-compact. Then their composition i.e. the canonical morphism $X'\times_{Y'}X'\ra X\times_YX$ is faithfully flat and quasi-compact.
+\end{proof}
+
+\begin{fact}\label{fact:kernel_pairs_are_local_on_the_target}
+Suppose that there exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ we have a surjection $\bd{G}\times_kV\twoheadrightarrow q^{-1}(V)\times_Vq^{-1}(V)$ induced by $\mathrm{pr}_V$ and the restriction of the action to $q^{-1}(V)$. Then the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\mathrm{pr}_X$ and $a$ is surjective.
+\end{fact}
+\begin{proof}
+It follows from the fact that
+$$X\times_YX = \bigcup_{V\in \cV}q^{-1}(V)\times_Vq^{-1}(V)$$
 \end{proof}
 \noindent
 Finally we need the following notion
@@ -170,7 +190,40 @@ Since $\cO_{Y'}$ is the sheaf of $\bd{G}$-invariants for $q'$, the first diagram
 is also a kernel diagram. Thus $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$.
 \end{proof}
 
+\begin{proposition}\label{proposition:sheaf_of_invariant_functions_is_local_on_target}
+Suppose that there exists an open cover $\cV$ of $Y$ such that $\cO_V$ is the sheaf of $\bd{G}$-invariants for the restriction $q^{-1}(V)\ra V$ of $q$ for every $V$ in $\cV$. Then $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$.
+\end{proposition}
+\begin{proof}[Proof of the lemma]
+The diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_{V} & \left(q_*\cO_{X}\right)_{\mid V} & \left(q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX}\right)_{\mid V} = \left(q_*a_*\cO_{\bd{G}\times_k X}\right)_{\mid V} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \left(q_*{a}^{\#}\right)_{\mid V}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \left(q_*\mathrm{pr}_{X}^{\#}\right)_{\mid V} $} (m-1-3)
+(m-1-1) edge node[above] {$ \left(q^{\#}\right)_{\mid V} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a kernel for every $V\in \cV$. Since kernels are local, we derive that 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_{Y} & q_*\cO_{X} & q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*{a}^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_{X}^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a kernel of a pair $\left(q_*{a}^{\#}, q_*\mathrm{pr}_{X}^{\#}\right)$. Thus $\cO_Y$ is the sheaf of $\bd{G}$-invariant for $q$.
+\end{proof}
+
 \section{Categorical and geometric quotients}
+\noindent
+In this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
 \begin{definition}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Suppose that the following conditions hold.
@@ -213,6 +266,18 @@ Due to the fact that $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$ it suff
 is the cokernel in the category of topological spaces. This follows from Proposition \ref{proposition:topological_group_quotient_is_implied_by_submersive_and_kernel_pair}.
 \end{proof}
 
+\begin{corollary}\label{corollary:geometric_quotients_are_local_on_the_target}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ the restriction $q^{-1}(V)\ra V$ of $q$ is a geometric quotient.
+\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ the restriction $q^{-1}(V)\ra V$ of $q$ is a geometric quotient.
+\item $q$ is a geometric quotient.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+This is a consequence of Facts \ref{fact:submersive_morphisms_are_local_on_target}, \ref{fact:kernel_pairs_are_local_on_the_target} and Proposition \ref{proposition:sheaf_of_invariant_functions_is_local_on_target}.
+\end{proof}
+
 \begin{definition}
 Let $q:X\ra Y$ be a morphism of $k$-schemes such that the diagram
 \begin{center}
@@ -252,68 +317,51 @@ Let $q:X\ra Y$ be a morphism of $k$-schemes such that $q\cdot \mathrm{pr}_X = q\
 \end{center} 
 Then there exists a unique action $a':\bd{G} \times_kX' \ra X'$ of $\bd{G}$ on $X'$ such that the square above consists of $\bd{G}$-equivariant morphism (we consider $Y,Y'$ as $\bd{G}$-schemes equipped with trivial $\bd{G}$-actions). Keeping this in mind we have the following.
 
+\begin{corollary}\label{corollary:geometric_quotients_descent_along_fpqc}
+Let $g:Y'\ra Y$ be a faithfully flat and quasi-compact morphism. Suppose that $q'$ is a geometric quotient and a semiseparated morphism, then $q$ is a geometric quotient.
+\end{corollary}
+\begin{proof}
+This follows from Facts \ref{fact:submersive_and_universally_submersive_descent_along_fpgc}, \ref{fact:surjection_on_kernel_pairs_descent} and Proposition \ref{proposition:faithfully_flat_descent_for_invariants}.
+\end{proof}
+
 \begin{definition}
 A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $X$} if for every flat morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
 
-\begin{theorem}\label{theorem:uniform_categorical_and_geometric_quotients_are_local_and_affine_base_change_suffices}
+\begin{definition}
+A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient of $X'$. 
+\end{definition}
+\noindent
+Now we show that uniform and universal categorical quotients are local on the target.
+
+\begin{theorem}\label{theorem:uniform_and_universal_categorical_quotients_are_local_and_affine_base_change_suffices}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient.
-\item $q$ is a uniform categorical (geometric) quotient.
-\item For every affine $k$-scheme $Y'$ and a flat morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient.
-\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient.
+\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal (uniform) categorical quotient.
+\item $q$ is a universal (uniform) categorical quotient.
+\item For every affine $k$-scheme $Y'$ and a (flat) morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical quotient.
+\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal (uniform) categorical quotient.
 \end{enumerate}
 \end{theorem}
 \noindent
 For the proof we need the following.
 
-\begin{lemma}\label{lemma:categorical_and_geometric_quotients_are_local_on_the_target}
-Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. If there exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient, then $q$ is a categorical (geometric) quotient.
+\begin{lemma}\label{lemma:uniform_categorical_quotients_are_local_on_the_target}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. If there exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical quotient, then $q$ is a categorical quotient.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-For every open subscheme $V$ of $Y$ we denote by $q_V$ the restriction $q^{-1}(V)\ra V$.\\
-We first prove categorical case. For this pick a $\bd{G}$-equivariant morphism $g:X\ra Z$ into a scheme with the trivial $\bd{G}$-action. Fix $V\in \cV$ and consider the restriction $g_{\mid q^{-1}(V)}$. Since the restriction $q_V$ of $V$ is a categorical quotient, there exists a unique morphism $f_V:V\ra Z$ such that 
+We first prove categorical case. For every open subscheme $W$ of $Y$ we denote by $q_W$ the restriction $q^{-1}(W)\ra W$. For this pick a $\bd{G}$-equivariant morphism $g:X\ra Z$ into a scheme with the trivial $\bd{G}$-action. Since the restriction $q_V$ is a categorical quotient for every $V\in \cV$, there exists a unique morphism $f_V:V\ra Z$ such that 
 $$g_{\mid q^{-1}(V)} = f_V\cdot q_V$$
 Suppose that $V_1,V_2\in \cV$. Then
 $$g_{\mid q^{-1}(V_1\cap V_2)} = \left(f_{V_1}\right)_{\mid V_1\cap V_2}\cdot q_{V_1\cap V_2}$$
 and
 $$g_{\mid q^{-1}(V_1\cap V_2)} = \left(f_{V_2}\right)_{\mid V_1\cap V_2}\cdot q_{V_1\cap V_2}$$
-Since $q_{V_1}$ and $q_{V_2}$ are uniform categorical quotients, we derive that $q_{V_1\cap V_2}$ is also categorical quotient. Thus equalities above show that $\left(f_{V_1}\right)_{\mid V_1\cap V_2} = \left(f_{V_2}\right)_{\mid V_1\cap V_2}$. Hence $\{f_V\}_{V\in \cV}$ glue to a morphism $f:Y\ra Z$ such that $g= f\cdot q$. The uniqueness of $f$ follows from uniqueness of $\{f_V\}_{V\in \cV}$. Thus $q$ is a categorical quotient.\\
-Now we deal with geometric case. Clearly $q$ is surjective. Fix a subset $U$ of $Y$ such that $q^{-1}(U)$ is open. A set $q^{-1}(U\cap V) = q^{-1}(U)\cap q^{-1}(V)$ is open subset of $X$ for every $V\in \cV$. Since $q_V$ is submersive for every $V\in \cV$, we derive that $U\cap V$ is open for every $V\in \cV$. Thus
-$$U = \bigcup_{V\in \cV}U\cap V$$
-is open in $X$. Therefore, $q$ is submersive. The diagram
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \cO_{V} & \left(q_*\cO_{X}\right)_{\mid V} & \left(q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX}\right)_{\mid V} = \left(q_*a_*\cO_{\bd{G}\times_k X}\right)_{\mid V} \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \left(q_*{a}^{\#}\right)_{\mid V}  $} (m-1-3)
-(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \left(q_*\mathrm{pr}_{X}^{\#}\right)_{\mid V} $} (m-1-3)
-(m-1-1) edge node[above] {$ \left(q^{\#}\right)_{\mid V} $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-is a kernel for every $V\in \cV$. Since kernels are local, we derive that 
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \cO_{Y} & q_*\cO_{X} & q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]
-(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*{a}^{\#}  $} (m-1-3)
-(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_{X}^{\#} $} (m-1-3)
-(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-is a kernel of a pair $\left(q_*{a}^{\#}, q_*\mathrm{pr}_{X}^{\#}\right)$. Thus $\cO_Y$ is the sheaf of $\bd{G}$-invariant for $q$. For every $V\in \cV$ we have a surjection $\bd{G}\times_kV\twoheadrightarrow q^{-1}(V)\times_Vq^{-1}(V)$ induced by $\mathrm{pr}_V$ and $a$ restricted to $q^{-1}(V)$. Since
-$$X\times_YX = \bigcup_{V\in \cV}q^{-1}(V)\times_Vq^{-1}(V)$$
-This implies that the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\mathrm{pr}_X$ and $a$ is surjective. This completes the proof that $q$ is a geometric quotient.
+Since $q_{V_1}$ and $q_{V_2}$ are uniform categorical quotients, we derive that $q_{V_1\cap V_2}$ is also categorical quotient. Thus equalities above show that $\left(f_{V_1}\right)_{\mid V_1\cap V_2} = \left(f_{V_2}\right)_{\mid V_1\cap V_2}$. Hence $\{f_V\}_{V\in \cV}$ glue to a morphism $f:Y\ra Z$ such that $g= f\cdot q$. The uniqueness of $f$ follows from uniqueness of $\{f_V\}_{V\in \cV}$. Thus $q$ is a categorical quotient.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
 Implications $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ and $\textbf{(iv)}\Rightarrow \textbf{(v)}$ are obvious.\\
-We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Suppose that \textbf{(i)} holds. Pick a flat morphism $g:Y'\ra Y$ and fix a cartesian square
+We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Suppose that \textbf{(i)} holds. Pick a (flat) morphism $g:Y'\ra Y$ and fix a cartesian square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -327,8 +375,8 @@ We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Suppose that \textbf{(i)} hold
 (m-1-2) edge node[auto] {$ q$} (m-2-2);
 \end{tikzpicture}
 \end{center}
-Then $\cV' = \{g^{-1}(V)\,|\,V\in \cV\}$ is an open cover of $Y'$ such that for every $V\in \cV'$ the morphism $q'^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient. By Lemma \ref{lemma:categorical_and_geometric_quotients_are_local_on_the_target} we derive that $q'$ is a categorical (geometric) quotient. This is \textbf{(ii)}.\\
-Assume that \textbf{(iii)} holds. Pick an open affine subset $V$ of $Y$. Consider a flat morphism $g:V'\ra V$ and pick a cartesian square 
+Then $\cV' = \{g^{-1}(V)\,|\,V\in \cV\}$ is an open cover of $Y'$ such that for every $V\in \cV'$ the morphism $q'^{-1}(V)\ra V$ is a uniform categorical quotient. By Lemma \ref{lemma:uniform_categorical_quotients_are_local_on_the_target} we derive that $q'$ is a categorical quotient. This is \textbf{(ii)}.\\
+Assume that \textbf{(iii)} holds. Pick an open affine subset $V$ of $Y$. Consider a (flat) morphism $g:V'\ra V$ and pick a cartesian square 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -342,31 +390,36 @@ Assume that \textbf{(iii)} holds. Pick an open affine subset $V$ of $Y$. Conside
 (m-1-2) edge node[auto] {$ q_V$} (m-2-2);
 \end{tikzpicture}
 \end{center} 
-where $q_V:q^{-1}(V)\ra V$ is the restriction of $q$. Then for every open affine subset $W$ of $V'$ the restriction ${q}_{V'}^{-1}(W)\ra W$ of $q_{V'}$ is a uniform categorical (geometric) quotient according to \textbf{(iii)} and the fact that $W\hookrightarrow V'$ composed with $g$ is flat. By Lemma \ref{lemma:categorical_and_geometric_quotients_are_local_on_the_target} it follows that $q_{V'}$ is a categorical (geometric) quotient. Thus $q_V$ is a uniform categorical (geometric) quotient. This holds for every open affine subset $V$ of $Y$. This is \textbf{(iv)} and hence $\textbf{(iii)}\Rightarrow \textbf{(iv)}$ holds.
+where $q_V:q^{-1}(V)\ra V$ is the restriction of $q$. Then for every open affine subset $W$ of $V'$ the restriction ${q}_{V'}^{-1}(W)\ra W$ of $q_{V'}$ is a universal (uniform) categorical quotient according to \textbf{(iii)} (and the fact that $W\hookrightarrow V'$ composed with $g$ is flat). By Lemma \ref{lemma:uniform_categorical_quotients_are_local_on_the_target} it follows that $q_{V'}$ is a categorical quotient. Thus $q_V$ is a universal (uniform) categorical quotient. This holds for every open affine subset $V$ of $Y$. This is \textbf{(iv)} and hence $\textbf{(iii)}\Rightarrow \textbf{(iv)}$ holds.
 \end{proof}
+\noindent
+Similar result holds for uniform and universal geometric quotients.
 
-\begin{theorem}\label{theorem:universal_categorical_and_geometric_quotients_are_local_and_affine_base_change_suffices}
+\begin{theorem}\label{theorem:uniform_and_universal_geometric_quotients_are_local_and_affine_base_change_suffices}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal categorical (geometric) quotient.
-\item $q$ is a universal categorical (geometric) quotient.
-\item For every affine $k$-scheme $Y'$ and a morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient.
-\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal categorical (geometric) quotient.
+\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal (uniform) geometric quotient.
+\item $q$ is a universal (uniform) geometric quotient.
+\item For every affine $k$-scheme $Y'$ and a (flat) morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a geometric quotient.
+\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal (uniform) geometric quotient.
 \end{enumerate}
 \end{theorem}
-\begin{proof}[Proof of the theorem]
-Essentially (it suffices to remove word "flat" and replace "uniform" by "universal") the same proof as of Theorem \ref{theorem:uniform_categorical_and_geometric_quotients_are_local_and_affine_base_change_suffices} works also in this case. 
-\end{proof}
-
-\begin{definition}
-A morphism $q:X\ra Y$ is \textit{a universal categorical (geometric) quotient of $X$} if for every morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient of $X'$. 
-\end{definition}
-
-\begin{corollary}\label{corollary:geometric_quotients_descent_along_fpqc}
-Let $g:Y'\ra Y$ be a faithfully flat and quasi-compact morphism. Suppose that $q'$ is a geometric quotient, then $q$ is a geometric quotient.
-\end{corollary}
 \begin{proof}
-This follows from Facts \ref{fact:submersive_and_universally_submersive_descent_along_fpgc}, \ref{fact:surjection_on_kernel_pairs_descent} and Proposition \ref{proposition:faithfully_flat_descent_for_invariants}.
+The implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ follows from Corollary \ref{corollary:geometric_quotients_are_local_on_the_target}. Implication $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ and $\textbf{(iv)}\Rightarrow \textbf{(i)}$ are obvious. It suffices to prove that $\textbf{(iii)}\Rightarrow \textbf{(iv)}$. Assume that \textbf{(iii)} holds. Pick an open affine subset $V$ of $Y$. Consider a (flat) morphism $g:V'\ra V$ and pick a cartesian square 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ U' &    q^{-1}(V)                           \\
+    V' &   V                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ g'$} (m-1-2)
+(m-2-1) edge node[below] {$ g$} (m-2-2)
+(m-1-1) edge node[left] {$q_{V'} $} (m-2-1)
+(m-1-2) edge node[auto] {$ q_V$} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+where $q_V:q^{-1}(V)\ra V$ is the restriction of $q$. Then for every open affine subset $W$ of $V'$ the restriction ${q}_{V'}^{-1}(W)\ra W$ of $q_{V'}$ is a universal (uniform) geometric quotient according to \textbf{(iii)} (and the fact that $W\hookrightarrow V'$ composed with $g$ is flat). By Corollary \ref{corollary:geometric_quotients_are_local_on_the_target} it follows that $q_{V'}$ is a geometric quotient. Thus $q_V$ is a universal (uniform) geometric quotient. This holds for every open affine subset $V$ of $Y$. This implies \textbf{(iv)} and hence $\textbf{(iii)}\Rightarrow \textbf{(iv)}$ holds.
 \end{proof}
 \noindent
 In the next result we give a simple example of a universal geometric quotient.
@@ -423,6 +476,8 @@ is the kernel diagram and hence $\cO_Y$ is the sheaf of $\bd{G}$-invariants for 
 \end{proof}
     
 \section{Geometric quotients of separated actions}
+\noindent
+In this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
 \begin{definition}
 The action of $\bd{G}$ on $X$ is \textit{separated} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image.
@@ -455,6 +510,8 @@ It follows that $X\times_YX\hookrightarrow X\times_kX$ is a locally closed immer
 \end{proof}
 
 \section{Geometric quotients of free actions and principal bundles}
+\noindent
+In this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
 \begin{definition}
 The action of $\bd{G}$ on $X$ is \textit{free} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ is a closed immersion.
@@ -782,7 +839,8 @@ is cartesian and $q$ is faithfully flat and quasi-compact. By Proposition \ref{p
 
 \section{Good categorical quotients}
 \noindent
-We start by the following criterion for categorical quotients.
+\noindent
+In this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$. We start by the following criterion for categorical quotients.
 
 \begin{theorem}\label{theorem:good_categorical_quotient_is_categorical}
 Let $q:X\ra Y$ be a morphism into a $k$-scheme $Y$ equipped with the trivial $\bd{G}$-action. Assume that the following assertions hold.
@@ -838,9 +896,71 @@ As in case of categorical and geometric quotients one can introduce the followin
 A morphism $q:X\ra Y$ is \textit{a universal (uniform) good categorical quotient of $X$} if for every (flat) morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a good categorical quotient of $X'$.
 \end{definition}
 
+\begin{corollary}\label{corollary:uniform_good_categorical_quotients_are_universally_submersive}
+If $q:X\ra Y$ is a uniform good categorical quotient, then it is universally submersive.
+\end{corollary}
+\begin{proof}
+Let $g:Y'\ra Y$ be a morphism of $k$-schemes. Then we can factor $g$ as a closed immersion $Y'\hookrightarrow Z$ followed by a flat morphism $Z\ra Y$. Since $q' = 1_Z\times_Yq$ is a good categorical quotient, we derive that it is submersive by Theorem \ref{theorem:good_categorical_quotient_is_categorical}. Hence the restriction $q'^{-1}(Y')\ra Y'$ of $q'$ to a closed subset is also submersive. Therefore, $1_{Y'}\times_Yq$ is submersive. 
+\end{proof}
+
+\begin{theorem}\label{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ the restriction $q^{-1}(V)\ra V$ of $q$ is a universal (uniform) good categorical quotient.
+\item $q$ is a universal (uniform) good categorical quotient.
+\item For every affine $k$-scheme $Y'$ and a (flat) morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a good categorical quotient.
+\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ the restriction $q^{-1}(V)\ra V$ of $q$ is a universal (uniform) good categorical quotient.
+\end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need the following.
+    
+\begin{lemma}\label{lemma:good_categorical_quotients_are_local_on_the_target}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Suppose that there exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ the restriction $q^{-1}(V)\ra V$ of $q$ is a good categorical quotient. Then $q$ is a good categorical quotient.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Pick a closed $\bd{G}$-stable subset $Z$ of $X$. Then $q(Z) \cap V$ is closed in $V$ for every $V\in \cV$. Thus $q(Z)$ is closed in $Y$. Suppose that $\{Z_i\}_{i\in I}$ are closed $\bd{G}$-stable subsets of $X$ with empty intersection. Then 
+$$V\cap \bigcap_{i\in I}q(Z_i) = \emptyset$$
+and hence the intersection of $\{q(z_i)\}_{i\in I}$ is empty. According to Proposition \ref{proposition:sheaf_of_invariant_functions_is_local_on_target} we derive that $\cO_Y$ is the sheaf of $\bd{G}$-invariant functions for $q$. Thus $q$ is a good categorical quotient.
+\end{proof}
+    
+\begin{proof}[Proof of the theorem]
+Implications $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ and $\textbf{(iv)}\Rightarrow \textbf{(v)}$ are obvious.\\
+We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Suppose that \textbf{(i)} holds. Pick a (flat) morphism $g:Y'\ra Y$ and fix a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ X' &    X                           \\
+    Y' &   Y                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ g'$} (m-1-2)
+(m-2-1) edge node[below] {$ g$} (m-2-2)
+(m-1-1) edge node[left] {$q' $} (m-2-1)
+(m-1-2) edge node[auto] {$ q$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Then $\cV' = \{g^{-1}(V)\,|\,V\in \cV\}$ is an open cover of $Y'$ such that for every $V\in \cV'$ the morphism $q'^{-1}(V)\ra V$ is a uniform categorical quotient. By Lemma \ref{lemma:good_categorical_quotients_are_local_on_the_target} we derive that $q'$ is a good categorical quotient. This is \textbf{(ii)}.\\
+Assume that \textbf{(iii)} holds. Pick an open affine subset $V$ of $Y$. Consider a (flat) morphism $g:V'\ra V$ and pick a cartesian square 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ U' &    q^{-1}(V)                           \\
+    V' &   V                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ g'$} (m-1-2)
+(m-2-1) edge node[below] {$ g$} (m-2-2)
+(m-1-1) edge node[left] {$q_{V'} $} (m-2-1)
+(m-1-2) edge node[auto] {$ q_V$} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+where $q_V:q^{-1}(V)\ra V$ is the restriction of $q$. Then for every open affine subset $W$ of $V'$ the restriction ${q}_{V'}^{-1}(W)\ra W$ of $q_{V'}$ is a universal (uniform) good categorical quotient according to \textbf{(iii)} (and the fact that $W\hookrightarrow V'$ composed with $g$ is flat). By Lemma \ref{lemma:good_categorical_quotients_are_local_on_the_target} it follows that $q_{V'}$ is a good categorical quotient. Thus $q_V$ is a universal (uniform) good categorical quotient. This holds for every open affine subset $V$ of $Y$. This is \textbf{(iv)} and hence $\textbf{(iii)}\Rightarrow \textbf{(iv)}$ holds.
+\end{proof}
+
 \section{Affine case}
 \noindent
-In this section we make the first important step towards existence of quotients by proving that good categorical quotients exists for affine $k$-schemes equipped with an action of geometrically reducitve groups. 
+In this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$. We make the first important step towards existence of quotients by proving that good categorical quotients exists for affine $k$-schemes equipped with an action of geometrically reductive groups. 
 
 \begin{proposition}\label{proposition:invariant_functions_separate_closed_sets_for_geometrically_reductive}
 Suppose that $\bd{G}$ is geometrically reductive group and $X$ is an affine $k$-scheme. Let $Z_1,Z_2$ be nonempty closed $\bd{G}$-stable subsets of $X$ such that $Z_1\cap Z_2 = \emptyset$. Then there exists $\bd{G}$-invariant regular function $f$ on $X$ such that $f_{\mid Z_1} = 1$ and $f_{\mid Z_2} = 0$.
@@ -869,7 +989,6 @@ Suppose that $X$ is an affine $k$-scheme and $\bd{G}$ is a geometrically reducti
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item If $X$ is of finite type over $k$, then $Y$ is of finite type over $k$.
 \item If $\bd{G}$ is linearly reductive, then $q$ is a universal good categorical quotient of $X$.
-\item $q$ is universally submersive.
 \end{enumerate}
 \end{theorem}
 \noindent
@@ -983,10 +1102,9 @@ with canonically defined arrows. Note that $\Spec A/\ideal{a} \ra \Spec (A/\idea
 $$\Spec \left(A/\ideal{a}\right)^{\bd{G}}\ra \Spec A^{\bd{G}}/\ideal{a}\cap A^{\bd{G}}$$
 is surjective. Thus the set-theoretic image of $\Spec A/\ideal{a}$ under the map $\Spec A\ra \Spec A^{\bd{G}}$ is a closed subset given by $\Spec A^{\bd{G}}/\ideal{a}\cap A^{\bd{G}}$. Hence $q(Z)$ is a closed subset of $Y$.\\
 Fix now two closed $\bd{G}$-stable subsets $Z_1,Z_2$ and assume that $Z_1\cap Z_2 = \emptyset$. We claim that $q(Z_1) \cap q(Z_2) = \emptyset$. For this we may assume that $Z_1,Z_2$ are both nonempty. Proposition \ref{proposition:invariant_functions_separate_closed_sets_for_geometrically_reductive} implies that there exists $f \in \Gamma(X,\cO_X)^{\bd{G}}$ such that $f_{\mid Z_1} = 1$ and $f_{\mid Z_2} = 0$. Then $f$ viewed as a function on $Y$ satisfies $f_{\mid q(Z_1)} = 1$ and $f_{\mid q(Z_2)} = 0$. Thus $q(Z_1)\cap q(Z_2) = \emptyset$.\\
-This completes the proof that $q$ is a good categorical quotient. Note that by Lemma \ref{lemma:flat_base_change_for_invariants} $q$ is a uniform good categorical quotient.\\
+This completes the proof that $q$ is a good categorical quotient. Lemma \ref{lemma:flat_base_change_for_invariants} and Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} imply that $q$ is a uniform good categorical quotient.\\
 If $X$ is of finite type over $k$, then by {\cite[Theorem 3.1]{Geometrically_reductive_and_Nagata}} we deduce that $Y$ which is the prime spectrum of $\Gamma\left(X,\cO_X\right)^{\bd{G}}$ is of finite type over $k$.\\
-If $\bd{G}$ is linearly reductive, then by Lemma \ref{lemma:linearly_reductive_case_for_affine_quotients} we deduce that good categorical quotients in affine case are stable under base changes along closed immersions. Lemma \ref{lemma:flat_base_change_for_invariants} shows that they are closed under flat base changes. Since every morphism can be factored as a flat morphism followed by a closed immersion, we derive that $q$ is a universal good categorical quotient.\\
-Finally if $Z$ is a closed subscheme of $Y$, then the morphism $q^{-1}(Z)\ra Z$ induced by $q$ is submersive. Since $q$ is a uniform good categorical quotient and every morphism can be factored as a flat morphism followed by a closed immersion, we deduce that $q$ is universally submersive.
+If $\bd{G}$ is linearly reductive, then by Lemmas \ref{lemma:flat_base_change_for_invariants}, \ref{lemma:linearly_reductive_case_for_affine_quotients} and Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} we deduce that $q$ is a universal good categorical quotient.
 \end{proof}
 
 \section{Quotients determined by linearization}
