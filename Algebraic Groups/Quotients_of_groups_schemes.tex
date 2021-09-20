@@ -256,17 +256,106 @@ Then there exists a unique action $a':\bd{G} \times_kX' \ra X'$ of $\bd{G}$ on $
 A morphism $q:X\ra Y$ is \textit{a uniform categorical (geometric) quotient of $X$} if for every flat morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient of $X'$. 
 \end{definition}
 
-
-\begin{fact}
+\begin{theorem}\label{theorem:uniform_categorical_and_geometric_quotients_are_local_and_affine_base_change_suffices}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 \item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient.
 \item $q$ is a uniform categorical (geometric) quotient.
 \item For every affine $k$-scheme $Y'$ and a flat morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient.
+\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient.
 \end{enumerate}
-\end{fact}
-\begin{proof}
+\end{theorem}
+\noindent
+For the proof we need the following.
 
+\begin{lemma}\label{lemma:categorical_and_geometric_quotients_are_local_on_the_target}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. If there exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient, then $q$ is a categorical (geometric) quotient.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every open subscheme $V$ of $Y$ we denote by $q_V$ the restriction $q^{-1}(V)\ra V$.\\
+We first prove categorical case. For this pick a $\bd{G}$-equivariant morphism $g:X\ra Z$ into a scheme with the trivial $\bd{G}$-action. Fix $V\in \cV$ and consider the restriction $g_{\mid q^{-1}(V)}$. Since the restriction $q_V$ of $V$ is a categorical quotient, there exists a unique morphism $f_V:V\ra Z$ such that 
+$$g_{\mid q^{-1}(V)} = f_V\cdot q_V$$
+Suppose that $V_1,V_2\in \cV$. Then
+$$g_{\mid q^{-1}(V_1\cap V_2)} = \left(f_{V_1}\right)_{\mid V_1\cap V_2}\cdot q_{V_1\cap V_2}$$
+and
+$$g_{\mid q^{-1}(V_1\cap V_2)} = \left(f_{V_2}\right)_{\mid V_1\cap V_2}\cdot q_{V_1\cap V_2}$$
+Since $q_{V_1}$ and $q_{V_2}$ are uniform categorical quotients, we derive that $q_{V_1\cap V_2}$ is also categorical quotient. Thus equalities above show that $\left(f_{V_1}\right)_{\mid V_1\cap V_2} = \left(f_{V_2}\right)_{\mid V_1\cap V_2}$. Hence $\{f_V\}_{V\in \cV}$ glue to a morphism $f:Y\ra Z$ such that $g= f\cdot q$. The uniqueness of $f$ follows from uniqueness of $\{f_V\}_{V\in \cV}$. Thus $q$ is a categorical quotient.\\
+Now we deal with geometric case. Clearly $q$ is surjective. Fix a subset $U$ of $Y$ such that $q^{-1}(U)$ is open. A set $q^{-1}(U\cap V) = q^{-1}(U)\cap q^{-1}(V)$ is open subset of $X$ for every $V\in \cV$. Since $q_V$ is submersive for every $V\in \cV$, we derive that $U\cap V$ is open for every $V\in \cV$. Thus
+$$U = \bigcup_{V\in \cV}U\cap V$$
+is open in $X$. Therefore, $q$ is submersive. The diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_{V} & \left(q_*\cO_{X}\right)_{\mid V} & \left(q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX}\right)_{\mid V} = \left(q_*a_*\cO_{\bd{G}\times_k X}\right)_{\mid V} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \left(q_*{a}^{\#}\right)_{\mid V}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \left(q_*\mathrm{pr}_{X}^{\#}\right)_{\mid V} $} (m-1-3)
+(m-1-1) edge node[above] {$ \left(q^{\#}\right)_{\mid V} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a kernel for every $V\in \cV$. Since kernels are local, we derive that 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{ \cO_{Y} & q_*\cO_{X} & q_*\left(\mathrm{pr}_{X}\right)_*\cO_{\bd{G}\times_kX} = q_*a_*\cO_{\bd{G}\times_k X} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ q_*{a}^{\#}  $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ q_*\mathrm{pr}_{X}^{\#} $} (m-1-3)
+(m-1-1) edge node[above] {$ q^{\#} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is a kernel of a pair $\left(q_*{a}^{\#}, q_*\mathrm{pr}_{X}^{\#}\right)$. Thus $\cO_Y$ is the sheaf of $\bd{G}$-invariant for $q$. For every $V\in \cV$ we have a surjection $\bd{G}\times_kV\twoheadrightarrow q^{-1}(V)\times_Vq^{-1}(V)$ induced by $\mathrm{pr}_V$ and $a$ restricted to $q^{-1}(V)$. Since
+$$X\times_YX = \bigcup_{V\in \cV}q^{-1}(V)\times_Vq^{-1}(V)$$
+This implies that the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\mathrm{pr}_X$ and $a$ is surjective. This completes the proof that $q$ is a geometric quotient.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Implications $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ and $\textbf{(iv)}\Rightarrow \textbf{(v)}$ are obvious.\\
+We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Suppose that \textbf{(i)} holds. Pick a flat morphism $g:Y'\ra Y$ and fix a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ X' &    X                           \\
+    Y' &   Y                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ g'$} (m-1-2)
+(m-2-1) edge node[below] {$ g$} (m-2-2)
+(m-1-1) edge node[left] {$q' $} (m-2-1)
+(m-1-2) edge node[auto] {$ q$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Then $\cV' = \{g^{-1}(V)\,|\,V\in \cV\}$ is an open cover of $Y'$ such that for every $V\in \cV'$ the morphism $q'^{-1}(V)\ra V$ is a uniform categorical (geometric) quotient. By Lemma \ref{lemma:categorical_and_geometric_quotients_are_local_on_the_target} we derive that $q'$ is a categorical (geometric) quotient. This is \textbf{(ii)}.\\
+Assume that \textbf{(iii)} holds. Pick an open affine subset $V$ of $Y$. Consider a flat morphism $g:V'\ra V$ and pick a cartesian square 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{ U' &    q^{-1}(V)                           \\
+    V' &   V                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ g'$} (m-1-2)
+(m-2-1) edge node[below] {$ g$} (m-2-2)
+(m-1-1) edge node[left] {$q_{V'} $} (m-2-1)
+(m-1-2) edge node[auto] {$ q_V$} (m-2-2);
+\end{tikzpicture}
+\end{center} 
+where $q_V:q^{-1}(V)\ra V$ is the restriction of $q$. Then for every open affine subset $W$ of $V'$ the restriction ${q}_{V'}^{-1}(W)\ra W$ of $q_{V'}$ is a uniform categorical (geometric) quotient according to \textbf{(iii)} and the fact that $W\hookrightarrow V'$ composed with $g$ is flat. By Lemma \ref{lemma:categorical_and_geometric_quotients_are_local_on_the_target} it follows that $q_{V'}$ is a categorical (geometric) quotient. Thus $q_V$ is a uniform categorical (geometric) quotient. This holds for every open affine subset $V$ of $Y$. This is \textbf{(iv)} and hence $\textbf{(iii)}\Rightarrow \textbf{(iv)}$ holds.
+\end{proof}
+
+\begin{theorem}\label{theorem:universal_categorical_and_geometric_quotients_are_local_and_affine_base_change_suffices}
+Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+\item There exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal categorical (geometric) quotient.
+\item $q$ is a universal categorical (geometric) quotient.
+\item For every affine $k$-scheme $Y'$ and a morphism $g:Y'\ra Y$ of $k$-schemes a base change $q':X'\ra Y'$ of $q$ along $g$ is a categorical (geometric) quotient.
+\item There exists an open affine cover $\cV$ of $Y$ such that for every $V$ in $\cV$ morphism $q^{-1}(V)\ra V$ is a universal categorical (geometric) quotient.
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof of the theorem]
+Essentially (it suffices to remove word "flat" and replace "uniform" by "universal") the same proof as of Theorem \ref{theorem:uniform_categorical_and_geometric_quotients_are_local_and_affine_base_change_suffices} works also in this case. 
 \end{proof}
 
 \begin{definition}
