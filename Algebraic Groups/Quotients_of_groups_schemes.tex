@@ -83,22 +83,22 @@ Let $K$ be a field extension of $k$ and suppose that $\ol{x}$ is a $K$-point of 
 is called \textit{the orbit morphism of $\ol{x}$}.
 \end{definition}
 \noindent
-The following result is usefull.
+The following result is useful.
 
-\begin{proposition}\label{proposition:kernel_morphism_and_geometric_orbits}
+\begin{proposition}\label{proposition:fibers_are_geometric_orbits}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item Fix a point $y$ in $Y$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. For every $K$ with sufficiently large transcendence degree over $k$ the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{y}$.
+\item Fix a point $y$ in $Y$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. For every $K$ with sufficiently large transcendence degree over $k$ the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{\ol{y}}$.
 \item The morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$ is surjective.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-We start by proving the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume that \textbf{(i)} holds. Consider a point $z$ in $X\times_YX$. Let $y$ be a point of $Y$ such that $q\left(\mathrm{pr}_X(z)\right) = y = q\left(a(z)\right)$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. We may assume according to \textbf{(i)} that the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{y}$. Now suppose that $L$ is an algebraically closed field containing $K$ such that there exists an $L$-point $\ol{z}$ of $X\times_YX$ with $z$ as the underlying point and the map
+We start by proving the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume that \textbf{(i)} holds. Consider a point $z$ in $X\times_YX$. Let $y$ be a point of $Y$ such that $q\left(\mathrm{pr}_X(z)\right) = y = q\left(a(z)\right)$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. We may assume according to \textbf{(i)} that the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{\ol{y}}$. Now suppose that $L$ is an algebraically closed field containing $K$ such that there exists an $L$-point $\ol{z}$ of $X\times_YX$ with $z$ as the underlying point and the map
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}(L) & X_{y}(L) \\};
+{ \bd{G}(L) & X_{\ol{y}}(L) \\};
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$  $} (m-1-2);
 \end{tikzpicture}
@@ -134,7 +134,7 @@ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$. Ass
 (m-1-1) edge node[auto] {$   $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-is surjective, we derive that there exists $g\in \bd{G}(K)$ such that $g\cdot \ol{x} = \ol{z}$. This implies that the map $\bd{G}(K) \ra X_y(K)$ induced by the orbit map $o_{\ol{x}}$ contains $\ol{z}$ in its image. Therefore, the morphism $\bd{G}\times_k\Spec K\ra X_y$ induced by $o_{\ol{x}}$ contains $z$ in its set-theoretic image. Hence it is surjective, since $z$ is an arbitrary point of $X_y$ 
+is surjective, we derive that there exists $g\in \bd{G}(K)$ such that $g\cdot \ol{x} = \ol{z}$. This implies that the map $\bd{G}(K) \ra X_y(K)$ induced by the orbit map $o_{\ol{x}}$ contains $\ol{z}$ in its image. Therefore, the morphism $\bd{G}\times_k\Spec K\ra X_y$ induced by $o_{\ol{x}}$ contains $z$ in its set-theoretic image. Hence it is surjective, since $z$ is an arbitrary point of $X_y$. This proves that there is a surjective morphism $\bd{G}\times_k\Spec K\ra X_{\ol{y}}$ (induced by $o_{\ol{x}}$) where $\ol{y} = q(\ol{x})$.
 \end{proof}
 \noindent
 Now we prove a series results concerning fpqc descent. For this we fix a $k$-scheme $Y$ with the trivial action of $\bd{G}$ and a $\bd{G}$-equivariant morphism $q:X\ra Y$. Let $g:Y'\ra Y$ be a morphism of $k$-schemes and consider the cartesian square
@@ -492,7 +492,7 @@ The implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ follows from Corollary \
 where $q_V:q^{-1}(V)\ra V$ is the restriction of $q$. Then for every open affine subset $W$ of $V'$ the restriction ${q}_{V'}^{-1}(W)\ra W$ of $q_{V'}$ is a universal (uniform) geometric quotient according to \textbf{(iii)} (and the fact that $W\hookrightarrow V'$ composed with $g$ is flat). By Corollary \ref{corollary:geometric_quotients_are_local_on_the_target} it follows that $q_{V'}$ is a geometric quotient. Thus $q_V$ is a universal (uniform) geometric quotient. This holds for every open affine subset $V$ of $Y$. This implies \textbf{(iv)} and hence $\textbf{(iii)}\Rightarrow \textbf{(iv)}$ holds.
 \end{proof}
 \noindent
-In the next result we give a simple example of a universal geometric quotient.
+Now we give a simple example of a universal geometric quotient.
 
 \begin{proposition}\label{proposition:trivial_bundle_is_universal_geometric_quotient}
 Suppose that $\bd{G}$ is a quasi-compact group scheme over $k$. Let $Y$ be a $k$-scheme and consider $\bd{G}\times_kY$ with the action of $\bd{G}$ induced by the regular action on the left factor. Then $\mathrm{pr}_Y:\bd{G}\times_kY\ra Y$ is a universal geometric quotient. 
@@ -545,9 +545,13 @@ Recall that $e$ is given by the composition of the structural morphism $\Spec A 
 is the kernel diagram and hence $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $\mathrm{pr}_Y$. Therefore, we proved that $\mathrm{pr}_Y$ is a geometric quotient of $\bd{G}\times_kY$. Consider any morphism $Y' \ra Y$. Then base change of $\mathrm{pr}_Y$ along this morphism is $\mathrm{pr}_{Y'}$. We conclude that $\mathrm{pr}_Y$ is a universal geometric quotient for $\bd{G}\times_kY$. 
 \end{proof}
     
-\section{Geometric quotients of separated actions}
+\section{Closed and separated actions}
 \noindent
 In this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
+
+\begin{definition}
+The action of $\bd{G}$ on $X$ is \textit{closed} if for every algebraically closed field $K$ and a $K$-point $\ol{x}$ of $X\times_k\Spec K$ the orbit morphism $\bd{G}\times_k\Spec K\ra X\times_k\Spec K$ of $\ol{x}$ has closed image.
+\end{definition}
 
 \begin{definition}
 The action of $\bd{G}$ on $X$ is \textit{separated} if the morphism $\langle a, \mathrm{pr_X} \rangle:\bd{G}\times_kX\ra X\times_kX$ has closed set-theoretic image.
@@ -1059,6 +1063,7 @@ Suppose that $X$ is an affine $k$-scheme and $\bd{G}$ is a geometrically reducti
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item If $X$ is of finite type over $k$, then $Y$ is of finite type over $k$.
 \item If $\bd{G}$ is linearly reductive, then $q$ is a universal good categorical quotient of $X$.
+\item If the action of $\bd{G}$ on $X$ is closed, then $q$ is a geometric quotient.
 \end{enumerate}
 \end{theorem}
 \noindent
@@ -1174,8 +1179,10 @@ is surjective. Thus the set-theoretic image of $\Spec A/\ideal{a}$ under the map
 Fix now two closed $\bd{G}$-stable subsets $Z_1,Z_2$ and assume that $Z_1\cap Z_2 = \emptyset$. We claim that $q(Z_1) \cap q(Z_2) = \emptyset$. For this we may assume that $Z_1,Z_2$ are both nonempty. Proposition \ref{proposition:invariant_functions_separate_closed_sets_for_geometrically_reductive} implies that there exists $f \in \Gamma(X,\cO_X)^{\bd{G}}$ such that $f_{\mid Z_1} = 1$ and $f_{\mid Z_2} = 0$. Then $f$ viewed as a function on $Y$ satisfies $f_{\mid q(Z_1)} = 1$ and $f_{\mid q(Z_2)} = 0$. Thus $q(Z_1)\cap q(Z_2) = \emptyset$.\\
 This completes the proof that $q$ is a good categorical quotient. Lemma \ref{lemma:flat_base_change_for_invariants} and Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} imply that $q$ is a uniform good categorical quotient.\\
 If $X$ is of finite type over $k$, then by {\cite[Theorem 3.1]{Geometrically_reductive_and_Nagata}} we deduce that $Y$ which is the prime spectrum of $\Gamma\left(X,\cO_X\right)^{\bd{G}}$ is of finite type over $k$.\\
-If $\bd{G}$ is linearly reductive, then by Lemmas \ref{lemma:flat_base_change_for_invariants}, \ref{lemma:linearly_reductive_case_for_affine_quotients} and Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} we deduce that $q$ is a universal good categorical quotient.
+If $\bd{G}$ is linearly reductive, then by Lemmas \ref{lemma:flat_base_change_for_invariants}, \ref{lemma:linearly_reductive_case_for_affine_quotients} and Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} we deduce that $q$ is a universal good categorical quotient.\\
+Suppose now that the action of $\bd{G}$ on $X$ is closed. Suppose that the image of the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_X\rangle$ is proper. Then there exist an algebraically closed field $K$ over $k$ and two $K$-points $\ol{x}_1,\ol{x}_2$ in $X\times_k\Spec K$ such that $q(\ol{x}_1) = q(\ol{x}_2)$ and $(\ol{x}_1,\ol{x}_2)\in X(K)\times_{Y(K)}X(K)$ is not in the image of $\bd{G}(K)\times X(K)\ra X(K)\times_{Y(K)}X(K)$. This implies that the orbit morphisms $o_1,o_2:\bd{G}\times_k\Spec K\ra X\times_k\Spec K$ of $\ol{x}_1, \ol{x}_2$ have disjoint images. Since the action is closed, we derive that this images are closed subsets of $X\times_k\Spec K$. Next $q$ is a uniform good categorical quotient. Hence also $\ol{q} = q\times_k1_{\Spec K}$ is a good categorical quotient. Hence $\emptyset = \ol{q}\left(\Image(o_1)\right) \cap \ol{q}\left(\Image(o_2)\right)$. This is contradiction because $q(\ol{x}_1) = q(\ol{x}_2)$.
 \end{proof}
+
 
 \section{Quotients determined by linearization}
 \noindent
@@ -1243,7 +1250,7 @@ The following notion introduced by Mumford in \cite{mumford1994geometric} is fun
 Let $\cL$ be a line bundle on $X$ and let $\tau:a^*\cL\ra \mathrm{pr}_X^*\cL$ be a $\bd{G}$-linearization of $\cL$. Consider a point $x$ in $X$. Then we say that:
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item \textit{$x$ is semistable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine and contains $x$.
-\item \textit{$x$ is stable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine, contains $x$ and the action of $\bd{G}$ on $X_s$ has closed orbits for geometric points.
+\item \textit{$x$ is stable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine, contains $x$ and the action of $\bd{G}$ on $X_s$ is closed.
 \end{enumerate}
 We also denote by
 $$X^{ss}\left(\tau\right),\,X^s\left(\tau\right)$$
