@@ -68,19 +68,17 @@ is a cokernel in the category topological spaces.
 \end{proof}
 
 \begin{definition}
-Let $K$ be a field extension of $k$ and suppose that $\ol{x}$ is a $K$-point of $X$. We consider $\ol{x}$ as a morphism $\Spec K\ra X$. Then the morphism
+Let $A$ be a $k$-algebra and suppose that $f:\Spec A\ra X$ is an $A$-point of $X$. Then the morphism
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_k\Spec K & & \bd{G}\times_kX & X                        \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$1_{\bd{G}}\times_k\ol{x}  $} (m-1-3);
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=7em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_k\Spec K &  X\times_k\Spec K                         \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-3) edge node[auto] {$ a $} (m-1-4);
+(m-1-1) edge node[auto] {$\langle a\cdot \left(1_{\bd{G}}\times_k f \right), \mathrm{pr}_2\rangle  $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-is called \textit{the orbit morphism of $\ol{x}$}.
+is called \textit{the orbit morphism of $f$}.
 \end{definition}
 \noindent
 The following result is useful.
@@ -88,22 +86,12 @@ The following result is useful.
 \begin{proposition}\label{proposition:fibers_are_geometric_orbits}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
-\item Fix a point $y$ in $Y$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. For every $K$ with sufficiently large transcendence degree over $k$ the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{\ol{y}}$.
+\item Fix a point $y$ in $Y$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. For every $K$ with sufficiently large transcendence degree over $k$ the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X\times_k\Spec K$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{\ol{y}}$.
 \item The morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$ is surjective.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-We start by proving the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume that \textbf{(i)} holds. Consider a point $z$ in $X\times_YX$. Let $y$ be a point of $Y$ such that $q\left(\mathrm{pr}_X(z)\right) = y = q\left(a(z)\right)$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. We may assume according to \textbf{(i)} that the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{\ol{y}}$. Now suppose that $L$ is an algebraically closed field containing $K$ such that there exists an $L$-point $\ol{z}$ of $X\times_YX$ with $z$ as the underlying point and the map
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}(L) & X_{\ol{y}}(L) \\};
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$  $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-induced by $o_{\ol{x}}$ on $L$-points is surjective. Then there exists an $L$-point $g$ of $\bd{G}$ such that $g\cdot \mathrm{pr}_X(\ol{z}) = a(\ol{z})$. Hence the map
+We start by proving the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Assume that \textbf{(i)} holds. Consider a point $z$ in $X\times_YX$. Let $y$ be a point of $Y$ such that $q\left(\mathrm{pr}_X(z)\right) = y = q\left(a(z)\right)$. Consider a geometric point $\ol{x}:\Spec K\ra X$ such that $q(\ol{x}) = \ol{y}$ is the geometric point with $y$ as the underlying point. We may assume according to \textbf{(i)} that the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X\times_k\Spec K$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{\ol{y}}$. Now suppose that $L$ is an algebraically closed field containing $K$ such that there exists an $L$-point $\ol{z}$ of $X\times_YX$ with $z$ as the underlying point and the map $\bd{G}(L) \ra X_{\ol{y}}(L)$ induced by $o_{\ol{x}}$ on $L$-points is surjective. Then there exists an $L$-point $g$ of $\bd{G}$ such that $g\cdot \mathrm{pr}_X(\ol{z}) = a(\ol{z})$. Hence the map
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -124,7 +112,7 @@ Suppose now that \textbf{(ii)} holds. Pick a point $y$ in $Y$. Let $K$ be an alg
 (m-1-1) edge node[auto] {$   $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$. Assume also that $K$ contains all residue fields of points in $X_y$. Pick a point $x$ in $X_y$ and let $\ol{x}$ be a $K$-point with $x$ as the underlying point. Next fix any other point $z$ in $X_y$ and let $\ol{z}$ be a $K$-point with $z$ as the underlying point. Since the map
+induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$. Assume also that $K$ contains all residue fields of points in $X_y$. Pick a $K$-point $\ol{x}$ in $X_y$ and consider $K$-point $\ol{y} = q(\ol{x})$. Next fix any other $K$-point $z$ in $X_{y}$. Since the map
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -134,7 +122,7 @@ induced by $\langle a, \mathrm{pr}_x\rangle:\bd{G}\times_kX \ra X\times_kX$. Ass
 (m-1-1) edge node[auto] {$   $} (m-1-2);
 \end{tikzpicture}
 \end{center}
-is surjective, we derive that there exists $g\in \bd{G}(K)$ such that $g\cdot \ol{x} = \ol{z}$. This implies that the map $\bd{G}(K) \ra X_y(K)$ induced by the orbit map $o_{\ol{x}}$ contains $\ol{z}$ in its image. Therefore, the morphism $\bd{G}\times_k\Spec K\ra X_y$ induced by $o_{\ol{x}}$ contains $z$ in its set-theoretic image. Hence it is surjective, since $z$ is an arbitrary point of $X_y$. This proves that there is a surjective morphism $\bd{G}\times_k\Spec K\ra X_{\ol{y}}$ (induced by $o_{\ol{x}}$) where $\ol{y} = q(\ol{x})$.
+is surjective, we derive that there exists $g\in \bd{G}(K)$ such that $g\cdot \ol{x} = \ol{z}$. This implies that the map $\bd{G}(K) \ra X_{y}(K)$ induced by the orbit map $o_{\ol{x}}$ contains $\ol{z}$ in its image. Since $K$ contains all residue fields of points in $X_y$, the orbit morphism $o_{\ol{x}}$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_y$ is surjective. Hence $o_{\ol{x}}$ induces a surjection $\bd{G}\times_k\Spec K\twoheadrightarrow X_{\ol{y}}$.
 \end{proof}
 \noindent
 Now we prove a series results concerning fpqc descent. For this we fix a $k$-scheme $Y$ with the trivial action of $\bd{G}$ and a $\bd{G}$-equivariant morphism $q:X\ra Y$. Let $g:Y'\ra Y$ be a morphism of $k$-schemes and consider the cartesian square
@@ -498,9 +486,9 @@ Now we give a simple example of a universal geometric quotient.
 Suppose that $\bd{G}$ is a quasi-compact group scheme over $k$. Let $Y$ be a $k$-scheme and consider $\bd{G}\times_kY$ with the action of $\bd{G}$ induced by the regular action on the left factor. Then $\mathrm{pr}_Y:\bd{G}\times_kY\ra Y$ is a universal geometric quotient. 
 \end{proposition}
 \begin{proof}
-Clearly $\mathrm{pr}_Y$ is univerally submersive (it is even universally open). Let $\mu:\bd{G}\times_k\bd{G}\ra \bd{G}$ be the multiplication morphism and let $\pi_{23}:\bd{G}\times_k\bd{G}\times Y\ra \bd{G}\times_kY$ be the projection on the last two factors. Then the morphism 
+Clearly $\mathrm{pr}_Y$ is univerally submersive (it is even universally open). Let $\mu:\bd{G}\times_k\bd{G}\ra \bd{G}$ be the multiplication morphism and let $\mathrm{pr}_{23}:\bd{G}\times_k\bd{G}\times Y\ra \bd{G}\times_kY$ be the projection on the last two factors. Then the morphism 
 $$\bd{G}\times_k\bd{G}\times_kY\ra \left(\bd{G}\times_kY\right)\times_Y\left(\bd{G}\times_kY\right) = \bd{G}\times_k\bd{G}\times_kY$$
-induced by $\langle \mu\times_k1_Y, \pi_{23}\rangle:\bd{G}\times_k\bd{G}\times_kY\ra \left(\bd{G}\times_kY\right)\times_k\left(\bd{G}\times_kY\right)$ is an isomorphism. We show that $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $\mathrm{pr}_Y$. For this pick an affine open subset $V$ of $Y$. It suffices to check that the diagram
+induced by $\langle \mu\times_k1_Y, \mathrm{pr}_{23}\rangle:\bd{G}\times_k\bd{G}\times_kY\ra \left(\bd{G}\times_kY\right)\times_k\left(\bd{G}\times_kY\right)$ is an isomorphism. We show that $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $\mathrm{pr}_Y$. For this pick an affine open subset $V$ of $Y$. It suffices to check that the diagram
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -508,7 +496,7 @@ induced by $\langle \mu\times_k1_Y, \pi_{23}\rangle:\bd{G}\times_k\bd{G}\times_k
 { \Gamma(V,\cO_{Y}) & \Gamma\left(\bd{G}\times_kV, \cO_{\bd{G}\times_kY}\right) & \Gamma\left(\bd{G}\times_k\bd{G}\times_kV, \cO_{\bd{G}\times_k \bd{G}\times_kY}\right) \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \left(\mu\times_k1_Y\right)^{\#} $} (m-1-3)
-(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \pi_{23}^{\#} $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_{23}^{\#} $} (m-1-3)
 (m-1-1) edge node[above] {$ \mathrm{pr}_Y^{\#} $} (m-1-2);
 \end{tikzpicture}
 \end{center}
@@ -538,7 +526,7 @@ Recall that $e$ is given by the composition of the structural morphism $\Spec A 
 { \Gamma(V,\cO_{Y}) & \Gamma\left(\bd{G}\times_kV, \cO_{\bd{G}\times_kY}\right) & \Gamma\left(\bd{G}\times_k\bd{G}\times_kV, \cO_{\bd{G}\times_k \bd{G}\times_kY}\right) \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]
 (m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ \left(\mu\times_k1_Y\right)^{\#} $} (m-1-3)
-(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \pi_{23}^{\#} $} (m-1-3)
+(m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ \mathrm{pr}_{23}^{\#} $} (m-1-3)
 (m-1-1) edge node[above] {$ \mathrm{pr}_Y^{\#} $} (m-1-2);
 \end{tikzpicture}
 \end{center}
@@ -592,19 +580,7 @@ The action of $\bd{G}$ on $X$ is \textit{free} if the morphism $\langle a, \math
 \end{definition}
 
 \begin{definition}
-Let $x$ be a $k$-point of $X$. We consider $x$ as a morphism $\Spec k\ra X$. Suppose that \textit{the orbit morphism $\bd{G}\ra X$ of $x$} given by the composition
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G} = \bd{G}\times_k\Spec k & & \bd{G}\times_kX & X                        \\} ;
-\path[right hook->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$1_{\bd{G}}\times_kx  $} (m-1-3);
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-3) edge node[auto] {$  $} (m-1-4);
-\end{tikzpicture}
-\end{center}
-is a closed immersion. Then the action of $\bd{G}$ on $X$ has \textit{a closed free orbit at $x$}.
+Let $x$ be a $k$-point of $X$. We consider $x$ as a morphism $\Spec k\ra X$. Suppose that the orbit morphism $\bd{G}\ra X$ of $x$ is a closed immersion. Then the action of $\bd{G}$ on $X$ has \textit{a closed free orbit at $x$}.
 \end{definition}
 
 \begin{fact}\label{fact:all_k_points_have_free_closed_orbit_for_free_actions}
@@ -1063,7 +1039,7 @@ Suppose that $X$ is an affine $k$-scheme and $\bd{G}$ is a geometrically reducti
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item If $X$ is of finite type over $k$, then $Y$ is of finite type over $k$.
 \item If $\bd{G}$ is linearly reductive, then $q$ is a universal good categorical quotient of $X$.
-\item If the action of $\bd{G}$ on $X$ is closed, then $q$ is a geometric quotient.
+\item If the action of $\bd{G}$ on $X$ is closed, then $q$ is a uniform geometric quotient.
 \end{enumerate}
 \end{theorem}
 \noindent
@@ -1180,13 +1156,16 @@ Fix now two closed $\bd{G}$-stable subsets $Z_1,Z_2$ and assume that $Z_1\cap Z_
 This completes the proof that $q$ is a good categorical quotient. Lemma \ref{lemma:flat_base_change_for_invariants} and Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} imply that $q$ is a uniform good categorical quotient.\\
 If $X$ is of finite type over $k$, then by {\cite[Theorem 3.1]{Geometrically_reductive_and_Nagata}} we deduce that $Y$ which is the prime spectrum of $\Gamma\left(X,\cO_X\right)^{\bd{G}}$ is of finite type over $k$.\\
 If $\bd{G}$ is linearly reductive, then by Lemmas \ref{lemma:flat_base_change_for_invariants}, \ref{lemma:linearly_reductive_case_for_affine_quotients} and Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} we deduce that $q$ is a universal good categorical quotient.\\
-Suppose now that the action of $\bd{G}$ on $X$ is closed. Suppose that the image of the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_X\rangle$ is proper. Then there exist an algebraically closed field $K$ over $k$ and two $K$-points $\ol{x}_1,\ol{x}_2$ in $X\times_k\Spec K$ such that $q(\ol{x}_1) = q(\ol{x}_2)$ and $(\ol{x}_1,\ol{x}_2)\in X(K)\times_{Y(K)}X(K)$ is not in the image of $\bd{G}(K)\times X(K)\ra X(K)\times_{Y(K)}X(K)$. This implies that the orbit morphisms $o_1,o_2:\bd{G}\times_k\Spec K\ra X\times_k\Spec K$ of $\ol{x}_1, \ol{x}_2$ have disjoint images. Since the action is closed, we derive that this images are closed subsets of $X\times_k\Spec K$. Next $q$ is a uniform good categorical quotient. Hence also $\ol{q} = q\times_k1_{\Spec K}$ is a good categorical quotient. Hence $\emptyset = \ol{q}\left(\Image(o_1)\right) \cap \ol{q}\left(\Image(o_2)\right)$. This is contradiction because $q(\ol{x}_1) = q(\ol{x}_2)$.
+Suppose now that the action of $\bd{G}$ on $X$ is closed. Pick a point $z\in X\times_YX$. There exists an algebraically closed extension $K$ of $k$ such that there is a $K$-point $\ol{z}$ with $z$ as the underlying point. Suppose that $\ol{x}_1 = \mathrm{pr}_X(\ol{z})$ and $\ol{x}_2 = a(\ol{z})$. Consider orbit morphisms 
+$$o_{\ol{x}_1},o_{\ol{x}_2}:\bd{G}\times_k\Spec K\ra X\times_k\Spec K$$
+Then their set-theoretic images are closed $\bd{G}$-stable subsets $o_1,o_2$ of $X\times_k\Spec K$. Next $q$ is a uniform good categorical quotient. Hence also $\ol{q} = q\times_k1_{\Spec K}$ is a good categorical quotient. If $o_1\cap o_2 = \emptyset$, then $\ol{q}(o_1)\cap \ol{q}(o_2) = \emptyset$. This is impossible since 
+$$\ol{q}(\ol{x}_1) = \ol{q}\left(\mathrm{pr}_X(\ol{z})\right) = \ol{q}\left(a(\ol{z})\right)= \ol{q}(\ol{x}_2)$$
+Thus $o_1\cap o_2 \neq \emptyset$. Then there exists fields extension $K\subseteq L$ such that $o_1\cap o_2$ contains an $L$-point $\tilde{x}$ and both morphisms $o_{\ol{x}_1}$ and $o_{\ol{x}_2}$ induce surjections on $L$-points. Let $\tilde{x}_1,\tilde{x}_2$ be $L$-points induced by $\ol{x}_1,\ol{x}_2$ and $K\subseteq L$. Now there exist $g_1,g_2\in \bd{G}(L)$ such that $g_1\cdot \tilde{x}_1 = \tilde{x} = g_2\cdot \tilde{x}_2$. Hence for $g = g_2^{-1}\cdot g_1\in \bd{G}(L)$ we have $\tilde{x}_2 = g\cdot \tilde{x}_1$. Next let $\tilde{z}$ be an $L$-point of $X\times_YX$ induced by $\ol{z}$ and $K\subseteq L$. Then $\tilde{z} = (\tilde{x}_2,\tilde{x}_1)$ and since for $(g,\tilde{x}_1) \in \bd{G}(L)\times X(L)$ we have $(g\cdot \tilde{x}_1, \tilde{x}_1) = (\tilde{x}_2,\tilde{x}_1) = \tilde{z}$, we deduce that the image of the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_X\rangle$ contains $z$. Thus the morphism $\bd{G}\times_kX\ra X\times_YX$ is surjective and hence $q$ is a geometric quotient. According to Lemma \ref{lemma:flat_base_change_for_invariants} and Theorem \ref{theorem:uniform_and_universal_geometric_quotients_are_local_and_affine_base_change_suffices} we derive that $q$ is a uniform geometric quotient.
 \end{proof}
-
 
 \section{Quotients determined by linearization}
 \noindent
-We start by discussing some preliminary result concerning $\bd{G}$-linearizations of quasi-coherent sheaves. We assume in this section that $\bd{G}$ is an affine group scheme over $k$.
+We start by discussing some preliminary result concerning $\bd{G}$-linearizations of quasi-coherent sheaves. We assume in this section that $\bd{G}$ is an affine group scheme over $k$. We fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
 \begin{proposition}\label{proposition:coaction_on_global_sections}
 Let $\cF$ be a quasi-coherent sheaf on $X$ and let $\tau:a^*\cF\ra \mathrm{pr}_X^*\cF$ be a $\bd{G}$-linearization of $\cF$. Suppose that $X$ is quasi-compact and semiseparated. Then the morphism
@@ -1207,13 +1186,13 @@ where $\xi:k[\bd{G}]\ra k$ is the counit. These imply that $c$ is the coaction o
 \end{proof}
 
 \begin{definition}
-Let $\cF$ be a quasi-coherent sheaf on $X$ and let $\tau:a^*\cF\ra \mathrm{pr}_X^*\cF$ be a $\bd{G}$-linearization of $\cF$. Suppose that $X$ is quasi-compact and semiseparated. Then Proposition \ref{proposition:coaction_on_global_sections} shows that $\Gamma(X,\cF)$ is a linear representation of $\bd{G}$. We call it \textit{the linear representation induced by $\bd{G}$-linearization $\tau$}.
+Let $\cF$ be a quasi-coherent sheaf on $X$ and let $\tau:a^*\cF\ra \mathrm{pr}_X^*\cF$ be a $\bd{G}$-linearization of $\cF$. Suppose that $X$ is quasi-compact and semiseparated. Then by Proposition \ref{proposition:coaction_on_global_sections} above $\Gamma(X,\cF)$ is a linear representation of $\bd{G}$. We call it \textit{the linear representation induced by $\bd{G}$-linearization $\tau$}.
 \end{definition}
 \noindent
-Now we study properties of the linear representation induced by $\bd{G}$-linearization in case of a line bundle.
+Now we study properties of linear representations on global sections of line bundles with $\bd{G}$-linearization.
 
 \begin{proposition}\label{proposition:representation_on_global_sections_of_line_bundle_properties}
-Suppose that $X$ is quasi-compact and semiseparated. Let $\cL$ be a line bundle on $X$ and let $\tau:a^*\cL\ra \mathrm{pr}_X^*\cL$ be a $\bd{G}$-linearization of $\cL$. Then the following assertions hold.
+Suppose that $X$ is quasi-compact and semiseparated. Let $\cL$ be a locally free sheaf of rank one on $X$ and let $\tau:a^*\cL\ra \mathrm{pr}_X^*\cL$ be a $\bd{G}$-linearization of $\cL$. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item If $s\in \Gamma(X,\cL)$ is $\bd{G}$-invariant with respect to the structure of linear representation of $\bd{G}$ induced by $\tau$, then the open subscheme 
 $$X_s = \big\{x\in  X\,\big|\,s(x)\neq 0\big\}$$
@@ -1247,7 +1226,7 @@ and hence $a^*r = \mathrm{pr}_X^*r$. This finishes the proof of \textbf{(2)}.
 The following notion introduced by Mumford in \cite{mumford1994geometric} is fundamental.
 
 \begin{definition}
-Let $\cL$ be a line bundle on $X$ and let $\tau:a^*\cL\ra \mathrm{pr}_X^*\cL$ be a $\bd{G}$-linearization of $\cL$. Consider a point $x$ in $X$. Then we say that:
+Let $\cL$ be a locally free sheaf of rank one on $X$ and let $\tau:a^*\cL\ra \mathrm{pr}_X^*\cL$ be a $\bd{G}$-linearization of $\cL$. Consider a point $x$ in $X$. Then we say that:
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item \textit{$x$ is semistable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine and contains $x$.
 \item \textit{$x$ is stable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine, contains $x$ and the action of $\bd{G}$ on $X_s$ is closed.
@@ -1260,12 +1239,33 @@ sets of semistable and stable points of $X$ with respect to $\tau$, respectively
 \begin{theorem}
 Suppose that $\bd{G}$ is geometrically reductive and $X$ is of finite type over $k$. Let $\cL$ be a line bundle on $X$ which admits a $\bd{G}$-linearization $\tau:a^*\cL\ra \mathrm{pr}^*_X\cL$. Then there exists a uniform good categorical quotient $q:X^{ss}(\tau)\ra Y$ of $X^{ss}(\tau)$ by $\bd{G}$. Moreover, the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
-\item $q$ is affine and universally submersive.
-\item There exists an ample line bundle $\cM$ on $Y$ such that $q^*\cM = \cL^{\otimes n}$ for some $n$.
+\item $q$ is affine, universally submersive and $Y$ is of finite type over $k$.
+\item There exists an ample locally free sheaf of rank onereboot
+ $\cM$ on $Y$ such that $q^*\cM = \cL^{\otimes n}$ for some $n$.
 \item There exists an open subscheme $\tilde{Y}$ of $Y$ such that $q^{-1}(\tilde{Y}) = X^s(\tau)$ and the morphism $X^s(\tau)\ra \tilde{Y}$ induced by $q$ is a uniform geometric quotient of $X^s(\tau)$ by $\bd{G}$.
 \end{enumerate}
-
 \end{theorem}
+\begin{proof}
+We may fix positive integer $n$ such that there is a family of $\bd{G}$-invariant (with respect to linear representation induced by $\tau^{\otimes n}$) global sections $s_1,...,s_N\in \Gamma(X,\cL^{\otimes n})$ with the property that $X_{s_i}$ is affine for $1\leq i \leq N$ and
+$$X^{ss}(\tau) = \bigcup_{i=1}^NX_{s_i}$$
+This follows from the fact that $X$ is quasi-compact. According to Theorem \ref{theorem:Mumfords_theorem_for_good_affine_quotients} for every $i$ there exists an affine scheme $V_i$ of finite type over $k$ with the trivial $\bd{G}$-action and a $\bd{G}$-equivariant morphism $q_i:X_{s_i}\ra V_i$ which is a uniform good categorical quotient of $X_{s_i}$. Fix now $1\leq i,j\leq n$. Then $\frac{s_j}{s_i}$ is a $\bd{G}$-invariant function on $X_{s_i}$ by Proposition \ref{proposition:representation_on_global_sections_of_line_bundle_properties}. Thus it induces a function $f_{ij}$ on $V_i$. Consider now 
+$$V_{ij} = \left\{y\in V_i\,|\,f_{ij}(y) \neq 0\right\}$$
+Then $V_{ij}$ is an open subset of $V_i$. Note that $q_i^{-1}(V_{ij})$ is a nonvanishing set of $\frac{s_j}{s_i}$ and hence it is equal to $X_{s_i}\cap X_{s_j}$. Since both $q_i$ and $q_j$ are uniform good categorical quotients, we derive that their restrictions $X_{s_i}\cap X_{s_j}\ra V_{ij}$ and $X_{s_i}\cap X_{s_j}\ra V_{ji}$ are categorical quotients. This implies that there exists a unique isomorphism $\theta_{ij}:V_{ij}\ra V_{ji}$ of $k$-schemes such that the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex] 
+{     & X_{s_i}\cap X_{s_j}    &  \\
+      V_{ij}  &  & V_{ji} \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]
+(m-1-2) edge node[left = 28pt, above = 0pt] {$ \bd{induced\,by\,}q_i $} (m-2-1)
+(m-1-2) edge node[right = 28pt, above = 0pt] {$ \bd{induced\,by\,}q_j  $} (m-2-3)
+(m-2-1) edge node[below] {$ \theta_{ij} $} (m-2-3);
+\end{tikzpicture}
+\end{center}
+is commutative. Isomorphisms $\theta_{ij}:V_{ij}\ra V_{ji}$ for pairs $i,j$ of elements of $\{1,...,N\}$ satisfy cocycle condition. Indeed, this follows by their uniqueness. Hence one can glue $V_i$ to a scheme $Y$ of finite type over $k$. Moreover, morphisms $q_i$ for $i\in \{1,...,N\}$ give rise to a morphism $q:X^{ss}(\tau)\ra Y$ such that $q^{-1}(V_i) = X_{s_i}$ and the restriction of $q$ to $X_{s_i}\ra V_i$ is equal to $q_i$ for every $i$. According to Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} we derive that $q$ is a uniform good categorical quotient of $X$. Moreover, $q$ is affine and by Corollary \ref{corollary:uniform_good_categorical_quotients_are_universally_submersive} it is universally submersive. This completes the proof of the main assertion and \textbf{(1)}.\\
+Now we prove \textbf{(2)}. Pick three indices $1\leq i,j,r\leq N$. Then $f_{jr}\cdot f_{ij} = f_{ir}$ on an open subset $V_i\cap V_j\cap V_r$ of $Y$. Hence $f_{ij}:\cO_{V_i\cap V_j}\ra \cO_{V_i\cap V_j}$ for $i,j \in \{1,...,N\}$ glue to a locally free sheaf of rank one $\cM$ on $Y$. Since $q^{\#}(f_{ij}) = \frac{s_j}{s_i}\in \Gamma(X_{s_i},\cO_X)$ for every pair $i,j$, we derive that $q^*\cM = \cL^{\otimes n}$. Note also that $f_{ji}\in \Gamma(V_j,\cO_Y)$ for $j\in \{1,...,N\}$ give rise to a global section $t_i$ of $\cM$.
+\end{proof}
 
 
 
