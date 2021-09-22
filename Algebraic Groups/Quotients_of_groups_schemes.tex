@@ -13,7 +13,7 @@ Throughout these notes we fix a field $k$ and a group scheme $\bd{G}$ over $k$ w
 
 \section{Basic properties of quotients}
 \noindent
-We start by discussing some properties of submersive morphisms.
+We recall some properties of submersive morphisms.
 
 \begin{fact}\label{fact:submersive_morphisms_are_local_on_target}
 Submersive morphisms of schemes are local on target.
@@ -73,7 +73,7 @@ Let $A$ be a $k$-algebra and suppose that $f:\Spec A\ra X$ is an $A$-point of $X
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=7em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_k\Spec K &  X\times_k\Spec K                         \\} ;
+{ \bd{G}\times_k\Spec A &  X\times_k\Spec A                         \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$\langle a\cdot \left(1_{\bd{G}}\times_k f \right), \mathrm{pr}_2\rangle  $} (m-1-2);
 \end{tikzpicture}
@@ -181,7 +181,7 @@ are cartesian. Since both $g$ and $g'\times_k g'$ are faithfully flat and quasi-
 \end{proof}
 
 \begin{fact}\label{fact:kernel_pairs_are_local_on_the_target}
-Suppose that there exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ we have a surjection $\bd{G}\times_kV\twoheadrightarrow q^{-1}(V)\times_Vq^{-1}(V)$ induced by $\mathrm{pr}_V$ and the restriction of the action to $q^{-1}(V)$. Then the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\mathrm{pr}_X$ and $a$ is surjective.
+Suppose that there exists an open cover $\cV$ of $Y$ such that for every $V$ in $\cV$ we have a surjection $\bd{G}\times_kV\twoheadrightarrow q^{-1}(V)\times_Vq^{-1}(V)$ induced by $\mathrm{pr}_V$ and the restriction of the action to $q^{-1}(V)$. Then the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_X\rangle$ is surjective.
 \end{fact}
 \begin{proof}
 It follows from the fact that
