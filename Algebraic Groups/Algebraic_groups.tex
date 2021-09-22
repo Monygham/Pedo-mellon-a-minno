@@ -210,6 +210,74 @@ Let $\bd{G}$ be a locally algebraic group over $k$ and let $a:\bd{G}\times_k X\r
 Corollaries \ref{corollary:action_of_group_k_scheme_is_flat} and \ref{remark:projections_over_field_are_universally_open} show that $\bd{G}\times_k U \ra \bd{G}\cdot U$ is faithfully flat and open. Hence according to {\cite[\textit(iii) of Proposition 2.35]{fantechi2005fundamental}} the morphism in question is fpqc.
 \end{proof}
 
+\section{Orbits and stablizers}
+
+\begin{definition}
+Let $\bd{G}$ be a group scheme over $k$ and let $a:\bd{G}\times_k X\ra X$ be an action of $\bd{G}$ on $k$-scheme $X$. Consider a $Y$-point $f:Y\ra X$ for a $k$-scheme $Y$. Then the morphism
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=7em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}\times_kY &  X\times_kY                         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$\langle a\cdot \left(1_{\bd{G}}\times_k f \right), \mathrm{pr}_2\rangle  $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is called \textit{the orbit morphism of $f$}.
+\end{definition}
+\noindent
+One can also introduce stablizers for scheme-theoretic points.
+
+\begin{definition}
+Let $\bd{G}$ be a group scheme over $k$ and let $a:\bd{G}\times_k X\ra X$ be an action of $\bd{G}$ on $k$-scheme $X$. Consider a $Y$-point $f:Y\ra X$ for a $k$-scheme $Y$. Fix a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}_f &   Y                           \\
+  \bd{G}\times_kY  &  X\times_kY                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$ o_f $} (m-2-2);
+\path[right hook->,line width=1.0pt,font=\scriptsize]  
+(m-1-2) edge node[auto] {$ \langle f, 1_Y\rangle  $} (m-2-2)
+(m-1-1) edge node[left] {$  $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+where $o_f$ is the orbit morphism for $f$. Then $\bd{G}_f$ is a subgroup $Y$-scheme of $\bd{G}\times_kY$. It is called \textit{the stablizer of $f$}.
+\end{definition}
+\noindent
+Now we prove useful result which concerns upper semicontinuity of dimension of stablizers.
+
+\begin{theorem}\label{theorem:semicontinuity_of_stablizers_dimension}
+Let $\bd{G}$ be a locally algebraic group over $k$ and let $a:\bd{G}\times_k X\ra X$ be an action of $\bd{G}$ on a locally noetherian $k$-scheme $X$. For every point $x$ in $X$ consider the stabilizer $\bd{G}_x$ of the canonical morphism $\Spec k(x)\ra X$ and let $e_x$ be its identity element. Then
+$$X_n = \big\{x\in X\,\big|\,\mathrm{dim}_{e_x}(\bd{G}_x) < n\}$$
+is an open subscheme of $X$ for every $n\in \NN$.
+\end{theorem}
+\begin{proof}
+Consider the stabilizer $\bd{G}_X$ of $1_X:X\ra X$. Let $\pi_X:\bd{G}_X\ra X$ be the structural morphism. Clearly it is the composition of the morphism of group schemes $\bd{G}_X\hookrightarrow \bd{G}\times_kX$ over $X$ with the projection $\mathrm{pr}_X:\bd{G}\times_kX\ra X$ on the first factor. Note that $\bd{G}_X\hookrightarrow \bd{G}\times_kX$ is a base change of the diagonal $X\hookrightarrow X\times_kX$. Hence $\bd{G}_X\hookrightarrow \bd{G}\times_kX$ is locally of finite type. Since $\mathrm{pr}_X$ is locally of finite type ($\bd{G}$ is locally algebraic group over $k$), we derive that $\pi_X$ is locally of finite type. Note that for every $k$-scheme $Y$ and a $Y$-point $f:Y\ra X$ we have a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \bd{G}_f &   \bd{G}_X                           \\
+    Y  &  X                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$  $} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-2) edge node[auto] {$ \pi_X  $} (m-2-2)
+(m-1-1) edge node[left] {$ \pi_f $} (m-2-1);
+\end{tikzpicture}
+\end{center}
+where $\pi_f$ is the structural morphism. In particular, we have an identification $\pi_X^{-1}(x) = \bd{G}_x$ of schemes over $k(x)$. Thus we can apply the result on upper semicontinuity of dimensions of fibers {\cite[Theorem 14.110]{gortz2010algebraic}} and we derive that the function
+$$\bd{G}_X\ni g\mapsto \mathrm{dim}_g\left(\bd{G}_{\pi_X(g)}\right)\in \NN$$
+is upper semicontinuous. Consider now the section $e_X:X\ra \bd{G}_X$ of $\pi_X$ which gives the identity element of the group scheme $\bd{G}_X$ over $X$. Clearly $e_X(x) = e_x$ is the identity element of $\bd{G}_x$ for every $x$ in $X$ and $e_X$ is a locally closed immersion. Thus the function
+$$X\ni x\mapsto \mathrm{dim}_{e_x}\left(\bd{G}_{x}\right)\in \NN$$
+is the restriction of the upper semicontinuous function
+$$\bd{G}_X\ni g\mapsto \mathrm{dim}_g\left(\bd{G}_{\pi_X(g)}\right)\in \NN$$
+to a subspace $e_X:X\ra \bd{G}_X$. Since the restriction to a subspace of an upper semicontinuous function is upper semicontinuous, this completes the proof.
+\end{proof}
+
 \section{$\bd{G}$-equivariant morphisms}
 
 \begin{theorem}\label{theorem:base_locus_of_certain_classes_of_morphisms_are_stable_under_locally_algebraic_group_action}

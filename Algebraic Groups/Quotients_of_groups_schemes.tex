@@ -1229,7 +1229,7 @@ The following notion introduced by Mumford in \cite{mumford1994geometric} is fun
 Suppose that $\bd{G}$ is affine group scheme over $k$ and assume that $X$ is quasi-compact and semiseparated. Let $(\cL,\tau)$ be a locally free $\bd{G}$-sheaf of rank one on $X$. Consider a point $x$ in $X$. Then we say that:
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item \textit{$x$ is semistable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine and contains $x$.
-\item \textit{$x$ is stable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine, contains $x$ and the action of $\bd{G}$ on $X_s$ is closed.
+\item \textit{$x$ is stable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine, contains $x$, the action of $\bd{G}$ on $X_s$ is closed and has finite stabilizers.
 \end{enumerate}
 We also denote by
 $$X^{ss}\left(\tau\right),\,X^s\left(\tau\right)$$
@@ -1274,6 +1274,12 @@ is commutative. Isomorphisms $\theta_{ij}:V_{ij}\ra V_{ji}$ for pairs $i,j$ of e
 Now we prove \textbf{(2)}. Pick three indices $1\leq i,j,r\leq N$. Then $f_{rj}\cdot f_{ji} = f_{ri}$ on an open subset $V_i\cap V_j\cap V_r$ of $Y$. Hence $f_{ji}\cdot (-):{\cO_{V_i}}_{\mid V_i\cap V_j} \ra {\cO_{V_j}}_{\mid V_i\cap V_j}$ for $i,j \in \{1,...,N\}$ glue to a locally free sheaf of rank one $\cM$ on $Y$. Since $q^{\#}(f_{ji}) = \frac{s_i}{s_j}\in \Gamma(X_{s_j},\cO_X)$ for every pair $i,j$, we derive that $q^*\cM$ admits transition functions $\frac{s_i}{s_j}\cdot (-):{\cO_{X_{s_i}}}_{\mid X_{s_i}\cap X_{s_j}} \ra {\cO_{X_{s_j}}}_{\mid X_{s_i}\cap X_{s_j}}$ for every pair $i,j$. This implies that $q^*\cM$ is isomorphic with $\cL^{\otimes n}$. Note also that $f_{ji}\in \Gamma(V_j,\cO_Y)$ for $j\in \{1,...,N\}$ give rise to a global section $t_i$ of $\cM$. Then $q^*t_i = s_i$ for $i\in \{1,...,N\}$. Hence $q^{-1}\left(Y_{t_i}\right) = X_{s_i}$ for $i\in \{1,...,N\}$. Thus $Y_{t_i} = V_i$ for every $i$. This implies that sets $Y_{t_i}$ for $i\in \{1,...,N\}$ from an open affine cover of $Y$. This proves that $\cM$ is ample locally free sheaf on $Y$. This completes \textbf{(2)}.\\
 It remains to prove assertion \textbf{(3)}. By enlarging $N$ and $n$ if necessary, we may assume that there exists $I\subseteq \{1,...,N\}$ such that $X^s(\tau) = \bigcup_{i\in I}X_{s_i}$. Consider $\tilde{Y} = \bigcup_{i\in I}V_i$. Then $q^{-1}(\tilde{Y}) = X^s(\tau)$ and according to Theorem \ref{theorem:Mumfords_theorem_for_good_affine_quotients} the restriction $X_{s_i}\ra V_i$ is a uniform geometric quotient for every $i\in I$. Hence the restriction $X^s(\tau)\ra \tilde{Y}$ is a uniform geometric quotient. Now the theorem is proved.
 \end{proof}
+
+\section{Numerical criterion for stability}
+
+\begin{definition}
+A morphism $\lambda:\mathbb{G}_m\ra \bd{G}$ of group schemes over $k$ is called \textit{a 1-parameter subgroup of $\bd{G}$}.
+\end{definition}
 
 
 
