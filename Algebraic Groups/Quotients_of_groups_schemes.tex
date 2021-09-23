@@ -66,22 +66,8 @@ induced by $\pi_1$ and $\pi_2$, we derive that there exists a $K$-point $\ol{z}$
 \end{center}
 is a cokernel in the category topological spaces.
 \end{proof}
-
-\begin{definition}
-Let $A$ be a $k$-algebra and suppose that $f:\Spec A\ra X$ is an $A$-point of $X$. Then the morphism
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=7em,text height=1.5ex, text depth=0.25ex] 
-{ \bd{G}\times_k\Spec A &  X\times_k\Spec A                         \\} ;
-\path[->,line width=1.0pt,font=\scriptsize]  
-(m-1-1) edge node[auto] {$\langle a\cdot \left(1_{\bd{G}}\times_k f \right), \mathrm{pr}_2\rangle  $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-is called \textit{the orbit morphism of $f$}.
-\end{definition}
 \noindent
-The following result is useful.
+Recall ({\cite[Definition 5.1]{Algebraic_groups}}) that if $K$ is a field over $k$ and $\ol{x}:\Spec K\ra X$ is a $K$-point the we define the orbit morphism $o_{\ol{x}}:\bd{G}\times_k\Spec K\ra X\times_k\Spec K$ by $o_{\ol{x}} = \langle a\cdot \left(1_{\bd{G}}\times_k\ol{x}\right), \mathrm{pr}_2\rangle$ where $\mathrm{pr}_2:\bd{G}\times_k\Spec K\ra \Spec K$ is the projection. The following result is useful.
 
 \begin{proposition}\label{proposition:fibers_are_geometric_orbits}
 Let $Y$ be a $k$-scheme with the trivial action of $\bd{G}$ and let $q:X\ra Y$ be a $\bd{G}$-equivariant morphism. Then the following assertions are equivalent.
@@ -1016,7 +1002,7 @@ In this section we fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ dete
 Suppose that $\bd{G}$ is geometrically reductive group and $X$ is an affine $k$-scheme. Let $Z_1,Z_2$ be nonempty closed $\bd{G}$-stable subsets of $X$ such that $Z_1\cap Z_2 = \emptyset$. Then there exists $\bd{G}$-invariant regular function $f$ on $X$ such that $f_{\mid Z_1} = 1$ and $f_{\mid Z_2} = 0$.
 \end{proposition}
 \begin{proof}
-By {\cite[Corollary 5.4]{Algebraic_groups}} we may consider $Z_1$ and $Z_2$ as a closed $\bd{G}$-stable subschemes of $X$. Since $Z_1\cap Z_2 = \emptyset$, we have 
+By {\cite[Corollary 6.4]{Algebraic_groups}} we may consider $Z_1$ and $Z_2$ as a closed $\bd{G}$-stable subschemes of $X$. Since $Z_1\cap Z_2 = \emptyset$, we have 
 $$\Gamma(Z_1\cup Z_2,\cO_X) = \Gamma(Z_1,\cO_X)\times \Gamma(Z_2,\cO_X)$$
 In particular, there exists a regular invariant function 
 $$g \in \Gamma(Z_1,\cO_X)^{\bd{G}}\times \Gamma(Z_2,\cO_X)^{\bd{G}} = \Gamma(Z_1\cup Z_2,\cO_X)^{\bd{G}}$$
@@ -1135,7 +1121,7 @@ $$\left(A/A\ideal{a}\right)^{\bd{G}} = A^{\bd{G}}/\left(A\ideal{a}\right)^{\bd{G
 Since $X$ is quasi-compact, we may verify conditions of Proposition \ref{proposition:finite_intersection_property_for_quasi_compact_suffices_for_good_categorical_quotients}. First let us denote by $A$ the $k$-algebra of global regular functions $\Gamma(X,\cO_X)$. Suppose that $V \subseteq \Spec A^{\bd{G}} = Y$ is an open affine subset. Then $B = \Gamma(V,\cO_Y)$ is a flat $A^{\bd{G}}$-algebra and by Lemma \ref{lemma:flat_base_change_for_invariants}  we have canonical isomorphism
 $$B \cong \left(A\otimes_{A^{\bd{G}}}B\right)^{\bd{G}}$$
 This implies that $\Gamma(V,\cO_Y) \cong \Gamma(q^{-1}(V),\cO_X)^{\bd{G}}$ and hence $\cO_Y$ is the sheaf of $\bd{G}$-invariants for $q$.\\
-Fix now a closed $\bd{G}$-stable subset $Z$ of $X$. By {\cite[Corollary 5.4]{Algebraic_groups}} there exists a $\bd{G}$-stable ideal $\ideal{a}\subseteq A$ such that its vanishing set is equal to $Z$. Consider a commutative square
+Fix now a closed $\bd{G}$-stable subset $Z$ of $X$. By {\cite[Corollary 6.4]{Algebraic_groups}} there exists a $\bd{G}$-stable ideal $\ideal{a}\subseteq A$ such that its vanishing set is equal to $Z$. Consider a commutative square
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -1163,7 +1149,7 @@ $$\ol{q}(\ol{x}_1) = \ol{q}\left(\mathrm{pr}_X(\ol{z})\right) = \ol{q}\left(a(\o
 Thus $o_1\cap o_2 \neq \emptyset$. Then there exists fields extension $K\subseteq L$ such that $o_1\cap o_2$ contains an $L$-point $\tilde{x}$ and both morphisms $o_{\ol{x}_1}$ and $o_{\ol{x}_2}$ induce surjections on $L$-points. Let $\tilde{x}_1,\tilde{x}_2$ be $L$-points induced by $\ol{x}_1,\ol{x}_2$ and $K\subseteq L$. Now there exist $g_1,g_2\in \bd{G}(L)$ such that $g_1\cdot \tilde{x}_1 = \tilde{x} = g_2\cdot \tilde{x}_2$. Hence for $g = g_2^{-1}\cdot g_1\in \bd{G}(L)$ we have $\tilde{x}_2 = g\cdot \tilde{x}_1$. Next let $\tilde{z}$ be an $L$-point of $X\times_YX$ induced by $\ol{z}$ and $K\subseteq L$. Then $\tilde{z} = (\tilde{x}_2,\tilde{x}_1)$ and since for $(g,\tilde{x}_1) \in \bd{G}(L)\times X(L)$ we have $(g\cdot \tilde{x}_1, \tilde{x}_1) = (\tilde{x}_2,\tilde{x}_1) = \tilde{z}$, we deduce that the image of the morphism $\bd{G}\times_kX\ra X\times_YX$ induced by $\langle a, \mathrm{pr}_X\rangle$ contains $z$. Thus the morphism $\bd{G}\times_kX\ra X\times_YX$ is surjective and hence $q$ is a geometric quotient. According to Lemma \ref{lemma:flat_base_change_for_invariants} and Theorem \ref{theorem:uniform_and_universal_geometric_quotients_are_local_and_affine_base_change_suffices} we derive that $q$ is a uniform geometric quotient.
 \end{proof}
 
-\section{Quotients determined by linearization}
+\section{Rudimentary results on line $\bd{G}$-bundles}
 \noindent
 We start by discussing some preliminary result concerning $\bd{G}$-linearizations of quasi-coherent sheaves. We fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$.
 
@@ -1222,14 +1208,22 @@ $$\mathrm{pr}_X^*s_{\mid \bd{G}\times_kX_s} \cdot a^*r = \tau\left(a^*s_{\mid \b
 $$= \tau^{-1}(a^*t_{\mid \bd{G}\times_kX_s}) = \mathrm{pr}_X^*t_{\mid \bd{G}\times_kX_s} = \mathrm{pr}_X^*s_{\mid \bd{G}\times_kX_s}\cdot \mathrm{pr}_X^*r$$
 and hence $a^*r = \mathrm{pr}_X^*r$. This finishes the proof of \textbf{(2)}.
 \end{proof}
+
+\section{Quotients determined by line $\bd{G}$-bundles}
+\noindent
+We fix a $k$-scheme $X$ equipped with an action of $\bd{G}$ determined by morphism $a:\bd{G}\times_kX\ra X$. Recall {\cite[Definition 5.2]{Algebraic_groups}} the notion of stablizer for an action. For every $x$ in $X$ let $\bd{G}_x$ be the stablizer of the canonical morphism $\Spec k(x)\ra X$. This is a group scheme over $k(x)$. We denote by $e_x$ its identity element. 
+
+\begin{definition}
+The action of $\bd{G}$ on $X$ has \textit{finite stabilizers} if $\mathrm{dim}_{e_x}(\bd{G}_x) = 0$ for every $x$ in $X$.    
+\end{definition}
 \noindent
 The following notion introduced by Mumford in \cite{mumford1994geometric} is fundamental.
 
 \begin{definition}
-Suppose that $\bd{G}$ is affine group scheme over $k$ and assume that $X$ is quasi-compact and semiseparated. Let $(\cL,\tau)$ be a locally free $\bd{G}$-sheaf of rank one on $X$. Consider a point $x$ in $X$. Then we say that:
+Suppose that $\bd{G}$ is affine algebraic group over $k$ and assume that $X$ is quasi-compact and semiseparated. Let $(\cL,\tau)$ be a locally free $\bd{G}$-sheaf of rank one on $X$. Consider a point $x$ in $X$. Then we say that:
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 \item \textit{$x$ is semistable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine and contains $x$.
-\item \textit{$x$ is stable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine, contains $x$, the action of $\bd{G}$ on $X_s$ is closed and has finite stabilizers.
+\item \textit{$x$ is stable with respect to $\tau$} if there exists a $\bd{G}$-invariant section $s\in \Gamma(X,\cL^{\otimes n})$ with respect to $\tau^{\otimes n}$ for some $n$ such that $X_s$ is affine, point $x$ is in $X_s$, the action of $\bd{G}$ on $X_s$ is closed and has finite stabilizers.
 \end{enumerate}
 We also denote by
 $$X^{ss}\left(\tau\right),\,X^s\left(\tau\right)$$
@@ -1272,7 +1266,7 @@ Then $V_{ij}$ is an open subset of $V_i$. Note that $q_i^{-1}(V_{ij})$ is a nonv
 \end{center}
 is commutative. Isomorphisms $\theta_{ij}:V_{ij}\ra V_{ji}$ for pairs $i,j$ of elements of $\{1,...,N\}$ satisfy cocycle condition. Indeed, this follows from their uniqueness. Hence one can glue $V_i$ for $i\in \{1,...,N\}$ to a scheme $Y$ of finite type over $k$. Moreover, morphisms $q_i$ for $i\in \{1,...,N\}$ give rise to a morphism $q:X^{ss}(\tau)\ra Y$ such that $q^{-1}(V_i) = X_{s_i}$ and the restriction of $q$ to $X_{s_i}\ra V_i$ is equal to $q_i$ for every $i$. According to Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} we derive that $q$ is a uniform good categorical quotient of $X$. Moreover, $q$ is affine and by Corollary \ref{corollary:uniform_good_categorical_quotients_are_universally_submersive} it is universally submersive. This completes the proof of the main assertion and \textbf{(1)}.\\
 Now we prove \textbf{(2)}. Pick three indices $1\leq i,j,r\leq N$. Then $f_{rj}\cdot f_{ji} = f_{ri}$ on an open subset $V_i\cap V_j\cap V_r$ of $Y$. Hence $f_{ji}\cdot (-):{\cO_{V_i}}_{\mid V_i\cap V_j} \ra {\cO_{V_j}}_{\mid V_i\cap V_j}$ for $i,j \in \{1,...,N\}$ glue to a locally free sheaf of rank one $\cM$ on $Y$. Since $q^{\#}(f_{ji}) = \frac{s_i}{s_j}\in \Gamma(X_{s_j},\cO_X)$ for every pair $i,j$, we derive that $q^*\cM$ admits transition functions $\frac{s_i}{s_j}\cdot (-):{\cO_{X_{s_i}}}_{\mid X_{s_i}\cap X_{s_j}} \ra {\cO_{X_{s_j}}}_{\mid X_{s_i}\cap X_{s_j}}$ for every pair $i,j$. This implies that $q^*\cM$ is isomorphic with $\cL^{\otimes n}$. Note also that $f_{ji}\in \Gamma(V_j,\cO_Y)$ for $j\in \{1,...,N\}$ give rise to a global section $t_i$ of $\cM$. Then $q^*t_i = s_i$ for $i\in \{1,...,N\}$. Hence $q^{-1}\left(Y_{t_i}\right) = X_{s_i}$ for $i\in \{1,...,N\}$. Thus $Y_{t_i} = V_i$ for every $i$. This implies that sets $Y_{t_i}$ for $i\in \{1,...,N\}$ from an open affine cover of $Y$. This proves that $\cM$ is ample locally free sheaf on $Y$. This completes \textbf{(2)}.\\
-It remains to prove assertion \textbf{(3)}. By enlarging $N$ and $n$ if necessary, we may assume that there exists $I\subseteq \{1,...,N\}$ such that $X^s(\tau) = \bigcup_{i\in I}X_{s_i}$. Consider $\tilde{Y} = \bigcup_{i\in I}V_i$. Then $q^{-1}(\tilde{Y}) = X^s(\tau)$ and according to Theorem \ref{theorem:Mumfords_theorem_for_good_affine_quotients} the restriction $X_{s_i}\ra V_i$ is a uniform geometric quotient for every $i\in I$. Hence the restriction $X^s(\tau)\ra \tilde{Y}$ is a uniform geometric quotient. Now the theorem is proved.
+It remains to prove assertion \textbf{(3)}. By enlarging $N$ and $n$ if necessary, we may assume that there exists $I\subseteq \{1,...,N\}$ such that $X^s(\tau) = \bigcup_{i\in I}X_{s_i}$. Consider $\tilde{Y} = \bigcup_{i\in I}V_i$. Then $q^{-1}(\tilde{Y}) = X^s(\tau)$ and according to Theorem \ref{theorem:Mumfords_theorem_for_good_affine_quotients} the restriction $X_{s_i}\ra V_i$ is a uniform geometric quotient for every $i\in I$ (the action of $\bd{G}$ on $X_{s_i}$ is closed). Hence the restriction $X^s(\tau)\ra \tilde{Y}$ is a uniform geometric quotient by Theorem \ref{theorem:uniform_and_universal_geometric_quotients_are_local_and_affine_base_change_suffices}. Now the theorem is proved.
 \end{proof}
 
 \section{Numerical criterion for stability}
