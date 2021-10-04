@@ -1209,20 +1209,78 @@ $$= \tau^{-1}(a^*t_{\mid \bd{G}\times_kX_s}) = \mathrm{pr}_X^*t_{\mid \bd{G}\tim
 and hence $a^*r = \mathrm{pr}_X^*r$. This finishes the proof of \textbf{(2)}.
 \end{proof}
 
-\section{Example: $\mathbb{G}_m$-quotients and projective bundles}
+\section{Application: $\mathbb{G}_m$-quotients and projective bundles}
 \noindent
-We prove now the following interesting result.
+We start with two completely abstract results.
 
-\begin{proposition}\label{proposition:}
-Let $X$ be a $k$-scheme $X$ and let $\cE$ be a locally free sheaf on $X$. Consider 
+\begin{proposition}\label{proposition:commuting_actions_induce_action_on_quotient}
+Let $\bd{H},\bd{G}$ be group schemes over $k$ and let $X$ be a $k$-scheme equipped with actions of both $\bd{G}$ and $\bd{H}$. Suppose that these actions commute. If $q:X\ra Y$ is a uniform good categorical quotient of $X$ by $\bd{H}$, then there exists a unique action of $\bd{G}$ on $Y$ such that $q$ is $\bd{G}$-equivariant.
+\end{proposition}
+\begin{proof}
+Let $a:\bd{G}\times_kX\ra X$ be the action of $\bd{G}$ on $X$. Consider the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{G}\times_kX & X  \\
+    \bd{G}\times_kY & Y \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ a $} (m-1-2)
+(m-1-1) edge node[left] {$1_{\bd{G}}\times_kq $} (m-2-1)
+(m-1-2) edge node[auto] {$ q $} (m-2-2);
+\path[densely dotted,->,line width=1.0pt,font=\scriptsize]  
+(m-2-1) edge node[below] {$\tilde{a} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+Since $q$ is uniform categorical quotient, we derive that $1_{\bd{G}}\times_kq$ is the categorical quotient by $\bd{H}$. Actions of $\bd{G}$ and $\bd{H}$ commute. Hence $a$ is $\bd{H}$-equivariant. Thus there exists a unique morphism $\tilde{a}$ denoted by the dotted arrow in the diagram. Note that 
+$$\tilde{a}\cdot \left(1_{\bd{G}}\times_k\tilde{a}\right)\cdot \left(1_{\bd{G}}\times_k1_{\bd{G}}\times_kq\right) = q \cdot a \cdot \left(1_{\bd{G}}\times_ka\right) =q\cdot a \cdot \left(\mu\times_k1_{X}\right) = \tilde{a}\cdot \left(\mu \times_k 1_{Y}\right) \cdot \left(1_{\bd{G}} \times_k 1_{\bd{G}}\times_k q \right)$$
+Since the morphism $1_{\bd{G}}\times_k1_{\bd{G}}\times_kq$ is a good categorical quotient, we derive that it is an epimorphism of $k$-schemes. Hence
+$$\tilde{a}\cdot \left(1_{\bd{G}}\times_k\tilde{a}\right)= \tilde{a}\cdot \left(\mu\times_k1_{Y}\right)$$
+Similarly we have
+$$\tilde{a}\cdot \langle e, 1_{X}\rangle \cdot q = q \cdot a \cdot \langle e, 1_{X}\rangle = q$$
+and hence we can cancel epimorphism $q$ and obtain
+$$\tilde{a}\cdot \langle e, 1_{Y}\rangle = 1_{Y}$$
+Thus $\tilde{a}$ is an action of $\bd{G}$ on $Y$ and it is unique making $q$ into a $\bd{G}$-equivariant morphism.
+\end{proof}
+
+\begin{proposition}\label{proposition:commuting_actions_induce_equivariant_quotient_of_morphism}
+Let $\bd{H},\bd{G}$ be group schemes over $k$ and let $X_1,X_2$ be $k$-schemes equipped with actions of both $\bd{G}$ and $\bd{H}$. Suppose that these actions commute and $f:X_1\ra X_2$ is a morphism which is equivariant with respect to $\bd{G}$ and $\bd{H}$. Assume that $q_i:X_i\ra Y_i$ is a uniform good categorical quotient of $X_i$ by $\bd{H}$ for $i=1,2$. Then there exists a unique morphism $g:Y_1\ra Y_2$ such that the square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{   X_1& X_2 \\
+    Y_1 & Y_2        \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ f$} (m-1-2)
+(m-1-1) edge node[left] {$q_1 $} (m-2-1)
+(m-1-2) edge node[auto] {$ q_2 $} (m-2-2)
+(m-2-1) edge node[below] {$g $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Moreover, this morphism makes the square a commutative square of $\bd{G}$-equivariant morphisms.
+\end{proposition}
+\begin{proof}
+The fact that $g$ exists and is unique follows from the fact that $q_1$ is a categorical quotient by $\bd{H}$. It suffices to prove that $g$ is a $\bd{G}$-equivariant morphism. Let $\tilde{a}_i$ denote the unique action of $\bd{G}$ on $Y_i$ such that $q_i$ is $\bd{G}$-equivariant (Proposition \ref{proposition:commuting_actions_induce_action_on_quotient}) for $i=1,2$. Let $a_i$ denote the action of $\bd{G}$ on $X_i$ for $i=1,2$. We have
+$$g\cdot \tilde{a}_1 \cdot \left(1_{\bd{G}}\times_k q_1\right) = g\cdot q_1\cdot \left(1_{\bd{G}}\times_k a_1\right) = q_2\cdot f \cdot \left(1_{\bd{G}}\times_k a_1\right) = q_2\cdot a_2 \cdot \left(1_{\bd{G}}\times_kf\right) =$$
+$$= \tilde{a}_2\cdot \left(1_{\bd{G}}\times_kq_2\right)\cdot \left(1_{\bd{G}}\times_k f\right) = \tilde{a}_2\cdot \left(1_{\bd{G}}\times_k g\right)\cdot \left(1_{\bd{G}}\times_k q_1\right)$$
+Since $\left(1_{\bd{G}}\times_k q_1\right)$ is a good categorical quotient, we derive that it is an epimorphism. Hence
+$$g\cdot \tilde{a}_1= \tilde{a}_2\cdot \left(1_{\bd{G}}\times_k g\right)$$
+and this means that $g$ is $\bd{G}$-equivariant.
+\end{proof}
+\noindent
+We are interested in projective bundles so first we study $\bd{G}$-vector bundles.
+
+\begin{theorem}\label{theorem:actions_of_vector_bundles_with_linearization}
+Let $X$ be a $k$-scheme and let $\cE$ be a quasi-coherent sheaf on $X$. Consider 
 $$\mathbb{V}(\cE) = \Spec_X\,\Sym\left(\cE\right)$$
 with canonical action of $\mathbb{G}_m$. Let $Z\hookrightarrow \mathbb{V}(\cE)$ be the zero section. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 \item The structural morphism $q:\mathbb{V}(\cE)\setminus Z\ra X$ is $\mathbb{G}_m$-equivariant.
 \item If $\cE$ is locally free of rank one, then the structural morphism $q:\mathbb{V}(\cE)\setminus Z\ra X$ is a universal good categorical quotient by $\mathbb{G}_m$.
-\item Suppose that $X$ admits an action of an affine group $k$-scheme $\bd{G}$ and $(\cE,\tau)$ is a locally free $\bd{G}$-sheaf. Then the action of $\bd{G}$ induced by $\tau$ on $\mathbb{V}(\cE)$ induces the action of $\bd{G}$ on $\mathbb{V}(\cE)\setminus Z$ and this $\bd{G}$-action is a $\mathbb{G}_m$-equivariant morphism $\bd{G}\times_k\big(\mathbb{V}\left(\cE\right)\setminus Z\big)\ra \mathbb{V}\left(\cE\right)\setminus Z$. Moreover, $q$ is $\bd{G}$-equivariant.
+\item Suppose that $X$ admits an action of a group $k$-scheme $\bd{G}$ and $(\cE,\tau)$ is a quasi-coherent $\bd{G}$-sheaf. Then the action of $\bd{G}$ induced by $\tau$ on $\mathbb{V}(\cE)$ induces the action of $\bd{G}$ on $\mathbb{V}(\cE)\setminus Z$ and this $\bd{G}$-action is a $\mathbb{G}_m$-equivariant morphism $\bd{G}\times_k\big(\mathbb{V}\left(\cE\right)\setminus Z\big)\ra \mathbb{V}\left(\cE\right)\setminus Z$. Moreover, $q$ is $\bd{G}$-equivariant.
 \end{enumerate}
-\end{proposition}
+\end{theorem}
 \begin{proof}
 In order to prove \textbf{(1)}. Note that $q$ is determined by the structural morphism $\cO_X\ra \Sym(\cE)$ of quasi-coherent algebras on $X$. Since this morphism is $\NN$-graded, we deduce that $q$ is $\mathbb{G}_m$-equivariant.\\
 We prove \textbf{(2)}. Consider an open affine subset $U$ of $X$ such that $\cE_{\mid U}$ is trivial. Then 
@@ -1257,7 +1315,7 @@ Since both $\Spec_{\bd{G}\times_kX}\,\Sym\left(\tau^{-1}\right)$ and $a'$ are $\
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{   \bd{G}\times_k\mathbb{V}\left(\cE\right)                 &    \mathbb{V}(\cE)                           \\
+{   \bd{G}\times_k\big(\mathbb{V}\left(\cE\right)\setminus Z\big)& \mathbb{V}\left(\cE\right)\setminus Z \\
     \bd{G}\times_kX &   X                 \\} ;
 \path[->,line width=1.0pt,font=\scriptsize]  
 (m-1-1) edge node[auto] {$ $} (m-1-2)
@@ -1269,11 +1327,98 @@ Since both $\Spec_{\bd{G}\times_kX}\,\Sym\left(\tau^{-1}\right)$ and $a'$ are $\
 is commutative, where top horizontal arrow is induced by $\tilde{a}$. Hence $q$ is $\bd{G}$-equivariant. 
 \end{proof}
 
-\begin{corollary}
-Suppose that $\bd{G}$ is affine group scheme over $k$ and assume that $X$ is quasi-compact and semiseparated. Let $(\cL,\tau)$ be a locally free $\bd{G}$-sheaf of rank one on $X$. Suppose that $V$ is a $\bd{G}$-subrepresentation of $\Gamma(X,\cL)$ such that the morphism $\cO_X\otimes_kV\ra \cL$ is surjective. Then the corresponding morphism $f:X\ra \mathbb{P}(V)$ is $\bd{G}$-equivariant.
+\begin{example}\label{example:projective_bundles_as_quotients}
+Let $X$ be a $k$-scheme and let $\cE$ be a quasi-coherent sheaf on $X$. Consider 
+$$\mathbb{V}(\cE) = \Spec_X\,\Sym\left(\cE\right)$$
+with canonical action of $\mathbb{G}_m$. Let $Z\hookrightarrow \mathbb{V}(\cE)$ be the zero section. As above we denote the canonical morphism $\mathbb{V}(\cE)\setminus Z\ra X$ by $q$. Pick an open affine subset $U$ of $X$ and consider homogeneous element $f\in \Sym_n(\cE)(U)$ for some positive integer $n$. Then the inclusion of zeroth graded part
+$$\Sym(\cE)(U)_{(f)}\ra \Sym(\cE)(U)_f$$
+is a universal good categorical quotient of $q^{-1}(U)_f$ by $\mathbb{G}_m$. Since
+$$q^{-1}(U) = \bigcup_{n\in \NN_+}\bigcup_{f\in \Sym_n(\cE)(U)}q^{-1}(U)_f$$
+we derive by Theorem \ref{theorem:uniform_and_universal_good_categorical_quotients_are_local_and_affine_base_change_suffices} that 
+$$q^{-1}(U) \ra \mathbb{P}\left(\Sym(\cE)(U)\right)$$
+is a universal good categorical quotient by $\mathbb{G}_m$. Invoking the same result again the canonical morphism $\mathbb{V}\left(\cE\right)\setminus Z\twoheadrightarrow \mathbb{P}(\cE)$ is a universal good categorical quotient by $\mathbb{G}_m$.
+\end{example}
+
+\begin{corollary}\label{corollary:actions_on_projective_bundles}
+Let $X$ be a $k$-scheme equipped with an action of a quasi-compact group scheme $\bd{G}$ over $k$ and let $(\cE,\tau)$ be a quasi-coherent $\bd{G}$-sheaf on $X$. Consider 
+$$\mathbb{V}(\cE) = \Spec_X\,\Sym\left(\cE\right)$$
+with canonical action of $\mathbb{G}_m$. Let $Z\hookrightarrow \mathbb{V}(\cE)$ be the zero section. Then there exists a unique action of $\bd{G}$ on $\mathbb{P}(\cE)$ such that the universal good categorical quotient 
+$$\mathbb{V}(\cE)\setminus Z \ra \mathbb{P}(\cE)$$
+by $\mathbb{G}_m$ is $\bd{G}$-equivariant, where $\mathbb{V}(\cE)\setminus Z$ is equipped with the action of $\bd{G}$ induced by $\tau$. Moreover, the canonical morphism $\mathbb{P}(\cE)\ra X$ is $\bd{G}$-equivariant.
 \end{corollary}
+\begin{proof}
+Next suppose that $\pi:\mathbb{V}(\cE)\setminus Z\ra \mathbb{P}(\cE)$ is the canonical morphism. It is a universal good categorical quotient by $\mathbb{G}_m$ by Example \ref{example:projective_bundles_as_quotients}. Let $a:\bd{G}\times_kX\ra X$ be the action on $X$ and let $\tilde{a}$ be the action of $\bd{G}$ on $\mathbb{V}(\cE)\setminus Z$ induced by $\tau$. According to Theorem \ref{theorem:actions_of_vector_bundles_with_linearization} we derive that $\tilde{a}$ is $\bd{G}$-equivariant. Thus Proposition \ref{proposition:commuting_actions_induce_action_on_quotient} implies that $\mathbb{P}(\cE)$ admits a unique action of $\bd{G}$ such that $\pi$ is $\bd{G}$-equivariant. Let $\ol{a}:\bd{G}\times_k\mathbb{P}(\cE)\ra \mathbb{P}(\cE)$ be this action. Consider the diagram
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
+{   \bd{G}\times_k\big(\mathbb{V}\left(\cE\right)\setminus Z\big)& \mathbb{V}\left(\cE\right)\setminus Z \\
+    \bd{G}\times_k\mathbb{P}(\cE) & \mathbb{P}(\cE)\\
+    \bd{G}\times_kX &   X                 \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ \tilde{a}$} (m-1-2)
+(m-3-1) edge node[below] {$ a$} (m-3-2)
+(m-1-1) edge node[left] {$1_{\bd{G}}\times_k \pi $} (m-2-1)
+(m-1-2) edge node[auto] {$ \pi $} (m-2-2)
+(m-2-1) edge node[left] {$ 1_{\bd{G}}\times_kp $} (m-3-1)
+(m-2-2) edge node[auto] {$ p $} (m-3-2)
+(m-2-1) edge node[auto] {$ \ol{a} $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $p:\mathbb{P}(\cE)\ra X$ is the canonical morphism. Note that the upper square and the outer square are commutative. Hence
+$$p\cdot \ol{a}\cdot \left(1_{\bd{G}}\times_k \pi\right) = a\cdot \left(1_{\bd{G}}\times_k p\right)\cdot \left(1_{\bd{G}}\times_k \pi\right)$$
+and since $1_{\bd{G}}\times_k\pi$ is an epimorphism, we derive that
+$$p\cdot \ol{a} = \ol{a}\cdot \left(1_{\bd{G}}\times_k p\right)$$
+Thus the bottom square is commutative and hence $p$ is $\bd{G}$-equivariant.
+\end{proof}
 
-
+\begin{corollary}\label{corollary:universal_property_of_projective_bundles_and_equivariance}
+Let $Y$ be a $k$-scheme with the trivial action of a quasi-compact group scheme $\bd{G}$ over $k$ and let $f:X\ra Y$ be a $\bd{G}$-equivariant morphism. Suppose that $(\cE,\tau)$ is a quasi-coherent $\bd{G}$-sheaf on $Y$ and that $(\cL,\sigma)$ is a locally free $\bd{G}$-sheaf of rank one $X$. Assume that $f^*\cE\twoheadrightarrow \cL$ is an epimorphism of quasi-coherent $\bd{G}$-sheaves.  Then the corresponding morphism $g:X\ra \mathbb{P}(\cE)$ is $\bd{G}$-equivariant with respect to the action of $\bd{G}$ on $\mathbb{P}(\cE)$ induced by $\tau$.
+\end{corollary}
+\begin{proof}
+Suppose that $Z$ is the zero section of $\mathbb{V}(\cE)$ and $S$ is the zero section of $\mathbb{V}(\cL)$. Consider a cartesian square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \mathbb{V}(f^*\cE)\setminus f^{-1}(Z) &  \mathbb{V}(\cE)\setminus Z\\
+  X                                     &  Y                         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ f'$} (m-1-2)
+(m-2-1) edge node[below] {$ f $} (m-2-2)
+(m-1-1) edge node[left] {$ q'  $} (m-2-1)
+(m-1-2) edge node[right] {$ q  $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $q$ is the canonical morphism. Then $q$ is $\bd{G}$-equivariant according to Theorem \ref{theorem:actions_of_vector_bundles_with_linearization} and since $f$ is $\bd{G}$-equivariant, we derive that $q'$ and $f'$ are $\bd{G}$-equivariant. Note also that the action of $\bd{G}$ on $\mathbb{V}(f^*\cE)\setminus f^{-1}(Z)$ is induced by $\left(1_{\bd{G}}\times_kf\right)^*\tau$. Next we have a commutative triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \mathbb{V}(\cL)\setminus S &   & \mathbb{V}(f^*\cE)\setminus f^{-1}(Z) \\
+                             & X &                                                           \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ \theta $} (m-1-3)
+(m-1-1) edge node[left = 2pt, below = 1pt] {$ p $} (m-2-2)
+(m-1-3) edge node[right = 2pt, below = 1pt] {$ q' $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+in which $p:\mathbb{V}(\cL)\setminus S\ra X$ is a universal good categorical quotient by $\mathbb{G}_m$ according to Theorem \ref{theorem:actions_of_vector_bundles_with_linearization} and $\theta$ is induced by the epimorphism $f^*\cE \twoheadrightarrow \cL$ of quasi-coherent $\bd{G}$-sheaves. Thus $\theta$ is $\bd{G}$-equivariant. Now consider morphism $f'\cdot \theta:\mathbb{V}(\cL)\setminus S \ra \mathbb{V}(\cE)\setminus Z$. It is both $\bd{G}$ and $\mathbb{G}_m$-equivariant. Moreover, schemes $\mathbb{V}(\cL)\setminus S$ and $\mathbb{V}(\cE)\setminus Z$ both admit commuting actions of $\bd{G}$ and $\mathbb{G}_m$. Finally we have a commutative square
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{ \mathbb{V}(\cL)\setminus S &  \mathbb{V}(\cE)\setminus Z\\
+    X                                     &  \mathbb{P}(\cE)                         \\} ;
+\path[->,line width=1.0pt,font=\scriptsize]  
+(m-1-1) edge node[auto] {$ f'\cdot \theta$} (m-1-2)
+(m-2-1) edge node[below] {$ g $} (m-2-2)
+(m-1-1) edge node[left] {$ p $} (m-2-1)
+(m-1-2) edge node[right] {$ \pi $} (m-2-2);
+\end{tikzpicture}
+\end{center}
+where $g$ is the morphism corresponding to the epimorphism $f^*\cE\twoheadrightarrow \cL$. As we proved the top morphism in the square is equivariant with respect to $\bd{G}$ and $\mathbb{G}_m$. Moreover, both vertical arrows are universal good categorical quotients by $\mathbb{G}_m$ and the actions of $\bd{G}$ and $\mathbb{G}_m$ on $\mathbb{V}(\cL)\setminus S$ and $\mathbb{V}(\cE)\setminus Z$ commute. Thus Proposition \ref{proposition:commuting_actions_induce_equivariant_quotient_of_morphism}, we deduce that $g$ is $\bd{G}$-equivariant.
+\end{proof}
 
 \section{Quotients determined by line $\bd{G}$-bundles}
 \noindent
@@ -1300,7 +1445,7 @@ sets of semistable and stable points of $X$ with respect to $\tau$, respectively
 Suppose that $\bd{G}$ is affine group scheme over $k$ and assume that $X$ is quasi-compact and semiseparated. Let $(\cL,\tau)$ be a locally free $\bd{G}$-sheaf of rank one on $X$. Then $\cL_{\mid X^{ss}(\tau)}$ and $\cL_{\mid X^s(\tau)}$ are ample.
 \end{fact}
 \begin{proof}
-By definition $X^{ss}(\tau)$ can be covered by open affines of the form $X_s$ for $\bd{G}$-invariant global sections $s\in \Gamma(X, \cL^{\otimes n})$ for $n\in \NN$. This is one fo the equivalent conditions for ampleness of $\cL_{\mid X^{ss}(\tau)}$. The restriction of ample locally free sheaf to an open subset is ample. Hence $\cL_{\mid X^s(\tau)}$ is also ample.    
+By definition $X^{ss}(\tau)$ can be covered by open affines of the form $X_s$ for $\bd{G}$-invariant global sections $s\in \Gamma(X, \cL^{\otimes n})$ for $n\in \NN$. This is one of the equivalent conditions for ampleness of $\cL_{\mid X^{ss}(\tau)}$. The restriction of ample locally free sheaf to an open subset is ample. Hence $\cL_{\mid X^s(\tau)}$ is also ample.    
 \end{proof}
 
 \begin{theorem}\label{theorem:quotient_determined_by_linearization}
