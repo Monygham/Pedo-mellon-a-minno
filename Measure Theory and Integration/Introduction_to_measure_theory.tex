@@ -8,10 +8,10 @@
 
 \section{Families of sets}
 \noindent
-In this section we study various families of sets that are important in the development of measure theory.
+In this section we study families of sets closed under certain set-theoretic operations.
 
 \begin{definition}
-Let $X$ be a set and $\cF$ be a family of subsets of $X$. We define the following types of families.
+Let $X$ be a set and let $\cF$ be a family of subsets of $X$. We define the following types of families.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
 \item $\cF$ is \textit{an algebra} if it contains $X$ and is closed under finite unions, intersections and completions. 
 \item $\cF$ is \textit{a $\sigma$-algebra} if it is an algebra and is closed under countable unions.
@@ -22,7 +22,7 @@ Let $X$ be a set and $\cF$ be a family of subsets of $X$. We define the followin
 \end{definition}
 
 \begin{fact}\label{fact:intersections}
-Let $X$ be a set and $\{\cF_i\}_{i\in I}$ be a class of families subsets of $X$. Suppose that $\cF_i$ is an algebra ($\sigma$-algebra, monotone family, $\pi$-system, $\lambda$-system) for every $i\in I$. Then the intersection $\bigcap_{i\in I}\cF_i$
+Let $X$ be a set and let $\{\cF_i\}_{i\in I}$ be a class of families subsets of $X$. Suppose that $\cF_i$ is an algebra ($\sigma$-algebra, monotone family, $\pi$-system, $\lambda$-system) for every $i\in I$. Then the intersection $\bigcap_{i\in I}\cF_i$
 is an algebra ($\sigma$-algebra, monotone family, $\pi$-system, $\lambda$-system).
 \end{fact}
 \begin{proof}
@@ -34,7 +34,7 @@ Let $\cF$ be a family of subsets of $X$. We denote by $\sigma(\cF)$, $\lambda(\c
 \end{definition}
 
 \begin{theorem}[Dynkin's $\pi$-$\lambda$ lemma]\label{theorem:dynkins_lemma}
-Let $X$ be a set and $\cP$ be a $\pi$-system of its subsets. Then $\lambda(\cP)=\sigma(\cP)$.
+Let $X$ be a set and let $\cP$ be a $\pi$-system of its subsets. Then $\lambda(\cP)=\sigma(\cP)$.
 \end{theorem}
 \noindent
 For the proof we need the following result.
@@ -52,8 +52,8 @@ Since $A\in \cL$, we have $X\in \cL_A$. Suppose now that $B\in \cL_A$. Then $A\c
 Fix $A\in \cP$. Define $\cL_A$ as in Lemma \ref{lemma:dynkins_lemmal} with $\cL = \lambda(\cP)$. Then $\cL_A$ is a $\lambda$-system. Moreover, $\cL_A$ contains $\cP$. Hence $\lambda(\cP)\subseteq \cL_A$. This shows that $\lambda(\cP)$ is closed under intersections with members of $\cP$. Now fix $A\in \lambda(\cP)$ and define $\cL_A$ as in Lemma \ref{lemma:dynkins_lemmal} with $\cL = \lambda(\cP)$. Then $\cP \subseteq \cL_A$ and $\cL_A$ is a $\lambda$-system. Thus $\lambda(\cP)\subseteq \cL_A$. This proves that $\lambda(\cP)$ is a $\pi$-system. A $\pi$-system that is simultaneously a $\lambda$-system is a $\sigma$-algebra. Thus $\sigma(\cP)\subseteq \lambda(\cP)$. Since it is clear that $\lambda(\cP) \subseteq \sigma(\cP)$, we derive that $\lambda(\cP)=\sigma(\cP)$.
 \end{proof}
 
-\begin{theorem}[Sierpni{\'n}ski's lemma on monotone classes]\label{theorem:monotone_classes}
-Let $X$ be a set and $\cA$ be an algebra of its subsets. Then $\cM(\cA)=\sigma(\cA)$.
+\begin{theorem}[Sierpi{\'n}ski's lemma on monotone classes]\label{theorem:monotone_classes}
+Let $X$ be a set and let $\cA$ be an algebra of its subsets. Then $\cM(\cA)=\sigma(\cA)$.
 \end{theorem}
 \noindent
 For the proof we need the following easy results. Their proofs are left to the reader.
@@ -71,7 +71,7 @@ is monotone.
 \end{lemma}
 
 \begin{proof}[Proof of the theorem]
-Fix $A\in \cA$. Define $\cM_A$ as in Lemma \ref{lemma:first_monotone_classes} with $\cM = \cM(\cA)$. Then $\cM_A$ is a monotone family. Moreover, $\cM_A$ contains $\cA$. Hence $\cM(\cA)\subseteq \cM_A$. This shows that $\cM(\cA)$ is closed under intersections with members of $\cA$. Now fix $A\in \cM(\cA)$ and define $\cM_A$ as in Lemma \ref{lemma:first_monotone_classes} with $\cM = \cM(\cA)$. Then $\cA \subseteq \cM_A$ and $\cM_A$ is a monotone family. Thus $\cM(\cA)\subseteq \cM_A$. This proves that $\cM(\cA)$ is closed under finite intersections. According to Lemma \ref{lemma:second_monotone_classes} we derive that $\cM(\cA)^c$ is a monotone family and contains $\cA$. Hence $\cM(\cA)\subseteq \cM^c$ and thus $\cM(\cA)$ is closed under complements. Therefore, $\cM(\cA)$ is a $\sigma$-algebra. Thus $\sigma(\cA)\subseteq \cM(\cA)$. Since it is clear that $\cM(\cA) \subseteq \sigma(\cA)$, we derive that $\cM(\cA) = \sigma(\cA)$.
+Fix $A\in \cA$. Define $\cM_A$ as in Lemma \ref{lemma:first_monotone_classes} with $\cM = \cM(\cA)$. Then $\cM_A$ is a monotone family. Moreover, $\cM_A$ contains $\cA$. Hence $\cM(\cA)\subseteq \cM_A$. This shows that $\cM(\cA)$ is closed under intersections with members of $\cA$. Now fix $A\in \cM(\cA)$ and define $\cM_A$ as in Lemma \ref{lemma:first_monotone_classes} with $\cM = \cM(\cA)$. Then $\cA \subseteq \cM_A$ and $\cM_A$ is a monotone family. Thus $\cM(\cA)\subseteq \cM_A$. This proves that $\cM(\cA)$ is closed under finite intersections. According to Lemma \ref{lemma:second_monotone_classes} we derive that $\cM(\cA)^c$ is a monotone family and contains $\cA$. Hence $\cM(\cA)\subseteq \cM(\cA)^c$ and thus $\cM(\cA)$ is closed under complements. Therefore, $\cM(\cA)$ is a $\sigma$-algebra. Thus $\sigma(\cA)\subseteq \cM(\cA)$. Since it is clear that $\cM(\cA) \subseteq \sigma(\cA)$, we derive that $\cM(\cA) = \sigma(\cA)$.
 \end{proof}
 
 \section{Measurable spaces and measures}
@@ -81,13 +81,13 @@ A pair $(X,\Sigma)$ consisting of a set $X$ together with a $\sigma$-algebra $\S
 \end{definition}
 
 \begin{definition}
-Let $(X_1,\Sigma_1)$ and $(X_2,\Sigma_2)$ be measurable spaces. A function $f:X_1\ra X_2$ is called \textit{a measurable map} if $f^{-1}(A)\in \Sigma_1$ for every $A\in \Sigma_1$.
+Let $(X_1,\Sigma_1)$ and $(X_2,\Sigma_2)$ be measurable spaces. A function $f:X_1\ra X_2$ is called \textit{a measurable morphism} if $f^{-1}(A)\in \Sigma_1$ for every $A\in \Sigma_1$.
 \end{definition}
 \noindent
 Measurable spaces and their morphisms form a category. 
 
 \begin{definition}
-Let $X$ be a set and $\Sigma$ be an algebra of its subsets. A function $\mu:\Sigma \ra [0,+\infty]$ such that $\mu(\emptyset)=0$ and 
+Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. A function $\mu:\Sigma \ra [0,+\infty]$ such that $\mu(\emptyset)=0$ and 
 $$\mu\left(\bigcup_{n=0}^mA_n\right)=\sum_{n\in \NN}\mu(A_n)$$
 for every family  $\{A_n\}_{n=0}^m$ of pairwise disjoint subsets in $\Sigma$ is called \textit{an additive function}. If in addition $\mu$ satisfies
 $$\mu\left(\bigcup_{n\in \NN}A_n\right)=\sum_{n\in \NN}\mu(A_n)$$
@@ -103,7 +103,7 @@ Let $(X,\Sigma,\mu)$ be a space with measure. We say that it is \textit{finite} 
 \end{definition}
 
 \begin{theorem}\label{theorem:uniqueness_on_pi_system}
-Let $(X,\Sigma)$ be a measurable space and $\mu_1$, $\mu_2:\Sigma\ra [0,+\infty]$ be measures such that $\mu_1(X)=\mu_2(X)$ is finite. Suppose that $\cP$ is a $\pi$-system of subsets of $X$ such that $\mu_1(A)=\mu_2(A)$ for every $A\in \cP$. Then $\mu_1(A) = \mu_2(A)$ for $A\in \sigma(\cP)$.
+Let $(X,\Sigma)$ be a measurable space and let $\mu_1$, $\mu_2:\Sigma\ra [0,+\infty]$ be measures such that $\mu_1(X)=\mu_2(X)$ is finite. Suppose that $\cP$ is a $\pi$-system of subsets of $X$ such that $\mu_1(A)=\mu_2(A)$ for every $A\in \cP$. Then $\mu_1(A) = \mu_2(A)$ for $A\in \sigma(\cP)$.
 \end{theorem}
 \begin{proof}
 Define $\cF = \big\{A\in \Sigma\,\big|\,\mu_1(A)=\mu_2(A) \big\}$. Straightforward verification shows that $\cF$ is a $\lambda$-system. By assumption $\cP \subseteq \cF$. Therefore, $\lambda(\cP) \subseteq \cF$. By Theorem \ref{theorem:dynkins_lemma} we deduce that $\sigma(\cP)=\lambda(\cP)$. Hence $\mu_1$ and $\mu_2$ are equal on sets in $\sigma(\cP)$.
@@ -118,7 +118,7 @@ Spaces with measures and their morphisms form a category.
 \section{Outer measures and Carath{\'e}odory's construction}
 
 \begin{definition}
-Let $X$ be a set and $\mu^*:\cP(X)\ra [0,+\infty]$ be a function. Suppose that $\mu^*(\emptyset) = 0$, $\mu^*(A) \leq \mu^*(B)$ for every subset $A$ of a set $B$ contained in $X$ and 
+Let $X$ be a set and let $\mu^*:\cP(X)\ra [0,+\infty]$ be a function. Suppose that $\mu^*(\emptyset) = 0$, $\mu^*(A) \leq \mu^*(B)$ for every subset $A$ of a set $B$ contained in $X$ and 
 $$\mu^*\left( \bigcup_{n\in \NN}A_n \right)\leq \sum_{n\in \NN}\mu^*(A_n)$$ 
 for every family  $\{A_n\}_{n\in \NN}$ of subsets of $X$. Then we say that $\mu^*$ is \textit{an outer measure on $X$}.
 \end{definition}
@@ -142,7 +142,7 @@ The proof is encapsulated in two lemmas.
 $\Sigma_{\mu^*}$ is an algebra of sets.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-Clearly $\emptyset \in \Sigma_{\mu^*}$ and $A\in \Sigma_{\mu^*}\,\Leftrightarrow\,X\setminus A\in \Sigma_{\mu^*}$. It suffices to prove that $\Sigma_{\mu^*}$ is closed under unions. For a subset $B$ of $X$ we denote $X\setminus B$ by $B^c$. Now assume that $A_1$, $A_2\in \Sigma_{\mu^*}$ and pick a subset $E$ of $X$. Then
+Clearly $\emptyset \in \Sigma_{\mu^*}$ and $A\in \Sigma_{\mu^*}\,\Leftrightarrow\,X\setminus A\in \Sigma_{\mu^*}$. It suffices to prove that $\Sigma_{\mu^*}$ is closed under finite unions. For a subset $B$ of $X$ we denote $X\setminus B$ by $B^c$. Now assume that $A_1$, $A_2\in \Sigma_{\mu^*}$ and pick a subset $E$ of $X$. Then
 $$\mu^*(E)=\mu^*(E\cap A_1)+\mu^*(E\cap A_1^c)=\mu^*(E\cap A_1)+\mu^*(E\cap A_1^c\cap A_2)+\mu^*(E\cap A_1^c\cap A_2^c)$$
 Since we have equalities
 $$E\cap A_1=\left(E\cap (A_1\cup A_2)\right)\cap A_1,\,E\cap A_1^c\cap A_2=\left(E\cap (A_1\cup A_2)\right)\cap A_1^c$$
@@ -177,7 +177,7 @@ Hence $\mu^*(E) = \mu^*(E\cap A)+\mu^*(E\setminus A)$ and thus $A\in \Sigma_{\mu
 Next result is a general tool for constructing measures.
 
 \begin{theorem}[Carath{\'e}odory extension theorem]\label{theorem:caratheodory_extension_result}
-Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Suppose that $\mu:\Sigma\ra [0,+\infty]$ is a $\sigma$-additive function. Now for every subset $A$ in $X$ we define
+Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Suppose that $\mu:\Sigma\ra [0,+\infty]$ is a $\sigma$-additive function. For every subset $A$ in $X$ we define
 $$\mu^*(A) = \inf \bigg\{\sum_{n\in \NN}\mu(A_n)\,\big|\,A_n\in \Sigma\mbox{ for every }n\in \NN\mbox{ and }A\subseteq \bigcup_{n\in \NN}A_n\bigg\}$$
 Then $\mu^*:\cP(X)\ra [0,+\infty]$ is an outer measure, $\Sigma \subseteq \Sigma_{\mu^*}$ and $\mu^*_{\mid \Sigma} = \mu$. Moreover, if $\mu(X)$ is finite, then $\mu^*_{\mid \sigma(\Sigma)}$ is a unique extension of $\Sigma$ to a measure on $\sigma(\Sigma)$.
 \end{theorem}
@@ -188,7 +188,7 @@ for every subset $A$ of $X$. Let $A$ be element of $\Sigma$ and let $E$ be an ar
 $$E\subseteq \bigcup_{n\in \NN}A_n,\,\sum_{n\in \NN}\mu(A_n)\leq \mu^*(E)+\epsilon$$
 By definition of $\mu^*$ we have $\mu^*(E\cap A)\leq \sum_{n\in \NN}\mu(A_n\cap A)$, $\mu^*(E\setminus A) \leq \sum_{n\in \NN}\mu(A_n\setminus A)$ and hence
 $$\mu^*(E)\leq \mu^*(E\cap A)+\mu^*(E\setminus A) \leq \sum_{n\in \NN}\mu(A_n\cap A)+\sum_{n\in \NN}\mu(A_n\setminus A)=$$
-$$=\sum_{n\in \NN}\left(\mu(A_n\cap A)+\mu(A_n\setminus A)\right)=\sum_{n\in \NN}\mu(A_n)\leq \mu^*(E)+\epsilon$$
+$$=\sum_{n\in \NN}\big(\mu(A_n\cap A)+\mu(A_n\setminus A)\big)=\sum_{n\in \NN}\mu(A_n)\leq \mu^*(E)+\epsilon$$
 Since $\epsilon > 0$ is arbitrary, we derive that $\mu^*(E) = \mu^*(E\cap A)+\mu^*(E\setminus A)$ and hence $A\in \Sigma_{\mu^*}$. Thus $\Sigma \subseteq \Sigma_{\mu^*}$. Once again fix $A\in \Sigma$. Then for every family $\{A_n\}_{n\in \NN}$ of pairwise disjoint elements of $\Sigma$ such that $A\subseteq \bigcup_{n\in \NN}A_n$ we have $\mu(A) = \sum_{n\in \NN}\mu(A_n\cap A)\leq \sum_{n\in \NN}\mu(A_n)$ and thus $\mu(A)\leq \mu^*(A)$. Obviously $\mu^*(A)\leq \mu(A)$. Therefore, for every $A\in \Sigma$ we have $\mu(A) = \mu^*(A)$. Together with $\Sigma\subseteq \Sigma_{\mu^*}$ this implies that $\mu^*_{\mid \sigma(\Sigma)}$ is a measure that extends $\mu$. Now Theorem \ref{theorem:uniqueness_on_pi_system} implies the uniqueness of extension under the assumption that $\mu(X)$ is finite.
 \end{proof}
 
@@ -205,10 +205,10 @@ for any two subsets $E_1$, $E_2$ of $X$ with $\mathrm{dist}(E_1,E_2) > 0$.
 \end{definition}
 
 \begin{theorem}[Carath{\'e}odory]
-Let $(X,d)$ be a metric space and $\mu^*:\cP(X)\ra [0,+\infty]$ be an outer metric measure on $X$. Then the $\sigma$-algebra $\cB(X)$ of Borel subsets of $X$ is contained in $\Sigma_{\mu^*}$.
+Let $(X,d)$ be a metric space and let $\mu^*:\cP(X)\ra [0,+\infty]$ be an outer metric measure on $X$. Then the $\sigma$-algebra $\cB(X)$ of Borel subsets of $X$ is contained in $\Sigma_{\mu^*}$.
 \end{theorem}
 \begin{proof}
-Let $U$ be an open subset of $X$. Define $F=X\setminus U$ and $U_n=\{x\in X\mid \mathrm{dist}(x,F)>\frac{1}{2^n}\}$ for $n\in \NN$. Then $\{U_n\}_{n\in \NN}$ form an ascending family of open sets and $U=\bigcup_{n\in \NN}U_n$. Fix now a subset $E$ of $X$ such that $\mu^*(E)\in \RR$. We define $E_n=E\cap U_n$ for every $n\in \NN$. Since $\mu^*$ is an outer metric measure, we derive that
+Let $U$ be an open subset of $X$. Define $U_n=\big\{x\in X\mid \mathrm{dist}\left(x,X\setminus U\right)>\frac{1}{2^n}\big\}$ for $n\in \NN$. Then $\{U_n\}_{n\in \NN}$ form an ascending family of open sets and $U=\bigcup_{n\in \NN}U_n$. Fix now a subset $E$ of $X$ such that $\mu^*(E)\in \RR$. We define $E_n=E\cap U_n$ for every $n\in \NN$. Since $\mu^*$ is an outer metric measure, we derive that
 $$\mu^*\left(\bigcup_{n=0}^mE_{2n+1}\setminus E_{2n}\right)=\sum_{n=0}^m\mu^*(E_{2n+1}\setminus E_{2n}),\,\mu^*\left(\bigcup_{n=1}^mE_{2n}\setminus E_{2n-1}\right)=\sum_{n=1}^m\mu^*(E_{2n}\setminus E_{2n-1})$$
 for every positive integer $m$. Thus we derive 
 $$\sum_{n\in \NN}\mu^*(E_{2n+1}\setminus E_{2n})\leq \mu^*(E)\in \RR,\,\sum_{n\in \NN}\mu^*(E_{2n}\setminus E_{2n-1})\leq \mu^*(E)\in \RR$$
