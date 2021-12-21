@@ -1,0 +1,108 @@
+\input ../pree.tex
+
+\begin{document}
+\title{Hash Tables}
+\date{}
+\maketitle
+
+\section{Introduction}
+
+\section{Dictionary data type}
+
+\begin{definition}
+Let $\cX$ be a set of \textit{items} and let $\cU$ be a set of \textit{keys}. Consider an abstract data type $D$ which dynamically stores a collection of pairs $(k, x)$ where $k\in \cU$ and $x\in \cX$ in such a way that $D$ does not store two pairs having the same key at the same time. Moreover, we assume that $D$ supports the following operations.
+\begin{itemize}
+\item[] \textrm{INSERT}$\big(D,(k,x)\big)$\\
+Adds pair $(k,x)$ into $D$ if there is no other pair stored in $D$ with $k$ as a first entry.
+\item[] \textrm{DELETE}$\big(D,k\big)$\\
+Removes a pair with $k$ as a first entry from $D$ if such pair is stored in $D$.
+\item[] \textrm{SEARCH}$\big(D,k\big)$\\
+Returns $x$ if a pair $(k,x)$ is stored in $D$. Otherwise returns \textit{nil}. 
+\end{itemize}
+An abstract data type with these properties and interface is called \textit{an associative array} or \textit{a dictionary}.
+\end{definition}
+
+\begin{definition}
+Let $\cX$ and $\cU$ be sets. \textit{Dictionary problem for $\cX$ and $\cU$} is the task of designing a dictionary with $\cX$ as the set of items and $\cU$ as the set of keys.
+\end{definition}
+
+\section{Hash functions}
+\noindent
+In this section we introduce the important notion of a hash function and we discuss some probabilistic properties of it.
+
+\begin{definition}
+Let $\cU$ be a set. \textit{A hash function} is a mapping $h:\cU\ra \{0,1,...,m-1\}$ where $m\in \NN_+$. Given a has function $h$ \textit{a collision} is a pair of keys $k_1$, $k_2\in \cU$ such that $k(k_1) = h(k_2)$.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a set and let $n\in \NN_+$. Then a set
+$$X^{\wedge n} = \big\{(x_1,...,x_n)\in X^{n}\,\big|\,\forall_{1\leq i < j \leq n}\,x_i\neq x_j\big\}$$
+is called \textit{antisymmetric cartesian power of $X$}.
+\end{definition}
+
+\begin{definition}
+Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of a product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. Suppose that
+$$P\big(h(k_i) = h(k_j)\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) = \frac{1}{m}$$
+for every pair of distinct elements $i,j\in \{1,...,n\}$.
+Then $h$ is \textit{a simple uniform hashing with respect to $P$}.
+\end{definition}
+
+\begin{example}\label{example:real_interval_with_floor_hash_function_as_an_example_of_suh}
+Let $\cU = [0,m]$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to Borel algebra $\cB\big([0,m]\big)$. We define a hash function $h:\cU\ra \{0,1,...,m-1\}$ by formula
+$$h(x) = \lfloor x \rfloor$$
+Then $h$ is a simple uniform hashing with respect to the normalization of $n$-dimensional Lebesgue measure on $[0,m]^{\wedge n}$.
+\end{example}
+
+\begin{definition}
+Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of a product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. Fix a real number $\epsilon > 0$ and suppose that
+$$P\big(h(k_i) = h(k_j)\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) = \frac{1}{m} + \epsilon$$
+for every pair of distinct elements $i,j\in \{1,...,n\}$.
+Then $h$ is \textit{a simple $\epsilon$-uniform hashing with respect to $P$}.
+\end{definition}
+
+\begin{example}\label{example:interval_of_integers_with_modulo_hash_function_as_an_example_of_almost_suh}
+Let $\cU = \{0,1,...,m^2-1\}$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to the power algebra $\cP\big(\{0,1,...,m^2-1\}\big)$. Consider $\cU^{\wedge n}$ as a probability space with respect to distribution describing random sampling of $n$-elements without replacement from $\cU$. We define a hash function $h:\cU \ra \{0,1,...,m-1\}$ by formula
+$$h(x) = x\,\mathrm{mod}\,m$$
+where $m$ is a divisor of $N$. Fix distinct $i,j\in \{1,...,n\}$ and note that
+$$P\big(h(k_i) = h(k_j)\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) = \frac{m}{m^2} = \frac{1}{m}$$
+\end{example}
+
+\section{Hash tables with chaining as a solution to dictionary problem}
+\noindent
+In this section we present the solution to the dictionary problem and discuss its efficiency.
+
+\begin{definition}
+Let $\cU$ and $\cX$ be sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. We consider an $m$-element array $D_h$ such that $D_h[i]$ is a linked list storing values from $\cU\times \cX$ for every $i\in \{0,1,...,m-1\}$. We describe dictionary operations.
+\begin{itemize}
+\item[] \textrm{INSERT}$\big(D_h,(k,x)\big)$\\
+Inserts pair $(k,x)$ to the linked list $D_h[h(k)]$ as its new head.
+\item[] \textrm{DELETE}$\big(D_h,k\big)$\\
+Deletes a pair with first entry $k$ from the linked list $D_h[h(k)]$.
+\item[] \textrm{SEARCH}$\big(D_h,k\big)$\\
+Searches for the pair with the first entry $k$ in the list $D_h[h(k)]$. If such pair is found, then returns its second entry. Otherwise returns \textit{nil}. 
+\end{itemize}
+Then $D_h$ together with these operations is a solution of dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with collisions resolved by chaining}.
+\end{definition}
+\noindent
+For the sequel we need the notion of sampling without replacement.
+
+\begin{definition}
+Let $\big(\Omega, \cF, P \big)$ be a probability space and let $\cU$ be a measurable space. We fix a random variable $\cK:\Omega\ra \cU$ and consider independent and identically distributed random variables $\cK_1,...,\cK_n:\Omega \ra \cU$ for $n\in \NN_+$ with distributions identical to $\cK$. Define
+$$\Delta = \big\{(k_1,...,k_n) \in \cU^n\,\big|\,\forall_{i\neq j}\,k_i\neq k_j\big\}$$
+Then $\langle \cK_1,...,\cK_n\rangle:\Omega \ra \cU^n$ is a random variable which gives rise to a probability distribution on a measurable space $\cU^n$. Hence it also gives rise to a probability distribution $\mu_{\cK,n}$ on its subspace $\cU^n\setminus \Delta$. Then $\mu_{\cK,n}$ is \textit{the distribution of sampling without replacement with respect to $\cK$}.
+\end{definition}
+
+\begin{definition}
+ Let $n\in \NN_+$ be the number of elements stored in $D$. Then $\alpha = \frac{n}{m}$ is called \textit{load factor}.
+\end{definition}
+
+\begin{theorem}\label{theorem:unsuccessful_search_simple_uniform_hashing}
+Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. Suppose that $\cK$ is a random variable with target $\cU$ such that $h$ is a simple uniform hashing with respect to $\cK$. For a sequence of keys chosen randomly according to distribution $\mu_{\cK,n}$ and stored in the hash table $D_h$ the expected time of an unsuccessful search is $\Theta(\frac{n}{m})$.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+
+
+\end{document}
