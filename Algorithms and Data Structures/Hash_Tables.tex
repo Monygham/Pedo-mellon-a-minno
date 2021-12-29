@@ -28,22 +28,30 @@ Let $\cX$ and $\cU$ be sets. \textit{Dictionary problem for $\cX$ and $\cU$} is 
 
 \section{Hash functions}
 \noindent
-In this section we introduce the important notion of a hash function and we discuss some probabilistic properties of it.
+In this section we introduce the important notion of a hash function and we discuss some probabilistic properties of such functions.
 
 \begin{definition}
-Let $\cU$ be a set. \textit{A hash function} is a mapping $h:\cU\ra \{0,1,...,m-1\}$ where $m\in \NN_+$. Given a has function $h$ \textit{a collision} is a pair of keys $k_1$, $k_2\in \cU$ such that $k(k_1) = h(k_2)$.
+Let $\cU$ be a set. \textit{A hash function} is a mapping $h:\cU\ra \{0,1,...,m-1\}$ where $m\in \NN_+$.
+\end{definition}
+
+\begin{definition}
+Let $h:\cU \ra \{0,1,...,m-1\}$ be a hash function. \textit{A collision} is a pair of keys $k_1$, $k_2\in \cU$ such that $k(k_1) = h(k_2)$.
 \end{definition}
 
 \begin{definition}
 Let $X$ be a set and let $n\in \NN_+$. Then a set
 $$X^{\wedge n} = \big\{(x_1,...,x_n)\in X^{n}\,\big|\,\forall_{1\leq i < j \leq n}\,x_i\neq x_j\big\}$$
-is called \textit{antisymmetric cartesian power of $X$}.
+is called \textit{the antisymmetric cartesian power of $X$}.
 \end{definition}
 
 \begin{definition}
-Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of a product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. Suppose that
-$$P\big(h(k_i) = h(k_j)\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) = \frac{1}{m}$$
+Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of the product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function for some $m\in \NN_+$. Assume that the following assertions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item $$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{1}{m}$$
+for every element $i\in \{1,...,n\}$ and every $l\in \{0,1,...,m-1\}$.
+\item $$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = h(k_j)\big) \leq \frac{1}{m}$$
 for every pair of distinct elements $i,j\in \{1,...,n\}$.
+\end{enumerate}
 Then $h$ is \textit{a simple uniform hashing with respect to $P$}.
 \end{definition}
 
@@ -53,18 +61,17 @@ $$h(x) = \lfloor x \rfloor$$
 Then $h$ is a simple uniform hashing with respect to the normalization of $n$-dimensional Lebesgue measure on $[0,m]^{\wedge n}$.
 \end{example}
 
-\begin{definition}
-Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of a product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. Fix a real number $\epsilon > 0$ and suppose that
-$$P\big(h(k_i) = h(k_j)\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) = \frac{1}{m} + \epsilon$$
-for every pair of distinct elements $i,j\in \{1,...,n\}$.
-Then $h$ is \textit{a simple $\epsilon$-uniform hashing with respect to $P$}.
-\end{definition}
-
-\begin{example}\label{example:interval_of_integers_with_modulo_hash_function_as_an_example_of_almost_suh}
-Let $\cU = \{0,1,...,m^2-1\}$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to the power algebra $\cP\big(\{0,1,...,m^2-1\}\big)$. Consider $\cU^{\wedge n}$ as a probability space with respect to distribution describing random sampling of $n$-elements without replacement from $\cU$. We define a hash function $h:\cU \ra \{0,1,...,m-1\}$ by formula
+\begin{example}\label{example:interval_of_integers_with_modulo_hash_function_as_an_example_of_suh}
+Let $\cU = \{0,1,...,m^2-1\}$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to the power algebra $\cP\big(\{0,1,...,m^2-1\}\big)$. Consider $\cU^{\wedge n}$ as a probability space with respect to the uniform distribution $P$. We define a hash function $h:\cU \ra \{0,1,...,m-1\}$ by formula
 $$h(x) = x\,\mathrm{mod}\,m$$
-where $m$ is a divisor of $N$. Fix distinct $i,j\in \{1,...,n\}$ and note that
-$$P\big(h(k_i) = h(k_j)\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) = \frac{m}{m^2} = \frac{1}{m}$$
+For $i\in \{1,...,n\}$ and $l\in \{0,1,...,m-1\}$ we have
+$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{m\cdot (m^2 - 1)\cdot (m^2 - 2)\cdot ...\cdot (m^2 - n + 1)}{m^2\cdot (m^2 - 1)\cdot ...\cdot (m^2 - n + 1)} = \frac{1}{m}$$
+Fix distinct $i, j \in \{1,...,n\}$ and $l\in \{0,1,...,m-1\}$. Note that
+$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l,h(k_j) = l\big) = \frac{m\cdot (m-1)\cdot (m^2 - 2) \cdot ...\cdot (m^2 - n + 1)}{m^2\cdot (m^2 - 1)\cdot ...\cdot (m^2 - n + 1)} = \frac{1}{m\cdot (m+1)}$$
+Hence
+$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = h(k_j)\big) = \sum_{l=0}^{m-1}P\big(h(k_i) = l,h(k_j) = l\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) =$$
+$$= \frac{m}{m\cdot (m + 1)} = \frac{1}{m+1}\leq \frac{1}{m}$$
+Thus $h$ is a simple uniform hashing with respect to $P$.
 \end{example}
 
 \section{Hash tables with chaining as a solution to dictionary problem}
@@ -72,7 +79,7 @@ $$P\big(h(k_i) = h(k_j)\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) = \frac{m}{
 In this section we present the solution to the dictionary problem and discuss its efficiency.
 
 \begin{definition}
-Let $\cU$ and $\cX$ be sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. We consider an $m$-element array $D_h$ such that $D_h[i]$ is a linked list storing values from $\cU\times \cX$ for every $i\in \{0,1,...,m-1\}$. We describe dictionary operations.
+Let $\cU$ and $\cX$ be sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. We consider an $m$-element array $D_h$ such that $D_h[l]$ is a linked list storing values from $\cU\times \cX$ for every $l\in \{0,1,...,m-1\}$. We describe dictionary operations.
 \begin{itemize}
 \item[] \textrm{INSERT}$\big(D_h,(k,x)\big)$\\
 Inserts pair $(k,x)$ to the linked list $D_h[h(k)]$ as its new head.
@@ -81,27 +88,52 @@ Deletes a pair with first entry $k$ from the linked list $D_h[h(k)]$.
 \item[] \textrm{SEARCH}$\big(D_h,k\big)$\\
 Searches for the pair with the first entry $k$ in the list $D_h[h(k)]$. If such pair is found, then returns its second entry. Otherwise returns \textit{nil}. 
 \end{itemize}
-Then $D_h$ together with these operations is a solution of dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with collisions resolved by chaining}.
+Then $D_h$ together with these operations is a solution of dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with collisions resolved by chaining for $h$}.
 \end{definition}
 \noindent
-For the sequel we need the notion of sampling without replacement.
+Suppose that $\cU$ and $\cX$ are sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function. Consider the hash table $D_h$. Fix $l\in \{0,1,...,m-1\}$ and $n\in \NN_+$. Suppose that pairs $(k_1,x_1)$,...,$(k_n,x_n)$ for $(k_1,...,k_n)\in \cU^{\wedge n}$ and $x_1,...,x_n\in \cX$ are consecutively inserted to initially empty $D_h$. After these sequence of insertions is performed the length of the linked list stored in $D_h[l]$ is equal to the cardinality of the set $\big\{i\,\big|\,h(k_i) = l\big\}$. We denote the function
+$$\cU^{\wedge n}\ni (k_1,...,k_n)\ra \big|\big\{i\,\big|\,h(k_i) = l\big\}\big|\in \NN$$
+by $coll_l$.
 
-\begin{definition}
-Let $\big(\Omega, \cF, P \big)$ be a probability space and let $\cU$ be a measurable space. We fix a random variable $\cK:\Omega\ra \cU$ and consider independent and identically distributed random variables $\cK_1,...,\cK_n:\Omega \ra \cU$ for $n\in \NN_+$ with distributions identical to $\cK$. Define
-$$\Delta = \big\{(k_1,...,k_n) \in \cU^n\,\big|\,\forall_{i\neq j}\,k_i\neq k_j\big\}$$
-Then $\langle \cK_1,...,\cK_n\rangle:\Omega \ra \cU^n$ is a random variable which gives rise to a probability distribution on a measurable space $\cU^n$. Hence it also gives rise to a probability distribution $\mu_{\cK,n}$ on its subspace $\cU^n\setminus \Delta$. Then $\mu_{\cK,n}$ is \textit{the distribution of sampling without replacement with respect to $\cK$}.
-\end{definition}
-
-\begin{definition}
- Let $n\in \NN_+$ be the number of elements stored in $D$. Then $\alpha = \frac{n}{m}$ is called \textit{load factor}.
-\end{definition}
-
-\begin{theorem}\label{theorem:unsuccessful_search_simple_uniform_hashing}
-Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. Suppose that $\cK$ is a random variable with target $\cU$ such that $h$ is a simple uniform hashing with respect to $\cK$. For a sequence of keys chosen randomly according to distribution $\mu_{\cK,n}$ and stored in the hash table $D_h$ the expected time of an unsuccessful search is $\Theta(\frac{n}{m})$.
+\begin{theorem}\label{theorem:simple_uniform_hashing_expected_number_of_items_in_the_slot}
+Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function and fix $n\in \NN_+$. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item The function $coll_l:\cU^{\wedge n}\ra \NN$ is measurable for every $l\in \{0,1,...,m-1\}$.
+\item If $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
+$$\mathbb{E}\,coll_l = \int_{\cU^{\wedge n}}coll_l\,dP = \frac{n}{m}$$
+for every $l\in \{0,1,...,m-1\}$.
+\end{enumerate}
 \end{theorem}
 \begin{proof}
-
+Suppose that $X_i$ is the indicator function of the measurable set $\big\{(k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big\}$. Then
+$$coll_l = \sum_{i=1}^nX_i$$
+This proves that $slot_l$ is measurable. If in addition $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
+$$\mathbb{E}\,coll_l = \mathbb{E}\left(\sum_{i=1}^nX_i\right) = \sum_{i=1}^n\mathbb{E}X_i = \sum_{i=1}^nP\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{n}{m}$$
 \end{proof}
+\noindent
+Suppose that $\cU$ and $\cX$ are sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function. Consider the hash table $D_h$. Fix $n\in \NN_+$ and $i\in \{1,...,n\}$. Suppose that pairs $(k_1,x_1)$,...,$(k_n,x_n)$ for $(k_1,...,k_n)\in \cU^{\wedge n}$ and $x_1,...,x_n\in \cX$ are consecutively inserted to initially empty $D_h$. After these sequence of insertions is performed the number of elements in the linked list stored in $D_h[k(k_i)]$ which precede $(k_i,x_i)$ is equal to the cardinality of the set $\big\{j\in \{i+1,...,n\}\,\big|\,h(k_j) = h(k_i)\big\}$. We denote the function
+$$\cU^{\wedge n}\ni (k_1,...,k_n)\ra \big|\big\{i\,\big|\,h(k_i) = l\big\}\big|\in \NN$$
+by $coll_{< i}$.
+
+\begin{theorem}\label{theorem:simple_uniform_hashing_expected_number_of_items_after_given_item}
+Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function and fix $n\in \NN_+$. Fix $i\in \{1,...,n\}$. Then the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item The function 
+$$\cU^{\wedge n} \ni (k_1,...,k_n) \mapsto \#\{j\,|\,i\leq j\leq n\mbox{ and }h(k_i) = h(k_j)\}\in \NN$$
+is measurable.
+\item If $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
+$$\mathbb{E}\#\{j\,|\,i\leq j\leq n\mbox{ and }h(k_i) = h(k_j)\} = \int_{\cU^{\wedge n}}\#D_h[l]\,dP = \frac{n}{m}$$
+for every $l\in \{0,1,...,m-1\}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Suppose that $X_i$ is the indicator function of the measurable set $\big\{(k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big\}$. Then
+$$\# D_h[l] = \sum_{i=1}^nX_i$$
+This proves that $\#D_h[l]$ is measurable. If in addition $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
+$$\mathbb{E}\# D_h[l] = \mathbb{E}\left(\sum_{i=1}^nX_i\right) = \sum_{i=1}^n\mathbb{E}X_i = \sum_{i=1}^nP\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{n}{m}$$
+\end{proof}
+
+
 
 
 
