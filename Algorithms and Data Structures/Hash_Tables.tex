@@ -45,14 +45,9 @@ is called \textit{the antisymmetric cartesian power of $X$}.
 \end{definition}
 
 \begin{definition}
-Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of the product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function for some $m\in \NN_+$. Assume that the following assertions hold.
-\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
-\item $$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{1}{m}$$
-for every element $i\in \{1,...,n\}$ and every $l\in \{0,1,...,m-1\}$.
-\item $$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = h(k_j)\big) \leq \frac{1}{m}$$
-for every pair of distinct elements $i,j\in \{1,...,n\}$.
-\end{enumerate}
-Then $h$ is \textit{a simple uniform hashing with respect to $P$}.
+Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of the product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function for some $m\in \NN_+$. Assume that that
+$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{1}{m}$$
+for every element $i\in \{1,...,n\}$ and every $l\in \{0,1,...,m-1\}$. Then $h$ is \textit{a simple uniform hashing with respect to $P$}.
 \end{definition}
 
 \begin{example}\label{example:real_interval_with_floor_hash_function_as_an_example_of_suh}
@@ -66,15 +61,10 @@ Let $\cU = \{0,1,...,m^2-1\}$ for some $m\in \NN_+$. Then $\cU$ is a measurable 
 $$h(x) = x\,\mathrm{mod}\,m$$
 For $i\in \{1,...,n\}$ and $l\in \{0,1,...,m-1\}$ we have
 $$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{m\cdot (m^2 - 1)\cdot (m^2 - 2)\cdot ...\cdot (m^2 - n + 1)}{m^2\cdot (m^2 - 1)\cdot ...\cdot (m^2 - n + 1)} = \frac{1}{m}$$
-Fix distinct $i, j \in \{1,...,n\}$ and $l\in \{0,1,...,m-1\}$. Note that
-$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l,h(k_j) = l\big) = \frac{m\cdot (m-1)\cdot (m^2 - 2) \cdot ...\cdot (m^2 - n + 1)}{m^2\cdot (m^2 - 1)\cdot ...\cdot (m^2 - n + 1)} = \frac{1}{m\cdot (m+1)}$$
-Hence
-$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = h(k_j)\big) = \sum_{l=0}^{m-1}P\big(h(k_i) = l,h(k_j) = l\,\big|\,(k_1,...,k_n)\in \cU^{\wedge n}\big) =$$
-$$= \frac{m}{m\cdot (m + 1)} = \frac{1}{m+1}\leq \frac{1}{m}$$
 Thus $h$ is a simple uniform hashing with respect to $P$.
 \end{example}
 
-\section{Hash tables with chaining as a solution to dictionary problem}
+\section{Hash tables with chaining}
 \noindent
 In this section we present the solution to the dictionary problem and discuss its efficiency.
 
@@ -91,50 +81,42 @@ Searches for the pair with the first entry $k$ in the list $D_h[h(k)]$. If such 
 Then $D_h$ together with these operations is a solution of dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with collisions resolved by chaining for $h$}.
 \end{definition}
 \noindent
-Suppose that $\cU$ and $\cX$ are sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function. Consider the hash table $D_h$. Fix $l\in \{0,1,...,m-1\}$ and $n\in \NN_+$. Suppose that pairs $(k_1,x_1)$,...,$(k_n,x_n)$ for $(k_1,...,k_n)\in \cU^{\wedge n}$ and $x_1,...,x_n\in \cX$ are consecutively inserted to initially empty $D_h$. After these sequence of insertions is performed the length of the linked list stored in $D_h[l]$ is equal to the cardinality of the set $\big\{i\,\big|\,h(k_i) = l\big\}$. We denote the function
-$$\cU^{\wedge n}\ni (k_1,...,k_n)\ra \big|\big\{i\,\big|\,h(k_i) = l\big\}\big|\in \NN$$
-by $coll_l$.
+Suppose that $\cU$ and $\cX$ are sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function. Consider the hash table $D_h$. Fix $l\in \{0,1,...,m-1\}$ and $n\in \NN_+$. Suppose that pairs $(k_1,x_1)$,...,$(k_n,x_n)$ for $(k_1,...,k_n)\in \cU^{\wedge n}$ and $x_1,...,x_n\in \cX$ are consecutively inserted to initially empty $D_h$. After these sequence of insertions is performed the length of the linked list stored in $D_h[l]$ is equal to the cardinality of the set $\big\{i\in \{1,...,n\}\,\big|\,h(k_i) = l\big\}$. We denote the function
+$$\cU^{\wedge n}\ni (k_1,...,k_n) \mapsto \big|\big\{i\in \{1,...,n\}\,\big|\,h(k_i) = l\big\}\big| \in \NN$$
+by $\mathrm{coll}_l$.
 
 \begin{theorem}\label{theorem:simple_uniform_hashing_expected_number_of_items_in_the_slot}
 Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function and fix $n\in \NN_+$. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item The function $coll_l:\cU^{\wedge n}\ra \NN$ is measurable for every $l\in \{0,1,...,m-1\}$.
+\item The function $\mathrm{coll}_l$ is measurable for every $l\in \{0,1,...,m-1\}$.
 \item If $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
-$$\mathbb{E}\,coll_l = \int_{\cU^{\wedge n}}coll_l\,dP = \frac{n}{m}$$
+$$\mathbb{E}\,\mathrm{coll}_l = \int_{\cU^{\wedge n}}\mathrm{coll}_l\,dP = \frac{n}{m}$$
 for every $l\in \{0,1,...,m-1\}$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Suppose that $X_i$ is the indicator function of the measurable set $\big\{(k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big\}$. Then
-$$coll_l = \sum_{i=1}^nX_i$$
-This proves that $slot_l$ is measurable. If in addition $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
-$$\mathbb{E}\,coll_l = \mathbb{E}\left(\sum_{i=1}^nX_i\right) = \sum_{i=1}^n\mathbb{E}X_i = \sum_{i=1}^nP\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{n}{m}$$
+Suppose that $X_i$ is the indicator function of the measurable set 
+$$\big\{(k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big\}$$
+Then
+$$\mathrm{coll}_l = \sum_{i=1}^nX_i$$
+and this proves that $\mathrm{coll}_l$ is measurable. If in addition $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
+$$\mathbb{E}\,\mathrm{coll}_l = \mathbb{E}\left(\sum_{i=1}^nX_i\right) = \sum_{i=1}^n\mathbb{E}X_i = \sum_{i=1}^nP\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{n}{m}$$
 \end{proof}
-\noindent
-Suppose that $\cU$ and $\cX$ are sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function. Consider the hash table $D_h$. Fix $n\in \NN_+$ and $i\in \{1,...,n\}$. Suppose that pairs $(k_1,x_1)$,...,$(k_n,x_n)$ for $(k_1,...,k_n)\in \cU^{\wedge n}$ and $x_1,...,x_n\in \cX$ are consecutively inserted to initially empty $D_h$. After these sequence of insertions is performed the number of elements in the linked list stored in $D_h[k(k_i)]$ which precede $(k_i,x_i)$ is equal to the cardinality of the set $\big\{j\in \{i+1,...,n\}\,\big|\,h(k_j) = h(k_i)\big\}$. We denote the function
-$$\cU^{\wedge n}\ni (k_1,...,k_n)\ra \big|\big\{i\,\big|\,h(k_i) = l\big\}\big|\in \NN$$
-by $coll_{< i}$.
 
-\begin{theorem}\label{theorem:simple_uniform_hashing_expected_number_of_items_after_given_item}
-Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function and fix $n\in \NN_+$. Fix $i\in \{1,...,n\}$. Then the following assertions hold.
+\begin{corollary}\label{corollary:hashing_with_chaining_expected_operations_under_simple_uniform_hashing}
+Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function and fix $n\in \NN_+$. Suppose that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item The function 
-$$\cU^{\wedge n} \ni (k_1,...,k_n) \mapsto \#\{j\,|\,i\leq j\leq n\mbox{ and }h(k_i) = h(k_j)\}\in \NN$$
-is measurable.
-\item If $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
-$$\mathbb{E}\#\{j\,|\,i\leq j\leq n\mbox{ and }h(k_i) = h(k_j)\} = \int_{\cU^{\wedge n}}\#D_h[l]\,dP = \frac{n}{m}$$
-for every $l\in \{0,1,...,m-1\}$.
+\item $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$.
+\item $D_h$ is filled by sequence $(k_1,x_1),...,(k_n,x_n)$ such that $(k_1,...,k_n)\in \cU^{\wedge n}$ is drawn with respect to $P$ and $x_1,...,x_n\in \cX$.
+\item Numbers $n$ and $m$ are proportional i.e. $\frac{n}{m} \in \frac{\cO(m)}{m}\subseteq \cO(1)$.
 \end{enumerate}
-\end{theorem}
+Then the expected time of all three dictionary operations for $D_h$ is $\cO(1)$.
+\end{corollary}
 \begin{proof}
-Suppose that $X_i$ is the indicator function of the measurable set $\big\{(k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big\}$. Then
-$$\# D_h[l] = \sum_{i=1}^nX_i$$
-This proves that $\#D_h[l]$ is measurable. If in addition $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
-$$\mathbb{E}\# D_h[l] = \mathbb{E}\left(\sum_{i=1}^nX_i\right) = \sum_{i=1}^n\mathbb{E}X_i = \sum_{i=1}^nP\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{n}{m}$$
+Pick a key $k\in \cU$. Then the operation \textrm{SEARCH}$\big(D_h,k\big)$ takes at most $\mathrm{coll}_{h(k)}$ plus $1$ elementary operations. According to Theorem \ref{theorem:simple_uniform_hashing_expected_number_of_items_in_the_slot} we derive that
+$$1 + \mathbb{E}\,\mathrm{coll}_{h(k)} = 1 + \frac{n}{m} \in \cO(1)$$
+Thus the expected time of \textrm{SEARCH}$\big(D_h,k\big)$ is $\cO(1)$.
 \end{proof}
-
-
-
 
 
 \end{document}
