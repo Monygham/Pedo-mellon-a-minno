@@ -12,11 +12,11 @@
 \begin{definition}
 Let $\cX$ be a set of \textit{items} and let $\cU$ be a set of \textit{keys}. Consider an abstract data type $D$ which dynamically stores a collection of pairs $(k, x)$ where $k\in \cU$ and $x\in \cX$ in such a way that $D$ does not store two pairs having the same key at the same time. Moreover, we assume that $D$ supports the following operations.
 \begin{itemize}
-\item[] \textrm{INSERT}$\big(D,(k,x)\big)$\\
+\item[] $\textrm{INSERT}\big((k,x)\big)$\\
 Adds pair $(k,x)$ into $D$ if there is no other pair stored in $D$ with $k$ as a first entry.
-\item[] \textrm{DELETE}$\big(D,k\big)$\\
+\item[] $\textrm{DELETE}\big(k\big)$\\
 Removes a pair with $k$ as a first entry from $D$ if such pair is stored in $D$.
-\item[] \textrm{SEARCH}$\big(D,k\big)$\\
+\item[] $\textrm{SEARCH}\big(k\big)$\\
 Returns $x$ if a pair $(k,x)$ is stored in $D$. Otherwise returns \textit{nil}. 
 \end{itemize}
 An abstract data type with these properties and interface is called \textit{an associative array} or \textit{a dictionary}.
@@ -26,7 +26,7 @@ An abstract data type with these properties and interface is called \textit{an a
 Let $\cX$ and $\cU$ be sets. \textit{Dictionary problem for $\cX$ and $\cU$} is the task of designing a dictionary with $\cX$ as the set of items and $\cU$ as the set of keys.
 \end{definition}
 
-\section{Hash functions}
+\section{Hash functions and hash tables with chaining}
 \noindent
 In this section we introduce the important notion of a hash function and we discuss some probabilistic properties of such functions.
 
@@ -37,86 +37,97 @@ Let $\cU$ be a set. \textit{A hash function} is a mapping $h:\cU\ra \{0,1,...,m-
 \begin{definition}
 Let $h:\cU \ra \{0,1,...,m-1\}$ be a hash function. \textit{A collision} is a pair of keys $k_1$, $k_2\in \cU$ such that $k(k_1) = h(k_2)$.
 \end{definition}
-
-\begin{definition}
-Let $X$ be a set and let $n\in \NN_+$. Then a set
-$$X^{\wedge n} = \big\{(x_1,...,x_n)\in X^{n}\,\big|\,\forall_{1\leq i < j \leq n}\,x_i\neq x_j\big\}$$
-is called \textit{the antisymmetric cartesian power of $X$}.
-\end{definition}
-
-\begin{definition}
-Let $\cU$ be a measurable space. We consider $\cU^{\wedge n}$ as the measurable subspace of the product space $\cU^{n}$. Suppose that $P$ is a probability distribution on $\cU^{\wedge n}$. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function for some $m\in \NN_+$. Assume that that
-$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{1}{m}$$
-for every element $i\in \{1,...,n\}$ and every $l\in \{0,1,...,m-1\}$. Then $h$ is \textit{a simple uniform hashing with respect to $P$}.
-\end{definition}
-
-\begin{example}\label{example:real_interval_with_floor_hash_function_as_an_example_of_suh}
-Let $\cU = [0,m]$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to Borel algebra $\cB\big([0,m]\big)$. We define a hash function $h:\cU\ra \{0,1,...,m-1\}$ by formula
-$$h(x) = \lfloor x \rfloor$$
-Then $h$ is a simple uniform hashing with respect to the normalization of $n$-dimensional Lebesgue measure on $[0,m]^{\wedge n}$.
-\end{example}
-
-\begin{example}\label{example:interval_of_integers_with_modulo_hash_function_as_an_example_of_suh}
-Let $\cU = \{0,1,...,m^2-1\}$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to the power algebra $\cP\big(\{0,1,...,m^2-1\}\big)$. Consider $\cU^{\wedge n}$ as a probability space with respect to the uniform distribution $P$. We define a hash function $h:\cU \ra \{0,1,...,m-1\}$ by formula
-$$h(x) = x\,\mathrm{mod}\,m$$
-For $i\in \{1,...,n\}$ and $l\in \{0,1,...,m-1\}$ we have
-$$P\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{m\cdot (m^2 - 1)\cdot (m^2 - 2)\cdot ...\cdot (m^2 - n + 1)}{m^2\cdot (m^2 - 1)\cdot ...\cdot (m^2 - n + 1)} = \frac{1}{m}$$
-Thus $h$ is a simple uniform hashing with respect to $P$.
-\end{example}
-
-\section{Hash tables with chaining}
 \noindent
-In this section we present the solution to the dictionary problem and discuss its efficiency.
+Using hash functions one can solve dictionary problem. We introduce the notion which describes this solution. 
 
 \begin{definition}
 Let $\cU$ and $\cX$ be sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function for some $m\in \NN_+$. We consider an $m$-element array $D_h$ such that $D_h[l]$ is a linked list storing values from $\cU\times \cX$ for every $l\in \{0,1,...,m-1\}$. We describe dictionary operations.
 \begin{itemize}
-\item[] \textrm{INSERT}$\big(D_h,(k,x)\big)$\\
-Inserts pair $(k,x)$ to the linked list $D_h[h(k)]$ as its new head.
-\item[] \textrm{DELETE}$\big(D_h,k\big)$\\
+\item[] $\textrm{INSERT}_h\big((k,x)\big)$\\
+Searches for a pair with the first entry $k$ in the list $D_h[h(k)]$. If such pair is found, then replaces its second entry with $x$. If such pair is not found, then inserts pair $(k,x)$ to the linked list $D_h[h(k)]$ as its new head.
+\item[] $\textrm{DELETE}_h\big(k\big)$\\
 Deletes a pair with first entry $k$ from the linked list $D_h[h(k)]$.
-\item[] \textrm{SEARCH}$\big(D_h,k\big)$\\
+\item[] $\textrm{SEARCH}_h\big(k\big)$\\
 Searches for the pair with the first entry $k$ in the list $D_h[h(k)]$. If such pair is found, then returns its second entry. Otherwise returns \textit{nil}. 
 \end{itemize}
 Then $D_h$ together with these operations is a solution of dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with collisions resolved by chaining for $h$}.
 \end{definition}
-\noindent
-Suppose that $\cU$ and $\cX$ are sets. Let $h:\cU\ra \{0,1,...,m-1\}$ be a hash function. Consider the hash table $D_h$. Fix $l\in \{0,1,...,m-1\}$ and $n\in \NN_+$. Suppose that pairs $(k_1,x_1)$,...,$(k_n,x_n)$ for $(k_1,...,k_n)\in \cU^{\wedge n}$ and $x_1,...,x_n\in \cX$ are consecutively inserted to initially empty $D_h$. After these sequence of insertions is performed the length of the linked list stored in $D_h[l]$ is equal to the cardinality of the set $\big\{i\in \{1,...,n\}\,\big|\,h(k_i) = l\big\}$. We denote the function
-$$\cU^{\wedge n}\ni (k_1,...,k_n) \mapsto \big|\big\{i\in \{1,...,n\}\,\big|\,h(k_i) = l\big\}\big| \in \NN$$
-by $\mathrm{coll}_l$.
 
-\begin{theorem}\label{theorem:simple_uniform_hashing_expected_number_of_items_in_the_slot}
-Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function and fix $n\in \NN_+$. Then the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item The function $\mathrm{coll}_l$ is measurable for every $l\in \{0,1,...,m-1\}$.
-\item If $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
-$$\mathbb{E}\,\mathrm{coll}_l = \int_{\cU^{\wedge n}}\mathrm{coll}_l\,dP = \frac{n}{m}$$
-for every $l\in \{0,1,...,m-1\}$.
+\section{Analysis of hash tables with chaining under simple uniform hashing}
+\noindent
+We start by introducing important stochastic property of hash functions.
+
+\begin{definition}
+Let $\cU$ be a measurable space and let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function for some $m\in \NN_+$. Suppose that $\mu$ is a probability distribution on $\cU$. Fix a probability space $\left(\Omega,\cF,P\right)$ and a sequence of independent random variables $K_1,...,K_n:\Omega\ra \cU$ with distribution $\mu$ for some $n\in \NN_+$. Consider the following assertions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+\item Event
+$$\cK = \big\{\forall_{i,j\in \{1,...,n\},i\neq j}\,K_i\neq K_j\big\}$$
+is of positive probability.
+\item Let $K:\Omega\ra \cU$ be a random variable with distribution $\mu$ and independent of $K_1,...,K_n$. Then
+$$P\big(h(K) = h(K_i)\,\big|\,\cK\big) =\frac{1}{m}$$
+for every $i\in \{1,...,n\}$.
 \end{enumerate}
+If assertions above hold for every probability space $(\Omega,\cF,P)$, every $n\in \NN_+$ and every sequence $K_1,...,K_n:\Omega\ra \cU$ of independent random variables with distribution $\mu$, then $h$ is \textit{a simple uniform hashing with respect to $\mu$}.
+\end{definition}
+\noindent
+Now let us give to examples of hash functions satisfying simple uniform hashing with respect to canonical probability distributions on their spaces of keys.
+
+\begin{example}\label{example:real_interval_with_floor_hash_function_as_an_example_of_suh}
+Let $\cU = [0,m]$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to Borel algebra $\cB\big([0,m]\big)$. We define a hash function $h:\cU\ra \{0,1,...,m-1\}$ by formula
+$$h(x) = \lfloor x \rfloor$$
+Then $h$ is a simple uniform hashing with respect to the normalization of Lebesgue measure on $[0,m]$.
+\end{example}
+
+\begin{example}\label{example:interval_of_integers_with_modulo_hash_function_as_an_example_of_suh}
+Let $\cU = \{0,1,...,m^2-1\}$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to the power algebra $\cP\big(\{0,1,...,m^2-1\}\big)$. Consider $\cU$ as a probability space with respect to the uniform distribution $\mu$. We define a hash function $h:\cU \ra \{0,1,...,m-1\}$ by formula
+$$h(x) = x\,\mathrm{mod}\,m$$
+We verify that $h$ is a simple uniform hashing with respect to $\mu$. Fix a probability space $(\Omega,\cF,P)$ and $n\in \NN_+$. Suppose first that $K_1,...,K_n:\Omega\ra \cU$ are independent random variables with distribution $\mu$. Suppose that 
+$$\cK =\big\{\forall_{i,j\in \{1,...,n\},i\neq j}\,K_i\neq K_j\big\}$$
+Then
+$$P(\cK) = \frac{m^2 \cdot (m^2 - 1) \cdot ... \cdot (m^2 - n + 1)}{m^{2n}} > 0$$
+Next suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ independent of $K_1,...,K_n$. Then for fixed $i\in \{1,...,n\}$ we have 
+$$P\big(h(K) = h(K_i)\,\big|\,\cK\big) = \frac{P\big(\big\{h(K) = h(K_i) \big\}\cap \cK\big)}{P(\cK)} =$$
+$$= m\cdot \frac{m^2 \cdot (m^2 - 1)\cdot ... \cdot (m^2 - n + 1)}{ m^{2n+2}} \cdot \bigg(\frac{m^2 \cdot (m^2 - 1) \cdot ... \cdot (m^2 - n + 1)}{m^{2n}}\bigg)^{-1} =  \frac{1}{m}$$
+This completes the verification that $h$ is a simple uniform hashing with respect to $\mu$.
+\end{example}
+\noindent
+In the remaining part of this section we work in the following setup. We fix a measurable space of keys $\cU$ and a set $\cX$ of items. We consider a measurable hash function $h:\cU\ra \{0,1,...,m-1\}$ and a probability distribution $\mu$ on $\cU$. We also fix a probability space $(\Omega,\cF,P)$ and $n\in \NN_+$. Next suppose that $K_1,...,K_n:\Omega \ra \cU$ are independent random variables with distribution $\mu$. Write
+$$\cK = \big\{\forall_{i,j\in \{1,...,n\},i\neq j}\,K_i\neq K_j\big\}$$
+and suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ and independent from $K_1,...,K_n$. We denote by $\bd{search}_h(K)$ the function $\cK\ra \NN$ which for every $\omega \in \cK$ returns the cost (in terms of the number of basic operations) of operation 
+$$\mathrm{SEARCH}_h(K(\omega))$$
+under the assumption that pairs with keys $K_1(\omega),...,K_n(\omega)$ for some $\omega \in \cK$ were consecutively inserted to initially empty $D_h$. Similarly for 
+$$\mathrm{DELETE}_h(K(\omega))$$ 
+and (for fixed $x\in \cX$)
+$$\mathrm{INSERT}_h\left((K(\omega),x)\right)$$
+we define functions $\bd{delete}_h(K):\cK\ra \NN$ and $\bd{insert}_h\big((K,x)\big):\cK\ra \NN$. Finally under the assumption that $P(\cK) > 0$ we denote by $P_{\cK}$ the probability measure defined on $\sigma$-algebra $\big\{A\in \cF\,\big|\,A\subseteq \cK\big\}$ by the formula
+$$P_{\cK} = \frac{P(A)}{P(\cK)}$$
+Now we have the following fundamental result.
+
+\begin{theorem}\label{theorem:simple_uniform_hashing_expected_times}
+Let $h$ be a simple uniform hashing with respect to some probability distribution $\mu$ on $\cU$. Then $\bd{search}_h(K):\cK\ra \NN$ is measurable and
+$$\mathbb{E}\,\bd{search}_h(K) = \int_{\cK}\bd{search}_h(K)\,dP_{\cK} \leq 1 + \frac{n}{m}$$
 \end{theorem}
 \begin{proof}
-Suppose that $X_i$ is the indicator function of the measurable set 
-$$\big\{(k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big\}$$
-Then
-$$\mathrm{coll}_l = \sum_{i=1}^nX_i$$
-and this proves that $\mathrm{coll}_l$ is measurable. If in addition $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$, then
-$$\mathbb{E}\,\mathrm{coll}_l = \mathbb{E}\left(\sum_{i=1}^nX_i\right) = \sum_{i=1}^n\mathbb{E}X_i = \sum_{i=1}^nP\big((k_1,...,k_n)\in \cU^{\wedge n}\,\big|\,h(k_i) = l\big) = \frac{n}{m}$$
+First we introduce certain notation. We consider events
+$$W_{i} = \big\{h\left(K_i\right) = h\left(K\right)\big\},\,Z_i = \big\{K = K_i\big\}\cap \cK,\,Z = \bigcup_{i=1}^nZ_i$$
+for $i\in \{1,...,n\}$. Fix $\omega \in \cK$. For 
+$$\mathrm{SEARCH}_h(K(\omega))$$
+we first calculate $h(K(\omega))$. This is a single basic operation. Next if $\omega \in \cK\setminus Z$, then we run through the list $D_h[h(K(\omega))]$ with length equal to the number of keys in $\big\{K_1(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case of unsuccessful search. Otherwise, if $\omega \in Z_i$ then we run through the initial segment of the list $D_h[h(K(\omega))]$ which consists of elements from the set $\big\{K_i(\omega),K_{i+1}(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case when the search is successful. Thus
+$$\bd{search}_h\left(K\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\chi_{\cK\setminus Z}\cdot\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
+Hence $\bd{search}_h\left(K\right):\cK\ra \NN$ is measurable. Moreover, note that
+$$\bd{search}_h\left(K\right) = 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}} \leq 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = 1}^n \chi_{W_{j}} = 1 +  \sum_{i=1}^n \chi_{W_{i}}$$
+and hence
+$$\mathbb{E}\,\bd{search}_h\left(K\right) \leq 1 +  \sum_{i=1}^n \mathbb{E}\,\chi_{W_{i}} = 1 + \sum_{i=1}^nP_{\cK}(W_i) = 1 + \sum_{i=1}^n\frac{P(W_i\cap \cK)}{P(\cK)} = 1 + \frac{n}{m}$$
+The last inequality is a consequence of the fact that $h$ is a simple uniform hashing with respect to $\mu$.
 \end{proof}
-
-\begin{corollary}\label{corollary:hashing_with_chaining_expected_operations_under_simple_uniform_hashing}
-Let $\cU$ be a measurable space and let $\cX$ be a set. Let $h:\cU\ra \{0,1,...,m-1\}$ be a measurable hash function and fix $n\in \NN_+$. Suppose that the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item $h$ is a simple uniform hashing with respect to some probability distribution $P$ on $\cU^{\wedge n}$.
-\item $D_h$ is filled by sequence $(k_1,x_1),...,(k_n,x_n)$ such that $(k_1,...,k_n)\in \cU^{\wedge n}$ is drawn with respect to $P$ and $x_1,...,x_n\in \cX$.
-\item Numbers $n$ and $m$ are proportional i.e. $\frac{n}{m} \in \frac{\cO(m)}{m}\subseteq \cO(1)$.
-\end{enumerate}
-Then the expected time of all three dictionary operations for $D_h$ is $\cO(1)$.
-\end{corollary}
+\noindent
+Using essentially the same method one derives the following results.
+\begin{theorem}\label{theorem:simple_uniform_hashing_expected_times}
+Let $h$ be a simple uniform hashing with respect to some probability distribution $\mu$ on $\cU$. Fix also $x$ in $\cX$. Then $\bd{delete}_h(K),\bd{insert}_k\left((K,x)\right):\cK\ra \NN$ are measurable and
+$$\mathbb{E}\,\bd{delete}_h(K) = \int_{\cK}\bd{delete}_h(K)\,dP_{\cK} \leq 1 + \frac{n}{m}$$
+\end{theorem}
 \begin{proof}
-Pick a key $k\in \cU$. Then the operation \textrm{SEARCH}$\big(D_h,k\big)$ takes at most $\mathrm{coll}_{h(k)}$ plus $1$ elementary operations. According to Theorem \ref{theorem:simple_uniform_hashing_expected_number_of_items_in_the_slot} we derive that
-$$1 + \mathbb{E}\,\mathrm{coll}_{h(k)} = 1 + \frac{n}{m} \in \cO(1)$$
-Thus the expected time of \textrm{SEARCH}$\big(D_h,k\big)$ is $\cO(1)$.
-\end{proof}
 
+\end{proof}
 
 \end{document}
