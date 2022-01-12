@@ -28,7 +28,7 @@ Let $\cX$ and $\cU$ be sets. \textit{Dictionary problem for $\cX$ and $\cU$} is 
 
 \section{Hash functions and hash tables with chaining}
 \noindent
-In this section we introduce the important notion of a hash function and we discuss some probabilistic properties of such functions.
+In this section we introduce the important notion of a hash function and we use it to solve dictionary problem.
 
 \begin{definition}
 Let $\cU$ be a set. \textit{A hash function} is a mapping $h:\cU\ra \{0,1,...,m-1\}$ where $m\in \NN_+$.
@@ -70,7 +70,7 @@ for every $i\in \{1,...,n\}$.
 If assertions above hold for every probability space $(\Omega,\cF,P)$, every $n\in \NN_+$ and every sequence $K_1,...,K_n:\Omega\ra \cU$ of independent random variables with distribution $\mu$, then $h$ is \textit{a simple uniform hashing with respect to $\mu$}.
 \end{definition}
 \noindent
-Now let us give to examples of hash functions satisfying simple uniform hashing with respect to canonical probability distributions on their spaces of keys.
+Now let us give two examples of hash functions satisfying simple uniform hashing with respect to canonical probability distributions on their spaces of keys.
 
 \begin{example}\label{example:real_interval_with_floor_hash_function_as_an_example_of_suh}
 Let $\cU = [0,m]$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to Borel algebra $\cB\big([0,m]\big)$. We define a hash function $h:\cU\ra \{0,1,...,m-1\}$ by formula
@@ -81,30 +81,34 @@ Then $h$ is a simple uniform hashing with respect to the normalization of Lebesg
 \begin{example}\label{example:interval_of_integers_with_modulo_hash_function_as_an_example_of_suh}
 Let $\cU = \{0,1,...,m^2-1\}$ for some $m\in \NN_+$. Then $\cU$ is a measurable space with respect to the power algebra $\cP\big(\{0,1,...,m^2-1\}\big)$. Consider $\cU$ as a probability space with respect to the uniform distribution $\mu$. We define a hash function $h:\cU \ra \{0,1,...,m-1\}$ by formula
 $$h(x) = x\,\mathrm{mod}\,m$$
-We verify that $h$ is a simple uniform hashing with respect to $\mu$. Fix a probability space $(\Omega,\cF,P)$ and $n\in \NN_+$. Suppose first that $K_1,...,K_n:\Omega\ra \cU$ are independent random variables with distribution $\mu$. Suppose that 
+We verify that $h$ is a simple uniform hashing with respect to $\mu$. Fix a probability space $(\Omega,\cF,P)$ and $n\in \NN_+$. Suppose first that $K_1,...,K_n:\Omega\ra \cU$ are independent random variables with distribution $\mu$. If 
 $$\cK =\big\{\forall_{i,j\in \{1,...,n\},i\neq j}\,K_i\neq K_j\big\}$$
-Then
+then
 $$P(\cK) = \frac{m^2 \cdot (m^2 - 1) \cdot ... \cdot (m^2 - n + 1)}{m^{2n}} > 0$$
-Next suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ independent of $K_1,...,K_n$. Then for fixed $i\in \{1,...,n\}$ we have 
+Next suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ which is independent of $K_1,...,K_n$. Then for fixed $i\in \{1,...,n\}$ we have 
 $$P\big(h(K) = h(K_i)\,\big|\,\cK\big) = \frac{P\big(\big\{h(K) = h(K_i) \big\}\cap \cK\big)}{P(\cK)} =$$
 $$= m\cdot \frac{m^2 \cdot (m^2 - 1)\cdot ... \cdot (m^2 - n + 1)}{ m^{2n+2}} \cdot \bigg(\frac{m^2 \cdot (m^2 - 1) \cdot ... \cdot (m^2 - n + 1)}{m^{2n}}\bigg)^{-1} =  \frac{1}{m}$$
 This completes the verification that $h$ is a simple uniform hashing with respect to $\mu$.
 \end{example}
 \noindent
-In the remaining part of this section we work in the following setup. We fix a measurable space of keys $\cU$ and a set $\cX$ of items. We consider a measurable hash function $h:\cU\ra \{0,1,...,m-1\}$ and a probability distribution $\mu$ on $\cU$. We also fix a probability space $(\Omega,\cF,P)$ and $n\in \NN_+$. Next suppose that $K_1,...,K_n:\Omega \ra \cU$ are independent random variables with distribution $\mu$. Write
+In order to analyze expected costs of dictionary operations for hash tables with chaining we introduce natural probabilistic model. 
+
+\begin{setup}[Probabilistic model for hash tables with chaining]\label{setup:probabilistic_model_for_simple_uniform_hashing}
+We fix a measurable space of keys $\cU$ and a set $\cX$ of items. We consider a measurable hash function $h:\cU\ra \{0,1,...,m-1\}$ and a probability distribution $\mu$ on $\cU$. We also fix a probability space $(\Omega,\cF,P)$ and $n\in \NN_+$. Let $K_1,...,K_n:\Omega \ra \cU$ be independent random variables with distribution $\mu$. Write
 $$\cK = \big\{\forall_{i,j\in \{1,...,n\},i\neq j}\,K_i\neq K_j\big\}$$
-and suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ and independent from $K_1,...,K_n$. We denote by $\bd{search}_h(K)$ the function $\cK\ra \NN$ which for every $\omega \in \cK$ returns the cost (in terms of the number of basic operations) of operation 
+and suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ and independent from $K_1,...,K_n$. We assume that pairs with keys $K_1(\omega),...,K_n(\omega)$ for $\omega \in \cK$ were consecutively inserted into initially empty $D_h$. Under this assumption we denote by $\bd{search}_h(K)$ the function $\cK\ra \NN$ which for every $\omega \in \cK$ returns the cost (in terms of the number of basic operations) of operation 
 $$\mathrm{SEARCH}_h(K(\omega))$$
-under the assumption that pairs with keys $K_1(\omega),...,K_n(\omega)$ for some $\omega \in \cK$ were consecutively inserted to initially empty $D_h$. Similarly for 
+Similarly for 
 $$\mathrm{DELETE}_h(K(\omega))$$ 
 and (for fixed $x\in \cX$)
 $$\mathrm{INSERT}_h\left((K(\omega),x)\right)$$
-we define functions $\bd{delete}_h(K):\cK\ra \NN$ and $\bd{insert}_h\big((K,x)\big):\cK\ra \NN$. Finally under the assumption that $P(\cK) > 0$ we denote by $P_{\cK}$ the probability measure defined on $\sigma$-algebra $\big\{A\in \cF\,\big|\,A\subseteq \cK\big\}$ by the formula
-$$P_{\cK} = \frac{P(A)}{P(\cK)}$$
-Now we have the following fundamental result.
+we define functions $\bd{delete}_h(K):\cK\ra \NN$ and $\bd{insert}_h\big((K,x)\big):\cK\ra \NN$.
+\end{setup}
+\noindent
+In the remaining part of this section we work under probabilistic model described in Setup \ref{setup:probabilistic_model_for_simple_uniform_hashing}. We have the following fundamental result.
 
-\begin{theorem}\label{theorem:simple_uniform_hashing_expected_times}
-Let $h$ be a simple uniform hashing with respect to some probability distribution $\mu$ on $\cU$. Then $\bd{search}_h(K):\cK\ra \NN$ is measurable and
+\begin{theorem}\label{theorem:simple_uniform_hashing_expected_cost_for_search}
+Let $h$ be a simple uniform hashing with respect to$\mu$. Then $\bd{search}_h(K):\cK\ra \NN$ is measurable and
 $$\mathbb{E}\,\bd{search}_h(K) = \int_{\cK}\bd{search}_h(K)\,dP_{\cK} \leq 1 + \frac{n}{m}$$
 \end{theorem}
 \begin{proof}
@@ -112,7 +116,7 @@ First we introduce certain notation. We consider events
 $$W_{i} = \big\{h\left(K_i\right) = h\left(K\right)\big\},\,Z_i = \big\{K = K_i\big\}\cap \cK,\,Z = \bigcup_{i=1}^nZ_i$$
 for $i\in \{1,...,n\}$. Fix $\omega \in \cK$. For 
 $$\mathrm{SEARCH}_h(K(\omega))$$
-we first calculate $h(K(\omega))$. This is a single basic operation. Next if $\omega \in \cK\setminus Z$, then we run through the list $D_h[h(K(\omega))]$ with length equal to the number of keys in $\big\{K_1(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case of unsuccessful search. Otherwise, if $\omega \in Z_i$ then we run through the initial segment of the list $D_h[h(K(\omega))]$ which consists of elements from the set $\big\{K_i(\omega),K_{i+1}(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case when the search is successful. Thus
+we first calculate $h(K(\omega))$. This is a single basic operation. Next if $\omega \in \cK\setminus Z$, then we run through the list $D_h[h(K(\omega))]$ with length equal to the number of keys in $\big\{K_1(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case of the unsuccessful search. Otherwise, if $\omega \in Z_i$ then we run through the initial segment of the list $D_h[h(K(\omega))]$ which consists of elements from the set $\big\{K_i(\omega),K_{i+1}(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case when the search is successful. Thus
 $$\bd{search}_h\left(K\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\chi_{\cK\setminus Z}\cdot\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
 Hence $\bd{search}_h\left(K\right):\cK\ra \NN$ is measurable. Moreover, note that
 $$\bd{search}_h\left(K\right) = 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}} \leq 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = 1}^n \chi_{W_{j}} = 1 +  \sum_{i=1}^n \chi_{W_{i}}$$
@@ -121,13 +125,23 @@ $$\mathbb{E}\,\bd{search}_h\left(K\right) \leq 1 +  \sum_{i=1}^n \mathbb{E}\,\ch
 The last inequality is a consequence of the fact that $h$ is a simple uniform hashing with respect to $\mu$.
 \end{proof}
 \noindent
-Using essentially the same method one derives the following results.
-\begin{theorem}\label{theorem:simple_uniform_hashing_expected_times}
-Let $h$ be a simple uniform hashing with respect to some probability distribution $\mu$ on $\cU$. Fix also $x$ in $\cX$. Then $\bd{delete}_h(K),\bd{insert}_k\left((K,x)\right):\cK\ra \NN$ are measurable and
-$$\mathbb{E}\,\bd{delete}_h(K) = \int_{\cK}\bd{delete}_h(K)\,dP_{\cK} \leq 1 + \frac{n}{m}$$
-\end{theorem}
-\begin{proof}
+Using essentially the same method (we omit the proof) one derives the following results.
 
+\begin{theorem}\label{theorem:simple_uniform_hashing_expected_costs_of_delete_and_insert}
+Let $h$ be a simple uniform hashing with respect to $\mu$. Fix $x$ in $\cX$. Then both functions $\bd{delete}_h(K),\bd{insert}_k\left((K,x)\right):\cK\ra \NN$ are measurable and
+$$\mathbb{E}\,\bd{delete}_h(K), \mathbb{E}\,\bd{insert}_h((K,x))  \leq 1 + \frac{n}{m}$$
+\end{theorem}
+\noindent
+These results have the following consequence.
+
+\begin{corollary}\label{corollary:constant_expected_costs_of_dictionary_operations_for_simple_uniform_hashing}
+Let $h$ be a simple uniform hashing with respect to $\mu$. Suppose that there exists a constant $c\in \RR_+$ such that $n\leq c\cdot m$. Then the expected costs of all dictionary operations for $D_h$ are $\cO(1)$.
+\end{corollary}
+\begin{proof}
+The assertion follows from Theorems \ref{theorem:simple_uniform_hashing_expected_cost_for_search} and \ref{theorem:simple_uniform_hashing_expected_costs_of_delete_and_insert} and the inequality $1 + \frac{n}{m} \leq 1 + c$.
 \end{proof}
+
+\section{Universal hashing families}
+
 
 \end{document}
