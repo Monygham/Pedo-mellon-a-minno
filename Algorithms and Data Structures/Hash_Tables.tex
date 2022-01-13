@@ -53,7 +53,7 @@ Searches for the pair with the first entry $k$ in the list $D_h[h(k)]$. If such 
 Then $D_h$ together with these operations is a solution of dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with collisions resolved by chaining for $h$}.
 \end{definition}
 
-\section{Analysis of hash tables with chaining under simple uniform hashing}
+\section{Analysis of hash tables with chaining for simple uniform hashing}
 \noindent
 We start by introducing important stochastic property of hash functions.
 
@@ -141,7 +141,49 @@ Let $h$ be a simple uniform hashing with respect to $\mu$. Suppose that there ex
 The assertion follows from Theorems \ref{theorem:simple_uniform_hashing_expected_cost_for_search} and \ref{theorem:simple_uniform_hashing_expected_costs_of_delete_and_insert} and the inequality $1 + \frac{n}{m} \leq 1 + c$.
 \end{proof}
 
-\section{Universal hashing families}
+\section{Analysis of hash tables with chaining for universal hashing families}
+
+\section{Universal hash function families}
+\noindent
+In this section we introduce and study important notion of universal hash function family.
+
+\begin{definition}
+Let $\cU$ be a set and let $m\in \NN_+$. Suppose that $\cH$ is a finite family of functions $\cU\ra \{0,1,...,m-1\}$ and let $P$ be a uniform probability distribution on $\cH$. Suppose that
+$$P\big(h(k_1) = h(k_2)\big) = \frac{1}{m}$$
+for every pair of distinct keys $k_1,k_2\in \cU$. Then $\cH$ is \textit{a universal family of hash function}. 
+\end{definition}
+\noindent
+The remaining part of this section is devoted to giving examples of universal families of hash functions.
+
+\begin{example}
+Let $p$ be a prime number. Consider $\cU = \ZZ_p^n$ for some $n\in \NN_+$. Fix $k$ in $\cU$. Expand
+$$k = a_{n-1}(k)\cdot p^{n-1}  + ... + a_1(k) \cdot p + a_0(k)$$
+where $a_0(k),a_1(k),...,a_{n-1}(k)\in \{0,1,...,p-1\}$. Then the map
+$$\cU \ni k \mapsto (a_0(k),a_1(k),...,a_{n-1}(k))\in \ZZ_p^n$$
+is bijective. Now for fixed $v = (v_0,...,v_n)\in \ZZ_p^n$ we define $h_v:\cU\ra \{0,1,...,p-1\}$ by formula
+$$h_v(k) = \sum_{i=0}^{n-1}a_i(k)\cdot v_i\,\mathrm{mod}\,p$$   
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
