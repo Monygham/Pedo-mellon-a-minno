@@ -6,6 +6,8 @@
 \maketitle
 
 \section{Introduction}
+\noindent
+In this notes we discuss hash functions and their application to the solution of dictionary problem. We mostly follow appropriate chapter of \cite{CormenLeisersonRivestStein}, but our presentation is even more mathematically rigorous.
 
 \section{Dictionary data type}
 
@@ -108,13 +110,13 @@ we define functions $\bd{delete}_h(K):\cK\ra \NN$ and $\bd{insert}_h\big((K,x)\b
 In the remaining part of this section we work under probabilistic model described in Setup \ref{setup:probabilistic_model_for_simple_uniform_hashing}. We have the following fundamental result.
 
 \begin{theorem}\label{theorem:simple_uniform_hashing_expected_cost_for_search}
-Let $h$ be a simple uniform hashing with respect to$\mu$. Then $\bd{search}_h(K):\cK\ra \NN$ is measurable and
+Let $h$ be a simple uniform hashing with respect to $\mu$. Then $\bd{search}_h(K):\cK\ra \NN$ is measurable and
 $$\mathbb{E}\,\bd{search}_h(K) = \int_{\cK}\bd{search}_h(K)\,dP_{\cK} \leq 1 + \frac{n}{m}$$
 \end{theorem}
 \begin{proof}
 First we introduce certain notation. We consider events
 $$W_{i} = \big\{h\left(K_i\right) = h\left(K\right)\big\},\,Z_i = \big\{K = K_i\big\}\cap \cK,\,Z = \bigcup_{i=1}^nZ_i$$
-for $i\in \{1,...,n\}$. Fix $\omega \in \cK$. For 
+for $i\in \{1,...,n\}$. Fix $\omega \in \cK$. For the operation
 $$\mathrm{SEARCH}_h(K(\omega))$$
 we first calculate $h(K(\omega))$. This is a single basic operation. Next if $\omega \in \cK\setminus Z$, then we run through the list $D_h[h(K(\omega))]$ with length equal to the number of keys in $\big\{K_1(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case of the unsuccessful search. Otherwise, if $\omega \in Z_i$ then we run through the initial segment of the list $D_h[h(K(\omega))]$ which consists of elements from the set $\big\{K_i(\omega),K_{i+1}(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case when the search is successful. Thus
 $$\bd{search}_h\left(K\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\chi_{\cK\setminus Z}\cdot\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
@@ -128,7 +130,7 @@ The last inequality is a consequence of the fact that $h$ is a simple uniform ha
 Using essentially the same method (we omit the proof) one derives the following results.
 
 \begin{theorem}\label{theorem:simple_uniform_hashing_expected_costs_of_delete_and_insert}
-Let $h$ be a simple uniform hashing with respect to $\mu$. Fix $x$ in $\cX$. Then both functions $\bd{delete}_h(K),\bd{insert}_k\left((K,x)\right):\cK\ra \NN$ are measurable and
+Let $h$ be a simple uniform hashing with respect to $\mu$. Fix $x$ in $\cX$. Then both functions $\bd{delete}_h(K),\bd{insert}_h\left((K,x)\right):\cK\ra \NN$ are measurable and
 $$\mathbb{E}\,\bd{delete}_h(K), \mathbb{E}\,\bd{insert}_h((K,x))  \leq 1 + \frac{n}{m}$$
 \end{theorem}
 \noindent
@@ -141,29 +143,109 @@ Let $h$ be a simple uniform hashing with respect to $\mu$. Suppose that there ex
 The assertion follows from Theorems \ref{theorem:simple_uniform_hashing_expected_cost_for_search} and \ref{theorem:simple_uniform_hashing_expected_costs_of_delete_and_insert} and the inequality $1 + \frac{n}{m} \leq 1 + c$.
 \end{proof}
 
-\section{Analysis of hash tables with chaining for universal hashing families}
-
 \section{Universal hash function families}
 \noindent
-In this section we introduce and study important notion of universal hash function family.
+In this section we introduce and study important notion of universal hash function family. We start by proving the result, which gives lower bound on probability of key collisions.
+
+\begin{proposition}\label{proposition:universal_families_of_hash_functions_are_optimal}
+Let $\cU$ be a finite set and let $m\in \NN_+$. Suppose that $\cH$ is a finite family of functions $\cU\ra \{0,1,...,m-1\}$ and let $P$ be a uniform probability distribution on $\cH$. Assume that for some $\epsilon \geq 0$ and for every pair of distinct elements $k,l\in \cU$ we have
+$$P\big(h(k_1) = h(k_2)\big) \leq \epsilon$$
+Then
+$$\epsilon \geq \frac{1}{m} - \frac{1}{|\cU|}$$
+\end{proposition}
+\begin{proof}
+For each pair of distinct $k,l\in \cU$ consider the indicator random variable $X_{k,l}$ of the subset $\big\{h\in \cH\,\big|\,h(k) = h(l)\big\}\subseteq \cH$. Note that
+$$\sum_{k,l\in \cU,\,k\neq l}X_{k,l}(h) = \mbox{the total number of collisions for a hash function $h:\cU\ra \{0,1,...,m-1\}$}$$ 
+for every $h\in \cH$. Now fix an arbitrary hash function $h:\cU\ra \{0,1,...,m-1\}$. For every $i\in \{0,1,...,m-1\}$ let $h_i = |h^{-1}(i)|$. Then the number of collisions for this particular function is given by
+$$\sum_{i=0}^{m-1}{{h_i}\choose{2}} = \frac{1}{2}\cdot \bigg(\sum_{i=0}^{m-1}h_i^2 - \sum_{i=0}^{m-1}h_i\bigg) \geq \frac{1}{2}\cdot \frac{\bigg(\sum_{i=0}^{m-1}h_i\bigg)^2}{m} - \frac{1}{2}\cdot \sum_{i=0}^{m-1}h_i = \frac{1}{2}\cdot \bigg(\frac{|\cU|^2}{m} - |\cU|\bigg)$$
+Thus we derive that
+$$\sum_{k,l\in \cU,\,k\neq l}X_{k,l} \geq \frac{1}{2}\cdot \bigg(\frac{|\cU|^2}{m} - |\cU|\bigg)$$
+Taking expectations with respect to $P$ we obtain
+$${{|\cU|}\choose{2}}\cdot \epsilon \geq \sum_{k,l\in \cU,\,k\neq l}\mathbb{E}\,X_{k,l} = \mathbb{E}\,\sum_{k,l\in \cU,\,k\neq l}X_{k,l} \geq \frac{1}{2}\cdot \bigg(\frac{|\cU|^2}{m} - |\cU|\bigg)$$
+and hence
+$$\epsilon \geq \frac{\frac{1}{2}\cdot \bigg(\frac{|\cU|^2}{m} - |\cU|\bigg)}{{{|\cU|}\choose{2}}} \geq \frac{\frac{1}{2}\cdot\bigg(\frac{|\cU|^2}{m} - |\cU|\bigg)}{\frac{1}{2}\cdot |\cU|^2} = \frac{\frac{|\cU|^2}{m} - |\cU|}{|\cU|^2} = \frac{1}{m} - \frac{1}{|\cU|}$$
+\end{proof}
 
 \begin{definition}
 Let $\cU$ be a set and let $m\in \NN_+$. Suppose that $\cH$ is a finite family of functions $\cU\ra \{0,1,...,m-1\}$ and let $P$ be a uniform probability distribution on $\cH$. Suppose that
-$$P\big(h(k_1) = h(k_2)\big) = \frac{1}{m}$$
+$$P\big(h(k_1) = h(k_2)\big) \leq \frac{1}{m}$$
 for every pair of distinct keys $k_1,k_2\in \cU$. Then $\cH$ is \textit{a universal family of hash function}. 
 \end{definition}
 \noindent
+Note that Proposition \ref{proposition:universal_families_of_hash_functions_are_optimal} asserts that universal families of hash functions are optimal.\\
 The remaining part of this section is devoted to giving examples of universal families of hash functions.
 
-\begin{example}
-Let $p$ be a prime number. Consider $\cU = \ZZ_p^n$ for some $n\in \NN_+$. Fix $k$ in $\cU$. Expand
-$$k = a_{n-1}(k)\cdot p^{n-1}  + ... + a_1(k) \cdot p + a_0(k)$$
-where $a_0(k),a_1(k),...,a_{n-1}(k)\in \{0,1,...,p-1\}$. Then the map
-$$\cU \ni k \mapsto (a_0(k),a_1(k),...,a_{n-1}(k))\in \ZZ_p^n$$
-is bijective. Now for fixed $v = (v_0,...,v_n)\in \ZZ_p^n$ we define $h_v:\cU\ra \{0,1,...,p-1\}$ by formula
-$$h_v(k) = \sum_{i=0}^{n-1}a_i(k)\cdot v_i\,\mathrm{mod}\,p$$   
+\begin{example}\label{example:inner_product_for_integers_modulo_p_family}
+Let $p$ be a prime number. Consider $\cU = \ZZ_p^n$ for some $n\in \NN_+$. We have bilinear map
+$$\cU\times \cU \ni (k,l)\mapsto \langle k, l\rangle\in \ZZ_p$$
+where
+$$\langle k, l\rangle = \sum_{i=1}^{n}k_i\cdot l_i$$
+and $k = (k_1,...,k_n)$, $l = (l_1,...l_n)$ are coordinate expansions. Now we define the family of functions
+$$\cH = \big\{h:\cU\ra \ZZ_p\,\big|\,\exists_{a\in \ZZ_p}\,\forall_{k\in \cU}\,h(k) = \langle a, k\rangle\big\}$$
+We show now that $\cH$ is a family of universal hash functions. For this pick two distinct keys $k,l\in \cU$. We have
+$$P\big(h(k) = h(l)\big) = \frac{\big|\big\{a\in \ZZ_p^n\,\big|\,\langle a, k\rangle = \langle a, k\rangle\big\}\big|}{|\ZZ_p^n|} = \frac{\big|\big\{a\in \ZZ_p^n\,\big|\,\langle a, k - l \rangle = 0\big\}\big|}{|\ZZ_p^n|} =$$
+$$= \frac{\big|\Ker\left(\ZZ^n_p\ni a\mapsto \langle a, k-l\rangle\in \ZZ_p \right)\big|}{\big|\ZZ^n_p\big|} = \frac{p^{n-1}}{p^n} = \frac{1}{p}$$
 \end{example}
 
+\begin{example}\label{example:inner_product_for_integers_modulo_p_family}
+Consider $\cU = \ZZ_p$ for some prime number $p$ and suppose that $m < p$ for some $m\in \NN_+$. We define
+$$\cH = \big\{h:\cU\ra \{0,1,...,m-1\}\,\big|\,\exists_{a\in \ZZ_p^*}\,\exists_{b\in \ZZ_p}\,\forall_{k\in \cU}\,h(k) = \left(a\cdot k + b\,\mathrm{mod}\,p\right)\,\mathrm{mod}\,m\big\}$$
+We show now that $\cH$ is a family of universal hash functions. For this pick two distinct keys $k,l\in \cU$ and note that the function
+$$\ZZ_p^*\times \ZZ_p \ni (a,b) \mapsto a\cdot (k-l) + b\,\mathrm{mod}\,p\in \ZZ_p$$
+has the property that its fiber over each element in $\ZZ_p$ has exactly $(p-1)$-elements. We have
+$$P\big(h(k) = h(l)\big) = \frac{\big|\big\{(a,b)\in \ZZ_p^*\times \ZZ_p\,\big|\,\left(a\cdot k + b\,\mathrm{mod}\,p\right)\,\mathrm{mod}\,m = \left(a\cdot l + b\,\mathrm{mod}\,p\right)\,\mathrm{mod}\,m\big\}\big|}{|\ZZ_p^*\times \ZZ_p|} =$$
+$$= \frac{\big|\big\{(a,b)\in \ZZ_p^*\times \ZZ_p\,\big|\,\left(a\cdot (k-l) + b\,\mathrm{mod}\,p\right)\,\mathrm{mod}\,m = 0\big\}\big|}{|\ZZ_p^*\times \ZZ_p|} = \frac{(p-1)\cdot \lfloor\frac{p}{m}\rfloor}{(p-1)\cdot p} \leq \frac{(p-1)\cdot \frac{p}{m}}{(p-1)\cdot p} = \frac{1}{m}$$
+\end{example}
+
+\section{Analysis of hash tables with chaining for universal families of hash functions}
+\noindent
+In this section we describe alternative analysis of hash tables with chaining, which is based on the notion of universal family of hash functions.
+
+\begin{setup}[Probabilistic model for hash tables with chaining]\label{setup:probabilistic_model_for_universal_families_of_hash_functions}
+Let $\cU,\cX$ be sets and let $m\in \NN_+$. Suppose that $\cH$ is a finite family of functions $\cU\ra \{0,1,...,m-1\}$ and let $P$ be a uniform probability distribution on $\cH$. We fix $n\in \NN_+$ and distinct keys $k_1,...,k_n\in \cU$. For each $h\in \cH$ we assume that pairs with keys $k_1,...,k_n$ were consecutively inserted into initially empty $D_h$. We also fix $k\in \cU$. Under this assumption we denote by $\bd{search}_\cH(k)$ the function $\cH\ra \NN$ which for every $h\in \cH$ returns the cost (in terms of the number of basic operations) of operation 
+$$\mathrm{SEARCH}_h(k)$$
+Similarly for 
+$$\mathrm{DELETE}_h(k)$$ 
+and (for fixed $x\in \cX$)
+$$\mathrm{INSERT}_h\left((k,x)\right)$$
+we define functions $\bd{delete}_\cH(K):\cH \ra \NN$ and $\bd{insert}_\cH\big((k,x)\big):\cH \ra \NN$.
+\end{setup}
+\noindent
+In the remaining part of this section we work under probabilistic model described in Setup \ref{setup:probabilistic_model_for_universal_families_of_hash_functions}. We have the following fundamental result.
+
+\begin{theorem}\label{theorem:universal_family_of_hash_functions_expected_cost_for_search}
+Let $\cH$ be a universal family of hash functions and let $k$ be a key in $\cU$. Then $\bd{search}_\cH(k):\cH\ra \NN$ is measurable and
+$$\mathbb{E}\,\bd{search}_\cH(k) = \int_{\cH}\bd{search}_\cH(k)\,dP \leq 1 + \frac{n}{m}$$
+\end{theorem}
+\begin{proof}
+First we introduce certain notation. We consider events $W_{i} = \big\{h(k_i) = h(k)\big\}$ for $i\in \{1,...,n\}$. For the operation
+$$\mathrm{SEARCH}_h(k)$$
+we first calculate $h(k)$. This is a single basic operation. Next if $k$ is not one of the keys $k_1,...,k_n$, then we run through the list $D_h[h(k)]$ with length equal to the number of keys in $\big\{k_1,...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case of the unsuccessful search. Hence
+$$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}}$$
+If on the other hand $k$ is equal to say $k_i$ for some $i\in \{1,...,n\}$, then we run through the initial segment of the list $D_h[h(k)]$ which consists of elements from the set $\big\{k_i,k_{i+1},...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case when the search is successful. Hence
+$$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
+In either case $\bd{search}_\cH\left(k\right):\cH\ra \NN$ is measurable. Moreover, note that
+$$\bd{search}_{\cH}\left(k\right) \leq 1 + \sum_{i=1}^n \chi_{W_{i}}$$
+for every $k\in \cU$ and thus
+$$\mathbb{E}\,\bd{search}_\cH\left(k\right) \leq 1 +  \sum_{i=1}^n \mathbb{E}\,\chi_{W_{i}} = 1 + \sum_{i=1}^nP(W_i) =  1 + \frac{n}{m}$$
+The last inequality is a consequence of the fact that $\cH$ is a universal family of hash functions.
+\end{proof}
+\noindent
+Using essentially the same method (we omit the proof) one derives the following results.
+
+\begin{theorem}\label{theorem:universal_family_of_hash_functions_expected_costs_of_delete_and_insert}
+Let $\cH$ be a universal family of hash functions and let $k$ be a key in $\cU$. Fix $x$ in $\cX$. Then both functions $\bd{delete}_\cH(k),\bd{insert}_\cH\left((k,x)\right):\cH\ra \NN$ are measurable and
+$$\mathbb{E}\,\bd{delete}_\cH(k), \mathbb{E}\,\bd{insert}_\cH((k,x))  \leq 1 + \frac{n}{m}$$
+\end{theorem}
+\noindent
+These results have the following consequence.
+
+\begin{corollary}\label{corollary:constant_expected_costs_of_dictionary_operations_for_simple_uniform_hashing}
+Let $\cH$ be a universal family of hash functions. Suppose that there exists a constant $c\in \RR_+$ such that $n\leq c\cdot m$. Then the expected costs of all dictionary operations for $D_h$ are $\cO(1)$ provided that $h$ is taken uniformly random from $\cH$.
+\end{corollary}
+\begin{proof}
+The assertion follows from Theorems \ref{theorem:universal_family_of_hash_functions_expected_cost_for_search} and \ref{theorem:universal_family_of_hash_functions_expected_costs_of_delete_and_insert} and the inequality $1 + \frac{n}{m} \leq 1 + c$.
+\end{proof}
 
 
 
@@ -184,6 +266,8 @@ $$h_v(k) = \sum_{i=0}^{n-1}a_i(k)\cdot v_i\,\mathrm{mod}\,p$$
 
 
 
-
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
 
 \end{document}
