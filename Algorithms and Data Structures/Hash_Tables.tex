@@ -7,7 +7,7 @@
 
 \section{Introduction}
 \noindent
-In this notes we discuss hash functions and their application to the solution of dictionary problem. We mostly follow appropriate chapter of \cite{CormenLeisersonRivestStein}, but our presentation is even more mathematically rigorous.
+In this notes we discuss hash functions and their application to the solution of dictionary problem. We mostly follow appropriate chapter of \cite{CormenLeisersonRivestStein}, although there are two major differences. On the positive side our presentation is more mathematically rigorous. On the other hand it is a drawback that some complexity estimations are more rough.
 
 \section{Dictionary data type}
 
@@ -350,7 +350,7 @@ Let $h$ be a uniform hashing with respect to $\mu$ and fix $x$ in $\cX$. Suppose
 \end{corollary}
 \begin{proof}
 The assertion follows from Theorems \ref{theorem:open_addressing_under_uniform_hashing_analysis_of_search} and \ref{theorem:open_addressing_under_uniform_hashing_analysis_of_insert} and the inequality 
-$$\frac{1}{1 - \frac{n}{m}} \leq \frac{1}{1 - c}$$.
+$$\frac{2}{1 - \frac{n}{m}} \leq \frac{2}{1 - c}$$
 \end{proof}
 
 
