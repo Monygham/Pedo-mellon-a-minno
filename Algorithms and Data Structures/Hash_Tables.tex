@@ -15,7 +15,7 @@ In this notes we discuss hash functions and their application to the solution of
 Let $\cX$ be a set of \textit{items} and let $\cU$ be a set of \textit{keys}. Consider an abstract data type $D$ which dynamically stores a collection of pairs $(k, x)$ where $k\in \cU$ and $x\in \cX$ in such a way that $D$ does not store two pairs having the same key at the same time. Moreover, we assume that $D$ supports the following operations.
 \begin{itemize}
 \item[] $\textrm{INSERT}\big((k,x)\big)$\\
-Adds pair $(k,x)$ into $D$ if there is no other pair stored in $D$ with $k$ as a first entry.
+Adds $(k,x)$ into $D$ if there is no other pair stored in $D$ with $k$ as a first entry.
 \item[] $\textrm{DELETE}\big(k\big)$\\
 Removes a pair with $k$ as a first entry from $D$ if such pair is stored in $D$.
 \item[] $\textrm{SEARCH}\big(k\big)$\\
@@ -98,11 +98,11 @@ In order to analyze expected costs of dictionary operations for hash tables with
 \begin{setup}[Probabilistic model for hash tables with chaining]\label{setup:probabilistic_model_for_simple_uniform_hashing}
 We fix a measurable space of keys $\cU$ and a set $\cX$ of items. We consider a measurable hash function $h:\cU\ra \{0,1,...,m-1\}$ and a probability distribution $\mu$ on $\cU$. We also fix a probability space $(\Omega,\cF,P)$ and $n\in \NN_+$. Let $K_1,...,K_n:\Omega \ra \cU$ be independent random variables with distribution $\mu$. Write
 $$\cK = \big\{\forall_{i,j\in \{1,...,n\},i\neq j}\,K_i\neq K_j\big\}$$
-and suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ and independent from $K_1,...,K_n$. We assume that pairs with keys $K_1(\omega),...,K_n(\omega)$ for $\omega \in \cK$ were consecutively inserted into initially empty $D_h$. Under this assumption we denote by $\bd{search}_h(K)$ the function $\cK\ra \NN$ which for every $\omega \in \cK$ returns the cost (in terms of the number of basic operations) of operation 
+and suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$ and independent from $K_1,...,K_n$. We assume that pairs with keys $K_1(\omega),...,K_n(\omega)$ for $\omega \in \cK$ were consecutively inserted into initially empty $D_h$. Under this assumption we denote by $\bd{search}_h(K)$ the function $\cK\ra \NN$ which for every $\omega \in \cK$ returns the cost (in terms of the number of basic operations) of procedure 
 $$\mathrm{SEARCH}_h(K(\omega))$$
-Similarly for 
+Similarly for procedure
 $$\mathrm{DELETE}_h(K(\omega))$$ 
-and (for fixed $x\in \cX$)
+and (for fixed $x\in \cX$) procedure
 $$\mathrm{INSERT}_h\left((K(\omega),x)\right)$$
 we define functions $\bd{delete}_h(K):\cK\ra \NN$ and $\bd{insert}_h\big((K,x)\big):\cK\ra \NN$.
 \end{setup}
@@ -116,9 +116,9 @@ $$\mathbb{E}\,\bd{search}_h(K) = \int_{\cK}\bd{search}_h(K)\,dP_{\cK} \leq 1 + \
 \begin{proof}
 First we introduce certain notation. We consider events
 $$W_{i} = \big\{h\left(K_i\right) = h\left(K\right)\big\},\,Z_i = \big\{K = K_i\big\}\cap \cK,\,Z = \bigcup_{i=1}^nZ_i$$
-for $i\in \{1,...,n\}$. Fix $\omega \in \cK$. For the operation
+for $i\in \{1,...,n\}$. Fix $\omega \in \cK$. For the procedure
 $$\mathrm{SEARCH}_h(K(\omega))$$
-we first calculate $h(K(\omega))$. This is a single basic operation. Next if $\omega \in \cK\setminus Z$, then we run through the list $D_h[h(K(\omega))]$ with length equal to the number of keys in $\big\{K_1(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case of the unsuccessful search. Otherwise, if $\omega \in Z_i$ then we run through the initial segment of the list $D_h[h(K(\omega))]$ which consists of elements from the set $\big\{K_i(\omega),K_{i+1}(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case when the search is successful. Thus
+we first calculate $h(K(\omega))$. This is a single basic operation. Next if $\omega \in \cK\setminus Z$, then we iterate through the list $D_h[h(K(\omega))]$ with length equal to the number of keys in $\big\{K_1(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case of the unsuccessful search. Otherwise, if $\omega \in Z_i$ then we iterate through the initial segment of the list $D_h[h(K(\omega))]$ which consists of elements from the set $\big\{K_i(\omega),K_{i+1}(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case when the search is successful. Thus
 $$\bd{search}_h\left(K\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\chi_{\cK\setminus Z}\cdot\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
 Hence $\bd{search}_h\left(K\right):\cK\ra \NN$ is measurable. Moreover, note that
 $$\bd{search}_h\left(K\right) = 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}} \leq 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = 1}^n \chi_{W_{j}} = 1 +  \sum_{i=1}^n \chi_{W_{i}}$$
@@ -202,11 +202,11 @@ $$= \frac{\big|\big\{(a,b)\in \ZZ_p^*\times \ZZ_p\,\big|\,\left(a\cdot (k-l) + b
 In this section we describe alternative analysis of hash tables with chaining, which is based on the notion of universal family of hash functions.
 
 \begin{setup}[Probabilistic model for hash tables with chaining]\label{setup:probabilistic_model_for_universal_families_of_hash_functions}
-Let $\cU,\cX$ be sets and let $m\in \NN_+$. Suppose that $\cH$ is a finite family of functions $\cU\ra \{0,1,...,m-1\}$ and let $P$ be a uniform probability distribution on $\cH$. We fix $n\in \NN_+$ and distinct keys $k_1,...,k_n\in \cU$. For each $h\in \cH$ we assume that pairs with keys $k_1,...,k_n$ were consecutively inserted into initially empty $D_h$. We also fix $k\in \cU$. Under this assumption we denote by $\bd{search}_\cH(k)$ the function $\cH\ra \NN$ which for every $h\in \cH$ returns the cost (in terms of the number of basic operations) of operation 
+Let $\cU,\cX$ be sets and let $m\in \NN_+$. Suppose that $\cH$ is a finite family of functions $\cU\ra \{0,1,...,m-1\}$ and let $P$ be a uniform probability distribution on $\cH$. We fix $n\in \NN_+$ and distinct keys $k_1,...,k_n\in \cU$. For each $h\in \cH$ we assume that pairs with keys $k_1,...,k_n$ were consecutively inserted into initially empty $D_h$. We also fix $k\in \cU$. Under this assumption we denote by $\bd{search}_\cH(k)$ the function $\cH\ra \NN$ which for every $h\in \cH$ returns the cost (in terms of the number of basic operations) of procedure 
 $$\mathrm{SEARCH}_h(k)$$
-Similarly for 
+Similarly for procedure
 $$\mathrm{DELETE}_h(k)$$ 
-and (for fixed $x\in \cX$)
+and (for fixed $x\in \cX$) procedure
 $$\mathrm{INSERT}_h\left((k,x)\right)$$
 we define functions $\bd{delete}_\cH(K):\cH \ra \NN$ and $\bd{insert}_\cH\big((k,x)\big):\cH \ra \NN$.
 \end{setup}
@@ -218,11 +218,11 @@ Let $\cH$ be a universal family of hash functions and let $k$ be a key in $\cU$.
 $$\mathbb{E}\,\bd{search}_\cH(k) = \int_{\cH}\bd{search}_\cH(k)\,dP \leq 1 + \frac{n}{m}$$
 \end{theorem}
 \begin{proof}
-First we introduce certain notation. We consider events $W_{i} = \big\{h(k_i) = h(k)\big\}$ for $i\in \{1,...,n\}$. For the operation
+First we introduce certain notation. We consider events $W_{i} = \big\{h(k_i) = h(k)\big\}$ for $i\in \{1,...,n\}$. For the procedure
 $$\mathrm{SEARCH}_h(k)$$
-we first calculate $h(k)$. This is a single basic operation. Next if $k$ is not one of the keys $k_1,...,k_n$, then we run through the list $D_h[h(k)]$ with length equal to the number of keys in $\big\{k_1,...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case of the unsuccessful search. Hence
+we first calculate $h(k)$. This is a single basic operation. Next if $k$ is not one of the keys $k_1,...,k_n$, then we iterate through the list $D_h[h(k)]$ with length equal to the number of keys in $\big\{k_1,...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case of the unsuccessful search. Hence
 $$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}}$$
-If on the other hand $k$ is equal to say $k_i$ for some $i\in \{1,...,n\}$, then we run through the initial segment of the list $D_h[h(k)]$ which consists of elements from the set $\big\{k_i,k_{i+1},...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case when the search is successful. Hence
+If on the other hand $k$ is equal to say $k_i$ for some $i\in \{1,...,n\}$, then we iterate through the initial segment of the list $D_h[h(k)]$ which consists of elements from the set $\big\{k_i,k_{i+1},...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case when the search is successful. Hence
 $$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
 In either case $\bd{search}_\cH\left(k\right):\cH\ra \NN$ is measurable. Moreover, note that
 $$\bd{search}_{\cH}\left(k\right) \leq 1 + \sum_{i=1}^n \chi_{W_{i}}$$
@@ -245,6 +245,112 @@ Let $\cH$ be a universal family of hash functions. Suppose that there exists a c
 \end{corollary}
 \begin{proof}
 The assertion follows from Theorems \ref{theorem:universal_family_of_hash_functions_expected_cost_for_search} and \ref{theorem:universal_family_of_hash_functions_expected_costs_of_delete_and_insert} and the inequality $1 + \frac{n}{m} \leq 1 + c$.
+\end{proof}
+
+\section{Open addressing and uniform hashing}
+\noindent
+In this section we consider only search and insert dictionary operations. Let us be more precise.
+
+\begin{definition}
+Let $\cX$ be a set of \textit{items} and let $\cU$ be a set of \textit{keys}. Consider an abstract data type $D$ which dynamically stores a collection of pairs $(k, x)$ where $k\in \cU$ and $x\in \cX$ in such a way that $D$ does not store two pairs having the same key at the same time. Moreover, we assume that $D$ supports the following operations.
+\begin{itemize}
+\item[] $\textrm{INSERT}\big((k,x)\big)$\\
+Adds $(k,x)$ into $D$ if there is no other pair stored in $D$ with $k$ as a first entry.
+\item[] $\textrm{SEARCH}\big(k\big)$\\
+Returns $x$ if a pair $(k,x)$ is stored in $D$. Otherwise returns \textit{nil}. 
+\end{itemize}
+An abstract data type with these properties and interface is called \textit{a restricted associative array} or \textit{a restricted dictionary}.
+\end{definition}
+
+\begin{definition}
+Let $\cX$ and $\cU$ be sets. \textit{Restricted dictionary problem for $\cX$ and $\cU$} is the task of designing a restricted dictionary with $\cX$ as the set of items and $\cU$ as the set of keys.
+\end{definition}
+\noindent
+Now we describe certain solution to a restricted dictionary problem.
+
+\begin{definition}
+Let $\cU$ and $\cX$ be sets. Let $h:\cU\times \{0,1,...,m-1\}\ra \{0,1,...,m-1\}$ be a function for some $m\in \NN_+$. We consider an $m$-element array $D_h$ such that $D_h[l]$ has the capacity to store value from $\cU\times \cX$ for each $l\in \{0,1,...,m-1\}$. We describe restricted dictionary operations.
+\begin{itemize}
+\item[] $\textrm{INSERT}_h\big((k,x)\big)$\\
+Iterate through the list
+$$D[h(k,0)], D[h(k,1)],...,D[h(k,m-1)]$$
+and find either the first empty slot or a slot which stores a pair with $k$ as the first entry. In case when some slot is found, then sets its value to $(k,x)$. If there are no empty slots and no slots with $k$ as the first entry, then raise appropriate exception.
+\item[] $\textrm{SEARCH}_h\big(k\big)$\\
+Iterate through the list
+$$D[h(k,0)], D[h(k,1)],...,D[h(k,m-1)]$$
+and find either the first empty slot or a slot which stores a pair with $k$ as the first entry. In case when empty slot is found return \textit{nil}. If a slot with pair having $k$ as the first entry is found, then return the second entry of the pair. If there are no empty slots and no slots with $k$ as the first entry, then raise appropriate exception.
+\end{itemize}
+Then $D_h$ together with these operations is a solution of restricted dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with open addressing for $h$}.
+\end{definition}
+
+\section{Analysis of hash tables with open addressing for uniform hashing}
+\noindent
+Let us start with generalization of simple uniform hashing.
+
+\begin{definition}
+Let $\cU$ be a measurable space and let $h:\cU\times \{0,1,...,m-1\} \ra \{0,1,...,m-1\}$ be a measurable function for some $m\in \NN_+$. Suppose that $\mu$ is a probability distribution on $\cU$. Fix a probability space $\left(\Omega,\cF,P\right)$ and a random variable $K:\Omega\ra \cU$ with distribution $\mu$. Assume that
+$$P\big( \forall_{l\in \{0,1,...,m-1\}}\,h(K, l) = \sigma(l) \big) =\frac{1}{m!}$$
+for every permutation $\sigma:\{0,1,...,m-1\}\ra \{0,1,...,m-1\}$. If this equality holds for every probability space $\left(\Omega,\cF,P\right)$ and a random variable $K:\Omega\ra \cU$ with distribution $\mu$, then $h$ is \textit{a uniform hashing with respect to $\mu$}.
+\end{definition}
+\noindent
+Now we discuss canonical example of uniform hashing.
+
+\begin{example}\label{example:uniform_hashing_canonical_example}
+Fix $m\in \NN_+$ and let $\cU$ be the set of all permutations $\{0,1,...,m-1\}\ra \{0,1,...,m-1\}$. Suppose that $\mu$ is a uniform distribution on $\cU$. We define a function $h:\cU\times \{0,1,...,m-1\}\ra \{0,1,...,m-1\}$ by formula
+$$h(k,i) = k(i)$$
+for each $k$ in $\cU$ and each $i\in \{0,1,...,m-1\}$. Then $h$ is a uniform hashing with respect to $\mu$.
+\end{example}
+\noindent
+In order to analyze open addressing we introduce probabilistic model.
+
+\begin{setup}[Probabilistic model for hash tables with open addressing]\label{setup:probabilistic_model_for_uniform_hash_functions}
+We fix a measurable space of keys $\cU$ and a set $\cX$ of items. We consider a measurable function $h:\cU\times \{0,1,...,m-1\} \ra \{0,1,...,m-1\}$ and a probability distribution $\mu$ on $\cU$. We also fix a probability space $(\Omega,\cF,P)$. Let $k_1,...,k_n$ be distinct elements of $\cU$ for some $n\in \NN_+$ such that $n < m$. We make technical assumption that all subsets of $\{k_1,...,k_n\}$ are measurable with respect to the $\sigma$-algebra of $\cU$. We assume that pairs with keys $k_1,...,k_n$ were consecutively inserted into initially empty $D_h$. Suppose that $K:\Omega\ra \cU$ is a random variable with distribution $\mu$. Under this assumptions we denote by $\bd{search}_h(K)$ the cost (in terms of the number of basic operations) of procedure
+$$\mathrm{SEARCH}_h(K(\omega))$$
+Similarly for fixed $x\in \cX$ and procedure
+$$\mathrm{INSERT}_h\left((K(\omega),x)\right)$$
+we define the function $\bd{insert}_h\big((K,x)\big):\Omega\ra \NN$.
+\end{setup}
+\noindent
+In the remaining part of this section we work under probabilistic model described in Setup \ref{setup:probabilistic_model_for_uniform_hash_functions}. We have the following fundamental result.
+
+\begin{theorem}\label{theorem:open_addressing_under_uniform_hashing_analysis_of_search}
+Let $h$ be a uniform hashing with respect to $\mu$. Then $\bd{search}_h(K):\Omega \ra \NN$ is measurable and
+$$\mathbb{E}\,\bd{search}_h(K) = \int_{\Omega}\bd{search}_h(K)\,dP \leq \frac{2}{1 - \frac{n}{m}}$$
+\end{theorem}
+\begin{proof}
+According to Setup \ref{setup:probabilistic_model_for_uniform_hash_functions} pairs with keys $k_1,...k_n$ were consecutively inserted to initially empty $D_h$. Suppose that pair with key $k_j$ occupy slot $s_j$ for $j\in \{1,...,n\}$. We define
+$$W_i = \big\{\forall_{l\leq i-1}\,h(K,l)\in \{s_1,...,s_n\}\mbox{ and }k(K,i) \not \in \{s_1,...,s_n\}\big\},\,Z_{j} = \big\{K = k_j\big\},\,Z = \bigcup_{j=1}^nZ_j$$
+for $i\in \{0,...,m-1\}$ and $j\in \{1,...,n\}$. Note that all these sets are elements of $\cF$. Fix $\omega \in \Omega$. We describe now the procedure
+$$\mathrm{SEARCH}_k(K)$$
+in different scenarios. If $\omega \in W_i\setminus Z$ for some $i\in \{0,1,...,m-1\}$, then the search is unsuccessful and we first iterate through slots indexed by
+$$h\big(K(\omega),0\big),...,h\big(K(\omega), i-1\big)$$
+which are occupied and then we found empty slot indexed by $h\big(K(\omega),i\big)$. Otherwise, if $\omega \in Z_j$ for some $j\in \{1,...,n\}$, then there exists a unique $m_j\in \{0,1,...,m-1\}$ such that $h\big(K(\omega),m_j\big) = s_j$. In this case we iterate through slots indexed by
+$$h\big(K(\omega),0\big),...,h\big(K(\omega), m_j-1\big)$$
+which are occupied and then then we found slot indexed by $h\big(K(\omega),m_j\big) = s_j$ which is occupied with a pair having $K(\omega) = k_j$ as the first entry. This is the case when the search is successful. Thus
+$$\bd{search}_h\left(K\right) = 2 \cdot \bigg(\underbrace{\chi_{\Omega\setminus Z}\cdot\sum_{i=0}^{m-1} \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{j=1}^n m_j\cdot \chi_{Z_j}}_{\mathrm{succesfull\,search}}\bigg)$$
+Hence $\bd{search}_h\left(K\right):K\ra \NN$ is measurable. Moreover, from the description above it follows that
+$$\bd{search}_h\left(K\right) \leq 2 \cdot \sum_{i=0}^{m-1} \chi_{W_{i}}$$
+Since $h$ is a uniform hashing with respect to $\mu$, we derive that
+$$\mathbb{E}\,\chi_{W_{i}} = \frac{n\cdot (n-1)\cdot ...\cdot (n-i+1) \cdot (m-n) \cdot (m - i - 1)!}{m!} \leq \frac{n\cdot (n-1)\cdot ...\cdot (n- i + 1)}{m\cdot (m-1)\cdot ...\cdot (m - i + 1)}\leq \bigg(\frac{n}{m}\bigg)^i$$
+for every $i\in \{0,1,...,m-1\}$. Hence
+$$\mathbb{E}\,\bd{search}_h\left(K\right) \leq 2 \cdot \sum_{i=0}^{m-1} \mathbb{E}\,\chi_{W_{i}} \leq 2\cdot \sum_{i=0}^{m-1}\bigg(\frac{n}{m}\bigg)^i \leq 2\cdot \sum_{i=0}^{+\infty}\bigg(\frac{n}{m}\bigg)^i = \frac{2}{1 - \frac{n}{m}}$$ 
+\end{proof}
+\noindent
+Using essentially the same method (we omit the proof) one derives the following results.
+
+\begin{theorem}\label{theorem:open_addressing_under_uniform_hashing_analysis_of_insert}
+Let $h$ be a uniform hashing with respect to $\mu$ and fix $x$ in $\cX$. Then $\bd{insert}_h\big((K,x)\big):\Omega \ra \NN$ is measurable and
+$$\mathbb{E}\,\bd{insert}_h\big((K,x)\big) = \int_{\Omega}\bd{insert}_h\big((K,x)\big)\,dP \leq \frac{2}{1 - \frac{n}{m}}$$    
+\end{theorem}
+\noindent
+These results have the following consequence.
+
+\begin{corollary}\label{corollary:constant_expected_costs_of_restricted_dictionary_operations_for_uniform_hashing}
+Let $h$ be a uniform hashing with respect to $\mu$ and fix $x$ in $\cX$. Suppose that there exists a constant $c\in (0,1)$ such that $n\leq c\cdot m$. Then the expected costs of all restricted dictionary operations for $D_h$ are $\cO(1)$.
+\end{corollary}
+\begin{proof}
+The assertion follows from Theorems \ref{theorem:open_addressing_under_uniform_hashing_analysis_of_search} and \ref{theorem:open_addressing_under_uniform_hashing_analysis_of_insert} and the inequality 
+$$\frac{1}{1 - \frac{n}{m}} \leq \frac{1}{1 - c}$$.
 \end{proof}
 
 
