@@ -354,6 +354,32 @@ The assertion follows from Theorems \ref{theorem:open_addressing_under_uniform_h
 $$\frac{2}{1 - \frac{n}{m}} \leq \frac{2}{1 - c}$$
 \end{proof}
 
+\section{Binary Search Trees}
+
+\begin{notation}\label{notation:notation_for_binary_trees}
+Let $T$ be a binary tree. We denote the root of $T$ by $root(T)$. We also denote by $left(T)$ and $right(T)$ the left and, respectively, right subtrees of $T$.
+\end{notation}
+
+\begin{definition}
+Let $\cU$ be a set and let $\cX$ be a set. Consider a pair $(T,\mathrm{k},\mathrm{v})$ such that $T$ is a binary tree and $\mathrm{k}:V(T)\ra \cU,\mathrm{v}:V(T)\ra \cX$ are functions defined on the set of vertices $V(T)$ of $T$. Then $(T,\mathrm{k},\mathrm{v})$ is called \textit{a binary tree with keys in $\cU$ and values in $\cX$}. 
+\end{definition}
+
+
+\begin{definition}
+Let $\cU$ be a linearly ordered set and let $\cX$ be a set. A binary tree $(T,\mathrm{k},\mathrm{v})$ such that 
+$$\mathrm{k}(\mathrm{left}(v)) < \mathrm{k}(v) < \mathrm{k}(\mathrm{right}(v))$$
+for every vertex $v$ of $T$ is called \textit{a binary search tree with keys in $\cU$ and values in $\cX$}. We describe restricted dictionary operations on such a tree.
+\begin{itemize}
+\item[] $\textrm{BST-INSERT}\big((k,x)\big)$\\
+If $\mathrm{k}\big(root(T)\big) = k$, then set $\mathrm{v}\big(root(T)\big) = x$. If $left(T) = right(T) =\emptyset$ and   
+\item[] $\textrm{BST-SEARCH}\big(k\big)$\\
+Iterate through the list
+$$D[h(k,0)], D[h(k,1)],...,D[h(k,m-1)]$$
+and find either the first empty slot or a slot which stores a pair with $k$ as the first entry. In case when empty slot is found return \textit{nil}. If a slot with pair having $k$ as the first entry is found, then return the second entry of the pair. If there are no empty slots and no slots with $k$ as the first entry, then raise appropriate exception.
+\end{itemize}
+Then $D_h$ together with these operations is a solution of restricted dictionary problem for $\cU$ and $\cX$. We call it \textit{the hash table with open addressing for $h$}.
+\end{definition}
+
 
 
 
