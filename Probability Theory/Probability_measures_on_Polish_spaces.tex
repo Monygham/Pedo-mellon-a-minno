@@ -305,17 +305,17 @@ $$\leq \mu(F\cap K) + \mu(X\setminus K) + \frac{\epsilon}{2}  \leq \mu(F\cap K) 
 Note that $F\cap K$ is a compact subset of $X$ contained in $A$. Since $A$ and $\epsilon > 0$ are arbitrary, we derive that $\mu$ is inner regular.
 \end{proof}
 
-
-\noindent
-In this section we collect all results for metrizable topological spaces, which we need in this notes.
+\section{Hilbert's cube}
 
 \begin{definition}
-Let $X$ be a topological space and let $\ideal{m}$ be the smallest cardinal number such that $X$ has a topological basis of cardinality $\ideal{m}$. Then $\ideal{m}$ is \textit{the weight of $X$}.
+The topological product $[0,1]^{\NN}$ is called \textit{the Hilbert's cube}. 
 \end{definition}
 
-\begin{definition}
-Let $X$ be a topological Hausdorff space. Assume that for every point $x$ in $X$ and every closed subset $F$ of $X$ such that $x\not \in F$ there exists a continuous function $f:X\ra [0,1]$ with $f(x) = 0$ and $F\subseteq f^{-1}(1)$. Then $X$ is \textit{a completely regular space}.
-\end{definition}
+\begin{fact}\label{fact:}
+Let $(X_n,d_n)$ for $n\in \NN$ are metric spaces and for every $n\in \NN$ let $\tau_n$ be the topology on $X_n$ induced by $d_n$. We define $d:\prod_{n\in \NN}X_n\times \prod_{n\in \NN}X_n \ra [0,+\infty)$ by formula
+$$d\left((x_n)_{n\in \NN}, (y_n)_{n\in \NN}\right) = \sup_{n\in \NN}d_n(x_n,y_n)$$
+Then $d$ is a metric which induces product topology on $\prod_{n\in \NN}X_n$.
+\end{fact}
 
 \begin{theorem}[Tychonoff]\label{theorem:tychonoff_theorem_on_cube_embeddings}
 Let $X$ be a completely regular space with weight $\ideal{m}$. Then there exists an immersion $i:X\hookrightarrow [0,1]^{\ideal{m}}$ of topological spaces.
@@ -335,9 +335,7 @@ $$x_1 \in \bigcup_{z\in Z_B} f_{B,z}^{-1}\left([0,1)\right),\,x_2\not \in \bigcu
 Hence there exists $z \in Z_B$ such that $f_{B,z}(x_1) < 1$ and $f_{B,z}(x_2) = 1$. Thus $i(x_1) \neq i(x_2)$ and this completes the proof of the injectivity of $i$. Note that $\cP$ is of cardinality $\ideal{m}$. Thus $i:X\hookrightarrow [0,1]^{\ideal{m}}$ is an immersion of topological spaces.
 \end{proof}
 
-\begin{definition}
-The topological product $[0,1]^{\NN}$ is called \textit{the Hilbert's cube}. 
-\end{definition}
+
 
 \begin{corollary}\label{corollary:tychonoff_metrization_theorem}
 Let $X$ be a topological space. Then the following assertions are equivalent.
@@ -360,12 +358,7 @@ $$f(z) = 1 - d(z,F)$$
 
 
 
-\section{Topology of Polish spaces}
-We first introduce main object of our study.
 
-\begin{definition}
-Let $X$ be a topological space which is completely metrizable and separable. Then $X$ is \textit{a Polish space}.
-\end{definition}
 
 
 
