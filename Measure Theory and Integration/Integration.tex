@@ -40,7 +40,7 @@ Let $X$ be a set. Suppose that $f,g:X\ra \ol{\RR}$ or $f,g:X\ra \CC$ and are bot
 Let $(X,\Sigma)$ be a measurable space and $Y$ be a topological space. A map $f:X\ra Y$ is \textit{measurable} if $f$ is a measurable morphism $(X,\Sigma)\ra (Y,\cB(Y))$, where $\cB(Y)$ is a $\sigma$-algebra of Borel sets on $Y$. In case when we need to indicate measurable space in the domain of a function we also say that $f$ is \textit{measurable with respect to $\Sigma$} or just \textit{$\Sigma$-measurable}. 
 \end{definition}
 \noindent
-If $X$ is a set and $A$ is its subset, then we denote by $\chi_A$ the function on $X$ defined by $\chi_A(x)=1$ for $x\in A$ and $\chi_A(x)=0$ otherwise. The codomain of $\chi_A$ is either $\ol{\RR}$ or some field $\mathbb{K}$ equipped with an absolute value. In either case the codomain can be clearly deduced from the context.
+If $X$ is a set and $A$ is its subset, then we denote by $\mathbb{1}_A$ the function on $X$ defined by $\mathbb{1}_A(x)=1$ for $x\in A$ and $\mathbb{1}_A(x)=0$ otherwise. The codomain of $\mathbb{1}_A$ is either $\ol{\RR}$ or some field $\mathbb{K}$ equipped with an absolute value. In either case the codomain can be clearly deduced from the context.
 
 \section{Elementary properties of measurable functions}
 \noindent
@@ -192,10 +192,10 @@ Let $f,g:X\ra \ol{\RR}$ be a nonnegative, $\mu$-measurable functions on a space 
 $$\int_Xf\,d\mu \leq \int_Xg\,d\mu$$
 \end{fact}
 \begin{proof}
-Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and $f(x)\leq g(x)$ for $x\not \in N$. Consider a nonnegative, simple function $s:X\ra \ol{\RR}$ such that $s\leq f$. Then $\chi_{X\setminus N}\cdot s:X\ra \ol{\RR}$ is also a nonnegative, simple function. Moreover, we have
-$$\int_X\chi_{X\setminus N}\cdot s\,d\mu = \int_Xs\,d\mu$$
-and $\chi_{X\setminus N}\cdot s \leq g$. Thus
-$$\int_Xs\,d\mu = \int_X\chi_{X\setminus N}\cdot s\,d\mu \leq \int_Xg\,d\mu$$
+Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and $f(x)\leq g(x)$ for $x\not \in N$. Consider a nonnegative, simple function $s:X\ra \ol{\RR}$ such that $s\leq f$. Then $\mathbb{1}_{X\setminus N}\cdot s:X\ra \ol{\RR}$ is also a nonnegative, simple function. Moreover, we have
+$$\int_X\mathbb{1}_{X\setminus N}\cdot s\,d\mu = \int_Xs\,d\mu$$
+and $\mathbb{1}_{X\setminus N}\cdot s \leq g$. Thus
+$$\int_Xs\,d\mu = \int_X\mathbb{1}_{X\setminus N}\cdot s\,d\mu \leq \int_Xg\,d\mu$$
 Hence also
 $$\int_Xf\,d\mu \leq \int_Xg\,d\mu$$
 according to the fact that $s$ is arbitrary.
@@ -217,7 +217,7 @@ $$s(x)\leq f(x) = \lim_{n\ra +\infty}f_n(x)$$
 for every $x\not \in N$, we derive that
 $$\bigcap_{n\in \NN}A_n = \emptyset$$
 Thus we have $\lim_{n\ra +\infty}\mu(A_n)=0$. We have inequality
-$$\alpha  \int_Xs\,d\mu = \int_X\alpha s\,d\mu = \int_X \alpha \chi_{X\setminus \left(A_n\cup N\right)}\cdot s\,d\mu +  \int_X \alpha \chi_{A_n\cup N}\cdot s\,d\mu \leq $$
+$$\alpha  \int_Xs\,d\mu = \int_X\alpha s\,d\mu = \int_X \alpha \mathbb{1}_{X\setminus \left(A_n\cup N\right)}\cdot s\,d\mu +  \int_X \alpha \mathbb{1}_{A_n\cup N}\cdot s\,d\mu \leq $$
 $$\leq \int_X f_n\,d\mu + \mu(A_n\cup N)\cdot \sup_{x\in X}\left(\alpha s(x)\right) = \int_X f_n\,d\mu + \mu(A_n)\cdot \sup_{x\in X}\left(\alpha s(x)\right)$$
 Next $\mu(A_n)\ra 0$ as $n\ra +\infty$ and this shows that
 $$\alpha  \int_Xs\,d\mu \leq \lim_{n\ra +\infty}\int_Xf_n\,d\mu$$
@@ -338,10 +338,10 @@ $$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
 for $x\not \in B\cup N$ and $f(x) = 0$ for $x\in B\cup N$. Then
 $$\lim_{k\ra +\infty}f_{n_k}(x) = f(x)$$
 for $x \not \in B\cup N$. Denote $B\cup N$ by $Z$. Hence $f$ is a strongly measurable function and $\{f_{n_k}\}_{k\in \NN}$ converges pointwise to $f$ outside a set $Z$ in $\Sigma$ such that $\mu(Z) = 0$. Moreover, by Theorem \ref{theorem:monotone_convergence} we have
-$$||f||_1 = \int_X||f||\,d\mu = \int_X\chi_{X\setminus Z}\cdot \big|\big|f_{n_0} + \sum_{k\in \NN}(f_{n_{k+1}} - f_{n_k})\big|\big|\,d\mu \leq \int_X\left(||f_{n_0}|| + \sum_{k\in \NN}||f_{n_{k+1}}-f_{n_k}||\right)\,d\mu = $$
+$$||f||_1 = \int_X||f||\,d\mu = \int_X\mathbb{1}_{X\setminus Z}\cdot \big|\big|f_{n_0} + \sum_{k\in \NN}(f_{n_{k+1}} - f_{n_k})\big|\big|\,d\mu \leq \int_X\left(||f_{n_0}|| + \sum_{k\in \NN}||f_{n_{k+1}}-f_{n_k}||\right)\,d\mu = $$
 $$= \int_X||f_{n_0}||\,d\mu + \sum_{k\in \NN}\int_X||f_{n_{k+1}}-f_{n_k}||\,d\mu \leq ||f_{n_0}||_1 + \sum_{k\in \NN}4^{-k} $$
 Thus $f\in L^1(\mu,Y)$ and by Theorem \ref{theorem:monotone_convergence} we have
-$$||f - f_{n_m}||_1 = \int_X\chi_{X\setminus Z}\cdot \big|\big|\sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big|\big|\,d\mu \leq  \int_X \big|\big|\sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big|\big|\,d\mu \leq $$
+$$||f - f_{n_m}||_1 = \int_X\mathbb{1}_{X\setminus Z}\cdot \big|\big|\sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big|\big|\,d\mu \leq  \int_X \big|\big|\sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big|\big|\,d\mu \leq $$
 $$\leq \int_X\sum_{k\geq m}\big|\big|f_{n_{k+1}} - f_{n_k}\big|\big|\,d\mu =\sum_{k\geq m}\int_X\big|\big|f_{n_{k+1}} - f_{n_k}\big|\big|\,d\mu = \sum_{k\geq m}4^{-k} = 4^{-m}\cdot \frac{4}{3} $$
 Therefore, $\{f_{n_k}\}_{k\in \NN}$ converges to $f$ with respect to $||-||_1$. Since $\{f_n\}_{n\in \NN}$ is a Cauchy sequence for $||-||_1$ with a subsequence convergent to $f$, we derive that $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $||-||_1$.
 \end{proof}
@@ -372,9 +372,9 @@ $$\int_X(g-f)\,d\mu = \int_Xg\,d\mu - \int_Xf\,d\mu$$
 Since $\{f_n\}_{n\in \NN}$ converges pointwise $\mu$-almost everywhere to $f$, we deduce that $f$ is strongly $\mu$-measurable. Moreover, a sequence $\big\{||f||_n:X\ra \ol{\RR}\big\}_{n\in \NN}$ converges pointwise $\mu$-almost everywhere to $||f||$. Since $||f_n||\leq g$ holds $\mu$-almost everywhere for every $n\in \NN$, we deduce that $||f||\leq g$ holds $\mu$-almost everywhere. Thus
 $$||f||_1 = \int_X||f||\,d\mu \leq \int_Xg\,d\mu \in \RR$$
 Hence $f\in L^1(\mu, Y)$. Note that $||f - f_n|| \leq 2g$ holds $\mu$-almost everywhere for every $n\in \NN$. Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and $||f(x) - f_n(x)|| \leq 2g(x)$ for every $x \not \in N$. Thus by Theorem \ref{theorem:fatous_lemma} and Lemma \ref{lemma:difference_of_integrals} we have
-$$\int_X2g\,d\mu - \int_X\limsup_{n\ra +\infty}||f-f_n||\,d\mu  = \int_X\chi_{X\setminus N}\cdot 2g\,d\mu - \int_X\chi_{X\setminus N}\cdot \limsup_{n\ra +\infty}||f-f_n||\,d\mu = $$
-$$= \int_X\liminf_{n\ra +\infty}\chi_{X\setminus N}\cdot  \left(2g - ||f-f_n||\right)\,d\mu \leq \liminf_{n\ra +\infty}\int_X\chi_{X\setminus N}\cdot \left(2g - ||f- f_n||\right)\,d\mu =$$
-$$= \int_X\chi_{X\setminus N}\cdot 2g\,d\mu - \limsup_{n\ra +\infty}\int_X\chi_{X\setminus N}\cdot||f-f_n||\,d\mu = \int_X2g\,d\mu - \limsup_{n\ra +\infty}\int_X||f-f_n||\,d\mu$$
+$$\int_X2g\,d\mu - \int_X\limsup_{n\ra +\infty}||f-f_n||\,d\mu  = \int_X\mathbb{1}_{X\setminus N}\cdot 2g\,d\mu - \int_X\mathbb{1}_{X\setminus N}\cdot \limsup_{n\ra +\infty}||f-f_n||\,d\mu = $$
+$$= \int_X\liminf_{n\ra +\infty}\mathbb{1}_{X\setminus N}\cdot  \left(2g - ||f-f_n||\right)\,d\mu \leq \liminf_{n\ra +\infty}\int_X\mathbb{1}_{X\setminus N}\cdot \left(2g - ||f- f_n||\right)\,d\mu =$$
+$$= \int_X\mathbb{1}_{X\setminus N}\cdot 2g\,d\mu - \limsup_{n\ra +\infty}\int_X\mathbb{1}_{X\setminus N}\cdot||f-f_n||\,d\mu = \int_X2g\,d\mu - \limsup_{n\ra +\infty}\int_X||f-f_n||\,d\mu$$
 Hence
 $$\limsup_{n\ra +\infty}\int_X||f - f_n||\,d\mu \leq \int_X\limsup_{n\ra +\infty}||f - f_n||\,d\mu = 0$$
 Again by Theorem \ref{theorem:fatous_lemma} we have
@@ -504,7 +504,7 @@ The following sequence of results is an useful tool for studying classes of func
 \begin{corollary}\label{corollary:measurable_induction_for_nonnegative}
 Let $(X,\Sigma)$ be a measurable space and let $\cF$ be a family of functions defined on $X$ and with values in $\ol{\RR}$. Suppose that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item $\chi_A\in \cF$ for every $A\in \Sigma$.
+\item $\mathbb{1}_A\in \cF$ for every $A\in \Sigma$.
 \item $\cF$ is closed under $\RR$-linear combinations of nonnegative functions with nonnegative coefficients.
 \item $\cF$ is closed under pointwise limits of nondecreasing sequences of nonnegative functions.
 \end{enumerate}
@@ -517,7 +517,7 @@ This follows from Lemma \ref{lemma:simple_approximation}.
 \begin{corollary}\label{corollary:measurable_induction_for_complex}
 Let $(X,\Sigma,\mu)$ be a space with measure and let $\cF$ be a family of complex valued, $\mu$-integrable functions defined on $X$. Suppose that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item $\chi_A\in \cF$ for every $A\in \Sigma$ with $\mu(A)\in \RR$.
+\item $\mathbb{1}_A\in \cF$ for every $A\in \Sigma$ with $\mu(A)\in \RR$.
 \item If $f, g\in \cF$ and $\alpha, \beta\in \CC$, then
 $$\alpha f + \beta g\in \cF$$
 \item If $\{f_n:X\ra \CC\}_{n\in \NN}$ is a $\mu$-almost everywhere nondecreasing sequence of nonnegative functions in $\cF$ which converges $\mu$-almost everywhere to $\mu$-integrable function $f$, then $f\in \cF$.
@@ -531,7 +531,7 @@ By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all simple functions. In 
 \begin{corollary}\label{corollary:measurable_induction_for_banach_valued}
 Let $(X,\Sigma,\mu)$ be a space with measure and let $Y$ be a Banach space over a field $\mathbb{K}$ with complete absolute value. Suppose that $\cF$ is a family of $\mu$-integrable, $Y$-valued functions defined on $X$. Suppose that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item $y\cdot \chi_A\in \cF$ for every $y\in Y$ and $A\in \Sigma$ with $\mu(A)\in \RR$.
+\item $y\cdot \mathbb{1}_A\in \cF$ for every $y\in Y$ and $A\in \Sigma$ with $\mu(A)\in \RR$.
 \item If $f, g\in \cF$ and $\alpha, \beta\in \mathbb{K}$, then
 $$\alpha f + \beta g\in \cF$$
 \item Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ which is $\mu$-almost everywhere pointwise convergent and $g:X\ra \ol{\RR}$ is a nonnegative, $\mu$-measurable function such that
@@ -562,7 +562,7 @@ Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be a measurable spaces. Let $\Sigma_1\times
 Suppose that $Y$ is a set and $f:X_1\times X_2\ra Y$ is a function. For every $x_1\in X_1$ we define function $f_{x_1}:X_2\ra Y$ by formula $f_{x_1}(x) = f(x_1,x)$ for $x$ in $X_2$. Similarly for every $x_2\in X_2$ we define a function $f_{x_2}:X_1\ra Y$ by formula $f_{x_2}(x) = f(x,x_2)$ for $x$ in $X_1$. There is also a version of this notation for sets. Let $E\subseteq X_1\times X_2$ be a subset. Then we define
 $$E_{x_1} = \{x\in X_2\,|\,(x_1,x)\in E\},\,E_{x_2} = \{x\in X_1\,|\,(x,x_2)\in E\}$$
 for every $x_1\in X_1$ and $x_2\in X_2$. Note that
-$$\chi_{E_{x_1}} = \left(\chi_E\right)_{x_1},\,\chi_{E_{x_2}} = \left(\chi_E\right)_{x_2}$$
+$$\mathbb{1}_{E_{x_1}} = \left(\mathbb{1}_E\right)_{x_1},\,\mathbb{1}_{E_{x_2}} = \left(\mathbb{1}_E\right)_{x_2}$$
 
 \begin{proposition}\label{proposition:measurable_functions_have_measurable_sections}
 Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be measurable spaces and $Y$ be a Banach space over a field $\mathbb{K}$ with complete absolute value. Then the following assetions hold.
@@ -573,8 +573,8 @@ Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be measurable spaces and $Y$ be a Banach sp
 \end{proposition}
 \begin{proof}
 First let $\cS$ be a family of all subsets $E$ in $\Sigma_1\otimes \Sigma_2$ such that $E_{x_1}\in \Sigma_2$ and $E_{x_2}\in \Sigma_1$ for every $x_1\in X_1$ and $x_2\in X_2$. Then $\Sigma_1\times \Sigma_2\subseteq \cS$ and $\cS$ is a monotone family. Thus by {\cite[Theorem 1.5]{Introduction_to_measure_theory}} we have $\Sigma_1\otimes \Sigma_2\subseteq \cS$.\\
-Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. By the fact proved at the beginning we deduce that $\cF$ contains $\chi_E$ for $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is a function measurable with respect to $\Sigma_1\otimes \Sigma_2$. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.\\
-Now we prove \textbf{(2)}. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra Y$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. As above we can derive that for every $y\in Y$ and for every $E\in \Sigma_1\otimes \Sigma_2$ we have $y\cdot \chi_E\in \cF$. Moreover, $\cF$ is a $\mathbb{K}$-vector space with respect to pointwise operations. Hence $\cF$ contains every measurable function $s:X_1\times X_2\ra Y$ such that $s(X_1\times X_2)$ is finite. Next by Lemma \ref{lemma:simple_approximation_strongly_measurable} for every strongly measurable function $f:X_1\times X_2\ra Y$ there exists a sequence $\{s_n:X_1\times X_2\ra Y\}_{n\in \NN}$ of strongly measurable functions such that $s_n(X_1\times X_2)$ is finite for every $n\in \NN$ and
+Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. By the fact proved at the beginning we deduce that $\cF$ contains $\mathbb{1}_E$ for $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is a function measurable with respect to $\Sigma_1\otimes \Sigma_2$. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.\\
+Now we prove \textbf{(2)}. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra Y$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. As above we can derive that for every $y\in Y$ and for every $E\in \Sigma_1\otimes \Sigma_2$ we have $y\cdot \mathbb{1}_E\in \cF$. Moreover, $\cF$ is a $\mathbb{K}$-vector space with respect to pointwise operations. Hence $\cF$ contains every measurable function $s:X_1\times X_2\ra Y$ such that $s(X_1\times X_2)$ is finite. Next by Lemma \ref{lemma:simple_approximation_strongly_measurable} for every strongly measurable function $f:X_1\times X_2\ra Y$ there exists a sequence $\{s_n:X_1\times X_2\ra Y\}_{n\in \NN}$ of strongly measurable functions such that $s_n(X_1\times X_2)$ is finite for every $n\in \NN$ and
 $$f = \lim_{n\ra +\infty}s_n$$
 Since $\cF$ is closed under pointwise limits, we derive that $f$ is in $\cF$.
 \end{proof}
@@ -605,16 +605,16 @@ $$\int_{X_1}\mu_2(E_{x_1})\,d\mu_1 = \left(\mu_1\otimes \mu_2\right)(E) = \int_{
 \begin{proof}
 We prove \textbf{(1)}. For every $E$ in $\Sigma_1\otimes \Sigma_2$ we denote by $f_E$ the function
 $$X_1\ni x_1 \mapsto \mu_2\left(E_{x_1}\right)\in \ol{\RR}$$
-This function is well defined according to Proposition \ref{proposition:measurable_functions_have_measurable_sections}. Let $\cF$ be a family of all subsets $E\in \Sigma_1\otimes \Sigma_2$ such that $f_E$ is measurable with respect to $\Sigma_1$. First note that if $E=A\times B$ for $A\in \Sigma_1$ and $B\in \Sigma_2$, then  $f_E = \mu_2(B)\cdot \chi_A$. Now suppose that
+This function is well defined according to Proposition \ref{proposition:measurable_functions_have_measurable_sections}. Let $\cF$ be a family of all subsets $E\in \Sigma_1\otimes \Sigma_2$ such that $f_E$ is measurable with respect to $\Sigma_1$. First note that if $E=A\times B$ for $A\in \Sigma_1$ and $B\in \Sigma_2$, then  $f_E = \mu_2(B)\cdot \mathbb{1}_A$. Now suppose that
 $$E= \bigcup_{n=1}^mA_n\times B_n$$
 where $A_n\in \Sigma_1,B_n\in \Sigma_2$ for every $1\leq n\leq m$. Then
-$$f_E = \sum_{n=1}^m\mu_2(B_n)\chi_{A_n}$$
+$$f_E = \sum_{n=1}^m\mu_2(B_n)\mathbb{1}_{A_n}$$
 and hence $\Sigma_1\times \Sigma_2\subseteq \cF$. Moreover, $\cF$ is a monotone family of sets. By {\cite[Theorem 1.5]{Introduction_to_measure_theory}} we deduce that $\Sigma_1\otimes \Sigma_2\subseteq \cF$. This proves \textbf{(1)} and by symmetry also \textbf{(2)}. Now by \textbf{(1)} it makes sense to define
 $$(\mu_1\otimes \mu_2)(E) = \int_{X_1}\mu_2(E_{x_1})\,d\mu_1$$
 for every $E\in \Sigma_1\otimes \Sigma_2$. Clearly $(\mu_1\otimes \mu_2)(\emptyset) = 0$ and if $\{E_n\}_{n\in \NN}$ is a family of disjoint subsets in $\Sigma_1\otimes \Sigma_2$, then by Theorem \ref{theorem:monotone_convergence} we have
 $$(\mu_1\otimes \mu_2)\left(\bigcup_{n\in \NN}E_n\right) = \sum_{n\in \NN}(\mu_1\otimes \mu_2)(E_n)$$
 Hence $\mu_1\otimes \mu_2$ is a measure on $\Sigma_1\otimes \Sigma_2$. Now we have
-$$(\mu_1\otimes \mu_2)\left(A\times B\right) = \int_{X_1}\mu_2(B)\chi_A\,d\mu_1 = \mu_1(A)\mu_2(B)$$
+$$(\mu_1\otimes \mu_2)\left(A\times B\right) = \int_{X_1}\mu_2(B)\mathbb{1}_A\,d\mu_1 = \mu_1(A)\mu_2(B)$$
 for $A\in \Sigma_1, B\in \Sigma_2$. This gives the first part of \textbf{(3)}. Suppose now that $\mu,\nu$ are measures on $\Sigma_1\otimes \Sigma_2$ such that
 $$\mu(A\times B) = \mu_1(A)\mu_2(B) = \nu(A\times B)$$
 for $A\in \Sigma_1,B\in \Sigma_2$. Let 
@@ -655,7 +655,7 @@ are measurable with respect to $\Sigma_1, \Sigma_2$, respectively, and the formu
 $$\int_{X_1}\int_{X_2}f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1}f_{x_2}\,d\mu_1d\mu_2$$
 holds. Then $\cF$ is closed under linear combinations of its elements with nonnegative coefficients. Next if $\{f_n:X_1\times X_2\ra \ol{\RR}\}_{n\in \NN}$ is a nondecreasing sequence of elements of $\cF$, then
 $$\lim_{n\ra +\infty}f_n\in \cF$$
-by Theorem \ref{theorem:monotone_convergence}. Finally $\chi_E\in \cF$ for every $E\in \Sigma_1\otimes \Sigma_2$ by Theorem \ref{theorem:fubinis_theorem_basic}. According to Corollary \ref{corollary:measurable_induction_for_nonnegative} we derive that $\cF$ consists of all nonnegative functions measurable with respect to $\Sigma_1\otimes \Sigma_2$.
+by Theorem \ref{theorem:monotone_convergence}. Finally $\mathbb{1}_E\in \cF$ for every $E\in \Sigma_1\otimes \Sigma_2$ by Theorem \ref{theorem:fubinis_theorem_basic}. According to Corollary \ref{corollary:measurable_induction_for_nonnegative} we derive that $\cF$ consists of all nonnegative functions measurable with respect to $\Sigma_1\otimes \Sigma_2$.
 \end{proof}
 
 \begin{theorem}[Tonelli's theorem for almost measurable functions]\label{theorem:Tonellis_theorem_for_mu_measurable_functions}
@@ -664,11 +664,11 @@ $$\mu_i(N_i) = 0$$
 and functions
 $$X_1\setminus N_1\ni x_1\mapsto \int_{X_2}f_{x_1}\,d\mu_2\in \ol{\RR},\,X_2\setminus N_2\ni x_2\mapsto \int_{X_1}f_{x_2}\,d\mu_1\in \ol{\RR}$$
 are well defined and measurable with respect to $\Sigma_1$ and $\Sigma_2$, respectively. Moreover, we have equality
-$$\int_{X_1}\int_{X_2} \left(\chi_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1} \left(\chi_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2$$
+$$\int_{X_1}\int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2$$
 \end{theorem}
 \begin{proof}
-Let $N$ be a set in $\Sigma$ such that $\left(\mu_1\otimes \mu_2\right)(N) = 0$ and $f_{\mid X_1\times X_2\setminus N}$ is measurable with respect to $\Sigma_1\otimes \Sigma_2$. We write $g = \chi_{X_1\times X_2\setminus N}\cdot f$ and $r = \chi_N\cdot f$. Then $g$ is measurable with respect to $\Sigma_1\otimes \Sigma_2$. According to Theorem \ref{theorem:fubinis_theorem_basic} we derive that
-$$\int_{X_1}\mu_2(N_{x_1})\,d\mu_2 = \int_{X_1\times X_2}\chi_N\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_2}\mu_1(N_{x_2})\,d\mu_1$$
+Let $N$ be a set in $\Sigma$ such that $\left(\mu_1\otimes \mu_2\right)(N) = 0$ and $f_{\mid X_1\times X_2\setminus N}$ is measurable with respect to $\Sigma_1\otimes \Sigma_2$. We write $g = \mathbb{1}_{X_1\times X_2\setminus N}\cdot f$ and $r = \mathbb{1}_N\cdot f$. Then $g$ is measurable with respect to $\Sigma_1\otimes \Sigma_2$. According to Theorem \ref{theorem:fubinis_theorem_basic} we derive that
+$$\int_{X_1}\mu_2(N_{x_1})\,d\mu_2 = \int_{X_1\times X_2}\mathbb{1}_N\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_2}\mu_1(N_{x_2})\,d\mu_1$$
 and hence
 $$\int_{X_1}\mu_2(N_{x_1})\,d\mu_2 = \int_{X_2}\mu_1(N_{x_2})\,d\mu_1 = 0$$
 This implies that $\mu_2(N_{x_1})$ is zero $\mu_1$-almost everywhere and $\mu_1(N_{x_2})$ is zero $\mu_2$-almost everywhere. Thus there exists a set $N_1$ in $\Sigma_1$ with $\mu_1(N_1) = 0$ such that $r_{x_1}$ is $\mu_2$-measurable and
@@ -680,11 +680,11 @@ $$X_1\setminus N_1\ni x_1\mapsto \int_{X_2}f_{x_1}\,d\mu_2\in \ol{\RR},\,X_2\set
 are well defined and
 $$\int_{X_2}f_{x_1}\,d\mu_2 = \int_{X_2}g_{x_1}\,d\mu_2,\,\int_{X_1}f_{x_2}\,d\mu_1 = \int_{X_1}g_{x_2}\,d\mu_1$$
 for $x_1 \in X_1\setminus N_1,x_2\in X_2\setminus N_2$. Applying Theorem \ref{theorem:Tonellis_theorem_for_measurable_functions} we derive that
-$$\int_{X_1}\int_{X_2} \left(\chi_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1} \int_{X_2} \left(\chi_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot  g_{x_1}\,d\mu_2d\mu_1 =$$
-$$= \int_{X_1\times X_2}\chi_{\left(X_1\setminus N_1\right)\times X_2}\cdot g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}f\,d\left(\mu_1\otimes \mu_2\right)$$
+$$\int_{X_1}\int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1} \int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot  g_{x_1}\,d\mu_2d\mu_1 =$$
+$$= \int_{X_1\times X_2}\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\cdot g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}f\,d\left(\mu_1\otimes \mu_2\right)$$
 and
-$$\int_{X_2} \int_{X_1} \left(\chi_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2 = \int_{X_2} \int_{X_1} \left(\chi_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot g_{x_2}\,d\mu_1d\mu_2 =$$
-$$= \int_{X_1\times X_2}\chi_{X_1\times \left(X_2 \setminus N_2\right)}\cdot g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}f\,d\left(\mu_1\otimes \mu_2\right)$$
+$$\int_{X_2} \int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2 = \int_{X_2} \int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot g_{x_2}\,d\mu_1d\mu_2 =$$
+$$= \int_{X_1\times X_2}\mathbb{1}_{X_1\times \left(X_2 \setminus N_2\right)}\cdot g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}f\,d\left(\mu_1\otimes \mu_2\right)$$
 \end{proof}
 
 \begin{theorem}[Fubini's theorem for integrable functions]\label{corollary:fubinis_for_integrable}
@@ -693,10 +693,10 @@ $$\mu_i(N_i) = 0$$
 and functions
 $$X_1\setminus N_1\ni x_1\mapsto \int_{X_2}f_{x_1}\,d\mu_2\in Y,\,X_2\setminus N_2\ni x_2\mapsto \int_{X_1}f_{x_2}\,d\mu_1\in Y$$
 are well defined and integrable with respect to $\mu_1, \mu_2$, respectively. Moreover, we have equality
-$$\int_{X_1}\int_{X_2} \left(\chi_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1} \left(\chi_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2$$
+$$\int_{X_1}\int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2$$
 \end{theorem}
 \begin{proof}
-Let $\cF$ be a family of all $\left(\mu_1\otimes \mu_2\right)$-integrable functions $f:X_1\times X_2\ra Y$ such that the statement holds for $\cF$. Then according to Theorem \ref{theorem:Tonellis_theorem_for_mu_measurable_functions} for every $y\in Y$ and $E\in \Sigma_1\otimes \Sigma_2$ such that $\left(\mu_1\otimes \mu_2\right)(E) \in \RR$ we have $y\cdot \chi_E \in \cF$. Moreover, if $f, g\in \cF$, then for scalars $\alpha,\beta$ we have $\alpha f + \beta g\in \cF$. Suppose that $\{f_n:X_1\times X_2\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ which is $\mu$-almost everywhere pointwise convergent and $g:X_1\times X_2\ra \ol{\RR}$ is a nonnegative, $\mu$-measurable function such that
+Let $\cF$ be a family of all $\left(\mu_1\otimes \mu_2\right)$-integrable functions $f:X_1\times X_2\ra Y$ such that the statement holds for $\cF$. Then according to Theorem \ref{theorem:Tonellis_theorem_for_mu_measurable_functions} for every $y\in Y$ and $E\in \Sigma_1\otimes \Sigma_2$ such that $\left(\mu_1\otimes \mu_2\right)(E) \in \RR$ we have $y\cdot \mathbb{1}_E \in \cF$. Moreover, if $f, g\in \cF$, then for scalars $\alpha,\beta$ we have $\alpha f + \beta g\in \cF$. Suppose that $\{f_n:X_1\times X_2\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ which is $\mu$-almost everywhere pointwise convergent and $g:X_1\times X_2\ra \ol{\RR}$ is a nonnegative, $\mu$-measurable function such that
 $$\int_{X_1\times X_2}g\,d\mu \in \RR$$
 and $||f_n||\leq g$ holds $\mu$-almost everywhere for $n\in \NN$. Let $f$ be a $\mu$-almost everywhere pointwise limit of $\{f_n\}_{n\in \NN}$. Then by Theorems \ref{theorem:dominated_convergence} and \ref{theorem:Tonellis_theorem_for_mu_measurable_functions} we have $f\in \cF$. From Corollary \ref{corollary:measurable_induction_for_banach_valued} we derive that $\cF$ contains all $\left(\mu_1\otimes \mu_2\right)$-integrable functions.
 \end{proof}

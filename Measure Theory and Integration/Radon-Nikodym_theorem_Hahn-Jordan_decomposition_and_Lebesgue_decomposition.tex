@@ -132,7 +132,7 @@ $$\left(\nu - \frac{k}{2^n}\cdot \mu\right)\left(A\cap P_{n,k}\right)\geq 0,\,\l
 for every $A\in \Sigma$. We may assume that $P_{n,0}=X$, $P_{n,k+1}\subseteq P_{n,k}$ and $P_{n,k} =P_{n+1,2k}$ for every $n, k\in \NN$. Since $\nu \ll \mu$ and $\nu$ is finite, we derive that
 $$\mu\left(\bigcap_{k\in \NN}P_{n,k}\right) = \nu\left(\bigcap_{k\in \NN}P_{n,k}\right)=0$$
 and may assume that this set is empty for every $n\in \NN$. Pick $n\in \NN$. We define a function $f_n:X\ra \CC$ by formula
-$$f_n(x) =\sum_{k\in \NN} \frac{k}{2^n}\cdot \chi_{P_{n,k}\setminus P_{n,k+1}}(x)$$
+$$f_n(x) =\sum_{k\in \NN} \frac{k}{2^n}\cdot \mathbb{1}_{P_{n,k}\setminus P_{n,k+1}}(x)$$
 Clearly $f_n$ is a measurable, nonnegative function. If $m,n\in \NN$ and $n\leq m$, then we have
 $$f_n(x)\leq f_m(x)\leq f_n(x)+\frac{1}{2^n}$$
 Thus $\{f_n\}_{n\in \NN}$ is a nondecreasing sequence of measurable functions convergent uniformly to a measurable function $f:X\ra \CC$. Moreover, for every $A\in \Sigma$ and $n\in \NN$ we have
@@ -250,11 +250,11 @@ holds if $g$ is either $\mu$-integrable function $g:X\ra \CC$ of a measurable, n
 \end{proposition}
 \begin{proof}
 Suppose that $A = \bigcup_{n\in \NN}A_n$ for $A\in \Sigma$ and $A_n\in \Sigma$ for every $n\in \NN$. Assume also that $\{A_n\}_{n\in \NN}$ are pairwise disjoint. Then by monotone convergence theorem
-$$\nu(A) = \int_A f\,d\mu = \int_X\chi_A\cdot f\,d\mu = \int_X\left(\sum_{n\in \NN}\chi_{A_n}\cdot f\right)\,d\mu = \sum_{n\in \NN}\int_X\chi_{A_n}\cdot f\,d\mu = \sum_{n\in \NN}\int_{A_n}f\,d\mu = \sum_{n\in \NN}\nu(A_n)$$
+$$\nu(A) = \int_A f\,d\mu = \int_X\mathbb{1}_A\cdot f\,d\mu = \int_X\left(\sum_{n\in \NN}\mathbb{1}_{A_n}\cdot f\right)\,d\mu = \sum_{n\in \NN}\int_X\mathbb{1}_{A_n}\cdot f\,d\mu = \sum_{n\in \NN}\int_{A_n}f\,d\mu = \sum_{n\in \NN}\nu(A_n)$$
 Moreover, we have $\nu(\emptyset) = 0$. Thus $\nu$ is a measure on $(X,\Sigma)$.\\
 For the second part of the statement note that the family of measurable, nonnegative functions $g:X\ra \ol{\RR}$ satisfying equality
 $$\int_Xg\,d\nu = \int_Xg\cdot f\,d\mu$$
-contains $\{\chi_A\}_{A\in \Sigma}$, is closed under linear combinationss with nonnegative coefficients, if it contains nondecreasing sequence $\{g_n:X\ra \ol{\RR}\}_{n\in \NN}$, then it also contains its pointwise limit. Thus this family contains all measurable, nonnegative functions $g:X\ra \ol{\RR}$. Since every real valued, $\nu$-integrable function $g:X\ra \CC$ is a difference of a two $\nu$-integrable, nonnegative functions, we deduce that this family contains all real, $\nu$-integrable functions. Finally, if it contains two $\nu$-integrable, real valued functions, then it contains its $\CC$-linear combination. Thus it contains all $\nu$-integrable functions.
+contains $\{\mathbb{1}_A\}_{A\in \Sigma}$, is closed under linear combinationss with nonnegative coefficients, if it contains nondecreasing sequence $\{g_n:X\ra \ol{\RR}\}_{n\in \NN}$, then it also contains its pointwise limit. Thus this family contains all measurable, nonnegative functions $g:X\ra \ol{\RR}$. Since every real valued, $\nu$-integrable function $g:X\ra \CC$ is a difference of a two $\nu$-integrable, nonnegative functions, we deduce that this family contains all real, $\nu$-integrable functions. Finally, if it contains two $\nu$-integrable, real valued functions, then it contains its $\CC$-linear combination. Thus it contains all $\nu$-integrable functions.
 \end{proof}
 
 \begin{theorem}\label{theorem:structureofcomplexmeasures}
@@ -299,7 +299,7 @@ for every $A\in \Sigma$.
 \end{corollary}
 \begin{proof}
 Clearly $\nu(A)\in \CC$ for every $A\in \Sigma$. Suppose that $A = \bigcup_{n\in \NN}A_n$ for $A\in \Sigma$ and $A_n\in \Sigma$ for every $n\in \NN$. Assume also that $\{A_n\}_{n\in \NN}$ are pairwise disjoint. Then by dominated convergence theorem
-$$\nu(A) = \int_A f\,d\mu = \int_X\chi_A\cdot f\,d\mu = \int_X\left(\sum_{n\in \NN}\chi_{A_n}\cdot f\right)\,d\mu = \sum_{n\in \NN}\int_X\chi_{A_n}\cdot f\,d\mu = \sum_{n\in \NN}\int_{A_n}f\,d\mu = \sum_{n\in \NN}\nu(A_n)$$
+$$\nu(A) = \int_A f\,d\mu = \int_X\mathbb{1}_A\cdot f\,d\mu = \int_X\left(\sum_{n\in \NN}\mathbb{1}_{A_n}\cdot f\right)\,d\mu = \sum_{n\in \NN}\int_X\mathbb{1}_{A_n}\cdot f\,d\mu = \sum_{n\in \NN}\int_{A_n}f\,d\mu = \sum_{n\in \NN}\nu(A_n)$$
 Moreover, we have $\nu(\emptyset) = 0$. Thus $\nu$ is a complex measure on $(X,\Sigma)$. Since $f$ is $\mu$-integrable, there exists a $\sigma$-finite subset $\Omega\in \Sigma$ such that $|f(x)|= 0$ for $x\not \in \Omega$. We define $\tilde{\mu}(A) = \mu(A\cap \Omega)$ for every $A\in \Sigma$. Clearly
 $$\nu(A) = \int_Af\,d\mu = \int_Af\,d\tilde{\mu}$$
 for every $A\in \Sigma$. Hence we have $|\nu|\ll\tilde{\mu}$ by definition of $\nu$ and $|\nu|$. Note that $\tilde{\mu}$ is a $\sigma$-finite measure. By Theorem \ref{theorem:radonnikodymmain} there exists a measurable function $g:X\ra \CC$ equal to zero outside $\Omega$ such that

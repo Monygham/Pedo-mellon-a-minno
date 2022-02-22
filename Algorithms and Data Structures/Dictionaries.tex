@@ -120,11 +120,11 @@ $$W_{i} = \big\{h\left(K_i\right) = h\left(K\right)\big\},\,Z_i = \big\{K = K_i\
 for $i\in \{1,...,n\}$. Fix $\omega \in \cK$. For the procedure
 $$\mathrm{SEARCH}_h(K(\omega))$$
 we first calculate $h(K(\omega))$. This is a single basic operation. Next if $\omega \in \cK\setminus Z$, then we iterate through the list $D_h[h(K(\omega))]$ with length equal to the number of keys in $\big\{K_1(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case of the unsuccessful search. Otherwise, if $\omega \in Z_i$ then we iterate through the initial segment of the list $D_h[h(K(\omega))]$ which consists of elements from the set $\big\{K_i(\omega),K_{i+1}(\omega),...,K_n(\omega)\big\}$ mapped by $h$ to $h(K(\omega))$. This is the case when the search is successful. Thus
-$$\bd{search}_h\left(K\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\chi_{\cK\setminus Z}\cdot\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
+$$\bd{search}_h\left(K\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\mathbb{1}_{\cK\setminus Z}\cdot\sum_{i=1}^n \mathbb{1}_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{i=1}^n\mathbb{1}_{Z_i}\cdot\sum_{j = i}^n \mathbb{1}_{W_{j}}}_{\mathrm{succesfull\,search}}$$
 Hence $\bd{search}_h\left(K\right):\cK\ra \NN$ is measurable. Moreover, note that
-$$\bd{search}_h\left(K\right) = 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = i}^n \chi_{W_{j}} \leq 1 + \chi_{\cK\setminus Z}\cdot \sum_{i=1}^n \chi_{W_{i}} + \sum_{i=1}^n\chi_{Z_i}\cdot\sum_{j = 1}^n \chi_{W_{j}} = 1 +  \sum_{i=1}^n \chi_{W_{i}}$$
+$$\bd{search}_h\left(K\right) = 1 + \mathbb{1}_{\cK\setminus Z}\cdot \sum_{i=1}^n \mathbb{1}_{W_{i}} + \sum_{i=1}^n\mathbb{1}_{Z_i}\cdot\sum_{j = i}^n \mathbb{1}_{W_{j}} \leq 1 + \mathbb{1}_{\cK\setminus Z}\cdot \sum_{i=1}^n \mathbb{1}_{W_{i}} + \sum_{i=1}^n\mathbb{1}_{Z_i}\cdot\sum_{j = 1}^n \mathbb{1}_{W_{j}} = 1 +  \sum_{i=1}^n \mathbb{1}_{W_{i}}$$
 and hence
-$$\mathbb{E}\,\bd{search}_h\left(K\right) \leq 1 +  \sum_{i=1}^n \mathbb{E}\,\chi_{W_{i}} = 1 + \sum_{i=1}^nP_{\cK}(W_i) = 1 + \sum_{i=1}^n\frac{P(W_i\cap \cK)}{P(\cK)} = 1 + \frac{n}{m}$$
+$$\mathbb{E}\,\bd{search}_h\left(K\right) \leq 1 +  \sum_{i=1}^n \mathbb{E}\,\mathbb{1}_{W_{i}} = 1 + \sum_{i=1}^nP_{\cK}(W_i) = 1 + \sum_{i=1}^n\frac{P(W_i\cap \cK)}{P(\cK)} = 1 + \frac{n}{m}$$
 The last inequality is a consequence of the fact that $h$ is a simple uniform hashing with respect to $\mu$.
 \end{proof}
 \noindent
@@ -222,13 +222,13 @@ $$\mathbb{E}\,\bd{search}_\cH(k) = \int_{\cH}\bd{search}_\cH(k)\,dP \leq 1 + \fr
 First we introduce certain notation. We consider events $W_{i} = \big\{h(k_i) = h(k)\big\}$ for $i\in \{1,...,n\}$. For the procedure
 $$\mathrm{SEARCH}_h(k)$$
 we first calculate $h(k)$. This is a single basic operation. Next if $k$ is not one of the keys $k_1,...,k_n$, then we iterate through the list $D_h[h(k)]$ with length equal to the number of keys in $\big\{k_1,...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case of the unsuccessful search. Hence
-$$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{i=1}^n \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}}$$
+$$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{i=1}^n \mathbb{1}_{W_{i}}}_{\mathrm{unsuccessful\,search}}$$
 If on the other hand $k$ is equal to say $k_i$ for some $i\in \{1,...,n\}$, then we iterate through the initial segment of the list $D_h[h(k)]$ which consists of elements from the set $\big\{k_i,k_{i+1},...,k_n\big\}$ mapped by $h$ to $h(k)$. This is the case when the search is successful. Hence
-$$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{j = i}^n \chi_{W_{j}}}_{\mathrm{succesfull\,search}}$$
+$$\bd{search}_\cH\left(k\right) = \underbrace{1}_{\mathrm{computation\,of\,the\,hash}} + \underbrace{\sum_{j = i}^n \mathbb{1}_{W_{j}}}_{\mathrm{succesfull\,search}}$$
 In either case $\bd{search}_\cH\left(k\right):\cH\ra \NN$ is measurable. Moreover, note that
-$$\bd{search}_{\cH}\left(k\right) \leq 1 + \sum_{i=1}^n \chi_{W_{i}}$$
+$$\bd{search}_{\cH}\left(k\right) \leq 1 + \sum_{i=1}^n \mathbb{1}_{W_{i}}$$
 for every $k\in \cU$ and thus
-$$\mathbb{E}\,\bd{search}_\cH\left(k\right) \leq 1 +  \sum_{i=1}^n \mathbb{E}\,\chi_{W_{i}} = 1 + \sum_{i=1}^nP(W_i) =  1 + \frac{n}{m}$$
+$$\mathbb{E}\,\bd{search}_\cH\left(k\right) \leq 1 +  \sum_{i=1}^n \mathbb{E}\,\mathbb{1}_{W_{i}} = 1 + \sum_{i=1}^nP(W_i) =  1 + \frac{n}{m}$$
 The last inequality is a consequence of the fact that $\cH$ is a universal family of hash functions.
 \end{proof}
 \noindent
@@ -328,13 +328,13 @@ $$h\big(K(\omega),0\big),...,h\big(K(\omega), i-1\big)$$
 which are occupied and then we found empty slot indexed by $h\big(K(\omega),i\big)$. Otherwise, if $\omega \in Z_j$ for some $j\in \{1,...,n\}$, then there exists a unique $m_j\in \{0,1,...,m-1\}$ such that $h\big(K(\omega),m_j\big) = s_j$. In this case we iterate through slots indexed by
 $$h\big(K(\omega),0\big),...,h\big(K(\omega), m_j-1\big)$$
 which are occupied and then then we found slot indexed by $h\big(K(\omega),m_j\big) = s_j$ which is occupied with a pair having $K(\omega) = k_j$ as the first entry. This is the case when the search is successful. Thus
-$$\bd{search}_h\left(K\right) = 2 \cdot \bigg(\underbrace{\chi_{\Omega\setminus Z}\cdot\sum_{i=0}^{m-1} \chi_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{j=1}^n m_j\cdot \chi_{Z_j}}_{\mathrm{succesfull\,search}}\bigg)$$
+$$\bd{search}_h\left(K\right) = 2 \cdot \bigg(\underbrace{\mathbb{1}_{\Omega\setminus Z}\cdot\sum_{i=0}^{m-1} \mathbb{1}_{W_{i}}}_{\mathrm{unsuccessful\,search}} + \underbrace{\sum_{j=1}^n m_j\cdot \mathbb{1}_{Z_j}}_{\mathrm{succesfull\,search}}\bigg)$$
 Hence $\bd{search}_h\left(K\right):K\ra \NN$ is measurable. Moreover, from the description above it follows that
-$$\bd{search}_h\left(K\right) \leq 2 \cdot \sum_{i=0}^{m-1} \chi_{W_{i}}$$
+$$\bd{search}_h\left(K\right) \leq 2 \cdot \sum_{i=0}^{m-1} \mathbb{1}_{W_{i}}$$
 Since $h$ is a uniform hashing with respect to $\mu$, we derive that
-$$\mathbb{E}\,\chi_{W_{i}} = \frac{n\cdot (n-1)\cdot ...\cdot (n-i+1) \cdot (m-n) \cdot (m - i - 1)!}{m!} \leq \frac{n\cdot (n-1)\cdot ...\cdot (n- i + 1)}{m\cdot (m-1)\cdot ...\cdot (m - i + 1)}\leq \bigg(\frac{n}{m}\bigg)^i$$
+$$\mathbb{E}\,\mathbb{1}_{W_{i}} = \frac{n\cdot (n-1)\cdot ...\cdot (n-i+1) \cdot (m-n) \cdot (m - i - 1)!}{m!} \leq \frac{n\cdot (n-1)\cdot ...\cdot (n- i + 1)}{m\cdot (m-1)\cdot ...\cdot (m - i + 1)}\leq \bigg(\frac{n}{m}\bigg)^i$$
 for every $i\in \{0,1,...,m-1\}$. Hence
-$$\mathbb{E}\,\bd{search}_h\left(K\right) \leq 2 \cdot \sum_{i=0}^{m-1} \mathbb{E}\,\chi_{W_{i}} \leq 2\cdot \sum_{i=0}^{m-1}\bigg(\frac{n}{m}\bigg)^i \leq 2\cdot \sum_{i=0}^{+\infty}\bigg(\frac{n}{m}\bigg)^i = \frac{2}{1 - \frac{n}{m}}$$ 
+$$\mathbb{E}\,\bd{search}_h\left(K\right) \leq 2 \cdot \sum_{i=0}^{m-1} \mathbb{E}\,\mathbb{1}_{W_{i}} \leq 2\cdot \sum_{i=0}^{m-1}\bigg(\frac{n}{m}\bigg)^i \leq 2\cdot \sum_{i=0}^{+\infty}\bigg(\frac{n}{m}\bigg)^i = \frac{2}{1 - \frac{n}{m}}$$ 
 \end{proof}
 \noindent
 Using essentially the same method (we omit the proof) one derives the following results.
