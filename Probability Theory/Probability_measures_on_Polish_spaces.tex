@@ -1,0 +1,389 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Probability measures on Polish spaces}
+\date{}
+\maketitle
+
+\section{Introduction}
+
+\section{Compact metric spaces}
+\noindent
+We start by some general property of metric space.
+
+\begin{fact}\label{fact:largest_epsilon_net}
+Let $(X,d)$ be a metric space and let $\epsilon > 0$ be a number. Then there exists a subset $N$ such that
+$$\forall_{x_1,x_2\in N}\left(x_1\neq x_2 \Rightarrow 2\cdot \epsilon < d(x_1,x_2)\right)$$
+and $X$ is the union of balls centered in points of $N$ and with radius $\epsilon$.
+\end{fact}
+\begin{proof}
+This is a consequence of Zorn's lemma applied to the family
+Consider the family of sets
+$$\cN = \big\{N \subseteq X\,\big|,\forall_{x_1,x_2\in N}\left(x_1\neq x_2 \Rightarrow 2\cdot \epsilon < d(x_1,x_2)\right)\big\}$$
+ordered by inclusion. The details are left for the reader.
+\end{proof}
+
+\begin{definition}
+Let $(X,d)$ be a metric space. Suppose that for each $\epsilon > 0$ there exists a finite family $\cB$ of closed balls with respect to $d$ such that each of them has radius equal to $\epsilon$ and
+$$X =  \bigcup_{B\in \cB} \cB$$
+Then $(X,d)$ is \textit{a completely bounded metric space}.
+\end{definition}
+
+\begin{fact}\label{fact:completely_bounded_is_second_countable}
+Let $(X,d)$ be a completely bounded metric space. Then $X$ is second countable.
+\end{fact}
+\begin{proof}
+Left for the reader.
+\end{proof}
+
+\begin{definition}
+Let $X$ be a topological space. Suppose that for every sequence $\{x_n\}_{n\in \NN}$ of elements of $X$ there exists a convergent subsequence. Then $X$ is \textit{a sequentially compact space}.
+\end{definition}
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $\cU$ be its open cover. Assume that there exists $\lambda > 0$ such that for every subset $A$ of $X$ with $\mathrm{diam}(A) \leq \lambda$ there exists $U$ in $\cU$ such that $A\subseteq U$. Then $\lambda$ is \textit{a Lebesgue number of $\cU$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:characterization_of_compactness_for_metric_spaces}
+Let $(X,d)$ be a metric space. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $X$ is compact.
+\item $(X,d)$ is complete and completely bounded. 
+\item $X$ is sequentially compact.
+\end{enumerate}
+Moreover, if these equivalent assertions hold, then every open cover of $X$ admits Lebesgue number.
+\end{theorem}
+\noindent
+We prove partial result first.
+
+\begin{lemma}\label{lemma:sequentially_compact_implies_Lebesgue_number}
+Let $(X,d)$ be a metric space. If $X$ is sequentially compact, then every open cover of $X$ admits a Lebesgue number.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Fix open cover $\cU$ of $X$. Suppose that this cover does not admits a Lebesgue number. Pick a decreasing sequence $\{\lambda_n\}_{n\in \NN}$ of elements in $\RR_+$ which is convergent to zero. Since $\cU$ does not admit a Lebesgue number, for each $n\in \NN$ there exists a nonempty set $A_{n}$ of diameter not greater than $\lambda_n$ such that $A_n$ is not contained in any element of $\cU$. For each $n\in \NN$ pick $x_n\in A_n$. By sequential compactness of $X$, there exists a subsequence $\{x_{n_k}\}_{k\in \NN}$ of $\{x_n\}_{n\in \NN}$ which converges to some point $x$ in $X$. Moreover, according to
+$$X = \bigcup_{U\in \cU} U$$
+there exists $U\in \cU$ such that $x\in \cU$. Fix $\delta > 0$ such that the open ball $B(x,2\cdot \delta)$ with respect to $d$ is contained in $U$. Pick also $k$ such that $d(x,x_{n_k}) < \delta$ and $\lambda_{n_k} < \delta$. Then for every $a$ in $A_{n_k}$ we have
+$$d(x,a) \leq d(x,x_{n_k}) + d(x_{n_k},a) < \delta + \lambda_{n_k} < 2\cdot \delta$$
+Thus $a\in B(x,2\cdot \delta)$. Since this holds for every $a$ in $A_{n_k}$, we infer that $A_{n_k}\subseteq B(x,2\cdot \delta)\subseteq U$. This is a contradiction. 
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Suppose that $X$ is compact. Let $\{x_n\}_{n\in \NN}$ be a Cauchy sequence with respect to $d$. Define 
+$$F_n = \bd{cl}\left(\{x_n\,|\,n \geq k\}\right)$$
+Clearly $\{F_n\}_{n\in \NN}$ is a nondecreasing sequence of closed nonempty subsets of $X$. Thus by compactness of $X$ it follows that $\{F_n\}_{n\in \NN}$ has nonempty intersection. Since $\{x_n\}_{n\in \NN}$ is a Cauchy sequence with respect to $d$, we derive that
+$$\lim_{n\ra +\infty}\mathrm{diam}(F_n) = 0$$
+Thus the intersection of $\{F_n\}_{n\in \NN}$ consists of a single point say $x$. It follows that $\{x_n\}_{n\in \NN}$ converges to $x$. Hence $(X,d)$ is complete. The fact that $X$ is completely bounded follows easily from compactness of $X$. Therefore, $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Suppose now that $(X,d)$ is complete and completely bounded. For every $k\in \NN$ let $B_{k,1},...B_{k,m_k}$ be a family of closed balls in $X$ such that each of them has radius equal to $\frac{1}{2^k}$ and
+$$X = B_{k,1}\cup ...\cup B_{k,m_k}$$
+Pick a sequence $\{x_n\}_{n\in \NN}$ of elements of $X$. For every $k \in \NN$ we will construct a sequence $\{x^{k}_n\}_{n\in \NN}$ such that $\{x^{k+1}_n\}_{n\in \NN}$ is a subsequence of $\{x^{k}_{n}\}_{n \in \NN}$. We set $\{x^{0}_n\}_{n\in \NN}$ to be $\{x_n\}_{n\in \NN}$. Next if $\{x^k_n\}_{n\in \NN}$ is constructed, then at least one of the balls 
+$$B_{k+1,1},...,B_{k+1,m_{k+1}}$$
+contains infinitely many elements of $\{x^k_n\}_{n\in \NN}$. We define $\{x^{k+1}_n\}_{n\in \NN}$ to be a subsequence of $\{x^k_n\}_{n\in \NN}$ which consists of these elements. It follows from the construction that all elements of $\{x^k_n\}_{n\in \NN}$ are contained in some closed ball $D_k$ of $X$ having radius $\frac{1}{2^{k}}$. Now we define a subsequence $\{x_{n_k}\}_{k\in \NN}$ of $\{x_n\}_{n\in \NN}$ by $x_{n_k} = x^k_k$ for every $k\in \NN$. Then $x_{m_k}$ is contained in a closed ball $D_k$ of $X$ having radius $\frac{1}{2^{k}}$ for every $m\geq k$ and $k\in \NN$. It follows that $\{x_{n_k}\}_{k\in \NN}$ is a Cauchy sequence with respect to $d$. Thus it is convergent to some point $x$ in $X$. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(iii)}$.\\
+Suppose that $X$ is sequentially compact. Consider an open cover $\cU$ of $X$. By Lemma \ref{lemma:sequentially_compact_implies_Lebesgue_number} there exists a Lebesgue number $\lambda > 0$ of $\cU$. According to Fact \ref{fact:largest_epsilon_net} there exists a set $N\subseteq X$ such that
+$$X = \bigcup_{x\in N}B\left(x,\frac{\lambda}{2}\right)$$
+and for every pair of points $x_1,x_2$ in $N$ we have $\lambda < d(x_1,x_2)$. Clearly $N$ is discrete subspace of $X$. Since $X$ is sequentially compact, we infer that $N$ is finite say $N = \{x_1,...,x_n\}$ for some $n\in \NN$. For each $i \in \{1,...,n\}$ let $U_i\in \cU$ be an open subset such that 
+$$B\left(x_i,\frac{\lambda}{2}\right) \subseteq U_i$$
+Thus 
+$$X = \bigcup_{i=1}^n B\left(x_i,\frac{\lambda}{2}\right) = \bigcup_{i=1}^nU_i$$
+and hence $\cU$ has finite subcover. Therefore, $X$ is compact and the implication $\textbf{(iii)}\Rightarrow \textbf{(i)}$ is proved.\\
+Now the additional assertion follows from Lemma \ref{lemma:sequentially_compact_implies_Lebesgue_number}.
+\end{proof}
+
+\begin{corollary}\label{corollary:each_compact_metrizable_space_is_second_contable}
+Each compact metrizable space is second countable.
+\end{corollary}
+\begin{proof}
+A consequence of Fact \ref{fact:completely_bounded_is_second_countable} and Theorem \ref{theorem:characterization_of_compactness_for_metric_spaces}.
+\end{proof}
+
+\section{Completely metrizable topological spaces}
+
+\begin{definition}
+Let $X$ be a topological space. If there exists a metric $d$ on $X$ which induces the topology of $X$, then $X$ is \textit{a metrizable space}. In addition if $d$ is complete, then $X$ is \textit{a completely metrizable space}.
+\end{definition}
+\noindent
+We start by some basic results.
+
+\begin{proposition}\label{proposition:each_metrizable_space_has_bounded_metric}
+Let $X$ be a metrizable space. Then there exists a metric $\delta$ which induces topology of $X$ and
+$$\delta(x_1,x_2) < 1$$
+for every pair $x_1,x_2\in X$.
+\end{proposition}
+\begin{proof}
+Consider a metric $d$ which induces topology on $X$. Define
+$$\delta(x_1,x_2) = \frac{d(x_1,x_2)}{1 + d(x_1,x_2)}$$
+Let $f:[0,+\infty)\ra \RR$ be a function given by formula 
+$$f(t) = \frac{t}{1+t}$$
+Then $f(t_1+t_2) \leq f(t_1) + f(t_2)$ for $t_1,t_2 \in [0,+\infty)$ and $f$ is strictly increasing. We derive that
+$$\delta(x_1,x_3) = f\left(d(x_1,x_3)\right) \leq f\left(d(x_1,x_2) + d(x_2,x_3)\right) \leq$$
+$$\leq f\left(d(x_1,x_2)\right) + f\left(d(x_2,x_3)\right) = \delta(x_1,x_2) + \delta(x_2,x_3)$$
+for every $x_1,x_2,x_3\in X$. Clearly $\delta(x_1,x_2) = 0$ is equivalent to $d(x_1,x_2) = 0$ and hence it is equivalent to $x_1 = x_2$ for all $x_1,x_2\in X$. Moreover, $\delta$ is symmetric which follows from the fact that $d$ is symmetric. Therefore, $\delta$ is a metric on $X$. We claim that $\delta$ induces the same topology on $X$ as $d$. In order to prove this we fix a sequence $\{x_n\}_{n\in \NN}$ of points of $X$ and a point $x$ in $X$. Since $f$ is strictly increasing, continuous and
+$$f(0) = 0,\,\lim_{n\ra +\infty}f(t) = 1$$
+we infer that $f$ induces a homeomorphism of $[0,+\infty)$ and $[0,1)$. Thus
+$$\lim_{n\ra +\infty}d(x_n,x) = 0\,\Leftrightarrow\, \lim_{n\ra +\infty}f\left(d(x_n,x)\right) = 0\,\Leftrightarrow\,\lim_{n\ra +\infty}\delta(x_n,x) = 0$$
+This implies that the class of convergent sequences for $d$ is equal to the class of convergent sequences for $\delta$. The claim is proved. Hence $\delta$ induces the topology of $X$. Finally as we noted above $\delta(x_1,x_2) = f\left(d(x_1,x_2)\right) < 1$ for all $x_1,x_2$ in $X$.
+\end{proof}
+
+\begin{proposition}\label{proposition:closed_subsets_are_complete_with_respect_to_metric}
+Let $(X,d)$ be a complete metric space and let $F$ be its subset. The restriction of $d$ to $F$ makes it into a complete metric space if and only if $F$ is a closed subset of $X$. 
+\end{proposition}
+\begin{proof}
+Suppose that $F$ is closed. Consider a Cauchy sequence $\{x_n\}_{n\in \NN}$ with respect to $d$ and such that $x_n \in F$ for all $n\in \NN$. Since $d$ is complete, there exists a limit $x$ of $\{x_n\}_{n\in \NN}$ inside $x$. Since $F$ is closed, we derive that $x\in F$. According to the fact that $\{x_n\}_{n\in \NN}$ is arbitrary Cauchy sequence with respect to $d$ with elements in $F$, we derive that the restriction of $d$ makes $F$ into a complete metric space.\\
+Suppose now that the restriction of $d$ to $F$ makes it into a complete metric space. Consider a sequence $\{x_n\}_{n\in \NN}$ of elements of $F$ and suppose that it converges to some $x$ in $X$. Then $\{x_n\}_{n\in \NN}$ is Cauchy with respect to $d$. Since $F$ is a complete with respect to restriction of $d$, we derive that $\{x_n\}_{n\in \NN}$ is convergent to some element of $F$. Therefore, $x$ is an element of $F$. This shows that $F$ is closed subset of $X$.
+\end{proof}
+\noindent
+Now we introduce notion which plays important role in the study of complete metrizability.
+
+\begin{definition}
+Let $X$ be a topological space. Then a subset of $X$ which is a countable intersection of open subsets of $X$ is \textit{a $G_{\delta}$ subset of $X$}.
+\end{definition}
+\noindent
+Now we shall prove important result due to Alexandrov.
+
+\begin{theorem}[Alexandrov]\label{theorem:G_delta_in_completely_metrizable_space_is_completely_metrizable}
+Let $X$ be a topological space. If $X$ is completely metrizable, then every $G_{\delta}$ subset of $X$ is completely metrizable. 
+\end{theorem}
+\noindent
+For the proof we need some lemmas.
+
+\begin{lemma}\label{lemma:open_subsets_are_completely_metrizable}
+Let $(X,d)$ be a complete metric space and let $U$ be its open subset. Then $U$ is completely metrizable.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Define a function $f:U\ra \RR$ by formula $f(x) = d\left(x,X\setminus U\right)$. Let $\Gamma_f$ be the graph of $f$ inside $X\times \RR$. That is
+$$\Gamma_f = \big\{(x,r)\in X\times \RR\,\big|\,x\in U\mbox{ and }f(x) = r\big\}$$
+Suppose that $\{(x_n,r_n)\}_{n\in \NN}$ is a sequence of elements of $\Gamma_f$ which is convergent in $X\times \RR$. Let $(x,r)$ be its limit. Then $x_n\ra x$ for $n\ra +\infty$ and hence 
+$$\lim_{n\ra +\infty}d\left(x_n,X\setminus U\right) = d\left(x,X\setminus U\right)$$
+Note that the left hand side potentially can be equal to $+\infty$. We rule out this possibility as follows. We have
+$$\lim_{n\ra +\infty}d\left(x_n,X\setminus U\right) = \lim_{n\ra +\infty}r_n = r \in \RR$$
+and hence $d\left(x,X\setminus U\right) = r \in \RR$. Thus $x \in U$ and we infer that $(x,r) \in \Gamma_f$. This implies that $\Gamma_f$ is a closed subset of $X\times \RR$. Since $X\times \RR$ is completely metrizable, we derive that $\Gamma_f$ is completely metrizable by Proposition \ref{proposition:closed_subsets_are_complete_with_respect_to_metric}. On the other hand the map
+$$U\ni x \mapsto \left(x,f(x)\right) \in \Gamma_f$$
+is a homeomorphism and thus $U$ is completely metrizable.
+\end{proof}
+
+\begin{lemma}\label{lemma:series_of_metrics_properties}
+Let $X$ be a set and let $\{d_n\}_{n\in \NN}$ be a sequence of metrics on $X$. Assume that $d_n$ is bounded from above by $1$ for every $n\in \NN$. Consider
+$$d = \sum_{n\in \NN}\frac{1}{2^n}\cdot d_n$$
+Then $d$ is a metric on $X$ and the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item Sequence $\{x_m\}_{m\in \NN}$ of elements of $X$ is convergent to some $x$ in $X$ with respect to $d$ if and only if it is convergent to $x$ with respect to $d_n$ for all $n\in \NN$
+\item Sequence $\{x_m\}_{m\in \NN}$ of elements of $X$ is a Cauchy sequence with respect to $d$ if and only if it is a Cauchy sequence with respect to $d_n$ for all $n\in \NN$
+\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+It is clear that $d$ is a metric on $X$. For each $n\in \NN$ we have 
+$$d_n \leq 2^n\cdot d$$
+and
+$$d \leq \frac{1}{2^{N}} + \sum_{n=0}^N\frac{1}{2^n}\cdot d_n$$
+From this two inequalities it is easy to deduce \textbf{(1)} and \textbf{(2)}. The details are left to the reader.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Suppose that $\{U_n\}_{n\in \NN}$ is a nondecreasing sequence of open subsets of $X$. By lemma \ref{lemma:open_subsets_are_completely_metrizable} each $U_n$ is completely metrizable. Hence by Proposition \ref{proposition:each_metrizable_space_has_bounded_metric} we may pick a complete metric $d_n$ on $U_n$ which induces the topology on $U_n$. Define
+$$d(x_1,x_2) = \sum_{n\in \NN}\frac{1}{2^n}\cdot d_n(x_1,x_2)$$
+for every $x_1,x_2\in \bigcap_{n\in \NN}U_n$. Lemma \ref{lemma:series_of_metrics_properties} implies that $d$ is a metric. We also have
+$$\big\{\{x_m\}_{m\in \NN}\in X^{\NN}\,\big|\,\forall_{m\in \NN}\,x_m\in \bigcap_{n\in \NN}U_n\mbox{ and }\exists_{x\in \bigcap_{n\in \NN}U_n}\lim_{m\ra +\infty}d(x_m,x) = 0\big\} = $$
+$$= \big\{\{x_m\}_{m\in \NN}\in X^{\NN}\,\big|\,\forall_{m\in \NN}\,x_m\in \bigcap_{n\in \NN}U_n\mbox{ and }\exists_{x\in \bigcap_{n\in \NN}U_n}\forall_{n\in \NN}\lim_{m\ra +\infty}d_n(x_m,x) = 0\big\} = $$
+$$= \bigcap_{n\in \NN}\big\{\{x_m\}_{m\in \NN}\in X^{\NN}\,\big|\,\forall_{m\in \NN}\,x_m\in \bigcap_{n\in \NN}U_n\mbox{ and }\exists_{x\in \bigcap_{n\in \NN}U_n}\lim_{m\ra +\infty}d_n(x_m,x) = 0\big\} = $$
+$$= \mbox{the class of convergent sequences in }\bigcap_{n\in \NN}U_n\mbox{ for the subspace topology induced from $X$}$$
+The first equality follows from Lemma \ref{lemma:series_of_metrics_properties}. The second is a consequence of the fact that (restrictions of) $\{d_n\}_{n\in \NN}$ induce the same topology on $\bigcap_{n\in \NN}U_n$. Finally, the third equality follows the fact that the topology induced by (the restriction of) $d_n$ on $\bigcap_{n\in \NN}U_n$ coincides with the subspace topology induced from $X$ for every $n\in \NN$. Thus $d$ induces on $\bigcap_{n\in \NN}U_n$ the topology of the subspace of $X$. Next suppose that $\{x_m\}_{m\in \NN}$ is a sequence of elements of $\bigcap_{n\in \NN}U_n$ which is a Cauchy sequence with respect to $d$. Then according to Lemma \ref{lemma:series_of_metrics_properties} we derive that $\{x_m\}_{m\in \NN}$ is a Cauchy sequence with respect to $d_n$ for every $n\in \NN$. Since $d_n$ is a complete metric on $U_n$ for $n\in \NN$, $\{x_m\}_{m\in \NN}$ is convergent to some point in $U_n$ for every $n\in \NN$. Hence $\{x_m\}_{m\in \NN}$ is convergent to some point $x$ of $X$ and $x \in U_n$ for every $n\in \NN$. Thus $x$ is a point of $\bigcap_{n\in \NN}U_n$. Therefore, $\{x_m\}_{m\in \NN}$ is converges to some point in $\bigcap_{n\in \NN}U_n$. Hence $d$ is a complete metric on $\bigcap_{n\in \NN}U_n$ which induces the topology of subspace of $X$. This completes the proof of the theorem.
+\end{proof}
+\noindent
+Now we prove the converse of the Alexandrov's theorem.
+
+\begin{theorem}\label{theorem:completely_metrizable_subspace_of_metrizable_space_is_G_delta}
+Let $X$ be a metrizable space and let $A$ be its subspace. If $A$ is completely metrizable, then $A$ is a $G_{\delta}$ subset of $X$.
+\end{theorem}
+\begin{proof}
+Consider a metric $d$ on $X$ compatible with its topology. Suppose that $\delta$ is a complete metric on $A$ which induces the topology of the subspace of $X$. For each point $a$ in $A$ consider a sequence $\{r_n(a)\}_{n\in \NN}$ of positive real numbers such that
+$$\big\{x\in A\,\big|\,d(a,x) < r_n(a)\big\} \subseteq \big\{x\in A\,\big|\,\delta(a,x)\leq 2^{-n}\big\}$$
+and $r_n(a) \leq 2^{-n}$ for $n\in \NN$. Define
+$$U_n = \bigcup_{a\in A}\big\{x\in X\,\big|\,d(a,x) < r_n(a)\big\}$$
+for $n\in \NN$. Clearly $U_n$ is an open subset of $X$ and $A$ is contained in $U_n$ for every $n\in \NN$. Suppose now that $x$ is a point of $U_n$ for every $n\in \NN$. Then there exists a sequence $\{a_n\}_{n\in \NN}$ such that
+$$d(a_n,x) < r_n(a_n)$$
+for every $n\in \NN$. Since $r_{n}(a_n) \leq 2^{-n}$, we derive that $\{a_n\}_{n\in \NN}$ converges to $x$ with respect to $d$. Now fix $\epsilon > 0$ and consider $k\in \NN$ such that $2^{-k} < \epsilon$. Note that $\{a_n\}_{n\in \NN}$ converges to $x$ with respect to $d$ and $d(a_{k+1},x) < r_{k+1}(a_{k+1})$. Thus there exists $N\in \NN$ such that $d(a_{k+1},a_n) < r_{k+1}(a_{k+1})$ for every $n\geq N$. Fix $n,m\geq N$. Then $d(a_{k+1},a_n)$ and $d(a_{k+1},a_m)$ are both smaller than $r_{k+1}(a_{k+1})$. It follows that $\delta(a_{k+1},a_n)$ and $\delta(a_{k+1},a_m)$ are both smaller than $2^{-k-1}$. Hence
+$$\delta(a_n,a_m) \leq \delta(a_{k+1},a_n) + \delta(a_{k+1},a_m) \leq 2 \cdot 2^{-k-1} = 2^{-k} < \epsilon$$
+This inequality holds for all $n,m\geq N$. According to the fact that $\epsilon$ is arbitrary, we infer that $\{a_n\}_{n\in \NN}$ is a Cauchy sequence with respect to $\delta$. Since $\delta$ is complete metric which induces the topology of the subspace of $X$ on $A$, it follows that $\{a_n\}_{n\in \NN}$ is convergent to some element of $A$ with respect to the topology of $X$. On the other hand it converges to $x$ with respect to $d$. However, $\{a_n\}_{n\in \NN}$ converges to $x$ with respect to the topology of $X$. Thus $x$ is an element of $A$. This shows that
+$$A = \bigcup_{n\in \NN}U_n$$
+\end{proof}
+
+\section{Ulam's theorem on inner regularity}
+
+\begin{definition}
+Let $X$ be a Hausdorff topological space. Suppose that $X$ is normal and for every open subset $U$ of $X$ there is a family $\{F_n\}_{n\in \NN}$ of closed subsets of $X$ such that
+$$U = \bigcup_{n\in \NN}F_n$$
+Then $X$ is \textit{a perfectly normal space}. 
+\end{definition}
+
+\begin{proposition}\label{proposition:perfectly_normal_spaces_approximation_by_open_and_closed_subsets}
+Let $X$ be a perfectly normal space and let $\mu:\cB(X)\ra [0,1]$ be a probability measure on $X$. Then
+$$\mu(A) = \sup \big\{\mu(F)\,\big|\,F\mbox{ is closed in }X\mbox{ and }F\subseteq A\big\}$$
+and
+$$\mu(A) = \inf \big\{\mu(U)\,\big|\,U\mbox{ is open in }X\mbox{ and }A\subseteq U\big\}$$
+for every Borel set $A$ in $X$.
+\end{proposition}
+\begin{proof}
+Consider the family $\cF$ all Borel sets $A$ in $X$ such that
+$$\mu(A) = \sup \big\{\mu(F)\,\big|\,F\mbox{ is closed in }X\mbox{ and }F\subseteq A\big\}$$
+and
+$$\mu(A) = \inf \big\{\mu(U)\,\big|\,U\mbox{ is open in }X\mbox{ and }A\subseteq U\big\}$$
+We claim that $\cF$ is a $\lambda$-system. Consider a countable sequence $\{A_n\}_{n\in \NN}$ of pairwise disjoint sets in $\cF$. Pick $\epsilon > 0$ and for every $n\in \NN$ consider a closed subset $F_n$ of $X$ and an open subset $U_n$ of $X$ such that
+$$F_n\subseteq A_n\subseteq U_n$$
+and
+$$\mu(A_n) \leq \mu(F_n) + \frac{\epsilon}{2^{n+1}},\,\mu(U_n) \leq \mu(A_n) + \frac{\epsilon}{2^{n+1}}$$
+Then
+$$\mu\left(\bigcup_{n\in \NN} A_n\right) = \sum_{n\in \NN}\mu(A_n) \leq  \sum_{n\in \NN}\left(\mu(F_n) + \frac{\epsilon}{2^{n+1}}\right) = \epsilon  + \sum_{n\in \NN}\mu(F_n) = \mu\left(\bigcup_{n\in \NN}F_n\right) + \epsilon$$
+and
+$$\mu\left(\bigcup_{n\in \NN} U_n\right) \leq \sum_{n\in \NN}\mu(U_n) \leq  \sum_{n\in \NN}\left(\mu(A_n) + \frac{\epsilon}{2^{n+1}}\right) = \epsilon  + \sum_{n\in \NN}\mu(A_n) = \mu\left(\bigcup_{n\in \NN}A_n\right) + \epsilon$$
+Pick $N\in \NN$ such that
+$$\mu\left(\bigcup_{n\in \NN}F_n\right) \leq \mu\left(\bigcup_{n=0}^NF_n\right) + \epsilon$$
+and set $F = \bigcup_{n=0}^NF_n$ and $U = \bigcup_{n\in \NN}U_n$. Then we derive that $F$ is a closed subset of $X$ and $U$ is an open subset of $X$ such that
+$$F\subset \bigcup_{n\in \NN}A_n\subseteq U$$
+and
+$$\mu\left(\bigcup_{n\in \NN}A_n\right) \leq \mu(F) + 2\epsilon,\,\mu(U)\leq \mu\left(\bigcup_{n\in \NN}A_n\right) + \epsilon$$
+Since $\epsilon > 0$ was chosen arbitrarily, we derive that $\bigcup_{n\in \NN}A_n$ is in $\cF$. Thus $\cF$ is closed under countable unions of pairwise disjoint elements. Next suppose that $A$ in $\cF$.  Pick $\epsilon > 0$ and consider a closed subset $F$ of $X$ and an open subset $U$ of $X$ such that
+$$F\subseteq A\subseteq U$$
+and
+$$\mu(A) \leq \mu(F) + \epsilon,\,\mu(U) \leq \mu(A) + \epsilon$$
+Then we have
+$$X\setminus U\subseteq X\setminus A\subseteq X\setminus F$$
+and
+$$\mu(X\setminus A) \leq \mu(X\setminus U) + \epsilon,\,\mu(X\setminus F) \leq \mu(X\setminus A) + \epsilon$$
+Again since $\epsilon > 0$ was chosen arbitrarily, we derive that $X\setminus A$ is in $\cF$. Thus $\cF$ is closed under complements. Therefore, the claim is proved i.e. $\cF$ is a $\lambda$-system. Since $X$ is completely normal, we derive that the family $\tau$ of all open subsets of $X$ is contained in $\cF$. Hence $\cF$ contains the smallest $\lambda$-system generated by $\tau$. We denote this $\lambda$-system by $\lambda(\tau)$. Since $\tau$ is a $\pi$-system, we deduce by Dynkin's $\pi-\lambda$ lemma ({\cite[Theorem 1.4]{Introduction_to_measure_theory}}) that $\lambda(\tau) = \sigma(\tau) = \cB(X)$. Thus $\cB(X)\subseteq \cF$ and hence all Borel subsets of $X$ are in $\cF$.
+\end{proof}
+\noindent
+We introduce important notion.
+
+\begin{definition}
+Let $(X,\cF,\mu)$ be a space with measure. Suppose that $\tau$ is a Hausdorff topology on $X$ such that $\tau \subseteq \cF$ and for every $A\in \cF$ we have
+$$\mu(A) = \sup \big\{\mu(K)\,\big|\,K\mbox{ is compact with respect to $\tau$ and }K\subseteq A\big\}$$
+Then $\mu$ is \textit{an inner regular measure with respect to $\tau$}.
+\end{definition}
+
+\begin{theorem}[Ulam]\label{theorem:ulams_theorem_on_inner_regularity_of_measures_on_polish_spaces}
+Let $X$ be a Polish space. Then every probability measure $\mu:\cB(X)\ra [0,1]$ is inner regular.
+\end{theorem}
+\noindent
+We start by proving easy but useful result.
+
+\begin{lemma}\label{lemma:finite_family_of_closed_balls_with_almost_full_measure_for_closed_subset}
+Let $(X,d)$ be a separable metric space and let $\mu:\cB(X)\ra [0,1]$ be a probability measure. Fix a closed subset $F$ of $X$. Then for every $r > 0$ and $\epsilon > 0$, there exists a closed subset $F_{r,\epsilon}$ of $F$ such that
+$$\mu(F) \leq \mu(F_{r,\epsilon}) + \epsilon$$
+and $F_{\epsilon,r}$ admits a finite cover by closed balls in $X$ each having radius $r$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Let $\cB$ be a family of all closed balls in $X$ such that each of them has radius $r$. Then
+$$F \subseteq \bigcup_{B\in \cB}B$$
+By separability of $X$ there exists a countable subset $\{B_n\}_{n\in \NN} \subseteq \cB$ such that
+$$F \subseteq \bigcup_{n\in \NN}B_n$$
+In particular, by continuity of measure it follows that
+$$\mu(F) = \lim_{N\ra +\infty}\mu\left(F\cap \bigcup_{n=0}^NB_n\right)$$
+Hence for every $\epsilon > 0$ there exists $N_{\epsilon} \in \NN$ such that 
+$$\mu(F) \leq \mu\left(F\cap \bigcup_{n=0}^{N_{\epsilon}}B_n\right) + \epsilon$$
+It suffices to pick $F_{\epsilon,r} = F\cap \bigcup_{n=0}^{N_{\epsilon}}B_n$.
+\end{proof}
+
+\begin{lemma}\label{lemma:Ulams_observation}
+Let $X$ be a Polish space and let $\mu:\cB(X)\ra [0,1]$ be a probability measure. Then for every $\epsilon > 0$ there exists a compact subset $K$ of $X$ such that
+$$\mu(X)\leq \mu(K) + \epsilon$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Fix a complete and separable metric $d$ on $X$. We construct a sequence $\{F_n\}_{n\in \NN}$ of closed subsets of $X$ as follows. We set $F_0 = X$ and if $F_n$ is constructed, then we pick for $F_{n+1}$ a closed subset of $F_n$ such that
+$$\mu(F_{n})\leq \mu(F_{n+1}) + \frac{\epsilon}{2^{n+1}}$$
+and $F_{n+1}$ admits a finite cover by closed balls in $X$ each having radius $\frac{1}{n+1}$. Such construction is possible according to Lemma \ref{lemma:finite_family_of_closed_balls_with_almost_full_measure_for_closed_subset}. Next consider 
+$$K = \bigcap_{n\in \NN}F_n$$
+Then $K$ is closed and for every $n\in \NN$ it admits a finite cover by closed balls in $X$ each having radius $\frac{1}{n+1}$. Since $d$ is complete metric, it follows that $K$ is a compact subset of $X$. Moreover, we have
+$$\mu(X) \leq \mu(F_n) + \epsilon\cdot \left(\frac{1}{2} + ... + \frac{1}{2^{n}}\right)$$
+for every $n\in \NN$. Thus by continuity of $\mu$ we obtain
+$$\mu(X) \leq \mu(K) + \epsilon$$
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Fix a Borel set $A$ in $X$ and fix $\epsilon > 0$. By Proposition \ref{proposition:perfectly_normal_spaces_approximation_by_open_and_closed_subsets} there exists a closed subset $F$ of $X$ such that $F\subseteq A$ and $\mu(A) \leq \mu(F) + \frac{\epsilon}{2}$. By Lemma \ref{lemma:Ulams_observation} there exists a compact subset $K$ of $X$ such that $\mu(X) \leq \mu(K) + \frac{\epsilon}{2}$. Now we have
+$$mu\left(A\right) \leq \mu(F) + \frac{\epsilon}{2} = \mu(F\cap K) + \mu(F\setminus K) + \frac{\epsilon}{2} \leq$$
+$$\leq \mu(F\cap K) + \mu(X\setminus K) + \frac{\epsilon}{2}  \leq \mu(F\cap K) + \frac{\epsilon}{2} +  \frac{\epsilon}{2} = \mu(F\cap K) + \epsilon$$
+Note that $F\cap K$ is a compact subset of $X$ contained in $A$. Since $A$ and $\epsilon > 0$ are arbitrary, we derive that $\mu$ is inner regular.
+\end{proof}
+
+
+\noindent
+In this section we collect all results for metrizable topological spaces, which we need in this notes.
+
+\begin{definition}
+Let $X$ be a topological space and let $\ideal{m}$ be the smallest cardinal number such that $X$ has a topological basis of cardinality $\ideal{m}$. Then $\ideal{m}$ is \textit{the weight of $X$}.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a topological Hausdorff space. Assume that for every point $x$ in $X$ and every closed subset $F$ of $X$ such that $x\not \in F$ there exists a continuous function $f:X\ra [0,1]$ with $f(x) = 0$ and $F\subseteq f^{-1}(1)$. Then $X$ is \textit{a completely regular space}.
+\end{definition}
+
+\begin{theorem}[Tychonoff]\label{theorem:tychonoff_theorem_on_cube_embeddings}
+Let $X$ be a completely regular space with weight $\ideal{m}$. Then there exists an immersion $i:X\hookrightarrow [0,1]^{\ideal{m}}$ of topological spaces.
+\end{theorem}
+\begin{proof}
+Consider an open base $\cB$ of $X$ having cardinality $\ideal{m}$. Fix $B$ in $\cB$. For every $z$ in $B$ let $f_{B,z}:X\ra [0,1]$ be a continuous function such that $f_{B,z}(z) = 0$ and $X\setminus B \subseteq f_{B,z}^{-1}(1)$. Clearly 
+$$B = \bigcup_{z\in B}f_{B,z}^{-1}\left([0,1)\right)$$
+Since $\cB$ is of cardinality $\ideal{m}$, there exists a set $Z_B\subseteq B$ of cardinality $\ideal{m}$ such that
+$$B = \bigcup_{z\in Z_B}f_{B,z}^{-1}\left([0,1)\right)$$
+Denote $\cP = \bigcup_{B\in \cB}\left(\{B\}\times Z_B\right)$. Next define a map $i:X\ra [0,1]^{\cP}$ by formula $i(x)= \langle f_{B,z}(x)\rangle_{(B,z)\in \cP}$. By universal property of cartesian products it follows that this map is continuous.
+For every $(B,z)$ in $\cP$ let $\pi_{B,z}:[0,1]^{\cP}\ra [0,1]$ be the projection. Then
+$$i^{-1}\left(\pi_{B,z}^{-1}\left([0,1)\right)\right) = \left(\pi_{B,z}\cdot i\right)^{-1}\left([0,1)\right) = f_{B,z}^{-1}\left([0,1)\right)$$
+and hence
+$$i^{-1}\left(\bigcup_{z\in Z_B}\pi_{B,z}^{-1}\left([0,1)\right)\right) = \bigcup_{z\in Z_B} f_{B,z}^{-1}\left([0,1)\right) = B$$
+for every $B$ in $\cB$. Therefore, in order to prove that $i$ is an immersion of topological spaces it suffices to prove that it is injective. For this pick two distinct points $x_1,x_2$ in $X$. Then there exists $B$ in $\cB$ such that $x_1 \in B$ and $x_2\not \in B$. Then 
+$$x_1 \in \bigcup_{z\in Z_B} f_{B,z}^{-1}\left([0,1)\right),\,x_2\not \in \bigcup_{z\in Z_B} f_{B,z}^{-1}\left([0,1)\right)$$
+Hence there exists $z \in Z_B$ such that $f_{B,z}(x_1) < 1$ and $f_{B,z}(x_2) = 1$. Thus $i(x_1) \neq i(x_2)$ and this completes the proof of the injectivity of $i$. Note that $\cP$ is of cardinality $\ideal{m}$. Thus $i:X\hookrightarrow [0,1]^{\ideal{m}}$ is an immersion of topological spaces.
+\end{proof}
+
+\begin{definition}
+The topological product $[0,1]^{\NN}$ is called \textit{the Hilbert's cube}. 
+\end{definition}
+
+\begin{corollary}\label{corollary:tychonoff_metrization_theorem}
+Let $X$ be a topological space. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $X$ is second countable and completely regular space.
+\item There exists an immersion $i:X\hookrightarrow [0,1]^{\NN}$ of topological spaces.
+\item $X$ is second countable and metrizable space.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+The implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ follows from Theorem \ref{theorem:tychonoff_theorem_on_cube_embeddings}.\\
+Suppose that there exists an immersion $i:X\hookrightarrow [0,1]^{\NN}$. Note that Hilbert's cube is metrizable. For example define
+$$d\left(\{x_n\}_{n\in \NN},\{y_n\}_{n\in \NN}\right) = \sum_{n\in \NN}2^{-n}\cdot |x_n - y_n|$$
+for every $\{x_n\}_{n\in \NN},\{y_n\}_{n\in \NN} \in [0,1]^{\NN}$. Then $d$ is a metric which induces the Hilbert's cube topology. Let $D_n$ be the subset of $[0,1]^{\NN}$ consisting of sequences which have first $n$-elements rational and the remaining elements equal to zero. Then 
+$$\bigcup_{n\in \NN}D_n\subseteq [0,1]^{\NN}$$
+is dense and countable subset. Thus $[0,1]^{\NN}$ is second countable. Moreover, the subspace of a metrizable second countable space is itself metrizable and second countable. Thus $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ holds.\\
+Suppose that $X$ is metrizable and let $d:X\times X \ra [0,+\infty)$ be the metric compatible with topology on $X$. Fix a point $x$ in $X$ and a closed subset $F$ in $X$ such that $x\not \in F$. Then
+$$f(z) = 1 - d(z,F)$$ 
+\end{proof}
+
+
+
+\section{Topology of Polish spaces}
+We first introduce main object of our study.
+
+\begin{definition}
+Let $X$ be a topological space which is completely metrizable and separable. Then $X$ is \textit{a Polish space}.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+\end{document}
