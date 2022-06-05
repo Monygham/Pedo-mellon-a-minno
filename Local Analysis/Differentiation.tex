@@ -1,0 +1,432 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Differentiability}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In this notes we collect basic results on derivatives of functions defined on open subsets of real or complex Banach spaces.\\
+Symbol $\mathbb{K}$ denotes the base field which is either $\RR$ or $\CC$.
+
+\section{Preliminaries on bounded multilinear forms on normed spaces over $\mathbb{K}$}
+\noindent
+In this section we fix a positive integer $n$ and consider normed spaces $\fD_1,...,\fD_n, \fX$ over $\mathbb{K}$. 
+
+\begin{definition}
+Let $L:\fD_1\times ... \times \fD_n\ra \fX$ be a $\mathbb{K}$-multilinear form. Suppose that there exists $C > 0$ such that
+$$||L(x_1,...,x_n)|| \leq C\cdot ||x_1||\cdot ... \cdot ||x_n||$$
+for every $x_i \in \fD_i$ for $i\in \{1,...,n\}$. Then $L$ is \textit{bounded}.
+\end{definition}
+\noindent
+The following result characterizes bounded multilinear forms.
+
+\begin{theorem}\label{theorem:characterization_of_bounded_multilinear_maps}
+Let $L:\fD_1\times ... \times \fD_n\ra \fX$ be a $\mathbb{K}$-multilinear form. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $L$ is continuous.
+\item $L$ is continuous at zero $n$-tuple in $\fD_1\times ... \times \fD_n$.
+\item $L$ is bounded.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ is obvious.\\
+Suppose that $L$ is continuous at zero $n$-tuple in $\fD_1\times ... \times \fD_n$. Assume that there exists a sequence $\big\{(x_{m,1},...,x_{m,n})\big\}_{m\in \NN_+}$ such that $x_{m,i} \in \fD_i$, $||x_{m,i}||=1$ for each $i$ and
+$$||L(x_{m,1},...,x_{m,n})|| \geq m$$
+for each $m\in \NN_+$. Define $y_{m,i} = \frac{1}{\sqrt[n]{m}}\cdot x_{m,i}$ for every $i\in \{1,...,n\}$ and every $m\in \NN_+$. Then $\{y_{m,i}\}_{m\in \NN_+}$ tends to zero for every $i\in \{1,...,n\}$ and
+$$||L(y_{m,1},...,y_{m,n})|| \geq 1$$
+for every $m\in \NN_+$. This is a contradiction with the assumption that $L$ is continuous at zero $n$-tuple in $\fD_1\times ... \times \fD_n$. Therefore, there exists $C > 0$ such that
+$$||L(x_1,...,x_n)|| \leq C$$
+for every $x_i \in \fD_i$ with $||x_i|| = 1$ for $i\in \{1,...,n\}$. Thus the implication $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ holds.\\
+Assume that $L$ is bounded. Pick $x_i \in \fD_i$ and $h_i\in \fD_i$ for $i\in \{1,...,n\}$. Define
+$$z_0  = (x_1,...,x_n),\,z_i = (x_1+h_1,...,x_i+h_i,x_{i+1},...,x_n)$$
+for $i\in \{1,...,n\}$. Then
+$$\big|\big|L\left(x_1+h_1,...,x_n+h_n\right) - L\left(x_1,...,x_n\right)\big|\big| = \bigg|\bigg|\sum_{i=1}^n\left(L(z_{i}) - L(z_{i-1})\right)\bigg|\bigg| \leq $$
+$$\leq\sum_{i=1}^n\big|\big|L(z_{i}) - L(z_{i-1})\big|\big| \leq \sum_{i=1}^nC\cdot ||x_1||\cdot ...\cdot ||x_{i-1}||\cdot ||h_i||\cdot ||x_{i+1}||\cdot ... \cdot ||x_n||$$
+Thus if $(h_1,...,h_n)\ra 0$, then $L\left(x_1+h_1,...,x_n+h_n\right) - L\left(x_1,...,x_n\right) \ra 0$. This shows that $L$ is continuous. Hence the proof of the implication $\textbf{(iii)}\Rightarrow \textbf{(i)}$ is completed.
+\end{proof}
+
+\begin{definition}
+Let $L:\fD_1\times ... \times \fD_n\ra \fX$ be a bounded $\mathbb{K}$-multilinear form. Then we define
+$$||L|| = \sup \big\{||L\left(x_1,...x_n\right)||\,\big|\,\forall_{i\in \{1,...,n\}}\,x_i\in \fD_i\mbox{ and }||x_i|| = 1 \big\}$$
+and call it \textit{the operator norm of $L$}.
+\end{definition}
+
+\begin{fact}\label{fact:operator_norm_is_lipschitz_constant}
+Let $L:\fD_1\times ... \times \fD_n\ra \fX$ be a bounded $\mathbb{K}$-multilinear form. Then
+$$||L(x_1,...,x_n)|| \leq ||L||\cdot ||x_1||\cdot ...\cdot ||x_n||$$
+for every $(x_1,...,x_n) \in \fD_1\times ... \times \fD_n$.
+\end{fact}
+\begin{proof}
+Left for the reader as an exercise.
+\end{proof}
+
+\begin{theorem}\label{theorem:bounded_multilinear_maps_form_Banach_space_if_target_is_Banach}
+Let $L\left(\fD_1,...,\fD_n;\fX\right)$ be a $\mathbb{K}$-vector space of bounded multilinear forms $\fD_1\times ... \times \fD_n\ra \fX$ with respect to operations defined pointwise. Suppose that $\fX$ is a Banach space over $\mathbb{K}$. Then 
+$$L\left(\fD_1,...,\fD_n;\fX\right) \ni L\mapsto ||L||\in [0,+\infty)$$
+is a norm which makes $L\left(\fD_1,...,\fD_n;\fX\right)$ into a Banach space over $\mathbb{K}$.
+\end{theorem}
+\begin{proof}
+We left as an exercise the proof that operator norm is well defined vector space norm on $L\left(\fD_1,...,\fD_n;\fX\right)$. Consider a Cauchy's sequence $\{L_m\}_{m\in \NN}$ with respect to operator norm. Then $\{||L_m||\}_{m\in \NN}$ is Cauchy's sequence and hence is convergent in $\mathbb{R}$. Fix $(x_1,...x_n)\in \fD_1\times ... \times \fD_n$. Then by Fact \ref{fact:operator_norm_is_lipschitz_constant}
+$$||\left(L_m - L_k\right)\left(x_1,...,x_n\right)|| \leq ||L_m-L_k||\cdot ||x_1||\cdot ...\cdot ||x_n||$$
+for every $m,k\in \NN$. This implies that $\big\{L_m\left(x_1,...,x_n\right)\big\}_{m\in \NN}$ is a Cauchy's sequence in $\fX$. Since $\fX$ is a Banach space over $\mathbb{K}$, we derive that this sequence is convergent. We define
+$$L\left(x_1,...,x_n\right) = \lim_{m\ra +\infty}L_m\left(x_1,...,x_n\right)$$
+Note that we have
+$$||L(x_1,...,x_n)|| = \lim_{m\ra +\infty}||L_m\left(x_1,...,x_n\right)|| \leq \left(\lim_{m\ra +\infty}||L_m||\right) \cdot ||x_1||\cdot ...\cdot ||x_n||$$
+Therefore, $L:\fD_1\times ... \times \fD_n\ra \fX$ is a bounded $\mathbb{K}$-multilinear form. We claim that $L$ is the limit of $\{L_m\}_{m\in \NN}$ with respect to operator norm. For the proof fix $(x_1,...x_n)\in \fD_1\times ... \times \fD_n$ such that $||x_1||=...=||x_n|| = 1$. Then
+$$||\left(L - L_m\right)(x_1,...x_n)|| \leq ||L(x_1,...,x_n) - L_k(x_1,...,x_m)|| + ||L_k - L_m||$$
+Thus we have
+$$||\left(L - L_m\right)(x_1,...x_n)|| \leq \limsup_{k\ra +\infty}||L_k - L_m||$$
+The left hand side does not depend on $x_1,...,x_n$ and we deduce that
+$$||L - L_m|| \leq \limsup_{k\ra +\infty}||L_k - L_m||$$
+Invoking once again the assumption that $\{||L_m||\}_{m\in \NN}$ is Cauchy's sequence we infer
+$$\lim_{m\ra +\infty}||L - L_m|| \leq \lim_{m\ra +\infty}\limsup_{k\ra +\infty}||L_k - L_m|| = 0$$
+This completes the proof.
+\end{proof}
+
+\begin{proposition}\label{proposition:multilinear_maps_canonical_isometry}
+The canonical map $L\left(\fD_1,...,\fD_{n-1};L\left(\fD_n,\fX\right)\right) \ra L\left(\fD_1,...,\fD_n;\fX\right)$
+which sends $L$ in $L\left(\fD_1,...,\fD_{n-1};L\left(\fD_n,\fX\right)\right)$ to a $\mathbb{K}$-multilinear form given by formula 
+$$\fD_1\times ...\times \fD_n \ni (x_1,...,x_n) \mapsto L(x_1,...,x_{n-1})(x_n) \in \fX$$
+is an isometry of normed spaces.
+\end{proposition}
+\begin{proof}
+Left for the reader as an exercise.
+\end{proof}
+
+\section{Notion of Fr{\'e}chet derivatives}
+\noindent
+In this section we introduce derivatives and prove their basic properties. We fix Banach spaces $\fD,\fX$ over $\mathbb{K}$. Let $U$ be an open subset of $\fD$ and let $V$ be an open subset of $\fX$.
+
+\begin{fact}\label{fact:uniqueness_of_derivative}
+Let $x$ be a point in $U$ and let $f:U\ra V$ be a function. Suppose that there are continuous $\mathbb{K}$-linear maps $L_i:\fD\ra \fX$ for $i=1,2$. If both functions
+$$\big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\} \ni h\mapsto \frac{f(x+h) - f(x) - L_i(h)}{||h||} \in \fX$$
+tend to zero as $h\ra 0$, then $L_1 = L_2$.
+\end{fact}
+\begin{proof}
+By assumption the function
+$$\big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\} \ni h\mapsto \left(L_1 - L_2\right)\left(\frac{h}{||h||}\right) \in \fX$$
+tends to zero as $h\ra 0$. This implies that $L_1 - L_2$ sends each vector of the unit sphere in $\fD$ to zero. Thus $L_1 - L_2 = 0$ and hence $L_1 = L_2$. 
+\end{proof}
+
+\begin{definition}
+Let $x$ be a point in $U$. A function $f:U\ra V$ is \textit{differentiable at point $x$} if there exists a continuous $\mathbb{K}$-linear map $L:\fD\ra \fX$ such that the function 
+$$\big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\} \ni h\mapsto \frac{f(x+h) - f(x) - L(h)}{||h||} \in \fX$$
+tends to zero as $h\ra 0$. Moreover, the unique continuous $\mathbb{K}$-linear map $L$ is \textit{the derivative of $f$ at $x$}.
+\end{definition}
+
+\begin{remark}\label{remark:Fr{\'e}chet_derivative}
+Notion of differentiability defined above is named by some authors \textit{Fr{\'e}chet differentiability} after french mathematician Maurice Fr{\'e}chet.
+\end{remark}
+    
+\begin{remark}\label{remark:notation_for_derivative}
+Let $x$ be a point in $U$ and let $f:U\ra V$ be a function differentiable at point $x$. Then the derivative of $f$ at $x$ is usually denoted by $f'(x)$.
+\end{remark}
+
+\begin{fact}\label{fact:differentiable_is_continuous}
+Let $x$ be a point in $U$ and let $f:U\ra V$ be a function differentiable at $x$. Then $f$ is continuous at $x$.
+\end{fact}
+\begin{proof}
+Consider the function $\phi_f(h)$ defined on the set 
+$$\big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\}$$
+by formula $f(x+h) - f(x) = f'(x)(h) + \phi_f(h)\cdot ||h||$. By definition $\phi_f$ is continuous at zero. In order to complete the argument it suffices to note that the set $\big\{h\in \fD\,\big|\,x+h\in U\big\}$ contains a neighborhood of zero in $\fD$.
+\end{proof}
+
+\begin{definition}
+A function $f:U\ra V$ is \textit{differentiable} if it is differentiable at each point of $U$.
+\end{definition}
+
+\section{Chain rule}
+\noindent
+Chain rule is a basic tools for calculating Fr{\'e}chet derivatives of a more complex functions.
+
+\begin{theorem}\label{theorem:chain_rule_for_differentiable}
+Let $U\subseteq \fD$, $V\subseteq \fX$, $W\subseteq \fZ$ be open subsets of Banach spaces over $\mathbb{K}$ and let $f:U\ra V$, $g:V\ra W$ be functions. Suppose that $f$ is differentiable at some point $x$ in $U$ and $g$ is differentiable at $f(x)$. Then $g\cdot f$ is differentiable at $x$ and the chain rule
+$$\left(g\cdot f\right)'(x) = g'\left(f(x)\right)\cdot f'(x)$$
+holds.
+\end{theorem}
+\begin{proof}
+Let $L$ be derivative of $f$ at $x$ and let $K$ be a derivative of $g$ at $f(x)$. For $h$ in $\fD$ such that $x+h\in U$ define $\phi_f(h)$ by formula
+$$f(x + h) - f(x) - L(h) = \phi_f(h)\cdot ||h||$$
+Similarly for $s$ in $\fX$ such that $f(x) + s \in V$ define $\phi_g(s)$ by formula
+$$g(f(x) + s) - g(f(x)) - K(s) = \phi_g(s)\cdot ||s||$$
+Now pick nonzero $h$ in $\fD$ such that $x+h \in U$ and $f(x + h) \in V$. Then
+$$\big|\big|g\left(f(x+h)\right)- g\left(f(x)\right) - K\left(L(h)\right)\big|\big| = \bigg|\bigg|\phi_g\big(f(x+h) - f(x)\big)\cdot ||f(x+h) - f(x)|| + K\big(\phi_f(h)\cdot ||h||\big)\bigg|\bigg| \leq$$
+$$\leq \big|\big|\phi_g\big(f(x+h) - f(x)\big)\big|\big| \cdot ||f(x+h) - f(x)|| + \big|\big| K\big(\phi_f(h)\big)\big|\big|\cdot ||h|| \leq$$
+$$\leq \big|\big|\phi_g\big(f(x+h) - f(x)\big)\big|\big| \cdot ||f(x+h) - f(x) - L(h)|| + \big|\big|\phi_g\big(f(x+h) - f(x)\big)\big|\big|\cdot ||L(h)|| + \big|\big| K\big(\phi_f(h)\big)\big|\big|\cdot ||h|| \leq $$
+$$\leq \bigg(\big|\big|\phi_g\big(f(x+h) - f(x)\big)\big|\big| \cdot ||\phi_f(h)|| + \big|\big|\phi_g\big(f(x+h) - f(x)\big)\big|\big|\cdot ||L|| + ||K||\cdot ||\phi_f(h)||\bigg)\cdot ||h||$$
+According to Fact \ref{fact:differentiable_is_continuous} we have $f(x+h) - f(x) \ra 0$ as $h\ra 0$. Hence by differentiability of $f$ at $x$ and $g$ at $f(x)$ we derive that
+$$\phi_g\big(f(x+h) - f(x)\big)\ra 0,\,\phi_f(h)\ra 0$$
+as $h\ra 0$. Since
+$$\big\{h\in \fD\,\big|\,x+h\in U\mbox{ and }f(x+h)\in V\big\}$$
+contains open neighborhood of zero in $\fD$, we derive that
+$$\big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\} \ni h \mapsto \frac{g\left(f(x+h)\right)- g\left(f(x)\right) - K\left(L(h)\right)}{||h||} \in \fZ$$
+tends to zero as $h\ra 0$. This completes the proof.
+\end{proof}
+
+\section{Mean value inequality}
+\noindent
+The main topic of this section is extremely useful inequality, which connects derivatives with local change of a function.
+
+\begin{definition}
+Let $\fD$ be an affine space over $\mathbb{K}$ and let $x_1,x_2$ are points in $\fD$. The subsets
+$$[x_1,x_2] = \big\{t\cdot x_1 + (1 - t)\cdot x_2\in \fD\,\big|\,t\in [0,1]\big\},\,(x_1,x_2) = \big\{t\cdot x_1 + (1 - t)\cdot x_2\in \fD\,\big|\,t\in (0,1)\big\}$$
+of $\fD$ are called \textit{the closed} and \textit{the open interval with endpoints $x_1,x_2$}, respectively.
+\end{definition}
+
+\begin{theorem}\label{theorem:mean_value_inequality}
+Let $U\subseteq \fD,V\subseteq \fX$ be open subsets of Banach spaces over $\mathbb{K}$ and let $f:U\ra V$ be a continuous function. Suppose that $x_1,x_2$ are points of $\fD$ such that $[x_1,x_2] \subseteq U$ and $f$ is differentiable at every point in $(x_1,x_2)$. Then the mean value inequality
+$$||f(x_1) - f(x_2)||\leq ||x_1 - x_2||\cdot \sup_{z \in (x_1,x_2)}\big|\big|f'\left(z\right)\big|\big|$$
+holds.
+\end{theorem}
+\begin{proof}
+For every $t\in [0,1]$ we define $x(t) = t\cdot x_1 + (1-t)\cdot x_2$. Consider the continuous function $g:[0,1] \ra V$ given by formula $g(t) = f\left(x(t)\right)$. Theorem \ref{theorem:chain_rule_for_differentiable} together with assumptions imply that $g$ is differentiable over $\RR$ at each point of $(0,1)$ as the composition of functions
+$$[0,1]\ni t\mapsto x(t) \in U,\,f:U\ra V$$
+Moreover, its derivative is the map
+$$\RR\ni h \mapsto h\cdot f'\left(x(t)\right)\big(x_1 - x_2\big) \in \fX$$
+for every $t\in (0,1)$. Thus the mean value inequality is implied by the inequality
+$$||g(1) - g(0)||\leq \sup_{t\in (0,1)}\big|\big|g'(t)\big|\big|$$
+Fix $\epsilon > 0$ and consider the set
+$$S = \bigg\{s\in [0,1]\,\bigg|\,||g(s) - g(0)||\leq s\cdot \sup_{t\in (0,s)}||g'(t)||+ s\cdot \epsilon + \epsilon\bigg\}$$
+We shall prove that $S$ satisfies the following assertions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item There exists $h> 0$ such that $[0,h)\subseteq S$. 
+\item For every $s$ in $S \cap (0,1)$ there exists $h > 0$ such that $s+h$ is contained in $S$.
+\item For every increasing sequence $\{s_n\}_{n\in \NN}$ of elements of $S$ its limit is contained in $S$.
+\end{enumerate}
+The assertion \textbf{(1)} holds by continuity of $g$ at zero.\\
+Let us prove \textbf{(2)}. Write
+$$g(s+h) - g(s) - g'(s)\cdot h = \phi_g(h)\cdot |h|$$
+for $h > 0$ such that $s + h \leq 1$. Then $\phi_g(h)$ tends to zero as $h\ra 0$ according to differentiability of $g$ at $(0,1)$. Thus
+$$||g(s+h) - g(0)|| \leq ||g(s+h) - g(s)|| + ||g(s) - g(0)|| \leq$$
+$$\leq ||\phi_g(h)\cdot h + g'(s)\cdot h|| + s\cdot \sup_{t\in (0,s)}||g'(t)||+ s\cdot \epsilon + \epsilon \leq$$
+$$\leq h\cdot \bigg(||\phi_g(h)|| + ||g'(s)||\bigg) + s\cdot \sup_{t\in (0,s)}||g'(t)||+ s\cdot \epsilon + \epsilon$$
+Since $\phi_g(h)$ tends to zero as $h\ra 0$, we may pick $h > 0$ such that $s + h \leq 1$ and $||\phi_g(h)|| \leq \epsilon$. Then
+$$||g(s+h) - g(0)|| \leq h\cdot \bigg(\epsilon + ||g'(s)||\bigg) + s\cdot \sup_{t\in (0,s)}||g'(t)||+ s\cdot \epsilon + \epsilon \leq$$
+$$\leq (s+h)\cdot \sup_{t\in (0,s]}||g'(t)|| + \epsilon \cdot (s + h) + \epsilon \leq (s+h)\cdot \sup_{t\in (0,s+h)}||g'(t)|| + \epsilon \cdot (s + h) + \epsilon$$
+and hence clearly $s+h$ is in $S$.\\
+For the proof of \textbf{(3)} fix $\{s_n\}_{n\in \NN}$ an increasing sequence of elements of $S$. Let $s$ be its limit. For every $n\in \NN$ we have
+$$||g(s_n) - g(0)||\leq s_n\cdot \sup_{t\in (0,s_n)}||g'(t)||+ s_n\cdot \epsilon + \epsilon \leq s\cdot \sup_{t\in (0,s)}||g'(t)||+ s\cdot \epsilon + \epsilon$$
+For $n\ra +\infty$ we obtain
+$$||g(s) - g(0)|| \leq s\cdot \sup_{t\in (0,s)}||g'(t)||+ s\cdot \epsilon + \epsilon$$
+by continuity of $g$ on $[0,1]$. Thus the proof of \textbf{(3)} is complete.\\
+Using these three assertions we complete the proof. Note first that by \textbf{(1)} the set $S$ contains some elements of $(0,1)$ and by \textbf{(3)} it contains its least upper bound. According to \textbf{(2)} the least upper bound of $S$ cannot be contained in $(0,1)$. Thus the least upper bound of $S$ is $1$. This proves that
+$$||g(1) - g(0)||\leq \sup_{t\in (0,1)}||g'(t)||+ 2\cdot \epsilon$$
+for every $\epsilon > 0$ and thus
+$$||g(1) - g(0)||\leq \sup_{t\in (0,1)}||g'(t)||$$
+The proof is complete.
+\end{proof}
+
+\begin{corollary}\label{corollary:derivative_zero_on_connected_implies_that_function_is_constant}
+Let $U\subseteq \fD,V\subseteq \fX$ be open subsets of Banach spaces over $\mathbb{K}$ and let $f:U\ra V$ be a differentiable function. If $U$ is connected and derivative of $f$ at each point of $U$ is the zero map, then $f$ is constant. 
+\end{corollary}
+\begin{proof}
+Theorem \ref{theorem:mean_value_inequality} shows that for every open convex set $W\subseteq U$ the restriction $f_{\mid W}$ is constant. Let $y$ be some element of $f(U)$. It follows that the set $f^{-1}(y)$ is open. Let $\{x_n\}_{n\in \NN}$ be a sequence of elements of $f^{-1}(y)$ which is convergent to some point $x$ in $U$. Pick an open and convex neighborhood $W$ of $x$. Then for sufficiently large $n\in \NN$ we have $x_n\in W$ and thus $x \in f^{-1}(y)$. Therefore, $f^{-1}(y)$ is closed. Hence $f^{-1}(y)$ is a clopen nonempty subset of a connected set $U$. This shows that $U = f^{-1}(y)$. 
+\end{proof}
+
+\section{Convergence of sequences of differentiable functions}
+\noindent
+In this section we prove important result concerning convergence of differentiable functions. 
+
+\begin{definition}
+Let $X$ be a topological space and let $Y$ be a metric space. Let $\{f_n:X\ra Y\}_{n\in \NN}$ be a sequence of functions and $f:X\ra Y$ be a function. Suppose that for every point $x$ in $X$ there exists an open neighborhood $W$ of $x$ in $X$ such that the sequence $\{{f_n}_{\mid W}\}_{n\in \NN}$ converges uniformly to $f_{\mid W}$. Then the sequence $\{f_n\}_{n\in \NN}$ is \textit{locally uniformly convergent to $f$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:convergence_of_differentiable_functions}
+Let $U\subseteq \fD$ be open subset of a Banach space $\fD$ over $\mathbb{K}$, let $\fX$ be a Banach space over $\mathbb{K}$  and let $\{f_n:U\ra \fX\}_{n\in \NN}$ be a sequence of functions. Assume that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item $U$ is connected.
+\item There exists $u$ in $U$ such that the sequence $\{f_n(u)\}_{n\in \NN}$ is convergent to some element of $\fX$.
+\item $f_n$ is differentiable for every $n\in \NN$.
+\item The sequence of maps
+$$\big\{U\ni x \mapsto f_n'(x) \in L\left(\fD,\fX\right)\big\}_{n\in \NN}$$
+is locally uniformly convergent to a continuous map $g:U\ra L\left(\fD,\fX\right)$.
+\end{enumerate}
+Then the sequence $\{f_n\}_{n\in \NN}$ converges locally uniformly to a differentiable function $f:U\ra \fX$ and $f'(x) = g(x)$ for every $x\in U$.
+\end{theorem}
+\begin{proof}
+Suppose that $z$ is a point of $U$ such that $\{f_n(z)\}_{n\in \NN}$ is convergent. Let $W$ be a bounded, open and convex neighborhood of $z$ in $\fD$ and assume that
+$$\big\{W\ni x \mapsto f_n'(x) \in L\left(\fD,\fX\right)\big\}_{n\in \NN}$$
+converges uniformly. Let $x$ be a point of $W$. Then
+$$||f_n(x) - f_m(x)|| \leq ||\left(f_n(x) - f_m(x)\right) - \left(f_n(z) - f_m(z)\right)|| + ||f_n(z) - f_m(z)|| \leq$$
+$$\leq ||x - z||\cdot \sup_{y\in (x,z)}\big|\big|f_n'\left(y\right) - f_m'\left(y\right)\big|\big| + ||f_n(z) - f_m(z)||$$
+Hence
+$$\sup_{x\in W}||f_n(x) - f_m(x)|| \leq \mathrm{diam}\left(W\right)\cdot \sup_{x\in W}\big|\big|f_n'\left(x\right) - f_m'\left(x\right)\big|\big| + ||f_n(z) - f_m(z)||$$
+Since $\{f_n(z)\}_{n\in \NN}$ is convergent, $\fX$ is complete and
+$$\big\{W\ni x \mapsto f_n'(x) \in L\left(\fD,\fX\right)\big\}_{n\in \NN}$$
+converges uniformly, we derive that $\{{f_n}_{\mid W}\}_{n\in \NN}$ converges uniformly. This proves that the sequence $\{{f_n}_{\mid W}\}_{n\in \NN}$ is uniformly convergent for every bounded, open and convex subset $W$ of $U$ such that the sequence
+$$\big\{W\ni x \mapsto f_n'(x) \in L\left(\fD,\fX\right)\big\}_{n\in \NN}$$
+converges uniformly and there exists $z \in W$ such that $\{f_n(z)\}_{n\in \NN}$ is convergent.\\
+We define $\cW$ as the largest open subset of $U$ such that $\{{f_n}_{\mid \cW}\}_{n\in \NN}$ converges locally uniformly. Note that $u \in \cW$ according to the first part of the proof. Suppose that $\{z_n\}_{n\in \NN}$ is a sequence of elements of $\cW$ convergent to some point $z$ in $U$. Pick a bounded, open and convex neighborhood $W$ of $z$ such that
+$$\big\{W\ni x \mapsto f_n'(x) \in L\left(\fD,\fX\right)\big\}_{n\in \NN}$$
+converges uniformly. Then for sufficiently large $n\in \NN$ we have $z_n \in W$. Thus $\{{f_n}_{\mid W}\}_{n\in \NN}$ is uniformly convergent by the first part of the proof and hence $z$ is in $\cW$. This implies that $\cW$ is a closed subset of $U$. Hence it is a clopen and nonempty subset of $U$. Since $U$ is connected, we have $U = \cW$ and $\{f_n\}_{n\in \NN}$ is locally uniformly convergent to some function $f:U\ra \fX$.\\
+Fix $x$ in $U$ and let $W$ be an open neighborhood of zero in $\fD$ such that $[x,x+h]\subseteq U$ for every $h\in W$. We apply Theorem \ref{theorem:mean_value_inequality} to a function $k_n:W\ra \fX$ given by formula
+$$k_n(h) = f_n(x+h) - f_n'(x)(h)$$
+with derivative $k_n'(h) = f_n'(x+h) - f_n'(x)$ for all $h\in W$. We deduce that
+$$\big|\big|f_n(x+h) - f_n(x) - f_n'(x)(h)\big|\big| = ||k_n(h) - k_n(0)|| \leq ||h||\cdot \sup_{z\in (0,h)}||k'_n(z)|| =$$
+$$= ||h||\cdot \sup_{z\in (0,h)}||f_n'(x+z) - f_n'(x)|| = ||h||\cdot \sup_{z\in (x,x+h)}||f_n'(z) - f_n'(x)||$$
+For $n\ra +\infty$ we obtain that
+$$\big|\big|f(x+h) - f(x) - g(x)(h)\big|\big| \leq ||h||\cdot \sup_{z\in (x,x+h)}||g(z) - g(x)||$$
+Since $g$ is continuous, we derive that 
+$$\lim_{h\ra 0}\,\sup_{z\in (x,x+h)}||g(z) - g(x)|| = 0$$
+and thus $f'(x) = g(x)$.
+\end{proof}
+
+\section{Partial derivatives}
+\noindent
+We fix Banach spaces $\fD_1,...,\fD_n,\fX$ over $\mathbb{K}$ for some positive integer $n$. For each $i\in \{1,...,n\}$ let $U_i\subseteq \fD_i$ be an open subset and let $V$ be an open subset of $\fX$.
+
+\begin{definition}
+Consider a function $f:U_1\times ... \times U_n\ra V$ and a point $x = (x^1,...,x^n) \in U_1\times ...\times U_n$. Fix $i$ in $\{1,...,n\}$. Suppose that the restriction 
+$$f_{\mid \{(x^1,...,x^{i-1})\}\times U_i\times \{(x^{i+1},...,x^n)\}}:U_i\ra V$$
+is differentiable at $x^i$. Then its derivative is \textit{the partial derivative of $f$ at $x$ along $i$-th axis}. 
+\end{definition}
+
+\begin{remark}\label{remark:notation_for_partial_derivatives}
+In the situation of the definition above we usually denote the partial derivative of $f$ at $x$ along $i$-th axis by the symbol
+$$\frac{\partial f}{\partial x_i}(x)$$
+Note that $\frac{\partial f}{\partial x_i}(x):\fD_i\ra \fX$ is a continuous $\mathbb{K}$-linear map.
+\end{remark}
+
+\begin{proposition}\label{proposition:derivative_implies_the_existence_of_partial_derivatives}
+Let $f:U_1\times ... \times U_n\ra V$ be a function differentiable at some point $x \in U_1\times ...\times U_n$. Fix $i\in \{1,...,n\}$. Then
+$$\frac{\partial f}{\partial x_i}(x):\fD_i\ra \fX$$
+exists and is the composition of the canonical inclusion $\fD_i \hookrightarrow \fD_1\times ... \times \fD_n$ with $f'(x):\fD_1\times ... \times \fD_n \ra \fX$.
+\end{proposition}
+\begin{proof}
+Suppose that $\phi_f$ is a function given by formula
+$$\big\{s\in \fD_1\times ...\times \fD_n\,\big|\,s\neq 0\mbox{ and }x+s\in U\big\} \ni h\mapsto \frac{f(x+s) - f(x) - f'(x)(s)}{||s||} \in \fX$$
+Denote the restriction $f_{\mid \{(x^1,...,x^{i-1})\}\times U_i\times \{(x^{i+1},...,x^n)\}}$ by $f_i$ and denote the inclusion $\fD_i \hookrightarrow \fD_1\times ... \times \fD_n$ by $j_i$. Recall that for every $h\in \fD_i$ we have $||h|| = ||j_i(h)||$. Pick $h \in \fD_i$ such that $h\neq 0$ and $x_i+h \in U_i$. We have
+$$\frac{f_i(x_i + h) - f_i(x_i) - \left(f'(x)\cdot j_i\right)(h)}{||h||} = \frac{f\left(x + j_i(h)\right) - f(x) - f'(x)\left(j_i(h)\right)}{||j_i(h)||} = \phi_f\left(j_i(h)\right)$$
+Since by definition of $f'(x)$ the function $\phi_f(s)$ tends to zero as $s\ra 0$, we derive that $\phi_f\left(j_i(h)\right)$ tends to zero as $h\ra 0$. Thus the partial derivative of $f$ at $x$ along $i$-th axis exists and is given by formula $f'(x)\cdot j_i$.
+\end{proof}
+\noindent
+It is reasonable to ask for the converse of Proposition \ref{proposition:derivative_implies_the_existence_of_partial_derivatives}. The next theorem gives useful answer to this question under some additional assumptions.
+
+\begin{theorem}\label{theorem:if_partial_derivatives_exist_and_are_continuous_then_function_is_differentiable}
+Let $f:U_1\times ... \times U_n\ra V$ be a function and let $x$ be a point in $U_1\times..\times U_n$. Suppose that the following two assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item $\frac{\partial f}{\partial x_i}(u)$ exist for each $i\in \{1,...,n\}$ and every point $u \in U_1\times ...\times U_n$. 
+\item For each $i \in \{1,...,n\}$ the map
+$$U_1\times ... \times U_n \ni u \mapsto \frac{\partial f}{\partial x_i}(u) \in L(\fD_i,\fX)$$
+is continuous at $x$.
+\end{enumerate}
+Then $f$ is differentiable at $x$ and
+$$f'(x) = \sum_{i=1}^n\frac{\partial f}{\partial x_i}(x)\cdot \mathrm{pr}_i$$
+where $\mathrm{pr}_i:\fD_1\times ...\times \fD_n\ra \fD_i$ is the projection onto $i$-th axis.
+\end{theorem}
+\begin{proof}
+Pick $h \in \fD_1\times ... \times \fD_n$ such that $x + h \in U_1\times ...\times U_n$. Write $x = (x^1,...,x^n)$ and $h = (h^1,...,h^n)$. Let $z_0 = x$ and 
+$$z_i = (x^n,...,x^{i+1},x^{i}+h^{i},...,x^1 + h^1)$$
+for each $i\in \{1,...,n\}$. Then
+$$f(x + h) - f(x) - \sum_{i=1}^n\frac{\partial f}{\partial x_i}(x)(h^i) =$$
+$$= \sum_{i=1}^n\left(f(z_{i}) - f(z_{i-1}) - \frac{\partial f}{\partial x_i}(z_{i-1})(h^i)\right) + \sum_{i=1}^n\left(\frac{\partial f}{\partial x_i}(z_{i-1})(h^i) - \frac{\partial f}{\partial x_i}(x)(h^i)\right)$$
+For each $i\in \{1,...,n\}$ define $\phi_i(h^i)$ by formula
+$$f(z_{i}) - f(z_{i-1}) - \frac{\partial f}{\partial x_i}(z_{i-1})(h^i) = \phi_i(h^i)\cdot ||h^i||$$
+Then we have
+$$\bigg|\bigg|f(x + h) - f(x) - \sum_{i=1}^n\frac{\partial f}{\partial x_i}(x)(h^i)\bigg|\bigg| \leq $$
+$$\leq ||h||\cdot \sum_{i=1}^n\left(\big|\big|\phi_i(h^i)\big|\big| + \bigg|\bigg|\frac{\partial f}{\partial x_i}(z_{i-1}) - \frac{\partial f}{\partial x_i}(x)\bigg|\bigg|\right)$$
+By definition of partial derivative along $i$-th axis at $z_{i-1}$ we derive that $\phi_i(h_i)\ra 0$ as $h_i$ tends to zero. If $h\ra 0$, then by continuity of partial derivatives we have
+$$\frac{\partial f}{\partial x_i}(z_{i-1}) - \frac{\partial f}{\partial x_i}(x)\ra 0$$
+for every $i$. These results imply that
+$$\sum_{i=1}^n\left(\big|\big|\phi_i(h^i)\big|\big| + \bigg|\bigg|\frac{\partial f}{\partial x_i}(z_{i-1}) - \frac{\partial f}{\partial x_i}(x)\bigg|\bigg|\right) \ra 0$$
+for $h\ra 0$. This completes the proof.
+\end{proof}
+
+\section{Higher order derivatives}
+\noindent
+We introduce higher order Fr{\'e}chet derivatives. We fix Banach spaces $\fD,\fX$ over $\mathbb{K}$. Let $U$ be an open subset of $\fD$ and let $V$ be an open subset of $\fX$.
+
+\begin{definition}
+Let $f:U\ra V$ be a function. For each natural number $m$ we define \textit{$m$-th derivative $f^{(m)}$ of $f$} by recursive formula
+$$f^{(0)} = f,\,f^{(m)} = \left(f^{(m-1)}\right)'\mbox{ for }m>1$$
+If $f^{(m)}$ exists for some natural number $m$, then $f$ is \textit{$m$-times differentiable on $U$}.
+\end{definition}
+\noindent
+Note that the definition above gives $m$-th derivative as a function defined on the whole domain.
+
+\begin{remark}\label{remark:higher_derivative_takes_values_in_multilinear_forms}
+Let $f:U\ra V$ be a $m$-times differentiable function on $U$. Then $f^{(m)}$ can be identified with a function
+$$f^{(m)}:U\ra L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big)$$
+Indeed, the original codomain of $f^{(m)}$ is $\underbrace{L\left(\fD,L\left(\fD,...,L\left(\fD,\fX\right)...\right)\right)}_{m\,\mathrm{times}\,\fD\,\mathrm{symbol}}$ and according to Proposition \ref{proposition:multilinear_maps_canonical_isometry} we have canonical isometry
+$$\underbrace{L\left(\fD,L\left(\fD,...,L\left(\fD,\fX\right)...\right)\right)}_{m\,\mathrm{times}\,\fD\,\mathrm{symbol}} = L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big)$$
+Thus we can regard $f^{(m)}$ as a function on $U$ taking values in $L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big)$.
+\end{remark}
+\noindent
+Now we introduce the notion of the higher derivative defined locally for a point in the domain.
+
+\begin{definition}
+Let $f:U\ra V$ be a function on $U$ and let $x$ be a point of $U$. Let $m$ be a positive integer. Suppose that $f$ is $(m-1)$-times differentiable on some open neighborhood of $x$ in $U$. Then \textit{$m$-th derivative of $f$ at $x$} is the derivative of $f^{(m-1)}$ at $x$. If it exists, then $f$ is \textit{$m$-times differentiable at $x$}.
+\end{definition}
+
+\begin{remark}\label{remark:higher_order_derivative_notation}
+Let $x$ be a point in $U$ and let $f:U\ra V$ be a function. Let $m$ be a positive integer. Assume that $f$ is $m$-times differentiable at $x$. Then the $m$-th derivative of $f$ at $x$ is usually denoted by $f^{(m)}(x)$. Similarly to Remark \ref{remark:higher_derivative_takes_values_in_multilinear_forms} we identify $f^{(m)}(x)$ with an element in $L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big)$.
+\end{remark}
+
+\begin{theorem}\label{theorem:higher_order_derivatives_are_symmetric}
+Let $f:U\ra V$ be a function on $U$ and let $x$ be a point of $U$. Suppose that $f$ is $m$-times differentiable at $x$ for some integer $m$ greater or equal $2$. Then 
+$$f^{(m)}(x) \in L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big)$$
+is a symmetric $\mathbb{K}$-multilinear form.
+\end{theorem}
+\begin{proof}[Proof for the second derivative]
+Pick $h,s\in \fD$. Assume that $r$ is a positive real number greater than norms of $h$ and $s$. Let $I$ be an open interval in $\RR$ containing zero and such that
+$$I \subseteq \bigg\{t\in \RR\,\bigg|\,\forall_{\xi,\eta\in \fD}\,\big(||\xi|| < r\mbox{ and }||\eta|| < r\big)\Rightarrow x + t\cdot \xi + t\cdot \eta \in U\bigg\}$$
+Consider the expression
+$$F(t) = f(x + t\cdot h + t\cdot s) - f(x + t\cdot s) - f(x + t\cdot h) + f(x) - t^2 \cdot f''(x)(s,h)$$
+defined for $t \in I$. For fixed $t\in I$ define a function 
+$$g(\xi) = f(x + t\cdot \xi + t\cdot s) - f(x + t\cdot \xi) - t^2 \cdot f''(x)(s,\xi)$$
+Then $g$ is defined for each $\xi\in \fD$ with $||\xi||< r$. It is differentiable function and we have formula
+$$g'(\xi) = t\cdot f'(x + t\cdot \xi + t\cdot s) - t\cdot f'(x + t\cdot \xi) - t^2\cdot f''(x)(s)$$
+which follows from Theorem \ref{theorem:chain_rule_for_differentiable}. Thus by Theorem \ref{theorem:mean_value_inequality}
+$$||F(t)|| = ||g(h) - g(0)|| \leq ||h||\cdot \sup_{\xi \in (0,h)}||g'(\xi)|| =$$
+$$= t\cdot ||h||\cdot \sup_{\xi\in (0,h)}||f'(x + t\cdot \xi + t\cdot s) - f'(x + t\cdot \xi) - t\cdot f''(x)(s)||$$
+We write
+$$f'(x + t\cdot \xi + t\cdot s) = f'(x) + f''(x)(t\cdot \xi + t\cdot s) + \phi(t\cdot \xi + t\cdot s) \cdot t\cdot || \xi + s||$$
+and
+$$f'(x + t\cdot \xi) = f'(x) + f''(x)(t\cdot \xi) + \phi(t\cdot \xi) \cdot t\cdot ||\xi||$$
+Therefore, we have
+$$||F(t)|| \leq t\cdot ||h||\cdot \sup_{\xi \in (0,h)}||f'(x + t\cdot \xi + t\cdot s) - f'(x + t\cdot \xi) - t\cdot f''(x)(s)|| =$$
+$$= t\cdot ||h||\cdot \sup_{\xi \in (0,h)}\big|\big|\phi(t\cdot \xi + t\cdot s) \cdot t\cdot || \xi + s|| - \phi(t\cdot \xi) \cdot t\cdot ||\xi||\big|\big| = $$
+$$=t^2\cdot ||h||\cdot \sup_{\xi \in (0,h)}\big|\big|\phi(t\cdot \xi + t\cdot s)\cdot || \xi + s|| - \phi(t\cdot \xi) \cdot ||\xi||\big|\big|$$
+Since $f'$ is differentiable at $x$, we derive that 
+$$\lim_{t\ra 0}\phi(t\cdot \xi + t\cdot s) = \lim_{t\ra 0}\phi(t\cdot \xi) = 0$$
+and hence 
+$$\lim_{t\ra 0}\frac{F(t)}{t^2} = 0$$
+This implies that
+$$\lim_{t\ra 0}\frac{f(x + t\cdot h + t\cdot s) - f(x + t\cdot s) - f(x + t\cdot h) + f(x)}{t^2} = f''(x)(s,h)$$
+Since the left hand side is symmetric with respect to $s$ and $h$, we deduce that it also converges to $f''(x)(h,s)$ as $t \ra 0$. Thus $f''(x)(s,h) = f''(x)(h,s)$. According to the fact that $h$ and $s$ are arbitrary we infer that $f''(x)$ is a symmetric $\mathbb{K}$-bilinear form.
+\end{proof}
+
+\begin{proof}[Proof of the general case]
+We proved the theorem for $m = 2$. Suppose that it holds for some $m \geq 2$. We prove it for $m + 1$. For this assume that $f$ is $(m+1)$-times differentiable at $x$. By shrinking domain of $f$ we may assume that $f$ is $m$-times differentiable function on $U$. Pick elements $h_1,h_2,h_3,...,h_{m+1}\in \fD$ and fix a permutation $\sigma$ of the set $\{2,3,...,m+1\}$. Consider the composition of $f^{(m)}:U\ra L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big)$ with the map $\mathrm{ev}_{h_2,h_3,...,h_{m+1}}:L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big) \ra \fX$ given by formula $L\mapsto L(h_2,h_3,...,h_{m+1})$. According to Theorem \ref{theorem:chain_rule_for_differentiable} we derive that the derivative of this composition at $x$ is a $\mathbb{K}$-linear map 
+$$f^{(m+1)}(x)(-,h_2,h_3,...,h_{m+1}):\fD\ra \fX$$
+Similarly the derivative at $x$ of the composition of $f^{(m)}:U\ra L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big)$ with the map $\mathrm{ev}_{h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)}}:L\big(\underbrace{\fD,...,\fD}_{m\,\mathrm{times}};\fX\big) \ra \fX$ given by formula $L\mapsto L(h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)})$ is a $\mathbb{K}$-linear map
+$$f^{(m+1)}(x)(-,h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)}):\fD\ra \fX$$
+Since we have $\mathrm{ev}_{h_2,h_3,...,h_{m+1}} \cdot f^{(m)} = \mathrm{ev}_{h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)}} \cdot f^{(m)}$ (by inductive assumption), we deduce that $f^{(m+1)}(x)(-,h_2,h_3,...,h_{m+1}) = f^{(m+1)}(x)(-,h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)})$. In particular, we derive that 
+$$f^{(m+1)}(x)(h_1,h_2,h_3,...,h_{m+1}) = f^{(m+1)}(x)(h_1,h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)})$$
+for every permutation $\sigma$ of the set $\{2,...,m,m+1\}$. Next observe that
+$$f^{(m+1)}(x) = \left(f^{(m-1)}\right)''(x)$$
+and hence
+$$f^{(m+1)}(x)(h_1,h_2,h_3,...,h_{m+1}) = \left(f^{(m-1)}\right)''(x)(h_1,h_2)(h_3,...,h_{m+1}) =$$
+$$= \left(f^{(m-1)}\right)''(x)(h_2,h_1)(h_3,...,h_{m+1}) = f^{(m+1)}(x)(h_2,h_1,h_3,...,h_{m+1})$$
+by the symmetry of the second derivative. Let us summarize these results in slightly different form. For every elements $h_1,h_2,h_3,...,h_{m+1}\in \fD$ we have
+$$f^{(m+1)}(x)(h_1,h_2,h_3,...,h_{m+1}) = f^{(m+1)}(x)(h_{\sigma(1)},h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)})$$
+for each permutation $\sigma$ of $\{1,...,m+1\}$ such that $\sigma(1) = 1$ and 
+$$f^{(m+1)}(x)(h_1,h_2,h_3,...,h_{m+1}) = f^{(m+1)}(x)(h_2,h_1,h_3,...,h_{m+1})$$
+This implies that
+$$f^{(m+1)}(x)(h_1,h_2,h_3,...,h_{m+1}) = f^{(m+1)}(x)(h_{\sigma(1)},h_{\sigma(2)},h_{\sigma(3)},...,h_{\sigma(m+1)})$$
+for every permutation $\sigma$ of $\{1,...,m+1\}$ and every elements $h_1,h_2,h_3,...,h_{m+1}\in \fD$. This completes the proof that $f^{(m+1)}(x)$ is a symmetric $\mathbb{K}$-multilinear form.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\end{document}
