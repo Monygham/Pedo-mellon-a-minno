@@ -690,8 +690,8 @@ Consider a first order language with the set of variables $\bd{V}$ and with the 
 \item $t = t$ for every term $t$. 
 \item $(t_1 = t_2 \ra t_2 = t_1)$ for all terms $t_1,t_2$.
 \item $\big(t_1 = t_2 \ra \left(t_2 = t_3\ra t_1 = t_2\right)\big)$ for all terms $t_1,t_2,t_3$.
-\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left (... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(ft_1...t_n = ft'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms and $f$ is an $n$-ary function symbol.
-\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left (... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(rt_1...t_n \ra rt'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms and $r$ is an $n$-ary relation symbol.
+\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left(... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(ft_1...t_n = ft'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms and $f$ is an $n$-ary function symbol.
+\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left(... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(rt_1...t_n \ra rt'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms and $r$ is an $n$-ary relation symbol.
 \end{enumerate}
 
 \begin{definition}
@@ -757,37 +757,12 @@ Let $\cL$ be a first order language and let $\Gamma$ be a set of formulas of $\c
 By Corollary \ref{corollary:Gödels_completeness_theorem} we deduce that $\Gamma \vDash \phi$ implies that $\Gamma \vdash \phi$. Hence by Proposition \ref{proposition:compactness_of_deductive} we derive that there exists a finite subset $\Delta$ of $\Gamma$ such that $\Delta \vdash \phi$. Again by Corollary \ref{corollary:Gödels_completeness_theorem} we infer $\Delta \vDash \phi$.
 \end{proof}
 
-
 \begin{corollary}[Compactness for $\vDash_I$]\label{theorem:compactness_for_languages_with_identity}
 Let $\cL$ be a first order language with identity and let $\Gamma$ be a set of formulas of $\cL$. Suppose that $\Gamma \vDash_I \phi$ for some formula $\phi$ in $\cL$. Then there exists finite subset $\Delta$ of $\Gamma$ such that $\Delta \vDash_I \phi$.
 \end{corollary}
 \begin{proof}
 By Corollary \ref{corollary:Gödels_completeness_theorem_for_languages_with_identity} we deduce that $\Gamma \vDash_I \phi$ implies that $\Gamma \vdash_I \phi$. Hence by Proposition \ref{proposition:compactness_of_deductive} and by definition of $\vdash_I$ we derive that there exists a finite subset $\Delta$ of $\Gamma$ such that $\Delta \vdash_I \phi$. Again by Corollary \ref{corollary:Gödels_completeness_theorem_for_languages_with_identity} we infer $\Delta \vDash_I \phi$.
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

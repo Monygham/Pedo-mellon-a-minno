@@ -420,6 +420,59 @@ $$f^{(m+1)}(x)(h_1,h_2,h_3,...,h_{m+1}) = f^{(m+1)}(x)(h_{\sigma(1)},h_{\sigma(2
 for every permutation $\sigma$ of $\{1,...,m+1\}$ and every elements $h_1,h_2,h_3,...,h_{m+1}\in \fD$. This completes the proof that $f^{(m+1)}(x)$ is a symmetric $\mathbb{K}$-multilinear form.
 \end{proof}
 
+\section{Taylor formulas}
+\noindent
+In this section we fix Banach spaces $\fD,\fX$ over $\mathbb{K}$. Let $U$ be an open subset of $\fD$ and let $V$ be an open subset of $\fX$.
+
+\begin{remark}\label{remark:power_notation_for_higher_order_derivative}
+Let $x$ be a point in $U$ and let $f:U\ra V$ be a function. Let $m$ be a positive integer. Assume that $f$ is $m$-times differentiable at $x$. For every $h$ in $\fD$ we denote 
+$$f^{(m)}(x)(\underbrace{h,...,h}_{\mathrm{m\,times}})$$
+by $f^{(m)}(x)\cdot h^m$. 
+\end{remark}
+
+\begin{theorem}[Taylor's theorem]\label{theorem:Taylor_formula_with_Peano_remainder}
+Let $x$ be a point in $U$ and let $f:U\ra V$ be a function. Let $m$ be a positive integer. Assume that $f$ is $m$-times differentiable at $x$. Consider the function $\phi:\big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\} \ra \fX$ defined by formula 
+$$f(x + h) - \sum_{i=0}^m\frac{1}{i!}\cdot f^{(i)}(x)\cdot h^i = \phi(h)\cdot ||h||^m$$
+Then $\phi(h)\ra 0$ as $h\ra 0$.
+\end{theorem}
+\begin{proof}
+The proof goes by induction. The case $m = 0$ follows from the definition of Fr{\'e}chet derivative. Suppose that the result holds for some $m\in \NN$ and assume that $f$ is $(m+1)$-times differentiable at $x$. Without loss of generality we may assume that $f$ is $m$-times differentiable on $U$. Consider the function $g:\big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\} \ra \fX$ given by formula 
+$$g(h) = f(x + h) - \sum_{i=0}^{m+1}\frac{1}{i!}\cdot f^{(i)}(x)\cdot h^i$$
+There exists open subset $W$ of $\fD$ such that $W \subseteq \big\{h\in \fD\,\big|\,h\neq 0\mbox{ and }x+h\in U\big\}$ and $W\cup \{0\}$ is an open neighborhood of zero in $\fD$. According to Theorem \ref{theorem:higher_order_derivatives_are_symmetric} we have
+$$g'(h) = f'(x + h) - \sum_{i=1}^{m+1}\frac{1}{(i-1)!}\cdot f^{(i)}(x)\left(\underbrace{h,...,h}_{i-1\,\mathrm{times}},-\right) = f'(x + h) - \sum_{i=0}^{m}\frac{1}{i!}\cdot \left(f'\right)^{(i)}(x)\cdot h^i$$
+for every $h \in W$. Suppose that $\psi:W\ra \fX$ is a function given by formula
+$$f'(x + h) - \sum_{i=0}^{m}\frac{1}{i!}\cdot \left(f'\right)^{(i)}(x)\cdot h^i = \psi(h)\cdot ||h||^m$$
+Pick $h\in W$. By Theorem \ref{theorem:mean_value_inequality}
+$$||h||^{m+1}\cdot ||\phi(h)|| = \bigg|\bigg|f(x + h) - \sum_{i=0}^{m+1}\frac{1}{i!}\cdot f^{(i)}(x)\cdot h^i \bigg|\bigg| = ||g(h) - g(0)|| \leq$$
+$$\leq ||h||\cdot \sup_{s \in (0,h)}||g'(s)|| = ||h||\cdot \sup_{s \in (0,h)}\bigg(||s||^m \cdot ||\psi(s)||\bigg) = ||h||^{m+1}\cdot \sup_{s \in (0,h)}||\psi(s)||$$
+and thus $||\phi(h)||\leq \sup_{s \in (0,h)}||\psi(s)||$. Induction hypothesis applied to $f':U\ra L(\fD,\fX)$ and point $x$ takes form
+$$\lim_{h\ra 0}\psi(h) = 0$$
+Therefore, we also have $\sup_{s \in (0,h)}||\psi(s)||\ra 0$ as $h\ra 0$. Hence by inequality $||\phi(h)||\leq \sup_{s \in (0,h)}||\psi(s)||$ which holds for every $h\in W$ we infer $\phi(h)\ra 0$ for $h\ra 0$. This completes the proof.
+\end{proof}
+
+\begin{theorem}\label{theorem:Taylors_inequality_with_Lagrange_remainder}
+Let $f:U\ra V$ be $m$-times differentiable function for some $m\in \NN$. Suppose that $x$ is a point in $U$ and $h$ is an element of $\fD$ such that $[x,x+h] \subseteq U$ and $f$ is $(m+1)$-times differentiable at every point of $(x,x+h)$. Then 
+$$\bigg|\bigg|f(x + h) - \sum_{i=0}^m\frac{1}{i!}\cdot f^{(i)}(x)\cdot h^i \bigg|\bigg| \leq \frac{||h||^{m+1}}{(m+1)!} \cdot \sup_{\xi \in (x,x+h)}||f^{(m+1)}(\xi)||$$
+\end{theorem}
+\begin{proof}
+The proof goes by induction. The case $m = 0$ follows from Theorem \ref{theorem:mean_value_inequality}. Suppose that the result holds for some $m\in \NN$ and assume that $f$ is $(m+1)$-times differentiable on $U$ and $(m+2)$-times differentiable at every point of $(x,x+h)$, where $x \in U$ and $h\in \fD$ are such that $[x,x+h]\subseteq U$. Consider the function $g:[0,1] \ra \fX$ given by formula 
+$$g(t) = f(x + t\cdot h) - \sum_{i=0}^{m+1}\frac{1}{i!}\cdot f^{(i)}(x)\cdot \left(t\cdot h\right)^i$$
+According to Theorem \ref{theorem:higher_order_derivatives_are_symmetric} we have
+$$g'(t) = f'(x + t\cdot h)(h) - \sum_{i=1}^{m+1}\frac{1}{(i-1)!}\cdot f^{(i)}(x)\left(\underbrace{t\cdot h,...,t\cdot h}_{i-1\,\mathrm{times}},h\right) =$$
+$$= \bigg(f'(x + t\cdot h) - \sum_{i=0}^{m}\frac{1}{i!}\cdot \left(f'\right)^{(i)}(x)\cdot \left(t\cdot h\right)^i\bigg)(h)$$
+for every $t \in (0,1)$. Induction hypothesis applied to $f':U\ra L(\fD,\fX)$ and point $x$ implies
+$$\bigg|\bigg|f'(x + t\cdot h) - \sum_{i=0}^{m}\frac{1}{i!}\cdot \left(f'\right)^{(i)}(x)\cdot \left(t\cdot h\right)^i\bigg|\bigg| \leq \frac{t^{m+1}\cdot ||h||^{m+1}}{(m+1)!}\cdot \sup_{\xi \in (x,x+h)}\big|\big|\left(f'\right)^{(m+1)}(\xi)\big|\big|$$
+Now Theorem \ref{theorem:mean_value_inequality} implies that
+$$\bigg|\bigg|f(x + h) - \sum_{i=0}^{m+1}\frac{1}{i!}\cdot f^{(i)}(x)\cdot h^i \bigg|\bigg| = ||g(1) - g(0)|| \leq$$
+$$\leq \sup_{t \in (0,1)}||g'(t)|| \leq ||h||\cdot  \sup_{t \in (0,1)}\bigg|\bigg|f'(x + t\cdot h) - \sum_{i=0}^{m}\frac{1}{i!}\cdot \left(f'\right)^{(i)}(x)\cdot \left(t\cdot h\right)^i\bigg|\bigg| \leq $$
+$$\leq \sup_{t \in (0,1)}\frac{t^{m+1}\cdot ||h||^{m+2}}{(m+1)!} \cdot \sup_{\xi \in (x,x+h)}||\left(f'\right)^{(m+1)}(\xi)|| = \frac{t^{m+1}\cdot ||h||^{m+2}}{(m+1)!} \cdot \sup_{\xi \in (x,x+h)}||f^{(m+2)}(\xi)||$$
+\end{proof}
+
+
+
+
+
+
 
 
 

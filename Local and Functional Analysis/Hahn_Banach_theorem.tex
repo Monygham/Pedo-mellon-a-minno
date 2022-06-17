@@ -1,0 +1,88 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Hahn-Banach theorem}
+\date{}
+\maketitle
+
+\section{Introduction}
+
+\section{Hahn-Banach theorem}
+\noindent
+We start by introducing certain notions concerning real maps defined on $\RR$-vector spaces.
+
+\begin{definition}
+Let $V$ be an $\RR$-vector space. A map $p:V\ra \RR$ is \textit{subadditive} if 
+$$p(v_1 + v_2)\leq p(v_1) + p(v_2)$$
+for any vectors $v_1,v_2$ in $V$.
+\end{definition}
+
+\begin{definition}
+Let $V$ be an $\RR$-vector space. A map $p:V\ra \RR$ is \textit{positive homogeneous} if 
+$$p(\alpha \cdot v) = \alpha \cdot p(v)$$
+for every $\alpha \in \RR_+$ and every $v$ in $V$.
+\end{definition}
+\noindent
+The following is central result of these notes.
+
+\begin{theorem}[Hahn-Banach]\label{theorem:hahn_banach_theorem}
+Let $V$ be an $\RR$-vector space and let $p:V\ra \RR$ be a subadditive and positive homogeneous map. Suppose that $W$ is an $\RR$-subspace of $V$ and $f:W\ra \RR$ is an $\RR$-linear map such that
+$$f(w) \leq p(w)$$
+for every $w$ in $W$. Then there exists $\RR$-linear map $\tilde{f}:V\ra \RR$ such that $\tilde{f}_{\mid W} = f$ and $\tilde{f}(v) \leq p(v)$ for every $v$ in $V$.
+\end{theorem}
+\noindent
+The heart of the proof is the following result.
+
+\begin{lemma}\label{lemma:Hahn_Banach_extension_in_codimension_one}
+Let $V$ be an $\RR$-vector space and let $p:V\ra \RR$ be a subadditive and positive homogeneous map. Suppose that $W$ is an $\RR$-subspace of $V$ and $f:W\ra \RR$ is an $\RR$-linear map such that
+$$f(w) \leq p(w)$$
+for every $w$ in $W$. Then for every vector $\tilde{v}\in V\setminus W$ there exists $\RR$-linear map $\tilde{f}:W + \RR\cdot \tilde{v} \ra \RR$ such that $\tilde{f}_{\mid W} = f$ and $\tilde{f}(v) \leq p(v)$ for every $v$ in $W + \RR\cdot \tilde{v}$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+We claim that the set of $\lambda \in \RR$ such that for every $\gamma \in \RR$ and every $w \in W$ the following condition is satisfied
+$$f(w) + \gamma \cdot \lambda  \leq p\big(w + \gamma \cdot \tilde{v}\big)$$
+is nonempty. In order to prove this we analyze this condition. Note that for $\gamma = 0$ the condition holds by assumption of the theorem. Thus we may assume that $\gamma \neq 0$. Let $\alpha = |\gamma|$. Now we consider two cases.
+\begin{itemize}
+\item For $\gamma > 0$ the condition is equivalent to
+$$\lambda \leq p\left(\frac{w}{\alpha} + \tilde{v}\right) - f\left(\frac{w}{\alpha}\right)$$
+Since $W$ is an $\RR$-vector space, it can be equivalently stated as
+$$\lambda \leq p\left(w + \tilde{v}\right) - f\left(w\right)$$
+for every $w \in W$.
+\item For $\gamma < 0$ the condition is equivalent to
+$$-p\left(\frac{w}{\alpha} - \tilde{v}\right) + f\left(\frac{w}{\alpha}\right) \leq  \lambda$$
+We invoke the fact that $W$ is an $\RR$-vector space one again and obtain equivalent condition
+$$-p\left(w - \tilde{v}\right) + f\left(w\right) \leq \lambda$$
+for every $w \in W$.
+\end{itemize}
+Thus in order to prove our claim it suffices to prove that
+$$\sup_{w\in W}-p\left(w - \tilde{v}\right) + f\left(w\right) \leq \inf_{w\in W}p\left(w + \tilde{v}\right) - f\left(w\right)$$
+Therefore, it suffices to prove that
+$$p\left(w_1 - \tilde{v}\right) + f\left(w_1\right) \leq p\left(w_2 + \tilde{v}\right) - f\left(w_2\right)$$
+for any $w_1,w_2\in W$. Fix arbitrary $w_1,w_2\in W$. The inequality
+$$p\left(w_1 - \tilde{v}\right) + f\left(w_1\right) \leq p\left(w_2 + \tilde{v}\right) - f\left(w_2\right)$$
+is equivalent to
+$$f(w_1 + w_2) \leq p\left(w_2 + \tilde{v}\right) + p\left(w_1 - \tilde{v}\right)$$
+which holds according to
+$$f(w_1 + w_2) \leq p(w_1 + w_2) = p\left(w_2 + \tilde{v} + w_1 - \tilde{v}\right) \leq p\left(w_2 + \tilde{v}\right) + p\left(w_1 - \tilde{v}\right)$$
+Thus the claim is proved. We infer the statement from the claim as follows. Pick $\lambda \in \RR$ such that
+$$f(w) + \gamma \cdot \lambda  \leq p\big(w + \gamma \cdot \tilde{v}\big)$$
+for every $\gamma \in \RR$ and every $w \in W$. Then define $\tilde{f}:W + \RR\cdot \tilde{v} \ra \RR$ by $\tilde{f}(w + \gamma \cdot \tilde{v}) = f(w) + \gamma \cdot \lambda$ for every $w\in W$ and $\gamma \in \RR$. Then $\tilde{f}$ satisfies the assertion.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Consider the family $\cG$ which consists of $\RR$-linear maps $g:U\ra \RR$ such that $U$ is a $\RR$-subspace of $V$ containing $W$, $g_{\mid W} = f$ and $g(u) \leq p(u)$ for every $u\in U$. For $g_1:U_1\ra \RR$ and $g_2:U_2\ra \RR$ in $\cG$ we define $g_1\preceq g_2$ if and only if $U_1\subseteq U_2$ and $\left(g_2\right)_{\mid U_1} = g_1$. Clearly $\preceq$ is a partial order on $\cG$. By Zorn's lemma there exists element $\tilde{f}:\tilde{V}\ra \RR$ in $\cG$ maximal with respect to $\preceq$. If $\tilde{V}\subsetneq V$, then by Lemma \ref{lemma:Hahn_Banach_extension_in_codimension_one} there exists element of $\cG$ greater than $\tilde{f}$ with respect to $\preceq$. This is a contradiction. Hence $\tilde{V} = V$ and $\tilde{f}$ satisfies the assertion of the theorem.
+\end{proof}
+
+\section{Normed version of Hahn-Banach theorem}
+
+
+
+
+
+
+
+
+
+
+\end{document}
