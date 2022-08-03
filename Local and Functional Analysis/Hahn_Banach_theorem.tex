@@ -7,6 +7,9 @@
 \maketitle
 
 \section{Introduction}
+\noindent
+In this notes we study Hahn-Banach theorem and its consequences. Our main goal is separation theorem for normed spaces.\\
+Throughout the notes $\mathbb{K}$ is either topological field $\RR$ or topological field $\CC$.
 
 \section{Hahn-Banach theorem}
 \noindent
@@ -73,8 +76,250 @@ for every $\gamma \in \RR$ and every $w \in W$. Then define $\tilde{f}:W + \RR\c
 \begin{proof}[Proof of the theorem]
 Consider the family $\cG$ which consists of $\RR$-linear maps $g:U\ra \RR$ such that $U$ is a $\RR$-subspace of $V$ containing $W$, $g_{\mid W} = f$ and $g(u) \leq p(u)$ for every $u\in U$. For $g_1:U_1\ra \RR$ and $g_2:U_2\ra \RR$ in $\cG$ we define $g_1\preceq g_2$ if and only if $U_1\subseteq U_2$ and $\left(g_2\right)_{\mid U_1} = g_1$. Clearly $\preceq$ is a partial order on $\cG$. By Zorn's lemma there exists element $\tilde{f}:\tilde{V}\ra \RR$ in $\cG$ maximal with respect to $\preceq$. If $\tilde{V}\subsetneq V$, then by Lemma \ref{lemma:Hahn_Banach_extension_in_codimension_one} there exists element of $\cG$ greater than $\tilde{f}$ with respect to $\preceq$. This is a contradiction. Hence $\tilde{V} = V$ and $\tilde{f}$ satisfies the assertion of the theorem.
 \end{proof}
+\noindent
+We note here an immediate consequence of Hahn-Banach theorem. 
 
-\section{Normed version of Hahn-Banach theorem}
+\begin{corollary}\label{corollary:seminormed_version_of_hahn_banach_theorem}
+Let $\mathbb{K}$ be either $\RR$ or $\CC$. Let $V$ be a $\mathbb{K}$-vector space and let $||-||$ be a seminorm on $V$. Suppose that $f:W\ra \mathbb{K}$ is a $\mathbb{K}$-linear functional defined on some $\mathbb{K}$-vector subspace $W$ of $V$. Assume that there exists $c\in \RR_+$ such that
+$$|f(w)| \leq c\cdot ||w||$$
+for every $w\in W$. Then there exists a $\mathbb{K}$-linear map $\tilde{f}:V\ra \mathbb{K}$ such that $\tilde{f}_{\mid W} = f$ and 
+$$|\tilde{f}(v)| \leq c\cdot ||v||$$
+for every $v\in V$.
+\end{corollary}
+\noindent
+For the proof we need the following notation. Let $V$ be a $\CC$-vector space and let $f:V\ra \CC$ be a $\CC$-linear map. For each $v$ in $V$ we define
+$$\left(\mathrm{Re}f\right)(v) = \mathrm{Re}\left(f(v)\right)$$
+Clearly $\mathrm{Re}f:V\ra \RR$ is an $\RR$-linear map. The following result shows that $f$ is determined by $\mathrm{Re}f$.
+
+\begin{lemma}\label{lemma:complex_linear_functionals}
+Let $V$ be a $\CC$-vector space and let $||-||$ be a seminorm on $V$. Suppose that $f:V\ra \CC$ is a $\CC$-linear map which is continuous with respect to the topology induced by $||-||$. Then
+$$f(v) = \left(\mathrm{Re}f\right)(v) - i \cdot \left(\mathrm{Re}f\right)(i\cdot v)$$
+and
+$$\sup_{v \in V,\,||v||\leq 1}|f(v)| = \sup_{v \in V,\,||v||\leq 1}||\left(\mathrm{Re}f\right)(v)||$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+For every $v$ in $V$ we have
+$$\left(\mathrm{Re}f\right)(i\cdot v) = \mathrm{Re}\left(f(i\cdot v)\right) = \mathrm{Re}\left(i\cdot f(v)\right) = -\mathrm{Im}\left(f(v)\right)$$
+Thus 
+$$\mathrm{Im}\left(f(v)\right) = - \left(\mathrm{Re}f\right)(i\cdot v)$$
+and hence
+$$f(v) = \left(\mathrm{Re}f\right)(v) - i \cdot \left(\mathrm{Re}f\right)(i\cdot v)$$
+This completes the proof of the first part of the assertion. In order to prove the second part for each $v \in V$ such that $||v|| \leq 1$ define $\alpha_v\in \CC$ such that $\alpha_v \cdot f(v) = |f(v)|$. Then 
+$$\alpha_v \in \big\{z\in \CC\,|\,|z| = 1\big\}\cup \{0\}$$
+and $\alpha_v \cdot f(v) = |\left(\mathrm{Re}f\right)\left(\alpha_v\cdot v\right)|$ for each $v$. We have
+$$\sup_{v\in V,\,||v||\leq 1}\big|\left(\mathrm{Re}f\right)(v)\big| \leq \sup_{v\in V,\,||v|| \leq 1}\big|f(v)\big| = \sup_{v\in V,\,||v|| \leq 1}\alpha_v\cdot f(v) = $$
+$$= \sup_{v\in V,\,||v|| \leq 1} f(\alpha_v\cdot v) = \sup_{v\in V,\,||v|| \leq 1} |\left(\mathrm{Re}f\right)(\alpha_v\cdot v)| \leq \sup_{v\in V,\,||v||\leq 1}\big|\left(\mathrm{Re}f\right)(v)\big|$$
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+The case $\mathbb{K} = \RR$ follows directly from Theorem \ref{theorem:hahn_banach_theorem}. If $\mathbb{K} = \CC$, then we apply Theorem \ref{theorem:hahn_banach_theorem} in order to obtain $\RR$-linear map $g:V\ra \RR$ such that $g_{\mid W} = \mathrm{Re}f$ and
+$$\sup_{v\in V,\,||v||\leq 1}|g(v)| = \sup_{w\in W,\,||w||\leq 1}|\left(\mathrm{Re}f\right)(w)|$$
+Next we define $\tilde{f}(v) = g(v) - i\cdot g(i\cdot v)$ for every $v\in V$. Then it is easy to see that $\tilde{f}:V\ra \CC$ is $\CC$-linear. Moreover, by Lemma \ref{lemma:complex_linear_functionals} we have $\tilde{f}_{\mid W} = f$ and
+$$\sup_{v\in V,\,||v||\leq 1}|\tilde{f}(v)| = \sup_{v\in V,\,||v||\leq 1}|g(v)| = \sup_{w\in W,\,||w||\leq 1}|\left(\mathrm{Re}f\right)(w)| = \sup_{w\in W,\,||w||\leq 1}|f(w)|\leq c$$
+Hence
+$$|\tilde{f}(v)| \leq c \cdot ||v||$$
+for every $v\in V$. Thus $\tilde{f}$ satisfies the assertion.    
+\end{proof}
+
+\section{Hyperplane separation theorem}
+
+\begin{definition}
+Let $V$ be an $\RR$-vector space and let $K$ be its subset. Suppose that for every $v \in V$ there exists $r\in \RR_+$ such that $v\in r\cdot K$. Then $K$ is \textit{absorbent subset of $V$}.
+\end{definition}
+
+\begin{definition}
+Let $V$ be an $\RR$-vector space and let $K$ be its subset. For every $v$ in $V$ we define
+$$p_K(v) = \inf\big\{r\in \RR_+\,\big|\,v \in r\cdot K\big\}$$
+Then $p_K:V\ra [0,+\infty]$ is \textit{the Minkowski functional of $K$}.
+\end{definition}
+\noindent
+Minkowski functionals are extensively studied in functional analysis. Here we limit our study to the following results.
+
+\begin{fact}\label{fact:minkowski_functionals_of_absorbent_subsets_are_finite}
+Let $V$ be an $\RR$-vector space and let $K$ be an absorbent subset of $V$. Then $p_K(v)$ is finite for every $v$ in $V$.
+\end{fact}
+\begin{proof}
+Left for the reader as an exercise.
+\end{proof}
+
+\begin{proposition}\label{proposition:minkowski_functional_of_convex_and_absorbent_subset}
+Let $V$ be an $\RR$-vector space and let $K$ be convex and absorbent subset of $V$. Then the Minkowski functional $p_K:V\ra [0,+\infty)$ is subadditive and positive homogeneous. 
+\end{proposition}
+\begin{proof}
+Pick $\alpha \in \RR_+$ and $v \in V$. We have
+$$\alpha \cdot \big\{r\in \RR_+\,\big|\,v \in r\cdot K\big\} = \big\{r\in \RR_+\,\big|\,\alpha\cdot v \in r\cdot K\big\}$$
+This implies that $p_K\left(\alpha \cdot v\right) = \alpha \cdot p_K(v)$ and hence $p_K$ is positive homogeneous.\\
+Next fix $v,w\in V$ and consider $r, t\in \RR_+$ such that $v\in r\cdot K$ and $w \in t\cdot K$. Thus there exist $x,y\in K$ such that $v = r\cdot x$ and $w = t\cdot y$. Then
+$$(v + w) = r\cdot x + t\cdot y = (r + t)\cdot \left(\frac{r}{r+t}\cdot v + \frac{t}{r+t}\cdot w\right)$$
+and
+$$\frac{r}{r+t}\cdot v + \frac{t}{r+t}\cdot w \in K$$
+since $K$ is convex. Therefore, we have $v+w \in (r+t)\cdot K$. This implies that
+$$p_K(v+w) \leq r+t$$
+Since $r,t\in \RR_+$ are arbitrary numbers such that $v\in r\cdot K$ and $w \in t\cdot K$, we infer that $p_K(v+w) \leq p_K(v) + p_K(w)$. Thus $p_K$ is subadditive.
+\end{proof}
+
+\section{Preliminaries on topological vector spaces}
+\noindent
+In this section we introduce topological vector spaces and study some elementary properties of these objects.
+
+\begin{definition}
+Let $\fX$ be a vector space over $\mathbb{K}$ equipped with some topology. Suppose that the multiplication by scalars $\mathbb{K}\times \fX \ra \fX$ and the addition $\fX\times \fX\ra \fX$ are continuous. Then $\fX$ is \textit{a topological vector space over $\mathbb{K}$}.
+\end{definition}
+
+\begin{example}\label{example:normed_spaces_are_topological_vector_spaces}
+Let $\fX$ be a semi-normed space over $\mathbb{K}$. Then $\fX$ as a vector space over $\mathbb{K}$ together with the topology induced by the semi-norm of $\fX$ is a topological vector space over $\mathbb{K}$.     
+\end{example}
+
+\begin{theorem}\label{theorem:separation_for_topological_vector_spaces}
+Let $\fX$ be a topological vector space over $\mathbb{K}$. Suppose that $K$ is a quasi-compact subset of $\fX$ and $F$ is a closed subset of $\fX$. Assume that $F\cap K = \emptyset$. There exist an open neighborhood $U$ of zero in $\fX$ such that
+$$\left(K + U\right) \cap \left(F + U\right) = \emptyset$$
+\end{theorem}
+\begin{proof}
+For each point $x$ in $K$ there exists an open neighborhood $W_x$ of zero in $\fX$ such that 
+$$\left(x + W_x + W_x\right) \cap F = \emptyset$$
+Since $K$ is quasi-compact, there exist $x_1,...,x_n\in K$ such that
+$$K \subseteq \bigcup_{i=1}^n\left(x_i + W_{x_i}\right)$$
+Let $W$ be the intersection of $W_{x_1},...,W_{x_n}$. Then $W$ is an open neighborhood of zero and 
+$$K + W \subseteq \bigcup_{i=1}^n\left(x_i + W_{x_i} + W\right)\subseteq \bigcup_{i=1}^n\left(x_i + W_{x_i} + W_{x_i}\right)$$
+This implies that $K + W$ does not intersect $F$. Pick an open neighborhood $U$ of zero in $\fX$ such that $U - U \subseteq W$. Then
+$$\left(K + U\right) \cap \left(F + U\right) = \emptyset$$
+and the proof is completed.
+\end{proof}
+
+\begin{corollary}\label{corollary:criterion_for_Hausdorffness_for_topological_vector_spaces}
+Let $\fX$ be a topological vector space over $\mathbb{K}$. Then $\fX$ is Hausdorff if and only if zero of $\fX$ is a closed point of $\fX$.
+\end{corollary}
+\begin{proof}
+Suppose that $\{0\}$ is closed in $\fX$. Consider distinct points $x_1,x_2$ in $\fX$. Then $x_1 - x_2 \neq 0$ and hence $\{x_1 - x_2\}$ is a quasi-compact subset of $\fX$ which is disjoint from the closed subset $\{0\}$ of $\fX$. According to Theorem \ref{theorem:separation_for_topological_vector_spaces} we derive that there exists open neighborhood $U$ of zero in $\fX$ such that 
+$$\big(\left(x_1 - x_2\right) + U\big) \cap U = \emptyset$$
+and hence
+$$\left(x_1 + U\right)\cap \left(x_2 + U\right) = \emptyset$$
+Since $x_1,x_2$ are arbitrary, it follows that $\fX$ is Hausdorff.
+\end{proof}
+
+\begin{definition}
+Let $\fX,\fY$ are topological vector spaces over $\mathbb{K}$. A map $f:\fX\ra \fY$ which is both continuous and $\mathbb{K}$-linear is \textit{a morphism of topological vector spaces over $\mathbb{K}$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:quotients_of_topological_vector_spaces}
+Let $\fX$ be a topological vector space over $\mathbb{K}$ and let $\fU$ be its $\mathbb{K}$-subspace. Consider the quotient map $q:\fX\twoheadrightarrow \fX/\fU$ in the category of vector spaces over $\mathbb{K}$ and equip $\fX/\fL$ with the quotient topology of $\fX$. Then the following assertions holds.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item $q$ is an open map.
+\item $\fX/\fU$ is a topological vector space over $\mathbb{K}$ and $q$ is a morphism of topological vector spaces.
+\item For every morphism $f:\fX\ra \fY$ of topological vector spaces over $\mathbb{K}$ such that $f\left(\fU\right) = 0$ there exists a unique morphism $p:\fX/\fU\ra \fY$ of topological vector spaces over $\mathbb{K}$ which makes the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ \fX &  \fY  \\
+   \fX/\fU & \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f $} (m-1-2)
+(m-1-1) edge node[left] {$ q $} (m-2-1);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[right = 2pt, below = 2pt] {$ p $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+commutative.
+\item $\fU$ is a closed in $\fX$ if and ony if $\fX/\fU$ is a Hausdorff topological space.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Fix an open subset $U$ of $\fX$, then the set 
+$$q^{-1}\left(q\left(U\right)\right) = \bigcup_{u \in \fU}\left(u + U\right)$$
+is open. According to the fact that $q:\fX\twoheadrightarrow \fX/\fU$ is a quotient topological map, we infer that $q(U)$ is open in $\fX/\fU$. Hence $q$ is an open map and the proof of \textbf{(1)} is completed.\\
+Since $q$ is open, we derive that $1_{\mathbb{K}}\times q$ and $q\times q$ are open. Since squares
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ \fX \times \fX         &  \fX     &  \mathbb{K} \times \fX     &  \fX    \\
+\fX/\fU \times \fX/\fU   &  \fX/\fU &  \mathbb{K} \times \fX/\fU &  \fX/\fU  \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ + $} (m-1-2)
+(m-1-1) edge node[left] {$ q\times q $} (m-2-1)
+(m-1-2) edge node[right] {$ q $} (m-2-2)
+(m-2-1) edge node[below] {$ + $} (m-2-2)
+(m-1-3) edge node[above] {$ \cdot $} (m-1-4)
+(m-1-3) edge node[left] {$ 1_{\mathbb{K}}\times q $} (m-2-3)
+(m-1-4) edge node[right] {$ q $} (m-2-4)
+(m-2-3) edge node[below] {$ \cdot $} (m-2-4);
+\end{tikzpicture}
+\end{center}
+are commutative, we deduce that the addition $+:\fX/\fU \times \fX/\fU \ra \fX/\fU$ and the multiplication of scalars $\cdot:\mathbb{K}\times \fX/\fU\ra \fX/\fU$ are continuous. Therefore, $\fX/\fU$ is a topological vector space over $\mathbb{K}$. It follows that $q$ is a morphism of topological vector spaces over $\mathbb{K}$ and hence \textbf{(2)} holds.\\
+The assertion \textbf{(3)} describes the universal property which follows easily from definition and \textbf{(2)}.\\
+Finally \textbf{(4)} is a consequence of Corollary \ref{corollary:criterion_for_Hausdorffness_for_topological_vector_spaces} and the fact that $q$ is a quotient topological map.  
+\end{proof}
+
+\begin{remark}\label{remark:quotient_map_for_topological_groups}
+Theorems \ref{theorem:separation_for_topological_vector_spaces} and \ref{theorem:quotients_of_topological_vector_spaces} as well as Corollary \ref{corollary:criterion_for_Hausdorffness_for_topological_vector_spaces} hold for topological groups. The arguments are essentially the same.
+\end{remark}
+
+\begin{definition}
+Let $\fX$ be a topological vector space over $\mathbb{K}$ such that there exists a local topological base at zero in $\fX$ which consists of convex open sets. Then $\fX$ is \textit{locally convex}. 
+\end{definition}
+
+\begin{definition}
+Let $\fX$ be a topological vector space over $\mathbb{K}$. A subset $Z$ of $\fX$ is \textit{balanced} if $\lambda \cdot Z \subseteq Z$ for every $\lambda \in \mathbb{K}$ such that $|\lambda| \leq 1$. 
+\end{definition}
+
+\begin{proposition}\label{proposition:balanced_local_bases}
+Let $\fX$ be a topological vector space over $\mathbb{K}$. Then $\fX$ admits a local topological base at zero which consists of balanced sets. Moreover, if $\fX$ is locally convex, then $\fX$ admits a local topological base at zero which consists of balanced and convex sets.  
+\end{proposition}
+\begin{proof}
+Fix an open neighborhood $W$ of zero. By continuity of the scalar multiplication $\mathbb{K}\times \fX \ra \fX$ there exists $r \in \RR_+$ and an open neighborhood $V$ of zero in $\fX$ such that 
+$$U = \bigcup_{|\lambda|\leq r}\lambda \cdot V \subseteq W$$
+Then $U$ is balanced and contained in $W$. This proves that $\fX$ admits a local topological base at zero which consists of balanced sets.\\
+Suppose that $\fX$ is locally convex and $W$ is an open and convex neighborhood of zero in $\fX$. Let $V$ be an  open and balanced neighborhood $V$ of zero in $\fX$ such that $V\subseteq W$. Consider the interior $U$ of
+$$\bigcap_{|\lambda|\leq 1}\lambda \cdot W$$
+Since $U$ is the interior of a balanced and convex set, we derive that $U$ is balanced and convex itself. Moreover, $V\subseteq U$. Thus $U$ is an open neighborhood of zero in $\fX$ which is both balanced and convex. This completes the proof for the locally convex case. 
+\end{proof}
+
+\begin{definition}
+Let $\fX$ be a topological vector space over $\mathbb{K}$. A subset $Z$ of $\fX$ is \textit{bounded} if for every open neighborhood $U$ of zero in $\fX$ there exists $\lambda \in \RR_+$ such that $Z \subseteq \lambda \cdot U$. 
+\end{definition}
+
+
+
+\section{Finite dimensional Hausdorff topological vector spaces}
+\noindent
+We prove the following elementary but important result.
+
+\begin{proposition}\label{proposition:criteria_for_continuity_of_linear_functionals}
+Let $f:\fX \ra \mathbb{K}$ be a $\mathbb{K}$-linear map between topological vector spaces over $\mathbb{K}$. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $f$ is continuous.
+\item $\Ker(f)$ is a closed subspace of $\fX$.
+\item Either $f$ is the zero map or $\Ker(f)$ is not dense in $\fX$.
+\item There exists open neighborhood $U$ of zero in $\fX$ such that $f(U)$ is bounded subset of $\mathbb{K}$.
+\item $f$ is continuous at zero.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The implications $\textbf{(i)}\Rightarrow \textbf{(ii)}$ and $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ are obvious.\\
+If $f$ is the zero map, then \textbf{(iv)} holds. Assume that $f(U)$ is unbounded for every open neighborhood $U$ of zero in $\fX$. Let $\cU$ be a local topological base of $\fX$ at zero which consists of balanced sets (Fact \ref{proposition:balanced_local_bases}). For every $U\in \cU$ the set $f(U)$ is balanced and unbounded in $\mathbb{K}$. Thus $f(U) = \mathbb{K}$ for every $U\in \cU$. Consider now an open subset $W$ of $\fX$ and pick a point $x$ in $W$. Let $U$ be a set in $\cU$ such that $x+U\subseteq W$. There exists $y \in U$ such that $f(y) = f(x)$. Since $U$ is balanced, we have $-y\in U$ and hence $x - y \in x+U$. Therefore, we have $x-y\in W$ and $f(x-y)=0$. This implies that $\Ker(f)$ is dense in $\fX$. By contraposition we infer that if $\Ker(f)$ is not dense in $\fX$, then \textbf{(iv)} holds. This completes the proof of $\textbf{(iii)}\Rightarrow \textbf{(iv)}$.\\
+Suppose that $f(U)$ is bounded subset of $\mathbb{K}$, where $U$ is some open neighborhood of zero in $\fX$. Let $V$ be an open neighborhood of zero in $\mathbb{K}$. Then there exists $\alpha \in \RR_+$ such that 
+$$f\left(\alpha \cdot U\right) = \alpha \cdot f(U)\subseteq V$$
+This shows that $f$ is continuous at zero and hence the implication $\textbf{(iv)}\Rightarrow \textbf{(v)}$ holds.\\
+Finally suppose that $f$ is continuous at zero. Since it is additive, we derive that it is continuous. Thus $\textbf{(v)}\Rightarrow \textbf{(i)}$. 
+\end{proof}
+
+\begin{fact}\label{fact:linear_morphisms_from_standard_finite_spaces_are_always_continuous}
+Let $\fX$ be a topological vector space over $\mathbb{K}$. Suppose that $f:\mathbb{K}^n \ra \fX$ is a $\mathbb{K}$-linear map for some $n\in \NN$. Then $f$ is continuous.
+\end{fact}
+\begin{proof}
+Let $\{e_1,...,e_n\}$ be the canonical basis of $\mathbb{K}^n$. For every $i$ let $pr_i:\mathbb{K}^n\ra \mathbb{K}$ be the projection onto $i$-th axis and let $m_{i}:\mathbb{K}\ra \fX$ be the composition of the multiplication of scalars $\mathbb{K}\times \fX\ra \fX$ with the continuous embedding $\mathbb{K} \ni \alpha \mapsto \left(\alpha, f(e_i)\right) \in \mathbb{K}\times \fX$. Since $\mathrm{pr}_i$ and $m_{i}$ are continuous for each $i$, we derive that their compositions $m_{i}\cdot pr_i$ are also continuous. According to the fact that the addition $\fX\times \fX\ra \fX$ is continuous, we infer that the sum
+$$\sum_{i=1}^n m_{i}\cdot pr_{i}$$
+is continuous. This sum is equal to $f$. Thus $f$ is continuous. 
+\end{proof}
+
+\begin{corollary}\label{corollary:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces}
+Let $\fX$ be a topological vector space over $\mathbb{K}$. If $\fX$ is Hausdorff and of dimension $n$ for some $n\in \NN$, then $\fX$ is isomorphic with $\mathbb{K}^n$.
+\end{corollary}
+\begin{proof}
+The proof goes on induction by $n\in \NN$. Clearly zero dimensional Hausdorff topological vector space over $\mathbb{K}$ is a point. Assume that the result holds for some $n\in \NN$ and let $\fX$ be a Hausdorff topological vector space of dimension $n+1$.\\   
+There exists $\mathbb{K}$-linear isomorphism $f:\mathbb{K}^n\ra \fX$. Fact \ref{fact:linear_morphisms_from_standard_finite_spaces_are_always_continuous} shows that $f$ is continuous. For each $i\in \{1,...,n\}$ let $pr_i:\mathbb{K}^n\ra \mathbb{K}$ be the projection. According to Proposition \ref{proposition:criteria_for_continuity_of_linear_functionals} we derive that $pr_i\cdot f^{-1}$ 
+\end{proof}
 
 
 
