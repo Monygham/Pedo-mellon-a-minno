@@ -12,16 +12,18 @@ This notes are devoted to uniform spaces. In the first section we prove importan
 
 \section{Existence of pseudometrics}
 \noindent
-Let $X$ be a set. We start by introducing some set-theoretic notions concerning subsets of $X\times X$.
+Let $X$ be a set. We denote 
+$$\Delta_X = \big\{(x,x)\in X\,\big|\,x\in X\big\}$$
+We start by introducing some set-theoretic notions concerning subsets of the square $X\times X$.
 
 \begin{definition}
 Let $X$ be a set. A subset $V$ of $X\times X$ such that
-$$\forall_{x\in X}\,(x,x)\in V,\,\forall_{x,y\in X}\,(x,y)\in V\,\Leftrightarrow\,(y,x)\in V$$
-is \textit{a surrounding of the diagonal in $X\times X$}.    
+$$\forall_{x,y\in X}\,(x,y)\in V\,\Leftrightarrow\,(y,x)\in V$$
+and $\Delta_X\subseteq V$ is \textit{a surrounding of the diagonal in $X\times X$}.    
 \end{definition}
 
 \begin{definition}
-Let $X$ be a set and let $V,W$ be subsets of $X\times X$. We define a subset $W\cdot V$ of $X\times X$ called \textit{a composition of $V$ with $W$} such that 
+Let $X$ be a set and let $V,W$ be subsets of $X\times X$. We define a subset $W\cdot V$ of $X\times X$ called \textit{a composition of $V$ with $W$} by formula
 $$(x,z) \in W\cdot V\,\Leftrightarrow\,\exists_{y \in X}\,(x,y)\in V\mbox{ and }(y,z) \in W$$
 for each $x,z\in X$.
 \end{definition}
@@ -337,9 +339,10 @@ $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 preserves kernel pairs. The proof is complete.
 \end{proof}
 
-\section{Pseudometrizable uniform spaces and their products}
+
+\section{Pseudometrizable and Hausdorff uniform spaces}
 \noindent
-In this section we use Theorem \ref{theorem:Weils_theorem_on_pseudometrics} to prove certain structure theorems concerning uniform spaces.
+In this section we use Theorem \ref{theorem:Weils_theorem_on_pseudometrics} to prove certain structure theorems concerning uniform spaces. 
 
 \begin{definition}
 A uniform space $(X,\fU)$ is \textit{pseudometrizable} if there exists a pseudometric $\rho$ on $X$ such that the uniform structure
@@ -378,7 +381,64 @@ coincides with $\fU$. Hence $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
 \begin{corollary}\label{corollary:uniform_space_is_subspace_of_product_of_pseudometrizable_spaces}
 Every uniform space is a uniform subspace of a product of pseudometrizable uniform spaces.
 \end{corollary}
+\begin{proof}
+Let $(X,\fU)$ be a uniform space. For each $U$ in $\fU$ we construct a nonincreasing sequence $\{U_n\}_{n\in \NN}$ of elements of $\fU$ such that $U_0 = U$ and $U_{n+1}\cdot U_{n+1} \cdot U_{n+1} \subseteq U_n$ for each $n\in \NN$. Next define $\fV_U$ as a family 
+$$\big\{W \in \fD_X\,\big|\,\exists_{n\in \NN}\,U_n\subseteq W\big\}$$
+Then $\fV_U$ is a uniform structure on $X$ and $U\in \fV_U \subseteq \fU$. Moreover, by Theorem \ref{theorem:characterization_of_pseudometrizable_uniform_spaces}
 
+\end{proof}
+
+
+
+\begin{definition}
+Let $(X,\fU)$ be a uniform space. Suppose that
+$$\Delta_X = \bigcap_{U\in \fU}U$$
+Then $(X,\fU)$ is \textit{a Hausdorff uniform space}.
+\end{definition}
+
+
+
+\begin{theorem}\label{proposition:universal_Hausdorff_quotient}
+Let $(X,\fU)$ be a uniform space. The following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item The relation
+$$\Delta_{\fU} = \bigcap_{U\in \fU}U \subseteq X\times X$$
+is an equivalence on $X$.
+\item Consider the quotient map $q:X\ra X/\Delta_{\fU}$ and define 
+$$\fU_{sep} = \big\{U \in \fD_{X/\Delta_{\fU}}\,\big|\,(q\times q)^{-1}(U) \in \fU\big\}$$
+Then $\fU_{sep}$ is a uniform structure on $X/\Delta_{\fU}$ which makes $q$ into a morphism 
+$$\left(X,\fU\right)\ra \left(X/\Delta_{\fU},\fU_{sep}\right)$$
+of uniform spaces.
+\item Suppose that $\left(Y,\fV\right)$ is a Hausdorff uniform space and $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ is a morhism of uniform spaces. Then there exists a unique morphism $p:\left(X/\Delta_{\fU}\right)\ra \left(Y,\fV\right)$ of uniform spaces which makes the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ X &  Y  \\
+    X/\Delta_{\fU} & \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f $} (m-1-2);
+\path[->>,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ q $} (m-2-1);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[right = 2pt, below = 2pt] {$ p $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+commutative.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Clearly $\Delta_{\fU}$ is reflexive and symmetric. Fix $U$ in $\fU$. Then there exists $W \in \fU$ such that $W\cdot W\subseteq U$. Hence 
+$$\Delta_{\fU}\cdot \Delta_{\fU}\subseteq W\cdot W \subseteq U$$
+Since $U$ is an arbitrary element of $\fU$, we derive that $\Delta_{\fU}\cdot \Delta_{\fU}\subseteq \Delta_{\fU}$. Hence $\Delta_{\fU}$ is transitive. This completes the proof of \textbf{(1)}.\\
+In order to prove that $\fU_{sep}$ is a uniform structure it suffices to check that for every $U$ in $\fU_{sep}$ there exists $W \in \fU_{sep}$ such that $W\cdot W \subseteq U$. For this pick $U$ in $\fU_{sep}$. Then $(q\times q)^{-1}(U) \in \fU$. Since $\fU$ is a uniform structure, there exists a sequence $\{W_n\}_{n\in \NN_+}$ of elements of $\fU$ such that 
+$$W_n \cdot ...\cdot W_2 \cdot W_1\cdot W_2 \cdot ... \cdot W_n \subseteq (q\times q)^{-1}(U)$$
+for every $n\in \NN_+$. We define
+$$\tilde{W} = \bigcup_{n\in \NN_+}W_n \cdot ...\cdot W_2 \cdot W_1\cdot W_2 \cdot ... \cdot W_n$$
+Then $\tilde{W} \in \fU$ and $\tilde{W} \subseteq (q\times q)^{-1}(U)$. Moreover, we have
+$$\Delta_{\fU}\cdot \tilde{W} \cdot \Delta_{\fU} \subseteq \tilde{W}$$
+From this inclusion it follows that $W = \left(q\times q\right)(\tilde{W})$ satisfies $(q\times q)^{-1}(W) = \tilde{W}$
+\end{proof}
 
 
 
