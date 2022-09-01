@@ -17,15 +17,16 @@ $$\Delta_X = \big\{(x,x)\in X\,\big|\,x\in X\big\}$$
 We start by introducing some set-theoretic notions concerning subsets of the square $X\times X$.
 
 \begin{definition}
-Let $X$ be a set. A subset $V$ of $X\times X$ such that
-$$\forall_{x,y\in X}\,(x,y)\in V\,\Leftrightarrow\,(y,x)\in V$$
-and $\Delta_X\subseteq V$ is \textit{a surrounding of the diagonal in $X\times X$}.    
+Let $X$ be a set. Suppose that $V$ is a subset of $X\times X$ satisfying the following assertions.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item If $(x,y)\in V$ for some $x,y\in X$, then $(y,x)\in V$.
+\item $V$ contains $\Delta_X$.
+\end{enumerate}
+Then $V$ \textit{is a surrounding of $\Delta_X$}.
 \end{definition}
 
 \begin{definition}
-Let $X$ be a set and let $V,W$ be subsets of $X\times X$. We define a subset $W\cdot V$ of $X\times X$ called \textit{a composition of $V$ with $W$} by formula
-$$(x,z) \in W\cdot V\,\Leftrightarrow\,\exists_{y \in X}\,(x,y)\in V\mbox{ and }(y,z) \in W$$
-for each $x,z\in X$.
+Let $X$ be a set and let $V,W$ be subsets of $X\times X$. Consider a subset $W\cdot V$ of $X\times X$ such that $(x,z) \in W\cdot V$ for $x,z\in X$ if and only if $(x,y)\in V$ and $(y,z)\in V$ for some $y\in X$. Then $V\cdot W$ is \textit{a composition of $V$ and $W$}.
 \end{definition}
 \noindent
 Finally we recall the notion of pseudometric.
@@ -43,7 +44,7 @@ Then $\rho$ is \textit{a pseudometric on $X$}.
 Now we state and prove the fundamental result on the existence of pseudometrics.
 
 \begin{theorem}\label{theorem:Weils_theorem_on_pseudometrics}
-Let $X$ be a set and let $\{V_n\}_{n\in \NN}$ be a sequence of surroundings of the diagonal in $X\times X$ such that
+Let $X$ be a set and let $\{V_n\}_{n\in \NN}$ be a sequence of surroundings of $\Delta_X$ such that
 $$V_{n+1}\cdot V_{n+1}\cdot V_{n+1} \subseteq V_n$$
 for every $n\in \NN$. Then there exists a pseudometric $\rho$ on $X$ bounded by $1$ such that
 $$\bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y)<\frac{1}{2^n}\bigg\} \subseteq V_n \subseteq \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) \leq \frac{1}{2^n}\bigg\}$$
@@ -99,9 +100,9 @@ The first inclusion follows from Lemma \ref{lemma:inclusion_of_surroundings_for_
 In this section we introduce main object of our study.
 
 \begin{definition}
-Let $X$ be a set. Suppose that $\fU$ is a collection of surroundings of the diagonal in $X\times X$ which satisfies the following two assertions.
+Let $X$ be a set. Suppose that $\fU$ is a collection of surroundings of $\Delta_X$ which satisfies the following two assertions.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
-\item If $U \in \fU$ and $W$ is a surrounding of the diagonal in $X\times X$ such that $V\subseteq W$, then $W\in \fU$.
+\item If $U \in \fU$ and $W$ is a surrounding of $\Delta_X$ such that $V\subseteq W$, then $W\in \fU$.
 \item If $U,W\in \fU$, then $U\cap W \in \fU$. 
 \item If $U \in \fU$, then there exists $W\in \fU$ such that $W\cdot W \subseteq U$.
 \end{enumerate}
@@ -109,7 +110,7 @@ Then $\fU$ is \textit{a uniform structure on $X$}.
 \end{definition}
 
 \begin{example}\label{example:discrete_uniform_structure}
-Let $X$ be a set. Then the family $\fD_X$ of all surrounding of the diagonal in $X\times X$ is a uniform structure on $X$. It is called \textit{the discrete uniform structure on $X$}.
+Let $X$ be a set. Then the family $\fD_X$ of all surroundings of $\Delta_X$ is a uniform structure on $X$. It is called \textit{the discrete uniform structure on $X$}.
 \end{example}
 
 \begin{fact}\label{fact:uniform_structures_are_closed_under_intersections}
@@ -122,18 +123,12 @@ Left for the reader.
 \end{proof}
 
 \begin{corollary}\label{corollary:smallest_uniform_structure_containing_given_family_of_surroundings}
-Let $X$ be a set and let $\cF$ be a family of surrounding of the diagonal in $X\times X$. Then there exists the smallest (with respect to inclusion) uniform structure $\fU$ on $X$ which contain $\cF$.
+Let $X$ be a set and let $\cF$ be a family of surrounding of $\Delta_X$. Then there exists the smallest (with respect to inclusion) uniform structure $\fU$ on $X$ which contain $\cF$.
 \end{corollary}
 \begin{proof}
 Let $\{\fU_i\}_{i\in I}$ be a family of all uniform structures on $X$ which contain $\cF$. The family is nonempty, since it contains the discrete uniform structure on $X$. The intersection $$\fU = \bigcap_{i\in I}\fU_i$$
 is a uniform structure on $X$ by Fact \ref{fact:uniform_structures_are_closed_under_intersections}. Hence it is the smallest uniform structure on $X$ which contain $\cF$.
 \end{proof}
-
-% \begin{example}[Uniform structure induced by the family of pseudometrics]\label{example:uniform_structure_introduced_by_the_set_of_pseudometrics}
-% Let $X$ be a set and let $\fP$ be a family of pseudometrics on $X$. Then a collection
-% $$\bigg\{V\,\bigg|\,\exists_{\epsilon>0}\,\exists_{\rho \in \fP}\,\big\{(x,y)\in X\times X\,\big|\,\rho(x,y)\leq \epsilon\big\}\subseteq V\bigg\}$$
-% is a uniform structure on $X$. 
-% \end{example}
 
 \begin{definition}
 A pair $(X,\fU)$ consisting of a set $X$ and a uniform structure $\fU$ on $X$ is \textit{a uniform space}.
@@ -160,7 +155,7 @@ if and only if there exist $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_
 $$\bigcap_{k=1}^n\left(f_{i_k}\times f_{i_k}\right)^{-1}(U_k) \subseteq U$$
 \end{theorem}
 \begin{proof}
-Consider the family $\cU$ of all surrounding $U$ of the diagonal in $X\times X$ such that there exist $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ satisfying
+Consider the family $\cU$ of all surrounding $U$ of $\Delta_X$ such that there exist $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ satisfying
 $$\bigcap_{k=1}^n\left(f_{i_k}\times f_{i_k}\right)^{-1}(U_k) \subseteq U$$
 It is easy to verify (we left for the reader) that $\cU$ is a uniform structure on $X$. Moreover, for every $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ we have
 $$\bigcap_{k=1}^n\left(f_{i_k}\times f_{i_k}\right)^{-1}(U_k) \in \fU$$
@@ -170,6 +165,73 @@ Hence $\cU \subseteq \fU$. Note also that $f_i$ is a uniform morphism $(X,\cU)\r
 \begin{definition}
 Let $(X,\fU)$ be a uniform space and let $Z$ be a subset of $X$. Then $Z$ together with the smallest uniform structure which makes the inclusion $Z\hookrightarrow X$ into a uniform morphism is \textit{a uniform subspace of $(X,\fU)$ with $Z$ as the underlying set}.
 \end{definition}
+
+\section{Hausdorff uniform spaces}
+\noindent
+In this short section we study uniform spaces which satisfy the following separation axiom. 
+
+\begin{definition}
+Let $(X,\fU)$ be a uniform space. Suppose that
+$$\Delta_X = \bigcap_{U\in \fU}U$$
+Then $(X,\fU)$ is \textit{a Hausdorff uniform space}.
+\end{definition}
+\noindent
+The following result shows that every uniform space admits universal Hausdorff quotient.
+
+\begin{theorem}\label{theorem:universal_Hausdorff_quotient}
+Let $(X,\fU)$ be a uniform space. The following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item The subset
+$$\Delta_{\fU} = \bigcap_{U\in \fU}U$$
+of $X\times X$ is an equivalence relation.
+\item Consider the quotient map $q:X\ra X/\Delta_{\fU}$ and define 
+$$\fU_{sep} = \big\{U \in \fD_{X/\Delta_{\fU}}\,\big|\,(q\times q)^{-1}(U) \in \fU\big\}$$
+Then $\fU_{sep}$ is a uniform structure on $X/\Delta_{\fU}$ which makes $q$ into a morphism 
+$$\left(X,\fU\right)\ra \left(X/\Delta_{\fU},\fU_{sep}\right)$$
+of uniform spaces.
+\item Suppose that $\left(Y,\fV\right)$ is a Hausdorff uniform space and $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ is a morhism of uniform spaces. Then there exists a unique morphism $p:\left(X/\Delta_{\fU}\right)\ra \left(Y,\fV\right)$ of uniform spaces which makes the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ X &  Y  \\
+    X/\Delta_{\fU} & \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f $} (m-1-2);
+\path[->>,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ q $} (m-2-1);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[right = 2pt, below = 2pt] {$ p $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+commutative.
+\end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need technical lemma.
+
+\begin{lemma}\label{lemma:entourage_closed_under_pseudodiagonal}
+For every $U$ in $\fU$ and there exists $V$ in $\fU$ such that $V\cdot V\subseteq U$ and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Pick $W$ in $\fU$ such that $\left(W\cdot W\cdot W\right) \cdot \left(W \cdot W \cdot W\right) \subseteq U$. Note that for every $n\in \NN_+$ we have 
+$$\underbrace{\Delta_{\fU}\cdot ...\cdot \Delta_{\fU}}_{n\,\mathrm{times}}\subseteq W$$
+Define
+$$V = \bigcup_{n\in \NN}\underbrace{\Delta_{\fU}\cdot ...\cdot \Delta_{\fU}}_{n\,\mathrm{times}}\cdot W\cdot \underbrace{\Delta_{\fU}\cdot ...\cdot \Delta_{\fU}}_{n\,\mathrm{times}}$$
+Clearly $W\subseteq V \subseteq W\cdot W\cdot W$ and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$. Thus $V$ is an element of $\fU$ and we have
+$$V\cdot V\subseteq \left(W\cdot W\cdot W\right) \cdot \left(W \cdot W \cdot W\right) \subseteq U$$
+and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$. This finishes the proof.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Clearly $\Delta_{\fU}$ is reflexive and symmetric. Fix $U$ in $\fU$. Then there exists $W \in \fU$ such that $W\cdot W\subseteq U$. Hence 
+$$\Delta_{\fU}\cdot \Delta_{\fU}\subseteq W\cdot W \subseteq U$$
+Since $U$ is an arbitrary element of $\fU$, we derive that $\Delta_{\fU}\cdot \Delta_{\fU}\subseteq \Delta_{\fU}$. Hence $\Delta_{\fU}$ is transitive. This completes the proof of \textbf{(1)}.\\
+In order to prove that $\fU_{sep}$ is a uniform structure it suffices to check that for every $U$ in $\fU_{sep}$ there exists $W \in \fU_{sep}$ such that $W\cdot W \subseteq U$. For this pick $U$ in $\fU_{sep}$. By Lemma \ref{lemma:entourage_closed_under_pseudodiagonal} there exists $V\in \fU$ such that $V\cdot V\subseteq \left(q\times q\right)^{-1}(U)$ and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$. Since $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$, we have $V = \left(q\times q\right)^{-1}(W)$ where $W = \left(q\times q\right)\left(V\right)$. This implies that $W \in \fU_{sep}$ and $W\cdot W\subseteq U$. We proved \textbf{(2)}.\\
+For the proof of \textbf{(3)} observe that $\left(f\times f\right)^{-1}\left(\Delta_Y\right)$ is an equivalence relation containing $\Delta_{\fU}$. Indeed, it is an equivalence relation due to the fact that $f$ is a map and it contains $\Delta_{\fU}$ due to the fact that $f$ is a uniform map and $(Y,\fV)$ is Hausdorff. It follows that $f = p\cdot q$ for a unique map $p:X/\Delta_{\fU}\ra Y$. Fix now an entourage $V \in \fV$. Then 
+$$\left(q\times q\right)^{-1}\big(\left(p\times p\right)^{-1}(V)\big) = \left(f\times f\right)^{-1}(V) \in \fU$$
+Hence $\left(p\times p\right)^{-1}(V) \in \fU_{sep}$ by definition. Thus $p$ is a unique uniform morphism such that $f = p\cdot q$.
+\end{proof}
 
 \section{Topology induced by uniform structure}
 \noindent
@@ -296,7 +358,7 @@ $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 preserves small limits.
 \end{theorem}
 \begin{proof}
-Let $\cI$ be a set and let $\left\{\left(X_i,\fU_i\right)\right\}_{i\in \cI}$ be a family of uniform spaces parametrized by $\cI$. Consider the cartesian product $X = \prod_{i\in \cI}X_i$ and let $pr_i:X\ra X_i$ be the projection for $i\in \cI$. Let $\fU$ be the smallest uniform structure on $X$ which makes $\big\{pr_i:\left(X,\fU\right) \ra \left(X_i,\fU_i\right)\big\}_{i\in \cI}$ into a family of morphisms of uniform spaces. By Theorem \ref{theorem:description_of_uniform_structure_introduced_by_a_family_of_maps} family $\fU$ consists of all surrounding $U$ of the diagonal in $X\times X$ such that there exist $n\in \NN_+$, $i_1,...,i_n\in \cI$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ satisfying
+Let $\cI$ be a set and let $\left\{\left(X_i,\fU_i\right)\right\}_{i\in \cI}$ be a family of uniform spaces parametrized by $\cI$. Consider the cartesian product $X = \prod_{i\in \cI}X_i$ and let $pr_i:X\ra X_i$ be the projection for $i\in \cI$. Let $\fU$ be the smallest uniform structure on $X$ which makes $\big\{pr_i:\left(X,\fU\right) \ra \left(X_i,\fU_i\right)\big\}_{i\in \cI}$ into a family of morphisms of uniform spaces. By Theorem \ref{theorem:description_of_uniform_structure_introduced_by_a_family_of_maps} family $\fU$ consists of all surrounding $U$ of $\Delta_X$ such that there exist $n\in \NN_+$, $i_1,...,i_n\in \cI$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ satisfying
 $$\bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k) \subseteq U$$
 Note that we have
 $$B\bigg(x, \bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k)\bigg) = \prod_{k=1}^nB\big(pr_{i_k}(x), U_k\big)\times \prod_{i\in \cI\setminus \{i_1,...,i_k\}}X_i$$
@@ -338,7 +400,6 @@ is a kernel pair in the category $\Top$. Therefore, the functor
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 preserves kernel pairs. The proof is complete.
 \end{proof}
-
 
 \section{Pseudometrizable and Hausdorff uniform spaces}
 \noindent
@@ -389,56 +450,6 @@ Then $\fV_U$ is a uniform structure on $X$ and $U\in \fV_U \subseteq \fU$. Moreo
 \end{proof}
 
 
-
-\begin{definition}
-Let $(X,\fU)$ be a uniform space. Suppose that
-$$\Delta_X = \bigcap_{U\in \fU}U$$
-Then $(X,\fU)$ is \textit{a Hausdorff uniform space}.
-\end{definition}
-
-
-
-\begin{theorem}\label{proposition:universal_Hausdorff_quotient}
-Let $(X,\fU)$ be a uniform space. The following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item The relation
-$$\Delta_{\fU} = \bigcap_{U\in \fU}U \subseteq X\times X$$
-is an equivalence on $X$.
-\item Consider the quotient map $q:X\ra X/\Delta_{\fU}$ and define 
-$$\fU_{sep} = \big\{U \in \fD_{X/\Delta_{\fU}}\,\big|\,(q\times q)^{-1}(U) \in \fU\big\}$$
-Then $\fU_{sep}$ is a uniform structure on $X/\Delta_{\fU}$ which makes $q$ into a morphism 
-$$\left(X,\fU\right)\ra \left(X/\Delta_{\fU},\fU_{sep}\right)$$
-of uniform spaces.
-\item Suppose that $\left(Y,\fV\right)$ is a Hausdorff uniform space and $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ is a morhism of uniform spaces. Then there exists a unique morphism $p:\left(X/\Delta_{\fU}\right)\ra \left(Y,\fV\right)$ of uniform spaces which makes the triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
-{ X &  Y  \\
-    X/\Delta_{\fU} & \\ } ;
-\path[->,line width=0.8pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ f $} (m-1-2);
-\path[->>,line width=0.8pt,font=\scriptsize]
-(m-1-1) edge node[left] {$ q $} (m-2-1);
-\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
-(m-2-1) edge node[right = 2pt, below = 2pt] {$ p $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-commutative.
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-Clearly $\Delta_{\fU}$ is reflexive and symmetric. Fix $U$ in $\fU$. Then there exists $W \in \fU$ such that $W\cdot W\subseteq U$. Hence 
-$$\Delta_{\fU}\cdot \Delta_{\fU}\subseteq W\cdot W \subseteq U$$
-Since $U$ is an arbitrary element of $\fU$, we derive that $\Delta_{\fU}\cdot \Delta_{\fU}\subseteq \Delta_{\fU}$. Hence $\Delta_{\fU}$ is transitive. This completes the proof of \textbf{(1)}.\\
-In order to prove that $\fU_{sep}$ is a uniform structure it suffices to check that for every $U$ in $\fU_{sep}$ there exists $W \in \fU_{sep}$ such that $W\cdot W \subseteq U$. For this pick $U$ in $\fU_{sep}$. Then $(q\times q)^{-1}(U) \in \fU$. Since $\fU$ is a uniform structure, there exists a sequence $\{W_n\}_{n\in \NN_+}$ of elements of $\fU$ such that 
-$$W_n \cdot ...\cdot W_2 \cdot W_1\cdot W_2 \cdot ... \cdot W_n \subseteq (q\times q)^{-1}(U)$$
-for every $n\in \NN_+$. We define
-$$\tilde{W} = \bigcup_{n\in \NN_+}W_n \cdot ...\cdot W_2 \cdot W_1\cdot W_2 \cdot ... \cdot W_n$$
-Then $\tilde{W} \in \fU$ and $\tilde{W} \subseteq (q\times q)^{-1}(U)$. Moreover, we have
-$$\Delta_{\fU}\cdot \tilde{W} \cdot \Delta_{\fU} \subseteq \tilde{W}$$
-From this inclusion it follows that $W = \left(q\times q\right)(\tilde{W})$ satisfies $(q\times q)^{-1}(W) = \tilde{W}$
-\end{proof}
 
 
 
