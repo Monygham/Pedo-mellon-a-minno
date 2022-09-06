@@ -26,19 +26,24 @@ Then $V$ \textit{is a surrounding of $\Delta_X$}.
 \end{definition}
 
 \begin{definition}
-Let $X$ be a set and let $V,W$ be subsets of $X\times X$. Consider a subset $W\cdot V$ of $X\times X$ such that $(x,z) \in W\cdot V$ for $x,z\in X$ if and only if $(x,y)\in V$ and $(y,z)\in V$ for some $y\in X$. Then $V\cdot W$ is \textit{a composition of $V$ and $W$}.
+Let $X$ be a set and let $V,W$ be subsets of $X\times X$. Consider a subset $W\cdot V$ of $X\times X$ such that $(x,z) \in W\cdot V$ for $x,z\in X$ if and only if $(x,y)\in V$ and $(y,z)\in V$ for some $y\in X$. Then $V\cdot W$ is \textit{the composition of $V$ and $W$}.
 \end{definition}
 \noindent
 Finally we recall the notion of pseudometric.
 
 \begin{definition}
-Let $X$ be a set. Suppose that a function $\rho:X\times X\ra [0,+\infty)$ satisfies the following assertions.
+Let $X$ be a set. Suppose that a function $\rho:X\times X\ra \RR$ satisfies the following assertions.
 \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item $\rho(x,y) \geq 0$ for all $x,y\in X$.
 \item $\rho(x,x) = 0$ for all $x\in X$.
 \item $\rho(x,y) = \rho(y,x)$ for all $x,y\in X$.
 \item $\rho(x,z)\leq \rho(x,y) + \rho(y,z)$ for all $x,y,z\in X$.
 \end{enumerate}
 Then $\rho$ is \textit{a pseudometric on $X$}.
+\end{definition}
+
+\begin{definition}
+Let $\rho$ be a pseudometric on $X$. Suppose that $\rho(x,y) = 0$ implies $x = y$ for all $x,y\in X$. Then $\rho$ is \textit{a metric on $X$}.
 \end{definition}
 \noindent
 Now we state and prove the fundamental result on the existence of pseudometrics.
@@ -176,7 +181,7 @@ $$\Delta_X = \bigcap_{U\in \fU}U$$
 Then $(X,\fU)$ is \textit{a Hausdorff uniform space}.
 \end{definition}
 \noindent
-The following result shows that every uniform space admits universal Hausdorff quotient.
+The following result shows that every uniform space admits Hausdorff quotient.
 
 \begin{theorem}\label{theorem:universal_Hausdorff_quotient}
 Let $(X,\fU)$ be a uniform space. The following assertions hold.
@@ -189,6 +194,7 @@ $$\fU_{sep} = \big\{U \in \fD_{X/\Delta_{\fU}}\,\big|\,(q\times q)^{-1}(U) \in \
 Then $\fU_{sep}$ is a uniform structure on $X/\Delta_{\fU}$ which makes $q$ into a morphism 
 $$\left(X,\fU\right)\ra \left(X/\Delta_{\fU},\fU_{sep}\right)$$
 of uniform spaces.
+\item $\left(X/\Delta_{\fU}, \fU_{sep}\right)$ is a Hausdorff uniform space.
 \item Suppose that $\left(Y,\fV\right)$ is a Hausdorff uniform space and $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ is a morhism of uniform spaces. Then there exists a unique morphism $p:\left(X/\Delta_{\fU}\right)\ra \left(Y,\fV\right)$ of uniform spaces which makes the triangle
 \begin{center}
 \begin{tikzpicture}
@@ -228,10 +234,15 @@ Clearly $\Delta_{\fU}$ is reflexive and symmetric. Fix $U$ in $\fU$. Then there 
 $$\Delta_{\fU}\cdot \Delta_{\fU}\subseteq W\cdot W \subseteq U$$
 Since $U$ is an arbitrary element of $\fU$, we derive that $\Delta_{\fU}\cdot \Delta_{\fU}\subseteq \Delta_{\fU}$. Hence $\Delta_{\fU}$ is transitive. This completes the proof of \textbf{(1)}.\\
 In order to prove that $\fU_{sep}$ is a uniform structure it suffices to check that for every $U$ in $\fU_{sep}$ there exists $W \in \fU_{sep}$ such that $W\cdot W \subseteq U$. For this pick $U$ in $\fU_{sep}$. By Lemma \ref{lemma:entourage_closed_under_pseudodiagonal} there exists $V\in \fU$ such that $V\cdot V\subseteq \left(q\times q\right)^{-1}(U)$ and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$. Since $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$, we have $V = \left(q\times q\right)^{-1}(W)$ where $W = \left(q\times q\right)\left(V\right)$. This implies that $W \in \fU_{sep}$ and $W\cdot W\subseteq U$. We proved \textbf{(2)}.\\
-For the proof of \textbf{(3)} observe that $\left(f\times f\right)^{-1}\left(\Delta_Y\right)$ is an equivalence relation containing $\Delta_{\fU}$. Indeed, it is an equivalence relation due to the fact that $f$ is a map and it contains $\Delta_{\fU}$ due to the fact that $f$ is a uniform map and $(Y,\fV)$ is Hausdorff. It follows that $f = p\cdot q$ for a unique map $p:X/\Delta_{\fU}\ra Y$. Fix now an entourage $V \in \fV$. Then 
+Suppose that $x,y \in X$ satisfy $q(x)\neq q(y)$ or in other words $\left(q(x),q(y)\right)\not \in \Delta_{X/\Delta_{\fU}}$. Then $(x,y) \not \in \Delta_{\fU}$ and there exists $U$ in $\fU$ such that $(x,y) \not \in U$. Invoking Lemma \ref{lemma:entourage_closed_under_pseudodiagonal} there exists $V\in \fU$ such that $V\subseteq V\cdot V \subseteq U$ and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$. Then $W = \left(q\times q\right)(V)$ is an element of $\fU_{sep}$ and $\left(q(x),q(y)\right)\not \in W$. This proves \textbf{(3)}.\\
+For the proof of \textbf{(4)} observe that $\left(f\times f\right)^{-1}\left(\Delta_Y\right)$ is an equivalence relation containing $\Delta_{\fU}$. Indeed, it is an equivalence relation due to the fact that $f$ is a map and it contains $\Delta_{\fU}$ due to the fact that $f$ is a uniform map and $(Y,\fV)$ is Hausdorff. It follows that $f = p\cdot q$ for a unique map $p:X/\Delta_{\fU}\ra Y$. Fix now an entourage $V \in \fV$. Then 
 $$\left(q\times q\right)^{-1}\big(\left(p\times p\right)^{-1}(V)\big) = \left(f\times f\right)^{-1}(V) \in \fU$$
 Hence $\left(p\times p\right)^{-1}(V) \in \fU_{sep}$ by definition. Thus $p$ is a unique uniform morphism such that $f = p\cdot q$.
 \end{proof}
+
+\begin{definition}
+Let $(X,\fU)$ be a uniform space. Then a morphism $q:\left(X,\fU\right)\twoheadrightarrow \left(X/\Delta_{\fU},\fU_{sep}\right)$ described in Theorem \ref{theorem:universal_Hausdorff_quotient} is \textit{the universal Hausdorff quotient of $\left(X,\fU\right)$}.
+\end{definition}
 
 \section{Topology induced by uniform structure}
 \noindent
@@ -240,7 +251,7 @@ We start by introducing the notion of a ball with respect to surrounding of the 
 \begin{definition}
 Let $X$ be a set. For every $x$ in $X$ and $U$ in $\fD_X$ the set
 $$B(x,U) = \big\{y\in X\,\big|\,(x,y)\in U\big\}$$
-is \textit{a ball with center $x$ and radius $U$}.
+is \textit{the ball with center $x$ and radius $U$}.
 \end{definition}
 
 \begin{fact}\label{fact:topology_induced_by_uniform_structure}
@@ -258,15 +269,15 @@ Let $X$ be a set and let $\fU$ be a uniform structure on $X$. Then the topology 
 \noindent
 The following result is a useful property of a topology induced by a uniform structure. 
 
-\begin{proposition}\label{proposition:each_ball_contains_an_open_subset_with_respect_to_topology_induced_by_uniform_structure}
-Let $(X,\fU)$ be a uniform space and let $U \in \fU$. For every $x$ in $X$ there exists an open neighborhood $\cO$ of $x$ with respect to $\tau_{\fU}$ such that $\cO\subseteq B(x,U)$.
+\begin{proposition}\label{proposition:each_ball_contains_open_ball}
+Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \fU$ contained in $U$ such that for every $x$ in $X$ the ball $B(x,W)$ is open with respect to the topology induced by $\fU$ on $X$.
 \end{proposition}
-\begin{proof}[Proof of the lemma]
+\begin{proof}
 We pick $U_1 \in \fU$ such that $U_1\cdot U_1 \subseteq U$. Next suppose that $U_n$ is defined for some $n\in \NN_+$. Then there exists $U_{n+1}\in \fU$ such that $U_{n+1}\cdot U_{n+1} \subseteq U_n$. Thus by recursive method we construct a sequence $\{U_n\}_{n\in \NN}$ of elements of $\fU$. Easy induction shows that
 $$U_1\cdot U_2\cdot ...\cdot U_n \subseteq U$$
 for each $n\in \NN_+$. Then
-$$\cO = \bigcup_{n\in \NN_+}B\big(x, U_{1}\cdot U_{2}\cdot ...\cdot U_{n}\big)$$
-is in $\tau_{\fU}$ and is a subset of $B(x,U)$.
+$$W = \bigcup_{n\in \NN_+}U_{1}\cdot U_{2}\cdot ...\cdot U_{n}$$
+is in $\fU$ and is contained in $U$. Moreover, for every $x$ in $X$ the ball $B(x,W) \in \tau_{\fU}$.
 \end{proof}
 
 \begin{example}\label{example:uniform_structure_on_interval}
@@ -289,7 +300,7 @@ $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU})\in   \Top$$
 In the remaining part of this section we shall investigate the properties of this functor. We start by describing the image of the functor.
 
 \begin{definition}
-Let $X$ be a topological space. Suppose that for every closed subset $F$ of $X$ and for every point $x$ in $X\setminus  F$ there exists a continuous function $f:X\ra [0,1]$ such that $f(F) \subseteq \{1\}$ and $f(x) = 0$. Then $X$ is \textit{a completely regular space}. 
+Let $(X,\tau)$ be a topological space. Suppose that for every closed subset $F$ of $X$ and for every point $x$ in $X\setminus  F$ there exists a continuous function $f:X\ra [0,1]$ such that $f(F) \subseteq \{1\}$ and $f(x) = 0$. Then $X$ is \textit{a completely regular space}. 
 \end{definition}
 
 \begin{theorem}\label{theorem:image_of_the_canonical_functor_is_completely_regular_space}
@@ -328,12 +339,12 @@ Let $(X,\fU)$ be a uniform space and let $Z$ be a subset of $X$. Let $\fU_Z$ be 
 \begin{proof}
 Let $\cO$ be a set in $\tau_{\fU}$. Then for each $x$ in $\cO$ there exists $U_x\in \fU$ such that $B(x,U_x)\subseteq \cO$. Thus
 $$\cO \cap Z = \bigcup_{z\in \cO\cap Z}B\big(z,U_z\cap \left(Z\times Z\right)\big)$$
-Since $U_z\cap \left(Z\times Z\right) \in \fU_Z$ for every $z \in \cO\cap Z$, it follows that $\cO\cap Z$ is open with respect to $\tau_{\fU_Z}$. hence
+Since $U_z\cap \left(Z\times Z\right) \in \fU_Z$ for every $z \in \cO\cap Z$, it follows that $\cO\cap Z$ is open with respect to $\tau_{\fU_Z}$. Hence
 $$\big\{Z\cap \cO\,\big|\,\cO \in \tau_{\fU}\big\} \subseteq \tau_{\fU_Z}$$
-Suppose now that $\cO_Z \in \tau_{\fU_Z}$. Then for each $z\in \cO_Z$ there exists $U_z \in \fU$ such that $B\big(z,U_z\cap \left(Z\times Z\right)\big)\subseteq \cO_Z$. By Proposition \ref{proposition:each_ball_contains_an_open_subset_with_respect_to_topology_induced_by_uniform_structure} there exists $\cO_z \in \tau_{\fU}$ such that $\cO_z\subseteq B(z,U_z)$. Thus 
+Suppose now that $\cO_Z \in \tau_{\fU_Z}$. Then for each $z\in \cO_Z$ there exists $U_z \in \fU$ such that $B\big(z,U_z\cap \left(Z\times Z\right)\big)\subseteq \cO_Z$. By Proposition \ref{proposition:each_ball_contains_open_ball} there exists $\cO_z \in \tau_{\fU}$ such that $z \in \cO_z\subseteq B(z,U_z)$. Thus 
 $$\cO = \bigcup_{z \in \cO_Z}\cO_z$$
 is an element of $\tau_{\fU}$ and
-$$\cO \subseteq \bigcap_{z\in \cO_Z}B(z,U_z)$$
+$$\cO \subseteq \bigcup_{z\in \cO_Z}B(z,U_z)$$
 and hence $Z\cap \cO = \cO_Z$. Therefore, $\cO_Z$ is an open subset in the subspace topology induced on $Z$ by $\tau_{\fU}$. This completes the proof.
 \end{proof}
 
@@ -362,7 +373,7 @@ Let $\cI$ be a set and let $\left\{\left(X_i,\fU_i\right)\right\}_{i\in \cI}$ be
 $$\bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k) \subseteq U$$
 Note that we have
 $$B\bigg(x, \bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k)\bigg) = \prod_{k=1}^nB\big(pr_{i_k}(x), U_k\big)\times \prod_{i\in \cI\setminus \{i_1,...,i_k\}}X_i$$
-for every $x \in X$. By Proposition \ref{proposition:each_ball_contains_an_open_subset_with_respect_to_topology_induced_by_uniform_structure} there exist $\cO_1 \in \tau_{\fU_{i_1}},...,\cO_n \in \tau_{\fU_{i_n}}$ such that 
+for every $x \in X$. By Proposition \ref{proposition:each_ball_contains_open_ball} there exist $\cO_1 \in \tau_{\fU_{i_1}},...,\cO_n \in \tau_{\fU_{i_n}}$ such that 
 $$pr_{i_k}(x) \in \cO_k \subseteq \big(pr_{i_k}(x), U_k\big)$$
 for each $k$. Thus
 $$\prod_{k=1}^n\cO_k \times \prod_{i\in \cI\setminus \{i_1,...,i_k\}}X_i \subseteq B\bigg(x, \bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k)\bigg) \subseteq B(x,U)$$
@@ -400,6 +411,49 @@ is a kernel pair in the category $\Top$. Therefore, the functor
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 preserves kernel pairs. The proof is complete.
 \end{proof}
+
+\section{Kolmogorov spaces and quotients}
+\noindent
+In this section we introduce certain class of topological spaces which is relevant to uniform spaces.
+
+\begin{definition}
+Let $(X,\tau)$ be a topological space. Suppose that for any pair of points $x,y$ in $X$ there exists set $\cO$ in $\tau$ such that either $x \in \cO$ and $y \not \in \cO$ or $y \in \cO$ and $x \not \in \cO$. Then $(X,\tau)$ is \textit{a Kolmogorov space}.
+\end{definition}
+\noindent
+The following result shows that every topological space admits Hausdorff quotient.
+
+\begin{theorem}\label{theorem:universal_Kolomogorov_quotient}
+Let $(X,\tau)$ be a topological space. The following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item The subset
+$$\Delta_{Kol} = \big\{(x,y) \in X\times X\,\big|\,x\in \cO\mbox{ if and only if }y\in \cO\mbox{ for every set }\cO\mbox{ in }\tau\big\}$$
+is an equivalence relation on $X$.
+\item Consider the quotient topology $\tau_{Kol}$ on $X/\Delta_{Kol}$. Then $\left(X/\Delta_{Kol},\tau_{Kol}\right)$ is a Komogorov space.
+
+\item Suppose that $\left(Y,\theta\right)$ is a Kolmogorov space and $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ is a morhism of uniform spaces. Then there exists a unique morphism $p:\left(X/\Delta_{\fU}\right)\ra \left(Y,\fV\right)$ of uniform spaces which makes the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ X &  Y  \\
+    X/\Delta_{\fU} & \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f $} (m-1-2);
+\path[->>,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[left] {$ q $} (m-2-1);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[right = 2pt, below = 2pt] {$ p $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+commutative.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+Let $(X,\tau)$ be a topological space. Consider the equivalence relation
+$$\Delta_{Kol} = \big\{(x,y) \in X\times X\,\big|\,x\in \cO\mbox{ if and only if }y\in \cO\mbox{ for every set }\cO\mbox{ in }\tau\big\}$$
+and let $q:\left(X,\tau\right)\twoheadrightarrow \left(X/\Delta_{Kol},\right)$
+\end{definition}
 
 \section{Pseudometrizable and Hausdorff uniform spaces}
 \noindent
