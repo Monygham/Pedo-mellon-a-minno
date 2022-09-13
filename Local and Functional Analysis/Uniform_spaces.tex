@@ -14,7 +14,9 @@ These notes are devoted to uniform spaces. In the first section we prove importa
 \noindent
 Let $X$ be a set. We denote 
 $$\Delta_X = \big\{(x,x)\in X\,\big|\,x\in X\big\}$$
-We start by introducing some set-theoretic notions concerning subsets of the square $X\times X$.
+For subsets $V,W$ of $X\times X$ we denote
+$$W\cdot V = \big\{(x,z)\in X\times X\,\big|\,(x,y)\in V\mbox{ and }(y,z)\in W\mbox{ for some }y\in X\big\}$$
+Now we are ready to introduce basic notions.
 
 \begin{definition}
 Let $X$ be a set. Suppose that $V$ is a subset of $X\times X$ satisfying the following assertions.
@@ -23,10 +25,6 @@ Let $X$ be a set. Suppose that $V$ is a subset of $X\times X$ satisfying the fol
 \item $V$ contains $\Delta_X$.
 \end{enumerate}
 Then $V$ \textit{is a surrounding of $\Delta_X$}.
-\end{definition}
-
-\begin{definition}
-Let $X$ be a set and let $V,W$ be subsets of $X\times X$. Consider a subset $W\cdot V$ of $X\times X$ such that $(x,z) \in W\cdot V$ for $x,z\in X$ if and only if $(x,y)\in V$ and $(y,z)\in V$ for some $y\in X$. Then $V\cdot W$ is \textit{the composition of $V$ and $W$}.
 \end{definition}
 \noindent
 Finally we recall the notion of pseudometric.
@@ -128,11 +126,11 @@ Left for the reader.
 \end{proof}
 
 \begin{corollary}\label{corollary:smallest_uniform_structure_containing_given_family_of_surroundings}
-Let $X$ be a set and let $\cF$ be a family of surrounding of $\Delta_X$. Then there exists the smallest (with respect to inclusion) uniform structure $\fU$ on $X$ which contain $\cF$.
+Let $X$ be a set and let $\cF$ be a family of surrounding of $\Delta_X$. Then there exists the smallest (with respect to inclusion) uniform structure $\fU$ on $X$ which contains $\cF$.
 \end{corollary}
 \begin{proof}
 Let $\{\fU_i\}_{i\in I}$ be a family of all uniform structures on $X$ which contain $\cF$. The family is nonempty, since it contains the discrete uniform structure on $X$. The intersection $$\fU = \bigcap_{i\in I}\fU_i$$
-is a uniform structure on $X$ by Fact \ref{fact:uniform_structures_are_closed_under_intersections}. Hence it is the smallest uniform structure on $X$ which contain $\cF$.
+is a uniform structure on $X$ by Fact \ref{fact:uniform_structures_are_closed_under_intersections}. Hence it is the smallest uniform structure on $X$ which contains $\cF$.
 \end{proof}
 
 \begin{definition}
@@ -151,18 +149,16 @@ Let $(X,\fU),(Y,\fV)$ be uniform spaces and let $f:X\ra Y$ be a map. Suppose tha
 Uniform spaces and their morphisms form a category. We denote this category by $\Unif$.
 \end{remark}
 \noindent
-Now we study limits in $\Unif$. For this we use the following result.
+In order to study categorical properties of $\Unif$ we use the following result.
 
 \begin{theorem}\label{theorem:description_of_uniform_structure_introduced_by_a_family_of_maps}
-Let $X$ be a set and let $\{(X_i,\fU_i)\}_{i\in I}$ be a family of uniform spaces. Consider a family $\big\{f_i:X\ra X_i\big\}_{i\in I}$ of maps. Suppose that $\fU$ is the smallest uniform structure on $X$ which makes $\{f_i\}_{i\in I}$ into a family of uniform morphisms. Then 
-$$U \in \fU$$
-if and only if there exist $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ such that
+Let $X$ be a set and let $\{(X_i,\fU_i)\}_{i\in I}$ be a family of uniform spaces. Consider a family $\big\{f_i:X\ra X_i\big\}_{i\in I}$ of maps. Suppose that $\fU$ is the smallest uniform structure on $X$ which makes $\{f_i\}_{i\in I}$ into a family of uniform morphisms. Then $U \in \fU$ if and only if there exist $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ such that
 $$\bigcap_{k=1}^n\left(f_{i_k}\times f_{i_k}\right)^{-1}(U_k) \subseteq U$$
 \end{theorem}
 \begin{proof}
 Consider the family $\cU$ of all surrounding $U$ of $\Delta_X$ such that there exist $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ satisfying
 $$\bigcap_{k=1}^n\left(f_{i_k}\times f_{i_k}\right)^{-1}(U_k) \subseteq U$$
-It is easy to verify (we left for the reader) that $\cU$ is a uniform structure on $X$. Moreover, for every $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ we have
+It is easy to verify (we left it for the reader) that $\cU$ is a uniform structure on $X$. Moreover, for every $n\in \NN_+$, $i_1,...,i_n\in I$ and $U_1 \in \fU_{i_1},...,U_n\in \fU_{i_n}$ we have
 $$\bigcap_{k=1}^n\left(f_{i_k}\times f_{i_k}\right)^{-1}(U_k) \in \fU$$
 Hence $\cU \subseteq \fU$. Note also that $f_i$ is a uniform morphism $(X,\cU)\ra (X_i,\fU_i)$ for each $i\in I$. Thus $\fU \subseteq \cU$. Therefore, $\cU = \fU$ and this proves the theorem. 
 \end{proof}
@@ -204,7 +200,16 @@ We pick $U_1 \in \fU$ such that $U_1\cdot U_1 \subseteq U$. Next suppose that $U
 $$U_1\cdot U_2\cdot ...\cdot U_n \subseteq U$$
 for each $n\in \NN_+$. Then
 $$W = \bigcup_{n\in \NN_+}U_{1}\cdot U_{2}\cdot ...\cdot U_{n}$$
-is in $\fU$ and is contained in $U$. Moreover, for every $x$ in $X$ the ball $B(x,W) \in \tau_{\fU}$.
+is in $\fU$ and is contained in $U$. Moreover, for every $x$ in $X$ the ball $B(x,W)$ is open with respect to $\tau_{\fU}$.
+\end{proof}
+
+\begin{corollary}\label{corollary:each_entourage_contains_open_subset_in_square}
+Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \fU$ such that $W\subseteq U$ and $W$ is open in $\left(X,\tau_{\fU}\right) \times \left(X,\tau_{\fU}\right)$.
+\end{corollary}
+\begin{proof}
+By Proposition \ref{proposition:each_ball_contains_open_ball} and the fact that $\fU$ is a uniform structure for $U \in \fU$ there exists $V \in \fU$ such that $V\cdot V\subseteq U$ and $B(x,V) \in \tau_{\fU}$ for every $x \in X$. We claim that $W = V\cdot V$ has the required properties. Indeed, we have
+$$W = \bigcup_{x\in X}B(x,V)\times B(x,V)$$
+and hence $W$ is open in the product $\left(X,\tau_{\fU}\right) \times \left(X,\tau_{\fU}\right)$. Since $V \in \fU$, we derive $W \in \fU$. Clearly $W\subseteq U$. 
 \end{proof}
 
 \begin{example}\label{example:uniform_structure_on_interval}
@@ -337,7 +342,7 @@ $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 preserves kernel pairs. The proof is complete.
 \end{proof}
 
-\section{Hausdorff uniform spaces and Tikhonov spaces}
+\section{Hausdorff uniform spaces and Tychonoff spaces}
 \noindent
 In this section we introduce important classes of topological spaces.
 
@@ -380,11 +385,11 @@ for every $x,y\in X$. From definition it follows that $\sim_{Kol}$ is an equival
 \end{proof}
 
 \begin{definition}
-A topological space $(X,\tau)$ which is both completely regular and Kolmogorov is \textit{a Tikhonov space}. 
+A topological space $(X,\tau)$ which is both completely regular and Kolmogorov is \textit{a Tychonoff space}. 
 \end{definition}
 
-\begin{proposition}\label{proposition:Kolmogorov_quotient_of_completely_regular_space_is_Tikhonov}
-Let $(X,\tau)$ be a completely regular space. Then its Kolmogorov quotient is a Tikhonov space.
+\begin{proposition}\label{proposition:Kolmogorov_quotient_of_completely_regular_space_is_Tychonoff}
+Let $(X,\tau)$ be a completely regular space. Then its Kolmogorov quotient is a Tychonoff space.
 \end{proposition}
 \begin{proof}
 Suppose that $q:\left(X,\tau\right) \ra \fX$ is a universal Kolmogorov quotient of $\left(X,\tau\right)$. Consider a point $\tilde{x}$ in $\fX$ and let $F$ be a closed subset in $\fX$ such that $\tilde{x} \not \in F$. It follows that $q^{-1}(\tilde{x}) \cap q^{-1}(F) = \emptyset$. Fix $x \in q^{-1}(\tilde{x})$. Since $\left(X,\tau\right)$ is a completely regular space, there exists a continuous function $f:X\ra [0,1]$ such that $f\left(q^{-1}(F)\right) \subseteq \{1\}$ and $f\left(x\right) = 0$. By universal property of $q$ there exists continuous map $\tilde{f}:\fX\ra [0,1]$ such that $\tilde{f} \cdot q = f$. Then 
@@ -459,12 +464,13 @@ Hence $\left(p\times p\right)^{-1}(V) \in \tilde{\fU}$ by definition. Thus $p$ i
 \noindent
 We show that there exists intimate universal Hausdorff uniform quotients are universal Kolmogorov quotients in topological category.
 
-\begin{theorem}\label{theorem:universal_Hausdordff_quotients_are_universal_Kolmogorov_quotients}
+\begin{proposition}\label{proposition:universal_Hausdordff_quotients_are_universal_Kolmogorov_quotients}
 The functor
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 sends universal Hausdorff quotients to universal Kolmogorov quotients.
-\end{theorem}
+\end{proposition}
 \begin{proof}
+Let $(X,\fU)$ be a uniform space and let $\tau_{\fU}$ be the topology on $X$ induced by $\fU$.
 \end{proof}
 
 
