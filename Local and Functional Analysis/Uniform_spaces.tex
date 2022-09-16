@@ -111,9 +111,17 @@ Let $X$ be a set. Suppose that $\fU$ is a collection of surroundings of $\Delta_
 \end{enumerate}
 Then $\fU$ is \textit{a uniform structure on $X$}.
 \end{definition}
+\noindent
+No we give two basic examples.
 
 \begin{example}\label{example:discrete_uniform_structure}
 Let $X$ be a set. Then the family $\fD_X$ of all surroundings of $\Delta_X$ is a uniform structure on $X$. It is called \textit{the discrete uniform structure on $X$}.
+\end{example}
+
+\begin{example}\label{example:uniform_structure_on_reals}
+The family
+$$\big\{U\subseteq \fD_{\RR}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that }|x - y| < \epsilon\mbox{ for some }x,y\in \RR\mbox{ implies }(x,y)\in U\big\}$$
+gives a uniform structure on $\RR$. It is called \textit{the natural uniform structure on $\RR$}.
 \end{example}
 
 \begin{fact}\label{fact:uniform_structures_are_closed_under_intersections}
@@ -166,6 +174,42 @@ Hence $\cU \subseteq \fU$. Note also that $f_i$ is a uniform morphism $(X,\cU)\r
 \begin{definition}
 Let $(X,\fU)$ be a uniform space and let $Z$ be a subset of $X$. Then $Z$ together with the smallest uniform structure which makes the inclusion $Z\hookrightarrow X$ into a uniform morphism is \textit{a uniform subspace of $(X,\fU)$ with $Z$ as the underlying set}.
 \end{definition}
+\noindent
+Now we describe small limits in $\Unif$.
+
+\begin{theorem}\label{theorem:limits_of_uniform_spaces_description}
+Let $\cI$ be a small category and let $F:\cI\ra \Unif$ be a functor given by $F(i) = (X_i,\fU_i)$ for $i\in \cI$. Let $\big\{f_i:X \ra X_i \big\}_{i\in \cI}$ be a limiting cone of the composition of $F$ with the functor $\Unif \ra \Set$ which sends each uniform space to its underlying set. Consider the smallest uniform structure $\fU$ on $X$ which makes $\{f_i\}_{i\in \cI}$ into a family of uniform morphisms. Then $(X,\fU)$ together with family $\{f_i\}_{i\in \cI}$ is a limiting cone of $F$.
+\end{theorem}
+\begin{proof}
+We may equivalently describe $\fU$ as the smallest uniform structure on $X$ such that 
+$$\left(f_i\times f_i\right)^{-1}(U) \in \fU$$
+for every $i\in \cI$ and every $U \in \fU_i$. Suppose that $\big\{g_i:(Y,\fV) \ra (X_i,\fU_i)\big\}_{i\in \cI}$ is some cone over $F$. Then there exists a unique map $h:Y \ra X$ such that $h\cdot f_i = g_i$ for every $i\in \cI$. It is easy to verify that
+$$\big\{U\in \fU\,\big|\,\left(h\times h\right)^{-1}(U)\mbox{ is an entourage of the diagonal in }\fV\big\}$$
+is a uniform structure on $X$. Moreover, it contains $\left(f_i\times f_i\right)^{-1}(U)$ for every $i\in \cI$ and every $U \in \fU_i$. Since $\fU$ is the smallest such uniform structure, we derive that $\fU$ and
+$$\big\{U\in \fU\,\big|\,\left(h\times h\right)^{-1}(U)\mbox{ is an entourage of the diagonal in }\fB\big\}$$
+coincide and hence $h$ is a morphism of uniform spaces $\left(Y,\fB\right) \ra \left(X,\fU\right)$. This shows that $(X,\fU)$ together with $\big\{f_i:X \ra X_i\big\}_{i\in \cI}$ is a limiting cone of $F$.
+\end{proof}
+\noindent
+Next result is a consequence of Theorem \ref{theorem:Weils_theorem_on_pseudometrics} which is useful in developing theory of uniform spaces.
+
+\begin{theorem}\label{theorem:pseudometric_associated_to_entourage_is_uniform}
+Let $(X,\fU)$ be a uniform space and let $U$ be an entourage of the diagonal in $(X,\fU)$. Then there exists a pseudometric $\rho$ on $X$ bounded by $1$ such that $\rho(x,y) < 1$ implies $(x,y)\in U$ for every $x,y\in X$ and $\rho$ is a morphism of uniform spaces
+$$\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$$
+where $\RR$ is considered with natural uniform structure.
+\end{theorem}
+\begin{proof}
+We construct a sequence $\{V_n\}_{n\in \NN}$ of entourages of the diagonal in $\left(X,\fU\right)$ by recursion. We set $V_0 = U$. Suppose that $V_n$ is defined for some $n\in \NN$. Then pick $V_{n+1}\in \fU$ such that 
+$$V_{n+1}\cdot V_{n+1}\cdot V_{n+1} \subseteq V_n$$
+By Theorem \ref{theorem:Weils_theorem_on_pseudometrics} there exists a pseudometric $\rho$ on $X$ which is bounded by $1$ and
+$$\bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y)<\frac{1}{2^n}\bigg\} \subseteq V_n \subseteq \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) \leq \frac{1}{2^n}\bigg\}$$
+for every $n\in \NN$. In particular, we have $\rho(x,y) < 1$ implies $(x,y)\in U$ for each $x,y\in X$. It remains to verify that $\rho$ is a morphism of uniform spaces
+$$\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$$
+where $\RR$ is considered with natural uniform structure. For this pick $\epsilon > 0$ and consider $n\in \NN$ such that $2 < \epsilon\cdot 2^n$. If $(x_1,x_2),(y_1,y_2)\in V_n$ where $x_i,y_i\in X$, then
+$$\big|\rho(x_1,y_1) - \rho(x_2,y_2)\big|\leq \rho(x_1,x_2) + \rho(y_1,y_2) \leq \frac{1}{2^n} + \frac{1}{2^n} \leq \epsilon$$
+and hence
+$$\left(\pi_1\times \pi_1\right)^{-1}\left(V_n\right)\cap \left(\pi_2\times \pi_2\right)^{-1}\left(V_n\right) \subseteq \left(\rho\times \rho\right)^{-1}\left(\big\{(\alpha, \beta)\in \RR\times \RR\big|\,|\alpha - \beta| \leq \epsilon\big\}\right)$$
+where $\pi_1,\pi_2:X\times X\ra X$ are projections onto first and the second axis, respectively. This inclusion together with Theorems \ref{theorem:description_of_uniform_structure_introduced_by_a_family_of_maps}, \ref{theorem:limits_of_uniform_spaces_description} and description of the natural uniform structure on $\RR$ in Example \ref{example:uniform_structure_on_reals} show that $\rho$ is a morphism of uniform spaces $\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$.
+\end{proof}
 
 \section{Topology induced by uniform structure}
 \noindent
@@ -189,6 +233,22 @@ We left the proof for the reader as an exercise.
 \begin{definition}
 Let $X$ be a set and let $\fU$ be a uniform structure on $X$. Then the topology $\tau_{\fU}$ is \textit{the topology on $X$ induced by $\fU$}.
 \end{definition}
+
+
+\begin{example}\label{example:uniform_structure_on_interval}
+The interval $[0,1]$ admits a uniform structure given by
+$$\big\{U\subseteq \fD_{[0,1]}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that }|x - y| < \epsilon\mbox{ for some }x,y\in [0,1]\mbox{ implies }(x,y)\in U\big\}$$
+Now the topology induced by this uniform structure coincides with the natural topology on $[0,1]$.
+\end{example}
+
+\begin{fact}\label{fact:uniform_morphism_is_a_continuous_map}
+Let $(X,\fU)$ and $(Y,\fV)$ be uniform spaces and let $f:X\ra Y$ be a morphism of uniform spaces. Then $f$ is a continuous map $\left(X,\tau_{\fU}\right)\ra \left(Y,\tau_{\fY}\right)$.
+\end{fact}
+\begin{proof}
+Pick open subset $\cO$ with respect to the topology induced by $\fY$ on $Y$. Suppose that $f(x) \in \cO$ for some $x$ in $X$. Then there exists $V_x \in \fY$ such that $B(f(x),V_x)\subseteq \cO$. Note that the image of $B\big(x,\left(f\times f\right)^{-1}(V_x)\big)$ under $f$ is contained in $\cO$. Therefore,
+$$f^{-1}(\cO) = \bigcup_{x\in f^{-1}(\cO)}B\big(x,\left(f\times f\right)^{-1}(V_x)\big)$$
+is open in the topology induced by $\fU$.
+\end{proof}
 \noindent
 The following result is a useful property of a topology induced by a uniform structure. 
 
@@ -196,6 +256,13 @@ The following result is a useful property of a topology induced by a uniform str
 Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \fU$ contained in $U$ such that for every $x$ in $X$ the ball $B(x,W)$ is open with respect to the topology induced by $\fU$ on $X$.
 \end{proposition}
 \begin{proof}
+According to Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} there exists a pseudometric $\rho$ on $X$ bounded by $1$ and such that 
+$\rho(x,y) < 1$ implies $(x,y)\in U$ for every $x,y\in X$ and $\rho$ is a morphism of uniform spaces
+$$\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$$
+where $\RR$ is considered with the natural uniform structure. Define 
+$$W = \big\{(x,y)\in X\times X\,\big|\,\rho(x,y) < 1\big\}$$
+
+
 We pick $U_1 \in \fU$ such that $U_1\cdot U_1 \subseteq U$. Next suppose that $U_n$ is defined for some $n\in \NN_+$. Then there exists $U_{n+1}\in \fU$ such that $U_{n+1}\cdot U_{n+1} \subseteq U_n$. Thus by recursive method we construct a sequence $\{U_n\}_{n\in \NN}$ of elements of $\fU$. Easy induction shows that
 $$U_1\cdot U_2\cdot ...\cdot U_n \subseteq U$$
 for each $n\in \NN_+$. Then
@@ -212,20 +279,6 @@ $$W = \bigcup_{x\in X}B(x,V)\times B(x,V)$$
 and hence $W$ is open in the product $\left(X,\tau_{\fU}\right) \times \left(X,\tau_{\fU}\right)$. Since $V \in \fU$, we derive $W \in \fU$. Clearly $W\subseteq U$. 
 \end{proof}
 
-\begin{example}\label{example:uniform_structure_on_interval}
-The interval $[0,1]$ admits a uniform structure given by
-$$\big\{U\subseteq \fD_{[0,1]}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that }|x - y| < \epsilon\mbox{ for some }x,y\in [0,1]\mbox{ implies }(x,y)\in U\big\}$$
-Now the topology induced by this uniform structure coincides with the natural topology on $[0,1]$.
-\end{example}
-
-\begin{fact}\label{fact:uniform_morphism_is_a_continuous_map}
-Let $(X,\fU)$ and $(Y,\fV)$ be uniform spaces and let $f:X\ra Y$ be a morphism of uniform spaces. Then $f$ is a continuous map $\left(X,\tau_{\fU}\right)\ra \left(Y,\tau_{\fY}\right)$.
-\end{fact}
-\begin{proof}
-Pick open subset $\cO$ with respect to the topology induced by $\fY$ on $Y$. Suppose that $f(x) \in \cO$ for some $x$ in $X$. Then there exists $V_x \in \fY$ such that $B(f(x),V_x)\subseteq \cO$. Note that the image of $B\big(x,\left(f\times f\right)^{-1}(V_x)\big)$ under $f$ is contained in $\cO$. Therefore,
-$$f^{-1}(\cO) = \bigcup_{x\in f^{-1}(\cO)}B\big(x,\left(f\times f\right)^{-1}(V_x)\big)$$
-is open in the topology induced by $\fU$.
-\end{proof}
 \noindent
 Fact \ref{fact:topology_induced_by_uniform_structure} and Fact \ref{fact:uniform_morphism_is_a_continuous_map} imply the existence of the functor 
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU})\in   \Top$$
@@ -280,22 +333,7 @@ $$\cO \subseteq \bigcup_{z\in \cO_Z}B(z,U_z)$$
 and hence $Z\cap \cO = \cO_Z$. Therefore, $\cO_Z$ is an open subset in the subspace topology induced on $Z$ by $\tau_{\fU}$. This completes the proof.
 \end{proof}
 
-\begin{theorem}\label{theorem:limits_of_uniform_spaces_description}
-Let $\cI$ be a small category and let $F:\cI\ra \Unif$ be a functor given by
-$$F(i) = (X_i,\fU_i)$$
-for $i\in \cI$. Let $\big\{f_i:X \ra X_i \big\}_{i\in \cI}$ be a limiting cone of the composition of $F$ with the functor $\Unif \ra \Set$ which sends each uniform space to its underlying set. Consider the smallest uniform structure $\fU$ on $X$ which makes $\{f_i\}_{i\in \cI}$ into a family of uniform morphisms. Then $(X,\fU)$ together with $\{f_i\}_{i\in \cI}$ is a limiting cone of $F$.
-\end{theorem}
-\begin{proof}
-We may equivalently describe $\fU$ as the smallest uniform structure on $X$ such that 
-$$\left(f_i\times f_i\right)^{-1}(U) \in \fU$$
-for every $i\in \cI$ and every $U \in \fU_i$. Suppose that $\big\{g_i:(Y,\fV) \ra (X_i,\fU_i)\big\}_{i\in \cI}$ is some cone over $F$. Then there exists a unique map $h:Y \ra X$ such that $h\cdot f_i = g_i$ for every $i\in \cI$. It is easy to verify that
-$$\big\{U\in \fU\,\big|\,\left(h\times h\right)^{-1}(U)\mbox{ is an entourage of the diagonal in }\fV\big\}$$
-is a uniform structure on $X$. Moreover, it contains $\left(f_i\times f_i\right)^{-1}(U)$ for every $i\in \cI$ and every $U \in \fU_i$. Since $\fU$ is the smallest such uniform structure, we derive that $\fU$ and
-$$\big\{U\in \fU\,\big|\,\left(h\times h\right)^{-1}(U)\mbox{ is an entourage of the diagonal in }\fB\big\}$$
-coincide and hence $h$ is a morphism of uniform spaces $\left(Y,\fB\right) \ra \left(X,\fU\right)$. This shows that $(X,\fU)$ together with $\big\{f_i:X \ra X_i\big\}_{i\in \cI}$ is a limiting cone of $F$.
-\end{proof}
-
-\begin{theorem}\label{theorem:limits_of_uniform_spaces_description}
+\begin{theorem}\label{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces}
 The functor 
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 preserves small limits.
