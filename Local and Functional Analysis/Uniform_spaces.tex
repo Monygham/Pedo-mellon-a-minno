@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to uniform spaces. In the first section we prove  This result is crucial for further developments.
+These notes are devoted to uniform spaces, which are mathematical objects implementing the notion of uniformity. In the first section we prove  important pseudometrizability theorem due to Andr{\'e} Weil. This result is crucial for further developments. Then we introduce uniform spaces and their category $\Unif$. We describe small limits in $\Unif$. Next we construct a small limits preserving functor $\Unif\ra \Top$. We show that the image of the functor consists of completely regular spaces. We also discuss pseudometrizable unform spaces and show that each uniform space can be embedded into a product of pseudometrizable uniform spaces.
 
 \section{Existence of pseudometrics}
 \noindent
@@ -181,6 +181,10 @@ Hence $\cU \subseteq \fU$. Note also that $f_i$ is a uniform morphism $(X,\cU)\r
 
 \begin{definition}
 Let $(X,\fU)$ be a uniform space and let $Z$ be a subset of $X$. Then $Z$ together with the smallest uniform structure which makes the inclusion $Z\hookrightarrow X$ into a uniform morphism is \textit{a uniform subspace of $(X,\fU)$ with $Z$ as the underlying set}.
+\end{definition}
+
+\begin{definition}
+Let $i:\left(X,\fU\right)\ra \left(Y,\fV\right)$ be a morphism of uniform spaces. If $i$ is injective and makes $\left(X,\fU\right)$ into a uniform subspace of $\left(Y,\fV\right)$, then $i$ is \textit{an embedding of uniform spaces}.
 \end{definition}
 \noindent
 Now we describe small limits in $\Unif$.
@@ -379,150 +383,28 @@ $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 preserves kernel pairs. The proof is complete.
 \end{proof}
 
-\section{Hausdorff uniform spaces and Tychonoff spaces}
-\noindent
-In this section we introduce important classes of topological spaces.
-
+\section{Pseudometrizable uniform spaces}
+ 
 \begin{definition}
-Let $(X,\tau)$ be a topological space. Suppose that for any pair of points $x,y$ in $X$ there exists set $\cO$ in $\tau$ such that either $x \in \cO$ and $y \not \in \cO$ or $y \in \cO$ and $x \not \in \cO$. Then $(X,\tau)$ is \textit{a Kolmogorov space}.
-\end{definition}
-
-\begin{definition}
-Let $(X,\tau)$ be a topological space and let $\fX$ be a Kolmogorov space. Let $q:\left(X,\tau\right)\ra \fX$ be a morphism of topological spaces. Suppose that for every Kolmogorov space $\left(Y,\theta\right)$ and every morphism $f:\left(X,\tau\right)\ra \left(Y,\theta\right)$ of topological spaces there exists a unique morphism $p:\fX \ra \left(Y,\theta\right)$ of topological spaces which makes the triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
-{ X &  Y  \\
-    {|}\fX{|} & \\ } ;
-\path[->,line width=0.8pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ f $} (m-1-2)
-(m-1-1) edge node[left] {$ q $} (m-2-1);
-\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
-(m-2-1) edge node[right = 2pt, below = 2pt] {$ p $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-commutative where $|\fX|$ is the underlying set of $\fX$. Then $q:\left(X,\tau\right)\ra \fX$ is \textit{a universal Kolmogorov quotient of $\left(X,\tau\right)$}.
+A uniform space $(X,\fU)$ is \textit{pseudometrizable} (\textit{metrizable}) if there exists a pseudometric (metric) $\rho$ on $X$ such that $\fU$ is the uniform structure induced by $\rho$.
 \end{definition}
 \noindent
-The following result shows that every topological space admits universal Kolmogorov quotient.
+The result below shows that pseudometrizable Hausdorff uniform spaces are metric spaces. 
 
-\begin{theorem}\label{theorem:universal_Kolomogorov_quotient}
-Every topological space admits a universal Kolmogorov quotient. Moreover, if $(X,\tau)$ is a topological space and $q:\left(X,\tau\right) \ra \fX$ is its universal Kolmogorov quotient. Then the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item We have equality of sets
-$$\big\{(x,y)\in X\times X\,\big|\,q(x) = q(y)\big\} = \big\{(x,y) \in X\times X\,\big|\,\forall_{\cO\in \tau}\,x\in \cO\,\Leftrightarrow\,y\in \cO\big\}$$
-\item Morphism $q$ is surjective, open and closed.
-\end{enumerate}
-\end{theorem}
+\begin{fact}\label{fact:Hausdorff_and_pseudometrizable_is_metrizable}
+Let $(X,\fU)$ be a pseudometrizable uniform space. Then the following are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $(X,\fU)$ is a Hausdorff uniform space.
+\item Every pseudometric $\rho$ on $X$ which induces $\fU$ is a metric.
+\end{enumerate} 
+\end{fact}
 \begin{proof}
-For each $x \in X$ denote by $\cN_x$ the family of all open neighborhoods of $x$. Note that $\cN_x = \cN_y$ if and only if $\forall_{\cO\in \tau}\,x\in \cO\,\Leftrightarrow\,y\in \cO$. Define
-$$x \sim_{Kol} y\,\Leftrightarrow\,\cN_x = \cN_y$$
-for every $x,y\in X$. From definition it follows that $\sim_{Kol}$ is an equivalence relation. We define $\fX$ as the quotient space of $\left(X,\tau\right)$ with respect to $\sim_{Kol}$. Let $q:\left(X,\tau\right)\ra \fX$ be the quotient map. In particular it is surjective. Observe that every set $\cO$ in $\tau$ is a union of equivalence classes of $\sim_{Kol}$. Thus $q:\left(X,\tau\right)\twoheadrightarrow \fX$ is both open and closed continuous map. We claim that $\fX$ is a Kolmogorov space. Suppose that $q(x) \neq q(y)$ for some $x,y\in X$. Then $x \sim_{Kol} y$ and hence there exists $\cO$ in $\tau$ such that (without loss of generality) $x \in \cO$ and $y \not \in \cO$. Then $q(x) \in q(\cO)$ and $q(y) \not \in q(\cO)$. Since $q$ is open, we derive that $q(\cO)$ is an open subset of $\fX$. Since $q(x),q(y)$ are arbitrary distinct points of $\fX$, we derive that $\fX$ is a Kolmogorov space. It remains to prove the universal property of $q$. Assume that $\left(Y,\theta\right)$ is a Kolmogorov space and consider a morphism $f:\left(X,\tau\right)\ra \left(Y,\theta\right)$ of topological spaces. We derive that $x \sim_{Kol} y$ implies $f(x) = f(y)$ for every $x,y\in X$. Since $q$ is the quotient map with respect to $\sim_{Kol}$, we deduce that there exists a unique continuous map $p:\fX \ra \left(Y,\theta\right)$ such that $p\cdot q = f$.
-\end{proof}
-
-\begin{definition}
-A topological space $(X,\tau)$ which is both completely regular and Kolmogorov is \textit{a Tychonoff space}. 
-\end{definition}
-
-\begin{proposition}\label{proposition:Kolmogorov_quotient_of_completely_regular_space_is_Tychonoff}
-Let $(X,\tau)$ be a completely regular space. Then its Kolmogorov quotient is a Tychonoff space.
-\end{proposition}
-\begin{proof}
-Suppose that $q:\left(X,\tau\right) \ra \fX$ is a universal Kolmogorov quotient of $\left(X,\tau\right)$. Consider a point $\tilde{x}$ in $\fX$ and let $F$ be a closed subset in $\fX$ such that $\tilde{x} \not \in F$. It follows that $q^{-1}(\tilde{x}) \cap q^{-1}(F) = \emptyset$. Fix $x \in q^{-1}(\tilde{x})$. Since $\left(X,\tau\right)$ is a completely regular space, there exists a continuous function $f:X\ra \RR$ such that $f\left(q^{-1}(F)\right) \subseteq \{1\}$ and $f\left(x\right) = 0$. By universal property of $q$ there exists continuous map $\tilde{f}:\fX\ra [0,1]$ such that $\tilde{f} \cdot q = f$. Then 
-$$\tilde{f}(F) = \left(\tilde{f}\cdot q\right)\left(q^{-1}(F)\right) = f\left(q^{-1}\left(F\right)\right) \subseteq \{1\}$$
-and 
-$$\tilde{f}\left(\tilde{x}\right) = \left(\tilde{f}\cdot q\right)(x) = f(x) = 0$$
-This proves that $\fX$ is completely regular. By definition $\fX$ is a Kolmogorov space. This completes the proof.
+For the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ observe that
+$$\Delta_X = \bigcap_{U\in \fU}U =  \bigcap_{\epsilon \in \RR_+}\big\{(x,y)\in X\times X\,\big|\,\rho\left(x,y\right) < \epsilon\big\} = \big\{(x,y)\in X\times X\,\big|\,\rho\left(x,y\right) = 0\big\}$$
+which implies that $\rho$ is a metric. The inverse implication is left for the reader.
 \end{proof}
 \noindent
-Now we study uniform spaces which satisfy the following separation axiom. 
-
-
-
-\begin{definition}
-Let $(X,\fU)$ be a uniform space and let $\fX$ be a Hausdorff uniform space. Let $q:\left(X,\fU\right)\ra \fX$ be a morphism of uniform spaces. Suppose that for every Hausdorff uniform space $\left(Y,\fV\right)$ and every morphism $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ of uniform spaces there exists a unique morphism $p:\fX \ra \left(Y,\fV\right)$ of uniform spaces which makes the triangle
-\begin{center}
-\begin{tikzpicture}
-[description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
-{ X &  Y  \\
-    {|}\fX{|} & \\ } ;
-\path[->,line width=0.8pt,font=\scriptsize]
-(m-1-1) edge node[above] {$ f $} (m-1-2)
-(m-1-1) edge node[left] {$ q $} (m-2-1);
-\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
-(m-2-1) edge node[right = 2pt, below = 2pt] {$ p $} (m-1-2);
-\end{tikzpicture}
-\end{center}
-commutative where $|\fX|$ is the underlying set of $\fX$. Then $q:\left(X,\fU\right)\ra \fX$ is \textit{a universal Kolmogorov quotient of $\left(X,\tau\right)$}.
-Let $(X,\fU)$ be a uniform space. Then a morphism $q:\left(X,\fU\right)\ra \fX$ is \textit{a universal Hausdorff quotient of $\left(X,\fU\right)$}.
-\end{definition}
-\noindent
-The following result shows that every uniform space admits universal Hausdorff quotient.
-
-\begin{theorem}\label{theorem:universal_Hausdorff_quotient}
-Every uniform space admits a universal Haudorff quotient. Moreover, if $(X,\fU)$ is a uniform space and $q:\left(X,\tau\right) \ra \fX$ is its universal Haudorff quotient. Then the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item We have equality of sets
-$$\big\{(x,y)\in X\times X\,\big|\,q(x) = q(y)\big\} = \bigcap_{U\in \fU}U$$
-\item $q$ is surjective.
-\item The uniform structure on $\fX$ is the family
-$$\big\{U \in \fD_{|\fX|}\,\big|\,(q\times q)^{-1}(U) \in \fU\big\}$$
-\end{enumerate}
-\end{theorem}
-\noindent
-Denote the intersection of all $U \in \fU$ by $\Delta_{\fU}$. For the proof we need lemma.
-
-\begin{lemma}\label{lemma:entourage_closed_under_pseudodiagonal}
-For every $U$ in $\fU$ and there exists $V$ in $\fU$ such that $V\cdot V\subseteq U$ and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Left for the reader as an exercise.
-\end{proof}
-
-\begin{proof}[Proof of the theorem]
-Clearly $\Delta_{\fU}$ is reflexive and symmetric. Fix $U$ in $\fU$. Then there exists $W \in \fU$ such that $W\cdot W\subseteq U$. Hence 
-$$\Delta_{\fU}\cdot \Delta_{\fU} \subseteq W\cdot W \subseteq U$$
-Since $U$ is an arbitrary element of $\fU$, we derive that $\Delta_{\fU}\cdot \Delta_{\fU}\subseteq \Delta_{\fU}$. Hence $\Delta_{\fU}$ is transitive. This shows that $\Delta_{\fU}$ is an equivalence relation on $X$. Let $q:X\ra \tilde{X}$ be the quotient map of $X$ with respect to $\Delta_{\fU}$. Define a family
-$$\tilde{\fU} = \big\{U \in \fD_{\tilde{X}}\,\big|\,(q\times q)^{-1}(U) \in \fU\big\}$$
-We claim that $\tilde{\fU}$ is a uniform structure. The nontrivial part is verification that for $U$ in $\tilde{\fU}$ there exists $W \in \tilde{\fU}$ such that $W\cdot W \subseteq U$. By Lemma \ref{lemma:entourage_closed_under_pseudodiagonal} there exists $V\in \fU$ such that 
-$$V\cdot V\subseteq \left(q\times q\right)^{-1}(U)$$ 
-and 
-$$\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$$
-Since $\Delta_{\fU} \cdot V\cdot \Delta_{\fU}\subseteq V$, we have $V = \left(q\times q\right)^{-1}(W)$ where $W = \left(q\times q\right)\left(V\right)$. This implies that $W \in \tilde{\fU}$ and $W\cdot W\subseteq U$. Therefore, $\tilde{\fU}$ is a uniform structure. Then $q$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \left(\tilde{X},\tilde{\fU}\right)$. We claim now that $\left(\tilde{X},\tilde{\fU}\right)$ is a Hausdorff uniform space. Suppose that $x,y \in X$ satisfy $q(x)\neq q(y)$ or in other words $\left(q(x),q(y)\right)\not \in \Delta_{\tilde{X}}$. Then $(x,y) \not \in \Delta_{\fU}$ and there exists $U$ in $\fU$ such that $(x,y) \not \in U$. Invoking Lemma \ref{lemma:entourage_closed_under_pseudodiagonal} there exists $V\in \fU$ such that $V\subseteq V\cdot V \subseteq U$ and $\Delta_{\fU}\cdot V\cdot \Delta_{\fU}\subseteq V$. Then $W = \left(q\times q\right)(V)$ is an element of $\tilde{\fU}$ and $\left(q(x),q(y)\right)\not \in W$. Hence $\left(\tilde{X},\tilde{\fU}\right)$ is Hausdorff. Finally it suffices to check that $q:\left(X,\fU\right) \ra \left(\tilde{X},\tilde{\fU}\right)$ satisfies the universal property. Assume that $\left(Y,\fV\right)$ is a Hausdorff uniform space and consider a morphism $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ of uniform spaces. Observe that $\left(f\times f\right)^{-1}\left(\Delta_Y\right)$ is an equivalence relation containing $\Delta_{\fU}$. Indeed, it is an equivalence relation due to the fact that $f$ is a map and it contains $\Delta_{\fU}$ due to the fact that $f$ is a uniform map and $(Y,\fV)$ is Hausdorff. It follows that $f = p\cdot q$ for a unique map $p:\tilde{X}\ra Y$. Fix now an entourage $V \in \fV$. Then 
-$$\left(q\times q\right)^{-1}\big(\left(p\times p\right)^{-1}(V)\big) = \left(f\times f\right)^{-1}(V) \in \fU$$
-Hence $\left(p\times p\right)^{-1}(V) \in \tilde{\fU}$ by definition. Thus $p$ is a unique uniform morphism such that $f = p\cdot q$.
-\end{proof}
-\noindent
-We show that there exists intimate universal Hausdorff uniform quotients are universal Kolmogorov quotients in topological category.
-
-\begin{proposition}\label{proposition:universal_Hausdordff_quotients_are_universal_Kolmogorov_quotients}
-The functor
-$$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
-sends universal Hausdorff quotients to universal Kolmogorov quotients.
-\end{proposition}
-\begin{proof}
-Let $(X,\fU)$ be a uniform space and let $\tau_{\fU}$ be the topology on $X$ induced by $\fU$.
-\end{proof}
-
-
-
-\section{Pseudometrizable and Hausdorff uniform spaces}
-\noindent
-In this section we prove certain structure theorems concerning uniform spaces. 
-
-
-
-\begin{definition}
-A uniform space $(X,\fU)$ is \textit{pseudometrizable} if there exists a pseudometric $\rho$ on $X$ such that $\fU = \fU_{\rho}$.
-\end{definition}
-
-\begin{definition}
-A uniform space $(X,\fU)$ is \textit{metrizable} if there exists a metric $\rho$ on $X$ such that $\fU = \fU_{\rho}$.
-\end{definition}
-
-
+The next theorem characterizes pseudometrizable uniform spaces.
 
 \begin{theorem}\label{theorem:characterization_of_pseudometrizable_uniform_spaces}
 Let $(X,\fU)$ be a uniform space. The following assertions are equivalent.
@@ -535,9 +417,9 @@ coincides with $\fU$.
 \end{theorem}
 \begin{proof}
 For $\textbf{(i)}\Rightarrow \textbf{(ii)}$ observe that if $\rho$ is a pseudometric on $X$ such that 
-$$\bigg\{U \in \fD_{X}\,\bigg|\,\mbox{ there exists }\epsilon>0\mbox{ such that for all }x,y\in X\mbox{ if }\rho(x,y)\leq \epsilon\mbox{ then }(x,y)\in U\bigg\}$$
+$$\bigg\{U \in \fD_{X}\,\bigg|\,\mbox{ there exists }\epsilon>0\mbox{ such that for all }x,y\in X\mbox{ if }\rho(x,y) < \epsilon\mbox{ then }(x,y)\in U\bigg\}$$
 coincides with $\fU$, then the sequence $\{U_n\}_{n\in \NN}$ given by formula
-$$U_n = \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) \leq \frac{1}{2^n}\bigg\}$$
+$$U_n = \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) < \frac{1}{2^n}\bigg\}$$
 satisfies \textbf{(ii)}.\\
 Suppose now that \textbf{(ii)} holds. We define a sequence $\{V_n\}_{n\in \NN}$ of elements in $\fU$ by recursion. We set $V_0 = U_0$ and if $V_0,...,V_n$ are defined for some $n\in \NN$, then we pick an element $W$ of $\fU$ such that 
 $$W\cdot W\cdot W \subseteq V_n$$
@@ -552,14 +434,26 @@ $$\bigg\{U \in \fD_{X}\,\bigg|\,\mbox{ there exists }\epsilon>0\mbox{ such that 
 coincides with $\fU$. Hence $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
 
-\begin{corollary}\label{corollary:uniform_space_is_subspace_of_product_of_pseudometrizable_spaces}
-Every uniform space is a uniform subspace of a product of pseudometrizable uniform spaces.
-\end{corollary}
+\begin{theorem}\label{theorem:uniform_space_is_subspace_of_product_of_pseudometrizable_spaces}
+Let $(X,\fU)$ be a uniform space. Then there exists a family $\left(X_i,\fU_i\right)_{i\in I}$ of pseudometrizable uniform spaces and an embedding
+$$\left(X,\fU\right)\hookrightarrow \prod_{i\in I}\left(X_i,\fU_i\right)$$
+of uniform spaces. Moreover, if $\left(X,\fU\right)$ is Hausdorff, then $\left(X_i,\fU_i\right)$ can be chosen metrizable for every $i\in I$.
+\end{theorem}
 \begin{proof}
-Let $(X,\fU)$ be a uniform space. For each $U$ in $\fU$ we construct a nonincreasing sequence $\{U_n\}_{n\in \NN}$ of elements of $\fU$ such that $U_0 = U$ and $U_{n+1}\cdot U_{n+1} \cdot U_{n+1} \subseteq U_n$ for each $n\in \NN$. Next define $\fV_U$ as a family 
-$$\big\{W \in \fD_X\,\big|\,\exists_{n\in \NN}\,U_n\subseteq W\big\}$$
-Then $\fV_U$ is a uniform structure on $X$ and $U\in \fV_U \subseteq \fU$. Moreover, by Theorem \ref{theorem:characterization_of_pseudometrizable_uniform_spaces}
-
+For each $U \in \fU$ pick a pseudometric $\rho_{U}$ with properties described as in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. Recall from Example \ref{example:uniform_structure_induced_by_pseudometric} that the uniform structure on $X$ induced by $\rho_U$ is dentoed by $\fU_{\rho_{U}}$. It follows from Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} that $\fU_{\rho_{U}}\subseteq \fU$ and hence the identity $1_X$ is a morphism of uniform spaces
+$$\left(X,\fU\right)\ra \left(X,\fU_{\rho_{U}}\right)$$
+We denote it by $j_U$. Now we prove that the morphism 
+$$j = \langle j_U\rangle_{U\in \fU}:\left(X,\fU\right)\ra \prod_{U\in \fU}\left(X,\fU_{\rho_U}\right)$$
+is an embedding. Clearly $j$ is injective (each $j_U$ is the identity on the underlying sets). Moreover, for each $U \in \fU$ we have
+$$U = \left(j\times j\right)^{-1}\left(U\times \prod_{W\in \fU\setminus \{U\}}(X\times X)\right)$$
+and hence $U$ is contained in the smallest uniform structure on $X$ induced by $j$. Since $U$ is an arbitrary element of $\fU$, we derive that $j$ is an embedding. This proves the first part of the statement.\\
+Suppose in addition that $\left(X,\fU\right)$ is Hausdorff. We use the notation as in the argument above. For each $U$ in $\fU$ consider the quotient $q_U:X\ra X_U$ of $X$ by equivalence relation 
+$$x\sim_U y\,\Leftrightarrow\,\rho_U(x,y) = 0$$
+Then $\rho_U$ induces a metric $\tilde{\rho}_U$ on $X_U$. Let $\fU_{\tilde{\rho}_U}$ be a uniform structure induced by $\tilde{\rho}_U$ on $X_U$. Clearly $q_U$ is a morphism of uniform structures $\left(X,\fU_{\rho_U}\right)\ra \left(X_U,\fU_{\tilde{\rho}_U}\right)$ and for $\tilde{U} = \left(q_U\times q_U\right)(U) \in \fU_{\tilde{\rho}_U}$ we have $U = \left(q_U\times q_U\right)^{-1}\left(\tilde{U}\right)$. Now we define $\tilde{j}_U = q_U\cdot j_U$ for every $U \in \fU$ and 
+$$\tilde{j} = \langle \tilde{j}_U\rangle_{U\in \fU}:\left(X,\fU\right)\ra \prod_{U\in \fU}\left(X_U,\fU_{\tilde{\rho}_U}\right)$$
+Then $\tilde{j}$ is a morphism of uniform spaces. Suppose that $\tilde{j}(x) = \tilde{j}(y)$ for some $x,y\in X$. Then $\rho_U(x,y) = 0$ for each $U \in \fU$ and hence $(x,y) \in U$ for every $U\in \fU$. Since $(X,\fU)$ is Hausdorff, this implies that $x = y$. Hence $\tilde{j}$ is injective. Moreover, for each $U \in \fU$ we have
+$$U = \left(j\times j\right)^{-1}\left(\tilde{U}\times \prod_{W\in \fU\setminus \{U\}}(X_W\times X_W)\right)$$
+and hence $U$ is contained in the smallest uniform structure on $X$ induced by $\tilde{j}$. Therefore, $\tilde{j}$ is an embedding of uniform spaces.
 \end{proof}
 
 
