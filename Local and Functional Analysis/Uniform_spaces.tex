@@ -8,11 +8,11 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to uniform spaces. In the first section we prove important result on existence of pseudometrics originally due to Weil. This result is crucial for further developments.
+These notes are devoted to uniform spaces. In the first section we prove  This result is crucial for further developments.
 
 \section{Existence of pseudometrics}
 \noindent
-Let $X$ be a set. We denote 
+This section is devoted to very important result on existence of pseudometrics due to Andr{\'e} Weil. Let $X$ be a set. We denote 
 $$\Delta_X = \big\{(x,x)\in X\,\big|\,x\in X\big\}$$
 For subsets $V,W$ of $X\times X$ we denote
 $$W\cdot V = \big\{(x,z)\in X\times X\,\big|\,(x,y)\in V\mbox{ and }(y,z)\in W\mbox{ for some }y\in X\big\}$$
@@ -120,10 +120,18 @@ Let $X$ be a set. Then the family $\fD_X$ of all surroundings of $\Delta_X$ is a
 
 \begin{example}\label{example:uniform_structure_on_reals}
 The family
-$$\big\{U\subseteq \fD_{\RR}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that }|x - y| < \epsilon\mbox{ for some }x,y\in \RR\mbox{ implies }(x,y)\in U\big\}$$
+$$\big\{U\subseteq \fD_{\RR}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that }|x - y| < \epsilon\mbox{ implies }(x,y)\in U\mbox{ for every }x,y\in X\big\}$$
 gives a uniform structure on $\RR$. It is called \textit{the natural uniform structure on $\RR$}.
 \end{example}
+\noindent
+The example above can be generalized.
 
+\begin{example}\label{example:uniform_structure_induced_by_pseudometric}
+Let $X$ be a set and let $\rho$ be a pseudometric on $X$. The family
+$$\fU_{\rho} = \big\{U\subseteq \fD_{X}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that }\rho(x,y) < \epsilon\mbox{ implies }(x,y)\in U\mbox{ for every }x,y\in X\big\}$$
+is a uniform structure on $X$. It is called \textit{the uniform structure induced by $\rho$}.
+\end{example}
+    
 \begin{fact}\label{fact:uniform_structures_are_closed_under_intersections}
 Let $X$ be a set and let $\{\fU_i\}_{i\in I}$ be a family of uniform structures on $X$. Then 
 $$\bigcap_{i\in I}\fU_i$$
@@ -193,27 +201,32 @@ coincide and hence $h$ is a morphism of uniform spaces $\left(Y,\fB\right) \ra \
 Next result is a consequence of Theorem \ref{theorem:Weils_theorem_on_pseudometrics} which is useful in developing theory of uniform spaces.
 
 \begin{theorem}\label{theorem:pseudometric_associated_to_entourage_is_uniform}
-Let $(X,\fU)$ be a uniform space and let $U$ be an entourage of the diagonal in $(X,\fU)$. Then there exists a pseudometric $\rho$ on $X$ bounded by $1$ such that $\rho(x,y) < 1$ implies $(x,y)\in U$ for every $x,y\in X$ and $\rho$ is a morphism of uniform spaces
-$$\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$$
-where $\RR$ is considered with natural uniform structure.
+Let $(X,\fU)$ be a uniform space and let $U$ be an entourage of the diagonal in $(X,\fU)$. Then there exists a pseudometric $\rho$ on $X$ bounded by $1$ such that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item If $\rho(x,y) < 1$ for some $x,y\in X$, then $(x,y)\in U$. 
+\item We have
+$$\big\{(x,y)\in X\times X\,\big|\,\rho(x,y) < \epsilon \big\}\in \fU$$
+for every positive element $\epsilon$ in $\RR$.
+\item For each $x$ in $X$ the map $X\ni y \mapsto \rho(x,y)\in \RR$ is a morphism of uniform spaces $\left(X,\fU\right) \ra \RR$ where $\RR$ is considered with the natural uniform structure.
+\end{enumerate}
 \end{theorem}
 \begin{proof}
-We construct a sequence $\{V_n\}_{n\in \NN}$ of entourages of the diagonal in $\left(X,\fU\right)$ by recursion. We set $V_0 = U$. Suppose that $V_n$ is defined for some $n\in \NN$. Then pick $V_{n+1}\in \fU$ such that 
+Construct a sequence $\{V_n\}_{n\in \NN}$ of entourages of the diagonal in $\left(X,\fU\right)$ by recursion. We set $V_0 = U$. Suppose that $V_n$ is defined for some $n\in \NN$. Then pick $V_{n+1}\in \fU$ such that 
 $$V_{n+1}\cdot V_{n+1}\cdot V_{n+1} \subseteq V_n$$
 By Theorem \ref{theorem:Weils_theorem_on_pseudometrics} there exists a pseudometric $\rho$ on $X$ which is bounded by $1$ and
 $$\bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y)<\frac{1}{2^n}\bigg\} \subseteq V_n \subseteq \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) \leq \frac{1}{2^n}\bigg\}$$
-for every $n\in \NN$. In particular, we have $\rho(x,y) < 1$ implies $(x,y)\in U$ for each $x,y\in X$. It remains to verify that $\rho$ is a morphism of uniform spaces
-$$\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$$
-where $\RR$ is considered with natural uniform structure. For this pick $\epsilon > 0$ and consider $n\in \NN$ such that $2 < \epsilon\cdot 2^n$. If $(x_1,x_2),(y_1,y_2)\in V_n$ where $x_i,y_i\in X$, then
-$$\big|\rho(x_1,y_1) - \rho(x_2,y_2)\big|\leq \rho(x_1,x_2) + \rho(y_1,y_2) \leq \frac{1}{2^n} + \frac{1}{2^n} \leq \epsilon$$
-and hence
-$$\left(\pi_1\times \pi_1\right)^{-1}\left(V_n\right)\cap \left(\pi_2\times \pi_2\right)^{-1}\left(V_n\right) \subseteq \left(\rho\times \rho\right)^{-1}\left(\big\{(\alpha, \beta)\in \RR\times \RR\big|\,|\alpha - \beta| \leq \epsilon\big\}\right)$$
-where $\pi_1,\pi_2:X\times X\ra X$ are projections onto first and the second axis, respectively. This inclusion together with Theorems \ref{theorem:description_of_uniform_structure_introduced_by_a_family_of_maps}, \ref{theorem:limits_of_uniform_spaces_description} and description of the natural uniform structure on $\RR$ in Example \ref{example:uniform_structure_on_reals} show that $\rho$ is a morphism of uniform spaces $\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$.
+for every $n\in \NN$. From this description of $\rho$ it follows that \textbf{(1)} and \textbf{(2)} hold. It remains to verify that for every $x$ in $X$ the map $f:X\ra \RR$ given by $f(y) = \rho(x,y)$ for $y\in X$ is a morphism of uniform spaces $\left(X,\fU\right) \ra \RR$ where $\RR$ is considered with the natural uniform structure. For this pick $\epsilon > 0$ and consider $n\in \NN$ such that 
+$$\frac{1}{2^n} < \epsilon$$
+If $(y_1,y_2) \in V_n$, then
+$$\big|f(y_1) - f(y_2)\big| = \big|\rho(x,y_1) - \rho(x,y_2)\big|\leq \rho(y_1,y_2) \leq \frac{1}{2^n}  < \epsilon$$
+and hence 
+$$V_n \subseteq \left(f\times f\right)^{-1}\left(\big\{(\alpha, \beta)\in \RR\times \RR\big|\,|\alpha - \beta| < \epsilon\big\}\right)$$
+This inclusion together with Example \ref{example:uniform_structure_on_reals} show that $f$ is a morphism of uniform spaces $\left(X,\fU\right) \ra \RR$.
 \end{proof}
 
 \section{Topology induced by uniform structure}
 \noindent
-We start by introducing the notion of a ball with respect to surrounding of the diagonal.
+We start by introducing the notion of a ball with radius given by surrounding of the diagonal.
 
 \begin{definition}
 Let $X$ be a set. For every $x$ in $X$ and $U$ in $\fD_X$ the set
@@ -234,13 +247,6 @@ We left the proof for the reader as an exercise.
 Let $X$ be a set and let $\fU$ be a uniform structure on $X$. Then the topology $\tau_{\fU}$ is \textit{the topology on $X$ induced by $\fU$}.
 \end{definition}
 
-
-\begin{example}\label{example:uniform_structure_on_interval}
-The interval $[0,1]$ admits a uniform structure given by
-$$\big\{U\subseteq \fD_{[0,1]}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that }|x - y| < \epsilon\mbox{ for some }x,y\in [0,1]\mbox{ implies }(x,y)\in U\big\}$$
-Now the topology induced by this uniform structure coincides with the natural topology on $[0,1]$.
-\end{example}
-
 \begin{fact}\label{fact:uniform_morphism_is_a_continuous_map}
 Let $(X,\fU)$ and $(Y,\fV)$ be uniform spaces and let $f:X\ra Y$ be a morphism of uniform spaces. Then $f$ is a continuous map $\left(X,\tau_{\fU}\right)\ra \left(Y,\tau_{\fY}\right)$.
 \end{fact}
@@ -249,71 +255,64 @@ Pick open subset $\cO$ with respect to the topology induced by $\fY$ on $Y$. Sup
 $$f^{-1}(\cO) = \bigcup_{x\in f^{-1}(\cO)}B\big(x,\left(f\times f\right)^{-1}(V_x)\big)$$
 is open in the topology induced by $\fU$.
 \end{proof}
+
+\begin{remark}\label{remark:topology_induced_by_uniform_structure_for_pseudometric_coincides_with_topology_induced_by_pseudometric}
+Let $X$ be a set and let $\rho$ be a pseudometric. Then $\tau_{\fU_{\rho}}$ is the topology induced by $\rho$.
+\end{remark}
 \noindent
-The following result is a useful property of a topology induced by a uniform structure. 
+The following result is a useful property of topology induced by a uniform structure. 
 
-\begin{proposition}\label{proposition:each_ball_contains_open_ball}
-Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \fU$ contained in $U$ such that for every $x$ in $X$ the ball $B(x,W)$ is open with respect to the topology induced by $\fU$ on $X$.
-\end{proposition}
+\begin{theorem}\label{theorem:each_entourage_contains_open_entourage}
+Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \fU$ such that the following two assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item $W$ is a subset of $U$.
+\item For every $x$ in $X$ the ball $B(x,W)$ is open with respect to the topology induced by $\fU$ on $X$. 
+\item $W$ is open in $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$.
+\end{enumerate}
+\end{theorem}
 \begin{proof}
-According to Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} there exists a pseudometric $\rho$ on $X$ bounded by $1$ and such that 
-$\rho(x,y) < 1$ implies $(x,y)\in U$ for every $x,y\in X$ and $\rho$ is a morphism of uniform spaces
-$$\left(X,\fU\right)\times \left(X,\fU\right) \ra \RR$$
-where $\RR$ is considered with the natural uniform structure. Define 
-$$W = \big\{(x,y)\in X\times X\,\big|\,\rho(x,y) < 1\big\}$$
-
-
-We pick $U_1 \in \fU$ such that $U_1\cdot U_1 \subseteq U$. Next suppose that $U_n$ is defined for some $n\in \NN_+$. Then there exists $U_{n+1}\in \fU$ such that $U_{n+1}\cdot U_{n+1} \subseteq U_n$. Thus by recursive method we construct a sequence $\{U_n\}_{n\in \NN}$ of elements of $\fU$. Easy induction shows that
-$$U_1\cdot U_2\cdot ...\cdot U_n \subseteq U$$
-for each $n\in \NN_+$. Then
-$$W = \bigcup_{n\in \NN_+}U_{1}\cdot U_{2}\cdot ...\cdot U_{n}$$
-is in $\fU$ and is contained in $U$. Moreover, for every $x$ in $X$ the ball $B(x,W)$ is open with respect to $\tau_{\fU}$.
+Let $\rho$ be a pseudometric on $X$ having the properties described in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. For each positive $\epsilon$ in $\RR$ define 
+$$W_{\epsilon} = \big\{(x,y)\in X\times X\,\big|\,\rho(x,y) < \epsilon\big\}$$
+Then $W_{\epsilon} \in \fU$. Denote $W_1$ by $W$. We prove that $W$ satisfies assertions in the statement. By construction $W \subseteq U$ and hence \textbf{(1)} holds. Fix now $x \in X$ and consider a map $f:X\ra \RR$ given by $f_x(y) = \rho(x,y)$ for $y\in X$. Then Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} asserts that $f$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \RR$ where $\RR$ admits the natural uniform structure (Example \ref{example:uniform_structure_on_reals}). By Fact \ref{fact:uniform_morphism_is_a_continuous_map} and Example \ref{remark:topology_induced_by_uniform_structure_for_pseudometric_coincides_with_topology_induced_by_pseudometric} the map $f$ is continuous with respect to $\tau_{\fU}$ and the usual topology on $\RR$. It follows that
+$$B(x,W_{\epsilon}) = \big\{y\in X\,\big|\,\rho(x,y) < \epsilon\big\} = \big\{y\in X\,\big|\,f(y) < \epsilon\big\}\in \tau_{\fU}$$
+for every $x$ in $X$ and positive $\epsilon$. In particular, this implies \textbf{(2)}. Now we prove $\textbf{(3)}$. Fix $(x,y) \in W$. Since $\rho(x,y) < 1$, there exist positive numbers $\epsilon_1,\epsilon_2$ such that $\epsilon_1 + \rho(x,y) + \epsilon_2 < 1$. Hence 
+$$B(x,W_{\epsilon_1})\times B(y,W_{\epsilon_2}) \subseteq W$$
+Thus $(x,y)$ is an interior point of $W$ in $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$. Since $(x,y)$ is an arbitrary point of $W$, $W$ is an open subset of $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$. This completes the proof of \textbf{(3)}.
 \end{proof}
-
-\begin{corollary}\label{corollary:each_entourage_contains_open_subset_in_square}
-Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \fU$ such that $W\subseteq U$ and $W$ is open in $\left(X,\tau_{\fU}\right) \times \left(X,\tau_{\fU}\right)$.
-\end{corollary}
-\begin{proof}
-By Proposition \ref{proposition:each_ball_contains_open_ball} and the fact that $\fU$ is a uniform structure for $U \in \fU$ there exists $V \in \fU$ such that $V\cdot V\subseteq U$ and $B(x,V) \in \tau_{\fU}$ for every $x \in X$. We claim that $W = V\cdot V$ has the required properties. Indeed, we have
-$$W = \bigcup_{x\in X}B(x,V)\times B(x,V)$$
-and hence $W$ is open in the product $\left(X,\tau_{\fU}\right) \times \left(X,\tau_{\fU}\right)$. Since $V \in \fU$, we derive $W \in \fU$. Clearly $W\subseteq U$. 
-\end{proof}
-
 \noindent
 Fact \ref{fact:topology_induced_by_uniform_structure} and Fact \ref{fact:uniform_morphism_is_a_continuous_map} imply the existence of the functor 
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU})\in   \Top$$
 In the remaining part of this section we shall investigate the properties of this functor. We start by describing the image of the functor.
 
 \begin{definition}
-Let $(X,\tau)$ be a topological space. Suppose that for every closed subset $F$ of $X$ and for every point $x$ in $X\setminus  F$ there exists a continuous function $f:X\ra [0,1]$ such that $f(F) \subseteq \{1\}$ and $f(x) = 0$. Then $X$ is \textit{a completely regular space}. 
+Let $(X,\tau)$ be a topological space. Suppose that for every closed subset $F$ of $X$ and for every point $x$ in $X\setminus  F$ there exists a continuous function $f:X\ra \RR$ such that $f(F) \subseteq \{1\}$ and $f(x) = 0$. Then $X$ is \textit{a completely regular space}. 
+\end{definition}
+
+\begin{definition}
+Let $(X,\fU)$ be a uniform space. Suppose that
+$$\Delta_X = \bigcap_{U\in \fU}U$$
+Then $(X,\fU)$ is \textit{a Hausdorff uniform space}.
 \end{definition}
 
 \begin{theorem}\label{theorem:image_of_the_canonical_functor_is_completely_regular_space}
 The image of the object part of the functor
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
-consists of the class of completely regular spaces.
+consists of the class of completely regular spaces. Moreover, $\left(X,\fU\right)$ is a Hausdorff uniform space if and only if $\left(X,\tau_{\fU}\right)$ is a Hausdorff topological space. 
 \end{theorem}
 \begin{proof}
-Let $(X,\fU)$ be a uniform space. Consider a closed set $F$ with respect to $\tau_{\fU}$. Let $x$ be a point in $X\setminus F$. Since $x \not \in F$ and $F$ is closed in $\tau_{\fU}$, we derive that there exists $U \in \fU$ such that $B(x,U)\cap F = \emptyset$. Next we define a sequence $\{V_n\}_{n\in \NN}$ of elements in $\fU$ by recursion. We set $V_0 = U$ and if $V_0,...,V_n$ are defined for some $n\in \NN$, then we pick an element $V_{n+1}$ of $\fU$ such that 
-$$V_{n+1}\cdot V_{n+1}\cdot V_{n+1} \subseteq V_n$$
-According to Theorem \ref{theorem:Weils_theorem_on_pseudometrics} there exists a pseudometric $\rho$ on $X$ bounded by $1$ such that
-$$\bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y)<\frac{1}{2^n}\bigg\} \subseteq V_n \subseteq \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) \leq \frac{1}{2^n}\bigg\}$$
-for every $n\in \NN$. Note that
-$$|\rho(x,y_1) - \rho(x,y_2)| \leq \rho(y_1,y_2)$$
-for any pair $y_1,y_2\in X$. Indeed, this is the triangle inequality for $\rho$. Thus if $(y_1,y_2) \in V_n$ for some $n\in \NN$, then
-$$|\rho(x,y_1) - \rho(x,y_2)| \leq \rho(y_1,y_2) \leq \frac{1}{2^n}$$
-Hence the map $f:X \ra [0,1]$ given by formula $f(y) = \rho(x,y)\in [0,1]$ is a morphism of uniform spaces, where $X$ is a uniform space with respect to $\fU$ and $[0,1]$ is considered with uniform structure described in Example \ref{example:uniform_structure_on_interval}. This implies (by Fact \ref{fact:uniform_morphism_is_a_continuous_map}) that $f$ is a continuous map, where $X$ carries topology $\tau_{\fU}$ and $[0,1]$ is considered with natural topology. Pick $y\in F$. Then $y \not \in B(x,U)$ and hence $(x,y) \not \in U$. Since $V_0 = U$ and $\rho$ is bounded by $1$, we derive that $f(y) = \rho(x,y) = 1$. On the other hand $f(x) = \rho(x,x) = 0$. Therefore, $f(F) \subseteq \{1\}$ and $f(x) = 0$. Thus $(X,\tau_{\fU})$ is a completely regular space.\\
+Let $(X,\fU)$ be a uniform space. Consider a closed set $F$ with respect to $\tau_{\fU}$. Let $x$ be a point in $X\setminus F$. Since $x \not \in F$ and $F$ is closed in $\tau_{\fU}$, we derive that there exists $U \in \fU$ such that $B(x,U)\cap F = \emptyset$. Fix a pseudometric $\rho$ on $X$ corresponding to $U$ as in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. Consider a map $f:X\ra \RR$ given by $f(y) = \rho(x,y)$ for $y\in X$. Then Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} asserts that $f$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \RR$ where $\RR$ admits the natural uniform structure (Example \ref{example:uniform_structure_on_reals}). By Fact \ref{fact:uniform_morphism_is_a_continuous_map} and Example \ref{remark:topology_induced_by_uniform_structure_for_pseudometric_coincides_with_topology_induced_by_pseudometric} the map $f$ is continuous with respect to $\tau_{\fU}$ and the usual topology on $\RR$. Note also that the image of $f$ is contained in $[0,1]$. Pick $y\in F$. Then $y \not \in B(x,U)$ and hence $(x,y) \not \in U$. We deduce that $f(y) = \rho(x,y) = 1$. On the other hand $f(x) = \rho(x,x) = 0$. Therefore, $f(F) \subseteq \{1\}$ and $f(x) = 0$. Thus $(X,\tau_{\fU})$ is a completely regular space.\\
 Suppose now that $(X,\tau)$ is a completely regular space. Consider the set $C(\tau,\RR)$ of all continuous real valued functions on $(X,\tau)$. For $m\in \NN_+$ and set of $m$ functions $f_1,...,f_m\in C(\tau,\RR)$ define
 $$\rho_{f_1,...,f_m}(x,y) = \max \big\{|f_1(x) - f_1(y)|,...,|f_m(x) - f_m(y)|\big\}$$
 where $x,y\in X$. Clearly $\rho_{f_1,...,f_m}$ is a pseudometric on $X$. Next consider a family $\fU$ of all $U\in \fD_X$ such that there exist a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
 $$\big\{(x,y)\in X\times X\,\big|\,\rho_{f_1,...,f_m}(x,y) < \epsilon\big\}\subseteq U$$
-Clearly $\fU$ is a uniform structure on $X$. Suppose that $\cO \in \tau_{\fU}$. Then for each point $z$ in $\cO$ there exists $U$ in $\fU$ such that $B(z,U)\subseteq \cO$. By definition there exist a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
+Clearly $\fU$ is a uniform structure on $X$. Suppose that $\cO \in \tau_{\fU}$. Then for each point $z$ in $\cO$ there exists $U$ in $\fU$ such that $B(z,U)\subseteq \cO$. By definition there exists a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
 $$\big\{(x,y)\in X\times X\,\big|\,\rho_{f_1,...,f_m}(x,y) < \epsilon\big\}\subseteq U$$
 Thus
 $$\bigcap_{i=1}^mf_i^{-1}\bigg(\big(f_i(z) - \epsilon, f_i(z) + \epsilon\big)\bigg) = \big\{y\in X \,\big|\, \rho_{f_1,...,f_m}(z,y) < \epsilon\big\} \subseteq B(z,U)\subseteq \cO$$
 Since $f_1,...,f_m$ are continuous on $X$ with respect to $\tau$, we derive from the inclusion above that there exists an open neighborhood of $z$ with respect to $\tau$ contained in $\cO$. According to the fact that $z$ is an arbitrary point in $\cO$ it follows that $\cO \in \tau$. This proves that $\tau_{\fU}\subseteq \tau$. Now we prove the converse. For this assume that $\cO \in \tau$. We claim that $\cO$ is also open in the topology induced by $\fU$. For this pick $z \in \cO$. Since $(X,\tau)$ is completely regular, there exists a function $f_z:X\ra \RR$ continuous with respect to $\tau$ such that $f_z(X\setminus \cO)\subseteq \{1\}$ and $f_z(z) = 0$. Let $U_z$ be a set consisting of all pairs in $X\times X$ for which $\rho_{f_z}$ is smaller than $1$. Then $U_z\in \fU$ and obviously $B(z,U_z)\subseteq \cO$. Thus
 $$\cO = \bigcup_{z\in \cO}B(z,U_z)$$
-and this proves the claim that $\cO$ is in $\tau_{\fU}$. Hence $\tau \subseteq \tau_{\fU}$. This completes the proof.
+and this proves the claim that $\cO$ is in $\tau_{\fU}$. Hence $\tau \subseteq \tau_{\fU}$. This completes the proof of the first assertion.\\
+The proof of the second assertion is left for the reader as an exercise. Note that in the proof one can use complete regularity of topologies induced by uniform structures.   
 \end{proof}
 \noindent
 Next we prove the following important fact.
@@ -326,8 +325,8 @@ Let $\cO$ be a set in $\tau_{\fU}$. Then for each $x$ in $\cO$ there exists $U_x
 $$\cO \cap Z = \bigcup_{z\in \cO\cap Z}B\big(z,U_z\cap \left(Z\times Z\right)\big)$$
 Since $U_z\cap \left(Z\times Z\right) \in \fU_Z$ for every $z \in \cO\cap Z$, it follows that $\cO\cap Z$ is open with respect to $\tau_{\fU_Z}$. Hence
 $$\big\{Z\cap \cO\,\big|\,\cO \in \tau_{\fU}\big\} \subseteq \tau_{\fU_Z}$$
-Suppose now that $\cO_Z \in \tau_{\fU_Z}$. Then for each $z\in \cO_Z$ there exists $U_z \in \fU$ such that $B\big(z,U_z\cap \left(Z\times Z\right)\big)\subseteq \cO_Z$. By Proposition \ref{proposition:each_ball_contains_open_ball} there exists $\cO_z \in \tau_{\fU}$ such that $z \in \cO_z\subseteq B(z,U_z)$. Thus 
-$$\cO = \bigcup_{z \in \cO_Z}\cO_z$$
+Suppose now that $\cO_Z \in \tau_{\fU_Z}$. Then for each $z\in \cO_Z$ there exists $U_z \in \fU$ such that $B\big(z,U_z\cap \left(Z\times Z\right)\big)\subseteq \cO_Z$. By Theorem \ref{theorem:each_entourage_contains_open_entourage} there exists $W_z\in \fU$ such that $W_z\subseteq U_z$ and $B(z,W_z) \in \tau_{\fU}$. Thus 
+$$\cO = \bigcup_{z \in \cO_Z}B(z,W_z)$$
 is an element of $\tau_{\fU}$ and
 $$\cO \subseteq \bigcup_{z\in \cO_Z}B(z,U_z)$$
 and hence $Z\cap \cO = \cO_Z$. Therefore, $\cO_Z$ is an open subset in the subspace topology induced on $Z$ by $\tau_{\fU}$. This completes the proof.
@@ -343,13 +342,13 @@ Let $\cI$ be a set and let $\left\{\left(X_i,\fU_i\right)\right\}_{i\in \cI}$ be
 $$\bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k) \subseteq U$$
 Note that we have
 $$B\bigg(x, \bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k)\bigg) = \prod_{k=1}^nB\big(pr_{i_k}(x), U_k\big)\times \prod_{i\in \cI\setminus \{i_1,...,i_k\}}X_i$$
-for every $x \in X$. By Proposition \ref{proposition:each_ball_contains_open_ball} there exist $\cO_1 \in \tau_{\fU_{i_1}},...,\cO_n \in \tau_{\fU_{i_n}}$ such that 
-$$pr_{i_k}(x) \in \cO_k \subseteq \big(pr_{i_k}(x), U_k\big)$$
+for every $x \in X$. By Theorem \ref{theorem:each_entourage_contains_open_entourage} there exist $W_1 \in \fU_{i_1},...,W_n \in \fU_{i_n}$ such that 
+$$W_k\subseteq U_k,\,B\big(pr_{i_k}(x), W_k\big) \in \tau_{\fU_{i_k}}$$
 for each $k$. Thus
-$$\prod_{k=1}^n\cO_k \times \prod_{i\in \cI\setminus \{i_1,...,i_k\}}X_i \subseteq B\bigg(x, \bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k)\bigg) \subseteq B(x,U)$$
+$$\prod_{k=1}^nB\big(pr_{i_k}(x), W_k\big) \times \prod_{i\in \cI\setminus \{i_1,...,i_k\}}X_i \subseteq B\bigg(x, \bigcap_{k=1}^n\left(pr_{i_k}\times pr_{i_k}\right)^{-1}(U_k)\bigg) \subseteq B(x,U)$$
 Therefore, each ball centered in some point $x$ of $X$ and with radius $U$ in $\fU$ contains open neighborhood of $x$ with respect to the product of topologies $\{\tau_{\fU_i}\}_{i\in  \cI}$. This implies that $\tau_{\fU}$ is contained in the product of topologies $\{\tau_{\fU_i}\}_{i\in  \cI}$. On the other hand the fact that $pr_i:(X,\tau_{\fU}) \ra (X_i,\tau_{\fU_i})$ is continuous for every $i\in \cI$ implies that the product of topologies $\{\tau_{\fU_i}\}_{i\in \cI}$ is contained in $\tau_{\fU}$. Thus $\tau_{\fU}$ is the product topology determined by $\{\tau_{\fU_i}\}_{i\in \cI}$. Hence $(X,\tau_{\fU})$ together with $\{pr_i\}_{i\in \cI}$ is a product of topological spaces $\{(X_i,\tau_{\fU_i})\}_{i\in \cI}$. By Theorem \ref{theorem:limits_of_uniform_spaces_description} it follows that
 $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
-preserves small products. Since every small limit is a combination of small product and kernel pair, it remains to show that the functor above preserves kernel pairs. Suppose that 
+preserves small products. Since every small limit is a combination of small products and a kernel pair, it remains to show that the functor above preserves kernel pairs. Suppose that 
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
@@ -430,7 +429,7 @@ A topological space $(X,\tau)$ which is both completely regular and Kolmogorov i
 Let $(X,\tau)$ be a completely regular space. Then its Kolmogorov quotient is a Tychonoff space.
 \end{proposition}
 \begin{proof}
-Suppose that $q:\left(X,\tau\right) \ra \fX$ is a universal Kolmogorov quotient of $\left(X,\tau\right)$. Consider a point $\tilde{x}$ in $\fX$ and let $F$ be a closed subset in $\fX$ such that $\tilde{x} \not \in F$. It follows that $q^{-1}(\tilde{x}) \cap q^{-1}(F) = \emptyset$. Fix $x \in q^{-1}(\tilde{x})$. Since $\left(X,\tau\right)$ is a completely regular space, there exists a continuous function $f:X\ra [0,1]$ such that $f\left(q^{-1}(F)\right) \subseteq \{1\}$ and $f\left(x\right) = 0$. By universal property of $q$ there exists continuous map $\tilde{f}:\fX\ra [0,1]$ such that $\tilde{f} \cdot q = f$. Then 
+Suppose that $q:\left(X,\tau\right) \ra \fX$ is a universal Kolmogorov quotient of $\left(X,\tau\right)$. Consider a point $\tilde{x}$ in $\fX$ and let $F$ be a closed subset in $\fX$ such that $\tilde{x} \not \in F$. It follows that $q^{-1}(\tilde{x}) \cap q^{-1}(F) = \emptyset$. Fix $x \in q^{-1}(\tilde{x})$. Since $\left(X,\tau\right)$ is a completely regular space, there exists a continuous function $f:X\ra \RR$ such that $f\left(q^{-1}(F)\right) \subseteq \{1\}$ and $f\left(x\right) = 0$. By universal property of $q$ there exists continuous map $\tilde{f}:\fX\ra [0,1]$ such that $\tilde{f} \cdot q = f$. Then 
 $$\tilde{f}(F) = \left(\tilde{f}\cdot q\right)\left(q^{-1}(F)\right) = f\left(q^{-1}\left(F\right)\right) \subseteq \{1\}$$
 and 
 $$\tilde{f}\left(\tilde{x}\right) = \left(\tilde{f}\cdot q\right)(x) = f(x) = 0$$
@@ -439,11 +438,7 @@ This proves that $\fX$ is completely regular. By definition $\fX$ is a Kolmogoro
 \noindent
 Now we study uniform spaces which satisfy the following separation axiom. 
 
-\begin{definition}
-Let $(X,\fU)$ be a uniform space. Suppose that
-$$\Delta_X = \bigcap_{U\in \fU}U$$
-Then $(X,\fU)$ is \textit{a Hausdorff uniform space}.
-\end{definition}
+
 
 \begin{definition}
 Let $(X,\fU)$ be a uniform space and let $\fX$ be a Hausdorff uniform space. Let $q:\left(X,\fU\right)\ra \fX$ be a morphism of uniform spaces. Suppose that for every Hausdorff uniform space $\left(Y,\fV\right)$ and every morphism $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ of uniform spaces there exists a unique morphism $p:\fX \ra \left(Y,\fV\right)$ of uniform spaces which makes the triangle
@@ -515,13 +510,19 @@ Let $(X,\fU)$ be a uniform space and let $\tau_{\fU}$ be the topology on $X$ ind
 
 \section{Pseudometrizable and Hausdorff uniform spaces}
 \noindent
-In this section we use Theorem \ref{theorem:Weils_theorem_on_pseudometrics} to prove certain structure theorems concerning uniform spaces. 
+In this section we prove certain structure theorems concerning uniform spaces. 
+
+
 
 \begin{definition}
-A uniform space $(X,\fU)$ is \textit{pseudometrizable} if there exists a pseudometric $\rho$ on $X$ such that the uniform structure
-$$\bigg\{U \in \fD_{X}\,\bigg|\,\mbox{ there exists }\epsilon>0\mbox{ such that for all }x,y\in X\mbox{ if }\rho(x,y)\leq \epsilon\mbox{ then }(x,y)\in U\bigg\}$$
-coincides with $\fU$.
+A uniform space $(X,\fU)$ is \textit{pseudometrizable} if there exists a pseudometric $\rho$ on $X$ such that $\fU = \fU_{\rho}$.
 \end{definition}
+
+\begin{definition}
+A uniform space $(X,\fU)$ is \textit{metrizable} if there exists a metric $\rho$ on $X$ such that $\fU = \fU_{\rho}$.
+\end{definition}
+
+
 
 \begin{theorem}\label{theorem:characterization_of_pseudometrizable_uniform_spaces}
 Let $(X,\fU)$ be a uniform space. The following assertions are equivalent.
