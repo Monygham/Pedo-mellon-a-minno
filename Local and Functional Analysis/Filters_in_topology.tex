@@ -1,0 +1,102 @@
+\input ../pree.tex
+
+\begin{document}
+
+\title{Filters in topology}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In these short notes we study filters of subsets with their applications to topological spaces. Filters were introduced in \cite{cartan1937filters} as an effective tool in studying general topological spaces. Here we recapitulate Cartan's approach. Our main goal is to give a concise proof of Tychonoff's theorem on compact spaces.
+
+\section{Filters}
+
+\begin{definition}
+Let $X$ be a set and let $\cF$ be a nonempty family of subsets of $X$. Assume that the following assertions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item $\cF$ is closed under finite intersections.
+\item If $F_1$ and $F_2$ are subsets of $X$ such that $F_1 \in \cF$ and $F_1\subseteq F_2$, then $F_2 \in \cF$.
+\end{enumerate}
+Then $\cF$ is \textit{a filter of subsets of $X$}.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a set and let $\cF$ be a filter of subsets of $X$. If $\emptyset \not \in \cF$, then $\cF$ is \textit{a proper filter}.
+\end{definition}
+\noindent
+Filters are functorial as it is displayed in the following notion. 
+
+\begin{definition}
+Let $\cF$ be a filter of subsets of a set $X$ and let $f:X\ra Y$ be a map. Then a filter
+$$f(\cF) = \big\{G\subseteq Y\,\big|\,\mbox{ there exists }F\in \cF\mbox{ such that }f(F)\subseteq G\big\}$$
+of subsets of $Y$ is \textit{the image of $\cF$ under $f$}.
+\end{definition}
+\noindent
+Let us note the following results.
+
+\begin{fact}\label{fact:image_of_a_proper_filter_is_proper}
+Let $\cF$ be a filter of subsets of a set $X$ and let $f:X\ra Y$ be a map. If $\cF$ is a proper filter, then $f(\cF)$ is a proper filter.
+\end{fact}
+\begin{proof}
+Left for the reader as an exercise.
+\end{proof}
+\noindent
+Now we introduce the notion of ultrafilter and prove by invoking axiom of choice that they exist.
+
+\begin{definition}
+Let $\cF$ be a proper filter of subsets of a set $X$ such that for every proper filter $\tilde{\cF}$ if $\cF \subseteq \tilde{\cF}$, then $\cF = \tilde{\cF}$. Then $\cF$ is \textit{an ultrafilter of subsets of $X$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:existence_of_ultrafilters}
+Let $X$ be a set and let $\cF$ be a proper filter of subsets of $X$. Then there exists an ultrafilter $\tilde{\cF}$ of subsets of $X$ such that $\cF \subseteq \tilde{\cF}$.
+\end{proposition}
+\begin{proof}
+Consider the family
+$$\mathrm{F} = \big\{\cG\,\big|\,\cG\mbox{ is a proper filter of subsets of }X\mbox{ and }\cF \subseteq \cG\big\}$$
+Note that $\mathrm{F}$ is nonempty, because $\cF \in \mathrm{F}$. The inclusion introduces partial order on $\mathrm{F}$ and if $\mathrm{L}\subseteq \mathrm{F}$ is a linearly ordered subset, then
+$$\bigcup \mathrm{L}$$
+is a proper filter. Hence each chain in $\left(\mathrm{F},\subseteq\right)$ admits an upper bound. By Zorn's lemma implies that $\left(\mathrm{F},\subseteq\right)$ has a maximal element $\tilde{\cF}$. Clearly $\tilde{\cF}$ is an ultrafilter of subsets of $X$ which contains $\cF$.
+\end{proof}
+
+\section{Filters and convergence in topological spaces}
+\noindent
+The following notion play an important role.
+
+\begin{definition}
+Let $(X,\tau)$ be a topological space and let $\cF$ be a proper filter of subsets of $X$. Consider a point $x$ in $X$. Suppose that for every open neighborhood $U$ of $x$ we have $U \in \cF$. Then filter $\cF$ \textit{converges to $x$ with respect to $\tau$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:characterization_of_continuous_maps_in_terms_of_filters}
+Let $(X,\tau),(Y,\theta)$ be topological spaces and let $f:X\ra Y$ be a map. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $f$ is a continuous map $\left(X,\tau\right)\ra \left(Y,\theta\right)$.
+\item If $\cF$ is a proper filter of subsets of $X$ convergent to some point $x$ with respect to $\tau$, then $f(\cF)$ converges to $f(x)$ with respect to $\theta$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Suppose that $f$ is a continuous map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Fix a proper filter $\cF$ of subsets of $X$ convergent to $x$ with respect to $\tau$. Fix an open neighborhood $V$ of $f(x)$ with respect to $\theta$. By continuity of $f$ we have $f^{-1}(V) \in \tau$. Thus $f^{-1}(V)$ is an open neighborhood of $x$ with respect to $\tau$. Hence $f^{-1}(V) \in \cF$ and we infer that $V \in f(\cF)$. Since $V$ is arbitrary open neighborhood of $f(x)$ with respect to $\theta$, we derive that $f(\cF)$ converges to $f(x)$ with respect to $\theta$. This proves the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Suppose now that \textbf{(ii)} holds. Fix a point $x$ in $X$ and consider an open neighborhood $V$ of $f(x)$ with respect to $\theta$. Define
+$$\cF = \big\{F\subseteq X\,\big|\,U\setminus f^{-1}(V)\subseteq F\mbox{ for some open neighborhood }U\mbox{ of }x\mbox{ with respect to }\tau\big\}$$
+Then $\cF$ is a filter of subsets of $X$. Note that
+$$Y\setminus V = f\left(X\setminus f^{-1}(V)\right) \in f(\cF)$$
+This implies that $V \not \in f(\cF)$. If $\cF$ is a proper filter, then it converges to $x$ with respect $\tau$ and thus $f(\cF)$ converges to $f(x)$ with respect to $\theta$. Since $V \not \in f(\cF)$, the filter $f(\cF)$ cannot converge to $f(x)$ with respect to $\theta$. Therefore, $\cF$ is not a proper filter. This means that there exists an open neighborhood $U$ of $x$ with respect to $\tau$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$ as a map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Since $x\in X$ is arbitrary, we derive the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+\end{document}

@@ -178,14 +178,6 @@ It is easy to verify (we left it for the reader) that $\cU$ is a uniform structu
 $$\bigcap_{k=1}^n\left(f_{i_k}\times f_{i_k}\right)^{-1}(U_k) \in \fU$$
 Hence $\cU \subseteq \fU$. Note also that $f_i$ is a uniform morphism $(X,\cU)\ra (X_i,\fU_i)$ for each $i\in I$. Thus $\fU \subseteq \cU$. Therefore, $\cU = \fU$ and this proves the theorem. 
 \end{proof}
-
-\begin{definition}
-Let $(X,\fU)$ be a uniform space and let $Z$ be a subset of $X$. Then $Z$ together with the smallest uniform structure which makes the inclusion $Z\hookrightarrow X$ into a uniform morphism is \textit{a uniform subspace of $(X,\fU)$ with $Z$ as the underlying set}.
-\end{definition}
-
-\begin{definition}
-Let $i:\left(X,\fU\right)\ra \left(Y,\fV\right)$ be a morphism of uniform spaces. If $i$ is injective and makes $\left(X,\fU\right)$ into a uniform subspace of $\left(Y,\fV\right)$, then $i$ is \textit{an embedding of uniform spaces}.
-\end{definition}
 \noindent
 Now we describe small limits in $\Unif$.
 
@@ -200,6 +192,28 @@ $$\big\{U\in \fU\,\big|\,\left(h\times h\right)^{-1}(U)\mbox{ is an entourage of
 is a uniform structure on $X$. Moreover, it contains $\left(f_i\times f_i\right)^{-1}(U)$ for every $i\in \cI$ and every $U \in \fU_i$. Since $\fU$ is the smallest such uniform structure, we derive that $\fU$ and
 $$\big\{U\in \fU\,\big|\,\left(h\times h\right)^{-1}(U)\mbox{ is an entourage of the diagonal in }\fB\big\}$$
 coincide and hence $h$ is a morphism of uniform spaces $\left(Y,\fB\right) \ra \left(X,\fU\right)$. This shows that $(X,\fU)$ together with $\big\{f_i:X \ra X_i\big\}_{i\in \cI}$ is a limiting cone of $F$.
+\end{proof}
+
+\begin{definition}
+Let $j:\left(Z,\fO\right)\ra \left(X,\fU\right)$ be a morphism of uniform spaces. If $j$ is injective and $\fO$ is the smallest uniform structure which makes $j$ into a uniform morphism to $\left(X,\fU\right)$, then $j$ is \textit{an embedding of uniform spaces}.
+\end{definition}
+
+\begin{proposition}\label{proposition:embeddings_are_closed_under_small_limits}
+Let $\cI$ be a small category, let $F_1,F_2:\cI\ra \Unif$ be functors and let $\tau:F_1\ra F_2$ be a natural transformation such that $\tau_i$ is an embedding of uniform spaces for each $i \in \cI$. Then
+$$\lim_{i\in \cI}\tau_i:\lim_{i\in \cI}F_1\ra \lim_{i\in \cI}F_2$$
+is an embedding of uniform spaces.
+\end{proposition}
+\begin{proof}
+Write $F_1(i) = \left(X_{1i},\fU_{1i}\right),\,F_2(i) = \left(X_{2i},\fU_{2i}\right)$ for $i\in \cI$. Suppose that 
+$$\big\{f_{1i}:\left(X_1,\fU_1\right) \ra \left(X_{1i},\fU_{1i}\right)\big\}_{i\in \cI},\,\big\{f_{2i}:\left(X_2,\fU_2\right) \ra \left(X_{2i},\fU_{2i}\right)\big\}_{i\in \cI}$$
+are limiting cones of $F_1$ and $F_2$, respectively. Finally let $\tilde{\tau}:\left(X_1,\fU_1\right)\ra \left(X_2,\fU_2\right)$ be a morphism induced by $\tau$. Injectivity of $\tilde{\tau}$ follows from Theorem \ref{theorem:limits_of_uniform_spaces_description} and the assumption that all components of $\tau$ are injective. Since each component of $\tau$ is an embedding, we derive by Theorem \ref{theorem:limits_of_uniform_spaces_description} that $\fU_{1}$ is the smallest uniform structure which contains
+$$\big\{W \in \fD_{X_1}\,\big|\,W = \left(f_{1i}\times f_{1i}\right)^{-1}\left(\left(\tau_{i}\times \tau_{i}\right)^{-1}(U_i)\right)\mbox{ for some }U_i\in \fU_{2i}\mbox{ and }i\in \cI\big\}$$
+$$= \big\{W \in \fD_{X_1}\,\big|\,W = \left(\tilde{\tau}\times \tilde{\tau}\right)^{-1}\left(\left(f_{2i}\times f_{2i}\right)^{-1}(U_i)\right)\mbox{ for some }U_i\in \fU_{2i}\mbox{ and }i\in \cI\big\}$$
+According to Theorem \ref{theorem:limits_of_uniform_spaces_description} family $\fU_{2}$ is the smallest uniform structure which contains 
+$$\big\{U\in \fD_{X_2}\,\big|\,U=\left(f_{2i}\times f_{2i}\right)^{-1}(U_i)\mbox{ for some }U_i\in \fU_{2i}\mbox{ and }i\in \cI\big\}$$
+Thus $\fU_{2}$ is the smallest uniform structure which contains
+$$\big\{W \in \fD_{X_1}\,\big|\,W = \left(\tilde{\tau}\times \tilde{\tau}\right)^{-1}(U)\mbox{ for some }U\in \fU_{2}\big\}$$
+This means that $\fU_1$ is the smallest uniform structure on $X_1$ which makes $\tilde{\tau}$ into a uniform morphism to $\left(X_2,\fU_2\right)$. Hence $\tilde{\tau}$ is an embedding of uniform spaces.
 \end{proof}
 \noindent
 Next result is a consequence of Theorem \ref{theorem:Weils_theorem_on_pseudometrics} which is useful in developing theory of uniform spaces.
@@ -319,21 +333,19 @@ and this proves the claim that $\cO$ is in $\tau_{\fU}$. Hence $\tau \subseteq \
 The proof of the second assertion is left for the reader as an exercise. Note that in the proof one can use complete regularity of topologies induced by uniform structures.   
 \end{proof}
 \noindent
-Next we prove the following important fact.
+Next we prove the following important result.
 
 \begin{proposition}\label{proposition:the_induced_topology_preserves_uniform_subspaces}
-Let $(X,\fU)$ be a uniform space and let $Z$ be a subset of $X$. Let $\fU_Z$ be the subspace uniform structure on $Z$. Then $\tau_{\fU_Z}$ coincide with the subspace topology on $Z$ induced by $\tau_{\fU}$.
+Let $j:(Z,\fO)\hookrightarrow \left(X,\fU\right)$ be an embedding of uniform spaces. Then $j:\left(Z,\tau_{\fO}\right)\ra \left(X,\tau_{\fU}\right)$ is an embedding of topological spaces.
 \end{proposition}
 \begin{proof}
-Let $\cO$ be a set in $\tau_{\fU}$. Then for each $x$ in $\cO$ there exists $U_x\in \fU$ such that $B(x,U_x)\subseteq \cO$. Thus
-$$\cO \cap Z = \bigcup_{z\in \cO\cap Z}B\big(z,U_z\cap \left(Z\times Z\right)\big)$$
-Since $U_z\cap \left(Z\times Z\right) \in \fU_Z$ for every $z \in \cO\cap Z$, it follows that $\cO\cap Z$ is open with respect to $\tau_{\fU_Z}$. Hence
-$$\big\{Z\cap \cO\,\big|\,\cO \in \tau_{\fU}\big\} \subseteq \tau_{\fU_Z}$$
-Suppose now that $\cO_Z \in \tau_{\fU_Z}$. Then for each $z\in \cO_Z$ there exists $U_z \in \fU$ such that $B\big(z,U_z\cap \left(Z\times Z\right)\big)\subseteq \cO_Z$. By Theorem \ref{theorem:each_entourage_contains_open_entourage} there exists $W_z\in \fU$ such that $W_z\subseteq U_z$ and $B(z,W_z) \in \tau_{\fU}$. Thus 
-$$\cO = \bigcup_{z \in \cO_Z}B(z,W_z)$$
-is an element of $\tau_{\fU}$ and
-$$\cO \subseteq \bigcup_{z\in \cO_Z}B(z,U_z)$$
-and hence $Z\cap \cO = \cO_Z$. Therefore, $\cO_Z$ is an open subset in the subspace topology induced on $Z$ by $\tau_{\fU}$. This completes the proof.
+Suppose that $\cO \in \tau_{\fO}$. Since $j$ is an embedding, for each $z\in \cO$ there exists $U_z \in \fU$ such that we have inclusion $B\big(z,\left(j\times j\right)^{-1}(U_z)\big)\subseteq \cO$. By Theorem \ref{theorem:each_entourage_contains_open_entourage} there exists $W_z\in \fU$ such that $W_z\subseteq U_z$ and $B\big(j(z),W_z\big) \in \tau_{\fU}$. Thus 
+$$\widetilde{\cO} = \bigcup_{z \in \cO}B(j(z),W_z)$$
+is an element of $\tau_{\fU}$. We have
+$$j^{-1}\left(\widetilde{\cO}\right) = \bigcup_{z \in \cO}j^{-1}\left(B(j(z),W_z)\right) = \bigcup_{z\in \cO}B\big(z,\left(j\times j\right)^{-1}(W_z)\big)$$
+From this equality we deduce that $\cO \subseteq j^{-1}\left(\widetilde{\cO}\right)$. Moreover, it follows that
+$$j^{-1}\left(\widetilde{\cO}\right) = \bigcup_{z\in \cO}B\big(z,\left(j\times j\right)^{-1}(W_z)\big) \subseteq \bigcup_{z\in \cO}B\big(z,\left(j\times j\right)^{-1}(U_z)\big)\subseteq \cO$$
+and hence $j^{-1}(\widetilde{\cO}) = \cO$. Therefore, each open subset $\cO \in \tau_{\fO}$ is the preimage under $j$ of some open subset $\cO \in \tau_{\fU}$. This completes the proof.
 \end{proof}
 
 \begin{theorem}\label{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces}
@@ -356,21 +368,21 @@ preserves small products. Since every small limit is a combination of small prod
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
-\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{(X,\fW) & \left(Y_1,\fV_1\right)&  \left(Y_1,\fV_2\right)  \\} ;
+\matrix (m) [matrix of math nodes, row sep=1em, column sep=2.5em,text height=1.5ex, text depth=0.25ex] 
+{(Z,\fO) & \left(X_1,\fU_1\right)&  \left(X_1,\fU_2\right)  \\} ;
 \path[right hook->,line width=0.8pt,font=\scriptsize]
-(m-1-1) edge node[above] {$  $} (m-1-2);
+(m-1-1) edge node[above] {$ j $} (m-1-2);
 \path[->,line width=0.8pt,font=\scriptsize]
 (m-1-2) edge[transform canvas={yshift=0.5ex}] node[above] {$ f_1 $} (m-1-3)
 (m-1-2) edge[transform canvas={yshift=-0.5ex}] node[below] {$ f_2 $} (m-1-3);
 \end{tikzpicture}
 \end{center}
-is a kernel pair of $f_1$ and $f_2$ in $\Unif$. Then Theorem \ref{theorem:limits_of_uniform_spaces_description} shows that $X$ consists of all $y \in Y_1$ such that $f_1(y) = f_2(y)$ and $\fW$ is the subspace uniform structure on $X$ induced by $\fV_1$. Now Proposition \ref{proposition:the_induced_topology_preserves_uniform_subspaces} implies that
+is a kernel pair of $f_1$ and $f_2$ in $\Unif$. Then Theorem \ref{theorem:limits_of_uniform_spaces_description} shows that $Z$ consists of all $x \in X_1$ such that $f_1(x) = f_2(x)$ and $j$ is an embedding of uniform spaces induced by the inclusion $Z \hookrightarrow X_1$. Now Proposition \ref{proposition:the_induced_topology_preserves_uniform_subspaces} implies that
 \begin{center}
 \begin{tikzpicture}
 [description/.style={fill=white,inner sep=2pt}]
 \matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex] 
-{(X,\tau_{\fW}) & \left(Y_1,\tau_{\fV_1}\right)&  \left(Y_1,\tau_{\fV_2}\right)  \\} ;
+{(Z,\tau_{\fO}) & \left(X_1,\tau_{\fU_1}\right)&  \left(X_1,\tau_{\fU_2}\right)  \\} ;
 \path[right hook->,line width=0.8pt,font=\scriptsize]
 (m-1-1) edge node[above] {$  $} (m-1-2);
 \path[->,line width=0.8pt,font=\scriptsize]
@@ -440,21 +452,78 @@ $$\left(X,\fU\right)\hookrightarrow \prod_{i\in I}\left(X_i,\fU_i\right)$$
 of uniform spaces. Moreover, if $\left(X,\fU\right)$ is Hausdorff, then $\left(X_i,\fU_i\right)$ can be chosen metrizable for every $i\in I$.
 \end{theorem}
 \begin{proof}
-For each $U \in \fU$ pick a pseudometric $\rho_{U}$ with properties described as in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. Recall from Example \ref{example:uniform_structure_induced_by_pseudometric} that the uniform structure on $X$ induced by $\rho_U$ is dentoed by $\fU_{\rho_{U}}$. It follows from Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} that $\fU_{\rho_{U}}\subseteq \fU$ and hence the identity $1_X$ is a morphism of uniform spaces
+For each $U \in \fU$ pick a pseudometric $\rho_{U}$ with properties described as in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. Recall from Example \ref{example:uniform_structure_induced_by_pseudometric} that the uniform structure on $X$ induced by $\rho_U$ is dentoted by $\fU_{\rho_{U}}$. It follows from Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} that $\fU_{\rho_{U}}\subseteq \fU$ and hence the identity $1_X$ is a morphism of uniform spaces
 $$\left(X,\fU\right)\ra \left(X,\fU_{\rho_{U}}\right)$$
 We denote it by $j_U$. Now we prove that the morphism 
 $$j = \langle j_U\rangle_{U\in \fU}:\left(X,\fU\right)\ra \prod_{U\in \fU}\left(X,\fU_{\rho_U}\right)$$
 is an embedding. Clearly $j$ is injective (each $j_U$ is the identity on the underlying sets). Moreover, for each $U \in \fU$ we have
 $$U = \left(j\times j\right)^{-1}\left(U\times \prod_{W\in \fU\setminus \{U\}}(X\times X)\right)$$
-and hence $U$ is contained in the smallest uniform structure on $X$ induced by $j$. Since $U$ is an arbitrary element of $\fU$, we derive that $j$ is an embedding. This proves the first part of the statement.\\
-Suppose in addition that $\left(X,\fU\right)$ is Hausdorff. We use the notation as in the argument above. For each $U$ in $\fU$ consider the quotient $q_U:X\ra X_U$ of $X$ by equivalence relation 
+and hence $U$ is contained in the smallest uniform structure on $X$ which makes $j$ into a uniform morphism to $\prod_{U\in \fU}\left(X,\fU_{\rho_U}\right)$. Since $U$ is an arbitrary element of $\fU$, we derive that $j$ is an embedding. This proves the first part of the statement. Suppose in addition that $\left(X,\fU\right)$ is Hausdorff. For each $U$ in $\fU$ consider the quotient map $q_U:X\ra X_U$ of $X$ with respect to equivalence relation 
 $$x\sim_U y\,\Leftrightarrow\,\rho_U(x,y) = 0$$
 Then $\rho_U$ induces a metric $\tilde{\rho}_U$ on $X_U$. Let $\fU_{\tilde{\rho}_U}$ be a uniform structure induced by $\tilde{\rho}_U$ on $X_U$. Clearly $q_U$ is a morphism of uniform structures $\left(X,\fU_{\rho_U}\right)\ra \left(X_U,\fU_{\tilde{\rho}_U}\right)$ and for $\tilde{U} = \left(q_U\times q_U\right)(U) \in \fU_{\tilde{\rho}_U}$ we have $U = \left(q_U\times q_U\right)^{-1}\left(\tilde{U}\right)$. Now we define $\tilde{j}_U = q_U\cdot j_U$ for every $U \in \fU$ and 
 $$\tilde{j} = \langle \tilde{j}_U\rangle_{U\in \fU}:\left(X,\fU\right)\ra \prod_{U\in \fU}\left(X_U,\fU_{\tilde{\rho}_U}\right)$$
 Then $\tilde{j}$ is a morphism of uniform spaces. Suppose that $\tilde{j}(x) = \tilde{j}(y)$ for some $x,y\in X$. Then $\rho_U(x,y) = 0$ for each $U \in \fU$ and hence $(x,y) \in U$ for every $U\in \fU$. Since $(X,\fU)$ is Hausdorff, this implies that $x = y$. Hence $\tilde{j}$ is injective. Moreover, for each $U \in \fU$ we have
 $$U = \left(j\times j\right)^{-1}\left(\tilde{U}\times \prod_{W\in \fU\setminus \{U\}}(X_W\times X_W)\right)$$
-and hence $U$ is contained in the smallest uniform structure on $X$ induced by $\tilde{j}$. Therefore, $\tilde{j}$ is an embedding of uniform spaces.
+and hence $U$ is contained in the smallest uniform structure on $X$ which makes $\tilde{j}$ into a uniform morphism to $\prod_{U\in \fU}\left(X_U,\fU_{\tilde{\rho}_U}\right)$. Since $U$ is an arbitrary element of $\fU$, we derive that $\tilde{j}$ is an embedding.
 \end{proof}
+
+\section{Complete uniform spaces}
+\noindent
+In this section we study very important notion of completeness of uniform spaces.
+
+\begin{definition}
+Let $(X,\fU)$ be a uniform space. Suppose that $\cF$ is a filter of subsets of $X$. Assume that for every $U$ in $\fU$ there exists $F \in \cF$ such that $F\times F\subseteq U$. Then $\cF$ is \textit{a Cauchy filter in $\left(X,\fU\right)$}.
+\end{definition}
+\noindent
+First we prove that the image of a Cauchy filter under a morphism of uniform spaces is a Cauchy filter.
+
+\begin{fact}\label{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy}
+Let $f:\left(X,\fU\right)\ra \left(Y,\fV\right)$ be a morphism of uniform spaces. If $\cF$ is a Cauchy filter in $\left(X,\fU\right)$, then $f(\cF)$ is a Cauchy filter in $\left(Y,\fV\right)$.
+\end{fact}
+\begin{proof}
+Pick $V \in \fV$. Since $\cF$ is a Cauchy filter in $\left(X,\fU\right)$ and $f$ is a morphism of uniform spaces, there exists $F \in \cF$ such that $$F\times F \subseteq (f\times f)^{-1}(V)$$
+Then
+$$f(F)\times f(F)\subseteq V$$
+Since $f(F) \in f(\cF)$ and $V$ is an arbitrary element of $\fV$, this proves the assertion.
+\end{proof}
+
+\begin{definition}
+Let $(X,\fU)$ be a uniform space. Suppose that every Cauchy filter in in $\left(X,\fU\right)$ is convergent with respect to $\tau_{\fU}$. Then $\left(X,\fU\right)$ is \textit{a complete uniform space}. 
+\end{definition}
+\noindent
+The following theorem is analogical to famous Tychonoff's theorem for compact topological spaces.
+
+\begin{theorem}\label{theorem:completeness_is_a_product_property}
+Let $\left(X_i,\fU_i\right)$ be uniform spaces for $i \in I$. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item The product
+$$\prod_{i\in I}\left(X_i,\fU_i\right)$$
+is a complete uniform space.
+\item $\left(X_i,\fU_i\right)$ is complete for every $i\in I$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Denote $X = \prod_{i\in I}X_i$ and let $\fU$ be the product uniform structure induced by $\fU_i$ for all $i\in I$. For each $i\in I$ we denote by $pr_i:X\ra X_i$ the canonical projection.\\
+Assume first that $(X,\fU)$ is a complete uniform space. Fix $i_0 \in I$. Suppose that $\cF$ is a Cauchy filter in $(X_{i_0},\fU_{i_0})$. Pick $z \in \prod_{i\neq i_0}X_i$. Consider a filter 
+$$\tilde{\cF} = \big\{\tilde{F}\subseteq X\,\big|\,F\times \{z\} \subseteq \tilde{F}\mbox{ for some }F\in \cF\big\}$$
+Then $\tilde{\cF}$ is a Cauchy filter in $(X,\fU)$ and $\cF = pr_{i_0}\left(\tilde{\cF}\right)$. Since $\tilde{\cF}$ is a Cauchy filter in a complete uniform space $(X,\fU)$, it is convergent with respect to $\tau_{\fU}$ to some $x \in X$. Since $\tau_{\fU}$ is a product of topologies $\tau_{\fU_i}$ for $i \in I$ according to Theorem \ref{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces}, we derive that $pr_{i_0}\left(\tilde{\cF}\right)$ is convergent to $pr_{i_0}(x)$ with respect to $\tau_{\fU_{i_0}}$. Finally according to $\cF = pr_{i_0}\left(\tilde{\cF}\right)$ we derive that $\cF$ is convergent to $pr_{i_0}(x)$. This shows that $(X_{i_0},\fU_{i_0})$ is a complete uniform space. Since $i_0 \in I$ is arbitrary, we derive that the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ holds.
+\\
+Suppose now that $\left(X_i,\fU_i\right)$ is a complete uniform space for every $i\in I$. Fix a Cauchy filter $\cF$ in $\prod_{i\in I}\left(X_i,\fU_i\right)$. Then $\cF_i = pr_i(\cF)$ is a Cauchy filter on $\left(X_i,\fU_i\right)$ for every $i\in I$ according to Fact \ref{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy}. Since $\left(X_i,\fU_i\right)$ is a complete uniform space and $\cF_i$ is a Cauchy filter, we derive that filter $\cF_i$ is convergent with respect to $\tau_{\fU_i}$ to some point $x_i \in X_i$ for each $i\in I$. Let $x = \left(x_i\right)_{i\in I}\in X$. Then $\cF$ is convergent to $x$ with respect to product of topologies $\tau_{\fU_i}$ for $i\in I$. By Theorem \ref{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces} we infer that $\tau_{\fU}$ is the product of $\tau_{\fU_i}$ for $i\in I$. Hence $\cF$ is convergent to $x$ with respect to $\tau_{\fU}$. Thus $(X,\fU)$ is a complete uniform space and this concludes the proof of the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+\noindent
+Now we study completeness under embeddings of uniform spaces.
+
+\begin{proposition}\label{proposition:closed_embeddings_into_complete_space_are_complete}
+Let $j:\left(Z,\fO \right) \hookrightarrow \left(X,\fU\right)$ be an embedding of uniform spaces. Suppose that $\left(X,\fU\right)$ is a complete uniform space. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $j(Z)$ is a closed subset of $\left(X,\tau_{\fU}\right)$.
+\item $\left(Z,\fO\right)$ is a complete uniform space.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Assume that \textbf{(i)} holds. Pick a Cauchy filter $\cF$ in $\left(Z,\fO\right)$. Then according to Fact \ref{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy} the filter $i(\cF)$ is Cauchy in $\left(X,\fU\right)$. Thus $i(\cF)$ converges with respect to $\tau_{\fU}$ to some point $x\in X$. Hence for every open neighborhood $U$ of $x$ in $\left(X,\tau_{\fU}\right)$ we have $U\in i(\cF)$. Since $i(Z) \in i(\cF)$, this implies that $U\cap i(Z) \neq \emptyset$. Thus $x$ is in the closure of $i(Z)$. Since $i(Z)$ is closed in $\tau_{\fU}$, we infer that $x\in i(Z)$. Now $x = i(z)$ for some $z\in Z$. According to Proposition \ref{proposition:the_induced_topology_preserves_uniform_subspaces} the map $j:\left(Z,\tau_{\fO}\right) \hookrightarrow \left(X,\tau_{\fU}\right)$ is an embedding.
+\end{proof}
+
 
 
 
