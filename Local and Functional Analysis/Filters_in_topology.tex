@@ -20,6 +20,17 @@ Let $X$ be a set and let $\cF$ be a nonempty family of subsets of $X$. Assume th
 \end{enumerate}
 Then $\cF$ is \textit{a filter of subsets of $X$}.
 \end{definition}
+\noindent
+We note the following fact. 
+
+\begin{fact}\label{fact:filters_are_closed_under_intersections}
+Let $X$ be a set and let $\{\cF_i\}_{i\in I}$ is a family of filters fo subsets of $X$. Then 
+$$\bigcap_{i\in I}\cF_i$$
+is a filter of subsets of $X$.
+\end{fact}
+\begin{proof}
+Left for the reader as an exercise.
+\end{proof}
 
 \begin{definition}
 Let $X$ be a set and let $\cF$ be a filter of subsets of $X$. If $\emptyset \not \in \cF$, then $\cF$ is \textit{a proper filter}.
@@ -47,6 +58,20 @@ Now we introduce the notion of ultrafilter and prove by invoking axiom of choice
 \begin{definition}
 Let $\cF$ be a proper filter of subsets of a set $X$ such that for every proper filter $\tilde{\cF}$ if $\cF \subseteq \tilde{\cF}$, then $\cF = \tilde{\cF}$. Then $\cF$ is \textit{an ultrafilter of subsets of $X$}.
 \end{definition}
+\noindent
+Next we describe properties of ultrafilters and prove their existence.
+
+\begin{proposition}\label{proposition:ultrafilter_contains_either_susbet_or_its_complement}
+Let $X$ be a set and let $\cF$ be a proper filter of subsets of $X$. The following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $\cF$ is an ultrafilter of subsets of $X$.
+\item For each subset $F$ of $X$ either $F \in \cF$ or $X\setminus F \in \cF$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Assume that $\cF$ is an ultrafilter and let $F$ be a subset of $X$. Suppose that $F\not \in \cF$. Then the smallest filter (Fact \ref{fact:filters_are_closed_under_intersections}) containing $\{F\}\cup \cF$ is not a proper filter. This implies that there exists $F' \in \cF$ such that $F\cap F' = \emptyset$. Since $F'\subseteq X\setminus F$ and $\cF$ is a filter, we derive that $X\setminus F \in \cF$. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Suppose that \textbf{(ii)} holds. Consider a filter $\tilde{\cF}$ such that $\cF \subsetneq \tilde{\cF}$. If $F \in \tilde{\cF}\setminus \cF$, then $X\setminus F \in \cF$ and hence $\emptyset = F\cap \left(X\setminus F\right) \in \tilde{\cF}$. This implies that $\tilde{\cF}$ is not a proper filter. Thus $\cF$ is an ultrafilter of subsets of $X$. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
 
 \begin{proposition}\label{proposition:existence_of_ultrafilters}
 Let $X$ be a set and let $\cF$ be a proper filter of subsets of $X$. Then there exists an ultrafilter $\tilde{\cF}$ of subsets of $X$ such that $\cF \subseteq \tilde{\cF}$.
@@ -56,12 +81,10 @@ Consider the family
 $$\mathrm{F} = \big\{\cG\,\big|\,\cG\mbox{ is a proper filter of subsets of }X\mbox{ and }\cF \subseteq \cG\big\}$$
 Note that $\mathrm{F}$ is nonempty, because $\cF \in \mathrm{F}$. The inclusion introduces partial order on $\mathrm{F}$ and if $\mathrm{L}\subseteq \mathrm{F}$ is a linearly ordered subset, then
 $$\bigcup \mathrm{L}$$
-is a proper filter. Hence each chain in $\left(\mathrm{F},\subseteq\right)$ admits an upper bound. By Zorn's lemma implies that $\left(\mathrm{F},\subseteq\right)$ has a maximal element $\tilde{\cF}$. Clearly $\tilde{\cF}$ is an ultrafilter of subsets of $X$ which contains $\cF$.
+is a proper filter. Hence each chain in $\left(\mathrm{F},\subseteq\right)$ admits an upper bound. Zorn's lemma implies that $\left(\mathrm{F},\subseteq\right)$ has a maximal element $\tilde{\cF}$. Clearly $\tilde{\cF}$ is an ultrafilter of subsets of $X$ which contains $\cF$.
 \end{proof}
 
 \section{Filters and convergence in topological spaces}
-\noindent
-The following notion play an important role.
 
 \begin{definition}
 Let $(X,\tau)$ be a topological space and let $\cF$ be a proper filter of subsets of $X$. Consider a point $x$ in $X$. Suppose that for every open neighborhood $U$ of $x$ we have $U \in \cF$. Then filter $\cF$ \textit{converges to $x$ with respect to $\tau$}.
