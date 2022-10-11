@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-In these short notes we study filters of subsets with their applications to topological spaces. Filters were introduced in \cite{cartan1937filters} as an effective tool in studying general topological spaces. Here we recapitulate Cartan's approach. Our main goal is to give a concise proof of Tychonoff's theorem on compact spaces.
+In these short notes we study filters of subsets with their applications to topological spaces. Filters were introduced in \cite{cartan1937filters} as an effective tool in studying general topological spaces. Here we recapitulate Cartan's results. In particular, we give a concise proof of Tychonoff's theorem on compact spaces.
 
 \section{Filters}
 
@@ -20,6 +20,12 @@ Let $X$ be a set and let $\cF$ be a nonempty family of subsets of $X$. Assume th
 \end{enumerate}
 Then $\cF$ is \textit{a filter of subsets of $X$}.
 \end{definition}
+
+\begin{remark}\label{remark:intuition_for_filters}
+Let $X$ be a set. We are aware of two intuitions or metaphors behind the notion of filter. The first describes filter of subsets of $X$ as a formalization of a concept of "a large subset". Indeed, if subsets $F_1,F_2$ of $X$ are "large", then their intersection $F_1\cap F_2$ is "large" and clearly every superset of a "large" subset of $X$ is "large" as well. This metaphor might be useful but in these notes it might be more convenient to consider the notion of filter of subsets of $X$ as a formalization of a concept of "locating scheme". Namely 
+
+
+\end{remark}
 \noindent
 We note the following fact. 
 
@@ -40,7 +46,7 @@ Filters are functorial as it is displayed in the following notion.
 
 \begin{definition}
 Let $\cF$ be a filter of subsets of a set $X$ and let $f:X\ra Y$ be a map. Then a filter
-$$f(\cF) = \big\{G\subseteq Y\,\big|\,\mbox{ there exists }F\in \cF\mbox{ such that }f(F)\subseteq G\big\}$$
+$$f(\cF) = \big\{Z \subseteq Y\,\big|\,\mbox{ there exists }F\in \cF\mbox{ such that }f(F)\subseteq Z\big\}$$
 of subsets of $Y$ is \textit{the image of $\cF$ under $f$}.
 \end{definition}
 \noindent
@@ -53,13 +59,11 @@ Let $\cF$ be a filter of subsets of a set $X$ and let $f:X\ra Y$ be a map. If $\
 Left for the reader as an exercise.
 \end{proof}
 \noindent
-Now we introduce the notion of ultrafilter and prove by invoking axiom of choice that they exist.
+Now we introduce the notion of ultrafilter and prove its properties. Finally by invoking axiom of choice we prove that ultrafilters exist.
 
 \begin{definition}
-Let $\cF$ be a proper filter of subsets of a set $X$ such that for every proper filter $\tilde{\cF}$ if $\cF \subseteq \tilde{\cF}$, then $\cF = \tilde{\cF}$. Then $\cF$ is \textit{an ultrafilter of subsets of $X$}.
+Let $\cF$ be a proper filter of subsets of a set $X$ such that for every proper filter $\tilde{\cF}$ of subsets of $X$ if $\cF \subseteq \tilde{\cF}$, then $\cF = \tilde{\cF}$. Then $\cF$ is \textit{an ultrafilter of subsets of $X$}.
 \end{definition}
-\noindent
-Next we describe properties of ultrafilters and prove their existence.
 
 \begin{proposition}\label{proposition:ultrafilter_contains_either_susbet_or_its_complement}
 Let $X$ be a set and let $\cF$ be a proper filter of subsets of $X$. The following assertions are equivalent.
@@ -69,8 +73,15 @@ Let $X$ be a set and let $\cF$ be a proper filter of subsets of $X$. The followi
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-Assume that $\cF$ is an ultrafilter and let $F$ be a subset of $X$. Suppose that $F\not \in \cF$. Then the smallest filter (Fact \ref{fact:filters_are_closed_under_intersections}) containing $\{F\}\cup \cF$ is not a proper filter. This implies that there exists $F' \in \cF$ such that $F\cap F' = \emptyset$. Since $F'\subseteq X\setminus F$ and $\cF$ is a filter, we derive that $X\setminus F \in \cF$. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Assume that $\cF$ is an ultrafilter and let $F$ be a subset of $X$. Suppose that $F\not \in \cF$. Then the smallest filter containing $\{F\}\cup \cF$, which exists according to Fact \ref{fact:filters_are_closed_under_intersections}, is not a proper filter. This implies that there exists $F' \in \cF$ such that $F\cap F' = \emptyset$. Since $F'\subseteq X\setminus F$ and $\cF$ is a filter, we derive that $X\setminus F \in \cF$. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
 Suppose that \textbf{(ii)} holds. Consider a filter $\tilde{\cF}$ such that $\cF \subsetneq \tilde{\cF}$. If $F \in \tilde{\cF}\setminus \cF$, then $X\setminus F \in \cF$ and hence $\emptyset = F\cap \left(X\setminus F\right) \in \tilde{\cF}$. This implies that $\tilde{\cF}$ is not a proper filter. Thus $\cF$ is an ultrafilter of subsets of $X$. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+\begin{corollary}\label{corollary:ultrafilters_are_preserved_by_images}
+Let $f:X\ra Y$ be a map of sets and let $\cF$ be an ultrafilter of subsets of $X$. Then $f(\cF)$ is an ultrafilter.
+\end{corollary}
+\begin{proof}
+Filter $f(\cF)$ is proper according to Fact \ref{fact:image_of_a_proper_filter_is_proper}. Fix a subset $Z$ of $Y$.  By Proposition \ref{proposition:ultrafilter_contains_either_susbet_or_its_complement} either $f^{-1}(Z) \in \cF$ or $f^{-1}(Y\setminus Z) \in \cF$ . Thus either $Z \in f(\cF)$ or $Y\setminus Z \in f(\cF)$. Proposition \ref{proposition:ultrafilter_contains_either_susbet_or_its_complement} implies that $f(\cF)$ is an ultrafilter.
 \end{proof}
 
 \begin{proposition}\label{proposition:existence_of_ultrafilters}
@@ -87,7 +98,7 @@ is a proper filter. Hence each chain in $\left(\mathrm{F},\subseteq\right)$ admi
 \section{Filters and convergence in topological spaces}
 
 \begin{definition}
-Let $(X,\tau)$ be a topological space and let $\cF$ be a proper filter of subsets of $X$. Consider a point $x$ in $X$. Suppose that for every open neighborhood $U$ of $x$ we have $U \in \cF$. Then filter $\cF$ \textit{converges to $x$ with respect to $\tau$}.
+Let $(X,\tau)$ be a topological space and let $\cF$ be a proper filter of subsets of $X$. Consider a point $x$ in $X$. Suppose that for every open neighborhood $U$ of $x$ with respect to $\tau$ we have $U \in \cF$. Then $\cF$ \textit{converges to $x$ with respect to $\tau$}.
 \end{definition}
 
 \begin{proposition}\label{proposition:characterization_of_continuous_maps_in_terms_of_filters}
@@ -103,7 +114,7 @@ Suppose now that \textbf{(ii)} holds. Fix a point $x$ in $X$ and consider an ope
 $$\cF = \big\{F\subseteq X\,\big|\,U\setminus f^{-1}(V)\subseteq F\mbox{ for some open neighborhood }U\mbox{ of }x\mbox{ with respect to }\tau\big\}$$
 Then $\cF$ is a filter of subsets of $X$. Note that
 $$Y\setminus V = f\left(X\setminus f^{-1}(V)\right) \in f(\cF)$$
-This implies that $V \not \in f(\cF)$. If $\cF$ is a proper filter, then it converges to $x$ with respect $\tau$ and thus $f(\cF)$ converges to $f(x)$ with respect to $\theta$. Since $V \not \in f(\cF)$, the filter $f(\cF)$ cannot converge to $f(x)$ with respect to $\theta$. Therefore, $\cF$ is not a proper filter. This means that there exists an open neighborhood $U$ of $x$ with respect to $\tau$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$ as a map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Since $x\in X$ is arbitrary, we derive the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+This implies that $V \not \in f(\cF)$. If $\cF$ is a proper filter, then it converges to $x$ with respect $\tau$ and thus $f(\cF)$ converges to $f(x)$ with respect to $\theta$. Since $V \not \in f(\cF)$, the filter $f(\cF)$ cannot converge to $f(x)$ with respect to $\theta$. Therefore, $\cF$ is not a proper filter. This means that there exists an open neighborhood $U$ of $x$ with respect to $\tau$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$ as a map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Since $x\in X$ is arbitrary, we derive implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
 
 \begin{theorem}\label{theorem:quasi_compact_in_terms_of_ultrafilters}
@@ -118,7 +129,7 @@ Suppose that \textbf{(i)} holds. Pick a family $\{F_i\}_{i\in I}$ of closed and 
 $$\big\{F\subseteq X\,\big|\,F_i\subseteq F\mbox{ for some }i\in I\big\}$$
 is a proper filter of subsets of $X$. By Proposition \ref{proposition:existence_of_ultrafilters} there exists an ultrafilter $\cF$ of subsets of $X$ which contains the filter defined above. According to \textbf{(i)} ultrafilter $\cF$ is convergent to some point $x$ in $X$ with respect to $\tau$. Then for every open neighborhood $U$ of $x$ with respect to $\tau$ we have $U \in \cF$. In particular, $U\cap F_i \neq \emptyset$ for every $i\in I$ and for every open neighborhood $U$ of $x$ with respect to $\tau$. Since $F_i$ is closed for each $i\in I$, this implies that $x \in F_i$ for every $i \in I$. Thus
 $$x \in  \bigcap_{i\in I}F_i$$
-and this concludes that $\left(X,\tau\right)$ is quasi-compact.\\
+and this implies that $\left(X,\tau\right)$ is quasi-compact.\\
 Assume that $(X,\tau)$ is quasi-compact and suppose that $\cF$ is an ultrafilter of subsets of $X$. Suppose that $\cF$ is not convergent. Then for every $x \in X$ there exists open neighborhood $U_x$ of $x$ with respect to $\tau$ such that $U_x \not \in \cF$. Since $\left(X,\tau\right)$ is quasi-compact, we deduce that there exist finite subset $\{x_1,...,x_n\} \in X$ such that 
 $$X = \bigcup_{i=1}^nU_{x_i}$$
 According to Proposition \ref{proposition:ultrafilter_contains_either_susbet_or_its_complement} we derive that $X\setminus U_x \in \cF$ for every $x \in X$. Hence
@@ -129,12 +140,29 @@ This is contradiction. Thus the implication $\textbf{(ii)}\Rightarrow \textbf{(i
 \end{proof}
 
 \section{Tychonoff's theorem}
+\noindent
+The following result is a celebrated theorem due to Tychonoff.
 
 \begin{theorem}\label{theorem:Tychonoff_theorem}
-Let $\big\{\left(X_i,\tau_i\right)\big\}_{i\in I}$ be a family of nonempty topological spaces. Then 
+Let $\big\{\left(X_i,\tau_i\right)\big\}_{i\in I}$ be a family of quasi-compact topological spaces. Then the product
 $$\prod_{i\in I}\left(X_i,\tau_i\right)$$
-is quasi-compact if and only if $\left(X_i,\tau_i\right)$ is quasi-compact for each $i\in I$.
+is quasi-compact.
 \end{theorem}
+\begin{proof}
+We denote $\prod_{i\in I}X_i$ by $X$ and let $\tau$ be the product of topologies $\{\tau_i\}_{i\in I}$. For each $i$ in $I$ we denote by $pr_i:X \ra X_i$ the canonical projection onto $i$-th factor. Suppose that $\left(X_i,\tau_i\right)$ is a quasi-compact for every $i\in I$. Pick an ultrafilter $\cF$ of subsets of $X$. Fix $i$ in $I$. According to Corollary \ref{corollary:ultrafilters_are_preserved_by_images} the filter $pr_i(\cF)$ is an ultrafilter. Since $\left(X_i,\tau_i\right)$ is quasi-compact, we derive that $pr_i(\cF)$ is convergent to some point $x_i\in X_i$ with respect to $\tau_i$. Let $x$ be a point of $X$ such that $pr_i(x) = x_i$ for each $i\in I$. Fix finite subset $\{i_1,...,i_n\}\subseteq I$. Consider open neighborhood $U_j$ of $x_{i_j}$ with respect to $\tau_{i_j}$ for $j=1,...,n$. Then $U_{i_j}\in pr_{i_j}(\cF)$ for each $j$ and hence $pr_{i_j}^{-1}(U_{i_j}) \in \cF$ for each $j$. Since $\cF$ is a filter, we derive that
+$$\prod_{j=1}^nU_{i_j}\times \prod_{i\in I\setminus \{i_1,...,i_n\}}X_i = \bigcap_{j=1}^npr^{-1}_{i_j}(U_{i_j}) \in \cF$$
+This implies that $\cF$ is convergent to $x$ with respect to $\tau$. Thus every ultrafilter in $(X,\tau)$ is convergent and hence Theorem \ref{theorem:quasi_compact_in_terms_of_ultrafilters} shows that $\left(X,\tau\right)$ is a quasi-compact topological space.
+\end{proof}
+
+
+\begin{theorem}\label{theorem:Tychonoff_theorem_converse}
+Let $\big\{\left(X_i,\tau_i\right)\big\}_{i\in I}$ be a family of nonempty topological spaces. If the product
+$$\prod_{i\in I}\left(X_i,\tau_i\right)$$
+is quasi-compact, then $\left(X_i,\tau_i\right)$ is quasi-compact for every $i\in I$.
+\end{theorem}
+\begin{proof}
+We denote $\prod_{i\in I}X_i$ by $X$ and let $\tau$ be the product of topologies $\{\tau_i\}_{i\in I}$. For each $i$ in $I$ we denote by $pr_i:X \ra X_i$ the canonical projection onto $i$-th factor. Assume that $\left(X,\tau\right)$ is quasi-compact. Since $X_i \neq \emptyset$ for every $i\in I$, we derive that $pr_i:\left(X,\tau\right)\ra \left(X_i,\tau_i\right)$ is a continuous and surjective map for every $i\in I$. Hence for each $i\in I$ space $\left(X_i,\tau_i\right)$ is quasi-compact as an image of a quasi-compact space under continuous map.      
+\end{proof}
 
 
 

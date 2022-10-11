@@ -472,7 +472,7 @@ and hence $U$ is contained in the smallest uniform structure on $X$ which makes 
 In this section we study very important notion of completeness of uniform spaces.
 
 \begin{definition}
-Let $(X,\fU)$ be a uniform space. Suppose that $\cF$ is a filter of subsets of $X$. Assume that for every $U$ in $\fU$ there exists $F \in \cF$ such that $F\times F\subseteq U$. Then $\cF$ is \textit{a Cauchy filter in $\left(X,\fU\right)$}.
+Let $(X,\fU)$ be a uniform space. Suppose that $\cF$ is a proper filter of subsets of $X$. Assume that for every $U$ in $\fU$ there exists $F \in \cF$ such that $F\times F\subseteq U$. Then $\cF$ is \textit{a Cauchy filter in $\left(X,\fU\right)$}.
 \end{definition}
 \noindent
 First we prove that the image of a Cauchy filter under a morphism of uniform spaces is a Cauchy filter.
@@ -493,22 +493,24 @@ Let $(X,\fU)$ be a uniform space. Suppose that every Cauchy filter in in $\left(
 \noindent
 The following theorem is analogical to famous Tychonoff's theorem for compact topological spaces.
 
-\begin{theorem}\label{theorem:completeness_is_a_product_property}
-Let $\left(X_i,\fU_i\right)$ be uniform spaces for $i \in I$. Then the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
-\item The product
+\begin{theorem}\label{theorem:completeness_of_factors_imply_product_completeness}
+Let $\left(X_i,\fU_i\right)$ be complete uniform spaces for $i \in I$. Then the product
 $$\prod_{i\in I}\left(X_i,\fU_i\right)$$
 is a complete uniform space.
-\item $\left(X_i,\fU_i\right)$ is complete for every $i\in I$.
-\end{enumerate}
 \end{theorem}
 \begin{proof}
-Denote $X = \prod_{i\in I}X_i$ and let $\fU$ be the product uniform structure induced by $\fU_i$ for all $i\in I$. For each $i\in I$ we denote by $pr_i:X\ra X_i$ the canonical projection.\\
-Assume first that $(X,\fU)$ is a complete uniform space. Fix $i_0 \in I$. Suppose that $\cF$ is a Cauchy filter in $(X_{i_0},\fU_{i_0})$. Pick $z \in \prod_{i\neq i_0}X_i$. Consider a filter 
+Let $X = \prod_{i\in I}X_i$ and let $\fU$ be the product uniform structure of $\fU_i$ for $i\in I$. For each $i\in I$ we denote by $pr_i:X\ra X_i$ the canonical projection. Suppose that $\left(X_i,\fU_i\right)$ is a complete uniform space for every $i\in I$. Fix a Cauchy filter $\cF$ in $\left(X,\fU\right)$. Then $\cF_i = pr_i(\cF)$ is a Cauchy filter on $\left(X_i,\fU_i\right)$ for every $i\in I$ according to Fact \ref{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy}. Since $\left(X_i,\fU_i\right)$ is a complete uniform space and $\cF_i$ is a Cauchy filter, we derive that $\cF_i$ is convergent to some point $x_i \in X_i$ with respect to $\tau_{\fU_i}$ for each $i\in I$. Let $x$ be a point in $X$ such that $pr_i(x) = x_i$ for every $i \in I$. Then $\cF$ is convergent to $x$ with respect to the product of topologies $\tau_{\fU_i}$ for $i\in I$. By Theorem \ref{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces} we infer that $\tau_{\fU}$ is the product of $\tau_{\fU_i}$ for $i\in I$. Hence $\cF$ is convergent to $x$ with respect to $\tau_{\fU}$. Thus $(X,\fU) = \prod_{i\in I}\left(X_i,\fU_i\right)$ is a complete uniform space.
+\end{proof}
+
+\begin{theorem}\label{theorem:completeness_of_product_and_nonemptiness_of_factors_imply_their_completeness}
+Let $\left(X_i,\fU_i\right)$ be nonempty uniform spaces for $i \in I$. If
+$$\prod_{i\in I}\left(X_i,\fU_i\right)$$
+is a complete uniform space, then $\left(X_i,\fU_i\right)_{i\in I}$ is complete for every $i \in I$.
+\end{theorem}
+\begin{proof}
+Denote $X = \prod_{i\in I}X_i$ and let $\fU$ be the product uniform structure induced by $\fU_i$ for all $i\in I$. For each $i\in I$ we denote by $pr_i:X\ra X_i$ the canonical projection. Assume that $(X,\fU)$ is a complete uniform space. Fix $i_0 \in I$. Suppose that $\cF$ is a Cauchy filter in $(X_{i_0},\fU_{i_0})$. Since $X_i\neq \emptyset$ for every $i\in I$, we may pick $z \in \prod_{i\neq i_0}X_i$. Consider a filter 
 $$\tilde{\cF} = \big\{\tilde{F}\subseteq X\,\big|\,F\times \{z\} \subseteq \tilde{F}\mbox{ for some }F\in \cF\big\}$$
-Then $\tilde{\cF}$ is a Cauchy filter in $(X,\fU)$ and $\cF = pr_{i_0}\left(\tilde{\cF}\right)$. Since $\tilde{\cF}$ is a Cauchy filter in a complete uniform space $(X,\fU)$, it is convergent with respect to $\tau_{\fU}$ to some $x \in X$. Since $\tau_{\fU}$ is a product of topologies $\tau_{\fU_i}$ for $i \in I$ according to Theorem \ref{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces}, we derive that $pr_{i_0}\left(\tilde{\cF}\right)$ is convergent to $pr_{i_0}(x)$ with respect to $\tau_{\fU_{i_0}}$. Finally according to $\cF = pr_{i_0}\left(\tilde{\cF}\right)$ we derive that $\cF$ is convergent to $pr_{i_0}(x)$. This shows that $(X_{i_0},\fU_{i_0})$ is a complete uniform space. Since $i_0 \in I$ is arbitrary, we derive that the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ holds.
-\\
-Suppose now that $\left(X_i,\fU_i\right)$ is a complete uniform space for every $i\in I$. Fix a Cauchy filter $\cF$ in $\prod_{i\in I}\left(X_i,\fU_i\right)$. Then $\cF_i = pr_i(\cF)$ is a Cauchy filter on $\left(X_i,\fU_i\right)$ for every $i\in I$ according to Fact \ref{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy}. Since $\left(X_i,\fU_i\right)$ is a complete uniform space and $\cF_i$ is a Cauchy filter, we derive that filter $\cF_i$ is convergent with respect to $\tau_{\fU_i}$ to some point $x_i \in X_i$ for each $i\in I$. Let $x = \left(x_i\right)_{i\in I}\in X$. Then $\cF$ is convergent to $x$ with respect to product of topologies $\tau_{\fU_i}$ for $i\in I$. By Theorem \ref{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces} we infer that $\tau_{\fU}$ is the product of $\tau_{\fU_i}$ for $i\in I$. Hence $\cF$ is convergent to $x$ with respect to $\tau_{\fU}$. Thus $(X,\fU)$ is a complete uniform space and this concludes the proof of the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+Then $\tilde{\cF}$ is a Cauchy filter in $(X,\fU)$ and $\cF = pr_{i_0}\left(\tilde{\cF}\right)$. Since $\tilde{\cF}$ is a Cauchy filter in a complete uniform space $(X,\fU)$, it is convergent with respect to $\tau_{\fU}$ to some $x \in X$. Since $\tau_{\fU}$ is a product of topologies $\tau_{\fU_i}$ for $i \in I$ according to Theorem \ref{theorem:induced_topology_functor_preserves_limits_of_uniform_spaces}, we derive that $pr_{i_0}\left(\tilde{\cF}\right)$ is convergent to $pr_{i_0}(x)$ with respect to $\tau_{\fU_{i_0}}$. Finally according to $\cF = pr_{i_0}\left(\tilde{\cF}\right)$ we derive that $\cF$ is convergent to $pr_{i_0}(x)$. This shows that $(X_{i_0},\fU_{i_0})$ is a complete uniform space. Since $i_0 \in I$ is arbitrary, we derive that $\left(X_i,\fU_i\right)$ is a complete uniform space for every $i \in I$.
 \end{proof}
 \noindent
 Now we study completeness under embeddings of uniform spaces.
