@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to uniform spaces, which are mathematical objects rigorously encapsulating the intuitive notion of uniformity. In the first section we prove  important pseudometrizability theorem due to Andr{\'e} Weil. This result is crucial for further developments. Then we introduce uniform spaces and their category $\Unif$. We describe small limits in $\Unif$. Next we construct a small limits preserving functor $\Unif\ra \Top$. We show that the image of the functor consists of completely regular spaces. We also discuss pseudometrizable unform spaces and show that each uniform space can be embedded into a product of pseudometrizable uniform spaces.
+These notes are devoted to general theory of uniform spaces, which are mathematical objects rigorously encapsulating the intuitive notion of uniformity. In the first section we prove  important pseudometrizability theorem due to Andr{\'e} Weil. This result is crucial for further developments. Then we introduce uniform spaces and their category $\Unif$. We describe small limits in $\Unif$. Next we construct a small limits preserving functor $\Unif\ra \Top$. We show that the image of the functor consists of completely regular spaces. We also discuss pseudometrizable unform spaces and show that each uniform space can be embedded into a product of pseudometrizable uniform spaces. Next we define complete uniform spaces and prove results concerning their properties with respect to products, embeddings and extensions of uniform morphisms. Then we identify the general notion of completeness for uniform spaces  to completeness in terms of Cauchy sequences in the context of pseudometric spaces. In the last section we prove that each Hausdorff uniform space admits universal completion.
 
 \section{Existence of pseudometrics}
 \noindent
@@ -37,7 +37,7 @@ Let $X$ be a set. Suppose that a function $\rho:X\times X\ra \RR$ satisfies the 
 \item $\rho(x,y) = \rho(y,x)$ for all $x,y\in X$.
 \item $\rho(x,z)\leq \rho(x,y) + \rho(y,z)$ for all $x,y,z\in X$.
 \end{enumerate}
-Then $\rho$ is \textit{a pseudometric on $X$}.
+Then $\rho$ is \textit{a pseudometric on $X$}. The last condition is called \textit{the triangle inequality}.
 \end{definition}
 
 \begin{definition}
@@ -274,16 +274,26 @@ $$f^{-1}(\cO) = \bigcup_{x\in f^{-1}(\cO)}B\big(x,\left(f\times f\right)^{-1}(V_
 is open in the topology induced by $\fU$.
 \end{proof}
 
-\begin{remark}\label{remark:topology_induced_by_uniform_structure_for_pseudometric_coincides_with_topology_induced_by_pseudometric}
-Let $X$ be a set and let $\rho$ be a pseudometric. Then $\tau_{\fU_{\rho}}$ is the topology induced by $\rho$.
+\begin{definition}
+Let $X$ be a set and let $\rho$ be a pseudometric. Then $\tau_{\fU_{\rho}}$ is \textit{the topology induced by $\rho$ on $X$}.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a set and let $\rho$ be a pseudometric. For every point $x$ in $X$ and $\epsilon$ in $\RR_+$ the set
+$$B_{\rho}(x,\epsilon) = \big\{y\in X\,\big|\,\rho(x,y) < \epsilon\big\}$$
+is \textit{the open ball with respect to $\rho$ centered in $x$ and with radius $\epsilon$}.
+\end{definition}
+
+\begin{remark}\label{remark:topology_induced_by_pseudometric_open_balls_basis}
+Let $X$ be a set and let $\rho$ be a pseudometric. Then $\tau_{\fU_{\rho}}$ is the topology with open basis consisting of balls $B_{\rho}(x,\epsilon)$ for $x\in X$ and $\epsilon \in \RR_+$.
 \end{remark}
 \noindent
 The following result is a useful property of topology induced by a uniform structure. 
 
 \begin{theorem}\label{theorem:each_entourage_contains_open_entourage}
-Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \fU$ such that the following two assertions hold.
+Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Fix $n$ in $\NN_+$. Then there exists $W \in \fU$ such that the following two assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item $W$ is a subset of $U$.
+\item $\underbrace{W\cdot ...\cdot W}_{n\,\mathrm{times}}$ is a subset of $U$.
 \item For every $x$ in $X$ the ball $B(x,W)$ is open with respect to the topology induced by $\fU$ on $X$. 
 \item $W$ is open in $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$.
 \end{enumerate}
@@ -291,11 +301,11 @@ Let $(X,\fU)$ be a uniform space and let $U \in \fU$. Then there exists $W \in \
 \begin{proof}
 Let $\rho$ be a pseudometric on $X$ having the properties described in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. For each positive $\epsilon$ in $\RR$ define 
 $$W_{\epsilon} = \big\{(x,y)\in X\times X\,\big|\,\rho(x,y) < \epsilon\big\}$$
-Then $W_{\epsilon} \in \fU$. Denote $W_1$ by $W$. We prove that $W$ satisfies assertions in the statement. By construction $W \subseteq U$ and hence \textbf{(1)} holds. Fix now $x \in X$ and consider a map $f:X\ra \RR$ given by $f_x(y) = \rho(x,y)$ for $y\in X$. Then Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} asserts that $f$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \RR$ where $\RR$ admits the natural uniform structure (Example \ref{example:uniform_structure_on_reals}). By Fact \ref{fact:uniform_morphism_is_a_continuous_map} and Example \ref{remark:topology_induced_by_uniform_structure_for_pseudometric_coincides_with_topology_induced_by_pseudometric} the map $f$ is continuous with respect to $\tau_{\fU}$ and the usual topology on $\RR$. It follows that
+Then $W_{\epsilon} \in \fU$. Denote $W_{\frac{1}{n}}$ by $W$. We prove that $W$ satisfies assertions in the statement. By construction $\underbrace{W\cdot ...\cdot W}_{n\,\mathrm{times}} \subseteq U$ and hence \textbf{(1)} holds. Fix now $x \in X$ and consider a map $f:X\ra \RR$ given by $f_x(y) = \rho(x,y)$ for $y\in X$. Then Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} asserts that $f$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \RR$ where $\RR$ admits the natural uniform structure (Example \ref{example:uniform_structure_on_reals}). By Fact \ref{fact:uniform_morphism_is_a_continuous_map} and Remark \ref{remark:topology_induced_by_pseudometric_open_balls_basis} the map $f$ is continuous with respect to $\tau_{\fU}$ and the usual topology on $\RR$. It follows that
 $$B(x,W_{\epsilon}) = \big\{y\in X\,\big|\,\rho(x,y) < \epsilon\big\} = \big\{y\in X\,\big|\,f(y) < \epsilon\big\}\in \tau_{\fU}$$
-for every $x$ in $X$ and positive $\epsilon$. In particular, this implies \textbf{(2)}. Now we prove $\textbf{(3)}$. Fix $(x,y) \in W$. Since $\rho(x,y) < 1$, there exist positive numbers $\epsilon_1,\epsilon_2$ such that $\epsilon_1 + \rho(x,y) + \epsilon_2 < 1$. Hence 
+for every $x$ in $X$ and positive $\epsilon$. In particular, this implies \textbf{(2)}. Now we prove $\textbf{(3)}$. Fix $(x,y) \in W$. Since $\rho(x,y) < \frac{1}{n}$, there exist positive numbers $\epsilon_1,\epsilon_2$ such that $\epsilon_1 + \rho(x,y) + \epsilon_2 < \frac{1}{n}$. Hence 
 $$B(x,W_{\epsilon_1})\times B(y,W_{\epsilon_2}) \subseteq W$$
-Thus $(x,y)$ is an interior point of $W$ in $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$. Since $(x,y)$ is an arbitrary point of $W$, $W$ is an open subset of $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$. This completes the proof of \textbf{(3)}.
+Thus $(x,y)$ is an interior point of $W$ in $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$. Since $(x,y)$ is an arbitrary point of $W$, we derive that $W$ is an open subset of $\left(X,\tau_{\fU}\right)\times \left(X,\tau_{\fU}\right)$. This completes the proof of \textbf{(3)}.
 \end{proof}
 \noindent
 Fact \ref{fact:topology_induced_by_uniform_structure} and Fact \ref{fact:uniform_morphism_is_a_continuous_map} imply the existence of the functor 
@@ -318,7 +328,7 @@ $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
 consists of the class of completely regular spaces. Moreover, $\left(X,\fU\right)$ is a Hausdorff uniform space if and only if $\left(X,\tau_{\fU}\right)$ is a Hausdorff topological space. 
 \end{theorem}
 \begin{proof}
-Let $(X,\fU)$ be a uniform space. Consider a closed set $F$ with respect to $\tau_{\fU}$. Let $x$ be a point in $X\setminus F$. Since $x \not \in F$ and $F$ is closed in $\tau_{\fU}$, we derive that there exists $U \in \fU$ such that $B(x,U)\cap F = \emptyset$. Fix a pseudometric $\rho$ on $X$ corresponding to $U$ as in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. Consider a map $f:X\ra \RR$ given by $f(y) = \rho(x,y)$ for $y\in X$. Then Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} asserts that $f$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \RR$ where $\RR$ admits the natural uniform structure (Example \ref{example:uniform_structure_on_reals}). By Fact \ref{fact:uniform_morphism_is_a_continuous_map} and Example \ref{remark:topology_induced_by_uniform_structure_for_pseudometric_coincides_with_topology_induced_by_pseudometric} the map $f$ is continuous with respect to $\tau_{\fU}$ and the usual topology on $\RR$. Note also that the image of $f$ is contained in $[0,1]$. Pick $y\in F$. Then $y \not \in B(x,U)$ and hence $(x,y) \not \in U$. We deduce that $f(y) = \rho(x,y) = 1$. On the other hand $f(x) = \rho(x,x) = 0$. Therefore, $f(F) \subseteq \{1\}$ and $f(x) = 0$. Thus $(X,\tau_{\fU})$ is a completely regular space.\\
+Let $(X,\fU)$ be a uniform space. Consider a closed set $F$ with respect to $\tau_{\fU}$. Let $x$ be a point in $X\setminus F$. Since $x \not \in F$ and $F$ is closed in $\tau_{\fU}$, we derive that there exists $U \in \fU$ such that $B(x,U)\cap F = \emptyset$. Fix a pseudometric $\rho$ on $X$ corresponding to $U$ as in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. Consider a map $f:X\ra \RR$ given by $f(y) = \rho(x,y)$ for $y\in X$. Then Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} asserts that $f$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \RR$ where $\RR$ admits the natural uniform structure (Example \ref{example:uniform_structure_on_reals}). By Fact \ref{fact:uniform_morphism_is_a_continuous_map} and Remark \ref{remark:topology_induced_by_pseudometric_open_balls_basis} the map $f$ is continuous with respect to $\tau_{\fU}$ and the usual topology on $\RR$. Note also that the image of $f$ is contained in $[0,1]$. Pick $y\in F$. Then $y \not \in B(x,U)$ and hence $(x,y) \not \in U$. We deduce that $f(y) = \rho(x,y) = 1$. On the other hand $f(x) = \rho(x,x) = 0$. Therefore, $f(F) \subseteq \{1\}$ and $f(x) = 0$. Thus $(X,\tau_{\fU})$ is a completely regular space.\\
 Suppose now that $(X,\tau)$ is a completely regular space. Consider the set $C(\tau,\RR)$ of all continuous real valued functions on $(X,\tau)$. For $m\in \NN_+$ and set of $m$ functions $f_1,...,f_m\in C(\tau,\RR)$ define
 $$\rho_{f_1,...,f_m}(x,y) = \max \big\{|f_1(x) - f_1(y)|,...,|f_m(x) - f_m(y)|\big\}$$
 where $x,y\in X$. Clearly $\rho_{f_1,...,f_m}$ is a pseudometric on $X$. Next consider a family $\fU$ of all $U\in \fD_X$ such that there exist a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
@@ -411,9 +421,9 @@ Let $(X,\fU)$ be a pseudometrizable uniform space. Then the following are equiva
 \end{enumerate} 
 \end{fact}
 \begin{proof}
-For the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$ observe that
-$$\Delta_X = \bigcap_{U\in \fU}U =  \bigcap_{\epsilon \in \RR_+}\big\{(x,y)\in X\times X\,\big|\,\rho\left(x,y\right) < \epsilon\big\} = \big\{(x,y)\in X\times X\,\big|\,\rho\left(x,y\right) = 0\big\}$$
-which implies that $\rho$ is a metric. The inverse implication is left for the reader.
+The result follows from equality
+$$\bigcap_{U\in \fU}U =  \bigcap_{\epsilon \in \RR_+}\big\{(x,y)\in X\times X\,\big|\,\rho\left(x,y\right) < \epsilon\big\} = \big\{(x,y)\in X\times X\,\big|\,\rho\left(x,y\right) = 0\big\}$$
+Details are left for the reader.
 \end{proof}
 \noindent
 The next theorem characterizes pseudometrizable uniform spaces.
@@ -469,7 +479,7 @@ and hence $U$ is contained in the smallest uniform structure on $X$ which makes 
 
 \section{Complete uniform spaces}
 \noindent
-In this section we study very important notion of completeness of uniform spaces.
+In this section we study very important notion of completeness of uniform spaces. For this we use the notion of filter of subsets defined in \cite{Filters_in_topology}.
 
 \begin{definition}
 Let $(X,\fU)$ be a uniform space. Suppose that $\cF$ is a proper filter of subsets of $X$. Assume that for every $U$ in $\fU$ there exists $F \in \cF$ such that $F\times F\subseteq U$. Then $\cF$ is \textit{a Cauchy filter in $\left(X,\fU\right)$}.
@@ -515,15 +525,128 @@ Then $\tilde{\cF}$ is a Cauchy filter in $(X,\fU)$ and $\cF = pr_{i_0}\left(\til
 \noindent
 Now we study completeness under embeddings of uniform spaces.
 
-\begin{proposition}\label{proposition:closed_embeddings_into_complete_space_are_complete}
-Let $j:\left(Z,\fO \right) \hookrightarrow \left(X,\fU\right)$ be an embedding of uniform spaces. Suppose that $\left(X,\fU\right)$ is a complete uniform space. Then the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
-\item $j(Z)$ is a closed subset of $\left(X,\tau_{\fU}\right)$.
-\item $\left(Z,\fO\right)$ is a complete uniform space.
-\end{enumerate}
-\end{proposition}
+\begin{theorem}\label{theorem:closed_embeddings_into_complete_space_are_complete}
+Let $j:\left(Z,\fO \right) \hookrightarrow \left(X,\fU\right)$ be an embedding of uniform spaces. If $\left(X,\fU\right)$ is a complete uniform space and $j(Z)$ is closed with respect to $\tau_{\fU}$, then $\left(Z,\fO\right)$ is a complete uniform space.
+\end{theorem}
 \begin{proof}
-Assume that \textbf{(i)} holds. Pick a Cauchy filter $\cF$ in $\left(Z,\fO\right)$. Then according to Fact \ref{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy} the filter $i(\cF)$ is Cauchy in $\left(X,\fU\right)$. Thus $i(\cF)$ converges with respect to $\tau_{\fU}$ to some point $x\in X$. Hence for every open neighborhood $U$ of $x$ in $\left(X,\tau_{\fU}\right)$ we have $U\in i(\cF)$. Since $i(Z) \in i(\cF)$, this implies that $U\cap i(Z) \neq \emptyset$. Thus $x$ is in the closure of $i(Z)$. Since $i(Z)$ is closed in $\tau_{\fU}$, we infer that $x\in i(Z)$. Now $x = i(z)$ for some $z\in Z$. According to Proposition \ref{proposition:the_induced_topology_preserves_uniform_subspaces} the map $j:\left(Z,\tau_{\fO}\right) \hookrightarrow \left(X,\tau_{\fU}\right)$ is an embedding.
+Pick a Cauchy filter $\cF$ in $\left(Z,\fO\right)$. Then according to Fact \ref{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy} the filter $j(\cF)$ is Cauchy in $\left(X,\fU\right)$. Thus $j(\cF)$ converges to some point $x\in X$ with respect to $\tau_{\fU}$. Since $j(Z)$ is closed in $\tau_{\fU}$, we infer that $x \in j(Z)$. Thus $x = j(z)$ for some $z\in Z$. According to Proposition \ref{proposition:the_induced_topology_preserves_uniform_subspaces} the map $j:\left(Z,\tau_{\fO}\right) \hookrightarrow \left(X,\tau_{\fU}\right)$ is a topological embedding and $j(\cF)$ is convergent to $j(z)$ with respect to $\tau_{\fU}$. By {\cite[Proposition 3.3]{Filters_in_topology}} we infer that $\cF$ is convergent to $z$ with respect to $\tau_{\fO}$. Hence $\left(Z,\fO\right)$ is a complete uniform space.
+\end{proof}
+
+\begin{theorem}\label{theorem:embeddings_of_complete_space_into_Hausdorff_space_are_closed}
+Let $j:\left(Z,\fO \right) \hookrightarrow \left(X,\fU\right)$ be an embedding of uniform spaces. If $\left(X,\fU\right)$ is a Hausdorff uniform space and $\left(Z,\fO\right)$ is a complete uniform space, then $j(Z)$ is closed with respect to $\tau_{\fU}$.
+\end{theorem}
+\begin{proof}
+Fix a point $x$ of $X$ in the closure of $j(Z)$ with respect to $\tau_{\fU}$. Consider the filter
+$$\cF = \big\{F\subseteq Z\,\big|\,j^{-1}(\cO)\subseteq F\mbox{ for some open neighborhood }\cO\mbox{ of }x\mbox{ with respect to }\tau_{\fU}\big\}$$
+Clearly $\cF$ is a proper filter of subsets of $Z$. Since $j$ is an embedding of uniform spaces, every entourage of the diagonal in $(Z,\fO)$ is of the form $\left(j\times j\right)^{-1}(U)$ for some $U$ in $\fU$. Fix some $U$ in $\fU$ and let $W$ be an entourage of the diagonal in $(X,\fU)$ such that $W\cdot W\subseteq U$ and $B(x,W) \in \tau_{\fU}$. Such entourage of the diagonal in $(X,\fU)$ exists according to Theorem \ref{theorem:each_entourage_contains_open_entourage}. Note that
+$$B(x,W) \times B(x,W) \subseteq U$$
+Now we have 
+$$j^{-1}\big(B(x,W)\big)\times j^{-1}\big(B(x,W)\big) \subseteq \left(j\times j\right)^{-1}(U)$$
+and hence $\cF$ is a Cauchy filter in $\left(Z,\fO\right)$. Since $(Z,\fO)$ is complete, filter $\cF$ is convergent to some $z$ in $Z$ with respect to $\tau_{\fO}$. Hence $j(\cF)$ is convergent to $j(z)$ with respect to $\tau_{\fU}$. Note that
+$$\big\{\cO \in \tau_{\fU}\,\big|\,x\in \cO \big\} \subseteq j(\cF)$$
+This implies that filter $j(\cF)$ is convergent to $x$ with respect to $\tau_{\fU}$. Thus $j(\cF)$ is convergent to both $j(z)$ and $x$ with respect to $\tau_{\fU}$. Uniform space $(X,\fU)$ is Hausdorff and hence $(X,\tau_{\fU})$ is Hausdorff topological space (Theorem \ref{theorem:image_of_the_canonical_functor_is_completely_regular_space}). This implies that each filter of subsets of $X$ has at most one limit with respect to $\tau_{\fU}$. Thus $x = j(z)$ and $j(Z)$ is closed with respect to $\tau_{\fU}$.
+\end{proof}
+\noindent
+Finally we discuss extensions of uniform morphisms defined on dense uniform subspaces and with values in complete uniform spaces.
+
+\begin{theorem}\label{theorem:extensions_of_uniform_morphisms_to_complete_spaces}
+Let $j:\left(Z,\fO \right) \hookrightarrow \left(X,\fU\right)$ be an embedding of uniform spaces and let $f:\left(Z,\fO\right)\ra \left(Y,\fV\right)$ be a uniform morphism. If $\left(Y,\fV\right)$ is a complete uniform space and $j(Z)$ is dense in $X$ with respect to $\tau_{\fU}$, then there exists a uniform morphism $\tilde{f}:\left(X,\fU\right)\ra \left(Y,\fV\right)$ such that $\tilde{f}\cdot j = f$. Moreover, if $\left(Y,\fV\right)$ is Hausdorff, then $\tilde{f}$ is unique.
+\end{theorem}
+\begin{proof}
+For each point $x$ in $X$ define a filter of subsets of $Z$ by formula
+$$\cF_x = \big\{F\subseteq Z\,\big|\,j^{-1}(\cO)\subseteq F\mbox{ for some open neighborhood }\cO\mbox{ of }x\mbox{ with respect to }\tau_{\fU}\big\}$$
+Since $j(Z)$ is dense in $X$ with respect to $\tau_{\fU}$, the filter $\cF_x$ is proper. Fix some $U$ in $\fU$ and let $W$ be an entourage of the diagonal in $(X,\fU)$ such that $W\cdot W\subseteq U$ and $B(x,W) \in \tau_{\fU}$. Such entourage of the diagonal in $(X,\fU)$ exists according to Theorem \ref{theorem:each_entourage_contains_open_entourage}. Note that
+$$B(x,W) \times B(x,W) \subseteq U$$
+Now we have 
+$$j^{-1}\big(B(x,W)\big)\times j^{-1}\big(B(x,W)\big) \subseteq \left(j\times j\right)^{-1}(U)$$
+and by definition $j^{-1}\big(B(x,W)\big) \in \cF_x$. Since $j$ is an embedding of uniform spaces, every entourage of the diagonal in $(Z,\fO)$ is of the form $\left(j\times j\right)^{-1}(U)$ for some $U$ in $\fU$. Hence $\cF_x$ is a Cauchy filter in $\left(Z,\fO\right)$. By Fact \ref{fact:images_of_Cauchy_filters_under_uniform_morphisms_are_Cauchy} the filter $f(\cF_x)$ is Cauchy in $\left(Y,\fV\right)$. Since $\left(Y,\fV\right)$ is a complete uniform space, we derive that $f(\cF_x)$ is convergent to some point in $Y$. If $z\in Z$, then according to Proposition \ref{proposition:the_induced_topology_preserves_uniform_subspaces} filter $\cF_{j(z)}$ contains all open neighborhoods of $z$ with respect to $\tau_{\fU}$ and hence $\cF_{j(z)}$ is convergent to $z$ with respect to $\tau_{\fO}$. Hence $f(\cF_{j(z)})$ is convergent to $f(z)$ with respect to $\tau_{\fV}$. We define $\tilde{f}:X\ra Y$ in such a way that $f(\cF_x)$ converges to $\tilde{f}(x)$ with respect to $\tau_{\fV}$ for every $x\in X$ and if $x = j(z)$ for some $z\in Z$, then $\tilde{f}(x) = f(z)$. These two conditions can be simultaneously satisfied and give rise to a map $\tilde{f}:X\ra Y$ such that $\tilde{f}\cdot j = f$.\\
+We claim that $\tilde{f}$ is a uniform morphism $\left(X,\fU\right)\ra \left(Y,\fV\right)$. Fix an entourage of the diagonal $V$ in $(Y,\fV)$. Let $E$ be an entourage of the diagonal in $(Y,\fV)$ such that $E\cdot E\cdot E \subseteq V$ and $B(y,E) \in \tau_{\fV}$ for every $y$ in $Y$. Such entourage of the diagonal in $(Y,\fV)$ exists according to Theorem \ref{theorem:each_entourage_contains_open_entourage}. Since $f:\left(Z,\fO\right)\ra \left(Y,\fV\right)$ is a uniform morphism, $\left(f\times f\right)^{-1}(E)$ is an element of $\fO$. Since $j$ is an embedding of uniform spaces, there exists $U \in \fU$ such that $\left(j\times j\right)^{-1}(U) = \left(f\times f\right)^{-1}(E)$. Let $W$ be an entourage of the diagonal in $(X,\fU)$ such that $W\cdot W\cdot W \subseteq U$ and $B(x,W) \in \tau_{\fU}$ for every $x$ in $X$. Again such entourage of the diagonal in $(X,\fU)$ exists according to Theorem \ref{theorem:each_entourage_contains_open_entourage}. Now pick $(x_1,x_2) \in W$. Then 
+$$\cO = B(x_1,W)\cap B(x_2,W)$$
+is an open neighborhood of both $x_1$ and $x_2$ such that $\cO\times \cO \subseteq W\cdot W \cdot W \subseteq U$. Thus 
+$$f\big(j^{-1}(\cO)\big) \times f\big(j^{-1}(\cO)\big) \subseteq \left(f\times f\right)\left(\left(j\times j\right)^{-1}(U)\right) \subseteq E$$
+and hence $(y_1,y_2)\in E$ for every pair $y_1,y_2$ of elements of $f\big(j^{-1}(\cO)\big)$. Moreover, $j^{-1}(\cO)\in \cF_{x_1}\cap \cF_{x_2}$ and hence the closure of $f\big(j^{-1}(\cO)\big)$ with respect to $\tau_{\fV}$ contains both $\tilde{f}(x_1)$ and $\tilde{f}(x_2)$. Thus $B\left(\tilde{f}(x_1),E\right)\cap f\big(j^{-1}(\cO)\big) \neq \emptyset$ and
+$B\left(\tilde{f}(x_2),E\right)\cap f\big(j^{-1}(\cO)\big) \neq \emptyset$. Hence there exist $y_1,y_2\in f\big(j^{-1}(\cO)\big)$ such that $\left(\tilde{f}(x_1),y_1\right)\in E$ and $\left(\tilde{f}(x_2),y_2\right)\in E$. Since $(y_1,y_2)\in E$, we derive that
+$$\left(\tilde{f}(x_1),\tilde{f}(x_1)\right)\in E\cdot E\cdot E\subseteq V$$
+This implies that $W\subseteq \left(\tilde{f}\times \tilde{f}\right)^{-1}(V)$ and hence $\left(\tilde{f}\times \tilde{f}\right)^{-1}(V) \in \fU$. This completes the proof of the claim.\\
+Finally it remains to prove that if $\left(Y,\fV\right)$ is Hausdorff, then $\tilde{f}$ is unique. For this note that $\tilde{f}:\left(X,\tau_{\fU}\right)\ra \left(Y,\tau_{\fV}\right)$ is a continuous map into a Hausdorff space such that $\tilde{f}\cdot j = f$. Since $j:\left(Z,\tau_{\fO}\right)\hookrightarrow \left(X,\tau_{\fU}\right)$ is an embedding of a dense subspace and $f:\left(Z,\tau_{\fO}\right)\ra \left(Y,\tau_{\fV}\right)$ is continuous, we derive that $\tilde{f}$ is a unique continuous extension of $f$.
+\end{proof}
+
+\section{Completeness for pseudometric spaces}
+\noindent
+In this section we discuss the notion of completeness in the important special case of pseudometrizable uniform spaces.
+
+\begin{definition}
+Let $(X,\rho)$ be a pseudometric space and let $\{x_n\}_{n\in \NN}$ be a sequence of elements of $X$. If for every $\epsilon > 0$ there exists $N\in \NN$ such that for all $n,m\geq N$ we have
+$$\rho(x_n,x_m) \leq \epsilon$$
+then $\{x_n\}_{n\in \NN}$ is \textit{a Cauchy sequence in $(X,\rho)$}.
+\end{definition}
+
+\begin{definition}
+Let $(X,\rho)$ be a pseudometric space. Suppose that every Cauchy sequence in $(X,\rho)$ is convergent with respect to the topology induced by $\rho$. Then $(X,\rho)$ is \textit{a complete pseudometric space}. 
+\end{definition}
+
+\begin{theorem}\label{theorem:complete_pseudometric_spaces}
+Let $(X,\rho)$ be a pseudometric space. Then the following conditions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $(X,\rho)$ is a complete pseudometric space. 
+\item $(X,\fU_{\rho})$ is a complete uniform space.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We define 
+$$U_{n} = \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) < \frac{1}{n + 1}\bigg\}$$
+for every $n\in \NN_+$. Moreover, $\fU_{\rho}$ is the uniform structure consisting of all $U \in \fD_X$ such that $U_n\subseteq U$ for some $n\in \NN_+$. Indeed, this follows from Example \ref{example:uniform_structure_induced_by_pseudometric}.\\
+Now assume that $(X,\rho)$ is a complete pseudometric space. Let $\cF$ be a Cauchy filter in $\left(X,\fU_{\rho}\right)$. We construct a sequence $\{F_n\}_{n\in \NN}$ of elements of $\cF$ by recursion. We set $F_0 = X$. Suppose that $F_0,...,F_n$ are constructed for some $n\in \NN$. We pick $F_{n+1}\in \cF$ such that 
+$$F_{n+1}\times F_{n+1} \subseteq U_{n+1}$$
+and $F_{n+1} \subseteq F_n$. Note that sequence $\{F_n\}_{n\in \NN}$ is nonincreasing and
+$$F_{n}\times F_{n} \subseteq U_n$$
+for every $n\in \NN_+$. Now pick $x_n\in F_n$ for every $n\in \NN$. Then according to properties of $\{F_n\}_{n\in \NN}$ sequence $\{x_n\}_{n\in \NN}$ is a Cauchy sequence in $(X,\rho)$. Since $(X,\rho)$ is complete, $\{x_n\}_{n\in \NN}$ is convergent to some point $x$ with respect to the topology induced by $\rho$. We claim that $\cF$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$. By Remark \ref{remark:topology_induced_by_pseudometric_open_balls_basis} sets $B_{\rho}(x,\epsilon)$ for $\epsilon \in \RR_+$ form a local basis of open neighborhoods of $x$ with respect to $\tau_{\fU_{\rho}}$. Pick positive real $\epsilon$. Suppose now that $n\in \NN_+$ satisfies two conditions
+$$\frac{1}{n+1} < \frac{\epsilon}{2},\,\rho(x_n,x) < \frac{\epsilon}{2}$$
+Then $F_{n} \subseteq B_{\rho}(x,\epsilon)$. This implies that all open neighborhoods of $x$ with respect to $\tau_{\fU_{\rho}}$ are contained in $\cF$. Thus $\cF$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Next assume that $(X,\fU_{\rho})$ is a complete uniform space. Pick a Cauchy sequence $\{x_n\}_{n\in \NN}$ in $(X,\rho)$. Define
+$$F_n = \big\{x_k\,\big|\,k\geq n\big\}$$
+for every $n\in \NN$ and
+$$\cF = \big\{F\subseteq X\,\big|\,F_n\subseteq F\mbox{ for some }n\in \NN\big\}$$
+Since $(X,\fU_{\rho})$ is complete, the filter $\cF$ is convergent to some point $x$ in $X$ with respect to $\tau_{\fU_{\rho}}$. Therefore, for every open neighborhood $\cO$ of $x$ with respect to $\tau_{\fU_{\rho}}$ there exists $n\in \NN$ such that $F_n \subseteq \cO$. Hence the sequence $\{x_n\}_{n\in \NN}$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$. Hence the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
+\end{proof}
+\noindent
+The following theorem and its proof is due to Felix Hausdorff.
+
+\begin{theorem}\label{theorem:completion_of_a_pseudometric_space}
+Let $(X,\rho)$ be a pseudometric space. Then there exists a complete pseudometric space $(\ol{X},\ol{\rho})$ and an injective map $j:X\ra \ol{X}$ such that $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$ and
+$$\rho(x_1,x_2) = \ol{\rho}(j(x_1),j(x_2))$$
+for every $x_1,x_2\in X$.
+\end{theorem}
+\begin{proof}
+Let $\ol{X}$ be the set of all Cauchy sequences in $(X,\rho)$. For each $\bd{x}$ in $\ol{X}$ and $n\in \NN$ we denote by $\bd{x}(n)$ the $n$-th element of $\bd{x}$. Pick two sequences $\bd{x}$ and $\bd{y}$ in $\ol{X}$. Then
+$$|\rho(\bd{x}(n),\bd{y}(n)) - \rho(\bd{x}(m),\bd{y}(m))|\leq \rho(\bd{x}(n),\bd{x}(m)) + \rho(\bd{y}(n),\bd{y}(m))$$
+by the triangle inequality. Thus the sequence of real numbers $\big\{\rho(\bd{x}(n),\bd{y}(n))\big\}_{n\in \NN}$ is Cauchy sequence in $\RR$ with respect to the metric induced by the absolute value. Hence the sequence $\big\{\rho(\bd{x}(n),\bd{y}(n))\big\}_{n\in \NN}$ is convergent. We define $\ol{\rho}:\ol{X}\times \ol{X}\ra \RR$ by formula 
+$$\ol{\rho}\left(\bd{x}, \bd{y}\right) = \lim_{n\ra +\infty}\rho(\bd{x}(n),\bd{y}(n))$$
+for each $\bd{x}$ and $\bd{y}$ in $\ol{X}$. It is clear that $\left(\ol{X},\ol{\rho}\right)$ is a pseudometric space. For each $x$ in $X$ let $j(x) \in \ol{X}$ be the constant sequence $j(x)(n) = x$ for every $n\in \NN$. This gives rise to an injective map $j:X\ra \ol{X}$. Note that $\ol{\rho}\left(j(x_1),j(x_2)\right) = \rho(x_1, x_2)$ for every $x_1,x_2\in X$. Moreover, if $\bd{x}$ is an element of $\ol{X}$, then 
+$$\lim_{n\ra +\infty}\ol{\rho}\big(j(\bd{x}(n)),\bd{x}\big) = 0$$
+Thus $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$. It remains to prove that $\left(\ol{X},\ol{\rho}\right)$ is complete. Let $\{\bd{x}_n\}_{n\in \NN}$ be a Cauchy sequence in $\left(\ol{X},\ol{\rho}\right)$. Since $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$, we derive that for each $n\in \NN$ there exists $x_n \in X$ such that 
+$$\ol{\rho}\left(j(x_n), \bd{x}_n\right) \leq \frac{1}{2^n}$$
+Then $\{j(x_n)\}_{n\in \NN}$ is a Cauchy sequence in $\left(\ol{X},\ol{\rho}\right)$ and hence $\{x_n\}_{n\in \NN}$ is a Cauchy sequence in $\left(X,\rho\right)$. We denote $\{x_n\}_{n\in \NN}$ by $\bd{x}$. We have
+$$\lim_{n\ra +\infty}\ol{\rho}\left(j(x_n),\bd{x}\right) = 0$$
+and hence
+$$\lim_{n\ra +\infty}\ol{\rho}\left(\bd{x}_n,\bd{x}\right) = 0$$
+This implies that $\{\bd{x}_n\}_{n\in \NN}$ is convergent to $\bd{x}$ with respect to topology induced by $\ol{\rho}$. Thus $\left(\ol{X},\ol{\rho}\right)$ is complete.   
+\end{proof}
+
+\begin{corollary}\label{corollary:completion_of_metric_spaces}
+Let $(X,\rho)$ be a metric space. Then there exists a complete metric space $(\ol{X},\ol{\rho})$ and a map $j:X\ra \ol{X}$ such that $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$ and
+$$\rho(x_1,x_2) = \ol{\rho}(j(x_1),j(x_2))$$
+for every $x_1,x_2\in X$.
+\end{corollary}
+\begin{proof}
+According to Theorem \ref{theorem:completion_of_a_pseudometric_space} there exists a complete pseudometric space $\left(\tilde{X},\tilde{\rho}\right)$ and a map $\tilde{j}:X\ra \tilde{X}$ such that $j(X)$ is dense in $\tilde{X}$ with respect to topology induced by $\tilde{\rho}$ and
+$$\rho(x_1,x_2) = \tilde{\rho}(j(x_1),j(x_2))$$
+for every $x_1,x_2\in X$. Let $\ol{X}$ be the quotient set of $X$ with respect to equivalence relation $\simeq$ given by 
+$$\bd{x}_1\simeq \bd{x}_2\,\Leftrightarrow\,\tilde{\rho}(\bd{x}_1,\bd{x}_2) = 0$$
+and let $q:\tilde{X}\ra \ol{X}$ be the quotient map. Define a pseudometric $\ol{\rho}$ on $\ol{X}$ by formula
+$$\ol{\rho}\left(q(\bd{x}_1),q(\bd{x}_2)\right) = \tilde{\rho}(\bd{x}_1,\bd{x}_2)$$
+for all $\bd{x}_1,\bd{x}_2\in \tilde{X}$. Then $\ol{\rho}$ is a metric on $\ol{X}$ and $\left(\ol{X},\ol{\rho}\right)$ is complete. We define $j = q\cdot \tilde{j}$. Then $j:X\ra \ol{X}$ satisfies$$\rho(x_1,x_2) = \ol{\rho}(j(x_1),j(x_2))$$
+for every $x_1,x_2\in X$ and $j(X)$ is dense in $\ol{X}$ with respect to the topology induced by $\ol{\rho}$.
 \end{proof}
 
 
@@ -559,5 +682,12 @@ Assume that \textbf{(i)} holds. Pick a Cauchy filter $\cF$ in $\left(Z,\fO\right
 
 
 
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
 
 \end{document}

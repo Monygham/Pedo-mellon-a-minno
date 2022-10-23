@@ -20,12 +20,6 @@ Let $X$ be a set and let $\cF$ be a nonempty family of subsets of $X$. Assume th
 \end{enumerate}
 Then $\cF$ is \textit{a filter of subsets of $X$}.
 \end{definition}
-
-\begin{remark}\label{remark:intuition_for_filters}
-Let $X$ be a set. We are aware of two intuitions or metaphors behind the notion of filter. The first describes filter of subsets of $X$ as a formalization of a concept of "a large subset". Indeed, if subsets $F_1,F_2$ of $X$ are "large", then their intersection $F_1\cap F_2$ is "large" and clearly every superset of a "large" subset of $X$ is "large" as well. This metaphor might be useful but in these notes it might be more convenient to consider the notion of filter of subsets of $X$ as a formalization of a concept of "locating scheme". Namely 
-
-
-\end{remark}
 \noindent
 We note the following fact. 
 
@@ -106,15 +100,35 @@ Let $(X,\tau),(Y,\theta)$ be topological spaces and let $f:X\ra Y$ be a map. The
 \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
 \item $f$ is a continuous map $\left(X,\tau\right)\ra \left(Y,\theta\right)$.
 \item If $\cF$ is a proper filter of subsets of $X$ convergent to some point $x$ with respect to $\tau$, then $f(\cF)$ converges to $f(x)$ with respect to $\theta$.
+\item If $\cF$ is an ultrafilter of subsets of $X$ convergent to some point $x$ with respect to $\tau$, then $f(\cF)$ converges to $f(x)$ with respect to $\theta$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 Suppose that $f$ is a continuous map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Fix a proper filter $\cF$ of subsets of $X$ convergent to $x$ with respect to $\tau$. Fix an open neighborhood $V$ of $f(x)$ with respect to $\theta$. By continuity of $f$ we have $f^{-1}(V) \in \tau$. Thus $f^{-1}(V)$ is an open neighborhood of $x$ with respect to $\tau$. Hence $f^{-1}(V) \in \cF$ and we infer that $V \in f(\cF)$. Since $V$ is arbitrary open neighborhood of $f(x)$ with respect to $\theta$, we derive that $f(\cF)$ converges to $f(x)$ with respect to $\theta$. This proves the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
-Suppose now that \textbf{(ii)} holds. Fix a point $x$ in $X$ and consider an open neighborhood $V$ of $f(x)$ with respect to $\theta$. Define
+The implication $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ follows by definition of ultrafilter.\\
+Suppose now that \textbf{(iii)} holds. Fix a point $x$ in $X$ and consider an open neighborhood $V$ of $f(x)$ with respect to $\theta$. Define
 $$\cF = \big\{F\subseteq X\,\big|\,U\setminus f^{-1}(V)\subseteq F\mbox{ for some open neighborhood }U\mbox{ of }x\mbox{ with respect to }\tau\big\}$$
-Then $\cF$ is a filter of subsets of $X$. Note that
-$$Y\setminus V = f\left(X\setminus f^{-1}(V)\right) \in f(\cF)$$
-This implies that $V \not \in f(\cF)$. If $\cF$ is a proper filter, then it converges to $x$ with respect $\tau$ and thus $f(\cF)$ converges to $f(x)$ with respect to $\theta$. Since $V \not \in f(\cF)$, the filter $f(\cF)$ cannot converge to $f(x)$ with respect to $\theta$. Therefore, $\cF$ is not a proper filter. This means that there exists an open neighborhood $U$ of $x$ with respect to $\tau$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$ as a map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Since $x\in X$ is arbitrary, we derive implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+Then $\cF$ is a filter of subsets of $X$. If $\cF$ is a proper filter, then Proposition \ref{proposition:existence_of_ultrafilters} asserts that there exists an ultrafilter $\tilde{\cF}$ containing $\cF$. Since $\cF$ converges to $x$ with respect $\tau$, we derive that $\tilde{\cF}$ converges to $x$ with respect to $\tau$. Thus $f(\tilde{\cF})$ converges to $f(x)$ with respect to $\theta$. Note that
+$$f\left(X\setminus f^{-1}(V)\right) \in f(\tilde{\cF})$$
+This implies that $Y\setminus V \in f(\tilde{\cF})$ and hence $V \not \in f(\tilde{\cF})$. It follows that the filter $f(\tilde{\cF})$ cannot converge to $f(x)$ with respect to $\theta$. Therefore, $\cF$ is not a proper filter. This means that there exists an open neighborhood $U$ of $x$ with respect to $\tau$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$ as a map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Since $x\in X$ is arbitrary, we derive $\textbf{(iii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+\noindent
+Embeddings of topological spaces can be described entirely in terms of filters convergence.
+
+\begin{proposition}\label{proposition:topological_embeddings_described_by_filters}
+Let $f:\left(X,\tau\right) \ra \left(Y,\theta\right)$ be continuous map between topological spaces. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item Topology $\tau$ is given by $\big\{f^{-1}(V)\,\big|\,V\in \theta\big\}$.
+\item Suppose that $\cF$ is a proper filter of subsets of $X$ and $x$ is a point in $X$. If $f(\cF)$ is convergent to $f(x)$ with respect to $\theta$, then $\cF$ is convergent to $x$ with respect to $\tau$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Suppose that \textbf{(i)} holds and $f(\cF)$ is convergent to $f(x)$ with respect to $\theta$. Pick an open subset $V$ with respect to $\theta$ such that $f(x) \in V$. Then $V \in f(\cF)$ and hence $f^{-1}(V) \in \cF$. Since
+$$\tau = \big\{f^{-1}(V)\,\big|\,V\in \theta\big\}$$
+we derive that $\cF$ contains all open neighborhoods of $x$ with respect to $\tau$. This implies that $\cF$ is convergent to $x$ with respect to $\tau$. The proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$ is completed.\\
+Assume that \textbf{(ii)} holds. Fix an open subset $U$ of $x$ with respect to $\tau$. Pick a point $x$ in $U$. Define filter
+$$\cF = \big\{F\subseteq X\,\big|\,f^{-1}(V)\subseteq F\mbox{ for some open neighborhood }V\mbox{ of }f(x)\mbox{ with respect to }\theta\big\}$$
+Then $f(\cF)$ is convergent to $f(x)$ with respect to $\theta$. By assumption $\cF$ is convergent to $x$ with respect to $\tau$. In particular, $U \in \cF$. This implies that there exists open neighborhood $V$ of $f(x)$ with respect to $\theta$ such that $x \in f^{-1}(V) \subseteq U$. Thus $\tau$ is equal to $\big\{f^{-1}(V)\,\big|\,V\in \theta\big\}$ and the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
 \end{proof}
 
 \begin{theorem}\label{theorem:quasi_compact_in_terms_of_ultrafilters}
@@ -129,7 +143,7 @@ Suppose that \textbf{(i)} holds. Pick a family $\{F_i\}_{i\in I}$ of closed and 
 $$\big\{F\subseteq X\,\big|\,F_i\subseteq F\mbox{ for some }i\in I\big\}$$
 is a proper filter of subsets of $X$. By Proposition \ref{proposition:existence_of_ultrafilters} there exists an ultrafilter $\cF$ of subsets of $X$ which contains the filter defined above. According to \textbf{(i)} ultrafilter $\cF$ is convergent to some point $x$ in $X$ with respect to $\tau$. Then for every open neighborhood $U$ of $x$ with respect to $\tau$ we have $U \in \cF$. In particular, $U\cap F_i \neq \emptyset$ for every $i\in I$ and for every open neighborhood $U$ of $x$ with respect to $\tau$. Since $F_i$ is closed for each $i\in I$, this implies that $x \in F_i$ for every $i \in I$. Thus
 $$x \in  \bigcap_{i\in I}F_i$$
-and this implies that $\left(X,\tau\right)$ is quasi-compact.\\
+and this implies that $\left(X,\tau\right)$ is quasi-compact. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
 Assume that $(X,\tau)$ is quasi-compact and suppose that $\cF$ is an ultrafilter of subsets of $X$. Suppose that $\cF$ is not convergent. Then for every $x \in X$ there exists open neighborhood $U_x$ of $x$ with respect to $\tau$ such that $U_x \not \in \cF$. Since $\left(X,\tau\right)$ is quasi-compact, we deduce that there exist finite subset $\{x_1,...,x_n\} \in X$ such that 
 $$X = \bigcup_{i=1}^nU_{x_i}$$
 According to Proposition \ref{proposition:ultrafilter_contains_either_susbet_or_its_complement} we derive that $X\setminus U_x \in \cF$ for every $x \in X$. Hence
