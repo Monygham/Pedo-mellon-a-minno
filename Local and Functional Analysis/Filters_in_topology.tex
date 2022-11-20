@@ -112,24 +112,6 @@ Then $\cF$ is a filter of subsets of $X$. If $\cF$ is a proper filter, then Prop
 $$f\left(X\setminus f^{-1}(V)\right) \in f(\tilde{\cF})$$
 This implies that $Y\setminus V \in f(\tilde{\cF})$ and hence $V \not \in f(\tilde{\cF})$. It follows that the filter $f(\tilde{\cF})$ cannot converge to $f(x)$ with respect to $\theta$. Therefore, $\cF$ is not a proper filter. This means that there exists an open neighborhood $U$ of $x$ with respect to $\tau$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$ as a map $\left(X,\tau\right)\ra \left(Y,\theta\right)$. Since $x\in X$ is arbitrary, we derive $\textbf{(iii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
-\noindent
-Embeddings of topological spaces can be described entirely in terms of filters convergence.
-
-\begin{proposition}\label{proposition:topological_embeddings_described_by_filters}
-Let $f:\left(X,\tau\right) \ra \left(Y,\theta\right)$ be continuous map between topological spaces. Then the following assertions are equivalent.
-\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
-\item Topology $\tau$ is given by $\big\{f^{-1}(V)\,\big|\,V\in \theta\big\}$.
-\item Suppose that $\cF$ is a proper filter of subsets of $X$ and $x$ is a point in $X$. If $f(\cF)$ is convergent to $f(x)$ with respect to $\theta$, then $\cF$ is convergent to $x$ with respect to $\tau$
-\end{enumerate}
-\end{proposition}
-\begin{proof}
-Suppose that \textbf{(i)} holds and $f(\cF)$ is convergent to $f(x)$ with respect to $\theta$. Pick an open subset $V$ with respect to $\theta$ such that $f(x) \in V$. Then $V \in f(\cF)$ and hence $f^{-1}(V) \in \cF$. Since
-$$\tau = \big\{f^{-1}(V)\,\big|\,V\in \theta\big\}$$
-we derive that $\cF$ contains all open neighborhoods of $x$ with respect to $\tau$. This implies that $\cF$ is convergent to $x$ with respect to $\tau$. The proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$ is completed.\\
-Assume that \textbf{(ii)} holds. Fix an open subset $U$ of $x$ with respect to $\tau$. Pick a point $x$ in $U$. Define filter
-$$\cF = \big\{F\subseteq X\,\big|\,f^{-1}(V)\subseteq F\mbox{ for some open neighborhood }V\mbox{ of }f(x)\mbox{ with respect to }\theta\big\}$$
-Then $f(\cF)$ is convergent to $f(x)$ with respect to $\theta$. By assumption $\cF$ is convergent to $x$ with respect to $\tau$. In particular, $U \in \cF$. This implies that there exists open neighborhood $V$ of $f(x)$ with respect to $\theta$ such that $x \in f^{-1}(V) \subseteq U$. Thus $\tau$ is equal to $\big\{f^{-1}(V)\,\big|\,V\in \theta\big\}$ and the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
-\end{proof}
 
 \begin{theorem}\label{theorem:quasi_compact_in_terms_of_ultrafilters}
 Let $(X,\tau)$ be a topological space. Then the following assertions are equivalent.
