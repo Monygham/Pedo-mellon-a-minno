@@ -123,6 +123,12 @@ We left the proof for the reader as an exercise.
 Let $X$ be a set and let $\fU$ be a uniform structure on $X$. Then the topology $\tau_{\fU}$ is \textit{the topology on $X$ induced by $\fU$}.
 \end{definition}
 
+\begin{example}\label{example:natural_uniform_structure_on_real_line}
+We define
+$$\fE = \big\{U\subseteq \fD_{\RR}\,\big|\,\mbox{ there exists }\epsilon > 0\mbox{ such that if }|\alpha_1 - \alpha_2| < \epsilon\mbox{ then }(\alpha_1,\alpha_2)\in U\big\}$$
+Then $\fE$ is a uniform structure on $\RR$ called \textit{the natural uniform structure on $\RR$}. Note that $\tau_{\fE}$ coincides with the natural topology of $\RR$. 
+\end{example}
+
 \begin{proposition}\label{proposition:interiors_in_topology_induced_by_uniform_structure}
 Let $(X,\fU)$ be a uniform space and let $Z$ be a subset of $X$. Then $x\in Z$ is an interior point of $Z$ with respect to $\tau_{\fU}$ if and only if there exists $U \in \fU$ such that $U(x) \subseteq Z$.
 \end{proposition}
@@ -331,7 +337,6 @@ coincide with fibers of $j$.
 \item $j(X)$ is dense in $\hat{X}$ with respect to topology induced by $\hat{\fU}$.
 \item $\fU$ is induced by $j$ and $\left(\hat{X},\hat{\fU}\right)$.
 \end{enumerate}
-
 \end{theorem}
 \begin{proof}
 Let $\hat{X}$ be the set of all minimal Cauchy filters in $\left(X,\fU\right)$. For $U \in \fU$ we set
@@ -360,112 +365,296 @@ $$(x_1,x_2) \in \bigcap_{U\in \fU}U$$
 The proof of the claim is completed and thus the theorem is proved.
 \end{proof}
 
+\begin{corollary}\label{corollary:completion_of_a_Hausdorff_uniform_space}
+Let $\left(X,\fU\right)$ be a Hausdorff uniform space. Then there exists a complete Hausdorff uniform space $\left(\hat{X},\hat{\fU}\right)$ and an embedding $j:\left(X,\fU\right)\ra \left(\hat{X},\hat{\fU}\right)$ of uniform spaces such that $j(X)$ is dense in $\hat{X}$ with respect to topology induced by $\hat{\fU}$.
+\end{corollary}
+\begin{proof}
+This is a direct consequence of Theorem \ref{theorem:existence_of_completion}.
+\end{proof}
 
-\section{Uniform Urysohn's lemma}
+\begin{definition}
+Let $(X,\fU)$ be a uniform space, let $\left(\hat{X},\hat{\fU}\right)$ be a complete Hausdorff uniform space and let $j:\left(X,\fU\right) \ra \left(\hat{X},\hat{\fU}\right)$ be a morphism of uniform spaces. Suppose that for every complete Hausdorff uniform space $\left(Y,\fY\right)$ and every morphism $f:\left(X,\fU\right) \ra \left(Y,\fY\right)$ there exists a unique morphism $\hat{f}:\left(\hat{X},\hat{\fU}\right) \ra \left(Y,\fY\right)$ of uniform spaces such that triangle 
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ \left(X,\fU\right) &  \left(Y,\fY\right)  \\
+    \left(\hat{X},\hat{\fU}\right) & \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ f $} (m-1-2)
+(m-1-1) edge node[left] {$ j $} (m-2-1);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[right = 2pt, below = 2pt] {$ \hat{f} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+is commutative. Then $\left(\hat{X},\hat{\fU}\right)$ together with $j$ is \textit{the completion of $\left(X,\fU\right)$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:universal_property_of_completion}
+Let $\left(X,\fU\right)$ be a uniform space. Then its completion exists and if $j:\left(X,\fU\right)\ra \left(\hat{X},\hat{\fU}\right)$ is the completion of $\left(X,\fU\right)$, then $\fU$ is induced by $j$ and $\left(\hat{X},\hat{\fU}\right)$. Moreover, $j(X)$ is dense in $\hat{X}$ with respect to topology induced by $\hat{\fU}$.
+\end{corollary}
+\begin{proof}
+This is simply the consequence of Theorem \ref{theorem:extensions_of_uniform_morphisms_to_complete_spaces} and Theorem \ref{theorem:existence_of_completion}.
+\end{proof}
+
+\begin{corollary}\label{corollary:universal_property_of_completion_for_Hausdorff_spaces}
+Let $\left(X,\fU\right)$ be a Hausdorff uniform space. If $j:\left(X,\fU\right)\ra \left(\hat{X},\hat{\fU}\right)$ is the completion of $\left(X,\fU\right)$, then $j$ is an embedding of uniform spaces.
+\end{corollary}
+\begin{proof}
+This is simply the consequence of Theorem \ref{theorem:extensions_of_uniform_morphisms_to_complete_spaces} and Corollary \ref{corollary:completion_of_a_Hausdorff_uniform_space}.
+\end{proof}
+
+\section{Pseudometric and metric spaces}
 \noindent
-The following result is a uniform version of Urysohn lemma.
+In this section we introduce uniform category of pseudometric spaces.
 
-\begin{theorem}\label{theorem:uniform_Urysohn_lemma}
-Let $X$ be a set and let $\{U_n\}_{n\in \NN}$ be a sequence of reflexive and symmetric relations on $X$ such that
-$$U_{n+1} \cdot U_{n+1} \subseteq U_n$$
-for every $n \in \NN$. Let $Z$ be a subset of $X$. Then there exists a map $f:X\ra \RR$ such that the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item The inequality
-$$0 \leq f(x) \leq 1$$
-holds for each $x$ in $X$.
-\item $f_{\mid Z}$ is the constant zero function on $Z$.
-\item Fix $n \in \NN$. If 
-$$f(x) < \frac{1}{2^n}$$
-for some $x$ in $X$, then $x$ in $U_n(Z)$.
-\item If $x_1,x_2 \in X$ and $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then the inequality
-$$|f(x_1) - f(x_2)| < \frac{1}{2^n}$$
-holds.
+\begin{definition}
+Let $X$ be a set. Consider a function $\rho:X\times X\ra \RR$ and suppose that the following assertions hold.
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item $\rho(x_1,x_2) \geq 0$ for every $x_1,x_2\in X$.
+\item $\rho(x,x) = 0$ for every $x \in X$.
+\item $\rho(x_1,x_2) = \rho(x_2,x_1)$ for every $x_1,x_2 \in X$.
+\item $\rho(x_1,x_3) \leq \rho(x_1,x_2) + \rho(x_2, x_3)$ for every $x_1,x_2,x_3 \in X$.
+\end{enumerate}
+Then $\rho$ is \textit{a pseudometric on $X$}.
+\end{definition}
+
+\begin{definition}
+A pair $(X,\rho)$ consisting of a set $X$ and a pseudometric $\rho$ on $X$ is \textit{a pseudometric space}.
+\end{definition}
+
+\begin{definition}
+Let $(X,\rho)$ be a pseudometric space. We define
+$$\fU_{\rho} = \bigg\{U \in \fD_X\,\bigg|\,\exists_{\epsilon>0}\,\forall_{x_1,x_2\in X}\,\bigg(\rho(x_1,x_2) < \epsilon\,\Rightarrow\,(x_1,x_2)\in U\bigg)\bigg\}$$
+Then $\fU_{\rho}$ is a uniform structure called \textit{the uniform structure induced by $\rho$ on $X$}.
+\end{definition}
+\noindent
+Next we characterize these maps of pseudometric spaces, which are morphism of corresponding uniform spaces.
+
+\begin{fact}\label{fact:uniformly_continuous_maps_are_precisely_morphisms_of_uniform_spaces}
+Let $(X,\rho)$ and $(Y,\upsilon)$ be pseudometric spaces and let $f:X\ra Y$ be a map. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item For every $\epsilon > 0$ there exists $\delta > 0$ such that
+$$\rho(x_1,x_2) < \delta\,\Rightarrow\,\upsilon\left(f(x_1),f(x_2)\right) < \epsilon$$
+for every $x_1,x_2 \in X$.
+\item $f$ is a morphism of uniform spaces $\left(X,\fU_{\rho}\right) \ra \left(Y,\fU_{\upsilon}\right)$.
+\end{enumerate}
+\end{fact}
+\begin{proof}
+This follows from the definition of uniform structure induced by pseudometric. We left it for the reader.
+\end{proof}
+
+\begin{definition}
+Let $(X,\rho)$ and $(Y,\upsilon)$ be pseudometric spaces and let $f:X\ra Y$ be a map. Suppose that for every $\epsilon > 0$ there exists $\delta > 0$ such that
+$$\rho(x_1,x_2) < \delta\,\Rightarrow\,\upsilon\left(f(x_1),f(x_2)\right) < \epsilon$$
+for every $x_1,x_2 \in X$. Then $f$ is \textit{uniformly continuous}.
+\end{definition}
+
+\begin{remark}\label{remark:functor_of_uniform_structure_induced_by_pseudometric}
+Let $\PsMet$ be the category of pseudometric spaces and uniformly continuous maps. According to Fact \ref{fact:uniformly_continuous_maps_are_precisely_morphisms_of_uniform_spaces} assignment 
+$$\PsMet \ni \left(X,\rho\right) \mapsto \left(X,\fU_{\rho}\right) \in \Unif$$
+is a full and faithful functor.
+\end{remark}
+
+\begin{definition}
+Let $X$ be a set and let $\rho$ be a pseudometric on $X$. If $\rho(x_1,x_2) = 0$ imply that $x_1 = x_2$ for all $x_1,x_2\in X$, then $\rho$ is \textit{a metric}. In that case $\left(X,\rho\right)$ is \textit{a metric space}.
+\end{definition}
+
+\begin{remark}\label{remark:the_category_of_metric_spaces}
+We denote by $\Met$ the category of metric spaces and uniformly continuous maps. Clearly $\Met$ is a full subcategory of $\PsMet$.
+\end{remark}
+
+\begin{fact}\label{fact:metric_spaces_induce_Hausdorff_uniform_structures}
+Let $(X,\rho)$ be a pseudometric space. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $(X,\rho)$ is a metric space.
+\item $\left(X,\fU_{\rho}\right)$ is a Hausdorff uniform space.
+\end{enumerate}
+\end{fact}
+\begin{proof}
+Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+Let $(X,\rho)$ be a pseudometric space. Then $\tau_{\fU_{\rho}}$ is also called \textit{the topology induced by $\rho$}.
+\end{definition}
+
+\begin{definition}
+Let $(X,\rho)$ be a pseudometric space and let $\{x_n\}_{n\in \NN}$ be a sequence of elements of $X$. If for every $\epsilon > 0$ there exists $N\in \NN$ such that for all $n,m\geq N$ we have
+$$\rho(x_n,x_m) \leq \epsilon$$
+then $\{x_n\}_{n\in \NN}$ is \textit{a Cauchy sequence in $(X,\rho)$}.
+\end{definition}
+
+\begin{definition}
+Let $(X,\rho)$ be a pseudometric space. Suppose that every Cauchy sequence in $(X,\rho)$ is convergent with respect to the topology induced by $\rho$. Then $(X,\rho)$ is \textit{a complete pseudometric space}. 
+\end{definition}
+
+\begin{theorem}\label{theorem:complete_pseudometric_spaces}
+Let $(X,\rho)$ be a pseudometric space. Then the following conditions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $(X,\rho)$ is a complete pseudometric space. 
+\item $(X,\fU_{\rho})$ is a complete uniform space.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-For each $n\in \NN$ and each integer $k \in \{0,1,...,2^n\}$ we construct a set $Z_{\frac{k}{2^n}}$. The construction goes by recursion on $n\in \NN$. We set $Z_0 = Z$ and $Z_1 = U_0(Z)$. Next suppose that for $n\in \NN$ and $k\in \{0,1,...,2^n\}$ sets $Z_{\frac{k}{2^n}}$ are defined. Then we define
-$$Z_{\frac{2k + 1}{2^{n+1}}} = U_{n+1}\left(Z_{\frac{k}{2^n}}\right)$$
-for each $k \in \{0,1,...,2^{n}\}$. By construction
-$$Z_{\frac{k}{2^n}} \subseteq U_n\left(Z_{\frac{k}{2^n}}\right) \subseteq Z_{\frac{k+1}{2^n}}$$
-for every $n\in \NN$ and every $k\in \{0,1,...,2^{n}\}$. If $x \in U_0(Z)$, then we define 
-$$f(x) = \inf \bigg\{\frac{k}{2^n}\,\bigg|\,x\in Z_{\frac{k}{2^n}}\mbox{ for some }n\in \NN\mbox{ and } k\in \{0,1,...,2^n\}\bigg\}
-$$
-For $x\not \in U_0(Z)$ we set $f(x) = 1$. Then $f$ is a real valued function on $X$ such that $0\leq f(x) \leq 1$ for every $x$ in $X$. Moreover, $f_{\mid Z} \equiv 0$ and for $n\in \NN$ and $x \in X$ the inequality
-$$f(x) < \frac{1}{2^n}$$
-implies that $x \in U_n(Z)$. Fix now $x_1,x_2\in X$ such that $(x_1,x_2)\in U_{n+1}$. If $f(x_1) = 1$, then 
-$$f(x_2) \leq 1 < f(x_1) + \frac{1}{2^n}$$
-If $f(x_1) < 1$, then there exists the smallest $k\in \{0,1,...,2^{n+1}\}$ such that $x_1 \in Z_{\frac{k}{2^{n+1}}}$. In that case we have $x_2 \in U_{n+1}\left(Z_{\frac{k}{2^{n+1}}}\right) \subseteq Z_{\frac{k+1}{2^{n+1}}}$. Thus 
-$$f(x_2) \leq \frac{k+1}{2^{n+1}} = \frac{k-1}{2^{n+1}} + \frac{2}{2^{n+1}} < f(x_1) + \frac{1}{2^n}$$
-We proved that
-$$f(x_2) < f(x_1) + \frac{1}{2^n}$$
-By symmetry we have 
-$$f(x_2) < f(x_1) + \frac{1}{2^n}$$
-and hence the inequality
-$$|f(x_1) - f(x_2)| < \frac{1}{2^n}$$
-holds.
+We define 
+$$U_{n} = \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) < \frac{1}{n + 1}\bigg\}$$
+for every $n\in \NN$. Then $\fU_{\rho}$ is the uniform structure consisting of all $U \in \fD_X$ such that $U_n\subseteq U$ for some $n\in \NN$.\\
+Now assume that $(X,\rho)$ is a complete pseudometric space. Let $\cF$ be a Cauchy filter in $\left(X,\fU_{\rho}\right)$. We construct a sequence $\{F_n\}_{n\in \NN}$ of elements of $\cF$ by recursion. We set $F_0 = X$. Suppose that $F_0,...,F_n$ are constructed for some $n\in \NN$. We pick $F_{n+1}\in \cF$ such that 
+$$F_{n+1}\times F_{n+1} \subseteq U_{n+1}$$
+and $F_{n+1} \subseteq F_n$. Note that sequence $\{F_n\}_{n\in \NN}$ is nonincreasing and
+$$F_{n}\times F_{n} \subseteq U_n$$
+for every $n\in \NN$. Now pick $x_n\in F_n$ for every $n\in \NN$. Then according to properties of $\{F_n\}_{n\in \NN}$ sequence $\{x_n\}_{n\in \NN}$ is a Cauchy sequence in $(X,\rho)$. Since $(X,\rho)$ is complete, $\{x_n\}_{n\in \NN}$ is convergent to some point $x$ with respect to the topology induced by $\rho$. We claim that $\cF$ is convergent to $x$ with respect to the same topology. Note that $F_{n+1} \subseteq U_n(x)$ for every $n\in \NN$. This implies that all open neighborhoods of $x$ with respect to $\tau_{\fU_{\rho}}$ are contained in $\cF$. Thus $\cF$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Next assume that $(X,\fU_{\rho})$ is a complete uniform space. Pick a Cauchy sequence $\{x_n\}_{n\in \NN}$ in $(X,\rho)$. Define
+$$F_n = \big\{x_k\,\big|\,k\geq n\big\}$$
+for every $n\in \NN$ and
+$$\cF = \big\{F\subseteq X\,\big|\,F_n\subseteq F\mbox{ for some }n\in \NN\big\}$$
+Since $(X,\fU_{\rho})$ is complete, the filter $\cF$ is convergent to some point $x$ in $X$ with respect to $\tau_{\fU_{\rho}}$. Therefore, for every open neighborhood $\cO$ of $x$ with respect to $\tau_{\fU_{\rho}}$ there exists $n\in \NN$ such that $F_n \subseteq \cO$. Hence the sequence $\{x_n\}_{n\in \NN}$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$ and the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
 \end{proof}
+
+\begin{example}\label{example:real_line_is_complete}
+Recall uniform space $\left(\RR,\fE\right)$ described in Example \ref{example:natural_uniform_structure_on_real_line}. Note that $\fE$ is a uniform structure induced by the metric
+$$\RR\times \RR\ni (\alpha_1,\alpha_2) \mapsto |\alpha_1 - \alpha_2|\in \RR$$
+It is well known fact that each Cauchy sequence with respect to this metric is convergent. It follows from Theorem \ref{theorem:complete_pseudometric_spaces} and Fact \ref{fact:metric_spaces_induce_Hausdorff_uniform_structures} that $\left(\RR,\fE\right)$ is a complete Hausdorff uniform space.
+\end{example}
+
+\begin{theorem}\label{theorem:completion_of_a_pseudometric_space}
+Let $(X,\rho)$ be a pseudometric space. Then there exists a complete pseudometric space $(\hat{X},\hat{\rho})$ and a map $j:X\ra \hat{X}$ such that $j(X)$ is dense in $\hat{X}$ with respect to topology induced by $\hat{\rho}$ and
+$$\rho(x_1,x_2) = \hat{\rho}(j(x_1),j(x_2))$$
+for every $x_1,x_2\in X$. Moreover, if $(X,\rho)$ is a metric space, then we may assume that $(\hat{X},\hat{\rho})$ is a metric space and $j$ is injective.
+\end{theorem}
+\begin{proof}
+According to Theorem \ref{theorem:existence_of_completion} there exists a complete uniform space $\left(\hat{X},\hat{\fU}\right)$ and a morphism $j:\left(X,\fU_{\rho}\right) \ra \left(\hat{X},\hat{\fU}\right)$ of uniform spaces such that $j$ and $\hat{\fU}$ induce $\fU_{\rho}$ and $j(X)$ is dense in $\hat{X}$ with respect to $\tau_{\hat{\fU}}$. Note that $\rho$ gives rise to a uniform morphism 
+$$\left(X,\fU_{\rho}\right)\times \left(X,\fU_{\rho}\right)\ra \left(\RR,\fE\right)$$
+Indeed, this is a consequence of the inequality
+$$|\rho(x_1,y_1) - \rho(x_2,y_2)|\leq \rho(x_1,x_2) + \rho(y_1,y_2)$$
+which holds for every $x_1,x_2,y_1,y_2\in X$. Thus Theorems \ref{theorem:completeness_of_factors_imply_product_completeness} and \ref{theorem:extensions_of_uniform_morphisms_to_complete_spaces} imply that there exists a unique uniform morphism $\hat{\rho}$ making the triangle
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ \left(X,\fU_{\rho}\right) \times \left(X,\fU_{\rho}\right) &  \left(\RR,\fE\right)  \\
+    \left(\hat{X},\hat{\fU}\right)\times \left(\hat{X},\hat{\fU}\right) & \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \rho $} (m-1-2)
+(m-1-1) edge node[left] {$ j\times j $} (m-2-1);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[right = 2pt, below = 2pt] {$ \hat{\rho} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+commutative. We claim that $\hat{\rho}$ is a pseudometric. Corollary \ref{corollary:induced_topology_functor_preserves_limits_of_uniform_spaces} shows that we have commutative triangle of topological spaces
+\begin{center}
+\begin{tikzpicture}
+[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex] 
+{ \left(X,\tau_{\fU_{\rho}}\right) \times \left(X,\tau_{\fU_{\rho}}\right) &  \RR  \\
+    \left(\hat{X},\tau_{\hat{\fU}}\right)\times \left(\hat{X},\tau_{\hat{\fU}}\right) & \\ } ;
+\path[->,line width=0.8pt,font=\scriptsize]
+(m-1-1) edge node[above] {$ \rho $} (m-1-2)
+(m-1-1) edge node[left] {$ j\times j $} (m-2-1);
+\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+(m-2-1) edge node[right = 2pt, below = 2pt] {$ \hat{\rho} $} (m-1-2);
+\end{tikzpicture}
+\end{center}
+where $\RR$ is equipped with natural topology. Thus sets
+$$\big\{(\bd{x}_1,\bd{x}_2)\in \hat{X}\times \hat{X}\,\big|\,\hat{\rho}\left(\bd{x}_1,\bd{x}_2\right) = \hat{\rho}\left(\bd{x}_2,\bd{x}_1\right)\big\}$$
+and
+$$\big\{(\bd{x}_1,\bd{x}_2,\bd{x}_3)\in \hat{X}\times \hat{X}\times \hat{X}\,\big|\,\hat{\rho}\left(\bd{x_1},\bd{x}_3\right) \leq  \hat{\rho}\left(\bd{x}_1,\bd{x}_2\right) + \hat{\rho}\left(\bd{x}_2,\bd{x}_3\right)\big\}$$
+are closed in the corresponding products of copies of $\left(\hat{X},\tau_{\hat{\fU}}\right)$ and they contain $j(X)\times j(X)$ and $j(X)\times j(X)\times j(X)$, respectively. Note that $j(X)\times j(X)$ and $j(X)\times j(X)\times j(X)$ are dense in the corresponding products of copies of $\left(\hat{X},\tau_{\hat{\fU}}\right)$. Therefore, we have
+$$\hat{X}\times \hat{X} = \big\{(\bd{x}_1,\bd{x}_2)\in \hat{X}\times \hat{X}\,\big|\,\hat{\rho}\left(\bd{x}_1,\bd{x}_2\right) = \hat{\rho}\left(\bd{x}_2,\bd{x}_1\right)\big\}$$
+and
+$$\hat{X}\times \hat{X}\times \hat{X} = \big\{(\bd{x}_1,\bd{x}_2,\bd{x}_3)\in \hat{X}\times \hat{X}\times \hat{X}\,\big|\,\hat{\rho}\left(\bd{x}_1,\bd{x}_3\right) \leq  \hat{\rho}\left(\bd{x}_1,\bd{x}_2\right) + \hat{\rho}\left(\bd{x}_2,\bd{x}_3\right)\big\}$$
+This proves that $\hat{\rho}$ is a pseudometric.
+\end{proof}
+
+% \section{Uniform Urysohn's lemma}
+% \noindent
+% The following result is a uniform version of Urysohn lemma.
+
+% \begin{theorem}\label{theorem:uniform_Urysohn_lemma}
+% Let $X$ be a set and let $\{U_n\}_{n\in \NN}$ be a sequence of reflexive and symmetric relations on $X$ such that
+% $$U_{n+1} \cdot U_{n+1} \subseteq U_n$$
+% for every $n \in \NN$. Let $Z$ be a subset of $X$. Then there exists a map $f:X\ra \RR$ such that the following assertions hold.
+% \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+% \item The inequality
+% $$0 \leq f(x) \leq 1$$
+% holds for each $x$ in $X$.
+% \item $f_{\mid Z}$ is the constant zero function on $Z$.
+% \item Fix $n \in \NN$. If 
+% $$f(x) < \frac{1}{2^n}$$
+% for some $x$ in $X$, then $x$ in $U_n(Z)$.
+% \item If $x_1,x_2 \in X$ and $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then the inequality
+% $$|f(x_1) - f(x_2)| < \frac{1}{2^n}$$
+% holds.
+% \end{enumerate}
+% \end{theorem}
+% \begin{proof}
+% For each $n\in \NN$ and each integer $k \in \{0,1,...,2^n\}$ we construct a set $Z_{\frac{k}{2^n}}$. The construction goes by recursion on $n\in \NN$. We set $Z_0 = Z$ and $Z_1 = U_0(Z)$. Next suppose that for $n\in \NN$ and $k\in \{0,1,...,2^n\}$ sets $Z_{\frac{k}{2^n}}$ are defined. Then we define
+% $$Z_{\frac{2k + 1}{2^{n+1}}} = U_{n+1}\left(Z_{\frac{k}{2^n}}\right)$$
+% for each $k \in \{0,1,...,2^{n}\}$. By construction
+% $$Z_{\frac{k}{2^n}} \subseteq U_n\left(Z_{\frac{k}{2^n}}\right) \subseteq Z_{\frac{k+1}{2^n}}$$
+% for every $n\in \NN$ and every $k\in \{0,1,...,2^{n}\}$. If $x \in U_0(Z)$, then we define 
+% $$f(x) = \inf \bigg\{\frac{k}{2^n}\,\bigg|\,x\in Z_{\frac{k}{2^n}}\mbox{ for some }n\in \NN\mbox{ and } k\in \{0,1,...,2^n\}\bigg\}
+% $$
+% For $x\not \in U_0(Z)$ we set $f(x) = 1$. Then $f$ is a real valued function on $X$ such that $0\leq f(x) \leq 1$ for every $x$ in $X$. Moreover, $f_{\mid Z} \equiv 0$ and for $n\in \NN$ and $x \in X$ the inequality
+% $$f(x) < \frac{1}{2^n}$$
+% implies that $x \in U_n(Z)$. Fix now $x_1,x_2\in X$ such that $(x_1,x_2)\in U_{n+1}$. If $f(x_1) = 1$, then 
+% $$f(x_2) \leq 1 < f(x_1) + \frac{1}{2^n}$$
+% If $f(x_1) < 1$, then there exists the smallest $k\in \{0,1,...,2^{n+1}\}$ such that $x_1 \in Z_{\frac{k}{2^{n+1}}}$. In that case we have $x_2 \in U_{n+1}\left(Z_{\frac{k}{2^{n+1}}}\right) \subseteq Z_{\frac{k+1}{2^{n+1}}}$. Thus 
+% $$f(x_2) \leq \frac{k+1}{2^{n+1}} = \frac{k-1}{2^{n+1}} + \frac{2}{2^{n+1}} < f(x_1) + \frac{1}{2^n}$$
+% We proved that
+% $$f(x_2) < f(x_1) + \frac{1}{2^n}$$
+% By symmetry we have 
+% $$f(x_2) < f(x_1) + \frac{1}{2^n}$$
+% and hence the inequality
+% $$|f(x_1) - f(x_2)| < \frac{1}{2^n}$$
+% holds.
+% \end{proof}
+% \noindent
+% Now we give interesting application of uniform Urysohn's lemma. First we need the following notion.
+
+% \begin{definition}
+% Let $(X,\tau)$ be a topological space. Suppose that for every closed subset $F$ of $(X,\tau)$ and for every point $x$ in $X\setminus  F$ there exists a function $f:X\ra \RR$ continuous with respect to $\tau$ and natural topology in $\RR$ such that $f(F) = \{1\}$ and $f(x) = 0$. Then $(X,\tau)$ is \textit{a completely regular space}. 
+% \end{definition}
+
+% \begin{theorem}\label{theorem:image_of_the_canonical_functor_is_completely_regular_space}
+% The image of the object part of the functor
+% $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
+% consists of the class of completely regular spaces. 
+% \end{theorem}
+% \begin{proof}
+% Let $(X,\fU)$ be a uniform space. Consider a closed set $F$ with respect to $\tau_{\fU}$. Let $x$ be a point in $X\setminus F$. Since $x \not \in F$ and $F$ is closed in $\tau_{\fU}$, we derive that there exists $U \in \fU$ such that $U(x) \cap F = \emptyset$. Suppose that $\{U_n\}_{n\in \NN}$ is a sequence of elements of $\fU$ such that $U_0 = U$ and $U_{n+1}\cdot U_{n+1} \subseteq U_n$ for each $n \in \NN$. According to Theorem \ref{theorem:uniform_Urysohn_lemma} there exists a map $f:X\ra \RR$ such that $f(F) = \{1\}, f(x) = 0$ and if $x_1,x_2 \in X$ and $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then the inequality
+% $$|f(x_1) - f(x_2)| < \frac{1}{2^n}$$
+% holds. By virtue of Example \ref{example:natural_uniform_structure_on_real_line} and the fact above $f$ gives rise to a uniform morphism $(X,\fU)\ra (\RR,\fE)$. According to Fact \ref{fact:uniform_morphism_is_a_continuous_map} the map $f:X\ra \RR$ is continuous with respect to $\tau_{\fU}$ and the natural topology on $\RR$. This shows that $(X,\tau_{\fU})$ is completely regular.\\ 
+% Suppose now that $(X,\tau)$ is a completely regular space. Consider the set $C(\tau,\RR)$ of all continuous real valued functions on $(X,\tau)$. For $m\in \NN_+$ and of $m$-functions $f_1,...,f_m\in C(\tau,\RR)$ define
+% $$\rho_{f_1,...,f_m}(x,y) = \max \big\{|f_1(x) - f_1(y)|,...,|f_m(x) - f_m(y)|\big\}$$
+% where $x,y\in X$. Clearly $\rho_{f_1,...,f_m}$ is a pseudometric on $X$. Next consider a family $\fU$ of all $U\in \fD_X$ such that there exist a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
+% $$\big\{(x,y)\in X\times X\,\big|\,\rho_{f_1,...,f_m}(x,y) < \epsilon\big\}\subseteq U$$
+% Clearly $\fU$ is a uniform structure on $X$. Suppose that $\cO \in \tau_{\fU}$. Then for each point $z$ in $\cO$ there exists $U$ in $\fU$ such that $B(z,U)\subseteq \cO$. By definition there exists a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
+% $$\big\{(x,y)\in X\times X\,\big|\,\rho_{f_1,...,f_m}(x,y) < \epsilon\big\}\subseteq U$$
+% Thus
+% $$\bigcap_{i=1}^mf_i^{-1}\bigg(\big(f_i(z) - \epsilon, f_i(z) + \epsilon\big)\bigg) = \big\{y\in X \,\big|\, \rho_{f_1,...,f_m}(z,y) < \epsilon\big\} \subseteq B(z,U)\subseteq \cO$$
+% Since $f_1,...,f_m$ are continuous on $X$ with respect to $\tau$, we derive from the inclusion above that there exists an open neighborhood of $z$ with respect to $\tau$ contained in $\cO$. According to the fact that $z$ is an arbitrary point in $\cO$ it follows that $\cO \in \tau$. This proves that $\tau_{\fU}\subseteq \tau$. Now we prove the converse. For this assume that $\cO \in \tau$. We claim that $\cO$ is also open in the topology induced by $\fU$. For this pick $z \in \cO$. Since $(X,\tau)$ is completely regular, there exists a function $f_z:X\ra \RR$ continuous with respect to $\tau$ such that $f_z(X\setminus \cO)\subseteq \{1\}$ and $f_z(z) = 0$. Let $U_z$ be a set consisting of all pairs in $X\times X$ for which $\rho_{f_z}$ is smaller than $1$. Then $U_z\in \fU$ and obviously $B(z,U_z)\subseteq \cO$. Thus
+% $$\cO = \bigcup_{z\in \cO}B(z,U_z)$$
+% and this proves the claim that $\cO$ is in $\tau_{\fU}$. Hence $\tau \subseteq \tau_{\fU}$. This completes the proof of the first assertion.\\
+% The proof of the second assertion is left for the reader as an exercise. Note that in the proof one can use complete regularity of topologies induced by uniform structures.   
+% \end{proof}
+
+
 
 % \section{Completeness for pseudometric spaces}
 % \noindent
 % In this section we discuss the notion of completeness in the important special case of pseudometrizable uniform spaces.
 
-% \begin{definition}
-% Let $(X,\rho)$ be a pseudometric space and let $\{x_n\}_{n\in \NN}$ be a sequence of elements of $X$. If for every $\epsilon > 0$ there exists $N\in \NN$ such that for all $n,m\geq N$ we have
-% $$\rho(x_n,x_m) \leq \epsilon$$
-% then $\{x_n\}_{n\in \NN}$ is \textit{a Cauchy sequence in $(X,\rho)$}.
-% \end{definition}
 
-% \begin{definition}
-% Let $(X,\rho)$ be a pseudometric space. Suppose that every Cauchy sequence in $(X,\rho)$ is convergent with respect to the topology induced by $\rho$. Then $(X,\rho)$ is \textit{a complete pseudometric space}. 
-% \end{definition}
 
-% \begin{theorem}\label{theorem:complete_pseudometric_spaces}
-% Let $(X,\rho)$ be a pseudometric space. Then the following conditions are equivalent.
-% \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
-% \item $(X,\rho)$ is a complete pseudometric space. 
-% \item $(X,\fU_{\rho})$ is a complete uniform space.
-% \end{enumerate}
-% \end{theorem}
-% \begin{proof}
-% We define 
-% $$U_{n} = \bigg\{(x,y)\in X\times X\,\bigg|\,\rho(x,y) < \frac{1}{n + 1}\bigg\}$$
-% for every $n\in \NN_+$. Moreover, $\fU_{\rho}$ is the uniform structure consisting of all $U \in \fD_X$ such that $U_n\subseteq U$ for some $n\in \NN_+$. Indeed, this follows from Example \ref{example:uniform_structure_induced_by_pseudometric}.\\
-% Now assume that $(X,\rho)$ is a complete pseudometric space. Let $\cF$ be a Cauchy filter in $\left(X,\fU_{\rho}\right)$. We construct a sequence $\{F_n\}_{n\in \NN}$ of elements of $\cF$ by recursion. We set $F_0 = X$. Suppose that $F_0,...,F_n$ are constructed for some $n\in \NN$. We pick $F_{n+1}\in \cF$ such that 
-% $$F_{n+1}\times F_{n+1} \subseteq U_{n+1}$$
-% and $F_{n+1} \subseteq F_n$. Note that sequence $\{F_n\}_{n\in \NN}$ is nonincreasing and
-% $$F_{n}\times F_{n} \subseteq U_n$$
-% for every $n\in \NN_+$. Now pick $x_n\in F_n$ for every $n\in \NN$. Then according to properties of $\{F_n\}_{n\in \NN}$ sequence $\{x_n\}_{n\in \NN}$ is a Cauchy sequence in $(X,\rho)$. Since $(X,\rho)$ is complete, $\{x_n\}_{n\in \NN}$ is convergent to some point $x$ with respect to the topology induced by $\rho$. We claim that $\cF$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$. By Remark \ref{remark:topology_induced_by_pseudometric_open_balls_basis} sets $B_{\rho}(x,\epsilon)$ for $\epsilon \in \RR_+$ form a local basis of open neighborhoods of $x$ with respect to $\tau_{\fU_{\rho}}$. Pick positive real $\epsilon$. Suppose now that $n\in \NN_+$ satisfies two conditions
-% $$\frac{1}{n+1} < \frac{\epsilon}{2},\,\rho(x_n,x) < \frac{\epsilon}{2}$$
-% Then $F_{n} \subseteq B_{\rho}(x,\epsilon)$. This implies that all open neighborhoods of $x$ with respect to $\tau_{\fU_{\rho}}$ are contained in $\cF$. Thus $\cF$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
-% Next assume that $(X,\fU_{\rho})$ is a complete uniform space. Pick a Cauchy sequence $\{x_n\}_{n\in \NN}$ in $(X,\rho)$. Define
-% $$F_n = \big\{x_k\,\big|\,k\geq n\big\}$$
-% for every $n\in \NN$ and
-% $$\cF = \big\{F\subseteq X\,\big|\,F_n\subseteq F\mbox{ for some }n\in \NN\big\}$$
-% Since $(X,\fU_{\rho})$ is complete, the filter $\cF$ is convergent to some point $x$ in $X$ with respect to $\tau_{\fU_{\rho}}$. Therefore, for every open neighborhood $\cO$ of $x$ with respect to $\tau_{\fU_{\rho}}$ there exists $n\in \NN$ such that $F_n \subseteq \cO$. Hence the sequence $\{x_n\}_{n\in \NN}$ is convergent to $x$ with respect to $\tau_{\fU_{\rho}}$. Hence the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
-% \end{proof}
+
+
+
 % \noindent
 % The following theorem and its proof is due to Felix Hausdorff.
 
-% \begin{theorem}\label{theorem:completion_of_a_pseudometric_space}
-% Let $(X,\rho)$ be a pseudometric space. Then there exists a complete pseudometric space $(\ol{X},\ol{\rho})$ and an injective map $j:X\ra \ol{X}$ such that $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$ and
-% $$\rho(x_1,x_2) = \ol{\rho}(j(x_1),j(x_2))$$
-% for every $x_1,x_2\in X$.
-% \end{theorem}
-% \begin{proof}
-% Let $\ol{X}$ be the set of all Cauchy sequences in $(X,\rho)$. For each $\bd{x}$ in $\ol{X}$ and $n\in \NN$ we denote by $\bd{x}(n)$ the $n$-th element of $\bd{x}$. Pick two sequences $\bd{x}$ and $\bd{y}$ in $\ol{X}$. Then
-% $$|\rho(\bd{x}(n),\bd{y}(n)) - \rho(\bd{x}(m),\bd{y}(m))|\leq \rho(\bd{x}(n),\bd{x}(m)) + \rho(\bd{y}(n),\bd{y}(m))$$
-% by the triangle inequality. Thus the sequence of real numbers $\big\{\rho(\bd{x}(n),\bd{y}(n))\big\}_{n\in \NN}$ is Cauchy sequence in $\RR$ with respect to the metric induced by the absolute value. Hence the sequence $\big\{\rho(\bd{x}(n),\bd{y}(n))\big\}_{n\in \NN}$ is convergent. We define $\ol{\rho}:\ol{X}\times \ol{X}\ra \RR$ by formula 
-% $$\ol{\rho}\left(\bd{x}, \bd{y}\right) = \lim_{n\ra +\infty}\rho(\bd{x}(n),\bd{y}(n))$$
-% for each $\bd{x}$ and $\bd{y}$ in $\ol{X}$. It is clear that $\left(\ol{X},\ol{\rho}\right)$ is a pseudometric space. For each $x$ in $X$ let $j(x) \in \ol{X}$ be the constant sequence $j(x)(n) = x$ for every $n\in \NN$. This gives rise to an injective map $j:X\ra \ol{X}$. Note that $\ol{\rho}\left(j(x_1),j(x_2)\right) = \rho(x_1, x_2)$ for every $x_1,x_2\in X$. Moreover, if $\bd{x}$ is an element of $\ol{X}$, then 
-% $$\lim_{n\ra +\infty}\ol{\rho}\big(j(\bd{x}(n)),\bd{x}\big) = 0$$
-% Thus $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$. It remains to prove that $\left(\ol{X},\ol{\rho}\right)$ is complete. Let $\{\bd{x}_n\}_{n\in \NN}$ be a Cauchy sequence in $\left(\ol{X},\ol{\rho}\right)$. Since $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$, we derive that for each $n\in \NN$ there exists $x_n \in X$ such that 
-% $$\ol{\rho}\left(j(x_n), \bd{x}_n\right) \leq \frac{1}{2^n}$$
-% Then $\{j(x_n)\}_{n\in \NN}$ is a Cauchy sequence in $\left(\ol{X},\ol{\rho}\right)$ and hence $\{x_n\}_{n\in \NN}$ is a Cauchy sequence in $\left(X,\rho\right)$. We denote $\{x_n\}_{n\in \NN}$ by $\bd{x}$. We have
-% $$\lim_{n\ra +\infty}\ol{\rho}\left(j(x_n),\bd{x}\right) = 0$$
-% and hence
-% $$\lim_{n\ra +\infty}\ol{\rho}\left(\bd{x}_n,\bd{x}\right) = 0$$
-% This implies that $\{\bd{x}_n\}_{n\in \NN}$ is convergent to $\bd{x}$ with respect to topology induced by $\ol{\rho}$. Thus $\left(\ol{X},\ol{\rho}\right)$ is complete.   
-% \end{proof}
+
 
 % \begin{corollary}\label{corollary:completion_of_metric_spaces}
 % Let $(X,\rho)$ be a metric space. Then there exists a complete metric space $(\ol{X},\ol{\rho})$ and a map $j:X\ra \ol{X}$ such that $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\rho}$ and
@@ -483,14 +672,7 @@ holds.
 % for every $x_1,x_2\in X$ and $j(X)$ is dense in $\ol{X}$ with respect to the topology induced by $\ol{\rho}$.
 % \end{proof}
 
-% \section{Completion of uniform spaces}
 
-
-
-
-% \begin{theorem}\label{theorem:existence_of_completion_for_Hausdorff}
-% Let $\left(X,\fU\right)$ be a Hausdorff uniform space. Then there exists a complete Hausdorff uniform space $\left(\ol{X},\ol{\fU}\right)$ and an embedding $j:\left(X,\fU\right)\hookrightarrow \left(\ol{X},\ol{\fU}\right)$ of uniform spaces such that $j(X)$ is dense in $\ol{X}$ with respect to topology induced by $\ol{\fU}$.
-% \end{theorem}
 
 
 
@@ -569,32 +751,14 @@ holds.
 
 
 
-% \section{Completely regular spaces}
 
-% \begin{definition}
-% Let $(X,\tau)$ be a topological space. Suppose that for every closed subset $F$ of $X$ and for every point $x$ in $X\setminus  F$ there exists a continuous function $f:X\ra \RR$ such that $f(F) \subseteq \{1\}$ and $f(x) = 0$. Then $X$ is \textit{a completely regular space}. 
-% \end{definition}
 
-% \begin{theorem}\label{theorem:image_of_the_canonical_functor_is_completely_regular_space}
-% The image of the object part of the functor
-% $$\Unif \ni (X,\fU) \mapsto (X,\tau_{\fU}) \in \Top$$
-% consists of the class of completely regular spaces. Moreover, $\left(X,\fU\right)$ is a Hausdorff uniform space if and only if $\left(X,\tau_{\fU}\right)$ is a Hausdorff topological space. 
-% \end{theorem}
-% \begin{proof}
-% Let $(X,\fU)$ be a uniform space. Consider a closed set $F$ with respect to $\tau_{\fU}$. Let $x$ be a point in $X\setminus F$. Since $x \not \in F$ and $F$ is closed in $\tau_{\fU}$, we derive that there exists $U \in \fU$ such that $B(x,U)\cap F = \emptyset$. Fix a pseudometric $\rho$ on $X$ corresponding to $U$ as in Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform}. Consider a map $f:X\ra \RR$ given by $f(y) = \rho(x,y)$ for $y\in X$. Then Theorem \ref{theorem:pseudometric_associated_to_entourage_is_uniform} asserts that $f$ is a morphism of uniform spaces $\left(X,\fU\right)\ra \RR$ where $\RR$ admits the natural uniform structure (Example \ref{example:uniform_structure_on_reals}). By Fact \ref{fact:uniform_morphism_is_a_continuous_map} and Remark \ref{remark:topology_induced_by_pseudometric_open_balls_basis} the map $f$ is continuous with respect to $\tau_{\fU}$ and the usual topology on $\RR$. Note also that the image of $f$ is contained in $[0,1]$. Pick $y\in F$. Then $y \not \in B(x,U)$ and hence $(x,y) \not \in U$. We deduce that $f(y) = \rho(x,y) = 1$. On the other hand $f(x) = \rho(x,x) = 0$. Therefore, $f(F) \subseteq \{1\}$ and $f(x) = 0$. Thus $(X,\tau_{\fU})$ is a completely regular space.\\
-% Suppose now that $(X,\tau)$ is a completely regular space. Consider the set $C(\tau,\RR)$ of all continuous real valued functions on $(X,\tau)$. For $m\in \NN_+$ and set of $m$ functions $f_1,...,f_m\in C(\tau,\RR)$ define
-% $$\rho_{f_1,...,f_m}(x,y) = \max \big\{|f_1(x) - f_1(y)|,...,|f_m(x) - f_m(y)|\big\}$$
-% where $x,y\in X$. Clearly $\rho_{f_1,...,f_m}$ is a pseudometric on $X$. Next consider a family $\fU$ of all $U\in \fD_X$ such that there exist a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
-% $$\big\{(x,y)\in X\times X\,\big|\,\rho_{f_1,...,f_m}(x,y) < \epsilon\big\}\subseteq U$$
-% Clearly $\fU$ is a uniform structure on $X$. Suppose that $\cO \in \tau_{\fU}$. Then for each point $z$ in $\cO$ there exists $U$ in $\fU$ such that $B(z,U)\subseteq \cO$. By definition there exists a finite subset $\{f_1,...,f_m\}\subseteq C(\tau,\RR)$ for some $m \in \NN_+$ and $\epsilon > 0$ such that
-% $$\big\{(x,y)\in X\times X\,\big|\,\rho_{f_1,...,f_m}(x,y) < \epsilon\big\}\subseteq U$$
-% Thus
-% $$\bigcap_{i=1}^mf_i^{-1}\bigg(\big(f_i(z) - \epsilon, f_i(z) + \epsilon\big)\bigg) = \big\{y\in X \,\big|\, \rho_{f_1,...,f_m}(z,y) < \epsilon\big\} \subseteq B(z,U)\subseteq \cO$$
-% Since $f_1,...,f_m$ are continuous on $X$ with respect to $\tau$, we derive from the inclusion above that there exists an open neighborhood of $z$ with respect to $\tau$ contained in $\cO$. According to the fact that $z$ is an arbitrary point in $\cO$ it follows that $\cO \in \tau$. This proves that $\tau_{\fU}\subseteq \tau$. Now we prove the converse. For this assume that $\cO \in \tau$. We claim that $\cO$ is also open in the topology induced by $\fU$. For this pick $z \in \cO$. Since $(X,\tau)$ is completely regular, there exists a function $f_z:X\ra \RR$ continuous with respect to $\tau$ such that $f_z(X\setminus \cO)\subseteq \{1\}$ and $f_z(z) = 0$. Let $U_z$ be a set consisting of all pairs in $X\times X$ for which $\rho_{f_z}$ is smaller than $1$. Then $U_z\in \fU$ and obviously $B(z,U_z)\subseteq \cO$. Thus
-% $$\cO = \bigcup_{z\in \cO}B(z,U_z)$$
-% and this proves the claim that $\cO$ is in $\tau_{\fU}$. Hence $\tau \subseteq \tau_{\fU}$. This completes the proof of the first assertion.\\
-% The proof of the second assertion is left for the reader as an exercise. Note that in the proof one can use complete regularity of topologies induced by uniform structures.   
-% \end{proof}
+
+
+
+
+
+
 
 
 
