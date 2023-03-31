@@ -7,3 +7,5 @@
 **.log
 **.tex~
 **.synctex.gz
+**.vscode
+.vscode
