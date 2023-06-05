@@ -7,171 +7,102 @@
 \maketitle
 
 \section{Introduction}
-In these notes we develop theory of Bochner-Lebesgue integral. Our exhibition is to some extent different from the standard one. The first step is typical - we start with integration of nonnegative functions and we prove monotone convergence theorem. Then we immediately introduce Lebesgue's spaces and prove their completeness. Lebesgue's dominated convergence theorem is presented as a result about convergence in Lebesgue's spaces. After this we introduce integral as a linear operator on Lebesgue's spaces. The last part of the notes is devoted to product measures and theorems on iterated integration (due to Tonelli and Fubini). Prerequisites consists of material contained in first notes on measure theory \cite{Introduction_to_measure_theory}. Most of the theory of Lebesgue's spaces (this does not embrace Bochner's integral itself due to obvious reasons) works for Banach spaces defined over fields with complete absolute values. The reader may always assume for hers convenience that the field is either $\CC$ or $\RR$.\\
-Let us explain the notation that is used in these notes and which is standard in various other texts on the topic. We also use this notation in subsequent notes. We denote by $\ol{\RR}=\RR\cup \{-\infty,+\infty\}$ the two-point compactification of the line $\RR$. Addition is partially defined operation on $\ol{\RR}$ given by the following rules
+In these notes we develop theory of Bochner-Lebesgue integral. Our exhibition is to some extent different from the standard one. The first step is typical - we start with integration of nonnegative functions and we prove monotone convergence theorem. Then we immediately introduce Lebesgue's spaces and prove their completeness. Lebesgue's dominated convergence theorem is presented as a result about convergence in Lebesgue's spaces. After this we introduce integral as a linear operator on Lebesgue's spaces. The last part of the notes is devoted to product measures and theorems on iterated integration (due to Tonelli and Fubini). Prerequisites consists of material contained in first notes on measure theory \cite{Introduction_to_measure_theory}. Most of the theory of Lebesgue's spaces (this does not embrace Bochner's integral itself due to obvious reasons) works for Banach spaces defined over fields with complete absolute values. The reader may always assume for hers convenience that the field is either $\CC$ or $\RR$.
+
+\begin{definition}
+Let $(X,\Sigma)$ be a measurable space and let $Y$ be a topological space. A map $f:X\ra Y$ is \textit{measurable} if $f$ is a measurable map $(X,\Sigma)\ra (Y,\cB(Y))$, where $\cB(Y)$ is the $\sigma$-algebra of Borel sets on $Y$. 
+\end{definition}
+
+\begin{definition}
+Let $X$ be a set and let $Y$ be a topological space. Consider a sequence $\{f_n:X\ra Y\}_{n\in \NN}$ and a map $f:X\ra Y$. If 
+$$f(x) = \lim_{n\ra +\infty}f_n(x)$$
+then $\{f_n\}_{n\in \NN}$ is \textit{pointwise convergent to $f$}. In this case we write
+$$f = \lim_{n\ra +\infty}f_n$$
+\end{definition}
+
+\section{Properties of measurable real functions}
+\noindent
+Let $\ol{\RR}=\{-\infty\} \cup \RR \cup \{+\infty\}$ be completion of $\RR$ to linearly ordered set with the smallest and the greatest elements. Clearly $\ol{\RR}$ is complete linear order. Addition is partially defined operation on $\ol{\RR}$ given by the following rules
 $$(+\infty)+r=+\infty=r+(+\infty),\,(-\infty)+r=-\infty=r+(-\infty)$$
-for every $r\in \RR$. Note also that $\ol{R}$ admits the canonical complete linear order. Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of functions on a set $X$. Then we define $\sup_{n\in \NN}f_n,\inf_{n\in \NN}f_n:X\ra \ol{\RR}$ by formulas
+for every $r\in \RR$. Moreover, $\ol{\RR}$ with order topology is the two point compactification of $\RR$.
+
+Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of functions on a set $X$. We define functions
+$$\sup_{n\in \NN}f_n,\inf_{n\in \NN}f_n:X\ra \ol{\RR}$$
+by formulas
 $$\left(\sup_{n\in \NN}f_n\right)(x) = \sup_{n\in \NN}f_n(x),\,\left(\inf_{n\in \NN}f_n\right)(x) = \inf_{n\in \NN}f_n(x)$$
-for every $x\in X$. Next we define $\limsup_{n\ra +\infty}f_n,\liminf_{n\ra +\infty}f_n:X\ra \ol{\RR}$ by formulas
-$$\left(\limsup_{n\ra +\infty}f_n\right)(x) =\inf_{m\in \NN}\sup_{n\geq m}f_n(x) = \limsup_{n\ra +\infty}f_n(x),\,\left(\liminf_{n\ra +\infty}f_n\right)(x) = \sup_{m\in \NN}\inf_{n\geq m}f_n(x) = \liminf_{n\ra +\infty}f_n(x)$$
-for every $x\in X$. The following definitions are standard.
+for every $x\in X$. We define functions
+$$\limsup_{n\ra +\infty}f_n = \inf_{m\in \NN}\sup_{n\geq m}f_n,\,\liminf_{n\ra +\infty}f_n = \sup_{m\in \NN}\inf_{n\geq m}f_n$$ 
+If 
+$$\liminf_{n\ra +\infty}f_n = \limsup_{n\ra +\infty}f_n$$
+then $\{f_n\}_{n\in \NN}$ is pointwise convergent.
+
+Let $X$ be a set and let $f,g:X\ra \ol{\RR}$ be functions. We write $f \leq g$ if $f(x) \leq g(x)$ for all $x\in X$.
 
 \begin{definition}
-Let $X$ be a set and let $f:X\ra \ol{\RR}$ be a function. We say that $f$ is \textit{nonnegative} if $f(x) \geq 0$ for every $x\in X$.
+Let $X$ be a set and let $f:X\ra \ol{\RR}$ be a function. We say that $f$ is \textit{nonnegative} if $f \geq 0$.
 \end{definition}
 
 \begin{definition}
-Let $X$ be a set. A sequence $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ is \textit{nondecreasing} if $f_n(x) \leq f_m(x)$ for every $x\in X$ and for all pairs $n, m\in \NN$ such that $n\leq m$.
+Let $X$ be a set. A sequence $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ is \textit{nondecreasing} if $f_n \leq f_m$ for all pairs $n, m\in \NN$ such that $n\leq m$.
 \end{definition}
-\noindent
-Assume that $Y$ is a metric space, $X$ is a set and $\{f_n:X\ra Y\}_{n\in \NN}$ is pointwise convergent i.e.
-$$\lim_{n\ra +\infty}f_n(x)$$
-exists in $Y$ for every $x\in X$. Then we define $\lim_{n\ra +\infty}f_n:X\ra Y$ as follows
-$$\left(\lim_{n\ra +\infty}f_n\right)(x) = \lim_{n\ra +\infty}f_n(x)$$
-for every $x\in X$. Now we consider functions with values in the normed space $Y$ over some field $\mathbb{K}$ with complete absolute value. Let $X$ be a set. For a function $f:X\ra Y$ we define a nonnegative function $||f||:X\ra \ol{\RR}$ by formula $||f||(x) = ||f(x)||$ for every $x\in X$, where $||-||$ is a norm on $Y$.
-
-\begin{definition}
-Let $X$ be a set and let $f:X\ra \CC$ be a function. If $f(x)\in \RR$ for every $x\in X$, then we say that $f$ is \textit{real valued}. If in addition $f(x)\geq 0$ for every $x\in X$, then $f$ is \textit{nonnegative}.
-\end{definition}
-\noindent
-Let $X$ be a set. Suppose that $f,g:X\ra \ol{\RR}$ or $f,g:X\ra \CC$ and are both real valued. We write $f\geq g$ if $f(x)\geq g(x)$ for every $x\in X$.
-
-\begin{definition}
-Let $(X,\Sigma)$ be a measurable space and $Y$ be a topological space. A map $f:X\ra Y$ is \textit{measurable} if $f$ is a measurable morphism $(X,\Sigma)\ra (Y,\cB(Y))$, where $\cB(Y)$ is a $\sigma$-algebra of Borel sets on $Y$. In case when we need to indicate measurable space in the domain of a function we also say that $f$ is \textit{measurable with respect to $\Sigma$} or just \textit{$\Sigma$-measurable}. 
-\end{definition}
-\noindent
-If $X$ is a set and $A$ is its subset, then we denote by $\mathbb{1}_A$ the function on $X$ defined by $\mathbb{1}_A(x)=1$ for $x\in A$ and $\mathbb{1}_A(x)=0$ otherwise. The codomain of $\mathbb{1}_A$ is either $\ol{\RR}$ or some field $\mathbb{K}$ equipped with an absolute value. In either case the codomain can be clearly deduced from the context.
-
-\section{Elementary properties of measurable functions}
-\noindent
-Here we study some basic properties of measurable functions.
 
 \begin{proposition}\label{proposition:measurable_functions_closed_under_supremum}
-Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of measurable functions on a measurable space $(X,\Sigma)$. Then
+Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of measurable functions on a measurable space $(X,\Sigma)$. Then functions
 $$\sup_{n\in \NN}f_n,\,\inf_{n\in \NN}f_n$$
 are measurable.
 \end{proposition}
 \begin{proof}
-Note that $\inf_{n\in \NN}f_n = -\sup_{n\in \NN}\left(-f_n\right)$. Thus it suffices to prove the proposition for $\sup_{n\in \NN}f_n$. Fix $a\in \ol{\RR}$ and note that
-$$\big\{x\in X\,\big|\,\sup_{n\in \NN}f_n(x)< a\big\} = \bigcup_{q\in \QQ,\,q<a}\bigcap_{n\in \NN}\big\{x\in X\,\big|\,f_n(x)<q\big\}$$
-and
-$$\big\{x\in X\,\big|\,\sup_{n\in \NN}f_n(x)>a\big\} = \bigcup_{q\in \QQ,\,q>a}\bigcup_{n\in \NN}\big\{x\in X\,\big|\,f_n(x)>q\big\}$$
-are in $\Sigma$. Therefore, we derive that $f = \sup_{n\in \NN}f_n$ satisfies $f^{-1}\left((a,b)\right)\in \Sigma$ for every $a, b\in \ol{\RR}$ and $a<b$. Since $\cB(\ol{\RR})$ is a $\sigma$-algebra generated by open intervals, we derive that $f$ is measurable.
+Note that $\inf_{n\in \NN}f_n = -\sup_{n\in \NN}\left(-f_n\right)$. Thus it suffices to prove the proposition for $\sup_{n\in \NN}f_n$. Fix $r \in \RR$ and note that
+$$\big\{x\in X\,\big|\,\sup_{n\in \NN}f_n(x) > r\big\} = \bigcup_{q\in \QQ,\,q > r}\bigcup_{n\in \NN}\big\{x\in X\,\big|\,f_n(x) \geq q\big\}$$
+Therefore, we derive that $f = \sup_{n\in \NN}f_n$ satisfies $f^{-1}\left((r,+
+\infty]\right)\in \Sigma$ for every $r \in \RR$. Family of all left-open intervals in $\ol{\RR}$ generate $\cB(\ol{\RR})$. Hence $f$ is measurable.
 \end{proof}
 
-\begin{proposition}\label{proposition:measurable_functions_closed_under_pointwise_limits}
-Let $Y$ be a metric space and let $(X,\Sigma)$ be a measurable space. Suppose that a sequence $\{f_n:X\ra Y\}_{n\in \NN}$ of measurable functions is pointwise convergent to some function $f:X\ra Y$. Then $f$ is measurable.
+\begin{corollary}\label{corollary:measurable_closed_under_limes_inferior}
+Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of measurable functions on a measurable space $(X,\Sigma)$. Then functions
+$$\liminf_{n \ra +\infty}f_n,\,\limsup_{n\ra +\infty}f_n$$
+are measurable. In particular, if $\{f_n(x)\}_{n\in \NN}$ is convergent for every $x\in X$, then also $$\lim_{n\ra +\infty}f_n$$
+is measurable.
+\end{corollary}
+\begin{proof}
+Follows directly from Proposition \ref{proposition:measurable_functions_closed_under_supremum} and definitions.
+\end{proof}
+
+\begin{proposition}\label{proposition:simple_approximation_for_nonnegative}
+Let $f:X\ra \ol{\RR}$ be a nonnegative, measurable function on a measurable space $(X,\Sigma)$. Then there exists a nondecreasing sequence $\{s_n:X\ra \ol{\RR}\}_{n\in \NN}$ of nonnegative, measurable functions such that $s_n(X)$ is a finite subset of $\RR$ for every $n\in \NN$ and $\{s_n\}_{n\in \NN}$ is pointwise convergent to $f$. Moreover, $s_n\leq f$ for every $n\in \NN$.
 \end{proposition}
 \begin{proof}
-Let $F$ be a closed subset of $Y$ and let $d:Y\times Y\ra [0,+\infty)$ be the metric on $Y$. We define
-$$U_k = \big\{y \in Y\,\big|\,\inf_{p\in F} d(p,y) < 2^{-k}\big\}$$
-for every $k\in \NN$. Then $\{U_k\}_{k\in \NN}$ are open subsets of $Y$. We have
-$$f^{-1}(F) =\bigcap_{k\in \NN}\bigcup_{m\in \NN}\bigcap_{n\geq m}f_n^{-1}(U_k)$$
-and the left hand side is clearly an element of $\Sigma$. Hence preimages of closed subsets of $Y$ under $f$ are in $\Sigma$. Since $\sigma$-algebra $\cB(Y)$ is generated by closed sets, we derive the assertion.
-\end{proof}
-
-\begin{definition}
-Let $Y$ be a normed vector space over a a field $\mathbb{K}$ equipped with an absolute value and let $(X,\Sigma)$ be a measurable space. A function $f:X\ra Y$ is \textit{strongly measurable} if it is measurable and $f(X)$ is a separable subspace of $Y$. When we need to indicate measurable structure on the domain of $f$ we also say that $f$ is \textit{strongly measurable with respect to $\Sigma$}.
-\end{definition}
-
-\begin{proposition}\label{proposition:strongly_measurable_functions_closed_under_pointwise_limits}
-Let $Y$ be a normed vector space over a field $\mathbb{K}$ equipped with an absolute value and let $(X,\Sigma)$ be a measurable space. Suppose that a sequence $\{f_n:X\ra Y\}_{n\in \NN}$ of strongly measurable functions is pointwise convergent to some function $f:X\ra Y$. Then $f$ is strongly measurable.
-\end{proposition}
-\begin{proof}
-According to Proposition \ref{proposition:measurable_functions_closed_under_pointwise_limits} function $f$ is measurable. Moreover, we have
-$$f(X) \subseteq \bd{cl}\bigg(\bigcup_{n\in \NN}f_n(X)\bigg)$$
-and hence $f(X)$ is a separable subspace of $Y$. Thus $f$ is strongly measurable.
-\end{proof}
-
-\begin{definition}
-Let $X, Y$ be a topological spaces. A map $f:X\ra Y$ is \textit{Borel measurable} if $f$ is a measurable morphism $(X,\cB(X))\ra (Y,\cB(Y))$, where $\cB(X)$ and $\cB(Y)$ are $\sigma$-algebras of Borel sets on $X$ and $Y$, respectively.
-\end{definition}
-
-\begin{proposition}\label{proposition:strongly_measurable_closed_under_Borel_operations}
-Let $Y_1, Y_2$ be normed vector spaces over a field $\mathbb{K}$ equipped with an absolute value and let $(X,\Sigma)$ be a measurable space. Let $f_i:X\ra Y_i$ for $i=1,2$ be strongly measurable functions and let $h:Y_1\times Y_2\ra Z$ be a Borel measurable map into a normed space $Z$ over $\mathbb{K}$. Then the function $h\cdot \langle f_1,f_2\rangle:X\ra Z$ is strongly measurable.
-\end{proposition}
-\begin{proof}
-Note that the family of open subsets of $f_1(X)\times f_2(X)$ is contained in $\sigma$-algebra generated by sets $\left(U_1\times U_2\right)\cap \left(f_1(X)\times f_2(X)\right)$ where $U_i$ is an open subset of $Y_i$ for $i=1,2$. Indeed, this is a consequence of the fact that $f_1(X)$ and $f_2(X)$ are separable. Thus $\langle f_1, f_2\rangle:X\ra Y_1\times Y_2$ is measurable. Hence also the composition $h\cdot \langle f_1,f_2\rangle:X\ra Z$ is measurable. Clearly the image of $h\cdot \langle f_1,f_2\rangle$ is separable. Thus this map is strongly measurable.
-\end{proof}
-
-\section{Almost measurable and almost strongly measurable functions}
-
-\begin{definition}
-Let $(X,\Sigma,\mu)$ be a space with measure and let $Y$ be a topological space. A function $f:X\ra Y$ is \textit{$\mu$-measurable} if there exists a set $N$ in $\Sigma$ such that $\mu(N) = 0$ and $f_{\mid X\setminus N}:X\setminus N\ra Y$ is measurable.
-\end{definition}
-
-\begin{corollary}\label{corollary:mu_measurable_functions_closed_under_supremum}
-Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of $\mu$-measurable functions on a space $(X,\Sigma,\mu)$. Then
-$$\sup_{n\in \NN}f_n,\,\inf_{n\in \NN}f_n$$
-are $\mu$-measurable.
-\end{corollary}
-\begin{proof}
-For every $n\in \NN$ there exists a set $N_n$ in $\Sigma$ such that $\mu(N_n) = 0$ and ${f_n}_{\mid X\setminus N_n}$ is measurable. Let $N = \bigcup_{n\in \NN}N_n$. Then $\mu(N) = 0$ and by Corollary \ref{proposition:measurable_functions_closed_under_supremum} we derive that $\left(\sup_{n\in \NN}f_n\right)_{X\setminus N}$ and $\left(\inf_{n\in \NN}f_n\right)_{X\setminus N}$ are measurable.
-\end{proof}
-
-\begin{corollary}\label{corollary:mu_measurable_closed_under_upper_limits}
-Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of $\mu$-measurable functions on a space $(X,\Sigma,\mu)$. Then
-$$\limsup_{n\ra +\infty}f_n,\,\liminf_{n\ra +\infty}f_n$$
-are measurable.
-\end{corollary}
-\begin{proof}
-We have
-$$\limsup_{n\ra +\infty}f_n =\inf_{m\in \NN}\sup_{n\geq m}f_n,\,\liminf_{n\ra +\infty}f_n = \sup_{m\in \NN}\inf_{n\geq m}f_n$$
-and hence $\mu$-measurability follows from Corollary \ref{corollary:mu_measurable_functions_closed_under_supremum}.
-\end{proof}
-
-\begin{definition}
-Let $(X,\Sigma,\mu)$ be a space with measure. Consider a property $P$ of points of $X$. if
-$$\mu\bigg(\left\{x\in X\,|\,\neg P(x)\right\}\bigg) = 0$$
-then \textit{$P$ holds $\mu$-almost everywhere}.
-\end{definition}
-
-\begin{corollary}\label{corollary:mu_measurable_closed_under_almost_everywhere_convergence}
-Let $Y$ be a metric space and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that a sequence $\{f_n:X\ra Y\}_{n\in \NN}$ of $\mu$-measurable functions is $\mu$-almost everywhere pointwise convergent to some function $f:X\ra Y$. Then $f$ is $\mu$-measurable.
-\end{corollary}
-\begin{proof}
-For every $n\in \NN$ consider a set $N_n$ in $\Sigma$ such that $\mu(N_n) = 0$ and ${f_n}_{\mid X\setminus N_n}$ is measurable. Let $Z$ be a set in $\Sigma$ such that $\mu(Z) = 0$ and 
-$$\mathrm{lim}_{n\in \NN}f_n(x) = f(x)$$
-for every $x\not \in Z$. We define $N = Z\cup \bigcup_{n\in \NN}N_n$. Then $f_{\mid X\setminus N}$ is a pointwise limit of a sequence of measurable functions $\{{f_n}_{\mid X\setminus N}\}_{n\in \NN}$ and hence by Proposition \ref{proposition:measurable_functions_closed_under_pointwise_limits} it is measurable. Clearly $\mu(N) = 0$ and thus $f$ is $\mu$-measurable.
-\end{proof}
-
-\begin{definition}
-Let $(X,\Sigma,\mu)$ be a space with measure and let $Y$ be a normed vector space over a field $\mathbb{K}$ equipped with an absolute value. A function $f:X\ra Y$ is \textit{$\mu$-strongly measurable} if there exists a set $N$ in $\Sigma$ such that $\mu(N) = 0$ and $f_{\mid X\setminus N}:X\setminus N\ra Y$ is strongly measurable.
-\end{definition}
-
-\begin{corollary}\label{corollary:mu_strongly_measurable_closed_under_almost_everywhere_convergence}
-Let $Y$ be a normed vector space over a field $\mathbb{K}$ equipped with an absolute value and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that a sequence $\{f_n:X\ra Y\}_{n\in \NN}$ of strongly $\mu$-measurable functions is $\mu$-almost everywhere pointwise convergent to some function $f:X\ra Y$. Then $f$ is strongly $\mu$-measurable.
-\end{corollary}
-\begin{proof}
-For every $n\in \NN$ consider a set $N_n$ in $\Sigma$ such that $\mu(N_n) = 0$ and ${f_n}_{\mid X\setminus N_n}$ is strongly measurable. Let $Z$ be a set in $\Sigma$ such that $\mu(Z) = 0$ and 
-$$\mathrm{lim}_{n\in \NN}f_n(x) = f(x)$$
-for every $x\not \in Z$. We define $N = Z\cup \bigcup_{n\in \NN}N_n$. Then $f_{\mid X\setminus N}$ is a pointwise limit of a sequence of strongly measurable functions $\{{f_n}_{\mid X\setminus N}\}_{n\in \NN}$ and hence by Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} it is strongly measurable. Clearly $\mu(N) = 0$ and thus $f$ is strongly $\mu$-measurable.
-\end{proof}
-
-\begin{corollary}\label{corollary:mu_strongly_measurable_closed_under_Borel_operations}
-Let $Y_1, Y_2$ be normed vector spaces over a field $\mathbb{K}$ equipped with an absolute value and let $(X,\Sigma,\mu)$ be a space with measure. Let $f_i:X\ra Y_i$ for $i=1,2$ be strongly $\mu$-measurable functions and let $h:Y_1\times Y_2\ra Z$ be a Borel measurable map into a normed space $Z$ over $\mathbb{K}$. Then the function $h\cdot \langle f_1,f_2\rangle:X\ra Z$ is strongly $\mu$-measurable.
-\end{corollary}
-\begin{proof}
-Let $N_i$ be a set in $\Sigma$ such that $\mu(N_i) = 0$ and ${f_i}_{\mid X\setminus N_i}$ is strongly measurable for $i=1,2$. Define $N = N_1\cup N_2$. Then $\mu(N) = 0$ and $h\cdot \langle f_1,f_2\rangle_{\mid X\setminus N}$ is strongly measurable according to Corollary \ref{proposition:strongly_measurable_closed_under_Borel_operations}. Therefore, $h\cdot \langle f_1,f_2\rangle$ is strongly $\mu$-measurable.
+For every $n\in \NN$ and integer $0 \leq k < n\cdot 2^n$ we define 
+$$A_{n,k}=f^{-1}\left(\left[\frac{k}{2^n},\frac{k+1}{2^n}\right]\right)$$
+Then $A_{n,k}$ is a measurable set. We define
+$$s_n(x)=\begin{cases}\frac{k}{2^n}& \mbox{ if } x\in A_{n,k}\\
+0& \mbox{ if } x\in X\setminus \bigcup_{k=0}^{n\cdot 2^n-1}A_{n,k}
+\end{cases}$$
+Then each $s_n:X\ra \ol{\RR}$ is a nonnegative, measurable function such that $s_n(X)$ is a finite subset of $\RR$. Moreover, we have
+$$|s_n(x) - f(x)| \leq \frac{1}{2^n}$$
+for every $x \in X$ such that $f(x) \leq n$. It follows that
+$$f = \lim_{n\ra +\infty}s_n$$
+By definition of $s_n$ we have $s_n \leq f$ for each $n\in \NN$. This completes the proof.
 \end{proof}
 
 \section{Lebesgue's integral of nonnegative functions}\label{section:lebesgues_integration}
 
 \begin{definition}
-Let $(X,\Sigma,\mu)$ be a space with measure. A measurable function $s:X\ra \ol{\RR}$ is \textit{simple} if $s(X)$ is a finite subset of $\RR$ and
+Let $(X,\Sigma,\mu)$ be a space with measure. A measurable function $s:X\ra \ol{\RR}$ such that $s(X)$ is a finite subset of $\RR$ and 
 $$\mu\left(\big\{x\in X\,\big|\,s(x)\neq 0\big\}\right) \in \RR$$
+is \textit{a $\mu$-simple function}.
 \end{definition}
 
 \begin{definition}
-Let $(X,\Sigma,\mu)$ be a space with measure and $s:X\ra \ol{\RR}$ be a nonnegative, simple function. Then we define
+Let $(X,\Sigma,\mu)$ be a space with measure and $s:X\ra \ol{\RR}$ be a nonnegative, $\mu$-simple function. Then
 $$\int_Xs\,d\mu = \sum_{y\in \ol{\RR}}y\cdot \mu\left(s^{-1}(y)\right)$$
-We call it \textit{the integral of $s$ with respect to $\mu$}.
+is \textit{the integral of $s$ with respect to $\mu$}.
 \end{definition}
 
 \begin{fact}\label{fact:basics_for_simple_functions}
-Let $(X,\Sigma,\mu)$ be a space with measure and $s_1, s_2:X\ra \ol{\RR}$ be nonnegative, simple functions. Then the following assertions hold.
+Let $(X,\Sigma,\mu)$ be a space with measure and $s_1, s_2:X\ra \ol{\RR}$ be nonnegative, $\mu$-simple functions. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item If $a, b\in \RR$ and $a, b\geq 0$, then $a s_1 + b s_2$ is a nonnegative, simple function and 
+\item If $a, b\in \RR$ and $a, b\geq 0$, then $a s_1 + b s_2$ is a nonnegative, $\mu$-simple function and 
 $$\int_X\left(a s_1 + b s_2\right)\,d\mu = a \int_Xs_1\,d\mu + b \int_Xs_2\,d\mu$$
 \item If $s_1\leq s_2$, then
 $$\int_Xs_1\,d\mu \leq \int_Xs_2\,d\mu$$
@@ -182,205 +113,274 @@ Left for the reader as an exercise.
 \end{proof}
 
 \begin{definition}
-Let $f:X\ra \ol{\RR}$ be a nonnegative, $\mu$-measurable function on a space $(X,\Sigma,\mu)$ with measure. Then we define 
-$$\int_X f d\mu = \sup\bigg\{\int_X s\, d\mu\,\bigg|\,s\mbox{ is a nonnegative, simple function and }s\leq f\bigg\}$$
+Let $f:X\ra \ol{\RR}$ be a nonnegative, measurable function on a space $(X,\Sigma,\mu)$ with measure. Then we define 
+$$\int_X f d\mu = \sup\bigg\{\int_X s\, d\mu\,\bigg|\,s\mbox{ is a nonnegative, }\mu\mbox{-simple function and }s\leq f\bigg\}$$
 We call it \textit{the integral of $f$ with respect to $\mu$}.
 \end{definition}
 
 \begin{fact}\label{fact:integral_is_monotone}
-Let $f,g:X\ra \ol{\RR}$ be a nonnegative, $\mu$-measurable functions on a space $(X,\Sigma,\mu)$ with measure. Suppose that $f\leq g$ holds $\mu$-almost everywhere, then
+Let $f,g:X\ra \ol{\RR}$ be a nonnegative, measurable functions on a space $(X,\Sigma,\mu)$ with measure. If $f\leq g$, then
 $$\int_Xf\,d\mu \leq \int_Xg\,d\mu$$
 \end{fact}
 \begin{proof}
-Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and $f(x)\leq g(x)$ for $x\not \in N$. Consider a nonnegative, simple function $s:X\ra \ol{\RR}$ such that $s\leq f$. Then $\mathbb{1}_{X\setminus N}\cdot s:X\ra \ol{\RR}$ is also a nonnegative, simple function. Moreover, we have
-$$\int_X\mathbb{1}_{X\setminus N}\cdot s\,d\mu = \int_Xs\,d\mu$$
-and $\mathbb{1}_{X\setminus N}\cdot s \leq g$. Thus
-$$\int_Xs\,d\mu = \int_X\mathbb{1}_{X\setminus N}\cdot s\,d\mu \leq \int_Xg\,d\mu$$
-Hence also
-$$\int_Xf\,d\mu \leq \int_Xg\,d\mu$$
-according to the fact that $s$ is arbitrary.
+Left for the reader as an exercise.
 \end{proof}
 
 \begin{theorem}[Monotone Convergence Theorem]\label{theorem:monotone_convergence}
-Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of nonnegative, $\mu$-measurable functions on a space $(X,\Sigma,\mu)$ with measure. Assume that $\{f_n\}_{n\in \NN}$ is $\mu$-almost everywhere nondecreasing and let $f$ be a nonnegative function which is $\mu$-almost everywhere pointwise limit of $\{f_n\}_{n\in \NN}$. Then $f:X\ra \ol{\RR}$ is a nonnegative, $\mu$-measurable function and
+Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of nonnegative, measurable functions on a space $(X,\Sigma,\mu)$ with measure. Assume that $\{f_n\}_{n\in \NN}$ is nondecreasing and let $f$ be a nonnegative function which is a limit of $\{f_n\}_{n\in \NN}$. Then $f:X\ra \ol{\RR}$ is a nonnegative, measurable function and
 $$\lim_{n\ra +\infty}\int_X f_n\, d\mu = \int_X f\, d\mu$$
 \end{theorem}
 \begin{proof}
-By Corollary \ref{corollary:mu_measurable_closed_under_almost_everywhere_convergence} function $f$ is $\mu$-measurable. It is also nonnegative. By Fact \ref{fact:integral_is_monotone} we deduce that
+By Corollary \ref{corollary:measurable_closed_under_limes_inferior} function $f$ is measurable. It is also nonnegative. By Fact \ref{fact:integral_is_monotone} we deduce that
 $$\int_X f_n\,d\mu \leq \int_X f_{n+1}\,d\mu \leq \int_X f\, d\mu$$
 for every $n\in \NN$ and hence 
 $$\lim_{n\ra +\infty}\int f_n d\mu \leq \int f d\mu$$
-Fix a set $N$ in $\Sigma$ such that $\mu(N) = 0$, ${f_n}_{\mid X\setminus N}$ is measurable for every $n\in \NN$, $f_n(x)\leq f_{n+1}(x)$ for each $x\not \in N$ and $n\in \NN$, $f(x) = \lim_{n\ra +\infty}f_n(x)$ for every $x\not \in N$. Fix also a number $\alpha \in (0,1)$. Pick a simple, nonnegative function $s:X\ra \ol{\RR}$ such that $s\leq f$. Consider the set
-$$A_n = \big\{x\not \in N\,\big|\, f_n(x)< \alpha s(x)\big\}$$
-Then $A_n\in \Sigma$ for every $n\in \NN$. Moreover, $\{{f_n}_{\mid X\setminus N}\}_{n\in \NN}$ is nondecreasing sequence and hence $\{A_n\}_{n\in \NN}$ is nonincreasing sequence of sets. Since $s(X)$ is a finite subset of $\RR$ and
+Fix a number $\alpha \in (0,1)$. Pick a $\mu$-simple, nonnegative function $s:X\ra \ol{\RR}$ such that $s\leq f$. Consider the set
+$$A_n = \big\{x\in X\,\big|\, f_n(x)< \alpha s(x)\big\}$$
+Then $A_n\in \Sigma$ for every $n\in \NN$. Since $\{f_n\}_{n\in \NN}$ is nondecreasing sequence, we derive that $\{A_n\}_{n\in \NN}$ is nonincreasing sequence of sets. Since $s(X)$ is a finite subset of $\RR$ and
 $$s(x)\leq f(x) = \lim_{n\ra +\infty}f_n(x)$$
-for every $x\not \in N$, we derive that
-$$\bigcap_{n\in \NN}A_n = \emptyset$$
-Thus we have $\lim_{n\ra +\infty}\mu(A_n)=0$. We have inequality
-$$\alpha  \int_Xs\,d\mu = \int_X\alpha s\,d\mu = \int_X \alpha \mathbb{1}_{X\setminus \left(A_n\cup N\right)}\cdot s\,d\mu +  \int_X \alpha \mathbb{1}_{A_n\cup N}\cdot s\,d\mu \leq $$
-$$\leq \int_X f_n\,d\mu + \mu(A_n\cup N)\cdot \sup_{x\in X}\left(\alpha s(x)\right) = \int_X f_n\,d\mu + \mu(A_n)\cdot \sup_{x\in X}\left(\alpha s(x)\right)$$
-Next $\mu(A_n)\ra 0$ as $n\ra +\infty$ and this shows that
+we derive that
+$$\bigcap_{n\in \NN}A_n = \emptyset,\,A_1\subseteq \big\{x\in X\,\big|\,s(x)\neq 0\big\}$$
+In particular, $\mu(A_1) \in \RR$ and 
+$$\lim_{n\ra +\infty}\mu(A_n)=0$$
+We have inequality
+$$\alpha  \int_Xs\,d\mu = \int_X\alpha s\,d\mu = \int_X  \mathbb{1}_{X\setminus A_n}\cdot \left(\alpha \cdot s\right)\,d\mu +  \int_X \mathbb{1}_{A_n}\cdot \left(\alpha \cdot s\right)\,d\mu \leq $$
+$$\leq \int_X f_n\,d\mu + \mu(A_n)\cdot \sup_{x\in X}\left(\alpha s(x)\right) = \int_X f_n\,d\mu + \mu(A_n)\cdot \sup_{x\in X}\left(\alpha s(x)\right)$$
+By virtue of
+$$\lim_{n\ra +\infty} \mu(A_n) = 0$$
+we have
 $$\alpha  \int_Xs\,d\mu \leq \lim_{n\ra +\infty}\int_Xf_n\,d\mu$$
-Since $s$ is arbitrary, we have
+Since $s$ is an arbitrary nonnegative and $\mu$-simple function such that $s\leq f$, we deduce that
 $$\alpha  \int_Xf\,d\mu \leq \lim_{n\ra +\infty}\int_Xf_n\,d\mu$$
-Finally for $\alpha \ra 1$ we deduce
+Finally for $\alpha \ra 1$ we obtain
 $$\int_Xf\,d\mu \leq  \lim_{n\ra +\infty}\int_Xf_n\,d\mu$$
-and thus we have equality.
+and this completes the proof.
 \end{proof}
 \noindent
 The theorem above is a reason why Lebesgue's integration theory is such a powerful tool.
 
 \begin{theorem}[Fatou's lemma]\label{theorem:fatous_lemma}
-Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of nonnegative, $\mu$-measurable functions on a space $(X,\Sigma,\mu)$ with measure. Then
+Let $\{f_n:X\ra \ol{\RR}\}_{n\in \NN}$ be a sequence of nonnegative, measurable functions on a space $(X,\Sigma,\mu)$ with measure. Then
 $$\int_X\liminf_{n\ra +\infty}f_n\,d\mu \leq \liminf_{n\ra +\infty}\int_Xf_n\,d\mu$$
 \end{theorem}
 \begin{proof}
-For every $m\in \NN$ we define $g_m = \inf_{n\geq m}f_n$. Then $\{g_m:X\ra \ol{\RR}\}_{m\in \NN}$ is a nondecreasing sequence of nonnegative, $\mu$-measurable functions on $(X,\Sigma,\mu)$ (this is a consequence of Corollary \ref{corollary:mu_measurable_functions_closed_under_supremum}). By Theorem \ref{theorem:monotone_convergence} we have
+For every $m\in \NN$ denote $\inf_{n\geq m}f_n$ by $g_m$. Corollary \ref{corollary:measurable_closed_under_limes_inferior} implies that $\{g_m:X\ra \ol{\RR}\}_{m\in \NN}$ is a nondecreasing sequence of nonnegative, measurable functions on $(X,\Sigma)$. By Theorem \ref{theorem:monotone_convergence} we have
 $$\lim_{m\ra +\infty}\int_X\inf_{n\geq m}f_n = \lim_{m\ra +\infty}\int_Xg_m\,d\mu = \int_X\lim_{m\ra +\infty}g_m\,d\mu = \int_X\liminf_{n\ra +\infty}f_n\,d\mu$$
 Hence
 $$\int_X\liminf_{n\ra +\infty}f_n\,d\mu = \lim_{m\ra +\infty}\int_X\inf_{n\geq m}f_n \leq \liminf_{n\ra +\infty}\int_Xf_n\,d\mu$$
 \end{proof}
 
 \begin{proposition}\label{proposition:integral_is_linear}
-Let $f,g:X\ra \ol{\RR}$ be a nonnegative, $\mu$-measurable functions on a space $(X,\Sigma,\mu)$ with measure. Fix a nonnegative numbers $a, b\in \RR$. Then the function $a f+b  g$ is $\mu$-measurable and 
+Let $f,g:X\ra \ol{\RR}$ be a nonnegative, measurable functions on a space $(X,\Sigma,\mu)$ with measure. Fix numbers $a, b\in \{0\}\cup \RR_+$. Then the function $a f+b  g$ is measurable and 
 $$\int_X\left(a f+b  g\right)\,d\mu = a \int_Xf\,d\mu + b \int_Xg\,d\mu$$
 \end{proposition}
-\noindent
-Before proving proposition we need the following result.
-
-\begin{lemma}\label{lemma:simple_approximation}
-Let $f:X\ra \ol{\RR}$ be a nonnegative, measurable function on a space $(X,\Sigma,\mu)$ with measure. Then there exists a nondecreasing sequence $\{s_n:X\ra \ol{\RR}\}_{n\in \NN}$ of nonnegative, measurable functions such that $s_n(X)$ is a finite subset of $\RR$ for every $n\in \NN$ and $f$ is pointwise limit of a sequence $\{s_n\}_{n\in \NN}$. Moreover, $s_n\leq f$ for every $n\in \NN$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-For every $n\in \NN$ and integer $0 \leq k < n\cdot 2^n$ we define 
-$$A_{n,k}=f^{-1}\left(\left[\frac{k}{2^n},\frac{k+1}{2^n}\right]\right)$$
-Then $A_{n,k}$ is a measurable set. We define
-$$s_n(x)=\begin{cases}\frac{k}{2^n}& \mbox{ if } x\in A_{n,k}\\
-0& \mbox{ if } x\in X\setminus \bigcup_{k=0}^{n\cdot 2^n-1}A_{n,k}
-\end{cases}$$
-Then each $s_n:X\ra \ol{\RR}$ is a nonnegative, measurable function such that $s_n(X)$ is a finite subset of $\RR$. The sequence $\{s_n\}_{n\in \NN}$ satisfies all assertions.
-\end{proof}
-
-\begin{lemma}\label{lemma:simple_approximation_mu_measurable}
-Let $f:X\ra \ol{\RR}$ be a nonnegative, $\mu$-measurable function on a space $(X,\Sigma,\mu)$ with measure. Then there exists a nondecreasing sequence $\{s_n:X\ra \ol{\RR}\}_{n\in \NN}$ of nonnegative, measurable functions such that $s_n(X)$ is a finite subset of $\RR$ for every $n\in \NN$ and $f$ is $\mu$-almost everywhere pointwise limit of a sequence $\{s_n\}_{n\in \NN}$. Moreover, $s_n\leq f$ for every $n\in \NN$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and $f_{\mid X\setminus N}$ is measurable. According to Lemma \ref{lemma:simple_approximation} there exists a nondecreasing sequence $\{t_n:X\setminus N\ra \ol{\RR}\}_{n\in \NN}$ of measurable functions such that $t_n(X\setminus N)$ is a finite subset of $\RR$ for every $n\in \NN$ and $f_{\mid X\setminus N}$ is pointwise limit of a sequence $\{t_n\}_{n\in \NN}$. Moreover, $t_n\leq f_{\mid X\setminus N}$ for every $n\in \NN$. We define the extension $s_n:X\ra \ol{\RR}$ of $t_n$ by setting $s_n(x) = 0$ for $x\in N$. Then $\{s_n\}_{n\in \NN}$ satisfies all assertions. 
-\end{proof}
-
-\begin{proof}[Proof of the proposition]
-By Lemma \ref{lemma:simple_approximation_mu_measurable} there exist nondecreasing sequences $\{s_n\}_{n\in \NN}$ and $\{t_n\}_{n\in \NN}$ of nonnegative, measurable functions taking only finitely many values such that $$f(x) = \lim_{n\ra +\infty}s_n(x),\,g(x) = \lim_{n\ra +\infty}t_n(x)$$
-hold $\mu$-almost everywhere. Hence also
+\begin{proof}
+By Proposition \ref{proposition:simple_approximation_for_nonnegative} there exist nondecreasing sequences $\{s_n\}_{n\in \NN}$ and $\{t_n\}_{n\in \NN}$ of nonnegative, measurable functions such that
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+\item $s_n(X),t_n(X)$ are finite subsets of $\RR$ for each $n\in \NN$. 
+\item $$f(x) = \lim_{n\ra +\infty}s_n(x),\,g(x) = \lim_{n\ra +\infty}t_n(x)$$
+\item $s_n \leq f,\,t_n\leq g$ for all $n \in \NN$.
+\end{enumerate} 
+It follows that
 $$\lim_{n \ra +\infty}\left(as_n + bt_n\right) = af + bg$$
-holds $\mu$-almost everywhere. Thus $af+bg$ is $\mu$-measurable by Corollary \ref{corollary:mu_measurable_closed_under_upper_limits}.
+Thus $af+bg$ is measurable by Corollary \ref{corollary:measurable_closed_under_limes_inferior}.
 By definition
 $$a \int_Xf\,d\mu + b \int_Xg\,d\mu \leq \int_X\left(a f+b  g\right)\,d\mu $$
 Hence if one of the integrals
 $$\int_Xf\,d\mu,\,\int_Xg\,d\mu$$
-is infinite, then the assertion holds. Suppose that both integrals are finite. Then by Lemma \ref{lemma:simple_approximation_mu_measurable} one can choose $\{s_n\}_{n\in \NN}$ and $\{t_n\}_{n\in \NN}$ such that they consist of nonnegative, simple functions. By Theorem \ref{theorem:monotone_convergence} and Fact \ref{fact:basics_for_simple_functions} we have
+is infinite, then the assertion holds. Suppose that both integrals are finite. Then $\{s_n\}_{n\in \NN}$ and $\{t_n\}_{n\in \NN}$ consist of nonnegative, $\mu$-simple functions. By Theorem \ref{theorem:monotone_convergence} and Fact \ref{fact:basics_for_simple_functions} we have
 $$\int_X\left(a f + b g\right)\,d\mu = \lim_{n\ra +\infty}\int_X\left(a s_n + b t_n\right)\,d\mu = \lim_{n\ra +\infty}\left(a \int_Xs_n\,d\mu + b \int_Xt_n\,d\mu\right) =$$
 $$=a  \left(\lim_{n\ra +\infty}\int_Xs_n\,d\mu\right) + b \left(\lim_{n\ra +\infty}\int_Xt_n\,d\mu\right) = a \int_Xf\,d\mu + b \int_Xg\,d\mu$$
 \end{proof}
 
+\section{Strongly measurable functions}
+\noindent
+In this section we introduce a class of measurable functions which form the basis of integration in Banach spaces.
+
+\begin{proposition}\label{proposition:measurable_functions_closed_under_pointwise_limits}
+Let $(Y,d)$ be a metric space and let $(X,\Sigma)$ be a measurable space. Suppose that a sequence $\{f_n:X\ra Y\}_{n\in \NN}$ of measurable functions is pointwise convergent to some function $f:X\ra Y$. Then $f$ is measurable.
+\end{proposition}
+\begin{proof}
+Let $U$ be an open subset of $Y$. We define
+$$U_k = \big\{y \in Y\,\big|\,\mathrm{dist}\left(y,X\setminus U\right) > 2^{-k}\big\}$$
+for every $k\in \NN$. Then $\{U_k\}_{k\in \NN}$ are open subsets of $Y$. We have
+$$f^{-1}(U) =\bigcup_{k\in \NN}\bigcup_{m\in \NN}\bigcap_{n\geq m}f_n^{-1}(U_k)$$
+and the left hand side is clearly an element of $\Sigma$. Hence preimages of open subsets of $Y$ under $f$ are in $\Sigma$. Since $\sigma$-algebra $\cB(Y)$ is generated by open sets, we derive the assertion.
+\end{proof}
+\noindent
+We fix a field $\mathbb{K}$ together with an absolute value $|-|$. Suppose that $Y$ is a normed vector space over $\mathbb{K}$ and suppose that $\lVert-\rVert$ is its norm. Let $X$ be a set and let $f:X\ra Y$ be a function. We define a nonnegative function $\lVert f \rVert:X\ra \ol{\RR}$ by formula 
+$$\lVert f\rVert (x) = \lVert f(x) \rVert$$
+for every $x\in X$.
+
+\begin{definition}
+Let $Y$ be a normed vector space over $\mathbb{K}$ and let $(X,\Sigma)$ be a measurable space. A function $f:X\ra Y$ is \textit{strongly measurable} if it is measurable and $f(X)$ is a separable subspace of $Y$.
+\end{definition}
+
+\begin{proposition}\label{proposition:strongly_measurable_functions_closed_under_pointwise_limits}
+Let $Y$ be a normed vector space over $\mathbb{K}$ and let $(X,\Sigma)$ be a measurable space. Suppose that a sequence $\{f_n:X\ra Y\}_{n\in \NN}$ of strongly measurable functions is pointwise convergent to some function $f:X\ra Y$. Then $f$ is strongly measurable.
+\end{proposition}
+\begin{proof}
+According to Proposition \ref{proposition:measurable_functions_closed_under_pointwise_limits} function $f$ is measurable. Moreover, we have
+$$f(X) \subseteq \bd{cl}\bigg(\bigcup_{n\in \NN}f_n(X)\bigg)$$
+and hence $f(X)$ is a separable subspace of $Y$. Thus $f$ is strongly measurable.
+\end{proof}
+
+\begin{proposition}\label{proposition:strongly_measurable_closed_under_diagonal}
+Let $n\in \NN$ and let $Y_0, ...,Y_n$ be normed vector spaces over $\mathbb{K}$. Suppose that $(X,\Sigma)$ is a measurable space and $f_i:X\ra Y_i$ for $0 \leq i \leq n$ are strongly measurable functions. Then the function 
+$$X\ni x \mapsto \bigg(f_0(x),...,f_n(x)\bigg) \in \prod_{i=0}^nY_i$$
+is strongly measurable.
+\end{proposition}
+\begin{proof}
+Note that the family of open subsets of 
+$$\prod_{i=0}^nf_i(X)$$
+is contained in $\sigma$-algebra generated by sets 
+$$\prod_{i=0}^n\left(U_i\cap f_i(X)\right)$$
+where $U_i$ is an open subset of $Y_i$ for $0\leq i \leq n$. Indeed, this is a consequence of the fact that $f_i(X)$ are separable for $0\leq i\leq n$. It follows that the function in question is measurable. Since finite product of separable metric spaces is separable, we derive that its image is separable. Hence the function in the statement is strongly measurable.
+\end{proof}
+
+\begin{corollary}\label{corollary:strongly_measurable_form_vector_space}
+Let $Y$ be a normed space over $\mathbb{K}$ and let $(X,\Sigma)$ be a measurable space. Let $f, g:X\ra Y$ be strongly measurable functions. Then 
+$$\alpha f + \beta g$$
+is strongly measurable for all $\alpha,\beta \in \mathbb{K}$.
+\end{corollary}
+\begin{proof}
+This is a consequence of Proposition \ref{proposition:strongly_measurable_closed_under_diagonal} and the fact that $Y$ is topological vector space over $\mathbb{K}$. Details are left for the reader.
+\end{proof}
+
+\begin{theorem}\label{theorem:simple_approximation_strongly_measurable}
+Let $Y$ be a normed space over $\mathbb{K}$ and let $(X,\Sigma)$ be a measurable space. Let $f:X\ra Y$ be a function. Then the following assertions are equivalent.
+\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+\item $f$ is strongly measurable.
+\item There exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)\subseteq Y$ is finite and the inequality
+$$||f - s_n||\leq ||f||$$
+holds for every $n\in \NN$.
+\end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need the following lemma.
+
+\begin{lemma}\label{lemma:argmin_sets_lemma}
+Let $n,k\in \NN$ satisfy $k \leq n$. Then
+$$\big\{(r_0,...,r_n)\in \RR^{n+1}\,\big|\,\min_{0\leq i\leq n} r_i < r_j\mbox{ for }j < k\mbox{ and }r_k = \min_{0\leq i\leq n} r_i\big\} \subseteq \RR^{n+1}$$
+is a Borel subset.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Left for the reader.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Suppose that $f$ is strongly measurable. Consider a countable subset $\{y_k\}_{k\in \NN}$ of $Y$ which closure contains $f(X)$ and assume that $y_0$ is zero in $Y$. From Proposition \ref{proposition:strongly_measurable_closed_under_diagonal} we deduce that the function
+$$X\ni x\mapsto \bigg(\lVert y_0 - f(x)\rVert,...,\lVert y_n - f(x)\rVert \bigg)\in \RR^{n+1}$$
+is measurable for each $n \in \NN$. Thus by Lemma \ref{lemma:argmin_sets_lemma} the set
+$$A_{n,k} = \big\{x \in X\,\big|\,\min_{0\leq i\leq n}\lVert y_i - f(x)\rVert < \lVert y_j - f(x)\rVert \mbox{ for }j < k\mbox{ and }\lVert y_k - f(x)\rVert = \min_{0\leq i\leq n}\lVert y_i - f(x)\rVert\big\}$$
+is in $\Sigma$ for all $k,n\in \NN$ such that $k \leq n$. For $n\in \NN$ we define a function $s_n:X\ra Y$ by formula
+$$s_n(x) = \sum_{k=0}^ny_k\cdot \mathbb{1}_{A_{n,k}}$$
+Note that $s_n$ is measurable, $s_n(X)$ is finite and
+$$\lVert s_n(x) - f(x)\rVert = \min_{0\leq i\leq n}\lVert y_i - f(x)\rVert$$
+for every $x \in X$. Thus
+$$\lim_{n\ra +\infty}s_n = f$$
+and $\lVert s_n - f\rVert \leq  \lVert f\rVert$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+Suppose now that there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)\subseteq Y$ is finite. Then Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is strongly measurable. This proves that $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
 \section{Lebesgue's spaces}\label{section:lebesgue_spaces}
 \noindent
-In this section we fix a Banach space $Y$ over a field $\mathbb{K}$ with complete absolute value.
+In this section we fix a Banach space $Y$ with norm $\lVert-\rVert$ over a field $\mathbb{K}$ with absolute value $|-|$.
 
 \begin{definition}
-Let $f:X\ra Y$ be a strongly $\mu$-measurable function on a space $(X,\Sigma,\mu)$ with measure. We say that $f$ is \textit{integrable with respect to $\mu$} or shortly \textit{$\mu$-integrable} if
-$$||f||_1 = \int_X||f||\,d\mu \in \RR$$
+Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. If
+$$\lVert f\rVert_1 = \int_X\lVert f\rVert\,d\mu \in \RR$$
+then $f$ is \textit{integrable with respect to $\mu$} or shortly \textit{$\mu$-integrable}.
 \end{definition}
-\noindent
-Note that this definition makes sense according to Corollary \ref{corollary:mu_strongly_measurable_closed_under_Borel_operations} and the fact that $||-||:Y\ra \ol{\RR}$ is continuous (and hence Borel measurable).
 
 \begin{definition}
-Let $(X,\Sigma,\mu)$ be a space with measure. Then the set of all $Y$-valued, $\mu$-integrable functions is denoted by $L^1(\mu,Y)$ and is called \textit{the Lebesgue's space}.
+Let $(X,\Sigma,\mu)$ be a space with measure. Then the set of all $Y$-valued, $\mu$-integrable functions is denoted by $L^1(\mu,Y)$ and is called \textit{the Lebesgue's space for $Y$ with respect to $\mu$}.
 \end{definition}
 \noindent
-By Corollary \ref{corollary:mu_strongly_measurable_closed_under_Borel_operations} applied to the function $Y\times Y\ni (y_1,y_2) \mapsto y_1 + y_2 \in Y$ the set of all strongly $\mu$-measurable, $Y$-valued functions on a space $(X,\Sigma,\mu)$ with measure is a $\mathbb{K}$-vector space with respect to the usual operations.
+By Corollary \ref{corollary:strongly_measurable_form_vector_space} the set of all strongly measurable, $Y$-valued functions on a space $(X,\Sigma)$ is a $\mathbb{K}$-vector space with respect to the usual operations.
 
 \begin{theorem}[Riesz]\label{theorem:riesz_theorem}
 Let $(X,\Sigma,\mu)$ be a space with measure. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item $L^1(\mu,Y)$ is a $\mathbb{K}$-linear subspace of the space of all $Y$-valued, strongly $\mu$-measurable functions.
+\item $L^1(\mu,Y)$ is a $\mathbb{K}$-linear subspace of the space of all $Y$-valued, strongly measurable functions.
 \item The map
-$$L^1(\mu,Y)\ni f \mapsto ||f||_1\in [0,+\infty)$$
+$$L^1(\mu,Y)\ni f \mapsto \lVert f \rVert_1\in [0,+\infty)$$
 is a seminorm.
-\item If $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of elements of $L^1(\mu,Y)$ which is Cauchy with respect to $||-||_1$, then there exist an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers, a $\mu$-integrable function $f:X\ra Y$ and a set $Z\in \Sigma$ such that $\mu(Z) = 0$ and
+\item If $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of elements of $L^1(\mu,Y)$ which is Cauchy with respect to $||-||_1$, then there exist an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers and a $\mu$-integrable function $f:X\ra Y$ such that
 $$\lim_{k\ra +\infty}f_{n_k}(x) = f(x)$$
-for every $x \not \in Z$. Moreover, $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $||-||_1$.
+for all $x$ outside some set in $\Sigma$ of measure $\mu$ equal to zero. Moreover, $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert-\rVert_1$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Suppose that $f, g:X\ra Y$ are integrable and $a, b\in \mathbb{K}$. Then by Proposition \ref{proposition:integral_is_linear} and the fact that $Y$ is a normed space with respect to $\mathbb{K}$ we have
-$$0 \leq ||a f+ b g||_1 = \int_X||a f + b g||\,d\mu \leq \int_X\left(|a|\cdot ||f||+ |b|\cdot ||g||\right)\,d\mu= $$
-$$= |a| \int_X||f||\,d\mu + |b| \int_X||g||\,d\mu = |a|\cdot ||f||_1+ |b|\cdot ||g||_1 $$
-Hence $a f + b g$ is integrable and $||-||_1$ is a seminorm on $L^1(\mu,Y)$. This proves both \textbf{(1)} and \textbf{(2)}.\\
-Now we focus on \textbf{(3)}. Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and ${f_n}_{\mid X\setminus N}$ is strongly measurable for $n\in \NN$. We consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
-$$||f_{n_{k+1}} - f_{n_k}||_1\leq 4^{-k}$$
+Suppose that $f, g:X\ra Y$ are integrable and $\alpha, \beta\in \mathbb{K}$. Then by Fact \ref{fact:integral_is_monotone}, Proposition \ref{proposition:integral_is_linear} we have
+$$0 \leq \lVert \alpha f+ \beta g\rVert_1 = \int_X\lVert \alpha f + \beta g\rVert\,d\mu \leq \int_X\left(|\alpha|\cdot \lVert f\rVert+ |\beta|\cdot \lVert g \rVert\right)\,d\mu= $$
+$$= |\alpha| \int_X\lVert f\rVert \,d\mu + |\beta| \int_X\lVert g \rVert\,d\mu = |\alpha| \cdot \lVert f \rVert_1+ |\beta| \cdot \lVert g \rVert_1 $$
+Hence $\alpha f+ \beta g$ is $\mu$-integrable and $\lVert -\rVert_1$ is a seminorm on $L^1(\mu,Y)$. This proves both \textbf{(1)} and \textbf{(2)}.\\
+Now we focus on \textbf{(3)}. We consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
+$$\lVert f_{n_{k+1}} - f_{n_k}\rVert_1\leq 4^{-k}$$
 for every $k\in \NN$. For $k\in \NN$ consider a set
-$$A_k = \big\{x \not \in N\,\big|\,||f_{n_{k+1}}(x) - f_{n_k}(x)||\geq 2^{-k}\big\}$$
+$$A_k = \big\{x \in X\,\big|\,\lVert f_{n_{k+1}}(x) - f_{n_k}(x)\rVert \geq 2^{-k}\big\}$$
 in $\Sigma$. Then
-$$2^{-k}\cdot \mu(A_k)\leq \int_X||f_{n_{k+1}}-f_{n_k}||\,d\mu = ||f_{n_{k+1}}-f_{n_k}||_1\leq 4^{-k}$$
-Hence $\mu(A_k)\leq 2^{-k}$ and we have
+$$2^{-k} \cdot \mu(A_k)\leq \int_X\lVert f_{n_{k+1}}-f_{n_k}\rVert \,d\mu = \lVert f_{n_{k+1}} - f_{n_k}\rVert_1 \leq 4^{-k}$$
+Hence $\mu(A_k)\leq 2^{-k}$ for each $k\in \NN$ and we have
 $$\mu\left(\bigcap_{m\in \NN}\bigcup_{k\geq m}A_k\right) = \lim_{m\ra +\infty} \mu\left(\bigcup_{k\geq m}A_k\right)\leq $$
-$$\leq \limsup_{m\ra +\infty}\left(\sum_{k\geq m}\mu(A_k)\right) \leq \limsup_{m\ra +\infty}\left(\sum_{k\geq m}2^{-k}\right) = \limsup_{m\ra +\infty} 2^{1-m} = 0$$
-Let
+$$\leq \limsup_{m\ra +\infty}\left(\sum_{k\geq m}\mu(A_k)\right) \leq \limsup_{m\ra +\infty}\left(\sum_{k\geq m}2^{-k}\right) = 0$$
+For each $m\in \NN$ let
 $$B_m = \bigcup_{k\geq m}A_k$$
-be a subset of $X$ in $\Sigma$. Then $\{B_m\}_{m\in \NN}$ is a nonincreasing sequence of subsets of $\Sigma$ and we proved that
-$$\mu\left(B\right)=  0$$
-where $B$ is the intersection of $\{B_m\}_{m\in \NN}$. For $x\not \in B_m\cup N$ we have
-$$\sum_{k\geq m}||f_{n_{k+1}}(x) - f_{n_k}(x)|| < \sum_{k=m}^{+\infty}2^{-k} = 2^{1-m}$$
-Since $Y$ is a Banach space, we deduce that for $x\not \in B_m\cup N$ series
+Then $\{B_m\}_{m\in \NN}$ is a nonincreasing sequence of subsets of $\Sigma$ and we proved that set
+$$B = \bigcap_{m\in \NN}B_m$$
+in $\Sigma$ satisfy $\mu(B) = 0$. For $x\not \in B_m$ we have
+$$\sum_{k\geq m}\lVert f_{n_{k+1}}(x) - f_{n_k}(x)\rVert \leq \sum_{k=m}^{+\infty}2^{-k} = 2^{1-m}$$
+Since $Y$ is a Banach space, we deduce that for $x\not \in B_m$ series
 $$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
-is convergent. Therefore, it is also convergent for $x\not \in B\cup N$. We define $f:X\ra Y$ as a sum
+is convergent. Therefore, it is also convergent for $x\not \in B$. We define $f:X\ra Y$ as a sum
 $$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
-for $x\not \in B\cup N$ and $f(x) = 0$ for $x\in B\cup N$. Then
+for $x\not \in B$ and $f(x) = 0$ for $x\in B$. Then
 $$\lim_{k\ra +\infty}f_{n_k}(x) = f(x)$$
-for $x \not \in B\cup N$. Denote $B\cup N$ by $Z$. Hence $f$ is a strongly measurable function and $\{f_{n_k}\}_{k\in \NN}$ converges pointwise to $f$ outside a set $Z$ in $\Sigma$ such that $\mu(Z) = 0$. Moreover, by Theorem \ref{theorem:monotone_convergence} we have
-$$||f||_1 = \int_X||f||\,d\mu = \int_X\mathbb{1}_{X\setminus Z}\cdot \big|\big|f_{n_0} + \sum_{k\in \NN}(f_{n_{k+1}} - f_{n_k})\big|\big|\,d\mu \leq \int_X\left(||f_{n_0}|| + \sum_{k\in \NN}||f_{n_{k+1}}-f_{n_k}||\right)\,d\mu = $$
-$$= \int_X||f_{n_0}||\,d\mu + \sum_{k\in \NN}\int_X||f_{n_{k+1}}-f_{n_k}||\,d\mu \leq ||f_{n_0}||_1 + \sum_{k\in \NN}4^{-k} $$
+for $x \not \in B$. Hence
+$$\lim_{k\ra +\infty}\mathbb{1}_{X\setminus B}\cdot f_{n_k} = f$$
+and Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is a strongly measurable function. Moreover, by Theorem \ref{theorem:monotone_convergence} we have
+$$\lVert f \rVert_1 = \int_X\lVert f\rVert \,d\mu = \int_X\mathbb{1}_{X\setminus B}\cdot \big \lVert f_{n_0} + \sum_{k\in \NN}(f_{n_{k+1}} - f_{n_k})\big \rVert \,d\mu \leq \int_X\left(\lVert f_{n_0}\rVert  + \sum_{k\in \NN}\lVert f_{n_{k+1}}-f_{n_k}\rVert \right)\,d\mu = $$
+$$= \int_X\lVert f_{n_0}\rVert \,d\mu + \sum_{k\in \NN}\int_X \lVert f_{n_{k+1}}-f_{n_k}\rVert \,d\mu \leq \lVert f_{n_0}\rVert_1 + \sum_{k\in \NN}4^{-k} $$
 Thus $f\in L^1(\mu,Y)$ and by Theorem \ref{theorem:monotone_convergence} we have
-$$||f - f_{n_m}||_1 = \int_X\mathbb{1}_{X\setminus Z}\cdot \big|\big|\sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big|\big|\,d\mu \leq  \int_X \big|\big|\sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big|\big|\,d\mu \leq $$
-$$\leq \int_X\sum_{k\geq m}\big|\big|f_{n_{k+1}} - f_{n_k}\big|\big|\,d\mu =\sum_{k\geq m}\int_X\big|\big|f_{n_{k+1}} - f_{n_k}\big|\big|\,d\mu = \sum_{k\geq m}4^{-k} = 4^{-m}\cdot \frac{4}{3} $$
-Therefore, $\{f_{n_k}\}_{k\in \NN}$ converges to $f$ with respect to $||-||_1$. Since $\{f_n\}_{n\in \NN}$ is a Cauchy sequence for $||-||_1$ with a subsequence convergent to $f$, we derive that $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $||-||_1$.
+$$\lVert f - f_{n_m}\rVert_1 = \int_X\lVert f - f_{n_m}\rVert \,d\mu = \int_X\mathbb{1}_{X\setminus B}\cdot \big\lVert \sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big\rVert \,d\mu \leq  \int_X \big\lVert \sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big\rVert \,d\mu \leq $$
+$$\leq \int_X\sum_{k\geq m}\lVert f_{n_{k+1}} - f_{n_k}\rVert \,d\mu =\sum_{k\geq m}\int_X\lVert f_{n_{k+1}} - f_{n_k}\rVert \,d\mu = \sum_{k\geq m}4^{-k} = 4^{-m}\cdot \frac{4}{3} $$
+Therefore, $\{f_{n_k}\}_{k\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_1$. Since $\{f_n\}_{n\in \NN}$ is a Cauchy sequence with respect to $\lVert-\rVert_1$ with a subsequence convergent to $f$, we derive that $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_1$.
 \end{proof}
 \noindent
-Next theorem is a criterion connecting $\mu$-almost everywhere pointwise convergence and convergence with respect to $||-||_1$.
+Next theorem is a criterion connecting pointwise convergence and convergence with respect to $\lVert -\rVert_1$.
 
 \begin{theorem}[Lebesgue's dominated convergence theorem]\label{theorem:dominated_convergence}
-Let $(X,\Sigma,\mu)$ be a space with measure and let $\{f_n:X\ra Y\}_{n\in \NN}$ be a sequence of $\mu$-integrable functions. Suppose that $f:X\ra Y$ is a pointwise limit of this sequence $\mu$-almost everywhere and assume that there exists nonnegative, $\mu$-measurable function $g:X\ra \ol{\RR}$ such that $||f_n||\leq g$ holds $\mu$-almost everywhere for every $n\in \NN$ and
+Let $(X,\Sigma,\mu)$ be a space with measure and let $\{f_n:X\ra Y\}_{n\in \NN}$ be a sequence of $\mu$-integrable functions. Suppose that $f:X\ra Y$ is a pointwise limit of $\{f_n\}_{n\in \NN}$ and assume that there exists nonnegative, measurable function $g:X\ra \ol{\RR}$ such that $\lVert f_n\rVert \leq g$ holds for every $n\in \NN$ and
 $$\int_X g\,d\mu\in \RR$$
-Then $f\in L^1(\mu,Y)$ and $f_n \ra f$ for $n\ra +\infty$ with respect to $||-||_1$.
+Then $f\in L^1(\mu,Y)$ and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_1$.
 \end{theorem}
 For the proof we need the following result.
 
 \begin{lemma}\label{lemma:difference_of_integrals}
-Let $f, g:X\ra \ol{\RR}$ be a nonnegative, $\mu$-measurable functions on a space $(X,\Sigma,\mu)$ with measure. Suppose that $f\leq g$ and
+Let $f, g:X\ra \ol{\RR}$ be a nonnegative, measurable functions on a space $(X,\Sigma,\mu)$ with measure. Suppose that $f \leq g$ and
 $$\int_Xf\,d\mu, \int_Xg\,d\mu\in \RR$$
 Then
 $$\int_X(g-f)\,d\mu = \int_Xg\,d\mu - \int_Xf\,d\mu$$
 \end{lemma}
 \begin{proof}[Proof of the lemma]
 According to Proposition \ref{proposition:integral_is_linear} we obtain that
-$$\int_Xg\,d\mu = \int_X\left((g-f) + f\right)\,d\mu = \int_X(g-f)\,d\mu + \int_Xf\,d\mu$$
+$$\int_Xg\,d\mu = \int_X\big((g-f) + f\big)\,d\mu = \int_X(g-f)\,d\mu + \int_Xf\,d\mu$$
 Since integrals above are finite, we have
 $$\int_X(g-f)\,d\mu = \int_Xg\,d\mu - \int_Xf\,d\mu$$
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-Since $\{f_n\}_{n\in \NN}$ converges pointwise $\mu$-almost everywhere to $f$, we deduce that $f$ is strongly $\mu$-measurable. Moreover, a sequence $\big\{||f||_n:X\ra \ol{\RR}\big\}_{n\in \NN}$ converges pointwise $\mu$-almost everywhere to $||f||$. Since $||f_n||\leq g$ holds $\mu$-almost everywhere for every $n\in \NN$, we deduce that $||f||\leq g$ holds $\mu$-almost everywhere. Thus
-$$||f||_1 = \int_X||f||\,d\mu \leq \int_Xg\,d\mu \in \RR$$
-Hence $f\in L^1(\mu, Y)$. Note that $||f - f_n|| \leq 2g$ holds $\mu$-almost everywhere for every $n\in \NN$. Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and $||f(x) - f_n(x)|| \leq 2g(x)$ for every $x \not \in N$. Thus by Theorem \ref{theorem:fatous_lemma} and Lemma \ref{lemma:difference_of_integrals} we have
-$$\int_X2g\,d\mu - \int_X\limsup_{n\ra +\infty}||f-f_n||\,d\mu  = \int_X\mathbb{1}_{X\setminus N}\cdot 2g\,d\mu - \int_X\mathbb{1}_{X\setminus N}\cdot \limsup_{n\ra +\infty}||f-f_n||\,d\mu = $$
-$$= \int_X\liminf_{n\ra +\infty}\mathbb{1}_{X\setminus N}\cdot  \left(2g - ||f-f_n||\right)\,d\mu \leq \liminf_{n\ra +\infty}\int_X\mathbb{1}_{X\setminus N}\cdot \left(2g - ||f- f_n||\right)\,d\mu =$$
-$$= \int_X\mathbb{1}_{X\setminus N}\cdot 2g\,d\mu - \limsup_{n\ra +\infty}\int_X\mathbb{1}_{X\setminus N}\cdot||f-f_n||\,d\mu = \int_X2g\,d\mu - \limsup_{n\ra +\infty}\int_X||f-f_n||\,d\mu$$
+Since $\{f_n\}_{n\in \NN}$ converges pointwise to $f$, we deduce that $f$ is strongly measurable. Moreover, a sequence $\big\{\lVert f\rVert_n:X\ra \ol{\RR}\big\}_{n\in \NN}$ converges pointwise to $\lVert f\rVert$. Since $\lVert f_n\rVert\leq g$ holds for every $n\in \NN$, we deduce that $\lVert f\rVert\leq g$. Thus
+$$\lVert f\rVert_1 = \int_X\lVert f\rVert\,d\mu \leq \int_Xg\,d\mu \in \RR$$
+Hence $f\in L^1(\mu, Y)$. Note that $\lVert f - f_n\rVert \leq 2g$ holds for every $n\in \NN$. Thus by Theorem \ref{theorem:fatous_lemma} and Lemma \ref{lemma:difference_of_integrals} we have
+$$\int_X2g\,d\mu - \int_X\limsup_{n\ra +\infty}\lVert f-f_n\rVert\,d\mu  = \int_X \big(2g - \limsup_{n\ra +\infty}\lVert f-f_n\rVert\big)\,d\mu = $$
+$$= \int_X\liminf_{n\ra +\infty}\left(2g - \lVert f-f_n||\right)\,d\mu \leq \liminf_{n\ra +\infty}\int_X\left(2g - \lVert f- f_n\rVert\right)\,d\mu =$$
+$$= \int_X 2g\,d\mu - \limsup_{n\ra +\infty}\int_X \lVert f-f_n\rVert\,d\mu $$
 Hence
-$$\limsup_{n\ra +\infty}\int_X||f - f_n||\,d\mu \leq \int_X\limsup_{n\ra +\infty}||f - f_n||\,d\mu = 0$$
-Again by Theorem \ref{theorem:fatous_lemma} we have
-$$0 = \int_X\liminf_{n\ra +\infty}||f-f_n||\,d\mu \leq \liminf_{n\ra +\infty} \int_X||f - f_n||\,d\mu$$
+$$\limsup_{n\ra +\infty}\int_X\lVert f - f_n\rVert\,d\mu \leq \int_X\limsup_{n\ra +\infty}\lVert f - f_n||\,d\mu = 0$$
 Thus we deduce that
-$$\lim_{n\ra +\infty}||f - f_n||_1 = \lim_{n\ra +\infty}\int_X||f - f_n||\,d\mu = 0$$
+$$\lim_{n\ra +\infty}\lVert f - f_n\rVert_1 = \lim_{n\ra +\infty}\int_X\lVert f - f_n\rVert\,d\mu = 0$$
 \end{proof}
 \noindent
 It turns out that Lebesgue's space $L^1(\mu, Y)$ contains certain dense subspace which can be easily described. We shall define this space and then prove that in fact it is dense.
@@ -388,88 +388,57 @@ It turns out that Lebesgue's space $L^1(\mu, Y)$ contains certain dense subspace
 \begin{definition}
 Let $(X,\Sigma, \mu)$ be a space with measure. A measurable function $s:X\ra Y$ such that $s(X)\subseteq Y$ is finite and
 $$\mu\left(\{x\in X\,\big|\,s(x)\neq 0\big\}\right) \in \RR$$
-is \textit{simple}.
+is \textit{$\mu$-simple}. The set of all $\mu$-simple, $Y$-valued functions defined on $(X,\Sigma, \mu)$ is denoted by $S(\mu, Y)$.
 \end{definition}
-\noindent
-The set of all simple, $Y$-valued functions defined on $(X,\Sigma, \mu)$ is denoted by $S(\mu, Y)$.
 
 \begin{theorem}\label{theorem:simple_are_dense}
-Let $(X,\Sigma, \mu)$ be a space with measure. The space $S(\mu, Y)$ is a dense $\mathbb{K}$-linear subspace of $L^1(\mu, Y)$.
+Let $(X,\Sigma, \mu)$ be a space with measure. For each $f \in L^1(\mu,Y)$ there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of $\mu$-simple functions and a nonnegative, measurable function $g:X\ra \ol{\RR}$ such that the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item
+$$\int_Xg\,d\mu \in \RR$$
+\item $\lVert s_n \rVert \leq g$ for every $n\in \NN$
+\item $\{s_n\}_{n\in \NN}$ converges pointwise to $f$.
+\end{enumerate}
+In particular, the space $S(\mu, Y)$ is a dense $\mathbb{K}$-linear subspace of $L^1(\mu, Y)$.
 \end{theorem}
-\noindent
-Before the proof we shall first establish the following result.
-
-\begin{lemma}\label{lemma:simple_approximation_strongly_measurable}
-Let $f:X\ra Y$ be a strongly measurable function. There exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)\subseteq Y$ is finite and the inequality
-$$||f - s_n||\leq ||f||$$
-holds for every $n\in \NN$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Consider a countable subset $\{y_k\}_{k\in \NN}$ of $Y$ which closure contains $f(X)$ and assume that $y_0$ is zero in $Y$. Let $B_{n,k}$ be a closed ball in $Y$ with center $y_k$ and radius $2^{-n}$ for any $k,n\in \NN$. We define an increasing sequence $\{k_n\}_{n\in \NN}$ of natural numbers by requirements
-$$\big\{x \in X\,\big|\,||f(x)||\leq n+1\big\} \cup \bigcup_{k=0}^{k_n}B_{n, k}\subseteq \bigcup_{k=0}^{k_{n+1}}B_{n+1, k}$$
-Fix $n\in \NN$ and set
-$$s_n(x) = \begin{cases}
-y_m & \mbox{ if }m\leq k_n\mbox{ and }x\in f^{-1}\left(B_{n, m}\setminus \bigcup_{k=0}^{m-1}B_{n, k}\right)\\
-0 & \mbox{ otherwise}
-\end{cases}$$
-A glance at the definition of $s_n:X\ra Y$ shows that it is a measurable function and has finite set of values. We also have
-$$||f(x) - s_n(x)||\leq 2^{-n}$$
-if $||f(x)||\leq n$ and $x \in X$. Hence $s_n(x) \ra f(x)$ as $n\ra +\infty$ for every $x$ in $X$. Moreover, we have
-$$||f(x) - s_n(x)||\leq ||f(x) - y_0||\leq ||f(x)||$$
-for every
-$$x\in f^{-1}\left(\bigcup_{k=0}^{k_n}B_{n,k}\right)$$
-and also
-$$||f(x) - s_n(x)|| = ||f(x)||$$
-for other $x$ in $X$. Therefore, $||f - s_n||\leq ||f||$. This finishes the proof.
-\end{proof}
-
-\begin{lemma}\label{lemma:simple_approximation_mu_strongly_measurable}
-Let $f:X\ra Y$ be a strongly $\mu$-measurable function. There exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions $\mu$-almost everywhere pointwise convergent to $f$ such that $s_n(X)\subseteq Y$ is finite and the inequality
-$$||f - s_n||\leq ||f||$$
-holds for every $n\in \NN$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-Let $N$ be a set in $\Sigma$ such that $\mu(N) = 0$ and $f_{\mid X\setminus N}$ is strongly measurable. We apply Lemma \ref{lemma:simple_approximation_strongly_measurable} and obtain a sequence of measurable functions $\{t_n:X\setminus N\ra Y\}_{n\in \NN}$ pointwise convergent to $f_{\mid X\setminus N}$ such that $t_n(X\setminus N)\subseteq Y$ is finite and the inequality
-$$||f_{\mid X\setminus N} - t_n||\leq ||f_{\mid X\setminus N}||$$
-holds for every $n\in \NN$. Now for every $n\in \NN$ we define extension $s_n:X\ra Y$ of $t_n$ to $X$ by $s_n(x) = 0$ for $x\in N$. Then $\{s_n\}_{n\in \NN}$ is a sequence of measurable functions $\mu$-almost everywhere pointwise convergent to $f$ such that $s_n(X)\subseteq Y$ is finite and the inequality
-$$||f - s_n||\leq ||f||$$
-holds for every $n\in \NN$.
-\end{proof}
-
-\begin{proof}[Proof of the theorem]
-Clearly every simple function is strongly measurable and $\mu$-integrable. Moreover, simple functions are closed under $\mathbb{K}$-vector space operations defined on the space of strongly measurable functions. Hence $S(\mu, Y)\subseteq L^1(\mu, Y)$ is a $\mathbb{K}$-linear subspace. Suppose now that $f:X\ra Y$ is a $\mu$-integrable function. By Lemma \ref{lemma:simple_approximation_mu_strongly_measurable} there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions $\mu$-almost everywhere pointwise convergent to $f$ such that $s_n(X)$ is finite and the inequality
-$$||f - s_n||\leq ||f||$$
-holds for every $n\in \NN$. Thus for every $n\in \NN$ we have $||s_n||\leq 2\cdot ||f||$. Hence $s_n$ is $\mu$-integrable for every $n\in \NN$ and by Theorem \ref{theorem:dominated_convergence} we deduce that
-$$\lim_{n\ra +\infty}||f - s_n||_1 = 0$$
-Since $s_n(X)$ is finite and $s_n$ is integrable with respect to $\mu$, we deduce that $s_n$ is simple. Hence $\{s_n\}_{n\in \NN}$ is a sequence of simple functions convergent to $f$ with respect to $||-||_1$. This implies that $S(\mu, Y)\subseteq L^1(\mu, Y)$ is dense.
+\begin{proof}
+Clearly every $\mu$-simple function is strongly measurable and $\mu$-integrable. Moreover, $\mu$-simple functions are closed under $\mathbb{K}$-vector space operations defined on the space of strongly measurable functions. Hence $S(\mu, Y) \subseteq L^1(\mu, Y)$ is a $\mathbb{K}$-linear subspace.\\
+Suppose now that $f:X\ra Y$ is a $\mu$-integrable function. By Theorem \ref{theorem:simple_approximation_strongly_measurable} there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)$ is finite and the inequality
+$$\lVert f - s_n\rVert\leq \lVert f\rVert$$
+holds for every $n\in \NN$. Let $g = 2\cdot \lVert f\rVert$. Then 
+$$\int_Xg\,d\mu \in \RR$$
+Moreover, for every $n\in \NN$ we have $\lVert s_n \rVert\leq g$. Hence $s_n$ is $\mu$-simple for every $n\in \NN$. This completes the proof of the first part of the  theorem.\\
+Now by virtue of Theorem \ref{theorem:dominated_convergence} we deduce that $S(\mu, Y)\subseteq L^1(\mu, Y)$ is dense.
 \end{proof}
 
 \section{Bochner's integral}\label{section:bochner_integration}
+\noindent
+In this section $\mathbb{K}$ is either field $\RR$ or $\CC$ with their usual absolute values.
 
 \begin{definition}
-Let $Y$ be a Banach space over $\RR$ or $\CC$ and let $(X,\Sigma,\mu)$ be a space with measure. For every $s \in S(\mu, Y)$ we define
+Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. For every $s \in S(\mu, Y)$ we define
 $$\int_X s\,d\mu = \sum_{y\in Y}y\cdot \mu\left(s^{-1}(y)\right)$$
 and we call it \textit{the integral of $s$ with respect to $\mu$}.
 \end{definition}
 
 \begin{fact}\label{fact:integral_of_simple_properties}
-Let $Y$ be a Banach space over $\RR$ or $\CC$ and let $(X,\Sigma,\mu)$ be a space with measure. Then
+Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. Then
 $$S(\mu, Y)\ni s \mapsto \int_Xs\,d\mu \in Y$$
-is a linear operator such that
-$$\bigg|\bigg|\int_Xs\,d\mu\bigg|\bigg|\leq ||s||_1$$
+is a $\mathbb{K}$-linear operator such that
+$$\bigg\lVert\int_Xs\,d\mu\bigg\rVert \leq \lVert s \rVert_1$$
 \end{fact}
 \begin{proof}
 We left the proof (direct calculation) for the reader as an exercise.
 \end{proof}
 \noindent
-Let $Y$ be a Banach space over $\RR$ or $\CC$ and let $(X,\Sigma,\mu)$ be a space with measure. By Theorem \ref{theorem:simple_are_dense} space $S(\mu, Y)$ is a dense linear subspace of $L^1(\mu, Y)$. By Theorem \ref{theorem:riesz_theorem} space $L^1(\mu, Y)$ is complete and by Fact \ref{fact:integral_of_simple_properties} operator
+Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. By Theorem \ref{theorem:simple_are_dense} space $S(\mu, Y)$ is a dense $\mathbb{K}$-linear subspace of $L^1(\mu, Y)$. By Theorem \ref{theorem:riesz_theorem} space $L^1(\mu, Y)$ is complete and by Fact \ref{fact:integral_of_simple_properties} operator
 $$S(\mu, Y)\ni s \mapsto \int_Xs\,d\mu \in Y$$
-is a linear operator with norm equal to one. These imply that there exists a unique linear operator
+is a $\mathbb{K}$-linear operator with norm equal to one. These imply that there exists a unique $\mathbb{K}$-linear operator
 $$L^1(\mu, Y)\ni f\mapsto \int_Xf\,d\mu\in Y$$
 with norm equal to one extending the integral on $S(\mu, Y)$.
 
 \begin{definition}
-Let $Y$ be a Banach space over $\RR$ or $\CC$ and let $(X,\Sigma,\mu)$ be a space with measure. The operator
+Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. The operator
 $$L^1(\mu, Y)\ni f\mapsto \int_Xf\,d\mu\in Y$$
 is called \textit{the Bochner's integral with respect to $\mu$}. For every $f\in L^1(\mu, Y)$ element
 $$\int_Xf\,d\mu\in Y$$
@@ -477,25 +446,29 @@ is called \textit{the integral of $f$ with respect to $\mu$}.
 \end{definition}
 
 \begin{corollary}\label{corollary:convergence_of_integral}
-Let $Y$ be a Banach space over $\RR$ or $\CC$ and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of $\mu$-integrable functions convergent in $L^1(\mu, Y)$ to some $\mu$-integrable function $f:X\ra Y$. Then
+Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of $\mu$-integrable functions convergent in $L^1(\mu, Y)$ to some $\mu$-integrable function $f:X\ra Y$. Then
 $$\lim_{n\ra +\infty}\int_Xf_n\,d\mu = \int_Xf\,d\mu$$
 in $Y$.
 \end{corollary}
 \begin{proof}
-This follows from the fact that the Bochner integral is a linear operator of norm one. Indeed, we have
-$$\bigg|\bigg|\int_Xf\,d\mu - \int_Xf_n\,d\mu\bigg|\bigg| = \bigg|\bigg|\int_X\left(f-f_n\right)\,d\mu\bigg|\bigg|\leq ||f - f_n||_1 $$
-for every $n\in \NN$.
+By definition Bochner's integral is continuous with respect to $\lVert-\rVert_1$.
 \end{proof}
 
 \section{Lebesgue integral of scalar functions and induction}
 \noindent
-First we compare Bochner's integration with Lebesgue's integration of nonnegative functions. As careful reader may notice there is certain ambiguity in theory developed so far. Indeed, if $(X,\Sigma,\mu)$ is a space with measure and $f:X\ra \CC$ is a $\mu$-integrable, nonnegative function, then we have a twofold interpretation of
+First we compare Bochner's integration with Lebesgue's integration of nonnegative functions. We introduce precise terminology.
+
+\begin{definition}
+Let $X$ be a set and let $f:X\ra \CC$ be a function. If $f(x)\in \RR$ for every $x\in X$, then we say that $f$ is \textit{real valued}. If in addition $f(x)\geq 0$ for every $x\in X$, then $f$ is \textit{nonnegative}.
+\end{definition}
+\noindent
+As careful reader may notice there is certain ambiguity in theory developed so far. Indeed, if $(X,\Sigma,\mu)$ is a space with measure and $f:X\ra \CC$ is a $\mu$-integrable, nonnegative function, then we have a twofold interpretation of
 $$\int_Xf\,d\mu$$
-Firstly, if we consider $f$ as a nonnegative, $\mu$-measurable function with values in $\ol{\RR}$, then we may consider integral of this nonnegative function described as in Section \ref{section:lebesgues_integration}. On the other hand it may be considered as the Bochner integral of $f$ with respect to $\mu$ as defined in Section \ref{section:bochner_integration}. We explain now why these two numbers are equal. For this note that there is no ambiguity in definitions of simple functions and their integrals between Section \ref{section:lebesgues_integration} on the one hand and Sections \ref{section:lebesgue_spaces}, \ref{section:bochner_integration} on the other. By Lemma \ref{lemma:simple_approximation_mu_measurable} there exists a nondecreasing sequence of nonnegative, simple functions $\{s_n:X\ra \CC\}_{n\in \NN}$ which is $\mu$-almost everywhere pointwise convergent to $f$. By Theorem \ref{theorem:dominated_convergence} the sequence $\{s_n\}_{n\in \NN}$ converges to $f$ also in $L^1(\mu,\CC)$. Hence by Corollary \ref{corollary:convergence_of_integral} we deduce that
-$$\int_Xs_n\,d\mu\ra \int_Xf\,d\mu$$
-for $n\ra +\infty$, where we understand right hand side as the Bochner integral of $\mu$. On the other hand by Theorem \ref{theorem:monotone_convergence} we have
-$$\int_Xs_n\,d\mu \ra \int_Xf\,d\mu$$
-for $n\ra +\infty$, where we understand right hand side as the integral in the sense of Section \ref{section:lebesgues_integration}. Thus the two numbers are equal.\\
+Firstly, if we consider $f$ as a nonnegative, $\mu$-measurable function with values in $\ol{\RR}$, then we may consider integral of this nonnegative function described as in Section \ref{section:lebesgues_integration}. On the other hand it may be considered as the Bochner integral of $f$ with respect to $\mu$ as defined in Section \ref{section:bochner_integration}. We explain now why these two numbers are equal. For this note that there is no ambiguity in definitions of simple functions and their integrals between Section \ref{section:lebesgues_integration} on the one hand and Sections \ref{section:lebesgue_spaces}, \ref{section:bochner_integration} on the other. By Proposition \ref{proposition:simple_approximation_for_nonnegative} there exists a nondecreasing sequence of nonnegative, $\mu$-simple functions $\{s_n:X\ra \CC\}_{n\in \NN}$ which is pointwise convergent to $f$. By Theorem \ref{theorem:monotone_convergence} we have
+$$\int_Xf\,d\mu = \lim_{n\ra +\infty}\int_Xs_n\,d\mu$$
+where we understand the left hand side as the integral in the sense of Section \ref{section:lebesgues_integration}. On the other hand by Theorem \ref{theorem:dominated_convergence} the sequence $\{s_n\}_{n\in \NN}$ converges to $f$ also in $L^1(\mu,\CC)$. Hence by Corollary \ref{corollary:convergence_of_integral} we deduce that
+$$\int_Xf\,d\mu = \lim_{n\ra +\infty}\int_Xs_n\,d\mu$$
+where we understand the left hand side as the Bochner integral of $f$ with respect to $\mu$. Thus the two numbers are equal.\\
 Let $(X,\Sigma, \mu)$ be a space with measure. In case of $\CC$ or $\RR$ valued $\mu$-integrable function $f$ on $X$ its Bochner integral
 $$\int_X f\,d\mu$$
 is also called Lebesgue integral.\\
@@ -511,7 +484,7 @@ Let $(X,\Sigma)$ be a measurable space and let $\cF$ be a family of functions de
 Then $\cF$ contains all nonnegative, measurable functions on $X$ with values in $\ol{\RR}$.
 \end{corollary}
 \begin{proof}
-This follows from Lemma \ref{lemma:simple_approximation}.
+This follows from Proposition \ref{proposition:simple_approximation_for_nonnegative}.
 \end{proof}
 
 \begin{corollary}\label{corollary:measurable_induction_for_complex}
@@ -520,28 +493,26 @@ Let $(X,\Sigma,\mu)$ be a space with measure and let $\cF$ be a family of comple
 \item $\mathbb{1}_A\in \cF$ for every $A\in \Sigma$ with $\mu(A)\in \RR$.
 \item If $f, g\in \cF$ and $\alpha, \beta\in \CC$, then
 $$\alpha f + \beta g\in \cF$$
-\item If $\{f_n:X\ra \CC\}_{n\in \NN}$ is a $\mu$-almost everywhere nondecreasing sequence of nonnegative functions in $\cF$ which converges $\mu$-almost everywhere to $\mu$-integrable function $f$, then $f\in \cF$.
+\item If $\{f_n:X\ra \CC\}_{n\in \NN}$ is a nondecreasing sequence of nonnegative functions in $\cF$ which converges to $\mu$-integrable function $f$, then $f\in \cF$.
 \end{enumerate}
 Then $\cF$ is $L^1(\mu, \CC)$.
 \end{corollary}
 \begin{proof}
-By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all simple functions. In particular, it contains all nonnegative, simple functions. According to \textbf{(3)} and Lemma \ref{lemma:simple_approximation_mu_measurable} this implies that $\cF$ contains all nonnegative, $\mu$-integrable functions. Suppose now that $f:X\ra \CC$ is real valued and $\mu$-integrable. Then $f_+ = \sup \{f, 0\}$ and $f_- = \sup\{-f, 0\}$ are $\mu$-integrable and nonnegative. Hence they are elements of $\cF$. By \textbf{(2)} we deduce that $f = f_+ - f_-$ is in $\cF$. Finally, if $f:X\ra \CC$ is an arbitrary function in $L^1(\mu, \CC)$, then we write $f = f_r + i\cdot f_i$, where $f_r, f_i$ are real valued and $\mu$-integrable. Then by previous considerations $f_r,f_i\in \cF$ and hence $f\in \cF$ as their $\CC$-linear combination.
+By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all $\mu$-simple functions. In particular, it contains all nonnegative, $\mu$-simple functions. According to \textbf{(3)} and Proposition \ref{proposition:simple_approximation_for_nonnegative} this implies that $\cF$ contains all nonnegative, $\mu$-integrable functions. Suppose now that $f:X\ra \CC$ is real valued and $\mu$-integrable. Then $f_+ = \sup \{f, 0\}$ and $f_- = \sup\{-f, 0\}$ are $\mu$-integrable and nonnegative. Hence they are elements of $\cF$. By \textbf{(2)} we deduce that $f = f_+ - f_-$ is in $\cF$. Finally, if $f:X\ra \CC$ is an arbitrary function in $L^1(\mu, \CC)$, then we write $f = f_r + i\cdot f_i$, where $f_r, f_i$ are real valued and $\mu$-integrable. Then by previous considerations $f_r,f_i\in \cF$ and hence $f\in \cF$ as their $\CC$-linear combination.
 \end{proof}
 
 \begin{corollary}\label{corollary:measurable_induction_for_banach_valued}
-Let $(X,\Sigma,\mu)$ be a space with measure and let $Y$ be a Banach space over a field $\mathbb{K}$ with complete absolute value. Suppose that $\cF$ is a family of $\mu$-integrable, $Y$-valued functions defined on $X$. Suppose that the following assertions hold.
+Let $(X,\Sigma,\mu)$ be a space with measure and let $Y$ be a Banach space over a field $\mathbb{K}$ with absolute value. Suppose that $\cF$ is a family of $\mu$-integrable, $Y$-valued functions defined on $X$. Suppose that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
 \item $y\cdot \mathbb{1}_A\in \cF$ for every $y\in Y$ and $A\in \Sigma$ with $\mu(A)\in \RR$.
 \item If $f, g\in \cF$ and $\alpha, \beta\in \mathbb{K}$, then
 $$\alpha f + \beta g\in \cF$$
-\item Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ which is $\mu$-almost everywhere pointwise convergent and $g:X\ra \ol{\RR}$ is a nonnegative, $\mu$-measurable function such that
-$$\int_Xg\,d\mu \in \RR$$
-and $||f_n||\leq g$ holds $\mu$-almost everywhere for $n\in \NN$. Let $f$ be a $\mu$-almost everywhere pointwise limit of $\{f_n\}_{n\in \NN}$. Then $f\in \cF$.
+\item Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ and $g:X\ra \ol{\RR}$ is a nonnegative, $\mu$-integrable function such that $\lVert f_n\rVert \leq g$ for every $n\in \NN$. Let $f$ be a pointwise limit of $\{f_n\}_{n\in \NN}$. Then $f\in \cF$.
 \end{enumerate}
 Then $\cF$ is $L^1(\mu,Y)$.
 \end{corollary}
 \begin{proof}
-By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all simple functions. According to Lemma \ref{lemma:simple_approximation_mu_strongly_measurable} and \textbf{(3)} we derive that $\cF$ contains every element of $L^1(\mu,Y)$.
+By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all $\mu$-simple functions. According to Theorem \ref{theorem:simple_are_dense} and \textbf{(3)} we derive that $\cF$ contains every element of $L^1(\mu,Y)$.
 \end{proof}
 
 \section{Product measures}
@@ -549,44 +520,42 @@ By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all simple functions. Acc
 In this section we discuss integration on the product of spaces with measures.
 
 \begin{fact}\label{fact:productalgebra}
-Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be a measurable spaces. Then a family of subsets of $X_1\times X_2$ consisting of disjoint sums of sets of the form $A\times B$ where $A\in \Sigma_1, B\in \Sigma_2$ is an algebra of subsets of $X_1\times X_2$.
+Let $(X_1,\Sigma_1)$ and $(X_2,\Sigma_2)$ be measurable spaces. Then a family consisting of disjoint sums of sets of the form $A_1\times A_2$ where $A_1\in \Sigma_1, A_2\in \Sigma_2$ is an algebra of subsets of $X_1\times X_2$.
 \end{fact}
 \begin{proof}
 Left to the reader as an exercise.
 \end{proof}
 
 \begin{definition}
-Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be a measurable spaces. Let $\Sigma_1\times \Sigma_2$ be the algebra of subsets of $X_1\times X_2$ consisting of disjoint subsets of the form $A\times B$ where $A\in \Sigma_1,B\in \Sigma_2$. Then we call $\Sigma_1\times \Sigma_2$ \textit{the product algebra of $\Sigma_1$ and $\Sigma_2$}. Next we define a $\sigma$-algebra $\Sigma_1\otimes \Sigma_2$ called \textit{the product $\sigma$-algebra of $\Sigma_1$ and $\Sigma_2$} as the $\sigma$-algebra generated by $\Sigma_1\times \Sigma_2$.
+Let $(X_1,\Sigma_1)$ and $(X_2,\Sigma_2)$ be measurable spaces. Let $\Sigma_1\times \Sigma_2$ be the algebra of subsets of $X_1\times X_2$ consisting of disjoint subsets of the form $A_1\times A_2$ where $A_1 \in \Sigma_1,A_2\in \Sigma_2$. Then $\Sigma_1\times \Sigma_2$ is \textit{the product algebra of $\Sigma_1$ and $\Sigma_2$}. A $\sigma$-algebra $\Sigma_1\otimes \Sigma_2$ generated by $\Sigma_1\times \Sigma_2$ is \textit{the product $\sigma$-algebra of $\Sigma_1$ and $\Sigma_2$}.
 \end{definition}
 \noindent
-Suppose that $Y$ is a set and $f:X_1\times X_2\ra Y$ is a function. For every $x_1\in X_1$ we define function $f_{x_1}:X_2\ra Y$ by formula $f_{x_1}(x) = f(x_1,x)$ for $x$ in $X_2$. Similarly for every $x_2\in X_2$ we define a function $f_{x_2}:X_1\ra Y$ by formula $f_{x_2}(x) = f(x,x_2)$ for $x$ in $X_1$. There is also a version of this notation for sets. Let $E\subseteq X_1\times X_2$ be a subset. Then we define
+Suppose that $Y$ is a set and $f:X_1\times X_2\ra Y$ is a function. For every $x_1\in X_1$ we define a function $f_{x_1}:X_2\ra Y$ by formula 
+$$f_{x_1}(x) = f(x_1,x)$$
+for every $x$ in $X_2$. Similarly for every $x_2\in X_2$ we define a function $f_{x_2}:X_1\ra Y$ by formula
+$$f_{x_2}(x) = f(x,x_2)$$
+for every $x$ in $X_1$. There is also a version of this notation for sets. Let $E\subseteq X_1\times X_2$ be a subset. Then we define
 $$E_{x_1} = \{x\in X_2\,|\,(x_1,x)\in E\},\,E_{x_2} = \{x\in X_1\,|\,(x,x_2)\in E\}$$
-for every $x_1\in X_1$ and $x_2\in X_2$. Note that
+for each $x_1\in X_1$ and $x_2\in X_2$. Note that
 $$\mathbb{1}_{E_{x_1}} = \left(\mathbb{1}_E\right)_{x_1},\,\mathbb{1}_{E_{x_2}} = \left(\mathbb{1}_E\right)_{x_2}$$
 
 \begin{proposition}\label{proposition:measurable_functions_have_measurable_sections}
-Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be measurable spaces and $Y$ be a Banach space over a field $\mathbb{K}$ with complete absolute value. Then the following assetions hold.
+Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be measurable spaces and $Y$ be a Banach space over a field $\mathbb{K}$ with absolute value. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
 \item For every function $f:X_1\times X_2\ra \ol{\RR}$ measurable with respect to $\Sigma_1\otimes \Sigma_2$ and any $x_1\in X_1,x_2\in X_2$ function $f_{x_1}$ is measurable with respect to $\Sigma_2$ and function $f_{x_2}$ is measurable with respect to $\Sigma_1$.
 \item For every function $f:X_1\times X_2\ra Y$ strongly measurable with respect to $\Sigma_1\otimes \Sigma_2$ and any $x_1\in X_1,x_2\in X_2$ function $f_{x_1}$ is strongly measurable with respect to $\Sigma_2$ and $f_{x_2}$ is strongly measurable with respect to $\Sigma_1$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-First let $\cS$ be a family of all subsets $E$ in $\Sigma_1\otimes \Sigma_2$ such that $E_{x_1}\in \Sigma_2$ and $E_{x_2}\in \Sigma_1$ for every $x_1\in X_1$ and $x_2\in X_2$. Then $\Sigma_1\times \Sigma_2\subseteq \cS$ and $\cS$ is a monotone family. Thus by {\cite[Theorem 1.5]{Introduction_to_measure_theory}} we have $\Sigma_1\otimes \Sigma_2\subseteq \cS$.\\
-Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. By the fact proved at the beginning we deduce that $\cF$ contains $\mathbb{1}_E$ for $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is a function measurable with respect to $\Sigma_1\otimes \Sigma_2$. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.\\
-Now we prove \textbf{(2)}. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra Y$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. As above we can derive that for every $y\in Y$ and for every $E\in \Sigma_1\otimes \Sigma_2$ we have $y\cdot \mathbb{1}_E\in \cF$. Moreover, $\cF$ is a $\mathbb{K}$-vector space with respect to pointwise operations. Hence $\cF$ contains every measurable function $s:X_1\times X_2\ra Y$ such that $s(X_1\times X_2)$ is finite. Next by Lemma \ref{lemma:simple_approximation_strongly_measurable} for every strongly measurable function $f:X_1\times X_2\ra Y$ there exists a sequence $\{s_n:X_1\times X_2\ra Y\}_{n\in \NN}$ of strongly measurable functions such that $s_n(X_1\times X_2)$ is finite for every $n\in \NN$ and
+First let $\cS$ be a family of all subsets $E$ in $\Sigma_1\otimes \Sigma_2$ such that $E_{x_1}\in \Sigma_2$ and $E_{x_2}\in \Sigma_1$ for every $x_1\in X_1$ and $x_2\in X_2$. Then $\Sigma_1\times \Sigma_2\subseteq \cS$ and $\cS$ is a monotone family. Thus by Sierpiński's theorem on monotone classes we have $\Sigma_1\otimes \Sigma_2\subseteq \cS$.\\
+Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. Since $\Sigma_1\otimes \Sigma_2\subseteq \cS$, we derive that $\cF$ contains $\mathbb{1}_E$ for every $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative, $\Sigma_1\times \Sigma_2$-measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is $\Sigma_1\otimes \Sigma_2$-measurable. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.\\
+Now we prove \textbf{(2)}. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra Y$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. As above we can derive that for every $y\in Y$ and for every $E\in \Sigma_1\otimes \Sigma_2$ we have $y\cdot \mathbb{1}_E\in \cF$. Moreover, $\cF$ is a $\mathbb{K}$-vector space with respect to pointwise operations. Hence $\cF$ contains every $\Sigma_1\times \Sigma_2$-measurable function $s:X_1\times X_2\ra Y$ such that $s(X_1\times X_2)$ is finite. Next by Theorem \ref{theorem:simple_approximation_strongly_measurable} for every strongly $\Sigma_1\times \Sigma_2$-measurable function $f:X_1\times X_2\ra Y$ there exists a sequence $\{s_n:X_1\times X_2\ra Y\}_{n\in \NN}$ of strongly $\Sigma_1\times \Sigma_2$-measurable functions such that $s_n(X_1\times X_2)$ is finite for every $n\in \NN$ and
 $$f = \lim_{n\ra +\infty}s_n$$
 Since $\cF$ is closed under pointwise limits, we derive that $f$ is in $\cF$.
 \end{proof}
 
-\begin{definition}
-Let $(X,\Sigma)$ be a measurable space and $\mu$ be a measure. We say that $\mu$ is $\sigma$-finite if there exists a decomposition
-$$X = \bigcup_{n\in \NN}X_n$$
-onto pairwise disjoint elements of $\Sigma$ such that $\mu(X_n)\in \RR$ for every $n\in \NN$.
-\end{definition}
-
 \begin{theorem}\label{theorem:fubinis_theorem_basic}
-Let $(X,\Sigma_1,\mu_1), (X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. Then the following assertions hold.
+Let $(X,\Sigma_1,\mu_1)$ and $(X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
 \item For every $E\in \Sigma_1\otimes \Sigma_2$ function
 $$X_1\ni x_1\mapsto \mu_2(E_{x_1})\in \ol{\RR}$$
@@ -595,8 +564,8 @@ is measurable with respect to $\Sigma_1$.
 $$X_2\ni x_2\mapsto \mu_1(E_{x_2})\in \ol{\RR}$$
 is measurable with respect to $\Sigma_2$.
 \item There exists a unique measure $\mu_1\otimes \mu_2$ defined on $\Sigma_1\otimes \Sigma_2$ such that
-$$\left(\mu_1\otimes \mu_2\right)\left(A\times B\right) = \mu_1(A)\mu_2(B)$$
-for $A\in \Sigma_1, B\in \Sigma_2$.
+$$\left(\mu_1\otimes \mu_2\right)\left(A_1\times A_2\right) = \mu_1(A_1)\mu_2(A_2)$$
+for $A_1\in \Sigma_1, A_2\in \Sigma_2$.
 \item Measure $\mu_1\otimes \mu_2$ is $\sigma$-finite.
 \item For every $E\in \Sigma_1\otimes \Sigma_2$ we have
 $$\int_{X_1}\mu_2(E_{x_1})\,d\mu_1 = \left(\mu_1\otimes \mu_2\right)(E) = \int_{X_2}\mu_1(E_{x_2})\,d\mu_2$$
@@ -605,46 +574,48 @@ $$\int_{X_1}\mu_2(E_{x_1})\,d\mu_1 = \left(\mu_1\otimes \mu_2\right)(E) = \int_{
 \begin{proof}
 We prove \textbf{(1)}. For every $E$ in $\Sigma_1\otimes \Sigma_2$ we denote by $f_E$ the function
 $$X_1\ni x_1 \mapsto \mu_2\left(E_{x_1}\right)\in \ol{\RR}$$
-This function is well defined according to Proposition \ref{proposition:measurable_functions_have_measurable_sections}. Let $\cF$ be a family of all subsets $E\in \Sigma_1\otimes \Sigma_2$ such that $f_E$ is measurable with respect to $\Sigma_1$. First note that if $E=A\times B$ for $A\in \Sigma_1$ and $B\in \Sigma_2$, then  $f_E = \mu_2(B)\cdot \mathbb{1}_A$. Now suppose that
-$$E= \bigcup_{n=1}^mA_n\times B_n$$
-where $A_n\in \Sigma_1,B_n\in \Sigma_2$ for every $1\leq n\leq m$. Then
-$$f_E = \sum_{n=1}^m\mu_2(B_n)\mathbb{1}_{A_n}$$
-and hence $\Sigma_1\times \Sigma_2\subseteq \cF$. Moreover, $\cF$ is a monotone family of sets. By {\cite[Theorem 1.5]{Introduction_to_measure_theory}} we deduce that $\Sigma_1\otimes \Sigma_2\subseteq \cF$. This proves \textbf{(1)} and by symmetry also \textbf{(2)}. Now by \textbf{(1)} it makes sense to define
+This function is well defined according to Proposition \ref{proposition:measurable_functions_have_measurable_sections}. Let $\cF$ be a family of all subsets $E\in \Sigma_1\otimes \Sigma_2$ such that $f_E$ is measurable with respect to $\Sigma_1$. First note that if $E=A_1 \times A_2$ for $A_1\in \Sigma_1$ and $A_2\in \Sigma_2$, then  $f_E = \mu_2(A_2)\cdot \mathbb{1}_{A_1}$. Now suppose that
+$$E= \bigcup_{n=1}^mA_{1,n}\times A_{2,n}$$
+where $A_{1,n}\in \Sigma_1,A_{2,n}\in \Sigma_2$ for every $1\leq n\leq m$. Then
+$$f_E = \sum_{n=1}^m\mu_2(A_{2,n})\mathbb{1}_{A_{1,n}}$$
+and hence $\Sigma_1\times \Sigma_2\subseteq \cF$. Moreover, $\cF$ is a monotone family of sets. Sierpiński's theorem on monotone classes shows that $\Sigma_1\otimes \Sigma_2\subseteq \cF$. This proves \textbf{(1)} and by symmetry also \textbf{(2)}.\\ Now by \textbf{(1)} it makes sense to define
 $$(\mu_1\otimes \mu_2)(E) = \int_{X_1}\mu_2(E_{x_1})\,d\mu_1$$
 for every $E\in \Sigma_1\otimes \Sigma_2$. Clearly $(\mu_1\otimes \mu_2)(\emptyset) = 0$ and if $\{E_n\}_{n\in \NN}$ is a family of disjoint subsets in $\Sigma_1\otimes \Sigma_2$, then by Theorem \ref{theorem:monotone_convergence} we have
 $$(\mu_1\otimes \mu_2)\left(\bigcup_{n\in \NN}E_n\right) = \sum_{n\in \NN}(\mu_1\otimes \mu_2)(E_n)$$
-Hence $\mu_1\otimes \mu_2$ is a measure on $\Sigma_1\otimes \Sigma_2$. Now we have
-$$(\mu_1\otimes \mu_2)\left(A\times B\right) = \int_{X_1}\mu_2(B)\mathbb{1}_A\,d\mu_1 = \mu_1(A)\mu_2(B)$$
-for $A\in \Sigma_1, B\in \Sigma_2$. This gives the first part of \textbf{(3)}. Suppose now that $\mu,\nu$ are measures on $\Sigma_1\otimes \Sigma_2$ such that
-$$\mu(A\times B) = \mu_1(A)\mu_2(B) = \nu(A\times B)$$
-for $A\in \Sigma_1,B\in \Sigma_2$. Let 
+Hence $\mu_1\otimes \mu_2$ is a measure on $\Sigma_1\otimes \Sigma_2$. We also have
+$$(\mu_1\otimes \mu_2)\left(A_1\times A_2\right) = \int_{X_1}\mu_2(A_2)\mathbb{1}_{A_1}\,d\mu_1 = \mu_1(A_1)\mu_2(A_2)$$
+for every $A_1\in \Sigma_1, A_2\in \Sigma_2$. This gives the first part of \textbf{(3)}. Suppose now that $\mu,\nu$ are measures on $\Sigma_1\otimes \Sigma_2$ such that
+$$\mu(A_1\times A_2) = \mu_1(A_1)\mu_2(A_2) = \nu(A_1\times A_2)$$
+for every $A_1\in \Sigma_1,A_2\in \Sigma_2$. Let 
 $$X_1 = \bigcup_{n\in \NN}X_{1,n},\,X_2 = \bigcup_{n\in \NN}X_{2,n}$$
 be partitions such that $X_{1,n}\in \Sigma_1,X_{2,n}\in \Sigma_2$ and $\mu_1(X_{1,n})\in \RR,\mu_2(X_{2,n})\in \RR$ for every $n\in \NN$. Fix now $n,m\in \NN$ and for every $E\in \Sigma_1\otimes \Sigma_2$ define
 $$\mu_{n,m}(E) = \mu\left(E\cap (X_{1,n}\times  X_{2,m})\right),\,\nu_{n,m}(E) = \nu_{n,m}\left(E\cap (X_{1,n}\times X_{2,m})\right)$$
-Note that $\mu_{n,m},\,\nu_{n,m}$ are finite measures on $\Sigma_1\otimes \Sigma_2$. The family $\big\{A\times B\big\}_{A\in \Sigma_1,B\in \Sigma_2}$ is a $\pi$-system that generates $\sigma$-algebra $\Sigma_1\otimes \Sigma_2$. By {\cite[Theorem 2.6]{Introduction_to_measure_theory}} we deduce that $\mu_{n,m} = \nu_{n,m}$. This implies that
+Note that $\mu_{n,m},\,\nu_{n,m}$ are finite measures on $\Sigma_1\otimes \Sigma_2$. Family $\big\{A_1\times A_2\big\}_{A_1\in \Sigma_1,A_2\in \Sigma_2}$ is a $\pi$-system that generates $\sigma$-algebra $\Sigma_1\otimes \Sigma_2$. Dynkin's theorem on $\pi-\lambda$-systems shows that $\mu_{n,m} = \nu_{n,m}$. This implies that
 $$\mu(E) = \sum_{n\in \NN}\sum_{m\in \NN}\mu_{n,m}(E) = \sum_{n\in \NN}\sum_{m\in \NN}\nu_{n,m}(E) = \nu(E)$$
-Thus $\mu_1\otimes \mu_2$ is unique and \textbf{(3)} is proved. Moreover, it is easy to observe that \textbf{(4)} i.e. measure $\mu_1\otimes \mu_2$ is $\sigma$-finite. Indeed, we have
+Thus $\mu_1\otimes \mu_2$ is unique and \textbf{(3)} is proved. Moreover, it is easy to observe that \textbf{(4)} holds i.e. measure $\mu_1\otimes \mu_2$ is $\sigma$-finite. Indeed, we have
 $$X_1\times X_2 = \bigcup_{n\in \NN}\bigcup_{m\in \NN}X_{1,n}\times X_{2,m}$$
 and
 $$\left(\mu_1\otimes \mu_2\right)\left(X_{1,n}\times X_{2,m}\right) = \mu_1(X_{1,n})\mu_2(X_{2,m}) \in \RR$$
 Finally by symmetry we derive that
 $$\Sigma_1\otimes \Sigma_2\ni E \mapsto \int_{X_2}\mu_1(E_{x_2})\,d\mu_2\in [0,+\infty]$$
-is a measure on $\Sigma_1\otimes \Sigma_2$ which takes exactly the same values on sets $\big\{A\times B\big\}_{A\in \Sigma_1,B\in \Sigma_2}$ as $\mu_1\otimes \mu_2$. By uniqueness of $\mu_1\otimes \mu_2$ we have
+is a measure on $\Sigma_1\otimes \Sigma_2$ which takes exactly the same values on sets $\big\{A_1\times A_2\big\}_{A_1\in \Sigma_1,A_2\in \Sigma_2}$ as $\mu_1\otimes \mu_2$. By uniqueness of $\mu_1\otimes \mu_2$ we have
 $$(\mu_1\otimes \mu_2)(E) = \int_{X_2}\mu_1(E_{x_2})\,d\mu_2$$
 This finishes the proof of \textbf{(5)}.
 \end{proof}
 
 \begin{definition}
-Let $(X,\Sigma_1,\mu_1), (X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. The unique measure $\mu_1\otimes \mu_2:\Sigma_1\otimes \Sigma_2\ra [0,+\infty]$ such that
-$$\left(\mu_1\otimes \mu_2\right)\left(A\times B\right) = \mu_1(A)\mu_2(B)$$
-for $A\in \Sigma_1, B\in \Sigma_2$ is called \textit{the product measure}.
+Let $(X,\Sigma_1,\mu_1)$ and $(X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. The unique measure $\mu_1\otimes \mu_2$ on $\Sigma_1\otimes \Sigma_2$ such that
+$$\left(\mu_1\otimes \mu_2\right)\left(A_1\times A_2\right) = \mu_1(A_1)\mu_2(A_2)$$
+for every $A_1\in \Sigma_1, A_2\in \Sigma_2$ is \textit{the product measure of $\mu_1$ and $\mu_2$}.
 \end{definition}
 \noindent
 Next results relate integration with respect to $\mu_1\otimes \mu_2$ to iterated integration with respect to $\mu_1$ and $\mu_2$.
 
-\begin{theorem}[Tonelli's theorem for measurable functions]\label{theorem:Tonellis_theorem_for_measurable_functions}
-Let $(X,\Sigma_1,\mu_1), (X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. Suppose that $f:X_1\times X_2\ra \ol{\RR}$ is a nonnegative function measurable with respect to $\Sigma_1\otimes \Sigma_2$. Then functions
-$$X_1\ni x_1 \mapsto \int_{X_2}f_{x_1}\,d\mu_2\in \ol{\RR},\,X_2\ni x_2 \mapsto \int_{X_1}f_{x_2}\,d\mu_1\in \ol{\RR}$$
+\begin{theorem}[Tonelli]\label{theorem:Tonellis_theorem_for_measurable_functions}
+Let $(X,\Sigma_1,\mu_1)$ and $(X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. Suppose that $f:X_1\times X_2\ra \ol{\RR}$ is a nonnegative function measurable with respect to $\Sigma_1\otimes \Sigma_2$. Then functions
+$$X_1\ni x_1 \mapsto \int_{X_2}f_{x_1}\,d\mu_2\in \ol{\RR}$$
+and 
+$$X_2\ni x_2 \mapsto \int_{X_1}f_{x_2}\,d\mu_1\in \ol{\RR}$$
 are measurable with respect to $\Sigma_1$ and $\Sigma_2$, respectively. Moreover, we have equality
 $$\int_{X_1}\int_{X_2}f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1}f_{x_2}\,d\mu_1d\mu_2$$
 \end{theorem}
@@ -658,38 +629,9 @@ $$\lim_{n\ra +\infty}f_n\in \cF$$
 by Theorem \ref{theorem:monotone_convergence}. Finally $\mathbb{1}_E\in \cF$ for every $E\in \Sigma_1\otimes \Sigma_2$ by Theorem \ref{theorem:fubinis_theorem_basic}. According to Corollary \ref{corollary:measurable_induction_for_nonnegative} we derive that $\cF$ consists of all nonnegative functions measurable with respect to $\Sigma_1\otimes \Sigma_2$.
 \end{proof}
 
-\begin{theorem}[Tonelli's theorem for almost measurable functions]\label{theorem:Tonellis_theorem_for_mu_measurable_functions}
-Let $(X,\Sigma_1,\mu_1), (X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. Suppose that $f:X_1\times X_2\ra \ol{\RR}$ is a nonnegative, $\mu_1\otimes \mu_2$-measurable function. Then there are sets $N_i$ in $\Sigma_i$ for $i=1,2$ such that
-$$\mu_i(N_i) = 0$$ 
-and functions
-$$X_1\setminus N_1\ni x_1\mapsto \int_{X_2}f_{x_1}\,d\mu_2\in \ol{\RR},\,X_2\setminus N_2\ni x_2\mapsto \int_{X_1}f_{x_2}\,d\mu_1\in \ol{\RR}$$
-are well defined and measurable with respect to $\Sigma_1$ and $\Sigma_2$, respectively. Moreover, we have equality
-$$\int_{X_1}\int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2$$
-\end{theorem}
-\begin{proof}
-Let $N$ be a set in $\Sigma$ such that $\left(\mu_1\otimes \mu_2\right)(N) = 0$ and $f_{\mid X_1\times X_2\setminus N}$ is measurable with respect to $\Sigma_1\otimes \Sigma_2$. We write $g = \mathbb{1}_{X_1\times X_2\setminus N}\cdot f$ and $r = \mathbb{1}_N\cdot f$. Then $g$ is measurable with respect to $\Sigma_1\otimes \Sigma_2$. According to Theorem \ref{theorem:fubinis_theorem_basic} we derive that
-$$\int_{X_1}\mu_2(N_{x_1})\,d\mu_2 = \int_{X_1\times X_2}\mathbb{1}_N\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_2}\mu_1(N_{x_2})\,d\mu_1$$
-and hence
-$$\int_{X_1}\mu_2(N_{x_1})\,d\mu_2 = \int_{X_2}\mu_1(N_{x_2})\,d\mu_1 = 0$$
-This implies that $\mu_2(N_{x_1})$ is zero $\mu_1$-almost everywhere and $\mu_1(N_{x_2})$ is zero $\mu_2$-almost everywhere. Thus there exists a set $N_1$ in $\Sigma_1$ with $\mu_1(N_1) = 0$ such that $r_{x_1}$ is $\mu_2$-measurable and
-$$\int_{X_2}r_{x_1}\,d\mu_2 = 0$$
-for $x_1\not \in N_1$. Similarly there exists a set $N_2$ in $\Sigma_2$ with $\mu_2(N_2) = 0$ such that $r_{x_2}$ is $\mu_1$-measurable and
-$$\int_{X_1}r_{x_2}\,d\mu_1 = 0$$
-for $x_2\not \in N_2$. Hence functions
-$$X_1\setminus N_1\ni x_1\mapsto \int_{X_2}f_{x_1}\,d\mu_2\in \ol{\RR},\,X_2\setminus N_2\ni x_2\mapsto \int_{X_1}f_{x_2}\,d\mu_1\in \ol{\RR}$$
-are well defined and
-$$\int_{X_2}f_{x_1}\,d\mu_2 = \int_{X_2}g_{x_1}\,d\mu_2,\,\int_{X_1}f_{x_2}\,d\mu_1 = \int_{X_1}g_{x_2}\,d\mu_1$$
-for $x_1 \in X_1\setminus N_1,x_2\in X_2\setminus N_2$. Applying Theorem \ref{theorem:Tonellis_theorem_for_measurable_functions} we derive that
-$$\int_{X_1}\int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1} \int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot  g_{x_1}\,d\mu_2d\mu_1 =$$
-$$= \int_{X_1\times X_2}\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\cdot g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}f\,d\left(\mu_1\otimes \mu_2\right)$$
-and
-$$\int_{X_2} \int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2 = \int_{X_2} \int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot g_{x_2}\,d\mu_1d\mu_2 =$$
-$$= \int_{X_1\times X_2}\mathbb{1}_{X_1\times \left(X_2 \setminus N_2\right)}\cdot g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}g\,d\left(\mu_1\otimes \mu_2\right) = \int_{X_1\times X_2}f\,d\left(\mu_1\otimes \mu_2\right)$$
-\end{proof}
-
 \begin{theorem}[Fubini's theorem for integrable functions]\label{corollary:fubinis_for_integrable}
-Let $(X,\Sigma_1,\mu_1), (X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures and let $Y$ be a Banach space over $\RR$ or $\CC$. Suppose that $f:X_1\times X_2\ra Y$ is a function integrable with respect to $\mu_1\otimes \mu_2$. Then there are sets $N_i$ in $\Sigma_i$ for $i=1,2$ such that
-$$\mu_i(N_i) = 0$$ 
+Let $(X,\Sigma_1,\mu_1)$ and $(X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures and let $Y$ be a Banach space over $\RR$ or $\CC$. Suppose that $f:X_1\times X_2\ra Y$ is a function integrable with respect to $\mu_1\otimes \mu_2$. Then there are sets $N_i$ in $\Sigma_i$ for $i=1,2$ such that
+$$\mu_1(N_1) = \mu_2(N_2) = 0$$ 
 and functions
 $$X_1\setminus N_1\ni x_1\mapsto \int_{X_2}f_{x_1}\,d\mu_2\in Y,\,X_2\setminus N_2\ni x_2\mapsto \int_{X_1}f_{x_2}\,d\mu_1\in Y$$
 are well defined and integrable with respect to $\mu_1, \mu_2$, respectively. Moreover, we have equality
@@ -700,6 +642,12 @@ Let $\cF$ be a family of all $\left(\mu_1\otimes \mu_2\right)$-integrable functi
 $$\int_{X_1\times X_2}g\,d\mu \in \RR$$
 and $||f_n||\leq g$ holds $\mu$-almost everywhere for $n\in \NN$. Let $f$ be a $\mu$-almost everywhere pointwise limit of $\{f_n\}_{n\in \NN}$. Then by Theorems \ref{theorem:dominated_convergence} and \ref{theorem:Tonellis_theorem_for_mu_measurable_functions} we have $f\in \cF$. From Corollary \ref{corollary:measurable_induction_for_banach_valued} we derive that $\cF$ contains all $\left(\mu_1\otimes \mu_2\right)$-integrable functions.
 \end{proof}
+
+
+
+
+
+
 
 
 
