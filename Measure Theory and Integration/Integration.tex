@@ -283,54 +283,160 @@ and $\lVert s_n - f\rVert \leq  \lVert f\rVert$. This completes the proof of $\t
 Suppose now that there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)\subseteq Y$ is finite. Then Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is strongly measurable. This proves that $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
 
-\section{Lebesgue's spaces}\label{section:lebesgue_spaces}
+\section{H{\"o}lder and Minkowski integral inequalities}
+
+\begin{theorem}[H{\"o}lder]\label{theorem:holder_inequality}
+Let $(X,\Sigma,\mu)$ be a space with measure and let $p,q \in (1,+\infty)$ satisfy
+$$\frac{1}{p} + \frac{1}{q} = 1$$
+If $f,g:X\ra \ol{\RR}$ are nonnegative functions measurable with respect to $\Sigma$, then
+$$\int_X f\cdot g\,d\mu \leq \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X g^q\,d\mu\right)^{\frac{1}{q}} $$
+\end{theorem}
 \noindent
-In this section we fix a Banach space $Y$ with norm $\lVert-\rVert$ over a field $\mathbb{K}$ with absolute value $|-|$.
+For the proof we need the following lemma.
+
+\begin{lemma}\label{lemma:Youngs_inequality}
+Let $a,b$ be nonnegative extended real numbers and let $p,q\in (1,+\infty)$ satisfy 
+$$\frac{1}{p} + \frac{1}{q} = 1$$
+Then
+$$a^{\frac{1}{p}}\cdot b^{\frac{1}{q}} \leq \frac{a}{p} + \frac{b}{q}$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Without loss of generality we may assume that $a,b\in \RR_+$. Next the inequality in the question is equivalent with
+$$\frac{\ln a}{p} + \frac{\ln b}{q} \leq \ln\left(\frac{a}{p} + \frac{b}{q}\right)$$
+and this inequality is an instance of Jensen's inequality, since 
+$$\frac{1}{p} + \frac{1}{q} = 1$$
+and logarithm is concave.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+We may assume that 
+$$\left(\int_Xf^p\,d\mu\right)^{\frac{1}{p}}, \left(\int_Xg^q\,d\mu\right)^{\frac{1}{q}} \in \RR_+$$
+By Lemma \ref{lemma:Youngs_inequality} we have
+$$\frac{f(x)\cdot g(x)}{\left(\int_X f^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X g^q\,d\mu\right)^{\frac{1}{q}}} = \left(\frac{f(x)^{p}}{\int_X f^p\,d\mu}\right)^{\frac{1}{p}}\cdot \left(\frac{g(x)^{q}}{\int_X f^q\,d\mu}\right)^{\frac{1}{q}} \leq \frac{1}{p}\cdot \frac{f(x)^p}{\int_X f^p\,d\mu} + \frac{1}{q}\cdot \frac{g(x)^q}{\int_X g^q\,d\mu}$$
+for every $x \in X$. Integrating both sides with respect to $\mu$ yields
+$$\frac{\int_X f\cdot g\,d\mu}{\left(\int_X f^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X g^q\,d\mu\right)^{\frac{1}{q}}}\leq \frac{1}{p} + \frac{1}{q} = 1$$
+and hence the inequality in the statement holds.
+\end{proof}
+
+\begin{corollary}[Minkowski]\label{corollary:Minkowski_inequality}
+Let $(X,\Sigma,\mu)$ be a space with measure and let $p \in [1,+\infty)$. Suppose that $f,g:X\ra \ol{\RR}$ are nonnegative functions measurable with respect to $\mu$. Then
+$$\left(\int_X\left(f + g\right)^p\,d\mu\right)^{\frac{1}{p}} \leq \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}} + \left(\int_X g^p\,d\mu\right)^{\frac{1}{p}}$$
+\end{corollary}
+\begin{proof}
+The case $p = 1$ follows from Proposition \ref{proposition:integral_is_linear}. Thus we assume that $p \in (1,+\infty)$. Suppose that $p \in [1,+\infty)$. Note that if $q \in [1,+\infty)$ satisfies 
+$$\frac{1}{p} + \frac{1}{q} = 1$$
+then $q = \frac{p}{p-1}$. Hence by Theorem \ref{theorem:holder_inequality} we have
+$$\int_Xf \cdot \left(f + g\right)^{p-1}\,d\mu \leq \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X\left(f + g\right)^{(p-1)\cdot q}\right)^{\frac{1}{q}} = \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X\left(f + g\right)^{p}\right)^{1 - \frac{1}{p}}$$
+and
+$$\int_Xg \cdot \left(f + g\right)^{p-1}\,d\mu \leq \left(\int_X g^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X\left(f + g\right)^{(p-1)\cdot q}\right)^{\frac{1}{q}} = \left(\int_X g^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X\left(f + g\right)^{p}\right)^{1 - \frac{1}{p}}$$
+Thus
+$$\int_X\left(f+g\right)^p\,d\mu = \int_X\left(f + g\right)\cdot \left(f + g\right)^{p-1}\,d\mu = \int_Xf \cdot \left(f + g\right)^{p-1}\,d\mu + \int_Xg\cdot \left(f + g\right)^{p-1}\,d\mu \leq $$
+$$\leq \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X\left(f + g\right)^{p}\right)^{1 - \frac{1}{p}} + \left(\int_X g^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X\left(f + g\right)^{p}\right)^{1 - \frac{1}{p}}$$
+dividing both sides by 
+$$\left(\int_X\left(f + g\right)^{p}\right)^{1 - \frac{1}{p}}$$
+yields
+$$\left(\int_X\left(f + g\right)^p\,d\mu\right)^{\frac{1}{p}} \leq \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}} + \left(\int_X g^p\,d\mu\right)^{\frac{1}{p}}$$
+This completes the proof.
+\end{proof}
+\noindent
+Finally in the next section we also use the following integral inequality.
+
+\begin{proposition}\label{proposition:p_power_of_norm_inequality}
+Let $(X,\Sigma,\mu)$ be a space with measure and let $p \in [1,+\infty)$. Suppose that $f,g:X\ra \ol{\RR}$ are nonnegative functions measurable with respect to $\mu$. Then
+$$\int_X\left(f + g\right)^p\,d\mu \leq C_p\cdot 
+\left(\int_X f^p\,d\mu + \int_X g^p\,d\mu\right)$$
+where 
+$$C_p = \begin{cases}
+1&\mbox{ if }p\in (0,1)\\
+2^p&\mbox{ if }p\in [1,+\infty)
+\end{cases}$$
+\end{proposition}
+\begin{proof}
+Pick nonnegative numbers $a,b\in \ol{\RR}$. Then
+$$\left(a + b\right)^p \leq C_p\cdot \left(a^p + b^p\right)$$
+where 
+$$C_p = \begin{cases}
+1&\mbox{ if }p\in (0,1)\\
+2^p&\mbox{ if }p\in [1,+\infty)
+\end{cases}$$
+Application of Fact \ref{fact:integral_is_monotone} completes the proof.
+\end{proof}
+
+\section{Lebesgue spaces}\label{section:lebesgue_spaces}
+\noindent
+In this section we fix a positive real number $p$ and a Banach space $Y$ with norm $\lVert-\rVert$ over a field $\mathbb{K}$ with absolute value $|-|$.
+
+\begin{definition}
+Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. Then 
+$$\lVert f\rVert_p = \left(\int_X\lVert f\rVert^p\,d\mu\right)^{\frac{1}{p}}$$
+is \textit{the $p$-norm of $f$ with respect to $\mu$}.
+\end{definition}
 
 \begin{definition}
 Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. If
-$$\lVert f\rVert_1 = \int_X\lVert f\rVert\,d\mu \in \RR$$
-then $f$ is \textit{integrable with respect to $\mu$} or shortly \textit{$\mu$-integrable}.
+$$\lVert f\rVert_p \in \RR$$
+then $f$ is \textit{$p$-th power integrable with respect to $\mu$} or shortly \textit{$p$-th power $\mu$-integrable}.
 \end{definition}
 
 \begin{definition}
-Let $(X,\Sigma,\mu)$ be a space with measure. Then the set of all $Y$-valued, $\mu$-integrable functions is denoted by $L^1(\mu,Y)$ and is called \textit{the Lebesgue's space for $Y$ with respect to $\mu$}.
+Let $(X,\Sigma,\mu)$ be a space with measure. Then the set of all $Y$-valued, $p$-th power $\mu$-integrable functions is denoted by $L^p(\mu,Y)$ and is called \textit{the Lebesgue space of $p$-th power $\mu$-integrable functions for $Y$}.
 \end{definition}
 \noindent
-By Corollary \ref{corollary:strongly_measurable_form_vector_space} the set of all strongly measurable, $Y$-valued functions on a space $(X,\Sigma)$ is a $\mathbb{K}$-vector space with respect to the usual operations.
+By Corollary \ref{corollary:strongly_measurable_form_vector_space} the set of all strongly measurable, $Y$-valued functions on a space $(X,\Sigma)$ is a $\mathbb{K}$-vector space with respect to the usual operations. Our next goal is to show that $L^p(\mu,Y)$ is a $\mathbb{K}$-vector subspace of this space and to introduce the topology on $L^p(\mu,Y)$ which makes it into a topological vector space over $\mathbb{K}$. 
+
+\begin{proposition}\label{proposition:Lebesgue_spaces_are_topological_vector_spaces}
+Let $(X,\Sigma,\mu)$ be a space with measure. Then $L^p(\mu,Y)$ is a $\mathbb{K}$-vector subspace of the $\mathbb{K}$-vector space of all strongly measurable functions on $(X,\Sigma)$. Moreover, the following assertions hold.
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item If $p \in (0,1)$, then
+$$L^p(\mu,Y)\times L^p(\mu,Y) \ni (f,g) \mapsto \int_X\lVert f - g\rVert^p\,d\mu \in \RR_+\cup \{0\}$$
+is a translation invariant pseudometric on $L^p(\mu,Y)$.
+\item If $p \in [1,+\infty)$, then 
+$$\lVert-\rVert_p:L^p(\mu,Y)\ra \RR_+\cup \{0\}$$
+is a seminorm
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Note that if $f\in L^p(\mu,Y)$ and $\alpha \in \mathbb{K}$, then 
+$$\lVert \alpha \cdot f\rVert_p = |\alpha|\cdot \lVert f\rVert_p$$
+Hence if $f\in L^p(\mu,Y)$, then also $\alpha \cdot f \in L^p(\mu,Y)$ and moreover, the function $\lVert -\rVert_p$ is positively homogeneous. Next we separately handle cases $p \in (0,1)$ and $p \in [1,+\infty)$.\\
+Suppose that $p \in (0,1)$. Then by Proposition \ref{proposition:p_power_of_norm_inequality}
+$$\int_X\left(f + g\right)^p\,d\mu \leq \int_X f^p\,d\mu + \int_X g^p\,d\mu$$
+for any two nonnegative strongly measurable functions $f,g:X\ra \ol{\RR}$ on $(X,\Sigma,\mu)$. Hence
+$$f,g\in L^p(\mu,Y)\,\Leftarrow\,f+g\in L^p(\mu,Y)$$
+and
+$$L^p(\mu,Y)\times L^p(\mu,Y) \ni (f,g) \mapsto \int_X\lVert f - g\rVert^p\,d\mu \in \RR_+\cup \{0\}$$
+is a translation invariant pseudometric on $L^p(\mu,Y)$. This completes the proof for this case.\\
+Suppose now that $p\in [1,+\infty)$. This case follows from Corollary \ref{corollary:Minkowski_inequality}.
+\end{proof}
+\noindent
+For now on we consider $L^p(\mu,Y)$ as a topological vector $\mathbb{K}$-space with respect to topology described in Proposition \ref{proposition:Lebesgue_spaces_are_topological_vector_spaces}.
+
+\begin{remark}\label{remark:topology_of_Lebesgue_spaces_is_sequential}
+Note that the sequence $\{f_n\}_{n\in \NN}$ of elements of $L^p(\mu,Y)$ converges to $f\in L^p(\mu,Y)$ if and only if
+$$\lim_{n\ra +\infty}\lVert f_n - f\rVert_p\,d\mu = 0$$
+and the space $L^p(\mu,Y)$ carries translation invariant pseudometric.
+\end{remark}
 
 \begin{theorem}[Riesz]\label{theorem:riesz_theorem}
-Let $(X,\Sigma,\mu)$ be a space with measure. Then the following assertions hold.
-\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-\item $L^1(\mu,Y)$ is a $\mathbb{K}$-linear subspace of the space of all $Y$-valued, strongly measurable functions.
-\item The map
-$$L^1(\mu,Y)\ni f \mapsto \lVert f \rVert_1\in [0,+\infty)$$
-is a seminorm.
-\item If $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of elements of $L^1(\mu,Y)$ which is Cauchy with respect to $||-||_1$, then there exist an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers and a $\mu$-integrable function $f:X\ra Y$ such that
+Let $(X,\Sigma,\mu)$ be a space with measure. If $\{f_n:X\ra Y\}_{n\in \NN}$ is a Cauchy sequence of elements of $L^p(\mu,Y)$, then there exist an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers and a function $f:X\ra Y$ which is $p$-the power $\mu$-integrable such that
 $$\lim_{k\ra +\infty}f_{n_k}(x) = f(x)$$
-for all $x$ outside some set in $\Sigma$ of measure $\mu$ equal to zero. Moreover, $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert-\rVert_1$.
-\end{enumerate}
+for all $x$ outside some set in $\Sigma$ of measure $\mu$ equal to zero. Moreover, $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^p(\mu,Y)$.
 \end{theorem}
 \begin{proof}
-Suppose that $f, g:X\ra Y$ are integrable and $\alpha, \beta\in \mathbb{K}$. Then by Fact \ref{fact:integral_is_monotone}, Proposition \ref{proposition:integral_is_linear} we have
-$$0 \leq \lVert \alpha f+ \beta g\rVert_1 = \int_X\lVert \alpha f + \beta g\rVert\,d\mu \leq \int_X\left(|\alpha|\cdot \lVert f\rVert+ |\beta|\cdot \lVert g \rVert\right)\,d\mu= $$
-$$= |\alpha| \int_X\lVert f\rVert \,d\mu + |\beta| \int_X\lVert g \rVert\,d\mu = |\alpha| \cdot \lVert f \rVert_1+ |\beta| \cdot \lVert g \rVert_1 $$
-Hence $\alpha f+ \beta g$ is $\mu$-integrable and $\lVert -\rVert_1$ is a seminorm on $L^1(\mu,Y)$. This proves both \textbf{(1)} and \textbf{(2)}.\\
-Now we focus on \textbf{(3)}. We consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
-$$\lVert f_{n_{k+1}} - f_{n_k}\rVert_1\leq 4^{-k}$$
+We consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
+$$\int_X\lVert f_{n_{k+1}} - f_{n_k}\rVert^p\,d\mu \leq 4^{-k}$$
 for every $k\in \NN$. For $k\in \NN$ consider a set
-$$A_k = \big\{x \in X\,\big|\,\lVert f_{n_{k+1}}(x) - f_{n_k}(x)\rVert \geq 2^{-k}\big\}$$
+$$A_k = \big\{x \in X\,\big|\,\lVert f_{n_{k+1}}(x) - f_{n_k}(x)\rVert^p \geq 2^{-k}\big\}$$
 in $\Sigma$. Then
-$$2^{-k} \cdot \mu(A_k)\leq \int_X\lVert f_{n_{k+1}}-f_{n_k}\rVert \,d\mu = \lVert f_{n_{k+1}} - f_{n_k}\rVert_1 \leq 4^{-k}$$
-Hence $\mu(A_k)\leq 2^{-k}$ for each $k\in \NN$ and we have
-$$\mu\left(\bigcap_{m\in \NN}\bigcup_{k\geq m}A_k\right) = \lim_{m\ra +\infty} \mu\left(\bigcup_{k\geq m}A_k\right)\leq $$
-$$\leq \limsup_{m\ra +\infty}\left(\sum_{k\geq m}\mu(A_k)\right) \leq \limsup_{m\ra +\infty}\left(\sum_{k\geq m}2^{-k}\right) = 0$$
-For each $m\in \NN$ let
-$$B_m = \bigcup_{k\geq m}A_k$$
-Then $\{B_m\}_{m\in \NN}$ is a nonincreasing sequence of subsets of $\Sigma$ and we proved that set
+$$2^{-k} \cdot \mu(A_k)\leq \int_X\lVert f_{n_{k+1}}-f_{n_k}\rVert^p \,d\mu \leq 4^{-k}$$
+Hence $\mu(A_k)\leq 2^{-k}$ for each $k\in \NN$. For $m\in \NN$ we define 
+$$B_m = \bigcup_{k=m}^{+\infty}A_k$$
+Then
+$$\mu(B_m) = \mu\left(\bigcup_{k=m}^{+\infty}A_k\right) \leq \sum_{k = m}^{+\infty}\mu(A_k) \leq \sum_{k=m}^{+\infty}2^{-k} = 2^{1 - m}$$
+and $\{B_m\}_{m\in \NN}$ is a nonincreasing sequence of subsets of $\Sigma$. This proves that
 $$B = \bigcap_{m\in \NN}B_m$$
-in $\Sigma$ satisfy $\mu(B) = 0$. For $x\not \in B_m$ we have
-$$\sum_{k\geq m}\lVert f_{n_{k+1}}(x) - f_{n_k}(x)\rVert \leq \sum_{k=m}^{+\infty}2^{-k} = 2^{1-m}$$
+satisfy $\mu(B) = 0$. For $x\not \in B_m$ we have
+$$\sum_{k = m}^{+\infty}\lVert f_{n_{k+1}}(x) - f_{n_k}(x)\rVert \leq \sum_{k=m}^{+\infty}2^{-kp} = \left(\frac{1}{2^p}\right)^m\cdot \frac{2^p}{2^p - 1}$$
 Since $Y$ is a Banach space, we deduce that for $x\not \in B_m$ series
 $$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
 is convergent. Therefore, it is also convergent for $x\not \in B$. We define $f:X\ra Y$ as a sum
@@ -339,21 +445,23 @@ for $x\not \in B$ and $f(x) = 0$ for $x\in B$. Then
 $$\lim_{k\ra +\infty}f_{n_k}(x) = f(x)$$
 for $x \not \in B$. Hence
 $$\lim_{k\ra +\infty}\mathbb{1}_{X\setminus B}\cdot f_{n_k} = f$$
-and Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is a strongly measurable function. Moreover, by Theorem \ref{theorem:monotone_convergence} we have
-$$\lVert f \rVert_1 = \int_X\lVert f\rVert \,d\mu = \int_X\mathbb{1}_{X\setminus B}\cdot \big \lVert f_{n_0} + \sum_{k\in \NN}(f_{n_{k+1}} - f_{n_k})\big \rVert \,d\mu \leq \int_X\left(\lVert f_{n_0}\rVert  + \sum_{k\in \NN}\lVert f_{n_{k+1}}-f_{n_k}\rVert \right)\,d\mu = $$
-$$= \int_X\lVert f_{n_0}\rVert \,d\mu + \sum_{k\in \NN}\int_X \lVert f_{n_{k+1}}-f_{n_k}\rVert \,d\mu \leq \lVert f_{n_0}\rVert_1 + \sum_{k\in \NN}4^{-k} $$
-Thus $f\in L^1(\mu,Y)$ and by Theorem \ref{theorem:monotone_convergence} we have
-$$\lVert f - f_{n_m}\rVert_1 = \int_X\lVert f - f_{n_m}\rVert \,d\mu = \int_X\mathbb{1}_{X\setminus B}\cdot \big\lVert \sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big\rVert \,d\mu \leq  \int_X \big\lVert \sum_{k\geq m}\left(f_{n_{k+1}} - f_{n_k}\right)\big\rVert \,d\mu \leq $$
-$$\leq \int_X\sum_{k\geq m}\lVert f_{n_{k+1}} - f_{n_k}\rVert \,d\mu =\sum_{k\geq m}\int_X\lVert f_{n_{k+1}} - f_{n_k}\rVert \,d\mu = \sum_{k\geq m}4^{-k} = 4^{-m}\cdot \frac{4}{3} $$
-Therefore, $\{f_{n_k}\}_{k\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_1$. Since $\{f_n\}_{n\in \NN}$ is a Cauchy sequence with respect to $\lVert-\rVert_1$ with a subsequence convergent to $f$, we derive that $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_1$.
+and Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is a strongly measurable function. Moreover, by Theorem \ref{theorem:monotone_convergence} and Proposition 
+\ref{proposition:p_power_of_norm_inequality} we have
+$$\int_X\lVert f\rVert^p \,d\mu = \int_X\mathbb{1}_{X\setminus B}\cdot \big \lVert f_{n_0} + \sum_{k\in \NN}(f_{n_{k+1}} - f_{n_k})\big \rVert^p \,d\mu \leq \int_X\left(\lVert f_{n_0}\rVert  + \sum_{k\in \NN}\lVert f_{n_{k+1}}-f_{n_k}\rVert \right)^p\,d\mu \leq $$
+$$\leq C_p\cdot \left(\int_X\lVert f_{n_0}^p\rVert \,d\mu + \sum_{k\in \NN}\int_X \lVert f_{n_{k+1}}-f_{n_k}\rVert^p \,d\mu\right) \leq C_p\cdot \left(\int_X\lVert f_{n_0}\rVert^p \,d\mu + \sum_{k\in \NN}4^{-k}\right)$$
+where $C_p$ is some positive constant depending only on $p$. Thus $f\in L^p(\mu,Y)$. Again by Theorem \ref{theorem:monotone_convergence} and Proposition 
+\ref{proposition:p_power_of_norm_inequality} we have
+$$\int_X\lVert f - f_{n_m}\rVert^p\,d\mu = \int_X\mathbb{1}_{X\setminus B}\cdot \big\lVert \sum_{k = m}^{+\infty}\left(f_{n_{k+1}} - f_{n_k}\right)\big\rVert^p \,d\mu \leq  \int_X \big\lVert \sum_{k=m}^{+\infty}\left(f_{n_{k+1}} - f_{n_k}\right)\big\rVert^p \,d\mu \leq $$
+$$\leq C_p\cdot \int_X\sum_{k=m}^{\infty}\lVert f_{n_{k+1}} - f_{n_k}\rVert^p \,d\mu =C_p\cdot \sum_{k=m}^{+\infty}\int_X\lVert f_{n_{k+1}} - f_{n_k}\rVert^p \,d\mu = \sum_{k=m}^{+\infty}4^{-k} = 4^{-m}\cdot \frac{4}{3} $$
+where $C_p$ is some positive constant depending only on $p$. Therefore, $\{f_{n_k}\}_{k\in \NN}$ converges to $f$ in $L^p(\mu,Y)$. Since $\{f_n\}_{n\in \NN}$ is a Cauchy sequence in $L^p(\mu,Y)$ with a subsequence convergent to $f$, we derive that $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^p(\mu,Y)$.
 \end{proof}
 \noindent
-Next theorem is a criterion connecting pointwise convergence and convergence with respect to $\lVert -\rVert_1$.
+Next theorem is a criterion connecting pointwise convergence and convergence in $L^p(\mu,Y)$.
 
 \begin{theorem}[Lebesgue's dominated convergence theorem]\label{theorem:dominated_convergence}
-Let $(X,\Sigma,\mu)$ be a space with measure and let $\{f_n:X\ra Y\}_{n\in \NN}$ be a sequence of $\mu$-integrable functions. Suppose that $f:X\ra Y$ is a pointwise limit of $\{f_n\}_{n\in \NN}$ and assume that there exists nonnegative, measurable function $g:X\ra \ol{\RR}$ such that $\lVert f_n\rVert \leq g$ holds for every $n\in \NN$ and
+Let $(X,\Sigma,\mu)$ be a space with measure and let $\{f_n:X\ra Y\}_{n\in \NN}$ be a sequence of $p$-th power $\mu$-integrable functions. Suppose that $f:X\ra Y$ is a pointwise limit of $\{f_n\}_{n\in \NN}$ and assume that there exists nonnegative, measurable function $g:X\ra \ol{\RR}$ such that $\lVert f_n\rVert^p \leq g$ holds for every $n\in \NN$ and
 $$\int_X g\,d\mu\in \RR$$
-Then $f\in L^1(\mu,Y)$ and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_1$.
+Then $f\in L^p(\mu,Y)$ and $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^p(\mu,Y)$.
 \end{theorem}
 For the proof we need the following result.
 
@@ -371,19 +479,18 @@ $$\int_X(g-f)\,d\mu = \int_Xg\,d\mu - \int_Xf\,d\mu$$
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-Since $\{f_n\}_{n\in \NN}$ converges pointwise to $f$, we deduce that $f$ is strongly measurable. Moreover, a sequence $\big\{\lVert f\rVert_n:X\ra \ol{\RR}\big\}_{n\in \NN}$ converges pointwise to $\lVert f\rVert$. Since $\lVert f_n\rVert\leq g$ holds for every $n\in \NN$, we deduce that $\lVert f\rVert\leq g$. Thus
-$$\lVert f\rVert_1 = \int_X\lVert f\rVert\,d\mu \leq \int_Xg\,d\mu \in \RR$$
-Hence $f\in L^1(\mu, Y)$. Note that $\lVert f - f_n\rVert \leq 2g$ holds for every $n\in \NN$. Thus by Theorem \ref{theorem:fatous_lemma} and Lemma \ref{lemma:difference_of_integrals} we have
-$$\int_X2g\,d\mu - \int_X\limsup_{n\ra +\infty}\lVert f-f_n\rVert\,d\mu  = \int_X \big(2g - \limsup_{n\ra +\infty}\lVert f-f_n\rVert\big)\,d\mu = $$
-$$= \int_X\liminf_{n\ra +\infty}\left(2g - \lVert f-f_n||\right)\,d\mu \leq \liminf_{n\ra +\infty}\int_X\left(2g - \lVert f- f_n\rVert\right)\,d\mu =$$
-$$= \int_X 2g\,d\mu - \limsup_{n\ra +\infty}\int_X \lVert f-f_n\rVert\,d\mu $$
+Since $\{f_n\}_{n\in \NN}$ converges pointwise to $f$, we deduce that $f$ is strongly measurable. Moreover, a sequence $\big\{\lVert f\rVert_n:X\ra \ol{\RR}\big\}_{n\in \NN}$ converges pointwise to $\lVert f\rVert$. Since $\lVert f_n\rVert^p\leq g$ holds for every $n\in \NN$, we deduce that $\lVert f\rVert^p \leq g$. Thus
+$$\int_X\lVert f\rVert^p \,d\mu \leq \int_Xg\,d\mu \in \RR$$
+Hence $f\in L^p(\mu, Y)$. By Proposition \ref{proposition:p_power_of_norm_inequality} there exists some positive constant $C_p$ such that $\lVert f - f_n\rVert^p \leq C_p\cdot 2g$ holds for every $n\in \NN$. Thus by Theorem \ref{theorem:fatous_lemma} and Lemma \ref{lemma:difference_of_integrals} we have
+$$\int_XC_p\cdot 2g\,d\mu - \int_X\limsup_{n\ra +\infty}\lVert f-f_n\rVert^p\,d\mu  = \int_X \big(C_p\cdot 2g - \limsup_{n\ra +\infty}\lVert f-f_n\rVert^p\big)\,d\mu = $$
+$$= \int_X\liminf_{n\ra +\infty}\left(C_p\cdot 2g - \lVert f-f_n\rVert^p\right)\,d\mu \leq \liminf_{n\ra +\infty}\int_X\left(C_p\cdot 2g - \lVert f- f_n\rVert^p\right)\,d\mu =$$
+$$= \int_X C_p\cdot 2g\,d\mu - \limsup_{n\ra +\infty}\int_X \lVert f-f_n\rVert^p\,d\mu $$
 Hence
-$$\limsup_{n\ra +\infty}\int_X\lVert f - f_n\rVert\,d\mu \leq \int_X\limsup_{n\ra +\infty}\lVert f - f_n||\,d\mu = 0$$
-Thus we deduce that
-$$\lim_{n\ra +\infty}\lVert f - f_n\rVert_1 = \lim_{n\ra +\infty}\int_X\lVert f - f_n\rVert\,d\mu = 0$$
+$$\limsup_{n\ra +\infty}\int_X\lVert f - f_n\rVert^p\,d\mu \leq \int_X\limsup_{n\ra +\infty}\lVert f - f_n\rVert^p\,d\mu = 0$$
+Thus we deduce that $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^p(\mu,Y)$.
 \end{proof}
 \noindent
-It turns out that Lebesgue's space $L^1(\mu, Y)$ contains certain dense subspace which can be easily described. We shall define this space and then prove that in fact it is dense.
+It turns out that Lebesgue's space $L^p(\mu, Y)$ contains certain dense subspace which can be easily described. We shall define this space and then prove that in fact it is dense.
 
 \begin{definition}
 Let $(X,\Sigma, \mu)$ be a space with measure. A measurable function $s:X\ra Y$ such that $s(X)\subseteq Y$ is finite and
@@ -392,23 +499,28 @@ is \textit{$\mu$-simple}. The set of all $\mu$-simple, $Y$-valued functions defi
 \end{definition}
 
 \begin{theorem}\label{theorem:simple_are_dense}
-Let $(X,\Sigma, \mu)$ be a space with measure. For each $f \in L^1(\mu,Y)$ there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of $\mu$-simple functions and a nonnegative, measurable function $g:X\ra \ol{\RR}$ such that the following assertions hold.
+Let $(X,\Sigma, \mu)$ be a space with measure. For each $f \in L^p(\mu,Y)$ there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of $\mu$-simple functions and a nonnegative, measurable function $g:X\ra \ol{\RR}$ such that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
 \item
 $$\int_Xg\,d\mu \in \RR$$
-\item $\lVert s_n \rVert \leq g$ for every $n\in \NN$
+\item $\lVert s_n \rVert^p \leq g$ for every $n\in \NN$
 \item $\{s_n\}_{n\in \NN}$ converges pointwise to $f$.
 \end{enumerate}
-In particular, the space $S(\mu, Y)$ is a dense $\mathbb{K}$-linear subspace of $L^1(\mu, Y)$.
 \end{theorem}
 \begin{proof}
-Clearly every $\mu$-simple function is strongly measurable and $\mu$-integrable. Moreover, $\mu$-simple functions are closed under $\mathbb{K}$-vector space operations defined on the space of strongly measurable functions. Hence $S(\mu, Y) \subseteq L^1(\mu, Y)$ is a $\mathbb{K}$-linear subspace.\\
-Suppose now that $f:X\ra Y$ is a $\mu$-integrable function. By Theorem \ref{theorem:simple_approximation_strongly_measurable} there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)$ is finite and the inequality
-$$\lVert f - s_n\rVert\leq \lVert f\rVert$$
-holds for every $n\in \NN$. Let $g = 2\cdot \lVert f\rVert$. Then 
+Clearly every $\mu$-simple function is strongly measurable and $p$-th power $\mu$-integrable. Moreover, $\mu$-simple functions are closed under $\mathbb{K}$-vector space operations defined on the space of strongly measurable functions. Hence $S(\mu, Y) \subseteq L^p(\mu, Y)$ is a $\mathbb{K}$-linear subspace.\\
+Suppose now that $f:X\ra Y$ is a $p$-th power $\mu$-integrable function. By Theorem \ref{theorem:simple_approximation_strongly_measurable} there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)$ is finite and the inequality
+$$\lVert s_n - f\rVert\leq \lVert f\rVert$$
+holds for every $n\in \NN$. Let $g = 2^p \cdot \lVert f\rVert^p$. Then 
 $$\int_Xg\,d\mu \in \RR$$
-Moreover, for every $n\in \NN$ we have $\lVert s_n \rVert\leq g$. Hence $s_n$ is $\mu$-simple for every $n\in \NN$. This completes the proof of the first part of the  theorem.\\
-Now by virtue of Theorem \ref{theorem:dominated_convergence} we deduce that $S(\mu, Y)\subseteq L^1(\mu, Y)$ is dense.
+Moreover, for every $n\in \NN$ we have $\lVert s_n \rVert^p \leq g$. Hence $s_n$ is $\mu$-simple for every $n\in \NN$. This completes the proof of the  theorem.
+\end{proof}
+
+\begin{corollary}\label{corollary:simple_are_dense}
+The space $S(\mu, Y)$ is a dense $\mathbb{K}$-linear subspace of $L^p(\mu, Y)$.    
+\end{corollary}
+\begin{proof}
+This is an immediate consequence of Theorems \ref{theorem:dominated_convergence} and \ref{theorem:simple_are_dense}.
 \end{proof}
 
 \section{Bochner's integral}\label{section:bochner_integration}
@@ -454,6 +566,10 @@ in $Y$.
 By definition Bochner's integral is continuous with respect to $\lVert-\rVert_1$.
 \end{proof}
 
+\begin{definition}
+Elements of $L^1(\mu,Y)$ are called \textit{$\mu$-integrable functions with values in $Y$}.
+\end{definition}
+
 \section{Lebesgue integral of scalar functions and induction}
 \noindent
 First we compare Bochner's integration with Lebesgue's integration of nonnegative functions. We introduce precise terminology.
@@ -472,7 +588,7 @@ where we understand the left hand side as the Bochner integral of $f$ with respe
 Let $(X,\Sigma, \mu)$ be a space with measure. In case of $\CC$ or $\RR$ valued $\mu$-integrable function $f$ on $X$ its Bochner integral
 $$\int_X f\,d\mu$$
 is also called Lebesgue integral.\\
-The following sequence of results is an useful tool for studying classes of functions in integration theory.
+The following sequence of results is a useful tool for studying classes of functions in integration theory.
 
 \begin{corollary}\label{corollary:measurable_induction_for_nonnegative}
 Let $(X,\Sigma)$ be a measurable space and let $\cF$ be a family of functions defined on $X$ and with values in $\ol{\RR}$. Suppose that the following assertions hold.
@@ -502,17 +618,17 @@ By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all $\mu$-simple function
 \end{proof}
 
 \begin{corollary}\label{corollary:measurable_induction_for_banach_valued}
-Let $(X,\Sigma,\mu)$ be a space with measure and let $Y$ be a Banach space over a field $\mathbb{K}$ with absolute value. Suppose that $\cF$ is a family of $\mu$-integrable, $Y$-valued functions defined on $X$. Suppose that the following assertions hold.
+Fix a positive real number $p$. Let $(X,\Sigma,\mu)$ be a space with measure and let $Y$ be a Banach space over a field $\mathbb{K}$ with absolute value. Suppose that $\cF$ is a family of $\mu$-integrable, $Y$-valued functions defined on $X$. Suppose that the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
 \item $y\cdot \mathbb{1}_A\in \cF$ for every $y\in Y$ and $A\in \Sigma$ with $\mu(A)\in \RR$.
 \item If $f, g\in \cF$ and $\alpha, \beta\in \mathbb{K}$, then
 $$\alpha f + \beta g\in \cF$$
-\item Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ and $g:X\ra \ol{\RR}$ is a nonnegative, $\mu$-integrable function such that $\lVert f_n\rVert \leq g$ for every $n\in \NN$. Let $f$ be a pointwise limit of $\{f_n\}_{n\in \NN}$. Then $f\in \cF$.
+\item Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ and $g:X\ra \ol{\RR}$ is a nonnegative, $\mu$-integrable function such that $\lVert f_n\rVert^p \leq g$ for every $n\in \NN$. Let $f$ be a pointwise limit of $\{f_n\}_{n\in \NN}$. Then $f\in \cF$.
 \end{enumerate}
-Then $\cF$ is $L^1(\mu,Y)$.
+Then $\cF$ is $L^p(\mu,Y)$.
 \end{corollary}
 \begin{proof}
-By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all $\mu$-simple functions. According to Theorem \ref{theorem:simple_are_dense} and \textbf{(3)} we derive that $\cF$ contains every element of $L^1(\mu,Y)$.
+By \textbf{(1)} and \textbf{(2)} family $\cF$ contains all $\mu$-simple functions. According to Theorem \ref{theorem:simple_are_dense} and \textbf{(3)} we derive that $\cF$ contains every element of $L^p(\mu,Y)$.
 \end{proof}
 
 \section{Product measures}
@@ -532,24 +648,24 @@ Let $(X_1,\Sigma_1)$ and $(X_2,\Sigma_2)$ be measurable spaces. Let $\Sigma_1\ti
 \noindent
 Suppose that $Y$ is a set and $f:X_1\times X_2\ra Y$ is a function. For every $x_1\in X_1$ we define a function $f_{x_1}:X_2\ra Y$ by formula 
 $$f_{x_1}(x) = f(x_1,x)$$
-for every $x$ in $X_2$. Similarly for every $x_2\in X_2$ we define a function $f_{x_2}:X_1\ra Y$ by formula
+for every $x \in X_2$. Similarly for every $x_2\in X_2$ we define a function $f_{x_2}:X_1\ra Y$ by formula
 $$f_{x_2}(x) = f(x,x_2)$$
-for every $x$ in $X_1$. There is also a version of this notation for sets. Let $E\subseteq X_1\times X_2$ be a subset. Then we define
+for every $x \in X_1$. There is also a version of this notation for sets. Let $E\subseteq X_1\times X_2$ be a subset. Then we define
 $$E_{x_1} = \{x\in X_2\,|\,(x_1,x)\in E\},\,E_{x_2} = \{x\in X_1\,|\,(x,x_2)\in E\}$$
 for each $x_1\in X_1$ and $x_2\in X_2$. Note that
 $$\mathbb{1}_{E_{x_1}} = \left(\mathbb{1}_E\right)_{x_1},\,\mathbb{1}_{E_{x_2}} = \left(\mathbb{1}_E\right)_{x_2}$$
 
 \begin{proposition}\label{proposition:measurable_functions_have_measurable_sections}
-Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be measurable spaces and $Y$ be a Banach space over a field $\mathbb{K}$ with absolute value. Then the following assertions hold.
+Let $(X_1,\Sigma_1), (X_2,\Sigma_2)$ be measurable spaces. Then the following assertions hold.
 \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
 \item For every function $f:X_1\times X_2\ra \ol{\RR}$ measurable with respect to $\Sigma_1\otimes \Sigma_2$ and any $x_1\in X_1,x_2\in X_2$ function $f_{x_1}$ is measurable with respect to $\Sigma_2$ and function $f_{x_2}$ is measurable with respect to $\Sigma_1$.
-\item For every function $f:X_1\times X_2\ra Y$ strongly measurable with respect to $\Sigma_1\otimes \Sigma_2$ and any $x_1\in X_1,x_2\in X_2$ function $f_{x_1}$ is strongly measurable with respect to $\Sigma_2$ and $f_{x_2}$ is strongly measurable with respect to $\Sigma_1$.
+\item Let $Y$ be a Banach space over a field $\mathbb{K}$ with absolute value. For every function $f:X_1\times X_2\ra Y$ strongly measurable with respect to $\Sigma_1\otimes \Sigma_2$ and any $x_1\in X_1,x_2\in X_2$ function $f_{x_1}$ is strongly measurable with respect to $\Sigma_2$ and $f_{x_2}$ is strongly measurable with respect to $\Sigma_1$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 First let $\cS$ be a family of all subsets $E$ in $\Sigma_1\otimes \Sigma_2$ such that $E_{x_1}\in \Sigma_2$ and $E_{x_2}\in \Sigma_1$ for every $x_1\in X_1$ and $x_2\in X_2$. Then $\Sigma_1\times \Sigma_2\subseteq \cS$ and $\cS$ is a monotone family. Thus by Sierpiński's theorem on monotone classes we have $\Sigma_1\otimes \Sigma_2\subseteq \cS$.\\
-Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. Since $\Sigma_1\otimes \Sigma_2\subseteq \cS$, we derive that $\cF$ contains $\mathbb{1}_E$ for every $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative, $\Sigma_1\times \Sigma_2$-measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is $\Sigma_1\otimes \Sigma_2$-measurable. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.\\
-Now we prove \textbf{(2)}. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra Y$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. As above we can derive that for every $y\in Y$ and for every $E\in \Sigma_1\otimes \Sigma_2$ we have $y\cdot \mathbb{1}_E\in \cF$. Moreover, $\cF$ is a $\mathbb{K}$-vector space with respect to pointwise operations. Hence $\cF$ contains every $\Sigma_1\times \Sigma_2$-measurable function $s:X_1\times X_2\ra Y$ such that $s(X_1\times X_2)$ is finite. Next by Theorem \ref{theorem:simple_approximation_strongly_measurable} for every strongly $\Sigma_1\times \Sigma_2$-measurable function $f:X_1\times X_2\ra Y$ there exists a sequence $\{s_n:X_1\times X_2\ra Y\}_{n\in \NN}$ of strongly $\Sigma_1\times \Sigma_2$-measurable functions such that $s_n(X_1\times X_2)$ is finite for every $n\in \NN$ and
+Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. Since $\Sigma_1\otimes \Sigma_2\subseteq \cS$, we derive that $\cF$ contains $\mathbb{1}_E$ for every $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative, $\Sigma_1\otimes \Sigma_2$-measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is $\Sigma_1\otimes \Sigma_2$-measurable. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.\\
+Now we prove \textbf{(2)}. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra Y$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. As above we can derive that for every $y\in Y$ and for every $E\in \Sigma_1\otimes \Sigma_2$ we have $y\cdot \mathbb{1}_E\in \cF$. Moreover, $\cF$ is a $\mathbb{K}$-vector space with respect to pointwise operations. Hence $\cF$ contains every $\Sigma_1\otimes \Sigma_2$-measurable function $s:X_1\times X_2\ra Y$ such that $s(X_1\times X_2)$ is finite. Next by Theorem \ref{theorem:simple_approximation_strongly_measurable} for every strongly $\Sigma_1\otimes \Sigma_2$-measurable function $f:X_1\times X_2\ra Y$ there exists a sequence $\{s_n:X_1\times X_2\ra Y\}_{n\in \NN}$ of strongly $\Sigma_1\otimes \Sigma_2$-measurable functions such that $s_n(X_1\times X_2)$ is finite for every $n\in \NN$ and
 $$f = \lim_{n\ra +\infty}s_n$$
 Since $\cF$ is closed under pointwise limits, we derive that $f$ is in $\cF$.
 \end{proof}
@@ -566,7 +682,7 @@ is measurable with respect to $\Sigma_2$.
 \item There exists a unique measure $\mu_1\otimes \mu_2$ defined on $\Sigma_1\otimes \Sigma_2$ such that
 $$\left(\mu_1\otimes \mu_2\right)\left(A_1\times A_2\right) = \mu_1(A_1)\mu_2(A_2)$$
 for $A_1\in \Sigma_1, A_2\in \Sigma_2$.
-\item Measure $\mu_1\otimes \mu_2$ is $\sigma$-finite.
+\item $\mu_1\otimes \mu_2$ is $\sigma$-finite.
 \item For every $E\in \Sigma_1\otimes \Sigma_2$ we have
 $$\int_{X_1}\mu_2(E_{x_1})\,d\mu_1 = \left(\mu_1\otimes \mu_2\right)(E) = \int_{X_2}\mu_1(E_{x_2})\,d\mu_2$$
 \end{enumerate}
@@ -611,7 +727,7 @@ for every $A_1\in \Sigma_1, A_2\in \Sigma_2$ is \textit{the product measure of $
 \noindent
 Next results relate integration with respect to $\mu_1\otimes \mu_2$ to iterated integration with respect to $\mu_1$ and $\mu_2$.
 
-\begin{theorem}[Tonelli]\label{theorem:Tonellis_theorem_for_measurable_functions}
+\begin{theorem}[Tonelli]\label{theorem:Tonellli_theorem}
 Let $(X,\Sigma_1,\mu_1)$ and $(X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures. Suppose that $f:X_1\times X_2\ra \ol{\RR}$ is a nonnegative function measurable with respect to $\Sigma_1\otimes \Sigma_2$. Then functions
 $$X_1\ni x_1 \mapsto \int_{X_2}f_{x_1}\,d\mu_2\in \ol{\RR}$$
 and 
@@ -629,8 +745,8 @@ $$\lim_{n\ra +\infty}f_n\in \cF$$
 by Theorem \ref{theorem:monotone_convergence}. Finally $\mathbb{1}_E\in \cF$ for every $E\in \Sigma_1\otimes \Sigma_2$ by Theorem \ref{theorem:fubinis_theorem_basic}. According to Corollary \ref{corollary:measurable_induction_for_nonnegative} we derive that $\cF$ consists of all nonnegative functions measurable with respect to $\Sigma_1\otimes \Sigma_2$.
 \end{proof}
 
-\begin{theorem}[Fubini's theorem for integrable functions]\label{corollary:fubinis_for_integrable}
-Let $(X,\Sigma_1,\mu_1)$ and $(X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures and let $Y$ be a Banach space over $\RR$ or $\CC$. Suppose that $f:X_1\times X_2\ra Y$ is a function integrable with respect to $\mu_1\otimes \mu_2$. Then there are sets $N_i$ in $\Sigma_i$ for $i=1,2$ such that
+\begin{theorem}[Fubini]\label{theorem:fubini}
+Let $(X,\Sigma_1,\mu_1)$, $(X_2,\Sigma_2,\mu_2)$ be spaces with $\sigma$-finite measures and let $Y$ be a Banach space over $\RR$ or $\CC$. Suppose that $f:X_1\times X_2\ra Y$ is a function integrable with respect to $\mu_1\otimes \mu_2$. Then there are sets $N_i$ in $\Sigma_i$ for $i=1,2$ such that
 $$\mu_1(N_1) = \mu_2(N_2) = 0$$ 
 and functions
 $$X_1\setminus N_1\ni x_1\mapsto \int_{X_2}f_{x_1}\,d\mu_2\in Y,\,X_2\setminus N_2\ni x_2\mapsto \int_{X_1}f_{x_2}\,d\mu_1\in Y$$
@@ -638,10 +754,16 @@ are well defined and integrable with respect to $\mu_1, \mu_2$, respectively. Mo
 $$\int_{X_1}\int_{X_2} \left(\mathbb{1}_{\left(X_1\setminus N_1\right)\times X_2}\right)_{x_1}\cdot f_{x_1}\,d\mu_2d\mu_1 = \int_{X_1\times X_2}f\,d(\mu_1\otimes \mu_2) = \int_{X_2}\int_{X_1} \left(\mathbb{1}_{X_1\times \left(X_2\setminus N_2\right)}\right)_{x_2}\cdot f_{x_2}\,d\mu_1d\mu_2$$
 \end{theorem}
 \begin{proof}
-Let $\cF$ be a family of all $\left(\mu_1\otimes \mu_2\right)$-integrable functions $f:X_1\times X_2\ra Y$ such that the statement holds for $\cF$. Then according to Theorem \ref{theorem:Tonellis_theorem_for_mu_measurable_functions} for every $y\in Y$ and $E\in \Sigma_1\otimes \Sigma_2$ such that $\left(\mu_1\otimes \mu_2\right)(E) \in \RR$ we have $y\cdot \mathbb{1}_E \in \cF$. Moreover, if $f, g\in \cF$, then for scalars $\alpha,\beta$ we have $\alpha f + \beta g\in \cF$. Suppose that $\{f_n:X_1\times X_2\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ which is $\mu$-almost everywhere pointwise convergent and $g:X_1\times X_2\ra \ol{\RR}$ is a nonnegative, $\mu$-measurable function such that
+Let $\cF$ be a family of all $\left(\mu_1\otimes \mu_2\right)$-integrable functions $f:X_1\times X_2\ra Y$ such that the statement holds for $\cF$. Then according to Theorem \ref{theorem:fubinis_theorem_basic} for every $y\in Y$ and $E\in \Sigma_1\otimes \Sigma_2$ such that $\left(\mu_1\otimes \mu_2\right)(E) \in \RR$ we have $y\cdot \mathbb{1}_E \in \cF$. Moreover, if $f, g\in \cF$, then for scalars $\alpha,\beta$ we have $\alpha f + \beta g\in \cF$. Suppose that $\{f_n:X_1\times X_2\ra Y\}_{n\in \NN}$ is a sequence of functions in $\cF$ which is pointwise convergent and $g:X_1\times X_2\ra \ol{\RR}$ is a nonnegative measurable function such that
 $$\int_{X_1\times X_2}g\,d\mu \in \RR$$
-and $||f_n||\leq g$ holds $\mu$-almost everywhere for $n\in \NN$. Let $f$ be a $\mu$-almost everywhere pointwise limit of $\{f_n\}_{n\in \NN}$. Then by Theorems \ref{theorem:dominated_convergence} and \ref{theorem:Tonellis_theorem_for_mu_measurable_functions} we have $f\in \cF$. From Corollary \ref{corollary:measurable_induction_for_banach_valued} we derive that $\cF$ contains all $\left(\mu_1\otimes \mu_2\right)$-integrable functions.
+and $\lVert f_n\rVert \leq g$ holds for every $n\in \NN$. Let $f$ be pointwise limit of $\{f_n\}_{n\in \NN}$. Then by Theorem \ref{theorem:dominated_convergence} and Theorem \ref{theorem:Tonellli_theorem} we have $f\in \cF$. From Corollary \ref{corollary:measurable_induction_for_banach_valued} we derive that $\cF$ contains all $\left(\mu_1\otimes \mu_2\right)$-integrable functions.
 \end{proof}
+
+
+
+
+
+
 
 
 
