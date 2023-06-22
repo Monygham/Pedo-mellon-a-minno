@@ -361,7 +361,7 @@ for each $x\in \fX$ and each $r\in \RR_+$. Then $p$ is \textit{a sublinear map}.
 \end{definition}
 
 \begin{theorem}[Hahn-Banach]\label{theorem:Hahn_Banach_real_case}
-Let $\fX$ be a vector space over $\RR$ and let $p:\fX\ra \RR$ be a sublinear map. Suppose that $\fU$ is an $\RR$-subspace of $\fX$ and $f:\fU\ra \RR$ is an $\RR$-linear map such that $f(x) \leq p(x)$ for every $x$ in $\fU$. Then there exists an $\RR$-linear map $\tilde{f}:\fX \ra \RR$ such that $\tilde{f}(x) \leq p(x)$ and $\tilde{f}_{\mid \fU} = f$. 
+Let $\fX$ be a vector space over $\RR$ and let $p:\fX\ra \RR$ be a sublinear map. Suppose that $\fU$ is an $\RR$-subspace of $\fX$ and $f:\fU\ra \RR$ is an $\RR$-linear map such that $f(x) \leq p(x)$ for every $x$ in $\fU$. Then there exists an $\RR$-linear map $\tilde{f}:\fX \ra \RR$ such that $\tilde{f} \leq p$ and $\tilde{f}_{\mid \fU} = f$. 
 \end{theorem}
 \noindent
 We need the following result.
@@ -396,6 +396,68 @@ $$u\cdot \left(r - \tilde{f}(x)\right) = \tilde{g}(x, r) > 0$$
 and hence
 $$r > \tilde{f}(x)$$
 for every $(x,r)\in U$. We deduce that $\tilde{f}(x) \leq p(x)$ for all $x\in \fX$. 
+\end{proof}
+
+
+\section{Invariant Hahn-Banach theorem}
+\noindent
+In this section we prove generalization of Hahn-Banach theorem. First we need to introduce some notions.
+
+\begin{definition}
+Let $\fX$ be a vector space over $\RR$ and let $\cG$ be a semigroup of $\RR$-linear endomorphisms of $\fX$. An $\RR$-linear subspace $\fU$ is \textit{$\fG$-invariant} if $g\left(\fU\right)\subseteq \fU$ for every $g\in \cG$.
+\end{definition}
+
+\begin{remark}\label{remark:whole_space_is_invariant}
+Let $\fX$ be a vector space over $\RR$ and let $\cG$ be a semigroup of $\RR$-linear endomorphisms of $\fX$. Then by obvious reasons $\fX$ is $\cG$-invariant subspace.
+\end{remark}
+
+\begin{definition}
+Let $\fX$ be a vector space over $\RR$, let $\cG$ be a semigroup of $\RR$-linear endomorphisms of $\fX$ and let $\fU$ be an $\RR$-linear and $\cG$-invariant subspace of $\fX$. An $\RR$-linear map $f:\fU\ra \RR$ is \textit{$\cG$-invariant} if
+$$f\left(g(x)\right) = f(x)$$
+for every $x\in \fU$ and $g\in \cG$.
+\end{definition}
+\noindent
+Now we are ready to state and prove the following result.
+
+\begin{theorem}\label{theorem:invariant_Hahn_Banach}
+Let $\fX$ be a vector space over $\RR$ and let $\cG$ be a commutative semigroup of $\RR$-linear endomorphisms of $\fX$. Suppose that $p:\fX\ra \RR$ is a sublinear map such that
+$$p\left(g(x)\right) \leq p(x)$$
+for every $x \in \fX$ and $g \in \cG$. If $\fU$ is a $\cG$-invariant subspace of $\fX$ and $f:\fU\ra \RR$ is an $\RR$-linear and $\cG$-invariant map such that $f(x)\leq p(x)$ for all $x\in \fU$, then there exists an $\RR$-linear and $\cG$-invariant map $\tilde{f}:\fX \ra \RR$ such that $\tilde{f} \leq p$ and $\tilde{f}_{\mid \fU} = f$.
+\end{theorem}
+\begin{proof}
+For each $x \in \fX$ we define
+$$q(x) = \inf \bigg\{\frac{1}{n}\cdot p\bigg(\sum_{i=1}^ng_i(x)\bigg)\bigg|\,\mbox{ for some }n\in \NN_+\mbox{ and }g_1,...,g_n\in \cG\bigg\}$$
+Fix $n\in \NN_+$ and $g_1,...,g_n\in \cG$. Then
+$$\frac{1}{n}\cdot p\bigg(\sum_{i=1}^ng_i(x)\bigg)\geq -\frac{1}{n}\cdot p\bigg(\sum_{i=1}^n-g_i(x)\bigg) \geq -\frac{1}{n}\cdot \sum_{i=1}^np\left(g_i(-x)\right) \geq -\frac{1}{n}\cdot \sum_{i=1}^np\left(-x\right) = -p(-x)$$
+and thus $q(x) \in \RR$ for every $x\in \fX$. Clearly we have $q(r\cdot x) = r\cdot q(x)$ for every $x\in \fX$ and $r\in \RR_+$. Suppose now that $x_1,x_2\in \fX$ and $\epsilon > 0$. Then there exist $n,m \in \NN_+$ and $g_1,...g_n,h_1,...,h_m \in \cG$ such that 
+$$\frac{1}{n}\cdot p\bigg(\sum_{i=1}^ng_i(x_1)\bigg) \leq q(x_1) + \epsilon,\,\frac{1}{m}\cdot p\bigg(\sum_{i=1}^m h_i(x_2)\bigg) \leq q(x_2) + \epsilon$$
+Then
+$$q(x_1 + x_2) \leq \frac{1}{n\cdot m}\cdot p\bigg(\sum_{i=1}^n\sum_{j=1}^m\left(g_i\cdot h_j\right)(x_1 + x_2)\bigg) \leq$$
+$$\leq \frac{1}{n\cdot m}\cdot p\bigg(\sum_{i=1}^n\sum_{j=1}^m \left(g_i\cdot h_j\right)(x_1)\bigg) + \frac{1}{n\cdot m}\cdot p\bigg(\sum_{i=1}^n\sum_{j=1}^m\left(g_i\cdot h_j\right)(x_2)\bigg) \leq$$
+$$\leq \frac{1}{n\cdot m}\cdot p\left(\sum_{j=1}^m h_j\left(\sum_{i=1}^n g_i\left(x_1\right)\right)\right) + \frac{1}{n\cdot m}\cdot p\left(\sum_{i=1}^n g_i\left(\sum_{j=1}^m h_j\left(x_2\right)\right)\right) \leq $$
+$$\leq \frac{1}{n\cdot m}\cdot \sum_{j=1}^m p\left(h_j\left(\sum_{i=1}^n g_i\left(x_1\right)\right)\right) + \frac{1}{n\cdot m}\cdot \sum_{i=1}^n p\left(g_i\left(\sum_{j=1}^m h_j\left(x_2\right)\right)\right) \leq $$
+$$\leq \frac{1}{n\cdot m}\cdot \sum_{j=1}^m p\left(\sum_{i=1}^n g_i\left(x_1\right)\right) + \frac{1}{n\cdot m}\cdot \sum_{i=1}^n p\left(\sum_{j=1}^m h_j\left(x_2\right)\right) \leq $$
+$$\leq  \frac{1}{n}\cdot p\left(\sum_{i=1}^n g_i\left(x_1\right)\right) + \frac{1}{m}\cdot p\left(\sum_{j=1}^m h_j\left(x_2\right)\right) \leq q(x_1) + q(x_2) + 2\cdot \epsilon$$
+Note that in order to prove the inequality above we used the fact that $\cG$ is commutative. We deduced that
+$$q(x_1 + x_2) \leq q(x_1) + q(x_2) + 2\cdot \epsilon$$
+for every $x_1,x_2\in \fX$ and $\epsilon > 0$. This proves that $q:\fX \ra \RR$ is a sublinear map. We claim that 
+$$q\left(x - g(x)\right) = q\left(g(x) - x\right) = 0$$
+for all $x\in \fX$ and $g\in \cG$. For this note that
+$$q\left(x - g(x)\right) \leq \frac{1}{n}\cdot p\left(\sum_{i=1}^ng^i\left(x - g(x)\right)\right) = \frac{1}{n}\cdot p\left(g(x) - g^{n+1}(x)\right) \leq$$
+$$\leq \frac{1}{n}\left(p\left(g(x)\right) + p\left(-g^{n+1}(x)\right)\right) \leq \frac{1}{n}\left(p(x) + p(-x)\right)$$
+for every $n\in \NN_+$. Hence 
+$$q\left(x - g(x)\right) \leq 0$$
+Similar argument shows that
+$$q\left(g(x) - x\right) \leq 0$$
+for all $x \in \fX$. On the other hand
+$$0 \leq q\left(x - g(x)\right) + q\left(g(x) - x\right)$$
+and the claim is proved. Observe that
+$$f(x) = \frac{1}{n}\cdot \sum_{i=1}^nf\left(g_i(x)\right) = \frac{1}{n}\cdot f\left(\sum_{i=1}^ng_i(x)\right) \leq \frac{1}{n}\cdot p\left(\sum_{i=1}^ng_i(x)\right)$$
+for every $x \in \fU$, $n\in \NN_+$ and $g_1,...,g_n\in \cG$. Hence $f(x) \leq q(x)$ for all $x\in \fU$. Now by Theorem \ref{theorem:Hahn_Banach_real_case} there exists an $\RR$-linear map $\tilde{f}:\fX\ra \RR$ such that $\tilde{f} \leq q$ and $\tilde{f}_{\mid \fU} = f$. Fix $x \in \fX$ and $g \in \cG$. Since
+$$\tilde{f}\left(x - g(x)\right) \leq q\left(x - g(x)\right) = 0,\,\tilde{f}\left(g(x) - x\right) \leq q\left(g(x) - x\right) = 0$$
+we derive that
+$$\tilde{f}(x) = \tilde{f}\left(g(x)\right)$$
+This shows that $\tilde{f}$ is $\cG$-invariant.
 \end{proof}
 
 
