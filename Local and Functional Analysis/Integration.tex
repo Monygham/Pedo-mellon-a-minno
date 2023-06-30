@@ -439,9 +439,7 @@ satisfy $\mu(B) = 0$. For $x\not \in B_m$ we have
 $$\sum_{k = m}^{+\infty}\lVert f_{n_{k+1}}(x) - f_{n_k}(x)\rVert \leq \sum_{k=m}^{+\infty}2^{-kp} = \left(\frac{1}{2^p}\right)^m\cdot \frac{2^p}{2^p - 1}$$
 Since $Y$ is a Banach space, we deduce that for $x\not \in B_m$ series
 $$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
-is convergent. Therefore, it is also convergent for $x\not \in B$. We define $f:X\ra Y$ as a sum
-$$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
-for $x\not \in B$ and $f(x) = 0$ for $x\in B$. Then
+is convergent. Therefore, it is also convergent for $x\not \in B$. We define $f:X\ra Y$ as a sum of the series for $x\not \in B$ and $f(x) = 0$ for $x\in B$. Then
 $$\lim_{k\ra +\infty}f_{n_k}(x) = f(x)$$
 for $x \not \in B$. Hence
 $$\lim_{k\ra +\infty}\mathbb{1}_{X\setminus B}\cdot f_{n_k} = f$$
@@ -759,7 +757,86 @@ $$\int_{X_1\times X_2}g\,d\mu \in \RR$$
 and $\lVert f_n\rVert \leq g$ holds for every $n\in \NN$. Let $f$ be pointwise limit of $\{f_n\}_{n\in \NN}$. Then by Theorem \ref{theorem:dominated_convergence} and Theorem \ref{theorem:Tonellli_theorem} we have $f\in \cF$. From Corollary \ref{corollary:measurable_induction_for_banach_valued} we derive that $\cF$ contains all $\left(\mu_1\otimes \mu_2\right)$-integrable functions.
 \end{proof}
 
+\section{Space of essentially bounded functions}
+\noindent
+In this section we define the notion of Lebesgue space for $p = +\infty$. We fix a Banach space $Y$ with norm $\lVert-\rVert$ over a field $\mathbb{K}$ with absolute value $|-|$.
 
+\begin{definition}
+Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. Then 
+$$\lVert f \rVert_{\infty} = \sup \bigg\{r\in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\big\{x\in X\,\big|\,\lVert f(x)\rVert \geq r\big\}\right) > 0\bigg\}$$
+is \textit{the essential supremum of $f$ with respect to $\mu$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:L_infinity_norm_is_seminorm}
+Let $(X,\Sigma,\mu)$ be a space with measure. Then 
+\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+\item If $\alpha \in \mathbb{K}$ and $f:X\ra Y$ is a strongly measurable function on $(X,\Sigma)$, then
+$$\lVert \alpha \cdot f\rVert_{\infty} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
+\item If $f,g:X\ra Y$ are strongly measurable functions on $(X,\Sigma)$, then
+$$\lVert f + g \rVert_{\infty} \leq \lVert f \rVert_{\infty} + \lVert g \rVert_{\infty}$$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Fix $\alpha \in \mathbb{K}\setminus \{0\}$ and $f:X\ra Y$ be a strongly measurable function on $(X,\Sigma)$. Then
+$$\{x\in X\,\big|\,\lVert (\alpha \cdot f)(x)\rVert \geq r\big\} = \bigg\{x\in X\,\bigg|\,\lVert f(x)\rVert \geq \frac{r}{|\alpha|}\bigg\}$$
+for every $r \in \RR_+\cup \{0\}$. Hence
+$$\lVert \alpha \cdot f\rVert_{\infty} = \sup \bigg\{r\in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\big\{x\in X\,\big|\,\lVert (\alpha \cdot f)(x)\rVert \geq r\big\}\right) > 0\bigg\} =$$
+$$= \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\bigg\{x\in X\,\bigg|\,\lVert f(x)\rVert \geq \frac{r}{|\alpha|}\bigg\}\right) > 0\bigg\} = $$
+$$= |\alpha| \cdot \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\big\{x\in X\,\big|\,\lVert f(x)\rVert \geq r\big\}\right) > 0\bigg\} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
+It follows that
+$$\lVert \alpha \cdot f\rVert_{\infty} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
+for every $\alpha \in \mathbb{K}\setminus \{0\}$. For $\alpha = 0$ this also holds for trivial reasons. Hence \textbf{(1)} is proved.\\
+Suppose that $f,g:X\ra Y$ are strongly measurable functions on $(X,\Sigma)$. Assume that $r\in \RR_+$ is such that 
+$$\lVert f \rVert_{\infty} + \lVert g \rVert_{\infty} < r$$
+We may pick $r_f,r_g\in \RR_+$ such that $r_f+r_g = r$ and $\lVert f \rVert_{\infty} < r_f$ and $\lVert g \rVert_{\infty} < r_g$. Then
+$$\{x\in X\,\big|\,\lVert (f + g)(x)\rVert \geq r\big\} \subseteq \big\{x\in X\,\big|\,\lVert f(x)\rVert + \lVert g(x)\rVert \geq r_f + r_g\big\} \subseteq $$
+$$\subseteq \big\{x\in X\,\big|\,\lVert f(x)\rVert  \geq r_f\big\} \cup \big\{x\in X\,\big|\,\lVert g(x)\rVert  \geq r_g\big\}$$
+Since $\lVert f \rVert_{\infty} < r_f$ and $\lVert g \rVert_{\infty} < r_g$, we deduce that
+$$\mu\left(\big\{x\in X\,\big|\,\lVert f(x)\rVert  \geq r_f\big\}\right) = \mu\left(\big\{x\in X\,\big|\,\lVert g(x)\rVert  \geq r_g\big\}\right) = 0$$
+This implies that
+$$\mu\left(\{x\in X\,\big|\,\lVert (f + g)(x)\rVert \geq r\big\}\right) = 0$$
+and thus $\lVert f + g\rVert_{\infty} < r$. This proves that
+$$\lVert f + g \rVert_{\infty} \leq \lVert f \rVert_{\infty} + \lVert g \rVert_{\infty}$$
+if right hand side is finite. Clearly the inequality holds if the right hand side is infinite. This completes the proof of \textbf{(2)}.
+\end{proof}
+
+\begin{definition}
+Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. If
+$$\lVert f \rVert_{\infty} \in \RR$$
+then $f$ is \textit{essentially bounded with respect to $\mu$} or shortly \textit{$\mu$-essentially bounded}.
+\end{definition}
+
+\begin{definition}
+Let $(X,\Sigma,\mu)$ be a space with measure. Then the set of all $Y$-valued and $\mu$-essentially bounded functions is denoted by $L^{\infty}(\mu,Y)$ and is called \textit{the Lebesgue space of $\mu$-essentially bounded functions for $Y$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:L_infinity_is_seminormed_topological_vector_space}
+Let $(X,\Sigma,\mu)$ be a space with measure. Then $L^{\infty}(\mu,Y)$ is a $\mathbb{K}$-vector subspace of the $\mathbb{K}$-vector space of all strongly measurable functions on $(X,\Sigma)$ and 
+$$\lVert -\rVert_{\infty}:L^{\infty}(\mu,Y)\ra \RR_+\cup \{0\}$$
+is a seminorm.
+\end{corollary}
+\begin{proof}
+This follows immediately from Proposition \ref{proposition:L_infinity_norm_is_seminorm}.
+\end{proof}
+
+\begin{theorem}[Riesz]\label{theorem:Riesz_theorem_for_L_infinity}
+Let $(X,\Sigma,\mu)$ be a space with measure. If $\{f_n:X\ra Y\}_{n\in \NN}$ is a Cauchy sequence of elements of $L^{\infty}(\mu,Y)$, then there exist an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers and a function $f:X\ra Y$ which is $\mu$-essentially bounded such that $\{f_{n_k}\}_{k \in \NN}$ converges uniformly to $f$ outside some set in $\Sigma$ of measure $\mu$ equal to zero. Moreover, $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^{\infty}(\mu,Y)$.
+\end{theorem}
+\begin{proof}
+We consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
+$$\lVert f_{n_{k+1}} - f_{n_k}\rVert_{\infty} \leq 2^{-k}$$
+for every $k\in \NN$. For $k\in \NN$ consider a set
+$$A_k = \big\{x\in X\,\big|\,\lVert f_{n_{k+1}}(x) - f_{n_k}(x) \rVert > 2^{-k} \big\}$$
+in $\Sigma$. Then $\mu(A_k) = 0$ for every $k \in \NN$. Consider also the set
+$$A = \big\{x\in X\,\big|\,\lVert f_{n_{0}}(x) \rVert > \lVert f_{n_0}\rVert_{\infty} \big\}$$
+Then $\mu(A) = 0$. It follows that the set 
+$$B = A \cup \bigcup_{k=0}^{+\infty}A_k$$
+is in $\Sigma$ and $\mu(B) = 0$. Since $Y$ is a Banach space, we deduce that for $x\not \in B$ series
+$$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
+is convergent and the convergence is uniform on $X\setminus B$. We define $f:X\ra Y$ as a sum of the series for $x\not \in B$ and $f(x) = 0$ for $x\in B$. Hence $\{\mathbb{1}_{X\setminus B}\cdot f_{n_k}\}_{k\in \NN}$ converges uniformly to $f$ and Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is a strongly measurable function. Moreover, for $x\not \in B$ we have
+$$\lVert f_{n_0}(x) - f(x)\rVert \leq 2$$
+Therefore, we have $\lVert f(x) \rVert \leq \lVert f_{n_0}\rVert_{\infty} + 2$ for $x\not \in B$. This proves that $f$ is $\mu$-essentially bounded. Since $\{f_{n_k}\}_{k\in \NN}$ converges uniformly to $f$ on $X\setminus B$, we derive that it converges to $f$ in $L^{\infty}(\mu,Y)$. Therefore, $\{f_{n_k}\}_{k\in \NN}$ converges to $f$ in $L^{\infty}(\mu,Y)$. Since $\{f_{n_k}\}_{k\in \NN}$ is a Cauchy sequence in $L^{\infty}(\mu,Y)$ with a subsequence convergent to $f$, we derive that $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^{\infty}(\mu,Y)$.
+\end{proof}
 
 
 
