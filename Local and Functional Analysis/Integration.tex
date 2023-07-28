@@ -759,7 +759,7 @@ and $\lVert f_n\rVert \leq g$ holds for every $n\in \NN$. Let $f$ be pointwise l
 
 \section{Space of essentially bounded functions}
 \noindent
-In this section we define the notion of Lebesgue space for $p = +\infty$. We fix a Banach space $Y$ with norm $\lVert-\rVert$ over a field $\mathbb{K}$ with absolute value $|-|$.
+In this section we extend the notion of Lebesgue space to $p = +\infty$. We fix a Banach space $Y$ with norm $\lVert-\rVert$ over a field $\mathbb{K}$ with absolute value $|-|$.
 
 \begin{definition}
 Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. Then 
@@ -820,24 +820,19 @@ This follows immediately from Proposition \ref{proposition:L_infinity_norm_is_se
 \end{proof}
 
 \begin{theorem}[Riesz]\label{theorem:Riesz_theorem_for_L_infinity}
-Let $(X,\Sigma,\mu)$ be a space with measure. If $\{f_n:X\ra Y\}_{n\in \NN}$ is a Cauchy sequence of elements of $L^{\infty}(\mu,Y)$, then there exist an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers and a function $f:X\ra Y$ which is $\mu$-essentially bounded such that $\{f_{n_k}\}_{k \in \NN}$ converges uniformly to $f$ outside some set in $\Sigma$ of measure $\mu$ equal to zero. Moreover, $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^{\infty}(\mu,Y)$.
+Let $(X,\Sigma,\mu)$ be a space with measure and let $\{f_n:X\ra Y\}_{n\in \NN}$ be a Cauchy sequence of elements of $L^{\infty}(\mu,Y)$. Then $\{f_n\}_{n\in \NN}$ converges in $L^{\infty}(\mu,Y)$. 
 \end{theorem}
 \begin{proof}
-We consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
-$$\lVert f_{n_{k+1}} - f_{n_k}\rVert_{\infty} \leq 2^{-k}$$
-for every $k\in \NN$. For $k\in \NN$ consider a set
-$$A_k = \big\{x\in X\,\big|\,\lVert f_{n_{k+1}}(x) - f_{n_k}(x) \rVert > 2^{-k} \big\}$$
-in $\Sigma$. Then $\mu(A_k) = 0$ for every $k \in \NN$. Consider also the set
-$$A = \big\{x\in X\,\big|\,\lVert f_{n_{0}}(x) \rVert > \lVert f_{n_0}\rVert_{\infty} \big\}$$
-Then $\mu(A) = 0$. It follows that the set 
-$$B = A \cup \bigcup_{k=0}^{+\infty}A_k$$
-is in $\Sigma$ and $\mu(B) = 0$. Since $Y$ is a Banach space, we deduce that for $x\not \in B$ series
-$$f_{n_0}(x) + \sum_{k\in \NN}\left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)$$
-is convergent and the convergence is uniform on $X\setminus B$. We define $f:X\ra Y$ as a sum of the series for $x\not \in B$ and $f(x) = 0$ for $x\in B$. Hence $\{\mathbb{1}_{X\setminus B}\cdot f_{n_k}\}_{k\in \NN}$ converges uniformly to $f$ and Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is a strongly measurable function. Moreover, for $x\not \in B$ we have
-$$\lVert f_{n_0}(x) - f(x)\rVert \leq 2$$
-Therefore, we have $\lVert f(x) \rVert \leq \lVert f_{n_0}\rVert_{\infty} + 2$ for $x\not \in B$. This proves that $f$ is $\mu$-essentially bounded. Since $\{f_{n_k}\}_{k\in \NN}$ converges uniformly to $f$ on $X\setminus B$, we derive that it converges to $f$ in $L^{\infty}(\mu,Y)$. Therefore, $\{f_{n_k}\}_{k\in \NN}$ converges to $f$ in $L^{\infty}(\mu,Y)$. Since $\{f_{n_k}\}_{k\in \NN}$ is a Cauchy sequence in $L^{\infty}(\mu,Y)$ with a subsequence convergent to $f$, we derive that $\{f_n\}_{n\in \NN}$ converges to $f$ in $L^{\infty}(\mu,Y)$.
+Consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
+$$\lVert f_{n} - f_{m}\rVert_{\infty} \leq 2^{-k}$$
+for every $n,m\geq n_k$ and for every $k \in \NN$. For every $k\in \NN$ sets
+$$A_{k} = \bigcup_{n=n_k}^{+\infty}\bigcup_{m=n_k}^{+\infty}\big\{x\in X\,\big|\,\lVert f_{n}(x) - f_{m}(x) \rVert > 2^{-k} \big\}$$
+and
+$$B_k = \big\{x\in X\,\big|\,\lVert f_k(x) \rVert > \lVert f_k \rVert_{\infty}\big\}$$
+are in $\Sigma$ and have measure $\mu$ equal to zero. Hence
+$$A = \bigcup_{k\in \NN}\left(A_k\cup B_k\right)$$
+have measure $\mu$ equal to zero. Now $\{{f_n}_{\mid X\setminus A}\}_{n\in \NN}$ is a sequence of bounded functions which is Cauchy with respect to uniform norm. Since $Y$ is complete with respect to $\lVert-\rVert$, sequence $\{{f_n}_{\mid X\setminus A}\}_{n\in \NN}$ converges uniformly to some function $X\setminus A\ra Y$. We extend this function to a function $f:X\ra Y$ by setting it equal to zero on $A$. Note that $f$ is strongly measurable by Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits}. Moreover, $\{{f_n}_{\mid X\setminus A}\}_{n\in \NN}$ converges uniformly to $f_{\mid X\setminus A}$. Thus $f_{X\setminus A}$ is bounded and hence $f\in L^{\infty}(\mu,Y)$. For the same reason $f$ is a limit of $\{f_n\}_{n\in \NN}$ in $L^{\infty}(\mu,Y)$.
 \end{proof}
-
 
 
 
