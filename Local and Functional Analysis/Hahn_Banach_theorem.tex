@@ -288,7 +288,7 @@ as topological vector spaces over $\QQ$.
 \end{example}
 
 \begin{corollary}\label{corollary:continuous_map_to_standard_finite_dimensional_is_open}
-Let $\mathbb{K}$ be a complete field with nontrivial absolute value and let $\fX$ be a topological vector space over $\mathbb{K}$. Let $n$ be a natural number. Then every morphism $f:\fX\ra \mathbb{K}^n$ of topological vector spaces over $\mathbb{K}$ is open.
+Let $\mathbb{K}$ be a complete field with nontrivial absolute value and let $\fX$ be a topological vector space over $\mathbb{K}$. Fix a number $n \in \NN$. Then every morphism $f:\fX\ra \mathbb{K}^n$ of topological vector spaces over $\mathbb{K}$ is open.
 \end{corollary}
 \begin{proof}
 Note that $\Ker(f)$ is closed in $\fX$. Hence the quotient map $\fX/\Ker(f)$ is Hausdorff by Theorem \ref{theorem:quotients_of_topological_vector_spaces}. By Theorem \ref{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces} we derive that $\fX/\Ker(f) \cong \mathbb{K}^n$ as topological vector spaces over $\mathbb{K}$. Hence $f$ is the quotient map $q:\fX\ra \fX/\Ker(f)$ followed by an isomorphism $\fX/\Ker(f)\cong \mathbb{K}^n$ of topological vector spaces over $\mathbb{K}$. Theorem \ref{theorem:quotients_of_topological_vector_spaces} implies that $q$ is open. Therefore, $f$ is open.  
@@ -312,7 +312,7 @@ Theorem \ref{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces} 
 $$S^1 = \big\{(x, y)\in \RR^2\,\big|\,x^2 + y^2 = 1\big\}$$
 and a retraction $r:\RR^2\setminus \{0\} \ra S^1$ given by formula 
 $$r(x, y) = \bigg(\frac{x}{\sqrt{x^2 + y^2}},\frac{y}{\sqrt{x^2 + y^2}}\bigg)$$
-Note that $r$ is a continuous open map. Thus $\tilde{U} = r(U)$ is an open subset of $S^1$. Let $i:S^1\ra S^1$ be a homeomorphism given by formula $i(x, y) = (-x, -y)$. Since $U$ is convex and does not contain zero, sets $i(\tilde{U})$ and $\tilde{U}$ have empty intersection. According to the fact that $S^1$ is connected, we deduce that $i(\tilde{U}) \cup \tilde{U}$ is a proper subset of $S^1$. This is the case if and only if there exists $(x, y) \in S^1$ such that $(x, y) \not \in \tilde{U}$ and $(-x, -y) \not \in \tilde{U}$. Then one-dimensional subspace $\RR \cdot (x, y)$ of $\fX$ does not intersect $U$.
+Note that $r$ is an open map. Thus $\tilde{U} = r(U)$ is an open subset of $S^1$. Let $i:S^1\ra S^1$ be a homeomorphism given by formula $i(x, y) = (-x, -y)$. Since $U$ is convex and does not contain zero, sets $i(\tilde{U})$ and $\tilde{U}$ have empty intersection. According to the fact that $S^1$ is connected, we deduce that $i(\tilde{U}) \cup \tilde{U}$ is a proper subset of $S^1$. This is the case if and only if there exists $(x, y) \in S^1$ such that $(x, y) \not \in \tilde{U}$ and $(-x, -y) \not \in \tilde{U}$. Then one-dimensional subspace $\RR \cdot (x, y)$ of $\fX$ does not intersect $U$.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
@@ -329,7 +329,7 @@ The result above is often called geometric Hahn-Banach theorem.
 In this section assume that $\mathbb{K}$ is either real numbers field $\RR$ of complex numbers field $\CC$ with usual absolute values.
 
 \begin{definition}
-Let $\fX$ be a topological vector space over $\mathbb{K}$. Suppose that every open neighborhood of zero in $\fX$ contains open and convex neighborhood of zero. Then $\fX$ is \textit{a locally convex space over $\mathbb{K}$}.
+Let $\fX$ be a topological vector space over $\mathbb{K}$. Suppose that every open neighborhood of zero in $\fX$ contains an open and convex neighborhood of zero. Then $\fX$ is \textit{a locally convex space over $\mathbb{K}$}.
 \end{definition}
 
 \begin{theorem}\label{theorem:separation_in_locally_convex_spaces}
@@ -343,11 +343,11 @@ Since $K$ is quasi-compact, there are $x_1,...,x_n\in K$ such that
 $$K \subseteq \bigcup_{i=1}^n\left(x_i + W_{x_i}\right)$$
 Define
 $$W = \bigcap_{i=1}^nW_{x_i}$$
-Then $W$ is an open neighborhood of zero in $\fX$ such that $\left(K + W\right)\cap C = \emptyset$. Fix now an open and convex neighborhood of zero in $\fX$ such that $V - V \subseteq W$. Such set exists according to the fact that $\fX$ is locally convex. Note that 
-$$\left(K + V\right)\cap \left(C + V\right) = \emptyset$$
+Then $W$ is an open neighborhood of zero in $\fX$ such that $\left(K + W\right)\cap C = \emptyset$. Fix now an open and convex neighborhood of zero in $\fX$ such that $V \subseteq W$. Such set exists according to the fact that $\fX$ is locally convex. Note that 
+$$\left(K + V\right)\cap C = \emptyset$$
 It follows that subset 
-$$U = \left(K + V\right) - \left(C + V\right)$$
-of $\fX$ is open, convex and does not contain zero. Invoking Theorem \ref{theorem:Mazurs_hyperplane_separation} we get a continuous $\RR$-linear map $f:\fX \ra \RR$ such that $0 \not \in f\left(U\right)$. Corollary \ref{corollary:continuous_map_to_standard_finite_dimensional_is_open} implies that $f$ is an open map. It follows that $f\left(K + V\right),f\left(C + V\right)$ are disjoint open intervals in $\RR$. Hence there exists $x \in \fX$ such that $f(x)$ is strictly between $f\left(K + V\right)$ and $f\left(C + V\right)$. Clearly it is also strictly between $f(K)$ and $f(C)$. Thus $f(K - x)$ and $f(C - x)$ are strictly separated by zero in $\RR$. Without loss of generality we may assume that $f(K - x) \subseteq \RR_-$ and $f(C - x)\subseteq \RR_+$.
+$$U = \left(K + V\right) - C$$
+of $\fX$ is open, convex and does not contain zero. Invoking Theorem \ref{theorem:Mazurs_hyperplane_separation} we get a continuous $\RR$-linear map $f:\fX \ra \RR$ such that $0 \not \in f\left(U\right)$. Corollary \ref{corollary:continuous_map_to_standard_finite_dimensional_is_open} implies that $f$ is an open map. It follows that $f\left(K + V\right),f\left(C\right)$ are disjoint intervals in $\RR$. Since $f(K)$ is a compact interval contained in an open interval $f(K + V)$, we deduce that there exists $x \in \fX$ such that $f(x)$ is strictly between $f\left(K\right)$ and $f\left(C\right)$. Clearly it is also strictly between $f(K)$ and $f(C)$. Thus $f(K - x)$ and $f(C - x)$ are strictly separated by zero in $\RR$. Without loss of generality we may assume that $f(K - x) \subseteq \RR_-$ and $f(C - x)\subseteq \RR_+$.
 \end{proof}
 
 \section{Analytic Hahn-Banach theorem}
@@ -364,7 +364,7 @@ for each $x\in \fX$ and each $r\in \RR_+$. Then $p$ is \textit{a sublinear map}.
 Let $\fX$ be a vector space over $\RR$ and let $p:\fX\ra \RR$ be a sublinear map. Suppose that $\fU$ is an $\RR$-subspace of $\fX$ and $f:\fU\ra \RR$ is an $\RR$-linear map such that $f(x) \leq p(x)$ for every $x$ in $\fU$. Then there exists an $\RR$-linear map $\tilde{f}:\fX \ra \RR$ such that $\tilde{f} \leq p$ and $\tilde{f}_{\mid \fU} = f$. 
 \end{theorem}
 \noindent
-We need the following result.
+We need the following result, which shows that each sublinear map give rise to a seminorm.
 
 \begin{lemma}\label{lemma:sublinear_induces_seminorm_and_is_continuous_with_respect_to_it}
 Let $\fX$ be a vector space over $\RR$ and let $p:\fX \ra \RR$ be a sublinear map. Consider $q:\fX \ra \RR$ given by formula
@@ -382,22 +382,10 @@ and hence $p$ is continuous with respect to the topology induced by $q$ on $\fX$
 \begin{proof}[Proof of the theorem]
 By Lemma \ref{lemma:sublinear_induces_seminorm_and_is_continuous_with_respect_to_it} we may assume that $\fX$ is a topological vector space over $\RR$ and $p$ is a continuous map on $\fX$. Define
 $$U = \big\{(x,r)\in \fX\times \RR\,\big|\,p(x) < r\big\},\,\fZ = \big\{(x,f(x))\in \fX\times \RR\,\big|\,x\in \fU\big\}$$ 
-It follows that $U$ is a convex open subset of $\fX\times \RR$ and $\fZ$ is an $\RR$-subspace of $\fX\times \RR$ such that $U \cap \fZ = \emptyset$. By Theorem \ref{theorem:Mazurs_hyperplane_separation} there exists an $\RR$-linear continuous map $\tilde{g}:\fX\times \RR\ra \RR$ such that $\fZ\subseteq \ker(\tilde{g})$ and $0 \not \in \tilde{f}(U)$. Since $U$ is convex, without loss of generality we may assume that $\tilde{g}(U)\subseteq \RR_+$. There exists $u \in \RR$ and $\RR$-linear map $g:\fX\ra \RR$ such that 
-$$\tilde{g}\big(x, r\big) = g(x) + u\cdot r$$
-for every $x \in \fX$ and $r \in \RR$. Suppose now that $u \leq 0$. We have
-$$g(x) + u\cdot r = \tilde{g}(x,r) > 0$$
-for each $(x,r) \in U$. Hence $g(x) > (- u) \cdot r$ for every $(x,r) \in U$. Fix now $x\in \fX$ and pick $r \in \RR_+$ such that $r > p(x)$. Then 
-$$g(x) > (-u)\cdot r \geq 0$$ 
-and this shows that $g(x) > 0$ for $x\in \fX$. This contradicts the fact that $g$ is an $\RR$-linear map. Thus $u > 0$. We define $\tilde{f}:\fX\ra \RR$ by formula $\tilde{f}(x) = -\frac{1}{u}\cdot g(x)$. Then $\tilde{f}$ is an $\RR$-linear map and $$\tilde{g}(x, r) = u \cdot \left(r - \tilde{f}(x)\right)$$
-for every $(x,r) \in \fX\times \RR$. For each $x \in \fU$ we have
-$$0 = \tilde{g}\big(x,f(x)\big) = u \cdot \left(f(x) - \tilde{f}(x)\right)$$
-Hence $\tilde{f}_{\mid \fU} = f$. Moreover, for $(x,r) \in U$ we have 
-$$u\cdot \left(r - \tilde{f}(x)\right) = \tilde{g}(x, r) > 0$$
-and hence
-$$r > \tilde{f}(x)$$
-for every $(x,r)\in U$. We deduce that $\tilde{f}(x) \leq p(x)$ for all $x\in \fX$. 
+It follows that $U$ is a convex open subset of $\fX\times \RR$ and $\fZ$ is an $\RR$-subspace of $\fX\times \RR$ such that $U \cap \fZ = \emptyset$. By Theorem \ref{theorem:Mazurs_hyperplane_separation} there exists a codimension one $\RR$-linear subspace $\fM$ of $\fX\times \RR$ such that $\fZ \subseteq \fM$ and $U\cap \fM = \emptyset$. Let $\pi$ be the projection $\fX\times \RR\ra \fX$. It follows from the properties of $\fM$, that $\pi_{\mid \fM}:\fW\ra \fX$ is an $\RR$-linear isomorphism. Hence there exists an $\RR$-linear map $\tilde{f}:\fX \ra \RR$ such that 
+$$\fM = \big\{(x,\tilde{f}(x))\in \fX\times \RR\,\big|\,x \in \fX\big\}$$
+Since $\fZ \subseteq \fM$, we deduce that $\tilde{f}_{\mid \fU} = f$. According to $U\cap \fW = \emptyset$, we have $\tilde{f} \leq p$. This completes the proof.
 \end{proof}
-
 
 \section{Invariant Hahn-Banach theorem}
 \noindent
@@ -445,14 +433,14 @@ Note that in order to prove the inequality above we used the fact that $\cG$ is 
 $$q(x_1 + x_2) \leq q(x_1) + q(x_2) + 2\cdot \epsilon$$
 for every $x_1,x_2\in \fX$ and $\epsilon > 0$. This proves that $q:\fX \ra \RR$ is a sublinear map. We claim that 
 $$q\left(x - g(x)\right) = q\left(g(x) - x\right) = 0$$
-for all $x\in \fX$ and $g\in \cG$. For this note that
+for all $x\in \fX$ and for every $g\in \cG$. For this note that
 $$q\left(x - g(x)\right) \leq \frac{1}{n}\cdot p\left(\sum_{i=1}^ng^i\left(x - g(x)\right)\right) = \frac{1}{n}\cdot p\left(g(x) - g^{n+1}(x)\right) \leq$$
 $$\leq \frac{1}{n}\left(p\left(g(x)\right) + p\left(-g^{n+1}(x)\right)\right) \leq \frac{1}{n}\left(p(x) + p(-x)\right)$$
 for every $n\in \NN_+$. Hence 
 $$q\left(x - g(x)\right) \leq 0$$
 Similar argument shows that
 $$q\left(g(x) - x\right) \leq 0$$
-for all $x \in \fX$. On the other hand
+for all $x \in \fX$. Since $q$ is sublinear map, we derive 
 $$0 \leq q\left(x - g(x)\right) + q\left(g(x) - x\right)$$
 and the claim is proved. Observe that
 $$f(x) = \frac{1}{n}\cdot \sum_{i=1}^nf\left(g_i(x)\right) = \frac{1}{n}\cdot f\left(\sum_{i=1}^ng_i(x)\right) \leq \frac{1}{n}\cdot p\left(\sum_{i=1}^ng_i(x)\right)$$
@@ -460,7 +448,7 @@ for every $x \in \fU$, $n\in \NN_+$ and $g_1,...,g_n\in \cG$. Hence $f(x) \leq q
 $$\tilde{f}\left(x - g(x)\right) \leq q\left(x - g(x)\right) = 0,\,\tilde{f}\left(g(x) - x\right) \leq q\left(g(x) - x\right) = 0$$
 we derive that
 $$\tilde{f}(x) = \tilde{f}\left(g(x)\right)$$
-This shows that $\tilde{f}$ is $\cG$-invariant.
+This shows that $\tilde{f}$ is $\cG$-invariant. Note that $q \leq p$ and thus $\tilde{f} \leq p$. Hence $\tilde{f}$ satsifies the assertion. 
 \end{proof}
 
 
