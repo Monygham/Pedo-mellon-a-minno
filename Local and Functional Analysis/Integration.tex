@@ -560,13 +560,24 @@ with norm equal to one extending the integral on $S(\mu, Y)$.
     Elements of $L^1(\mu,Y)$ are called \textit{$\mu$-integrable functions with values in $Y$}.
 \end{definition}
 \noindent
-We prove now some properties of Bochner's integral. 
+We prove now some properties of Bochner's integral. We start with noting the following.
+
+\begin{corollary}\label{corollary:convergence_of_integral}
+    Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of $\mu$-integrable functions convergent in $L^1(\mu, Y)$ to some $\mu$-integrable function $f:X\ra Y$. Then
+    $$\lim_{n\ra +\infty}\int_Xf_n\,d\mu = \int_Xf\,d\mu$$
+    in $Y$.
+\end{corollary}
+\begin{proof}
+    By definition Bochner's integral is continuous with respect to $\lVert-\rVert_1$.
+\end{proof}
+\noindent
+Next we discuss linearity and convexity of integral.
 
 \begin{proposition}\label{proposition:Bochner_integral_commutes_with_any_continuous_linear_operation}
     Let $(X,\Sigma,\mu)$ be a space with measure. Let $Y, Z$ be Banach spaces over $\mathbb{K}$ and let $T:Y \ra Z$ be a $\mathbb{K}$-linear and continuous map of Banach spaces. Then the following assertions hold.
     \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
         \item $T$ induces a $\mathbb{K}$-linear and continuous map 
-        $$L^1(\mu,Y) \ni f \mapsto T\cdot f \in L^1(\mu,Z)$$
+        $$L^1(\mu,Y) \ni f \mapsto T \cdot f \in L^1(\mu,Z)$$
         \item The formula 
         $$\int_X T\cdot f \,d\mu = T\left(\int_X f\,d\mu\right)$$
         holds for every $f \in L^1(\mu,Y)$.
@@ -575,10 +586,11 @@ We prove now some properties of Bochner's integral.
 \begin{proof}
     Note that
     $$\lVert T\cdot f \rVert_1 = \int_X\lVert T\cdot f \rVert\,d\mu \leq \int_X \lVert T\rVert\cdot \lVert f \rVert\,d\mu \leq \lVert T\rVert\cdot \int_X  \lVert f \rVert\,d\mu = \lVert T\rVert\cdot \lVert f \rVert_1$$
-    This proves \textbf{(1)} holds. For the proof of \textbf{(2)} we fix a $\mu$-simple function $s \in \cS(\mu,Y)$. Then we have $T\cdot s \in \cS(\mu,Z)$ and
+    for every $f \in L^1(\mu,Y)$. This proves that \textbf{(1)} holds.\\
+    For the proof of \textbf{(2)} we fix a $\mu$-simple function $s \in \cS(\mu,Y)$. Then we have $T\cdot s \in \cS(\mu,Z)$ and
     $$\int_X T\cdot s\,d\mu = \sum_{z \in Z}z \cdot \mu\left(s^{-1}\left(T^{-1}(z)\right)\right) = \sum_{z\in Z}z\cdot \sum_{T(y) = z}\mu\left(s^{-1}(y)\right) = $$
     $$= \sum_{z \in Z}\sum_{T(y) = z}T(y)\cdot \mu\left(s^{-1}(y)\right) = \sum_{y\in Y} T(y)\cdot \mu\left(s^{-1}(y)\right) = $$
-    $$=T\left( \sum_{y\in Y} T(y)\cdot \mu\left(s^{-1}(y)\right) \right) = T\left( \int_X s\,d\mu\right)$$
+    $$=T\left( \sum_{y\in Y} y\cdot \mu\left(s^{-1}(y)\right) \right) = T\left( \int_X s\,d\mu\right)$$
     Hence for every $s \in \cS(\mu,Y)$ we have 
     $$\int_X T\cdot s \,d\mu = T\left(\int_X s\,d\mu\right)$$
     Theorem \ref{theorem:simple_are_dense} together with \textbf{(1)} and continuity of integral with respect to $\mu$ imply that
@@ -587,29 +599,16 @@ We prove now some properties of Bochner's integral.
 \end{proof}
 
 \begin{proposition}\label{proposition:if_function_admit_values_in_convex_set_then_the_mean_value_is_also_in_that_set}
-    Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that $C$ is a closed and convex subset of $Y$. Let $f \in L^1(\mu,Y)$ be a function such that $\mu\left(f^{-1}(C)\right) \in \RR_+$. Then
-    $$\frac{1}{\mu\left(f^{-1}(C)\right)}\cdot \int_{f^{-1}(C)}f\,d\mu \in C$$
+    Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that $C$ is a convex subset of $Y$. Let $f \in L^1(\mu,Y)$ be a function such that $\mu\left(f^{-1}(C)\right) \in \RR_+$. Then
+    $$\frac{1}{\mu\left(f^{-1}(C)\right)}\cdot \int_{f^{-1}(C)}f\,d\mu \in \bd{cl}\left(C\right)$$
 \end{proposition}
 \begin{proof}
-    Denote by $c$ the mean value in question. If $c \not \in C$, then according to {\cite[Theorem 7.2]{Hahn_Banach}} there exists an $\RR$-linear continuous map $g:Y\ra \RR$ and $y \in Y$ such that we have $g(c - y) \subseteq \RR_-$ and $g(C - y)\subseteq \RR_+$. Since $\mu\left(f^{-1}(C)\right) \in \RR_+$, we have
+    Denote by $c$ the mean value in question. If $c \not \in \bd{cl}\left(C\right)$, then according to separation theorem proved in \cite{Hahn_Banach} there exists an $\RR$-linear continuous map $g:Y\ra \RR$ and $y \in Y$ such that we have $g(c - y) \subseteq \RR_-$ and $g\left(\bd{cl}\left(C\right) - y\right)\subseteq \RR_+$. Since $\mu\left(f^{-1}(C)\right) \in \RR_+$, we have
     $$\frac{1}{\mu\left(f^{-1}(C)\right)}\cdot \int_{f^{-1}(C)} g\cdot f\,d\mu > g(y)$$
-    According to Proposition \ref{proposition:Bochner_integral_commutes_with_any_continuous_linear_operation} we derive that
+    On the other hand according to Proposition \ref{proposition:Bochner_integral_commutes_with_any_continuous_linear_operation} we derive that
     $$\frac{1}{\mu\left(f^{-1}(C)\right)}\cdot \int_{f^{-1}(C)} g\cdot f\,d\mu = g\left(\frac{1}{\mu\left(f^{-1}(C)\right)}\cdot \int_{f^{-1}(C)}f\,d\mu\right) = g(c) < g(y)$$
-    This is a contradiction. Thus $c \in C$.
+    This is a contradiction. Thus $c \in \bd{cl}\left(C\right)$.
 \end{proof}
-
-
-\begin{corollary}\label{corollary:convergence_of_integral}
-    Let $Y$ be a Banach space over $\mathbb{K}$ and let $(X,\Sigma,\mu)$ be a space with measure. Suppose that $\{f_n:X\ra Y\}_{n\in \NN}$ is a sequence of $\mu$-integrable functions convergent in $L^1(\mu, Y)$ to some $\mu$-integrable function $f:X\ra Y$. Then
-    $$\lim_{n\ra +\infty}\int_Xf_n\,d\mu = \int_Xf\,d\mu$$
-    in $Y$.
-\end{corollary}
-\begin{proof}
-    By definition Bochner's integral is continuous with respect to $\lVert \rVert_1$.
-\end{proof}
-
-
-
 
 \section{Lebesgue integral of scalar functions and induction}
 \noindent
