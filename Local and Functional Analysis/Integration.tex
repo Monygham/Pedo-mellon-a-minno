@@ -280,7 +280,8 @@ For the proof we need the following lemma.
     $$\lVert s_n(x) - f(x)\rVert = \min_{0\leq i\leq n}\lVert y_i - f(x)\rVert$$
     for every $x \in X$. Thus
     $$\lim_{n\ra +\infty}s_n = f$$
-    and $\lVert s_n - f\rVert \leq  \lVert f\rVert$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.\\
+    and $\lVert s_n - f\rVert \leq  \lVert f\rVert$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
     Suppose now that there exists a sequence $\{s_n:X\ra Y\}_{n\in \NN}$ of measurable functions pointwise convergent to $f$ such that $s_n(X)\subseteq Y$ is finite. Then Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits} asserts that $f$ is strongly measurable. This proves that $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
 
@@ -289,7 +290,7 @@ For the proof we need the following lemma.
 \begin{theorem}[H{\"o}lder]\label{theorem:holder_inequality}
     Let $(X,\Sigma,\mu)$ be a space with measure and let $p,q \in (1,+\infty)$ satisfy
     $$\frac{1}{p} + \frac{1}{q} = 1$$
-    If $f,g:X\ra \ol{\RR}$ are nonnegative functions measurable with respect to $\Sigma$, then
+    If $f,g:X\ra \ol{\RR}$ are nonnegative $\Sigma$-measurable functions, then
     $$\int_X f\cdot g\,d\mu \leq \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}}\cdot \left(\int_X g^q\,d\mu\right)^{\frac{1}{q}} $$
 \end{theorem}
 \noindent
@@ -320,7 +321,7 @@ For the proof we need the following lemma.
 \end{proof}
 
 \begin{corollary}[Minkowski]\label{corollary:Minkowski_inequality}
-    Let $(X,\Sigma,\mu)$ be a space with measure and let $p \in [1,+\infty)$. Suppose that $f,g:X\ra \ol{\RR}$ are nonnegative functions measurable with respect to $\mu$. Then
+    Let $(X,\Sigma,\mu)$ be a space with measure and let $p \in [1,+\infty)$. Suppose that $f,g:X\ra \ol{\RR}$ are nonnegative $\Sigma$-measurable functions. Then
     $$\left(\int_X\left(f + g\right)^p\,d\mu\right)^{\frac{1}{p}} \leq \left(\int_X f^p\,d\mu\right)^{\frac{1}{p}} + \left(\int_X g^p\,d\mu\right)^{\frac{1}{p}}$$
 \end{corollary}
 \begin{proof}
@@ -393,20 +394,22 @@ By Corollary \ref{corollary:strongly_measurable_form_vector_space} the set of al
               is a translation invariant pseudometric on $L^p(\mu,Y)$.
         \item If $p \in [1,+\infty)$, then
               $$\lVert-\rVert_p:L^p(\mu,Y)\ra \RR_+\cup \{0\}$$
-              is a seminorm
+              is a seminorm.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
     Note that if $f\in L^p(\mu,Y)$ and $\alpha \in \mathbb{K}$, then
     $$\lVert \alpha \cdot f\rVert_p = |\alpha|\cdot \lVert f\rVert_p$$
-    Hence if $f\in L^p(\mu,Y)$, then also $\alpha \cdot f \in L^p(\mu,Y)$ and moreover, the function $\lVert -\rVert_p$ is positively homogeneous. Next we separately handle cases $p \in (0,1)$ and $p \in [1,+\infty)$.\\
+    Hence if $f\in L^p(\mu,Y)$, then also $\alpha \cdot f \in L^p(\mu,Y)$ and moreover, the function $\lVert -\rVert_p$ is positively homogeneous. Next we separately handle cases $p \in (0,1)$ and $p \in [1,+\infty)$.
+
     Suppose that $p \in (0,1)$. Then by Proposition \ref{proposition:p_power_of_norm_inequality}
     $$\int_X\left(f + g\right)^p\,d\mu \leq \int_X f^p\,d\mu + \int_X g^p\,d\mu$$
     for any two nonnegative strongly measurable functions $f,g:X\ra \ol{\RR}$ on $(X,\Sigma,\mu)$. Hence
     $$f,g\in L^p(\mu,Y)\,\Leftarrow\,f+g\in L^p(\mu,Y)$$
     and
     $$L^p(\mu,Y)\times L^p(\mu,Y) \ni (f,g) \mapsto \int_X\lVert f - g\rVert^p\,d\mu \in \RR_+\cup \{0\}$$
-    is a translation invariant pseudometric on $L^p(\mu,Y)$. This completes the proof for this case.\\
+    is a translation invariant pseudometric on $L^p(\mu,Y)$. This completes the proof for this case.
+
     Suppose now that $p\in [1,+\infty)$. This case follows from Corollary \ref{corollary:Minkowski_inequality}.
 \end{proof}
 \noindent
@@ -586,7 +589,8 @@ Next we discuss linearity and convexity of integral.
 \begin{proof}
     Note that
     $$\lVert T\cdot f \rVert_1 = \int_X\lVert T\cdot f \rVert\,d\mu \leq \int_X \lVert T\rVert\cdot \lVert f \rVert\,d\mu \leq \lVert T\rVert\cdot \int_X  \lVert f \rVert\,d\mu = \lVert T\rVert\cdot \lVert f \rVert_1$$
-    for every $f \in L^1(\mu,Y)$. This proves that \textbf{(1)} holds.\\
+    for every $f \in L^1(\mu,Y)$. This proves that \textbf{(1)} holds.
+
     For the proof of \textbf{(2)} we fix a $\mu$-simple function $s \in \cS(\mu,Y)$. Then we have $T\cdot s \in \cS(\mu,Z)$ and
     $$\int_X T\cdot s\,d\mu = \sum_{z \in Z}z \cdot \mu\left(s^{-1}\left(T^{-1}(z)\right)\right) = \sum_{z\in Z}z\cdot \sum_{T(y) = z}\mu\left(s^{-1}(y)\right) = $$
     $$= \sum_{z \in Z}\sum_{T(y) = z}T(y)\cdot \mu\left(s^{-1}(y)\right) = \sum_{y\in Y} T(y)\cdot \mu\left(s^{-1}(y)\right) = $$
@@ -675,7 +679,7 @@ The following sequence of results is a useful tool for studying classes of funct
 \noindent
 In this section we discuss integration on the product of spaces with measures.
 
-\begin{fact}\label{fact:productalgebra}
+\begin{fact}\label{fact:product_algebra}
     Let $(X_1,\Sigma_1)$ and $(X_2,\Sigma_2)$ be measurable spaces. Then a family consisting of disjoint sums of sets of the form $A_1\times A_2$ where $A_1\in \Sigma_1, A_2\in \Sigma_2$ is an algebra of subsets of $X_1\times X_2$.
 \end{fact}
 \begin{proof}
@@ -704,7 +708,8 @@ $$\mathbb{1}_{E_{x_1}} = \left(\mathbb{1}_E\right)_{x_1},\,\mathbb{1}_{E_{x_2}} 
 \end{proposition}
 \begin{proof}
     First let $\cS$ be a family of all subsets $E$ in $\Sigma_1\otimes \Sigma_2$ such that $E_{x_1}\in \Sigma_2$ and $E_{x_2}\in \Sigma_1$ for every $x_1\in X_1$ and $x_2\in X_2$. Then $\Sigma_1\times \Sigma_2\subseteq \cS$ and $\cS$ is a monotone family. Thus by Sierpiński's theorem on monotone classes we have $\Sigma_1\otimes \Sigma_2\subseteq \cS$.\\
-    Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. Since $\Sigma_1\otimes \Sigma_2\subseteq \cS$, we derive that $\cF$ contains $\mathbb{1}_E$ for every $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative, $\Sigma_1\otimes \Sigma_2$-measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is $\Sigma_1\otimes \Sigma_2$-measurable. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.\\
+    Now we prove the first assertion. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra \ol{\RR}$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. Since $\Sigma_1\otimes \Sigma_2\subseteq \cS$, we derive that $\cF$ contains $\mathbb{1}_E$ for every $E\in \Sigma_1\otimes \Sigma_2$. Thus the intersection of $\cF$ with nonnegative, $\ol{\RR}$-valued functions on $X_1\times X_2$ satisfy all conditions of Corollary \ref{corollary:measurable_induction_for_nonnegative} and hence $\cF$ contains all nonnegative, $\Sigma_1\otimes \Sigma_2$-measurable functions with values in $\ol{\RR}$. Now suppose that $f:X_1\times X_2\ra \ol{\RR}$ is $\Sigma_1\otimes \Sigma_2$-measurable. Write $f_+ = \sup\{f, 0\}$ and $f_- = \sup\{-f, 0\}$. Then $f = f_+ - f_-$ and both functions $f_+,f_-:X_1\times X_2\ra \ol{\RR}$ are measurable with respect to $\Sigma_1\otimes \Sigma_2$ and nonnegative. Thus $f_+,f_-\in \cF$. Hence also $f\in \cF$. This proves \textbf{(1)}.
+
     Now we prove \textbf{(2)}. Let $\cF$ be a family of all functions $f:X_1\times X_2\ra Y$ such that $f_{x_1}$ is measurable with respect to $\Sigma_2$ and $f_{x_2}$ is measurable with respect to $\Sigma_1$ for every $x_1\in X_1,x_2\in X_2$. As above we can derive that for every $y\in Y$ and for every $E\in \Sigma_1\otimes \Sigma_2$ we have $y\cdot \mathbb{1}_E\in \cF$. Moreover, $\cF$ is a $\mathbb{K}$-vector space with respect to pointwise operations. Hence $\cF$ contains every $\Sigma_1\otimes \Sigma_2$-measurable function $s:X_1\times X_2\ra Y$ such that $s(X_1\times X_2)$ is finite. Next by Theorem \ref{theorem:simple_approximation_strongly_measurable} for every strongly $\Sigma_1\otimes \Sigma_2$-measurable function $f:X_1\times X_2\ra Y$ there exists a sequence $\{s_n:X_1\times X_2\ra Y\}_{n\in \NN}$ of strongly $\Sigma_1\otimes \Sigma_2$-measurable functions such that $s_n(X_1\times X_2)$ is finite for every $n\in \NN$ and
     $$f = \lim_{n\ra +\infty}s_n$$
     Since $\cF$ is closed under pointwise limits, we derive that $f$ is in $\cF$.
@@ -734,7 +739,9 @@ $$\mathbb{1}_{E_{x_1}} = \left(\mathbb{1}_E\right)_{x_1},\,\mathbb{1}_{E_{x_2}} 
     $$E= \bigcup_{n=1}^mA_{1,n}\times A_{2,n}$$
     where $A_{1,n}\in \Sigma_1,A_{2,n}\in \Sigma_2$ for every $1\leq n\leq m$. Then
     $$f_E = \sum_{n=1}^m\mu_2(A_{2,n})\mathbb{1}_{A_{1,n}}$$
-    and hence $\Sigma_1\times \Sigma_2\subseteq \cF$. Moreover, $\cF$ is a monotone family of sets. Sierpiński's theorem on monotone classes shows that $\Sigma_1\otimes \Sigma_2\subseteq \cF$. This proves \textbf{(1)} and by symmetry also \textbf{(2)}.\\ Now by \textbf{(1)} it makes sense to define
+    and hence $\Sigma_1\times \Sigma_2\subseteq \cF$. Moreover, $\cF$ is a monotone family of sets. Sierpiński's theorem on monotone classes shows that $\Sigma_1\otimes \Sigma_2\subseteq \cF$. This proves \textbf{(1)} and by symmetry also \textbf{(2)}.
+    
+    Now by \textbf{(1)} it makes sense to define
     $$(\mu_1\otimes \mu_2)(E) = \int_{X_1}\mu_2(E_{x_1})\,d\mu_1$$
     for every $E\in \Sigma_1\otimes \Sigma_2$. Clearly $(\mu_1\otimes \mu_2)(\emptyset) = 0$ and if $\{E_n\}_{n\in \NN}$ is a family of disjoint subsets in $\Sigma_1\otimes \Sigma_2$, then by Theorem \ref{theorem:monotone_convergence} we have
     $$(\mu_1\otimes \mu_2)\left(\bigcup_{n\in \NN}E_n\right) = \sum_{n\in \NN}(\mu_1\otimes \mu_2)(E_n)$$
@@ -748,10 +755,13 @@ $$\mathbb{1}_{E_{x_1}} = \left(\mathbb{1}_E\right)_{x_1},\,\mathbb{1}_{E_{x_2}} 
     $$\mu_{n,m}(E) = \mu\left(E\cap (X_{1,n}\times  X_{2,m})\right),\,\nu_{n,m}(E) = \nu_{n,m}\left(E\cap (X_{1,n}\times X_{2,m})\right)$$
     Note that $\mu_{n,m},\,\nu_{n,m}$ are finite measures on $\Sigma_1\otimes \Sigma_2$. Family $\big\{A_1\times A_2\big\}_{A_1\in \Sigma_1,A_2\in \Sigma_2}$ is a $\pi$-system that generates $\sigma$-algebra $\Sigma_1\otimes \Sigma_2$. Dynkin's theorem on $\pi-\lambda$-systems shows that $\mu_{n,m} = \nu_{n,m}$. This implies that
     $$\mu(E) = \sum_{n\in \NN}\sum_{m\in \NN}\mu_{n,m}(E) = \sum_{n\in \NN}\sum_{m\in \NN}\nu_{n,m}(E) = \nu(E)$$
-    Thus $\mu_1\otimes \mu_2$ is unique and \textbf{(3)} is proved. Moreover, it is easy to observe that \textbf{(4)} holds i.e. measure $\mu_1\otimes \mu_2$ is $\sigma$-finite. Indeed, we have
+    Thus $\mu_1\otimes \mu_2$ is unique and \textbf{(3)} is proved.
+    
+    Moreover, it is easy to observe that \textbf{(4)} holds i.e. measure $\mu_1\otimes \mu_2$ is $\sigma$-finite. Indeed, we have
     $$X_1\times X_2 = \bigcup_{n\in \NN}\bigcup_{m\in \NN}X_{1,n}\times X_{2,m}$$
     and
     $$\left(\mu_1\otimes \mu_2\right)\left(X_{1,n}\times X_{2,m}\right) = \mu_1(X_{1,n})\mu_2(X_{2,m}) \in \RR$$
+    
     Finally by symmetry we derive that
     $$\Sigma_1\otimes \Sigma_2\ni E \mapsto \int_{X_2}\mu_1(E_{x_2})\,d\mu_2\in [0,+\infty]$$
     is a measure on $\Sigma_1\otimes \Sigma_2$ which takes exactly the same values on sets $\big\{A_1\times A_2\big\}_{A_1\in \Sigma_1,A_2\in \Sigma_2}$ as $\mu_1\otimes \mu_2$. By uniqueness of $\mu_1\otimes \mu_2$ we have
@@ -827,7 +837,8 @@ In this section we extend the notion of Lebesgue space to $p = +\infty$. We fix 
     $$= |\alpha| \cdot \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\big\{x\in X\,\big|\,\lVert f(x)\rVert \geq r\big\}\right) > 0\bigg\} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
     It follows that
     $$\lVert \alpha \cdot f\rVert_{\infty} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
-    for every $\alpha \in \mathbb{K}\setminus \{0\}$. For $\alpha = 0$ this also holds for trivial reasons. Hence \textbf{(1)} is proved.\\
+    for every $\alpha \in \mathbb{K}\setminus \{0\}$. For $\alpha = 0$ this also holds for trivial reasons. Hence \textbf{(1)} is proved.
+    
     Suppose that $f,g:X\ra Y$ are strongly measurable functions on $(X,\Sigma)$. Assume that $r\in \RR_+$ is such that
     $$\lVert f \rVert_{\infty} + \lVert g \rVert_{\infty} < r$$
     We may pick $r_f,r_g\in \RR_+$ such that $r_f+r_g = r$ and $\lVert f \rVert_{\infty} < r_f$ and $\lVert g \rVert_{\infty} < r_g$. Then

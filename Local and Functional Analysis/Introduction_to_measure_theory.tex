@@ -94,7 +94,7 @@ For the proof we need the following easy results. Their proofs are left to the r
 \end{definition}
 
 \begin{definition}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Consider a function $\mu:\Sigma \ra [0,+\infty]$.
+    Let $X$ be a set, let $\Sigma$ be an algebra of its subsets and let $\mu:\Sigma \ra [0,+\infty]$ be a function.
     \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
         \item $\mu$ is \textit{a finitely additive function on $\Sigma$} if $\mu(\emptyset) = 0$ and
               $$\mu\left(A\cup B\right) = \mu(A) + \mu(B)$$
@@ -181,7 +181,8 @@ For the proof we need the following easy results. Their proofs are left to the r
     Therefore, we have
     $$\mu^*(E) = \mu^*\big(E\cap (A\cap B)\big) + \underbrace{\mu^*\big((E\cap A) \setminus B\big) + \mu^*(E\setminus A)}_{=\mu^*\big(E\setminus (A\cap B)\big)} = $$
     $$=\mu^*\big(E\cap (A\cap B)\big) + \mu^*\big(E\setminus (A\cap B)\big)$$
-    Since $E\subseteq X$ is arbitrary, we derive that $A\cap B$ satisfies Carath{\'e}odory condition. Hence $A\cap B \in \Sigma_{\mu^*}$ and $\Sigma_{\mu^*}$ is an algebra of subsets of $X$.\\
+    Since $E\subseteq X$ is arbitrary, we derive that $A\cap B$ satisfies Carath{\'e}odory condition. Hence $A\cap B \in \Sigma_{\mu^*}$ and $\Sigma_{\mu^*}$ is an algebra of subsets of $X$.
+
     Next we claim that
     $$\mu^*\bigg(E\cap \bigcup_{n=0}^mA_n\bigg) = \sum_{n=0}^m\mu^*(E\cap A_n)$$
     for every family $A_0,...,A_m$ of pairwise disjoint elements of $\Sigma_{\mu^*}$. Indeed, this follows by induction on $m \in \NN$. For $m = 0$ it is clear. Suppose that the equality holds for some $m$. We have
@@ -191,7 +192,8 @@ For the proof we need the following easy results. Their proofs are left to the r
     $$\mu^*\bigg(E\cap \bigcup_{n=0}^mA_n\bigg) = \sum_{n=0}^m\mu^*(E\cap A_n)$$
     and hence
     $$\mu^*\bigg(E\cap \bigcup_{n=0}^{m+1}A_n\bigg) = \sum_{n=0}^{m+1}\mu^*(E\cap A_n)$$
-    which proves the claim.\\
+    which proves the claim.
+    
     Now we complete the proof of the theorem. Fix a family $\{A_n\}_{n\in \NN}$ of pairwise disjoint elements of $\Sigma_{\mu^*}$. Let $E$ be a subset of $X$. From the first fact proved above we have
     $$\bigcup_{n=0}^mA_n \in \Sigma_{\mu^*}$$
     for every $m\in \NN$. Next from the second fact we have
