@@ -9,121 +9,12 @@
 
 \section{Introduction}
 \noindent
-In these notes we are concerned with study of duals of Lebesgue spaces of scalar valued functions. For this purpose we introduce in the first section important classes of measure spaces, which are of indepedent interest. The second section discusses identifies $L^q$ as dual to $L^p$ for $p\in (1,+\infty)$ provided that
+In these notes we are concerned with study of duals of Lebesgue spaces of scalar valued functions. The first section discusses identification between $L^q$ and dual to $L^p$ for $p\in (1,+\infty)$ provided that
 $$\frac{1}{p} + \frac{1}{q} = 1$$
-Next we study $L^{\infty}$ as a  dual to $L^1$ under localizability assumption. We rely on the material developed in \cite{Introduction_to_measure_theory}, \cite{Integration} and \cite{Radon_Nikodym_Hahn_Jordan_Lebesgue_decomposition}.
+Next the second section introduces important classes of measure spaces, which are of indepedent interest.  Next we study $L^{\infty}$ as a  dual to $L^1$ under localizability assumption. In the next section we discuss nonatomic measures and as an immediate follow up we identify duals to $L^p$ for $p \in (0,1)$. 
 
+We rely on the material developed in out notes \cite{Introduction_to_measure_theory}, \cite{Integration} and \cite{Radon_Nikodym_Hahn_Jordan_Lebesgue_decomposition}.
 
-\section{Localizable measure spaces}
-\noindent
-We start with a series of definitions.
-
-\begin{definition}
-  Let $(X,\Sigma,\mu)$ be a space with measure. We define binary relation $\sqsubseteq_{\mu}$ on domain $\Sigma$ as follows
-  $$A \sqsubseteq_{\mu} B\,\Leftrightarrow\,\mu(A\setminus B) = 0$$
-  for all $A, B \in \Sigma$. Clearly $\Sigma$ together with $\sqsubseteq_{\mu}$ is a preorder.
-\end{definition}
-
-\begin{definition}
-  Let $(X,\Sigma,\mu)$ be a space with measure. If $\left(\Sigma, \sqsubseteq_{\mu}\right)$ admits least upper bounds for arbitrary subfamilies of $\Sigma$, then $\mu$ is \textit{a Dedekind complete measure}.
-\end{definition}
-
-\begin{proposition}\label{proposition:sigma_finite_measure_spaces_are_Dedekind_complete}
-Each $\sigma$-finite measure is Dedekind complete.
-\end{proposition}
-\begin{proof}
-  Let $\mu$ be a measure on $(X,\Sigma)$ and assume first that it is finite. Fix an arbitrary subfamily $\fI$ of $\Sigma$. consider
-  $$s = \sup_{I\in \fI}\mu(I)$$
-  Then there exists a sequence $\{I_n\}_{n\in \NN}$ of elements in $\fI$ such that $I_{n} \subseteq I_{n+1}$ for every $n\in \NN$ and $\mu(I_n) \ra m$ for $n \ra +\infty$. Define
-  $$S = \bigcup_{n\in \NN}I_n$$
-  Then $S \in \Sigma$ and $\mu(S) = s$. Moreover, $\mu(I\setminus S) = 0$ for every $I \in \fI$. It follows that $I \sqsubseteq_{\mu}S$ for every $I \in \fI$. On the other hand if $T \in \Sigma$ is such that $I \sqsubseteq_{\mu} T$ for every $I \in \fI$. Then $\mu(I_n \setminus T) = 0$ for every $n \in \NN$. Hence $\mu(S\setminus T) = 0$ and thus $S\sqsubseteq_{\mu} T$. This proves that $S$ is a least upper bound of $\fI$ in $\Sigma$ with respect to $\sqsubseteq_{\mu}$. Therefore, $\mu$ is Dedekind complete.
-
-  In order to prove the result for $\sigma$-finite measures note that each $\sigma$-finite measure is a sum of countably many finite measures and apply the finite case proved above. The details are left for the reader.  
-\end{proof}
-
-\begin{definition}
-  Let $(X,\Sigma,\mu)$ be a space with measure and let $\cF$ be a family of $\CC$-valued functions defined on some subsets of $X$. For each $f$ in $\cF$ we denote by $D_f$ the domain of $f$. Suppose that the following assertions hold.
-  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
-    \item $D_f \in \Sigma$ for each $f\in \cF$.
-    \item Functions in $\cF$ are measurable.
-    \item If $f_1,f_2 \in \cF$, then ${f_1}_{\mid D_{f_1}\cap D_{f_2}}$ and ${f_2}_{\mid D_{f_1}\cap D_{f_2}}$ are equal $\mu$-almost everywhere.
-  \end{enumerate}
-  Then $\cF$ is \textit{a $\mu$-local family}.
-\end{definition}
-\noindent
-The next theorem is an important result concerning Dedekind complete measures.
-
-\begin{theorem}\label{theorem:Dedekind_complete_local_families_can_be_glued}
-  Let $(X,\Sigma,\mu)$ be a space with Dedekind complete measure and let $\cF$ be a $\mu$-local family. Then there exists a measurable $\CC$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$.
-\end{theorem}
-\noindent
-For the proof we need the following special case of our result.
-
-\begin{lemma}\label{lemma:glueing_indicators_on_Dedekind_complete_measure}
-  Let $(X,\Sigma,\mu)$ be a space with Dedekind complete measure and let $\cF$ be a $\mu$-local family. If functions in $\cF$ are $\{0,1\}$-valued, then there exists a measurable and $\{0,1\}$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$.
-\end{lemma}
-\begin{proof}[Proof of the lemma]
-  We define $A_f = f^{-1}(1)$ for $f \in \cF$. Clearly $\{A_f\}_{f\in \cF}$ is a family of sets in $\Sigma$. Let $A$ be a least upper bound of $\{A_{f}\}_{f\in \cF}$ with respect to $\sqsubseteq_{\mu}$. We claim for every $f \in \cF$ sets $A\cap D_f$ and $A_f$ differ by the set of measure $\mu$ equal to zero. In order to prove the claim note that $\left(A \setminus D_f\right) \cup A_{f}$ is an upper bound of $\{A_{f}\}_{f\in \cF}$ with respect to $\sqsubseteq_{\mu}$. Hence
-  $$A \sqsubseteq_{\mu} \left(A \setminus D_f\right) \cup A_{f}$$
-  It follows $A \cap D_f \sqsubseteq_{\mu} A_{f}$. On the other hand $A_f \sqsubseteq_{\mu} A\cap D_f$. Thus $A \cap D_f$ and $A_{f}$ are equivalent in $\left(\Sigma, \sqsubseteq_{\mu}\right)$. This proves the claim. Now it follows from that claim that $F = \mathbb{1}_{A}$ satisfies the assertion.
-\end{proof}
-
-\begin{proof}[Proof of the theorem]
-  It suffices to prove the result under the additional assumption that all functions in $\cF$ take values in nonnegative reals. Indeed, the theorem for $\CC$-valued $\mu$-local families can be reduced to the case of $\RR$-valued families by means of decomposing each function in the family on its real and imaginary parts and the statement for $\RR$-valued $\mu$-local families in turn reduces to the result for nonnegative $\mu$-local families.
-
-  Let us then assume that all functions in $\cF$ take values in nonnegative real numbers. For each $n,k \in \NN$ and $f \in \cF$ we define
-  $$A_{k,n,f} = \bigg\{x \in X \,\bigg|\,\frac{k}{2^n} \leq f(x) \leq \frac{k+1}{2^n} \bigg\}$$
-  For fixed $n, k\in \NN$ family $\left\{{\mathbb{1}_{A_{k,n,f}}}_{\mid D_f}\right\}_{f\in \cF}$ is $\mu$-local. By Lemma \ref{lemma:glueing_indicators_on_Dedekind_complete_measure} it follows that there exist $A_{k,n} \in \Sigma$ such that functions ${\mathbb{1}_{A_{k,n}}}_{\mid D_f}$ and ${\mathbb{1}_{A_{k,n,f}}}_{\mid D_f}$ are equal $\mu$-almost everywhere for each $f \in \cF$. Fix $n \in \NN$ and define a function
-  $$s_n(x) = \begin{cases}
-    \sum_{k\in \NN}\frac{k}{2^n}\cdot \mathbb{1}_{A_{k,n}}(x)&\mbox{ if the series is finite}\\
-    0&\mbox{ otherwise }
-  \end{cases}$$
-  Then $s_n$ is nonnegative valued and measurable function on $(X,\Sigma)$. Similarly, for each $f \in \cF$ consider a function
-  $$s_{n,f} = \sum_{k\in \NN}\frac{k}{2^n}\cdot {\mathbb{1}_{A_{k,n,f}}}_{\mid D_f}$$
-  Note that $s_{n,f}$ is measurable and defined on $D_f$ for every $f \in \cF$. Moreover, ${s_n}_{\mid D_f}$ and $s_{n,f}$ are equal $\mu$-almost everywhere for all $f \in \cF$. Next we set 
-  $$F(x) = \begin{cases}
-    \lim_{n\ra +\infty}s_{n}(x)&\mbox{ if the limit exists and is finite }\\
-    0&\mbox{ otherwise }
-  \end{cases}$$
-  Since $\{s_n\}_{n\in \NN}$ are measurable and nonnegative valued functions on $(X,\Sigma)$, we deduce that $F$ is measurable and nonnegative valued function on $(X,\Sigma)$. Observe that
-  $$f = \lim_{n\ra +\infty}s_{n,f}$$
-  for each $f \in \cF$. This implies that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$.
-\end{proof}
-\noindent
-The converse of Theorem \ref{theorem:Dedekind_complete_local_families_can_be_glued} may be proved under some additional and mild assumption. We introduce it now as a separate notion, since it plays important role in taxonomy of measure spaces.
-
-\begin{definition}
-  Let $(X,\Sigma,\mu)$ be a space with measure. Suppose that for every $B \in \Sigma$ with $\mu(B) > 0$ there exists $A \in \Sigma$, $A\subseteq B$ such that $\mu(A) \in \RR_+$. Then $\mu$ is \textit{a semifinite measure}. 
-\end{definition}
-\noindent
-The following fact relates semifinitness and essential containment.
-
-\begin{fact}\label{fact:for_semifinite_essential_containment_is_determined_by_finite_measure_sets}
-  Let $(X,\Sigma,\mu)$ be a space with semifinite measure and let $A,B\in \Sigma$ be sets. If 
-  $$A\cap E \sqsubseteq_{\mu} B\cap E$$
-  for every $E \in \Sigma$ such that $\mu(E)$ is finite, then $A \sqsubseteq_{\mu} B$.
-\end{fact}
-\begin{proof}
-  Suppose that $A \not \sqsubseteq_{\mu} B$. Then $\mu(A\setminus B) > 0$. By semifinitness of $\mu$ there exists $E \in \Sigma$ such that $\mu(E) \in \RR_+$ and $E \subseteq A\setminus B$. Then 
-  $$E \subseteq \left(A\setminus B\right) \cap E = \left(A\cap E\right)\setminus \left(B\cap E\right)$$
-  and hence $A\cap E \not \sqsubseteq_{\mu} B\cap E$.
-\end{proof}
-\noindent
-Now we prove the aforementioned converse of Theorem \ref{theorem:Dedekind_complete_local_families_can_be_glued}.
-
-\begin{theorem}
-  Let $(X,\Sigma,\mu)$ be a space with semifinite measure. Assume that for each $\mu$-local family $\cF$ there exists a measurable $\CC$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$. Then $\mu$ is a Dedekind complete measure.
-\end{theorem}
-\noindent
-\begin{proof}[Proof of the theorem]
-  Suppose that $\fI$ is an arbitrary subfamily in $\Sigma$. According to Proposition \ref{proposition:sigma_finite_measure_spaces_are_Dedekind_complete} for each set $E \in \Sigma$ with $\mu(E) \in \{0\}\cup \RR_+$ there exists a set $S_{E} \in \Sigma$ such that $S_{E}$ is a least upper bound of 
-  $$\fI_E = \big\{I \cap E\,\big|\,I\in \fI\big\}$$
-  with respect to $\sqsubseteq_{\mu}$. Let $\cE$ be a family of all sets in $\Sigma$ with finite measure $\mu$. Then $\big\{{\mathbb{1}_{S_{E}}}_{\mid E}\big\}_{E \in \cE}$ is a $\mu$-local family of functions. Hence there exists a measurable $\CC$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid E}$ and ${\mathbb{1}_{S_{E}}}_{\mid E}$ are equal $\mu$-almost everywhere for each $E \in \cE$. Pick $S = F^{-1}(1)$. Since $S \cap E$ and $S_{E}$ differ by the set of measure $\mu$ equal to zero, we derive that $S \cap E$ is a least upper bound of $\fI_E$ with respect to $\sqsubseteq_{\mu}$ for every $E \in \cE$. Fact \ref{fact:for_semifinite_essential_containment_is_determined_by_finite_measure_sets} implies that $S$ is a least upper bound of $\fI$ with respect to $\sqsubseteq_{\mu}$.
-\end{proof}
-
-\begin{definition}
-  Let $(X,\Sigma,\mu)$ be a space with a semifinite and Dedekind complete measure. Then $\mu$ is \textit{localizable}.
-\end{definition}
 
 \section{Dual spaces to $L^p$ for $p \in (1,+\infty)$}
 \noindent
@@ -250,6 +141,119 @@ We prove the theorem by gradually considering more general cases.
   Since $f \in L^p(\mu,\mathbb{K})$ is arbitrary, the proof is completed.
 \end{proof}
 
+
+\section{Localizable measure spaces}
+\noindent
+We start with a series of definitions.
+
+\begin{definition}
+  Let $(X,\Sigma,\mu)$ be a space with measure. We define binary relation $\sqsubseteq_{\mu}$ on domain $\Sigma$ as follows
+  $$A \sqsubseteq_{\mu} B\,\Leftrightarrow\,\mu(A\setminus B) = 0$$
+  for all $A, B \in \Sigma$. Clearly $\Sigma$ together with $\sqsubseteq_{\mu}$ is a preorder.
+\end{definition}
+
+\begin{definition}
+  Let $(X,\Sigma,\mu)$ be a space with measure. If $\left(\Sigma, \sqsubseteq_{\mu}\right)$ admits least upper bounds for arbitrary subfamilies of $\Sigma$, then $\mu$ is \textit{a Dedekind complete measure}.
+\end{definition}
+
+\begin{proposition}\label{proposition:sigma_finite_measure_spaces_are_Dedekind_complete}
+Each $\sigma$-finite measure is Dedekind complete.
+\end{proposition}
+\begin{proof}
+  Let $\mu$ be a measure on $(X,\Sigma)$ and assume first that it is finite. Fix an arbitrary subfamily $\fI$ of $\Sigma$. consider
+  $$s = \sup_{I\in \fI}\mu(I)$$
+  Then there exists a sequence $\{I_n\}_{n\in \NN}$ of elements in $\fI$ such that $I_{n} \subseteq I_{n+1}$ for every $n\in \NN$ and $\mu(I_n) \ra m$ for $n \ra +\infty$. Define
+  $$S = \bigcup_{n\in \NN}I_n$$
+  Then $S \in \Sigma$ and $\mu(S) = s$. Moreover, $\mu(I\setminus S) = 0$ for every $I \in \fI$. It follows that $I \sqsubseteq_{\mu}S$ for every $I \in \fI$. On the other hand if $T \in \Sigma$ is such that $I \sqsubseteq_{\mu} T$ for every $I \in \fI$. Then $\mu(I_n \setminus T) = 0$ for every $n \in \NN$. Hence $\mu(S\setminus T) = 0$ and thus $S\sqsubseteq_{\mu} T$. This proves that $S$ is a least upper bound of $\fI$ in $\Sigma$ with respect to $\sqsubseteq_{\mu}$. Therefore, $\mu$ is Dedekind complete.
+
+  In order to prove the result for $\sigma$-finite measures note that each $\sigma$-finite measure is a sum of countably many finite measures and apply the finite case proved above. The details are left for the reader.  
+\end{proof}
+
+\begin{definition}
+  Let $(X,\Sigma,\mu)$ be a space with measure and let $\cF$ be a family of $\CC$-valued functions defined on some subsets of $X$. For each $f$ in $\cF$ we denote by $D_f$ the domain of $f$. Suppose that the following assertions hold.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+    \item $D_f \in \Sigma$ for each $f\in \cF$.
+    \item Functions in $\cF$ are measurable.
+    \item If $f_1,f_2 \in \cF$, then ${f_1}_{\mid D_{f_1}\cap D_{f_2}}$ and ${f_2}_{\mid D_{f_1}\cap D_{f_2}}$ are equal $\mu$-almost everywhere.
+  \end{enumerate}
+  Then $\cF$ is \textit{a $\mu$-local family}.
+\end{definition}
+\noindent
+The next theorem is an important result concerning Dedekind complete measures.
+
+\begin{theorem}\label{theorem:Dedekind_complete_local_families_can_be_glued}
+  Let $(X,\Sigma,\mu)$ be a space with Dedekind complete measure and let $\cF$ be a $\mu$-local family. Then there exists a measurable $\CC$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$.
+\end{theorem}
+\noindent
+For the proof we need the following special case of our result.
+
+\begin{lemma}\label{lemma:glueing_indicators_on_Dedekind_complete_measure}
+  Let $(X,\Sigma,\mu)$ be a space with Dedekind complete measure and let $\cF$ be a $\mu$-local family. If functions in $\cF$ are $\{0,1\}$-valued, then there exists a measurable and $\{0,1\}$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+  We define $A_f = f^{-1}(1)$ for $f \in \cF$. Clearly $\{A_f\}_{f\in \cF}$ is a family of sets in $\Sigma$. Let $A$ be a least upper bound of $\{A_{f}\}_{f\in \cF}$ with respect to $\sqsubseteq_{\mu}$. We claim for every $f \in \cF$ sets $A\cap D_f$ and $A_f$ differ by the set of measure $\mu$ equal to zero. In order to prove the claim note that $\left(A \setminus D_f\right) \cup A_{f}$ is an upper bound of $\{A_{f}\}_{f\in \cF}$ with respect to $\sqsubseteq_{\mu}$. Hence
+  $$A \sqsubseteq_{\mu} \left(A \setminus D_f\right) \cup A_{f}$$
+  It follows $A \cap D_f \sqsubseteq_{\mu} A_{f}$. On the other hand $A_f \sqsubseteq_{\mu} A\cap D_f$. Thus $A \cap D_f$ and $A_{f}$ are equivalent in $\left(\Sigma, \sqsubseteq_{\mu}\right)$. This proves the claim. Now it follows from that claim that $F = \mathbb{1}_{A}$ satisfies the assertion.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+  It suffices to prove the result under the additional assumption that all functions in $\cF$ take values in nonnegative reals. Indeed, the theorem for $\CC$-valued $\mu$-local families can be reduced to the case of $\RR$-valued families by means of decomposing each function in the family on its real and imaginary parts and the statement for $\RR$-valued $\mu$-local families in turn reduces to the result for nonnegative $\mu$-local families.
+
+  Let us then assume that all functions in $\cF$ take values in nonnegative real numbers. For each $n,k \in \NN$ and $f \in \cF$ we define
+  $$A_{k,n,f} = \bigg\{x \in X \,\bigg|\,\frac{k}{2^n} \leq f(x) \leq \frac{k+1}{2^n} \bigg\}$$
+  For fixed $n, k\in \NN$ family $\left\{{\mathbb{1}_{A_{k,n,f}}}_{\mid D_f}\right\}_{f\in \cF}$ is $\mu$-local. By Lemma \ref{lemma:glueing_indicators_on_Dedekind_complete_measure} it follows that there exist $A_{k,n} \in \Sigma$ such that functions ${\mathbb{1}_{A_{k,n}}}_{\mid D_f}$ and ${\mathbb{1}_{A_{k,n,f}}}_{\mid D_f}$ are equal $\mu$-almost everywhere for each $f \in \cF$. Fix $n \in \NN$ and define a function
+  $$s_n(x) = \begin{cases}
+    \sum_{k\in \NN}\frac{k}{2^n}\cdot \mathbb{1}_{A_{k,n}}(x)&\mbox{ if the series is finite}\\
+    0&\mbox{ otherwise }
+  \end{cases}$$
+  Then $s_n$ is nonnegative valued and measurable function on $(X,\Sigma)$. Similarly, for each $f \in \cF$ consider a function
+  $$s_{n,f} = \sum_{k\in \NN}\frac{k}{2^n}\cdot {\mathbb{1}_{A_{k,n,f}}}_{\mid D_f}$$
+  Note that $s_{n,f}$ is measurable and defined on $D_f$ for every $f \in \cF$. Moreover, ${s_n}_{\mid D_f}$ and $s_{n,f}$ are equal $\mu$-almost everywhere for all $f \in \cF$. Next we set 
+  $$F(x) = \begin{cases}
+    \lim_{n\ra +\infty}s_{n}(x)&\mbox{ if the limit exists and is finite }\\
+    0&\mbox{ otherwise }
+  \end{cases}$$
+  Since $\{s_n\}_{n\in \NN}$ are measurable and nonnegative valued functions on $(X,\Sigma)$, we deduce that $F$ is measurable and nonnegative valued function on $(X,\Sigma)$. Observe that
+  $$f = \lim_{n\ra +\infty}s_{n,f}$$
+  for each $f \in \cF$. This implies that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$.
+\end{proof}
+\noindent
+The converse of Theorem \ref{theorem:Dedekind_complete_local_families_can_be_glued} may be proved under some additional and mild assumption. We introduce it now as a separate notion, since it plays important role in taxonomy of measure spaces.
+
+\begin{definition}
+  Let $(X,\Sigma,\mu)$ be a space with measure. Suppose that for every $B \in \Sigma$ with $\mu(B) > 0$ there exists $A \in \Sigma$, $A\subseteq B$ such that $\mu(A) \in \RR_+$. Then $\mu$ is \textit{a semifinite measure}. 
+\end{definition}
+\noindent
+The following fact relates semifinitness and essential containment.
+
+\begin{fact}\label{fact:for_semifinite_essential_containment_is_determined_by_finite_measure_sets}
+  Let $(X,\Sigma,\mu)$ be a space with semifinite measure and let $A,B\in \Sigma$ be sets. If 
+  $$A\cap E \sqsubseteq_{\mu} B\cap E$$
+  for every $E \in \Sigma$ such that $\mu(E)$ is finite, then $A \sqsubseteq_{\mu} B$.
+\end{fact}
+\begin{proof}
+  Suppose that $A \not \sqsubseteq_{\mu} B$. Then $\mu(A\setminus B) > 0$. By semifinitness of $\mu$ there exists $E \in \Sigma$ such that $\mu(E) \in \RR_+$ and $E \subseteq A\setminus B$. Then 
+  $$E \subseteq \left(A\setminus B\right) \cap E = \left(A\cap E\right)\setminus \left(B\cap E\right)$$
+  and hence $A\cap E \not \sqsubseteq_{\mu} B\cap E$.
+\end{proof}
+\noindent
+Now we prove the aforementioned converse of Theorem \ref{theorem:Dedekind_complete_local_families_can_be_glued}.
+
+\begin{theorem}
+  Let $(X,\Sigma,\mu)$ be a space with semifinite measure. Assume that for each $\mu$-local family $\cF$ there exists a measurable $\CC$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid D_f}$ and $f$ are equal $\mu$-almost everywhere for each $f \in \cF$. Then $\mu$ is a Dedekind complete measure.
+\end{theorem}
+\noindent
+\begin{proof}[Proof of the theorem]
+  Suppose that $\fI$ is an arbitrary subfamily in $\Sigma$. According to Proposition \ref{proposition:sigma_finite_measure_spaces_are_Dedekind_complete} for each set $E \in \Sigma$ with $\mu(E) \in \{0\}\cup \RR_+$ there exists a set $S_{E} \in \Sigma$ such that $S_{E}$ is a least upper bound of 
+  $$\fI_E = \big\{I \cap E\,\big|\,I\in \fI\big\}$$
+  with respect to $\sqsubseteq_{\mu}$. Let $\cE$ be a family of all sets in $\Sigma$ with finite measure $\mu$. Then $\big\{{\mathbb{1}_{S_{E}}}_{\mid E}\big\}_{E \in \cE}$ is a $\mu$-local family of functions. Hence there exists a measurable $\CC$-valued function $F$ on $(X,\Sigma)$ such that $F_{\mid E}$ and ${\mathbb{1}_{S_{E}}}_{\mid E}$ are equal $\mu$-almost everywhere for each $E \in \cE$. Pick $S = F^{-1}(1)$. Since $S \cap E$ and $S_{E}$ differ by the set of measure $\mu$ equal to zero, we derive that $S \cap E$ is a least upper bound of $\fI_E$ with respect to $\sqsubseteq_{\mu}$ for every $E \in \cE$. Fact \ref{fact:for_semifinite_essential_containment_is_determined_by_finite_measure_sets} implies that $S$ is a least upper bound of $\fI$ with respect to $\sqsubseteq_{\mu}$.
+\end{proof}
+
+\begin{definition}
+  Let $(X,\Sigma,\mu)$ be a space with a semifinite and Dedekind complete measure. Then $\mu$ is \textit{localizable}.
+\end{definition}
+
+
 \section{Dual to $L^1$}
 \noindent
 Let $(X,\Sigma,\mu)$ be a space with measure. Assume that $\mathbb{K}$ is either $\RR$ or $\CC$ with their usual absolute values. We begin by proving the version of H{\"o}lder inequality for $L^{\infty}$-norm.
@@ -365,13 +369,98 @@ is continuous and $\mathbb{K}$-linear. We denote it by $\Phi(g)$. Then $\Phi:L^{
   It follows that $\mathbb{1}_{E_{\fJ}}$ and $g$ are equal $\mu$-everywhere for each $E\in \Sigma$ such that $\mu(E)$ is finite. Hence $g^{-1}(1)\cap E$ is a least upper bound of $\fJ_E$ with respect to $\sqsubseteq_{\mu}$ for every $E\in \Sigma$ with $\mu(E)$ finite. Since $\Phi$ is isometry, Theorem \ref{theorem:dual_to_L_1_isometry} shows that $\mu$ is semifinite. Now Fact \ref{fact:for_semifinite_essential_containment_is_determined_by_finite_measure_sets} implies that $g^{-1}(1)$ is a least upper bound of $\fJ$ with respect to $\sqsubseteq_{\mu}$. Since $\fJ$ is arbitrary, we derive that $\mu$ is Dedekind complete. Hence $\mu$ is localizable.
 \end{proof}
 
-\section{Dual to $L^{\infty}$}
+
+\section{Nonatomic measures}
+\noindent
+This section introduces some structural theory concerning an interesting class of measures. First we make excursion into realm of metric spaces.
+
+\begin{definition}
+  Let $(X,\rho)$ be a metric space such that for every distinct $x_1,x_2 \in X$ there exists $z \in X \setminus \{x_1,x_2\}$ that satisfies 
+  $$\rho(x_1,x_2) = \rho(x_1,z) + \rho(z,x_2)$$
+  Then $(X,\rho)$ is \textit{a convex metric space}.
+\end{definition}
+
+\begin{theorem}\label{theorem:convex_and_complete_metric_spaces_are_isometrically_connected}
+  Let $(X,\rho)$ be a convex and complete metric space. Then for every distinct points $x_1,x_2 \in X$ with $\theta = \rho(x_1,x_2)$ there exists an isometry $\gamma:[0,\theta] \ra X$ such that $\gamma(0) = x_1,\,\gamma\left(\theta\right) = x_2$.
+\end{theorem}
+\begin{proof}
+  Consider the set $\cF$ of all isometries $g:A\ra X$ defined on metric subspaces $A \subseteq [0,\theta]$ containing $\{0,\theta\}$ such that $g(0) = x_1$ and $g(\theta) = x_1$. For every pair $g_1:A_1\ra X,g_2:A_2\ra X$ of elements of $\cF$ we define $g_1 \preceq g_2$ if and only if $A_1 \subseteq A_2$ and ${g_2}_{\mid A_1} = g_1$. Now $(\cF,\preceq)$ is a partially ordered set and every chain in $\cF$ admits upper bound. By Zorn's lemma there exists element $\gamma:A \ra X$ in $\cF$ which is maximal with respect to $\preceq$. Since $\gamma$ is isometry and $(X,\rho)$ is complete, $\gamma$ can be extended to $\bd{cl}(A) \subseteq [0,\theta]$. This shows that $A$ is a closed subset of $[0,\theta]$. If $[0,\theta] \setminus A$ is nonempty, then it contains open interval $(\theta_1, \theta_2)$ such that $\theta_1,\theta_2 \in A$. Pick $z_i = \gamma(\theta_i)$ for $i=1,2$. Since $\gamma$ is isometry, $z_1,z_2$ are distinct. By convexity of $(X,\rho)$ there exists $z \in X\setminus \{z_1,z_2\}$ such that
+  $$\rho(z_1,z_2) = \rho(z_1,z) + \rho(z,z_2)$$
+  Assume that $\rho(z_1,z) = s$. Then $\gamma$ can be extended to isometry by $\theta_1 + s \mapsto z$. This is a contradiction with maximality of $\gamma$ in $\cF$ with respect to $\preceq$. This proves that $A = [0,\theta]$ and hence $\gamma$ satisfies the assertion.
+\end{proof}
+\noindent
+We shall use the result above to prove certain facts concerning some classes of measures. First we explain how each finite measure space give rise to certain metric space.
+
+\noindent
+Suppose that $(X,\Sigma,\mu)$ is a finite measure space. For any two sets $A,B \in \Sigma$ we write $A \equiv_{\mu} B$ if and only if $\mu(A\Delta B) = 0$. We denote by $\Sigma_{\mu}$ the quotient of $\Sigma$ with respect to $\equiv_{\mu}$. Next if $A \in \Sigma$, then we denote by $[A]_{\mu}$ its class in $\Sigma_{\mu}$. Finally we define
+$$\rho_{\mu}\left([A]_{\mu}, [B]_{\mu}\right) = \mu(A\Delta B)$$
+for every $A,B \in \Sigma$.
+
+\begin{proposition}\label{proposition:metric_induced_by_finite_measure}
+  Let $(X,\Sigma,\mu)$ be a finite measure space. Then $\rho_{\mu}:\Sigma_{\mu}\times \Sigma_{\mu} \ra \RR_+\cup \{0\}$ is a complete metric.
+\end{proposition}
+\begin{proof}
+  First we define an equivalence relation $\sim_{\mu}$ on $L^1(\mu,\RR)$. If $f_1,f_2 \in L^1(\mu,\RR)$, then $f_1 \sim_{\mu} f_2$ if and only if $f_1$ and $f_2$ are equal $\mu$-almost everywhere. We denote by $\cL^1(\mu,\RR)$ the quotient of $L^1(\mu,\RR)$ with respect to $\sim_{\mu}$. Next if $f \in \cL^1(\mu,\RR)$, then we denote by $[f]_{\mu}$ its class in $\cL^1(\mu,\RR)$. There exists a structure of $\RR$-linear normed space on $\cL^1(\mu,\RR)$ such that the quotient map $L^1(\mu,\RR) \twoheadrightarrow \cL^1(\mu,\RR)$ is an $\RR$-linear isometry. In particular, $\cL^1(\mu,\RR)$ is a Banach space over $\RR$. Note that there exists a map
+  $$\Sigma \ni A \mapsto \mathbb{1}_A \in L^1(\mu,\RR)$$
+  which induces an injective map $\Sigma_{\mu} \ra \cL^1(\mu,\RR)$. Hence we may view $\Sigma_{\mu}$ is a subspace of $\cL^1(\mu,\RR)$ and the metric induced by $\Sigma_{mu}$ by norm of $\cL^1(\mu,\RR)$ coincides with $\rho_{\mu}$. Now suppose that $\{[A_n]_{\mu}\}_{n\in \NN}$ is a sequence of $\Sigma_{mu}$ which converges to some element of $\cL^1(\mu,\RR)$. Say that this element is represented by some $f \in L^1(\mu,\RR)$. Then $\{\mathbb{1}_{A_n}\}_{n\in \NN}$ converges to $f$ in $L^1(\mu,\RR)$. By Riesz theorem (\cite{Integration}) on completeness of $L^1(\mu,\RR)$ there exists a subsequence $\{\mathbb{1}_{A_{n_k}}\}_{k\in \NN}$ which converges $\mu$-almost everywhere to $f$. Hence $f$ is $\mu$-almost everywhere equal to $\mathbb{1}_A$ for some $A \in \Sigma$. This shows that $\Sigma_{\mu}$ is a closed subspace of $\cL^1(\mu, \RR)$. Hence $\rho_{\mu}$ is complete. 
+\end{proof}
+\noindent
+Now we introduce central notions of this section.
+
+\begin{definition}
+  Let $(X,\Sigma,\mu)$ be a space with measure. Consider a set $A \in \Sigma$ such that $\mu(A) > 0$. Suppose that for every $B \in \Sigma$ such that $B\subseteq A$ and $\mu(B) > 0$ it holds that $\mu(A\setminus B) = 0$. Then $A$ is \textit{an atom of $\mu$}.
+\end{definition}
 
 
+\begin{definition}
+  Let $(X,\Sigma,\mu)$ be a space with measure. If there are no atoms of $\mu$, then $\mu$ is \textit{a nonatomic measure}.
+\end{definition}
+
+\begin{theorem}\label{theorem:finite_measure_is_nonatomic_if_and_only_if_the_induced_metric_is_convex}
+  Let $(X,\Sigma,\mu)$ be a space with finite measure. Then the following assertions are equivalent.
+  \begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+    \item $\mu$ is nonatomic.
+    \item $\rho_{\mu}$ is a convex metric.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  Assume that $\mu$ is nonatomic. Pick $A_1,A_2 \in \Sigma$ such that $\mu(A_1\Delta A_2) > 0$. Since $A_1 \Delta A_2$ is not an atom of $\mu$ and $\mu(A_1\Delta A_2) > 0$, we may assume without loss of generality that there exists $E \in \Sigma$ such that $E \subseteq A_1 \setminus A_2$ and $0 < \mu(E) < \mu(A_1\setminus A_2)$. Consider $B = A_2 \cup E$. Then 
+  $$\rho_{\mu}\left([A_1]_{\mu},[A_2]_{\mu}\right) = \mu\left(A_1\Delta A_2\right) = \mu(A_2\Delta B) + \mu(B\Delta A_1) = \rho_{\mu}\left([A_1]_{\mu},[B]_{\mu}\right) + \rho_{\mu}\left([B]_{\mu},[A_2]_{\mu}\right)$$
+  and this proves that $\rho_{\mu}$ is convex. Hence $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
+  Now suppose that $\rho_{\mu}$ is convex. Pick $A \in \Sigma$ such that $\mu(A) > 0$. By convexity of $\rho_{\mu}$ there exists $B \in \Sigma$ such that $[B]_{\mu}$ is distinct from $[A]_{\mu}, [\emptyset]_{\mu}$ and we have 
+  $$\rho_{\mu}\left([A]_{\mu}, [\emptyset]_{\mu}\right) = \rho_{\mu}\left([A]_{\mu},[B]_{\mu}\right) + \rho_{\mu}\left([B]_{\mu},[\emptyset]_{\mu}\right)$$
+  This equality means that
+  $$\mu(A) = \mu(A\Delta B) + \mu(B)$$
+  Hence $\mu(B \setminus A) = 0$. By subtracting from $B$ a set of measure $\mu$ zero we may assume that $B \subseteq A$. Since $[B]_{\mu}$ is distinct from $[A]_{\mu}, [\emptyset]_{\mu}$, we derive that $0 < \mu(B) < \mu(A)$. Thus $A$ is not an atom of $\mu$. This proves that $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+\begin{corollary}\label{corollary:nonatomic_measure_admits_isometrical_intervals}
+  Let $(X,\Sigma,\mu)$ be a space with measure. Fix $A \in \Sigma$ such that $u = \mu(A)$ is finite and assume that $A$ does not contain atoms of $\mu$. Then there exists a mapping
+  $$[0,u] \ni t \mapsto B_t \in \Sigma$$
+  such that the following assertions hold.
+  \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+    \item $B_0 = \emptyset, B_{u} = A$.
+    \item $B_{t_1} \subseteq B_{t_2}$ for $t_1,t_2 \in [0,\theta]$ such that $t_1 \leq t_2$.
+    \item $\mu(B_t) = t$ for each $t \in [0,\theta]$.
+  \end{enumerate} 
+\end{corollary}
+\begin{proof}
+  Without loss of generality we may assume that $\mu$ is finite and $A = X$. Denote $\mu(X)$ by $\theta$. By Theorem \ref{theorem:finite_measure_is_nonatomic_if_and_only_if_the_induced_metric_is_convex} metric $\rho_{\mu}$ is convex. According to Proposition \ref{proposition:metric_induced_by_finite_measure} metric $\rho_{\mu}$ is complete. Next by Theorem \ref{theorem:convex_and_complete_metric_spaces_are_isometrically_connected} there exists an isometry $\gamma:[0,\theta] \ra \Sigma_{\mu}$ such that $\gamma(0) = [\emptyset]_{\mu},\,\gamma\left(\theta\right) = [X]_{\mu}$. For each $t \in [0,\theta]$ pick representative $C_t \in \Sigma$ of $\gamma(t)$. Moreover, we may assume that $C_0 = \emptyset$. Then the following assertions hold.
+  \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+    \item $C_0 = \emptyset, C_{u} \equiv_{\mu} X$.
+    \item $C_{t_1} \sqsubseteq_{\mu} C_{t_2}$ for $t_1,t_2 \in [0,\theta]$ such that $t_1 \leq t_2$.
+    \item $\mu(C_t) = t$ for each $t \in [0,\theta]$.
+  \end{enumerate} 
+  Next we define
+  $$B_t = \bigcup_{r \in \QQ \cap [0,t]}C_r$$
+  for every $0 \leq t < u$ and $B_u = X$. Then $\mu(B_t) = t$ for every $t \in [0,u]$. Hence $\{B_t\}_{t\in [0,u]}$ satisfies the statement.
+\end{proof}
 
 
-
-
+\section{Dual spaces to $L^p$ for $p \in (0,1)$}
+\noindent
+Let $(X,\Sigma,\mu)$ be a space with measure and let $p$ be a real in $(0, 1)$. Assume that $\mathbb{K}$ is either $\RR$ or $\CC$ with their usual absolute values. We use results of previous section in order to identify duals to $L^p(\mu,\mathbb{K})$.
 
 
 \small
