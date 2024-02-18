@@ -6,8 +6,11 @@
 \date{}
 \maketitle
 
+\section{Introduction}
+\noindent
+These notes are devoted to study charges i.e. finitely additive functions of sets. Here we study only extended real and complex valued charges. Our main aim is to present contents of an important Fichtenholz-Kantorovich paper \cite{fichtenholz1934operations} in a modern form. We also prove some interesting and related results due to Banach, which were originally published in \cite{banach1923problemelameasure} and \cite{banach1979theorieoperationslineaires}.
 
-\section{Charges with values in extended real line}
+\section{Extended real line charges and Jordan decomposition}
 
 \begin{definition}
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a function. Suppose that $\mu(\emptyset) = 0$ and
@@ -22,40 +25,6 @@
     Left for the reader as an exercise.
 \end{proof}
 
-\begin{example}\label{example:natural_density_charge}
-    For each $n \in \NN_+$ we denote the subset of $\NN$ consisting of consecutive numbers from $0$ to $n-1$ by $[n]$. Let $A \subseteq \NN$ be a subset. We define \textit{the upper density of $A$} and \textit{the lower density of $A$} as the following numbers respectively
-    $$\ol{d}(A) = \limsup_{n\ra +\infty}\frac{|A\cap [n]|}{n},\,\underline{d}(A) = \liminf_{n\ra +\infty}\frac{|A\cap [n]|}{n}$$
-    If $\ol{d}(A) = \underline{d}(A)$ for some $A \subseteq \NN$, then we denote their value by $d(A)$ and \textit{the density of $A$}. We set
-    $$\Sigma = \big\{A\subseteq \NN\,\big|\,d(A)\mbox{ exists }\big\}$$
-    Then $\Sigma$ is an algebra of subsets of $\NN$. Moreover, $d$ is a real and nonnegative charge on $\Sigma$.
-\end{example}
-
-\begin{example}\label{example:ultrafilter_charge}
-    For the notion of ultrafilter we refer to \cite{Filters_in_topology}. Let $X$ be a set and let $\cF$ be an ultrafilter of subsets of $X$  Consider a function given by formula
-    $$\mu(A) = \begin{cases}
-            1 & \mbox{ if }A \in \cF \\
-            0 & \mbox{ otherwise }   \\
-        \end{cases}
-    $$
-    for every $A \subseteq X$. Then $\mu$ is a $\{0,1\}$-valued charge on the algebra of all subsets of $X$.
-\end{example}
-
-\begin{example}\label{example:charge_from_series}
-    Let $\{a_n\}_{n\in \NN}$ be a sequence of real numbers such that the series
-    $$\sum_{n\in \NN}a_n$$
-    is convergent. Let $\Sigma$ be an algebra of all finite and cofinite subsets in $\NN$. We define
-    $$\mu(A) = \sum_{n \in A} a_n$$
-    for every $A \in \Sigma$. Then $\mu:\Sigma \ra \ol{\RR}$ is a charge.
-\end{example}
-
-\begin{definition}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu(A) \in \RR$ for every $A \in \Sigma$, then $\mu$ is \textit{a real charge on $\Sigma$}.
-\end{definition}
-
-\begin{definition}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu(A) \in [0,+\infty]$ for every $A \in \Sigma$, then $\mu$ is \textit{a nonnegative charge on $\Sigma$}.
-\end{definition}
-
 \begin{definition}
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If there exists $\kappa \in \RR$ such that $\mu(A) \geq
         \kappa$ for every $A \in \Sigma$, then $\mu$ is \textit{bounded from below}.
@@ -69,16 +38,6 @@
 \begin{definition}
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu$ is bounded from below and from above, then $\mu$ is \textit{bounded}.
 \end{definition}
-
-\begin{example}\label{example:examples_of_bounded_and_nonnegative_charges}
-    Charges defined in Examples \ref{example:natural_density_charge} and \ref{example:ultrafilter_charge} are real, bounded and nonnegative.
-\end{example}
-
-\begin{example}\label{example:unbounded_charge_from_not_absolutely_convergent_series}
-    Consider a sequence $\{a_n\}_{n\in \NN}$ such that the series
-    $$\sum_{n\in \NN}a_n$$
-    is convergent, but not absolutely convergent. Then the charge defined by $\{a_n\}_{n\in \NN}$ as in Example \ref{example:charge_from_series} is real but not bounded from below or above.
-\end{example}
 \noindent
 Now we prove important Jordan decomposition for charges. Our approach closely follows Stanis{\l}aw Saks \cite{saks1937theory}.
 
@@ -128,13 +87,18 @@ Now we prove important Jordan decomposition for charges. Our approach closely fo
 
     The proof of \textbf{(4)} is analogical to the proof of \textbf{(3)} and is omited.
 \end{proof}
+\noindent
+Finally we introduce to notions for later reference.
 
-\begin{example}\label{example:charge_without_Jordan_decomposition}
-    If $\mu$ is the charge from Example \ref{example:unbounded_charge_from_not_absolutely_convergent_series}, then for every cofinite $A \subseteq \NN$ we have $\mu_+(A) = +\infty$ and $\mu_-(A) = +\infty$. Thus $\mu_+ - \mu_-$ is undefined.
-\end{example}
+\begin{definition}
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu(A) \in \RR$ for every $A \in \Sigma$, then $\mu$ is \textit{a real charge on $\Sigma$}.
+\end{definition}
 
+\begin{definition}
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu(A) \in [0,+\infty]$ for every $A \in \Sigma$, then $\mu$ is \textit{a nonnegative charge on $\Sigma$}.
+\end{definition}
 
-\section{$\sigma$-additive charges and signed measures}
+\section{Countably additive charges and signed measures}
 
 \begin{definition}
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a charge. Suppose that for every sequence $\{A_n\}_{n\in \NN}$ of pairwise disjoint sets in $\Sigma$ such that
@@ -143,46 +107,6 @@ Now we prove important Jordan decomposition for charges. Our approach closely fo
     $$\mu\left(\bigcup_{n\in \NN}A_n\right) = \sum_{n \in \NN}\mu(A_n)$$
     holds. Then $\mu$ is \textit{a $\sigma$-additive charge on $\Sigma$}.
 \end{definition}
-\noindent
-For the sake of giving a counterexample we first prove the following result.
-
-\begin{proposition}\label{proposition:natural_density_charges_are_not_sigma_additive}
-    Let $\Sigma$ be an algebra of subsets of $\NN$ which contains each finite subset of $\NN$ and a family $\{d\cdot \NN\}_{d \in \NN_+}$. Suppose that $\mu$ is a charge on $\Sigma$ such that
-    $$\mu(d\cdot \NN) = \frac{1}{d}$$
-    for every $d \in \NN_+$. Then $\mu$ is not $\sigma$-additive.
-\end{proposition}
-\begin{proof}
-    Suppose that $\mu$ is a charge on $\Sigma$ such that
-    $$\mu(d\cdot \NN) = \frac{1}{d}$$
-    for every $d \in \NN_+$. Assume that $d_1,...,d_s \in \NN_+$ are pairwise coprime. Then inclusion-exclusion principle implies that
-    $$\mu\left(\bigcup_{k=1}^sd_k\cdot \NN\right) = 1 - \prod_{i=1}^s\left(1 - \frac{1}{d_i}\right)$$
-
-    Let $\PP$ be the set of all primes. For each $n \in \NN_+$ let $\nu_p(n) \in \NN$ be the exponent of $p \in \PP$ in prime factorization of $n$. Fix now a sequence $\alpha = \{\alpha_p\}_{p\in \PP}$ of elements in $\NN_+$ such that $\alpha_p = 1$ for all but finitely many $p \in \PP$. Consider the set
-    $$\Gamma_{\alpha} = \big\{n\in \NN_+\,\big|\,\nu_p(n) \geq \alpha_p\mbox{ for some }p\in \PP\big\}$$
-    Clearly $\Gamma_{\alpha}$ is cofinite and
-    $$\Gamma_{\alpha} = \bigcup_{p\in \PP}p^{\alpha_p}\cdot \NN$$
-    If $\mu$ is $\sigma$-additive, then
-    $$\mu(\Gamma_{\alpha}) = \lim_{N \ra +\infty}\mu\left(\bigcup_{p < N}p^{\alpha_p}\cdot \NN\right) = 1 - \lim_{N\ra +\infty}\prod_{p < N}\left(1 - \frac{1}{p^{\alpha_p}}\right) = 1$$
-    Now for fixed $n \in \NN \cap (1,+\infty)$ we pick $\alpha = \{\alpha_p\}_{p\in \PP}$ and $\beta = \{\beta_p\}_{p\in \PP}$ such that
-    $$\alpha_p = \begin{cases}
-            \nu_p(n) & \mbox{ if }\nu_p(n) > 0 \\
-            1        & \mbox{ otherwise }
-        \end{cases}$$
-    for each $p \in \PP$ and
-    $$\beta_p = \begin{cases}
-            \nu_p(n) + 1 & \mbox{ if }\nu_p(n) > 0 \\
-            1            & \mbox{ otherwise }
-        \end{cases}$$
-    Then $\mu(\Gamma_{\alpha}) = \mu(\Gamma_{\beta}) = 1$ and hence $\mu(\{n\}) = \mu\left(\Gamma_{\alpha} \setminus \Gamma_{\beta}\right) = 0$. This holds for all $n \in \NN \cap (1,+\infty)$. Moreover, by $\sigma$-additivity it follows that
-    $$\mu(\{0\}) = \mu\left(\bigcap_{n \in \NN}2^n \cdot \NN\right) = \lim_{n\ra +\infty}\mu(2^n\cdot \NN) = \lim_{n\ra +\infty}\frac{1}{2^n} = 0$$
-    and hence
-    $$\mu(2\cdot \NN) = \sum_{n\in \NN}\mu(\{2\cdot n\}) = 0$$
-    This contradicts the fact that $\mu(2\cdot \NN) \neq 0$.
-\end{proof}
-
-\begin{example}\label{example:natural_density_is_not_sigma_additive}
-    Let $d$ be the density charge defined in Example \ref{example:natural_density_charge}. Then Proposition \ref{proposition:natural_density_charges_are_not_sigma_additive} implies that $d$ is not $\sigma$-additive.
-\end{example}
 
 \begin{proposition}\label{proposition:sigma_additive_have_positive_and_negative_parts_which_are_sigma_additive}
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a $\sigma$-additive charge. Then $\mu_+,\mu_-$ and $|\mu|$ are $\sigma$-additive charges.
@@ -204,10 +128,6 @@ For the sake of giving a counterexample we first prove the following result.
 \begin{definition}
     Let $X$ be a set and let $\Sigma$ be a $\sigma$-algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a $\sigma$-additive charge. Then $\mu$ is \textit{a signed measure on $\Sigma$}.
 \end{definition}
-
-\begin{example}\label{example:each_measure_is_signed_measure}
-    Measures are defined in \cite{Integration}. Note that each measure is a nonnegative, signed measure.
-\end{example}
 \noindent
 The following notion plays central role in studying structure of signed measures.
 
@@ -216,10 +136,6 @@ The following notion plays central role in studying structure of signed measures
     $$\mu(A\cap P) \geq 0,\,\mu(A\setminus P)\leq 0$$
     for every $A \in \Sigma$.
 \end{definition}
-
-\begin{example}\label{example:not_every_charge_has_positive_set}
-    The charge in Example \ref{example:unbounded_charge_from_not_absolutely_convergent_series} does not have positive sets.
-\end{example}
 \noindent
 The following important result shows the existence of positive sets for signed measures.
 
@@ -283,6 +199,104 @@ The proof proceeds by constructing approximations for a positive set.
 \begin{proof}
     Indeed, let $P \in \Sigma$ be a positive set of $\mu$. Then $\mu_+(X) = \mu(P),\,\mu_-(X) = \mu(X\setminus P)$ and both cannot be infinite by Fact \ref{fact:one_side_infinity_only_for_finitely_additive}.
 \end{proof}
+
+\begin{definition}
+    Let $X$ be a set and let $\Sigma$ be a $\sigma$-algebra of its subsets. Let $\mu$ be a signed measure on $\Sigma$ which is at the same time real charge. Then $\mu$ is \textit{a real measure on $\Sigma$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:real_measures_are_bounded}
+    Let $X$ be a set and let $\Sigma$ be a $\sigma$-algebra of its subsets. Let $\mu:\Sigma \ra \RR$ be a real measure. Then $\mu$ is bounded.
+\end{corollary}
+\begin{proof}
+    Indeed, let $P \in \Sigma$ be a positive set of $\mu$. Then $\mu_+(X) = \mu(P),\,\mu_-(X) = \mu(X\setminus P)$ and both are finite, since $\mu$ is real.
+\end{proof}
+
+\begin{remark}\label{remark:measure_is_nonnegative_signed_measure}
+    Note that a measure as it was introduced in \cite{Integration} is a nonnegative, signed meaasure.
+\end{remark}
+
+
+\section{Examples of charges}
+\noindent
+We now give to examples of charges. The first is set-theoretic and is interesting application of axiom of choice. The second has analytical nature.
+
+\begin{example}\label{example:ultrafilter_charge}
+    For the notion of ultrafilter we refer to \cite{Filters_in_topology}. Let $X$ be a set and let $\cF$ be an ultrafilter of subsets of $X$  Consider a function given by formula
+    $$\mu(A) = \begin{cases}
+            1 & \mbox{ if }A \in \cF \\
+            0 & \mbox{ otherwise }   \\
+        \end{cases}
+    $$
+    for every $A \subseteq X$. Then $\mu$ is a $\{0,1\}$-valued charge on the algebra of all subsets of $X$.
+\end{example}
+
+\begin{example}\label{example:charge_from_series}
+    Let $\{a_n\}_{n\in \NN}$ be a sequence of real numbers such that the series
+    $$\sum_{n\in \NN}a_n$$
+    is convergent. Let $\Sigma$ be an algebra of all finite and cofinite subsets in $\NN$. We define
+    $$\mu(A) = \sum_{n \in A} a_n$$
+    for every $A \in \Sigma$. Then $\mu:\Sigma \ra \ol{\RR}$ is a charge.
+\end{example}
+
+\begin{remark}\label{remark:unbounded_charge_from_not_absolutely_convergent_series}
+    Consider a sequence $\{a_n\}_{n\in \NN}$ such that the series
+    $$\sum_{n\in \NN}a_n$$
+    is convergent, but not absolutely convergent. Then the charge defined by $\{a_n\}_{n\in \NN}$ as in Example \ref{example:charge_from_series} is real but not bounded from below or above. In particular, both $\mu_+$ and $\mu_-$ assume infinite values and hence $\mu_+ - \mu_-$ is undefined.
+\end{remark}
+
+\begin{remark}\label{remark:one_sided_bounded_charge_without_positive_set}
+    Consider a sequence $\{a_n\}_{n\in \NN}$ such that the series
+    $$\sum_{n\in \NN}a_n$$
+    is absolutely convergent. Assume also that for for every $N \in \NN$ there exist $n,m\geq N$ such that $a_n > 0$ and $a_m < 0$. Then the charge defined by $\{a_n\}_{n\in \NN}$ as in Example \ref{example:charge_from_series} is real, bounded and $\sigma$-additive. On the other hand it has no positive sets.
+\end{remark}
+\noindent
+The remaining part of this section is devoted to example which is of number theoretic nature.
+
+\begin{example}\label{example:natural_density_charge}
+    For each $n \in \NN_+$ let $[n)$ denote the subset of $\NN$ consisting of consecutive numbers from $0$ to $n-1$. Let $A \subseteq \NN$ be a subset. We define \textit{the upper density of $A$} and \textit{the lower density of $A$}, respectively, by formulas
+    $$\ol{d}(A) = \limsup_{n\ra +\infty}\frac{|A\cap [n)|}{n},\,\underline{d}(A) = \liminf_{n\ra +\infty}\frac{|A\cap [n)|}{n}$$
+    If $\ol{d}(A) = \underline{d}(A)$ for some $A \subseteq \NN$, then their value is \textit{the density of $A$} and is also denoted by $d(A)$. We set
+    $$\Sigma = \big\{A\subseteq \NN\,\big|\,d(A)\mbox{ exists }\big\}$$
+    Then $\Sigma$ is an algebra of subsets of $\NN$. Moreover, $d$ is a real and nonnegative charge on $\Sigma$.
+\end{example}
+
+\begin{proposition}\label{proposition:natural_density_charges_are_not_sigma_additive}
+    Let $\Sigma$ be an algebra of subsets of $\NN$ which contains each finite subset of $\NN$ and a family $\{d\cdot \NN\}_{d \in \NN_+}$. Suppose that $\mu$ is a charge on $\Sigma$ such that
+    $$\mu(d\cdot \NN) = \frac{1}{d}$$
+    for every $d \in \NN_+$. Then $\mu$ is not $\sigma$-additive.
+\end{proposition}
+\begin{proof}
+    Suppose that $\mu$ is a charge on $\Sigma$ such that
+    $$\mu(d\cdot \NN) = \frac{1}{d}$$
+    for every $d \in \NN_+$. Assume that $d_1,...,d_s \in \NN_+$ are pairwise coprime. Then inclusion-exclusion principle implies that
+    $$\mu\left(\bigcup_{k=1}^sd_k\cdot \NN\right) = 1 - \prod_{i=1}^s\left(1 - \frac{1}{d_i}\right)$$
+
+    Let $\PP$ be the set of all primes. For each $n \in \NN_+$ let $\nu_p(n) \in \NN$ be the exponent of $p \in \PP$ in prime factorization of $n$. Fix now a sequence $\alpha = \{\alpha_p\}_{p\in \PP}$ of elements in $\NN_+$ such that $\alpha_p = 1$ for all but finitely many $p \in \PP$. Consider the set
+    $$\Gamma_{\alpha} = \big\{n\in \NN_+\,\big|\,\nu_p(n) \geq \alpha_p\mbox{ for some }p\in \PP\big\}$$
+    Clearly $\Gamma_{\alpha}$ is cofinite and
+    $$\Gamma_{\alpha} = \bigcup_{p\in \PP}p^{\alpha_p}\cdot \NN$$
+    If $\mu$ is $\sigma$-additive, then
+    $$\mu(\Gamma_{\alpha}) = \lim_{N \ra +\infty}\mu\left(\bigcup_{p < N}p^{\alpha_p}\cdot \NN\right) = 1 - \lim_{N\ra +\infty}\prod_{p < N}\left(1 - \frac{1}{p^{\alpha_p}}\right) = 1$$
+    Now for fixed $n \in \NN \cap (1,+\infty)$ we pick $\alpha = \{\alpha_p\}_{p\in \PP}$ and $\beta = \{\beta_p\}_{p\in \PP}$ such that
+    $$\alpha_p = \begin{cases}
+            \nu_p(n) & \mbox{ if }\nu_p(n) > 0 \\
+            1        & \mbox{ otherwise }
+        \end{cases}$$
+    for each $p \in \PP$ and
+    $$\beta_p = \begin{cases}
+            \nu_p(n) + 1 & \mbox{ if }\nu_p(n) > 0 \\
+            1            & \mbox{ otherwise }
+        \end{cases}$$
+    Then $\mu(\Gamma_{\alpha}) = \mu(\Gamma_{\beta}) = 1$ and hence $\mu(\{n\}) = \mu\left(\Gamma_{\alpha} \setminus \Gamma_{\beta}\right) = 0$. This holds for all $n \in \NN \cap (1,+\infty)$. Moreover, by $\sigma$-additivity it follows that
+    $$\mu(\{0\}) = \mu\left(\bigcap_{n \in \NN}2^n \cdot \NN\right) = \lim_{n\ra +\infty}\mu(2^n\cdot \NN) = \lim_{n\ra +\infty}\frac{1}{2^n} = 0$$
+    and hence
+    $$\mu(2\cdot \NN) = \sum_{n\in \NN}\mu(\{2\cdot n\}) = 0$$
+    This contradicts the fact that $\mu(2\cdot \NN) \neq 0$.
+\end{proof}
+
+\begin{remark}\label{remark:natural_density_is_not_sigma_additive}
+    Let $d$ be the density charge defined in Example \ref{example:natural_density_charge}. Then Proposition \ref{proposition:natural_density_charges_are_not_sigma_additive} implies that $d$ is not $\sigma$-additive.
+\end{remark}
 
 \section{Complex charges and spaces of bounded charges}
 
@@ -417,9 +431,9 @@ The proof proceeds by constructing approximations for a positive set.
         \begin{tikzpicture}
             [description/.style={fill=white,inner sep=2pt}]
             \matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex]
-            {                                                    & \mathrm{ba}(\Sigma,\CC) & \\
-                                        \mathrm{bca}(\Sigma,\CC) &                         & \mathrm{ba}(\Sigma,\RR)     \\
-                                                                 & \mathrm{ba}(\Sigma,\CC) & \\} ;
+            {                                                                                                                                                                                                                                                                                                                                                                                                                  & \mathrm{ba}(\Sigma,\CC)  & \\
+                                                                                                                                                                                                                                                                                                                                                                                                      \mathrm{bca}(\Sigma,\CC) &                          & \mathrm{ba}(\Sigma,\RR)                                                                                                                                                                                                                                                                                                                                                                   \\
+                                                                                                                                                                                                                                                                                                                                                                                                                               & \mathrm{bca}(\Sigma,\RR) & \\} ;
             \path[right hook->,line width=0.8pt,font=\scriptsize]
             (m-2-3) edge node {$  $} (m-1-2)
             (m-3-2) edge node {$  $} (m-2-3);
@@ -431,85 +445,230 @@ The proof proceeds by constructing approximations for a positive set.
     In the diagram $\mathrm{cba}(\Sigma, \RR)$ is the intersection of $\mathrm{ba}(\Sigma,\RR)$ and $\mathrm{bca}(\Sigma,\CC)$ i.e. a Banach space over $\RR$ of all real, bounded and $\sigma$-additive charges on $\Sigma$.
 \end{remark}
 
-\section{Space of essentially bounded functions}
-\noindent
-In this section we extend the notion of Lebesgue space to $p = +\infty$. We fix a Banach space $Y$ with norm $\lVert-\rVert$ over a field $\mathbb{K}$ with absolute value $|-|$.
+\section{Integration and Fichtenholz-Kantorovich theorem}
 
 \begin{definition}
-    Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. Then
-    $$\lVert f \rVert_{\infty} = \sup \bigg\{r\in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\big\{x\in X\,\big|\,\lVert f(x)\rVert \geq r\big\}\right) > 0\bigg\}$$
-    is \textit{the essential supremum of $f$ with respect to $\mu$}.
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Suppose that $Y$ is a set. Consider a function $s:X\ra Y$ such that $s(X)$ is finite and $s^{-1}(y) \in \Sigma$ for every $y \in Y$. Then $s$ is \textit{a $\Sigma$-simple function}.
+\end{definition}
+\noindent
+In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a set $X$ and a $\sigma$-algebra $\Sigma$ of subsets of $X$.
+
+We define
+$$B(\Sigma,\mathbb{K}) = \big\{f:X\ra \mathbb{K}\,\big|\,f\mbox{ is measurable and bounded}\big\}$$
+Clearly $B(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of the space of all functions $X\ra \mathbb{K}$. Moreover, the function
+$$B(\Sigma,\mathbb{K}) \ni f \mapsto \sup_{x\in X}|f(x)|\in [0,+\infty)$$
+is a norm on $B(\Sigma, \mathbb{K})$. We denote it by $\lVert-\rVert_{\sup}$. We also define $S(\Sigma,\mathbb{K})\subseteq B(\Sigma,\mathbb{K})$ as a subset consisting of all $\Sigma$-simple $\mathbb{K}$-valued functions.
+
+\begin{theorem}\label{theorem:space_of_bounded_measurable_functions}
+    The $\mathbb{K}$-linear space $B(\Sigma,\mathbb{K})$ with norm $\lVert-\rVert_{\infty}$ is a Banach space over $\mathbb{K}$. Moreover, $S(\Sigma,\mathbb{K})$ is its $\mathbb{K}$-linear and dense subspace.
+\end{theorem}
+\begin{proof}
+    In order to show that $\lVert-\rVert_{\infty}$ is complete we fix a sequence $\{f_n\}_{n\in \NN}$ of elements of $B(\Sigma,\mathbb{K})$ which is Cauchy with respect to $\lVert-\rVert_{\infty}$. For each $x \in X$ and every $n,m\in \NN$ we have
+    $$|f_n(x) - f_m(x)|\leq \sup_{x\in X}|f_n(x) - f_m(x)| = \lVert f_n - f_m \rVert_{\infty}$$
+    In particular, the sequence $\{f_n(x)\}_{n\in \NN}$ is a Cauchy sequence in $\mathbb{K}$ with respect to $|-|$ for every $x \in X$. We define $f(x)$ as a limit of $\{f_n(x)\}_{n\in \NN}$ in $\mathbb{K}$ for every $x \in X$. Then $f:X\ra \mathbb{K}$ is a function. Since $\{f_n\}_{n\in \NN}$ is a sequence of measurable functions pointwise convergent to $f$, we deduce by results in \cite{Integration} that $f$ is measurable. Fix $\epsilon > 0$ and consider $N \in \NN$ such that for all $n,m\geq N$ the inequality
+    $$\sup_{x\in X}|f_m(x) - f_n(x)|\leq \epsilon$$
+    holds. Then for $n \geq N$ we have
+    $$\lVert f - f_n \rVert_{\infty} = \sup_{x\in X}|f(x) - f_n(x)| = \sup_{x\in X}\lim_{m\ra +\infty}|f_m(x) - f_n(x)| \leq \epsilon$$
+    This proves that $f$ is bounded and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_{\infty}$. Thus $B(\Sigma,\mathbb{K})$ is a Banach space with respect to $\lVert-\rVert_{\infty}$.
+
+    Obviously $S(\Sigma,\mathbb{K})$ is a $\mathbb{K}$-linear subspace of $B(\Sigma,\mathbb{K})$. For $\alpha \in \mathbb{K}$ and $r \in \RR_+$ we denote by $D(\alpha,r)$ the open disc in $\mathbb{K}$ centered in $\alpha$ and with radius $r$. Fix $f \in B(\Sigma,\mathbb{K})$ and let $\epsilon > 0$. Since $\mathbb{K}$ is locally compact, there exist $n\in \NN_+$ and elements $\alpha_1,...,\alpha_n \in \mathbb{K}$ such that
+    $$\big\{\alpha \in \mathbb{K}\,\big|\,|\alpha| \leq \lVert f\rVert_{\infty}\big\}\subseteq \bigcup_{i=1}^nD(\alpha_i,\epsilon)$$
+    Define
+    $$B_i = D(\alpha_i,\epsilon)\setminus \bigcup_{j\leq i}D(\alpha_j,\epsilon)$$
+    for every $1\leq i \leq n$. We define
+    $$s = \sum_{i=1}^n\alpha_i\cdot \mathbb{1}_{f^{-1}(B_i)}$$
+    Then $s:X\ra \mathbb{K}$ is a well defined element of $S(\Sigma,\mathbb{K})$. Next pick $x \in X$. Since $X$ is the union of $\{f^{-1}(B_i)\}_{i=1}^n$,
+    there exists $i$ such that $x \in f^{-1}(B_i)$. Then $s(x) = \alpha_i$ and $f(x) \in B_i\subseteq D(\alpha_i,\epsilon)$. Thus
+    $$|f(x) - s(x)| = |f(x) - \alpha_i|\leq \epsilon$$
+    Since $x$ is arbitrary, we derive that $\lVert f - s\rVert_{\infty} \leq \epsilon$. This implies that $S(\Sigma,\mathbb{K})$ is dense in $B(\Sigma,\mathbb{K})$.
+\end{proof}
+\noindent
+Theorem \ref{theorem:space_of_bounded_measurable_functions} implies the existence of integration with respect to bounded and $\mathbb{K}$-valued charges on $\Sigma$. From now fix a charge $\mu:\Sigma \ra \mathbb{K}$.
+
+\begin{definition}
+    For $s \in S(\Sigma,\mathbb{K})$ we set
+    $$\int_Xs\,d\mu = \sum_{\alpha \in \mathbb{K}}\alpha\cdot \mu\left(s^{-1}(\alpha)\right)$$
+    and call it \textit{the integral of $s$ with respect to $\mu$}.
 \end{definition}
 
-\begin{proposition}\label{proposition:L_infinity_norm_is_seminorm}
-    Let $(X,\Sigma,\mu)$ be a space with measure. Then
+\begin{fact}\label{fact:charge_integral_is_linear_and_continuous_on_space_of_simple}
+    The map
+    $$S(\Sigma, \mathbb{K})\ni s \mapsto \int_Xs\,d\mu\in \mathbb{K}$$
+    is $\mathbb{K}$-linear and its norm is equal to $\lVert \mu \rVert$.
+\end{fact}
+\begin{proof}
+    The fact that map is $\mathbb{K}$-linear is clear.
+
+    Pick $s \in S(\Sigma,\mathbb{K})$ such that $\lVert s \rVert_{\infty} = 1$. Suppose that $s(X) = \{\alpha_1,...,\alpha_n\}$ for some $n \in \NN_+$. Then
+    $$\left|\int s\,d\mu\right| = \left|\sum_{i=1}^n\alpha_i\cdot \mu(s^{-1}(\alpha_i))\right| \leq \sum_{i=1}^n|\alpha_i|\cdot |\mu(s^{-1}(\alpha_i))| \leq \sum_{i=1}^n|\mu(s^{-1}(\alpha_i))| \leq \lVert \mu \rVert$$
+    On the other hand fix an arbitrary finite partition $\PP$ of $X$ onto sets in $\Sigma$. For each $P \in \PP$ pick $\alpha_p \in \mathbb{K}$ such that $|\alpha_p| = 1$ and $\alpha_P\cdot \mu(P) = |\mu(P)|$. Define $s \in S(\Sigma,\mathbb{K})$ by formula
+    $$s = \sum_{P\in \PP}\alpha_P\cdot \mathbb{1}_{P}$$
+    Then $\lVert s \rVert_{\infty} = 1$ and
+    $$\int_Xs\,d\mu = \sum_{P \in \PP}\alpha_P\cdot \mu(P) = \sum_{P\in \PP}|\mu(P)|$$
+    This proves that
+    $$\lVert \mu \rVert \leq \sup_{s\in S(\Sigma,\mathbb{K})\,\mathrm{s.t.}\,\lVert s \rVert_{\infty}=1}\left|\int_Xs\,d\mu\right|$$
+    Hence the norm of the $\mathbb{K}$-linear map in question is equal to $\lVert \mu \rVert$.
+\end{proof}
+
+\begin{definition}
+    Let $\mu:\Sigma \ra \mathbb{K}$ be a bounded charge. Fact \ref{fact:charge_integral_is_linear_and_continuous_on_space_of_simple} implies that there exists a unique continuous extension of the integral with respect to $\mu$ to all functions in $B(\Sigma, \mathbb{K})$. For every $f \in B(\Sigma,\mathbb{K})$ the value
+    $$\int_X f\,d\mu$$
+    of this extension for $f$ is \textit{the integral of $f$ with respect to $\mu$}.
+\end{definition}
+
+\begin{remark}\label{remark:norm_of_integration_is_total_variation}
+    Let $\mu:\Sigma \ra \mathbb{K}$ be a bounded charge. The norm of the integral
+    $$B(\Sigma,\mathbb{K})\ni f \mapsto \int_X f\,d\mu\in \mathbb{K}$$
+    is $\lVert \mu \rVert$.
+\end{remark}
+
+\begin{theorem}[Fichtenholz-Kantorovich]\label{theorem:fichtenholz_kantorovich_for_bounded_functions}
+    The map
+    $$\mathrm{ba}(\Sigma,\mathbb{K})\ni \mu \mapsto \left(f\mapsto \int_Xf\,d\mu\right) \in B(\Sigma,\mathbb{K})^*$$
+    is an isometry of Banach spaces over $\mathbb{K}$.
+\end{theorem}
+\begin{proof}
+    Let $\Lambda:B(\Sigma,\mathbb{K})\ra \mathbb{K}$ be a continuous $\mathbb{K}$-linear map. For every $A \in \Sigma$ we define $\mu(A) = \Lambda(\mathbb{1}_A)$. Then $\mu:\Sigma \ra \mathbb{K}$ is a charge. Moreover, we have
+    $$|\mu(A)| = \big|\Lambda(\mathbb{1}_A)\big| \leq \lVert \Lambda \rVert$$
+    for every $A \in \Sigma$. Thus $\mu$ is bounded. By definition
+    $$\Lambda(s) = \int_Xs\,d\mu$$
+    for every $s \in S(\Sigma,\mathbb{K})$. It follows that $\Lambda$ and integration with respect to $\mu$ coincide on $S(\Sigma,\mathbb{K})$. By Theorem \ref{theorem:space_of_bounded_measurable_functions} we derive that they are equal. Remark \ref{remark:norm_of_integration_is_total_variation} implies that $\lVert \Lambda \rVert = \lVert \mu \rVert$.
+
+    Next note that if $\mu \in \mathrm{ba}(\Sigma,\mathbb{K})$ is such that
+    $$\int_Xf\,d\mu = 0$$
+    for every $f \in B(\Sigma,\mathbb{K})$, then $\mu$ is zero charge.
+\end{proof}
+
+\section{Space of essentially bounded functions}
+\noindent
+In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a space $(X,\Sigma,\nu)$ with measure.
+
+\begin{definition}
+    Let $f:X\ra \mathbb{K}$ be a measurable function. Then
+    $$\lVert f \rVert_{\mathrm{ess}} = \sup \bigg\{r\in \RR_+\cup \{0\}\,\bigg|\,\nu\left(\big\{x\in X\,\big|\,|f(x)| \geq r\big\}\right) > 0\bigg\}$$
+    is \textit{the essential supremum of $f$ with respect to $\nu$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:essential_supremum_is_a_seminorm}
+    The following assertions hold.
     \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-        \item If $\alpha \in \mathbb{K}$ and $f:X\ra Y$ is a strongly measurable function on $(X,\Sigma)$, then
-              $$\lVert \alpha \cdot f\rVert_{\infty} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
-        \item If $f,g:X\ra Y$ are strongly measurable functions on $(X,\Sigma)$, then
-              $$\lVert f + g \rVert_{\infty} \leq \lVert f \rVert_{\infty} + \lVert g \rVert_{\infty}$$
+        \item If $\alpha \in \mathbb{K}$ and $f:X\ra \mathbb{K}$ is a measurable function, then
+              $$\lVert \alpha \cdot f\rVert_{\mathrm{ess}} = |\alpha|\cdot \lVert f\rVert_{\mathrm{ess}}$$
+        \item If $f,g:X\ra \mathbb{K}$ are measurable functions, then
+              $$\lVert f + g \rVert_{\mathrm{ess}} \leq \lVert f \rVert_{\mathrm{ess}} + \lVert g \rVert_{\mathrm{ess}}$$
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    Fix $\alpha \in \mathbb{K}\setminus \{0\}$ and $f:X\ra Y$ be a strongly measurable function on $(X,\Sigma)$. Then
-    $$\{x\in X\,\big|\,\lVert (\alpha \cdot f)(x)\rVert \geq r\big\} = \bigg\{x\in X\,\bigg|\,\lVert f(x)\rVert \geq \frac{r}{|\alpha|}\bigg\}$$
-    for every $r \in \RR_+\cup \{0\}$. Hence
-    $$\lVert \alpha \cdot f\rVert_{\infty} = \sup \bigg\{r\in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\big\{x\in X\,\big|\,\lVert (\alpha \cdot f)(x)\rVert \geq r\big\}\right) > 0\bigg\} =$$
-    $$= \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\bigg\{x\in X\,\bigg|\,\lVert f(x)\rVert \geq \frac{r}{|\alpha|}\bigg\}\right) > 0\bigg\} = $$
-    $$= |\alpha| \cdot \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\mu\left(\big\{x\in X\,\big|\,\lVert f(x)\rVert \geq r\big\}\right) > 0\bigg\} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
+    Fix $\alpha \in \mathbb{K}\setminus \{0\}$ and a measurable function $f:X\ra \mathbb{K}$. Then
+    $$\{x\in X\,\big|\,| (\alpha \cdot f)(x)| \geq r \big\} = \bigg\{x\in X\,\bigg|\,|f(x)| \geq \frac{r}{|\alpha|}\bigg\}$$
+    for every $r \in \RR_+ \cup \{0\}$. Hence
+    $$\lVert \alpha \cdot f\rVert_{\mathrm{ess}} = \sup \bigg\{r\in \RR_+ \cup \{0\}\,\bigg|\,\nu\left(\big\{x\in X\,\big|\,|(\alpha \cdot f)(x)| \geq r \big\}\right) > 0\bigg\} =$$
+    $$= \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\nu\left(\bigg\{x\in X\,\bigg|\,|f(x)| \geq \frac{r}{|\alpha|}\bigg\}\right) > 0\bigg\} = $$
+    $$= |\alpha| \cdot \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\nu\left(\big\{x\in X\,\big|\,|f(x)| \geq r\big\}\right) > 0\bigg\} = |\alpha|\cdot \lVert f\rVert_{\mathrm{ess}}$$
     It follows that
-    $$\lVert \alpha \cdot f\rVert_{\infty} = |\alpha|\cdot \lVert f\rVert_{\infty}$$
+    $$\lVert \alpha \cdot f\rVert_{\mathrm{ess}} = |\alpha|\cdot \lVert f\rVert_{\mathrm{ess}}$$
     for every $\alpha \in \mathbb{K}\setminus \{0\}$. For $\alpha = 0$ this also holds for trivial reasons. Hence \textbf{(1)} is proved.
 
-    Suppose that $f,g:X\ra Y$ are strongly measurable functions on $(X,\Sigma)$. Assume that $r\in \RR_+$ is such that
-    $$\lVert f \rVert_{\infty} + \lVert g \rVert_{\infty} < r$$
-    We may pick $r_f,r_g\in \RR_+$ such that $r_f+r_g = r$ and $\lVert f \rVert_{\infty} < r_f$ and $\lVert g \rVert_{\infty} < r_g$. Then
-    $$\{x\in X\,\big|\,\lVert (f + g)(x)\rVert \geq r\big\} \subseteq \big\{x\in X\,\big|\,\lVert f(x)\rVert + \lVert g(x)\rVert \geq r_f + r_g\big\} \subseteq $$
-    $$\subseteq \big\{x\in X\,\big|\,\lVert f(x)\rVert  \geq r_f\big\} \cup \big\{x\in X\,\big|\,\lVert g(x)\rVert  \geq r_g\big\}$$
-    Since $\lVert f \rVert_{\infty} < r_f$ and $\lVert g \rVert_{\infty} < r_g$, we deduce that
-    $$\mu\left(\big\{x\in X\,\big|\,\lVert f(x)\rVert  \geq r_f\big\}\right) = \mu\left(\big\{x\in X\,\big|\,\lVert g(x)\rVert  \geq r_g\big\}\right) = 0$$
+    Suppose that $f,g:X\ra \mathrm{K}$ are measurable functions. Assume that $r\in \RR_+$ is such that
+    $$\lVert f \rVert_{\mathrm{ess}} + \lVert g \rVert_{\mathrm{ess}} < r$$
+    We may pick $r_f,r_g\in \RR_+$ such that $r_f + r_g = r$ and $\lVert f \rVert_{\mathrm{ess}} < r_f$ and $\lVert g \rVert_{\mathrm{ess}} < r_g$. Then
+    $$\{x\in X\,\big|\,|(f + g)(x)| \geq r \big\} \subseteq \big\{x\in X\,\big|\,|f(x)| + |g(x)| \geq r_f + r_g \big\} \subseteq $$
+    $$\subseteq \big\{x\in X\,\big|\,|f(x)|  \geq r_f\big\} \cup \big\{x\in X\,\big|\,|g(x)|  \geq r_g\big\}$$
+    Since $\lVert f \rVert_{\mathrm{ess}} < r_f$ and $\lVert g \rVert_{\mathrm{ess}} < r_g$, we deduce that
+    $$\nu\left(\big\{x\in X\,\big|\,|f(x)|  \geq r_f\big\}\right) = \nu\left(\big\{x\in X\,\big|\,|g(x)|\geq r_g\big\}\right) = 0$$
     This implies that
-    $$\mu\left(\{x\in X\,\big|\,\lVert (f + g)(x)\rVert \geq r\big\}\right) = 0$$
-    and thus $\lVert f + g\rVert_{\infty} < r$. This proves that
-    $$\lVert f + g \rVert_{\infty} \leq \lVert f \rVert_{\infty} + \lVert g \rVert_{\infty}$$
+    $$\nu\left(\{x\in X\,\big|\,|(f + g)(x)| \geq r\big\}\right) = 0$$
+    and thus $\lVert f + g\rVert_{\mathrm{ess}} < r$. This proves that
+    $$\lVert f + g \rVert_{\mathrm{ess}} \leq \lVert f \rVert_{\mathrm{ess}} + \lVert g \rVert_{\mathrm{ess}}$$
     if right hand side is finite. Clearly the inequality holds if the right hand side is infinite. This completes the proof of \textbf{(2)}.
 \end{proof}
 
 \begin{definition}
-    Let $f:X\ra Y$ be a strongly measurable function on a space $(X,\Sigma,\mu)$ with measure. If
-    $$\lVert f \rVert_{\infty} \in \RR$$
-    then $f$ is \textit{essentially bounded with respect to $\mu$} or shortly \textit{$\mu$-essentially bounded}.
+    Let $f:X\ra \mathbb{K}$ be a measurable function. If
+    $$\lVert f \rVert_{\mathrm{ess}} \in \RR$$
+    then $f$ is \textit{essentially bounded with respect to $\nu$} or shortly \textit{$\nu$-essentially bounded}.
 \end{definition}
+\noindent
+According to Proposition \ref{proposition:essential_supremum_is_a_seminorm} the set of all $\mathbb{K}$-valued and $\nu$-essentially bounded functions is a seminormed space over $\mathbb{K}$ with respect to seminorm $\lVert-\rVert_{\mathrm{ess}}$.
 
 \begin{definition}
-    Let $(X,\Sigma,\mu)$ be a space with measure. Then the set of all $Y$-valued and $\mu$-essentially bounded functions is denoted by $L^{\infty}(\mu,Y)$ and is called \textit{the Lebesgue space of $\mu$-essentially bounded functions for $Y$}.
+    The seminormed space of all $\mathbb{K}$-valued and $\nu$-essentially bounded functions is denoted by $L^{\infty}(\nu,\mathbb{K})$ and is called \textit{the Lebesgue space of $\nu$-essentially bounded $\mathbb{K}$-valued functions}.
 \end{definition}
+\noindent
+For every $f \in L^{\infty}(\nu,\mathbb{K})$ define
+$$B_f = \big\{x \in X\,\big|\,|f(x)| \leq \lVert f \rVert_{\mathrm{ess}}\big\}$$
+and $f_b = \mathbb{1}_{B_f}\cdot f \in B(\Sigma,\mathbb{K})$.
 
-\begin{corollary}\label{corollary:L_infinity_is_seminormed_topological_vector_space}
-    Let $(X,\Sigma,\mu)$ be a space with measure. Then $L^{\infty}(\mu,Y)$ is a $\mathbb{K}$-vector subspace of the $\mathbb{K}$-vector space of all strongly measurable functions on $(X,\Sigma)$ and
-    $$\lVert -\rVert_{\infty}:L^{\infty}(\mu,Y)\ra \RR_+\cup \{0\}$$
-    is a seminorm.
+\begin{theorem}\label{theorem:canonical_isometry_of_quotients}
+    Consider a set
+    $$\cN = \big\{f\in L^{\infty}(\nu,\mathbb{K})\,\big|\,f\mbox{ is $\nu$-almost equal to zero}\big\}$$
+    Then the following assertions hold.
+    \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+        \item $\cN\cap B(\Sigma,\mathbb{K})$ is a closed $\mathbb{K}$-linear subspace of $B(\Sigma, \mathbb{K})$.
+        \item The canonical inclusion $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\nu,\mathbb{K})$ induces a bijective isometry
+              $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \cong L^{\infty}(\nu,\mathbb{K})/\cN$$
+              of normed spaces over $\mathbb{K}$. 
+        \item The inverse of the isometry described above is given by formula 
+        $$f + \cN \mapsto f_b + \left(\cN \cap B(\Sigma, \mathbb{K})\right)$$
+        for $f \in L^{\infty}(\nu,\mathbb{K})$.
+    \end{enumerate}
+\end{theorem}
+\noindent
+We first prove result which is useful in clarifying the main argument.
+
+\begin{lemma}\label{lemma:special_bounded_representative_has_minimal_uniform_norm}
+    Let $f$ be a function in $B(\Sigma, \mathbb{K})$ such that $\lVert f \rVert_{\infty} = \lVert f \rVert_{\mathrm{ess}}$. Then
+    $$\lVert f \rVert_{\infty} \leq \lVert f + g \rVert_{\infty}$$
+    for every $g \in \cN \cap B(\Sigma, \mathbb{K})$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+    Note that for every $g \in B(\Sigma, \mathbb{K})$ we have $\lVert g \rVert_{\mathrm{ess}} \leq \lVert g \rVert_{\infty}$. Thus
+    $$\lVert f \rVert_{\infty} = \lVert f \rVert_{\mathrm{ess}} = \lVert f + g \rVert_{\mathrm{ess}} \leq \lVert f + g \rVert_{\infty}$$
+    for every $g \in \cN \cap B(\Sigma, \mathbb{K})$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+    Since $B(\Sigma,\mathbb{K})$ is a $\mathbb{K}$-linear subspace of $L^{\infty}(\nu,\mathbb{K})$, we derive that $\cN\cap B(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of $B(\Sigma,\mathbb{K})$. Suppose next that $\{f_n\}_{n \in \NN}$ is a sequence of elements in $\cN\cap B(\Sigma,\mathbb{K})$ which is convergent to $f \in B(\Sigma,\mathbb{K})$ with respect to $\lVert - \rVert_{\infty}$. Since $\{f_n\}_{n\in \NN}$ is pointwise convergent to $f$, we derive that
+    $$\big\{x\in X\,\big|\,f(x) \neq 0\big\} \subseteq \bigcup_{n\in \NN}\big\{x\in X\,\big|\,f_n(x) \neq 0\big\}$$
+    Clearly the right hand side is a set in $\Sigma$ with measure $\nu$ equal to zero. Thus $f$ is zero $\nu$-almost everywhere. This shows that $f \in \cN$ and the proof of \textbf{(1)} is completed.
+
+    Note that the map
+    $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\nu,\mathbb{K})/\cN$$
+    induced by $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\nu,\mathbb{K})$ is injective. Fix $f \in L^{\infty}(\nu,\mathbb{K})$. Define
+    $$B_f = \big\{x \in X\,\big|\,|f(x)| \leq \lVert f \rVert_{\mathrm{ess}}\big\}$$
+    and $f_b = \mathbb{1}_{B_f}\cdot f \in B(\Sigma,\mathbb{K})$. Then $f_b$ and $f$ are equal $\nu$-almost everywhere and $\lVert f \rVert_{\mathrm{ess}} = \lVert f_b\rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty}$. This implies that
+    $$f_b + \cN = f + \cN$$
+    and
+    $$\inf_{g \in \cN} \lVert f + g \rVert_{\mathrm{ess}} = \lVert f \rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty} =  \inf_{g \in \cN \cap B(\Sigma, \mathbb{K})}\lVert f_b + g\rVert_{\infty}$$
+    where the last equality follows from Lemma \ref{lemma:special_bounded_representative_has_minimal_uniform_norm}. This holds for arbitrary $f \in L^{\infty}(\nu,\mathbb{K})$. Therefore, we derive that
+    $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\nu,\mathbb{K})/\cN$$
+    is a surjective isometry of normed space over $\mathbb{K}$ and its inverse is given by formula presented in \textbf{(3)}. Hence \textbf{(2)} and \textbf{(3)} hold.
+\end{proof}
+
+\begin{corollary}\label{corollary:L_infty_is_complete}
+    The space $L^{\infty}(\nu,\mathbb{K})$ is a complete space with respect to norm $\lVert - \rVert_{\mathrm{ess}}$.
 \end{corollary}
 \begin{proof}
-    This follows immediately from Proposition \ref{proposition:L_infinity_norm_is_seminorm}.
+    Theorem \ref{theorem:canonical_isometry_of_quotients} implies that $L^{\infty}(\nu,\mathbb{K})/\cN$ is a Banach space over $\mathbb{K}$. From this we deduce that $L^{\infty}(\nu,\mathbb{K})$.
 \end{proof}
+\noindent
+Consider now the subspace $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ of $\mathrm{ba}(\Sigma, \mathbb{K})$ which consists of all charges $\mu$ such that $\mu(A) = 0$ for every $A \in \Sigma$ that also satisfy $\nu(A) = 0$. Clearly $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace and hence a normed subspace with respect to total variation norm.
 
-\begin{theorem}[Riesz]\label{theorem:Riesz_theorem_for_L_infinity}
-    Let $(X,\Sigma,\mu)$ be a space with measure and let $\{f_n:X\ra Y\}_{n\in \NN}$ be a Cauchy sequence of elements of $L^{\infty}(\mu,Y)$. Then $\{f_n\}_{n\in \NN}$ converges in $L^{\infty}(\mu,Y)$.
-\end{theorem}
+\begin{corollary}[Fichtenholz-Kantorovich]\label{corollary:functionals_for_L_infinity}
+The map
+$$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_X f_b\,d\mu\right) \in L^{\infty}(\nu,\mathbb{K})^*$$
+is a bijective isometry of normed spaces over $\mathbb{K}$.
+\end{corollary}
 \begin{proof}
-    Consider an increasing sequence $\{n_k\}_{k\in \NN}$ of natural numbers such that
-    $$\lVert f_{n} - f_{m}\rVert_{\infty} \leq 2^{-k}$$
-    for every $n,m\geq n_k$ and for every $k \in \NN$. For every $k\in \NN$ sets
-    $$A_{k} = \bigcup_{n=n_k}^{+\infty}\bigcup_{m=n_k}^{+\infty}\big\{x\in X\,\big|\,\lVert f_{n}(x) - f_{m}(x) \rVert > 2^{-k} \big\}$$
-    and
-    $$B_k = \big\{x\in X\,\big|\,\lVert f_k(x) \rVert > \lVert f_k \rVert_{\infty}\big\}$$
-    are in $\Sigma$ and have measure $\mu$ equal to zero. Hence
-    $$A = \bigcup_{k\in \NN}\left(A_k\cup B_k\right)$$
-    have measure $\mu$ equal to zero. Now $\{{f_n}_{\mid X\setminus A}\}_{n\in \NN}$ is a sequence of bounded functions which is Cauchy with respect to uniform norm. Since $Y$ is complete with respect to $\lVert-\rVert$, sequence $\{{f_n}_{\mid X\setminus A}\}_{n\in \NN}$ converges uniformly to some function $X\setminus A\ra Y$. We extend this function to a function $f:X\ra Y$ by setting it equal to zero on $A$. Note that $f$ is strongly measurable by Proposition \ref{proposition:strongly_measurable_functions_closed_under_pointwise_limits}. Moreover, $\{{f_n}_{\mid X\setminus A}\}_{n\in \NN}$ converges uniformly to $f_{\mid X\setminus A}$. Thus $f_{X\setminus A}$ is bounded and hence $f\in L^{\infty}(\mu,Y)$. For the same reason $f$ is a limit of $\{f_n\}_{n\in \NN}$ in $L^{\infty}(\mu,Y)$.
+Let $\mu:\Sigma \ra \mathbb{K}$ be a bounded charge. Then 
+$$\int_Xf\,d\mu = 0$$
+for every $f \in \cN \cap B(\Sigma,\mathbb{K})$ if and only if $\mu \in \mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$. From this fact and from Theorem \ref{theorem:fichtenholz_kantorovich_for_bounded_functions} we infer that there is a bijective isometry
+$$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_Xf\,d\mu\right) \in 
+\bigg(B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)\bigg)^*$$
+According to Theorem \ref{theorem:canonical_isometry_of_quotients} the formula
+$$L^{\infty}(\nu,\mathbb{K})/\cN \ni f + \cN \mapsto f_b + \cN \in B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)$$
+gives rise to a bijective isometry. Combining these two results with obvious identification of $L^{\infty}(\nu,\mathbb{K})^*$ with $\left(L^{\infty}(\nu,\mathbb{K})/\cN\right)^*$ completes the proof of the corollary.
 \end{proof}
-
-\section{Integration with respect to charges}
 
 
 
