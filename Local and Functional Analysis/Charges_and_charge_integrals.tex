@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to study charges i.e. finitely additive functions of sets. Here we study only extended real and complex valued charges. Our main aim is to present contents of an important Fichtenholz-Kantorovich paper \cite{fichtenholz1934operations} in a modern form. We also prove some interesting and related results due to Banach, which were originally published in \cite{banach1923problemelameasure} and \cite{banach1979theorieoperationslineaires}.
+These notes are devoted to study charges i.e. finitely additive functions of sets. Here we study only extended real and complex valued charges. Our main aim is to present contents of an important Fichtenholz and Kantorovich paper \cite{fichtenholz1934operations} in a modern form. We also prove related results due to Banach, which were originally published in \cite{banach1923problemelameasure} and \cite{banach1979theorieoperationslineaires}.
 
 \section{Extended real line charges and Jordan decomposition}
 
@@ -38,20 +38,23 @@ These notes are devoted to study charges i.e. finitely additive functions of set
 \begin{definition}
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu$ is bounded from below and from above, then $\mu$ is \textit{bounded}.
 \end{definition}
+
+\begin{definition}
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu(A) \in [0,+\infty]$ for every $A \in \Sigma$, then $\mu$ is \textit{a nonnegative charge on $\Sigma$}.
+\end{definition}
 \noindent
-Now we prove important Jordan decomposition for charges. Our approach closely follows Stanis{\l}aw Saks \cite{saks1937theory}.
+Now we prove Jordan decomposition for charges. Our approach closely follows Stanis{\l}aw Saks \cite{saks1937theory}.
 
 \begin{theorem}[Jordan decomposition]\label{theorem:Jordan_decomposition}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a charge. For every $A \in \Sigma$ set
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a charge. For every $A \in \Sigma$ we define
     $$\mu_+(A) = \sup\big\{\mu(B)\,\big|\,B\in \Sigma\mbox{ and }B\subseteq A\big\},\,\mu_-(A) = \sup\big\{-\mu(B)\,\big|\,B\in \Sigma\mbox{ and }B\subseteq A\big\}$$
     Then the following assertions hold.
     \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
         \item $\mu_+$ and $\mu_-$ are nonnegative charges on $\Sigma$.
-        \item For every $A \in \Sigma$ set
+        \item For every $A \in \Sigma$ we define
               $$|\mu|(A) = \sup \bigg\{\sum_{P\in \PP}|\mu(P)|\,\bigg|\,\PP\mbox{ is a finite partition of }A\mbox{ onto sets in }\Sigma\bigg\}$$
               Then $|\mu|$ is a nonnegative charge on $\Sigma$ and
-              $$|\mu|(A) = \mu_+(A) + \mu_-(A)$$
-              for every $A \in \Sigma$.
+              $$|\mu| = \mu_+ + \mu_-$$
         \item If $\mu$ is bounded from below, then $\mu_-$ is a bounded charge and
               $$\mu(A) = \mu_+(A) - \mu_-(A)$$
               for every $A \in \Sigma$.
@@ -69,7 +72,7 @@ Now we prove important Jordan decomposition for charges. Our approach closely fo
     $$\sum_{P\in \PP}|\mu(P)| = \sum_{P \in \PP_+}\mu(P) - \sum_{P \in \PP_-}\mu(P) = \mu\left(\bigcup_{P\in \PP_+}P\right) - \mu\left(\bigcup_{P\in \PP_-}P\right) \leq \mu_+(A) + \mu_-(A)$$
     and thus $|\mu|(A) \leq \mu_+(A) + \mu_-(A)$ for every $A \in \Sigma$.
 
-    Again fix arbitrary $A \in \Sigma$. There exists a sequence $\{B_n\}_{n\in \NN}$ of subsets of $A$ contained in $\Sigma$ such that $\mu(B_n) \geq 0$ for every $n\in \NN$ and $\{\mu(B_n)\}_{n\in \NN}$ is convergent to $\mu_+(A)$. Similarly there exists a sequence $\{C_n\}_{n\in \NN}$ of subsets of $A$ contained in $\Sigma$ such that $\mu(C_n) < 0$ for every $n \in \NN$ and $\{\mu(C_n)\}_{n\in \NN}$ is convergent to $-\mu_-(A)$. For each $n\in \NN$ we define
+    Again fix arbitrary $A \in \Sigma$. There exists a sequence $\{B_n\}_{n\in \NN}$ of subsets of $A$ contained in $\Sigma$ such that $\mu(B_n) \geq 0$ for every $n\in \NN$ and $\{\mu(B_n)\}_{n\in \NN}$ is convergent to $\mu_+(A)$. Similarly there exists a sequence $\{C_n\}_{n\in \NN}$ of subsets of $A$ contained in $\Sigma$ such that $\mu(C_n) \leq 0$ for every $n \in \NN$ and $\{\mu(C_n)\}_{n\in \NN}$ is convergent to $-\mu_-(A)$. For each $n\in \NN$ we define
     $$\cS_n = \big\{B_n\setminus C_n,B_n \cap C_n,C_n \setminus B_n, A \setminus (B_n\cup C_n) \big\}$$
     and
     $$\tilde{B}_n = \bigcup\big\{S\in \cS_n\,\big|\,\mu(S) > 0\big\},\,\tilde{C}_n = \bigcup\big\{S\in \cS_n\,\big|\,\mu(S) \leq 0\big\}$$
@@ -85,27 +88,22 @@ Now we prove important Jordan decomposition for charges. Our approach closely fo
     $$\mu(A) = \lim_{n\ra +\infty}\left(\mu(\tilde{B}_n) + \mu(\tilde{C}_n)\right) = \mu_+(A) - \mu_-(A)$$
     Since $A \in \Sigma$ is arbitrary, we deduced \textbf{(3)}.
 
-    The proof of \textbf{(4)} is analogical to the proof of \textbf{(3)} and is omited.
+    The proof of \textbf{(4)} is analogical to the proof of \textbf{(3)} and is omitted.
 \end{proof}
-\noindent
-Finally we introduce to notions for later reference.
 
 \begin{definition}
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu(A) \in \RR$ for every $A \in \Sigma$, then $\mu$ is \textit{a real charge on $\Sigma$}.
 \end{definition}
 
-\begin{definition}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu$ be a charge on $\Sigma$. If $\mu(A) \in [0,+\infty]$ for every $A \in \Sigma$, then $\mu$ is \textit{a nonnegative charge on $\Sigma$}.
-\end{definition}
 
 \section{Countably additive charges and signed measures}
 
 \begin{definition}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a charge. Suppose that for every sequence $\{A_n\}_{n\in \NN}$ of pairwise disjoint sets in $\Sigma$ such that
-    $$\bigcup_{n\in \NN}A_n \in \Sigma$$
-    the equality
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a charge. Suppose that
     $$\mu\left(\bigcup_{n\in \NN}A_n\right) = \sum_{n \in \NN}\mu(A_n)$$
-    holds. Then $\mu$ is \textit{a $\sigma$-additive charge on $\Sigma$}.
+    for every sequence $\{A_n\}_{n\in \NN}$ of pairwise disjoint sets in $\Sigma$ such that
+    $$\bigcup_{n\in \NN}A_n \in \Sigma$$
+    Then $\mu$ is \textit{a $\sigma$-additive charge on $\Sigma$}.
 \end{definition}
 
 \begin{proposition}\label{proposition:sigma_additive_have_positive_and_negative_parts_which_are_sigma_additive}
@@ -159,11 +157,11 @@ The proof proceeds by constructing approximations for a positive set.
     $$\bigcup_{n\in \NN}\left(F_n\setminus F_{n+1}\right) \in \fF$$
     and
     $$\mu\left(\bigcup_{n\in \NN}\left(F_n\setminus F_{n+1}\right)\right) = \sum_{n\in \NN}\mu\left(F_n\setminus F_{n+1}\right) < -\sum_{n\in \NN}\epsilon$$
-    This contradicts the fact that $\mu(A) \geq 0$. Hence there are no infinite chains in $\fF$ with respect to $\sqsubseteq_{\epsilon}$. Thus there exists $Q_{\epsilon} \in \fF$ which is maximal with respect to $\sqsubseteq_{\epsilon}$ and is contained in a chain with respect to $\sqsubseteq_{\epsilon}$ which starts with $A$. Then $Q_{\epsilon}$ satisfies assertions.
+    This contradicts the fact that $\mu(A) \geq 0$. Hence there are no infinite chains in $\fF$ with respect to $\sqsubseteq_{\epsilon}$. Thus there exists $Q_{\epsilon} \in \fF$ which is maximal with respect to $\sqsubseteq_{\epsilon}$ and is contained in a $\sqsubseteq_{\epsilon}$-chain which starts with $A$. Then $Q_{\epsilon}$ satisfies assertions.
 \end{proof}
 
 \begin{lemma}\label{lemma:positive_set}
-    Let $X$ be a set and let $\Sigma$ be a $\sigma$-algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a signed measure. Suppose that $\mu(A) > 0$ for some $A \in \Sigma$. Then there exists a subset $Q$ of $A$ such that the following assertions hold.
+    Let $X$ be a set and let $\Sigma$ be a $\sigma$-algebra of its subsets. Let $\mu:\Sigma \ra \ol{\RR}$ be a signed measure. Suppose that $\mu(A) \geq 0$ for some $A \in \Sigma$. Then there exists a subset $Q$ of $A$ such that the following assertions hold.
     \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
         \item $Q \in \Sigma$ and $\mu(Q) \geq \mu(A)$.
         \item If $B \in \Sigma$ and $B \subseteq Q$, then $\mu(B) \geq 0$.
@@ -218,17 +216,19 @@ The proof proceeds by constructing approximations for a positive set.
 
 \section{Examples of charges}
 \noindent
-We now give to examples of charges. The first is set-theoretic and is interesting application of axiom of choice. The second has analytical nature.
+We now give to examples of charges. The first is set-theoretic and is an interesting application of axiom of choice. 
 
 \begin{example}\label{example:ultrafilter_charge}
-    For the notion of ultrafilter we refer to \cite{Filters_in_topology}. Let $X$ be a set and let $\cF$ be an ultrafilter of subsets of $X$  Consider a function given by formula
+    For the notion of ultrafilter we refer to \cite{Filters_in_topology}. Let $X$ be a set and let $\cF$ be an ultrafilter of subsets of $X$. Consider a function given by formula
     $$\mu(A) = \begin{cases}
-            1 & \mbox{ if }A \in \cF \\
-            0 & \mbox{ otherwise }   \\
-        \end{cases}
+        1 & \mbox{ if }A \in \cF \\
+        0 & \mbox{ otherwise }   \\
+    \end{cases}
     $$
     for every $A \subseteq X$. Then $\mu$ is a $\{0,1\}$-valued charge on the algebra of all subsets of $X$.
 \end{example}
+\noindent
+Our second example has analytical nature.
 
 \begin{example}\label{example:charge_from_series}
     Let $\{a_n\}_{n\in \NN}$ be a sequence of real numbers such that the series
@@ -307,15 +307,15 @@ The remaining part of this section is devoted to example which is of number theo
 \end{definition}
 
 \begin{remark}\label{remark:each_real_charge_is_complex}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Each real charge on $\Sigma$ is a complex on $\Sigma$.
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Each real charge on $\Sigma$ is complex.
 \end{remark}
 
 \begin{definition}
-    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \CC$ be a charge. Suppose that for every sequence $\{A_n\}_{n\in \NN}$ of pairwise disjoint sets in $\Sigma$ such that
-    $$\bigcup_{n\in \NN}A_n \in \Sigma$$
-    the equality
+    Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Let $\mu:\Sigma \ra \CC$ be a charge. Suppose that
     $$\mu\left(\bigcup_{n\in \NN}A_n\right) = \sum_{n \in \NN}\mu(A_n)$$
-    holds. Then $\mu$ is \textit{a $\sigma$-additive complex charge on $\Sigma$}.
+    for every sequence $\{A_n\}_{n\in \NN}$ of pairwise disjoint sets in $\Sigma$ such that
+    $$\bigcup_{n\in \NN}A_n \in \Sigma$$
+    Then $\mu$ is \textit{a $\sigma$-additive charge on $\Sigma$}.
 \end{definition}
 
 \begin{definition}
@@ -359,7 +359,7 @@ The remaining part of this section is devoted to example which is of number theo
     $$|\mu|(A) \leq |\mu_r|(A) + |\mu_i|(A)$$
     for every $A \in \Sigma$. Hence $|\mu|$ is bounded. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
-    Suppose now that $|\mu|$ is a bounded charge. Then there exists $\kappa \in \RR_+$ such that $|\mu|(A) \leq \kappa$ for every $A \in \Sigma$. Since $|\mu|(A)\leq |\mu|(A)$ for every $A \in \Sigma$, we deduce that $|\mu(A)|\leq \kappa$ for each $A \in \Sigma$. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+    Suppose now that $|\mu|$ is a bounded charge. Then there exists $\kappa \in \RR_+$ such that $|\mu|(A) \leq \kappa$ for every $A \in \Sigma$. Since $|\mu(A)| \leq |\mu|(A)$ for every $A \in \Sigma$, we deduce that $|\mu(A)|\leq \kappa$ for each $A \in \Sigma$. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
 
 \begin{definition}
@@ -378,7 +378,7 @@ The remaining part of this section is devoted to example which is of number theo
     Then the following assertions hold.
     \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
         \item $\mathrm{ba}(\Sigma, \CC)$ is a $\CC$-linear space with respect to canonical operations of addition of charges and multiplication by complex scalars.
-        \item Then
+        \item The map
               $$\mathrm{ba}(\Sigma, \CC) \ni \mu \mapsto \lVert \mu\rVert \in [0,+\infty)$$
               is a norm.
         \item Let $\{\mu_n\}_{n\in \NN}$ be a Cauchy sequence with respect to $\lVert-\rVert$. Then $\{\mu_n\}_{n\in \NN}$ is convergent to some $\mu \in \mathrm{ba}(\Sigma, \CC)$. Moreover, if $\{\mu_n\}_{n\in \NN}$ are $\sigma$-additive, then $\mu$ is $\sigma$-additive.
@@ -393,22 +393,22 @@ The remaining part of this section is devoted to example which is of number theo
     Since $\CC$ with the usual absolute value is complete, we derive that there exists $\mu(A) \in \CC$ such that $\{\mu_n(A)\}_{n\in \NN}$ converges to $\mu(A)$. Now pick at most countable family $\cF$ of pairwise disjoint sets in $\Sigma$ such that
     $$\bigcup_{F \in \cF}F\in \Sigma$$
     Suppose also that
-    $$\mu_n(A) = \sum_{F\in \cF}\mu_n(F)$$
+    $$\mu_n\left(\bigcup_{F\in \cF}F\right) = \sum_{F\in \cF}\mu_n(F)$$
     for every $n \in \NN$. We define a measure $u$ on the power set of $\cF$ by formula
     $$u(Z) = |Z|$$
     for every $Z \subseteq \cF$. Let $L^1(u,\CC)$ is a space of complex valued functions defined on $\cF$ which are integrable with respect to $u$. In particular, $L^1(u,\CC)$ is a Banach space over $\CC$ with norm
     $$\lVert f \rVert_1 = \int_{\cF} f\,du = \sum_{F\in \cF}|f(F)|$$
-    and integral
+    and there is integral functional
     $$\int_{\cF}f\,du = \sum_{F\in \cF}f(F)$$
-    For the details we refer to \cite{Integration}. Since $\lVert \mu_n\rVert$ is finite for each $n \in \NN$ by Theorem \ref{theorem:charge_is_bounded_if_variation_is_finite}, we derive that the function $\cF \ni F \mapsto \mu_n(F)\in \CC$, which we denote by $f_n$, is an element of $L^1(u,\CC)$ for every $n \in \NN$. Moreover, the distance of $f_n$ and $f_m$ in $L^1(u,\CC)$ is bounded by $\lVert \mu_n - \mu_m\rVert$ for all pairs $n,m \in \NN$. Hence the sequence $\{f_n\}_{n \in \NN}$ is convergent in $L^1(u,\CC)$. It is also pointwise convergent to a function $\cF \ni F \mapsto \mu(F)\in \CC$, which we denote by $f$. By general results in \cite{Integration} we deduce that $f$ is a limit of $\{f_n\}_{n\in \NN}$ in $L^1(\mu,\CC)$ and from considerations above we have inequality
-    $$\lVert f - f_n\rVert_1 = \lim_{m\ra +\infty}\lVert f_m - f_n\rVert_1 \leq \limsup_{m \ra +\infty}\lVert \mu_n - \mu_m\rVert$$
+    with respect to $u$. For the details we refer to \cite{Integration}. For each $n \in \NN$ let $f_n:\cF\ra \CC$ be a function given by formula $f_n(F) = \mu_n(F)$ for $F \in \cF$. Since $\lVert \mu_n\rVert$ is finite for each $n \in \NN$ by Theorem \ref{theorem:charge_is_bounded_if_variation_is_finite}, we derive that $f_n$ is an element of $L^1(u,\CC)$ for every $n \in \NN$. Moreover, the distance of $f_n$ and $f_m$ in $L^1(u,\CC)$ is bounded by $\lVert \mu_n - \mu_m\rVert$ for all pairs $n,m \in \NN$. Hence the sequence $\{f_n\}_{n \in \NN}$ is convergent in $L^1(u,\CC)$. It is also pointwise convergent to a function $f:\cF \ra \CC$ given by formula $f(F) = \mu(F)$ for $F \in \cF$. By general results in \cite{Integration} we deduce that $f$ is a limit of $\{f_n\}_{n\in \NN}$ in $L^1(u,\CC)$ and from considerations above we have inequality
+    $$\lVert f - f_n\rVert_1 = \lim_{m\ra +\infty}\lVert f_m - f_n\rVert_1 \leq \limsup_{m \ra +\infty}\lVert \mu_m - \mu_n\rVert$$
     Let us note some consequences of this fact.
     \begin{itemize}
         \item From the convergence of integrals with respect to $u$ we deduce
-              $$\mu\left(\bigcup_{F\in \cF}F\right) = \lim_{n\ra +\infty}\mu_n(\bigcup_{F\in \cF}F) = \lim_{n\ra +\infty}\sum_{F\in \cF}\mu_n(F) = \sum_{F\in \cF}\mu(F)$$
+              $$\mu\left(\bigcup_{F\in \cF}F\right) = \lim_{n\ra +\infty}\mu_n\left(\bigcup_{F\in \cF}F\right) = \lim_{n\ra +\infty}\sum_{F\in \cF}\mu_n(F) = \sum_{F\in \cF}\mu(F)$$
         \item The convergence in $\lVert-\rVert_1$ implies that
-              $$\sum_{F \in \cF}|\mu(F)| = \lim_{n\ra +\infty}\sum_{F\in \cF}|\mu_n(F)| \leq \sup_{n\in \NN}\lVert \mu_n\rVert$$
-        \item From the inequality above we derive that
+              $$\sum_{F \in \cF}|\mu(F)| = \lim_{n\ra +\infty}\sum_{F\in \cF}|\mu_n(F)| = \lim_{n\ra +\infty}\lVert \mu_n\rVert \leq \sup_{n\in \NN}\lVert \mu_n\rVert$$
+        \item Moreover, we have
               $$\sum_{F\in \cF}|(\mu - \mu_n)(F)| = \lVert f - f_n\rVert_1 \leq \limsup_{m\ra +\infty}\lVert \mu_m - \mu_n\rVert$$
     \end{itemize}
     Note that these assertions hold for every family $\cF$ which satisfies the conditions specified above. Hence from the first assertion it follows that $\mu$ is a charge and if $\{\mu_n\}_{n\in \NN}$ are $\sigma$-additive, then also $\mu$ is $\sigma$-additive. Next the second statement shows that $\mu$ is bounded. From the last assertion we deduce that $\mu$ is a limit of $\{\mu_n\}_{n\in \NN}$ with respect to $\lVert-\rVert$. This completes the proof of \textbf{(3)}.
@@ -422,7 +422,7 @@ The remaining part of this section is devoted to example which is of number theo
     Then $\mathrm{bca}(\Sigma,\CC)$ is a $\CC$-linear subspace of $\mathrm{ba}(\Sigma,\CC)$ closed with respect to total variation norm.
 \end{corollary}
 \begin{proof}
-    Closedness follows from Theorem \ref{theorem:space_of_bounded_complex_charges}. The fact that $\mathrm{bca}(\Sigma, \CC)$ is $\CC$-linear subspace of $\mathrm{ba}(\Sigma,\CC)$ is left as an exercise for the reader.
+    Closedeness follows from Theorem \ref{theorem:space_of_bounded_complex_charges}. The fact that $\mathrm{bca}(\Sigma, \CC)$ is $\CC$-linear subspace of $\mathrm{ba}(\Sigma,\CC)$ is left as an exercise for the reader.
 \end{proof}
 
 \begin{remark}\label{remark:spaces_of_bounded_charges}
@@ -431,9 +431,9 @@ The remaining part of this section is devoted to example which is of number theo
         \begin{tikzpicture}
             [description/.style={fill=white,inner sep=2pt}]
             \matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex]
-            {                                                                                                                                                                                                                                                                                                                                                                                                                  & \mathrm{ba}(\Sigma,\CC)  & \\
-                                                                                                                                                                                                                                                                                                                                                                                                      \mathrm{bca}(\Sigma,\CC) &                          & \mathrm{ba}(\Sigma,\RR)                                                                                                                                                                                                                                                                                                                                                                   \\
-                                                                                                                                                                                                                                                                                                                                                                                                                               & \mathrm{bca}(\Sigma,\RR) & \\} ;
+            {                                                                                                                                                                                                                                                                                                                                                                                                                                           & \mathrm{ba}(\Sigma,\CC)  & \\
+                                                                                                                                                                                                                                                                                                                                                                                                                               \mathrm{bca}(\Sigma,\CC) &                          & \mathrm{ba}(\Sigma,\RR)                                                                                                                                                                                                                                                                                                                                                                                            \\
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        & \mathrm{bca}(\Sigma,\RR) & \\} ;
             \path[right hook->,line width=0.8pt,font=\scriptsize]
             (m-2-3) edge node {$  $} (m-1-2)
             (m-3-2) edge node {$  $} (m-2-3);
@@ -442,7 +442,7 @@ The remaining part of this section is devoted to example which is of number theo
             (m-3-2) edge node {$  $} (m-2-1);
         \end{tikzpicture}
     \end{center}
-    In the diagram $\mathrm{cba}(\Sigma, \RR)$ is the intersection of $\mathrm{ba}(\Sigma,\RR)$ and $\mathrm{bca}(\Sigma,\CC)$ i.e. a Banach space over $\RR$ of all real, bounded and $\sigma$-additive charges on $\Sigma$.
+    In the diagram $\mathrm{bca}(\Sigma, \RR)$ is the intersection of $\mathrm{ba}(\Sigma,\RR)$ and $\mathrm{bca}(\Sigma,\CC)$ i.e. a Banach space over $\RR$ of all real, bounded and $\sigma$-additive charges on $\Sigma$.
 \end{remark}
 
 \section{Integration and Fichtenholz-Kantorovich theorem}
@@ -457,7 +457,7 @@ We define
 $$B(\Sigma,\mathbb{K}) = \big\{f:X\ra \mathbb{K}\,\big|\,f\mbox{ is measurable and bounded}\big\}$$
 Clearly $B(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of the space of all functions $X\ra \mathbb{K}$. Moreover, the function
 $$B(\Sigma,\mathbb{K}) \ni f \mapsto \sup_{x\in X}|f(x)|\in [0,+\infty)$$
-is a norm on $B(\Sigma, \mathbb{K})$. We denote it by $\lVert-\rVert_{\sup}$. We also define $S(\Sigma,\mathbb{K})\subseteq B(\Sigma,\mathbb{K})$ as a subset consisting of all $\Sigma$-simple $\mathbb{K}$-valued functions.
+is a norm on $B(\Sigma, \mathbb{K})$. We denote it by $\lVert-\rVert_{\infty}$. We also define $S(\Sigma,\mathbb{K})\subseteq B(\Sigma,\mathbb{K})$ as a subset consisting of all $\Sigma$-simple $\mathbb{K}$-valued functions.
 
 \begin{theorem}\label{theorem:space_of_bounded_measurable_functions}
     The $\mathbb{K}$-linear space $B(\Sigma,\mathbb{K})$ with norm $\lVert-\rVert_{\infty}$ is a Banach space over $\mathbb{K}$. Moreover, $S(\Sigma,\mathbb{K})$ is its $\mathbb{K}$-linear and dense subspace.
@@ -465,16 +465,16 @@ is a norm on $B(\Sigma, \mathbb{K})$. We denote it by $\lVert-\rVert_{\sup}$. We
 \begin{proof}
     In order to show that $\lVert-\rVert_{\infty}$ is complete we fix a sequence $\{f_n\}_{n\in \NN}$ of elements of $B(\Sigma,\mathbb{K})$ which is Cauchy with respect to $\lVert-\rVert_{\infty}$. For each $x \in X$ and every $n,m\in \NN$ we have
     $$|f_n(x) - f_m(x)|\leq \sup_{x\in X}|f_n(x) - f_m(x)| = \lVert f_n - f_m \rVert_{\infty}$$
-    In particular, the sequence $\{f_n(x)\}_{n\in \NN}$ is a Cauchy sequence in $\mathbb{K}$ with respect to $|-|$ for every $x \in X$. We define $f(x)$ as a limit of $\{f_n(x)\}_{n\in \NN}$ in $\mathbb{K}$ for every $x \in X$. Then $f:X\ra \mathbb{K}$ is a function. Since $\{f_n\}_{n\in \NN}$ is a sequence of measurable functions pointwise convergent to $f$, we deduce by results in \cite{Integration} that $f$ is measurable. Fix $\epsilon > 0$ and consider $N \in \NN$ such that for all $n,m\geq N$ the inequality
+    In particular, the sequence $\{f_n(x)\}_{n\in \NN}$ is a Cauchy sequence in $\mathbb{K}$ with respect to $|-|$ for every $x \in X$. We define $f(x)$ as the limit of $\{f_n(x)\}_{n\in \NN}$ in $\mathbb{K}$ for every $x \in X$. Then $f:X\ra \mathbb{K}$ is a function. Since $\{f_n\}_{n\in \NN}$ is a sequence of measurable functions pointwise convergent to $f$, we deduce by results in \cite{Integration} that $f$ is measurable. Fix $\epsilon > 0$ and consider $N \in \NN$ such that for all $n,m\geq N$ the inequality
     $$\sup_{x\in X}|f_m(x) - f_n(x)|\leq \epsilon$$
     holds. Then for $n \geq N$ we have
-    $$\lVert f - f_n \rVert_{\infty} = \sup_{x\in X}|f(x) - f_n(x)| = \sup_{x\in X}\lim_{m\ra +\infty}|f_m(x) - f_n(x)| \leq \epsilon$$
-    This proves that $f$ is bounded and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_{\infty}$. Thus $B(\Sigma,\mathbb{K})$ is a Banach space with respect to $\lVert-\rVert_{\infty}$.
+    $$\sup_{x\in X}|f(x) - f_n(x)| = \sup_{x\in X}\lim_{m\ra +\infty}|f_m(x) - f_n(x)| \leq \epsilon$$
+    This proves that $f$ is bounded and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_{\infty}$. Thus $B(\Sigma,\mathbb{K})$ is a Banach space over $\mathbb{K}$ with respect to $\lVert-\rVert_{\infty}$.
 
     Obviously $S(\Sigma,\mathbb{K})$ is a $\mathbb{K}$-linear subspace of $B(\Sigma,\mathbb{K})$. For $\alpha \in \mathbb{K}$ and $r \in \RR_+$ we denote by $D(\alpha,r)$ the open disc in $\mathbb{K}$ centered in $\alpha$ and with radius $r$. Fix $f \in B(\Sigma,\mathbb{K})$ and let $\epsilon > 0$. Since $\mathbb{K}$ is locally compact, there exist $n\in \NN_+$ and elements $\alpha_1,...,\alpha_n \in \mathbb{K}$ such that
     $$\big\{\alpha \in \mathbb{K}\,\big|\,|\alpha| \leq \lVert f\rVert_{\infty}\big\}\subseteq \bigcup_{i=1}^nD(\alpha_i,\epsilon)$$
     Define
-    $$B_i = D(\alpha_i,\epsilon)\setminus \bigcup_{j\leq i}D(\alpha_j,\epsilon)$$
+    $$B_i = D(\alpha_i,\epsilon)\setminus \bigcup_{j < i}D(\alpha_j,\epsilon)$$
     for every $1\leq i \leq n$. We define
     $$s = \sum_{i=1}^n\alpha_i\cdot \mathbb{1}_{f^{-1}(B_i)}$$
     Then $s:X\ra \mathbb{K}$ is a well defined element of $S(\Sigma,\mathbb{K})$. Next pick $x \in X$. Since $X$ is the union of $\{f^{-1}(B_i)\}_{i=1}^n$,
@@ -483,7 +483,7 @@ is a norm on $B(\Sigma, \mathbb{K})$. We denote it by $\lVert-\rVert_{\sup}$. We
     Since $x$ is arbitrary, we derive that $\lVert f - s\rVert_{\infty} \leq \epsilon$. This implies that $S(\Sigma,\mathbb{K})$ is dense in $B(\Sigma,\mathbb{K})$.
 \end{proof}
 \noindent
-Theorem \ref{theorem:space_of_bounded_measurable_functions} implies the existence of integration with respect to bounded and $\mathbb{K}$-valued charges on $\Sigma$. From now fix a charge $\mu:\Sigma \ra \mathbb{K}$.
+Theorem \ref{theorem:space_of_bounded_measurable_functions} implies the existence of integration with respect to bounded and $\mathbb{K}$-valued charges on $\Sigma$. To explain this we fix a charge $\mu:\Sigma \ra \mathbb{K}$.
 
 \begin{definition}
     For $s \in S(\Sigma,\mathbb{K})$ we set
@@ -532,11 +532,11 @@ Theorem \ref{theorem:space_of_bounded_measurable_functions} implies the existenc
     $$|\mu(A)| = \big|\Lambda(\mathbb{1}_A)\big| \leq \lVert \Lambda \rVert$$
     for every $A \in \Sigma$. Thus $\mu$ is bounded. By definition
     $$\Lambda(s) = \int_Xs\,d\mu$$
-    for every $s \in S(\Sigma,\mathbb{K})$. It follows that $\Lambda$ and integration with respect to $\mu$ coincide on $S(\Sigma,\mathbb{K})$. By Theorem \ref{theorem:space_of_bounded_measurable_functions} we derive that they are equal. Remark \ref{remark:norm_of_integration_is_total_variation} implies that $\lVert \Lambda \rVert = \lVert \mu \rVert$.
+    for every $s \in S(\Sigma,\mathbb{K})$. It follows that $\Lambda$ and the integration with respect to $\mu$ coincide on $S(\Sigma,\mathbb{K})$. By Theorem \ref{theorem:space_of_bounded_measurable_functions} we derive that they are equal. Remark \ref{remark:norm_of_integration_is_total_variation} implies that $\lVert \Lambda \rVert = \lVert \mu \rVert$.
 
     Next note that if $\mu \in \mathrm{ba}(\Sigma,\mathbb{K})$ is such that
     $$\int_Xf\,d\mu = 0$$
-    for every $f \in B(\Sigma,\mathbb{K})$, then $\mu$ is zero charge.
+    for every $f \in B(\Sigma,\mathbb{K})$, then $\mu$ is the zero charge.
 \end{proof}
 
 \section{Space of essentially bounded functions}
@@ -607,10 +607,10 @@ and $f_b = \mathbb{1}_{B_f}\cdot f \in B(\Sigma,\mathbb{K})$.
         \item $\cN\cap B(\Sigma,\mathbb{K})$ is a closed $\mathbb{K}$-linear subspace of $B(\Sigma, \mathbb{K})$.
         \item The canonical inclusion $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\nu,\mathbb{K})$ induces a bijective isometry
               $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \cong L^{\infty}(\nu,\mathbb{K})/\cN$$
-              of normed spaces over $\mathbb{K}$. 
-        \item The inverse of the isometry described above is given by formula 
-        $$f + \cN \mapsto f_b + \left(\cN \cap B(\Sigma, \mathbb{K})\right)$$
-        for $f \in L^{\infty}(\nu,\mathbb{K})$.
+              of normed spaces over $\mathbb{K}$.
+        \item The inverse of the isometry described above is given by formula
+              $$f + \cN \mapsto f_b + \left(\cN \cap B(\Sigma, \mathbb{K})\right)$$
+              for $f \in L^{\infty}(\nu,\mathbb{K})$.
     \end{enumerate}
 \end{theorem}
 \noindent
@@ -634,40 +634,38 @@ We first prove result which is useful in clarifying the main argument.
 
     Note that the map
     $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\nu,\mathbb{K})/\cN$$
-    induced by $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\nu,\mathbb{K})$ is injective. Fix $f \in L^{\infty}(\nu,\mathbb{K})$. Define
-    $$B_f = \big\{x \in X\,\big|\,|f(x)| \leq \lVert f \rVert_{\mathrm{ess}}\big\}$$
-    and $f_b = \mathbb{1}_{B_f}\cdot f \in B(\Sigma,\mathbb{K})$. Then $f_b$ and $f$ are equal $\nu$-almost everywhere and $\lVert f \rVert_{\mathrm{ess}} = \lVert f_b\rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty}$. This implies that
+    induced by $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\nu,\mathbb{K})$ is injective. Fix $f \in L^{\infty}(\nu,\mathbb{K})$. Then $f_b$ and $f$ are equal $\nu$-almost everywhere and $\lVert f \rVert_{\mathrm{ess}} = \lVert f_b\rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty}$. This implies that
     $$f_b + \cN = f + \cN$$
     and
     $$\inf_{g \in \cN} \lVert f + g \rVert_{\mathrm{ess}} = \lVert f \rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty} =  \inf_{g \in \cN \cap B(\Sigma, \mathbb{K})}\lVert f_b + g\rVert_{\infty}$$
     where the last equality follows from Lemma \ref{lemma:special_bounded_representative_has_minimal_uniform_norm}. This holds for arbitrary $f \in L^{\infty}(\nu,\mathbb{K})$. Therefore, we derive that
     $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\nu,\mathbb{K})/\cN$$
-    is a surjective isometry of normed space over $\mathbb{K}$ and its inverse is given by formula presented in \textbf{(3)}. Hence \textbf{(2)} and \textbf{(3)} hold.
+    is a surjective isometry of normed spaces over $\mathbb{K}$ and its inverse is given by formula presented in \textbf{(3)}. Hence \textbf{(2)} and \textbf{(3)} hold.
 \end{proof}
 
 \begin{corollary}\label{corollary:L_infty_is_complete}
     The space $L^{\infty}(\nu,\mathbb{K})$ is a complete space with respect to norm $\lVert - \rVert_{\mathrm{ess}}$.
 \end{corollary}
 \begin{proof}
-    Theorem \ref{theorem:canonical_isometry_of_quotients} implies that $L^{\infty}(\nu,\mathbb{K})/\cN$ is a Banach space over $\mathbb{K}$. From this we deduce that $L^{\infty}(\nu,\mathbb{K})$.
+    Theorem \ref{theorem:canonical_isometry_of_quotients} implies that $L^{\infty}(\nu,\mathbb{K})/\cN$ is a Banach space over $\mathbb{K}$. From this we deduce that $L^{\infty}(\nu,\mathbb{K})$ is complete.
 \end{proof}
 \noindent
-Consider now the subspace $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ of $\mathrm{ba}(\Sigma, \mathbb{K})$ which consists of all charges $\mu$ such that $\mu(A) = 0$ for every $A \in \Sigma$ that also satisfy $\nu(A) = 0$. Clearly $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace and hence a normed subspace with respect to total variation norm.
+Consider now the subspace $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ of $\mathrm{ba}(\Sigma, \mathbb{K})$ which consists of all charges $\mu$ such that $\mu(A) = 0$ for every $A \in \Sigma$ that also satisfy $\nu(A) = 0$. Clearly $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of $\mathrm{ba}(\Sigma, \mathbb{K})$ and hence a normed subspace of $\mathrm{ba}(\Sigma, \mathbb{K})$ with respect to total variation norm.
 
 \begin{corollary}[Fichtenholz-Kantorovich]\label{corollary:functionals_for_L_infinity}
-The map
-$$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_X f_b\,d\mu\right) \in L^{\infty}(\nu,\mathbb{K})^*$$
-is a bijective isometry of normed spaces over $\mathbb{K}$.
+    The map
+    $$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_X f_b\,d\mu\right) \in L^{\infty}(\nu,\mathbb{K})^*$$
+    is a bijective isometry of normed spaces over $\mathbb{K}$.
 \end{corollary}
 \begin{proof}
-Let $\mu:\Sigma \ra \mathbb{K}$ be a bounded charge. Then 
-$$\int_Xf\,d\mu = 0$$
-for every $f \in \cN \cap B(\Sigma,\mathbb{K})$ if and only if $\mu \in \mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$. From this fact and from Theorem \ref{theorem:fichtenholz_kantorovich_for_bounded_functions} we infer that there is a bijective isometry
-$$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_Xf\,d\mu\right) \in 
-\bigg(B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)\bigg)^*$$
-According to Theorem \ref{theorem:canonical_isometry_of_quotients} the formula
-$$L^{\infty}(\nu,\mathbb{K})/\cN \ni f + \cN \mapsto f_b + \cN \in B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)$$
-gives rise to a bijective isometry. Combining these two results with obvious identification of $L^{\infty}(\nu,\mathbb{K})^*$ with $\left(L^{\infty}(\nu,\mathbb{K})/\cN\right)^*$ completes the proof of the corollary.
+    Let $\mu:\Sigma \ra \mathbb{K}$ be a bounded charge. Then
+    $$\int_Xf\,d\mu = 0$$
+    for every $f \in \cN \cap B(\Sigma,\mathbb{K})$ if and only if $\mu \in \mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$. From this fact and from Theorem \ref{theorem:fichtenholz_kantorovich_for_bounded_functions} we infer that there is a bijective isometry
+    $$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_Xf\,d\mu\right) \in
+        \bigg(B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)\bigg)^*$$
+    According to Theorem \ref{theorem:canonical_isometry_of_quotients} the formula
+    $$L^{\infty}(\nu,\mathbb{K})/\cN \ni f + \cN \mapsto f_b + \cN \in B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)$$
+    gives rise to a bijective isometry. Combining these two results with obvious identification of $L^{\infty}(\nu,\mathbb{K})^*$ with $\left(L^{\infty}(\nu,\mathbb{K})/\cN\right)^*$ completes the proof of the corollary.
 \end{proof}
 
 
