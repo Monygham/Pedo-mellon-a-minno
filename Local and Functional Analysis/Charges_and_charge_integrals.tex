@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to study charges i.e. finitely additive functions of sets. Here we study only extended real and complex valued charges. Our main aim is to present contents of an important Fichtenholz and Kantorovich paper \cite{fichtenholz1934operations} in a modern form. We also prove related results due to Banach, which were originally published in \cite{banach1923problemelameasure} and \cite{banach1979theorieoperationslineaires}.
+These notes are devoted to study charges i.e. finitely additive functions of sets. Here we study only extended real and complex valued charges. Our main aim is to present contents of an important Fichtenholz and Kantorovich paper \cite{fichtenholz1934operations} in a modern form. 
 
 \section{Extended real line charges and Jordan decomposition}
 
@@ -451,39 +451,47 @@ The remaining part of this section is devoted to example which is of number theo
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Suppose that $Y$ is a set. Consider a function $s:X\ra Y$ such that $s(X)$ is finite and $s^{-1}(y) \in \Sigma$ for every $y \in Y$. Then $s$ is \textit{a $\Sigma$-simple function}.
 \end{definition}
 \noindent
-In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a set $X$ and a $\sigma$-algebra $\Sigma$ of subsets of $X$.
+In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a set $X$. 
 
-We define
-$$B(\Sigma,\mathbb{K}) = \big\{f:X\ra \mathbb{K}\,\big|\,f\mbox{ is measurable and bounded}\big\}$$
-Clearly $B(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of the space of all functions $X\ra \mathbb{K}$. Moreover, the function
-$$B(\Sigma,\mathbb{K}) \ni f \mapsto \sup_{x\in X}|f(x)|\in [0,+\infty)$$
-is a norm on $B(\Sigma, \mathbb{K})$. We denote it by $\lVert-\rVert_{\infty}$. We also define $S(\Sigma,\mathbb{K})\subseteq B(\Sigma,\mathbb{K})$ as a subset consisting of all $\Sigma$-simple $\mathbb{K}$-valued functions.
+We consider a $\mathbb{K}$-linear subspace $B(X,\mathbb{K})$ of the space of all $\mathbb{K}$-valued functions on $X$ which consists of all bounded functions. The function
+$$B(X,\mathbb{K}) \ni f \mapsto \sup_{x\in X}|f(x)|\in [0,+\infty)$$
+is a norm on $B(X, \mathbb{K})$. We denote it by $\lVert-\rVert_{\infty}$. 
 
-\begin{theorem}\label{theorem:space_of_bounded_measurable_functions}
-    The $\mathbb{K}$-linear space $B(\Sigma,\mathbb{K})$ with norm $\lVert-\rVert_{\infty}$ is a Banach space over $\mathbb{K}$. Moreover, $S(\Sigma,\mathbb{K})$ is its $\mathbb{K}$-linear and dense subspace.
+\begin{theorem}\label{theorem:Banach_space_of_bounded_functions}
+    The space $B(X,\mathbb{K})$ with norm $\lVert-\rVert_{\infty}$ is a Banach space over $\mathbb{K}$.
 \end{theorem}
 \begin{proof}
-    In order to show that $\lVert-\rVert_{\infty}$ is complete we fix a sequence $\{f_n\}_{n\in \NN}$ of elements of $B(\Sigma,\mathbb{K})$ which is Cauchy with respect to $\lVert-\rVert_{\infty}$. For each $x \in X$ and every $n,m\in \NN$ we have
+    Fix a sequence $\{f_n\}_{n\in \NN}$ of elements of $B(\Sigma,\mathbb{K})$ which is Cauchy with respect to $\lVert-\rVert_{\infty}$. For each $x \in X$ and every $n,m\in \NN$ we have
     $$|f_n(x) - f_m(x)|\leq \sup_{x\in X}|f_n(x) - f_m(x)| = \lVert f_n - f_m \rVert_{\infty}$$
-    In particular, the sequence $\{f_n(x)\}_{n\in \NN}$ is a Cauchy sequence in $\mathbb{K}$ with respect to $|-|$ for every $x \in X$. We define $f(x)$ as the limit of $\{f_n(x)\}_{n\in \NN}$ in $\mathbb{K}$ for every $x \in X$. Then $f:X\ra \mathbb{K}$ is a function. Since $\{f_n\}_{n\in \NN}$ is a sequence of measurable functions pointwise convergent to $f$, we deduce by results in \cite{Integration} that $f$ is measurable. Fix $\epsilon > 0$ and consider $N \in \NN$ such that for all $n,m\geq N$ the inequality
+    In particular, the sequence $\{f_n(x)\}_{n\in \NN}$ is a Cauchy sequence in $\mathbb{K}$ with respect to $|-|$ for every $x \in X$. We define $f(x)$ as the limit of $\{f_n(x)\}_{n\in \NN}$ in $\mathbb{K}$ for every $x \in X$. Then $f:X\ra \mathbb{K}$ is a function. Fix $\epsilon > 0$ and consider $N \in \NN$ such that for all $n,m\geq N$ the inequality
     $$\sup_{x\in X}|f_m(x) - f_n(x)|\leq \epsilon$$
     holds. Then for $n \geq N$ we have
     $$\sup_{x\in X}|f(x) - f_n(x)| = \sup_{x\in X}\lim_{m\ra +\infty}|f_m(x) - f_n(x)| \leq \epsilon$$
-    This proves that $f$ is bounded and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_{\infty}$. Thus $B(\Sigma,\mathbb{K})$ is a Banach space over $\mathbb{K}$ with respect to $\lVert-\rVert_{\infty}$.
+    This proves that $f$ is bounded and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_{\infty}$. 
+\end{proof}
+\noindent
+From now we fix an algebra $\Sigma$ of sets of $X$. We define $S(\Sigma,\mathbb{K})\subseteq B(\Sigma,\mathbb{K})$ as a $\mathbb{K}$-subspace of $B(X,\mathbb{K})$ consisting of all $\Sigma$-simple $\mathbb{K}$-valued functions. The closure of $S(\Sigma,\mathbb{K})$ in $B(X,\mathbb{K})$ with respect to norm $\lVert - \rVert_{\infty}$ is denoted by $B(\Sigma,\mathbb{K})$.
 
-    Obviously $S(\Sigma,\mathbb{K})$ is a $\mathbb{K}$-linear subspace of $B(\Sigma,\mathbb{K})$. For $\alpha \in \mathbb{K}$ and $r \in \RR_+$ we denote by $D(\alpha,r)$ the open disc in $\mathbb{K}$ centered in $\alpha$ and with radius $r$. Fix $f \in B(\Sigma,\mathbb{K})$ and let $\epsilon > 0$. Since $\mathbb{K}$ is locally compact, there exist $n\in \NN_+$ and elements $\alpha_1,...,\alpha_n \in \mathbb{K}$ such that
+
+\begin{theorem}\label{theorem:for_sigma_algebra_each_bounded_measurable_function_is_in_uniform_closure_of_simple_functions}
+    If $\Sigma$ is a $\sigma$-algebra, then $B(\Sigma,\mathbb{K})$ consists of all bounded and measurable $\mathbb{K}$-valued functions on $X$. 
+\end{theorem}
+\begin{proof}
+    Suppose that $f \in B(\Sigma,\mathbb{K})$. Then there exists a sequence $\{s_n\}_{n\in \NN}$ of elements in $S(\Sigma,\mathbb{K})$ which converges to $\lVert - \rVert_{\infty}$ to $f$. In particular, $\{s_n\}_{n\in \NN}$ is pointwise convergent to $f$. Since the limit of pointwise convergent sequence of measurable functions is measurable by results in \cite{Integration}, we derive that $f$ is measurable. This proves that $B(\Sigma,\mathbb{K})$ consists of bounded and measurable $\mathbb{K}$-valued functions on $X$. 
+    
+    It remains to prove that every bounded and measurable function is in $B(\Sigma,\mathbb{K})$. For $\alpha \in \mathbb{K}$ and $r \in \RR_+$ we denote by $D(\alpha,r)$ the open disc in $\mathbb{K}$ centered in $\alpha$ and with radius $r$. Fix bounded and measurable function $f:X\ra \mathbb{K}$ and let $\epsilon > 0$. Since $\mathbb{K}$ is locally compact, there exist $n\in \NN_+$ and elements $\alpha_1,...,\alpha_n \in \mathbb{K}$ such that
     $$\big\{\alpha \in \mathbb{K}\,\big|\,|\alpha| \leq \lVert f\rVert_{\infty}\big\}\subseteq \bigcup_{i=1}^nD(\alpha_i,\epsilon)$$
     Define
     $$B_i = D(\alpha_i,\epsilon)\setminus \bigcup_{j < i}D(\alpha_j,\epsilon)$$
-    for every $1\leq i \leq n$. We define
+    for every $1\leq i \leq n$ and set
     $$s = \sum_{i=1}^n\alpha_i\cdot \mathbb{1}_{f^{-1}(B_i)}$$
     Then $s:X\ra \mathbb{K}$ is a well defined element of $S(\Sigma,\mathbb{K})$. Next pick $x \in X$. Since $X$ is the union of $\{f^{-1}(B_i)\}_{i=1}^n$,
     there exists $i$ such that $x \in f^{-1}(B_i)$. Then $s(x) = \alpha_i$ and $f(x) \in B_i\subseteq D(\alpha_i,\epsilon)$. Thus
     $$|f(x) - s(x)| = |f(x) - \alpha_i|\leq \epsilon$$
-    Since $x$ is arbitrary, we derive that $\lVert f - s\rVert_{\infty} \leq \epsilon$. This implies that $S(\Sigma,\mathbb{K})$ is dense in $B(\Sigma,\mathbb{K})$.
+    Since $x$ is arbitrary, we derive that $\lVert f - s\rVert_{\infty} \leq \epsilon$. This implies that $f$ is in the closure of $S(\Sigma,\mathbb{K})$. Hence $f$ is in $B(\Sigma, \mathbb{K})$.
 \end{proof}
 \noindent
-Theorem \ref{theorem:space_of_bounded_measurable_functions} implies the existence of integration with respect to bounded and $\mathbb{K}$-valued charges on $\Sigma$. To explain this we fix a charge $\mu:\Sigma \ra \mathbb{K}$.
+Theorem \ref{theorem:Banach_space_of_bounded_functions} and definition of $B(\Sigma,\mathbb{K})$ imply the existence of integration with respect to bounded and $\mathbb{K}$-valued charges on $\Sigma$. To explain this we fix a charge $\mu:\Sigma \ra \mathbb{K}$.
 
 \begin{definition}
     For $s \in S(\Sigma,\mathbb{K})$ we set
@@ -532,7 +540,7 @@ Theorem \ref{theorem:space_of_bounded_measurable_functions} implies the existenc
     $$|\mu(A)| = \big|\Lambda(\mathbb{1}_A)\big| \leq \lVert \Lambda \rVert$$
     for every $A \in \Sigma$. Thus $\mu$ is bounded. By definition
     $$\Lambda(s) = \int_Xs\,d\mu$$
-    for every $s \in S(\Sigma,\mathbb{K})$. It follows that $\Lambda$ and the integration with respect to $\mu$ coincide on $S(\Sigma,\mathbb{K})$. By Theorem \ref{theorem:space_of_bounded_measurable_functions} we derive that they are equal. Remark \ref{remark:norm_of_integration_is_total_variation} implies that $\lVert \Lambda \rVert = \lVert \mu \rVert$.
+    for every $s \in S(\Sigma,\mathbb{K})$. It follows that $\Lambda$ and the integration with respect to $\mu$ coincide on $S(\Sigma,\mathbb{K})$. By definition of $B(\Sigma,\mathbb{K})$ we derive that they are equal. Remark \ref{remark:norm_of_integration_is_total_variation} implies that $\lVert \Lambda \rVert = \lVert \mu \rVert$.
 
     Next note that if $\mu \in \mathrm{ba}(\Sigma,\mathbb{K})$ is such that
     $$\int_Xf\,d\mu = 0$$
