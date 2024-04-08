@@ -8,7 +8,7 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to study charges i.e. finitely additive functions of sets. Here we study only extended real and complex valued charges. Our main aim is to present contents of an important Fichtenholz and Kantorovich paper \cite{fichtenholz1934operations} in a modern form. 
+These notes are devoted to study charges i.e. finitely additive functions of sets. Here we study only extended real and complex valued charges. Our main aim is to present contents of an important Fichtenholz and Kantorovich paper \cite{fichtenholz1934operations} in a modern form.
 
 \section{Extended real line charges and Jordan decomposition}
 
@@ -216,14 +216,14 @@ The proof proceeds by constructing approximations for a positive set.
 
 \section{Examples of charges}
 \noindent
-We now give to examples of charges. The first is set-theoretic and is an interesting application of axiom of choice. 
+We now give to examples of charges. The first is set-theoretic and is an interesting application of axiom of choice.
 
 \begin{example}\label{example:ultrafilter_charge}
     For the notion of ultrafilter we refer to \cite{Filters_in_topology}. Let $X$ be a set and let $\cF$ be an ultrafilter of subsets of $X$. Consider a function given by formula
     $$\mu(A) = \begin{cases}
-        1 & \mbox{ if }A \in \cF \\
-        0 & \mbox{ otherwise }   \\
-    \end{cases}
+            1 & \mbox{ if }A \in \cF \\
+            0 & \mbox{ otherwise }   \\
+        \end{cases}
     $$
     for every $A \subseteq X$. Then $\mu$ is a $\{0,1\}$-valued charge on the algebra of all subsets of $X$.
 \end{example}
@@ -431,9 +431,9 @@ The remaining part of this section is devoted to example which is of number theo
         \begin{tikzpicture}
             [description/.style={fill=white,inner sep=2pt}]
             \matrix (m) [matrix of math nodes, row sep=3em, column sep=1em,text height=1.5ex, text depth=0.25ex]
-            {                                                                                                                                                                                                                                                                                                                                                                                                                                           & \mathrm{ba}(\Sigma,\CC)  & \\
-                                                                                                                                                                                                                                                                                                                                                                                                                               \mathrm{bca}(\Sigma,\CC) &                          & \mathrm{ba}(\Sigma,\RR)                                                                                                                                                                                                                                                                                                                                                                                            \\
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        & \mathrm{bca}(\Sigma,\RR) & \\} ;
+            {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             & \mathrm{ba}(\Sigma,\CC)  & \\
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \mathrm{bca}(\Sigma,\CC) &                          & \mathrm{ba}(\Sigma,\RR)                                                                                                                                                                                                                                                                                                                                                                                                                                              \\
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          & \mathrm{bca}(\Sigma,\RR) & \\} ;
             \path[right hook->,line width=0.8pt,font=\scriptsize]
             (m-2-3) edge node {$  $} (m-1-2)
             (m-3-2) edge node {$  $} (m-2-3);
@@ -451,11 +451,11 @@ The remaining part of this section is devoted to example which is of number theo
     Let $X$ be a set and let $\Sigma$ be an algebra of its subsets. Suppose that $Y$ is a set. Consider a function $s:X\ra Y$ such that $s(X)$ is finite and $s^{-1}(y) \in \Sigma$ for every $y \in Y$. Then $s$ is \textit{a $\Sigma$-simple function}.
 \end{definition}
 \noindent
-In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a set $X$. 
+In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a set $X$.
 
 We consider a $\mathbb{K}$-linear subspace $B(X,\mathbb{K})$ of the space of all $\mathbb{K}$-valued functions on $X$ which consists of all bounded functions. The function
 $$B(X,\mathbb{K}) \ni f \mapsto \sup_{x\in X}|f(x)|\in [0,+\infty)$$
-is a norm on $B(X, \mathbb{K})$. We denote it by $\lVert-\rVert_{\infty}$. 
+is a norm on $B(X, \mathbb{K})$. We denote it by $\lVert-\rVert_{\infty}$.
 
 \begin{theorem}\label{theorem:Banach_space_of_bounded_functions}
     The space $B(X,\mathbb{K})$ with norm $\lVert-\rVert_{\infty}$ is a Banach space over $\mathbb{K}$.
@@ -467,18 +467,18 @@ is a norm on $B(X, \mathbb{K})$. We denote it by $\lVert-\rVert_{\infty}$.
     $$\sup_{x\in X}|f_m(x) - f_n(x)|\leq \epsilon$$
     holds. Then for $n \geq N$ we have
     $$\sup_{x\in X}|f(x) - f_n(x)| = \sup_{x\in X}\lim_{m\ra +\infty}|f_m(x) - f_n(x)| \leq \epsilon$$
-    This proves that $f$ is bounded and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_{\infty}$. 
+    This proves that $f$ is bounded and $\{f_n\}_{n\in \NN}$ converges to $f$ with respect to $\lVert -\rVert_{\infty}$.
 \end{proof}
 \noindent
 From now we fix an algebra $\Sigma$ of sets of $X$. We define $S(\Sigma,\mathbb{K})\subseteq B(\Sigma,\mathbb{K})$ as a $\mathbb{K}$-subspace of $B(X,\mathbb{K})$ consisting of all $\Sigma$-simple $\mathbb{K}$-valued functions. The closure of $S(\Sigma,\mathbb{K})$ in $B(X,\mathbb{K})$ with respect to norm $\lVert - \rVert_{\infty}$ is denoted by $B(\Sigma,\mathbb{K})$.
 
 
 \begin{theorem}\label{theorem:for_sigma_algebra_each_bounded_measurable_function_is_in_uniform_closure_of_simple_functions}
-    If $\Sigma$ is a $\sigma$-algebra, then $B(\Sigma,\mathbb{K})$ consists of all bounded and measurable $\mathbb{K}$-valued functions on $X$. 
+    If $\Sigma$ is a $\sigma$-algebra, then $B(\Sigma,\mathbb{K})$ consists of all bounded and measurable $\mathbb{K}$-valued functions on $X$.
 \end{theorem}
 \begin{proof}
-    Suppose that $f \in B(\Sigma,\mathbb{K})$. Then there exists a sequence $\{s_n\}_{n\in \NN}$ of elements in $S(\Sigma,\mathbb{K})$ which converges to $\lVert - \rVert_{\infty}$ to $f$. In particular, $\{s_n\}_{n\in \NN}$ is pointwise convergent to $f$. Since the limit of pointwise convergent sequence of measurable functions is measurable by results in \cite{Integration}, we derive that $f$ is measurable. This proves that $B(\Sigma,\mathbb{K})$ consists of bounded and measurable $\mathbb{K}$-valued functions on $X$. 
-    
+    Suppose that $f \in B(\Sigma,\mathbb{K})$. Then there exists a sequence $\{s_n\}_{n\in \NN}$ of elements in $S(\Sigma,\mathbb{K})$ which converges to $\lVert - \rVert_{\infty}$ to $f$. In particular, $\{s_n\}_{n\in \NN}$ is pointwise convergent to $f$. Since the limit of pointwise convergent sequence of measurable functions is measurable by results in \cite{Integration}, we derive that $f$ is measurable. This proves that $B(\Sigma,\mathbb{K})$ consists of bounded and measurable $\mathbb{K}$-valued functions on $X$.
+
     It remains to prove that every bounded and measurable function is in $B(\Sigma,\mathbb{K})$. For $\alpha \in \mathbb{K}$ and $r \in \RR_+$ we denote by $D(\alpha,r)$ the open disc in $\mathbb{K}$ centered in $\alpha$ and with radius $r$. Fix bounded and measurable function $f:X\ra \mathbb{K}$ and let $\epsilon > 0$. Since $\mathbb{K}$ is locally compact, there exist $n\in \NN_+$ and elements $\alpha_1,...,\alpha_n \in \mathbb{K}$ such that
     $$\big\{\alpha \in \mathbb{K}\,\big|\,|\alpha| \leq \lVert f\rVert_{\infty}\big\}\subseteq \bigcup_{i=1}^nD(\alpha_i,\epsilon)$$
     Define
@@ -548,13 +548,33 @@ Theorem \ref{theorem:Banach_space_of_bounded_functions} and definition of $B(\Si
 \end{proof}
 
 \section{Space of essentially bounded functions}
-\noindent
-In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a space $(X,\Sigma,\nu)$ with measure.
 
 \begin{definition}
-    Let $f:X\ra \mathbb{K}$ be a measurable function. Then
-    $$\lVert f \rVert_{\mathrm{ess}} = \sup \bigg\{r\in \RR_+\cup \{0\}\,\bigg|\,\nu\left(\big\{x\in X\,\big|\,|f(x)| \geq r\big\}\right) > 0\bigg\}$$
-    is \textit{the essential supremum of $f$ with respect to $\nu$}.
+    Let $X$ be a set and let $\Sigma$ be a $\sigma$-algebra of subsets of $X$. Consider a proper subfamily $\fN$ of $\Sigma$. Assume that $\fN$ is closed under countable unions and for every $A \in \fN$ and every $B \in \Sigma$ we have $A\cap B \in \fN$. Then $\fN$ is \textit{a $\sigma$-ideal of $\Sigma$}.
+\end{definition}
+\noindent
+In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual absolute values. We also fix a measurable space $(X,\Sigma)$ and $\sigma$-ideal $\fN$ of $\Sigma$.
+
+\begin{fact}\label{fact:existence_of_essential_supremum}
+    Let $f:X\ra \mathbb{K}$ be a measurable function. Then the set
+    $$\bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\big\{x\in X\,\big|\,|f(x)| > r\big\} \in \fN\bigg\}$$
+    is of the form
+    $$\bigg[\lVert f \rVert_{\mathrm{ess}},+\infty\bigg)$$
+    for some $\lVert f \rVert_{\mathrm{ess}} \in \RR_+\cup \{0,+\infty\}$.
+\end{fact}
+\begin{proof}
+    For brevity denote the set in question by $A$ and we also denote $\big\{x\in X\,\big|\,|f(x)| > r\big\}$ by $A_r$ for every nonnegative real number $r$. If $A$ is empty, then
+    $$\lVert f \rVert_{\mathrm{ess}} = +\infty$$
+    We can assume that $A$ is not empty. If $r,s \in \RR_+\cup \{0\}$ and $r < s$, then $A_s \subseteq A_r$. Since $\fN$ is closed under subsets provided they are elements in $\Sigma$, we derive that $A$ is an ubounded interval in $\RR_+\cup \{0\}$. Pick the greatest lower bound $\lVert f \rVert_{\mathrm{ess}}$ of $A$. Then there exists a decreasing sequence $\{r_n\}_{n\in \NN}$ in $A$ such that 
+    $$\lim_{n\ra +\infty}r_n = \lVert f \rVert_{\mathrm{ess}}$$
+    We have
+    $$A_{\lVert f \rVert_{\mathrm{ess}}} = \bigcup_{n \in \NN}A_{r_n} \in \fN$$ 
+    according to the fact that $\fN$ is closed under countable unions. Thus $\lVert f \rVert_{\mathrm{ess}} \in A$. This completes the proof.
+\end{proof}
+
+
+\begin{definition}
+    Let $f:X \ra \mathbb{K}$ be a measurable function. Then $\lVert f \rVert_{\mathrm{ess}}$ is \textit{the essential supremum of $f$ with respect to $\fN$}.
 \end{definition}
 
 \begin{proposition}\label{proposition:essential_supremum_is_a_seminorm}
@@ -567,26 +587,24 @@ In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    Fix $\alpha \in \mathbb{K}\setminus \{0\}$ and a measurable function $f:X\ra \mathbb{K}$. Then
-    $$\{x\in X\,\big|\,| (\alpha \cdot f)(x)| \geq r \big\} = \bigg\{x\in X\,\bigg|\,|f(x)| \geq \frac{r}{|\alpha|}\bigg\}$$
-    for every $r \in \RR_+ \cup \{0\}$. Hence
-    $$\lVert \alpha \cdot f\rVert_{\mathrm{ess}} = \sup \bigg\{r\in \RR_+ \cup \{0\}\,\bigg|\,\nu\left(\big\{x\in X\,\big|\,|(\alpha \cdot f)(x)| \geq r \big\}\right) > 0\bigg\} =$$
-    $$= \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\nu\left(\bigg\{x\in X\,\bigg|\,|f(x)| \geq \frac{r}{|\alpha|}\bigg\}\right) > 0\bigg\} = $$
-    $$= |\alpha| \cdot \sup \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\nu\left(\big\{x\in X\,\big|\,|f(x)| \geq r\big\}\right) > 0\bigg\} = |\alpha|\cdot \lVert f\rVert_{\mathrm{ess}}$$
-    It follows that
+    Fix $\alpha \in \mathbb{K}\setminus \{0\}$ and a measurable function $f:X\ra \mathbb{K}$. Hence
+    $$\bigg\{r\in \RR_+ \cup \{0\}\,\bigg|\,\big\{x\in X\,\big|\,|(\alpha \cdot f)(x)| > r\big\}\in \fN\bigg\} =$$
+    $$= \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\bigg\{x\in X\,\bigg|\,|f(x)| > \frac{r}{|\alpha|}\bigg\} \in \fN\bigg\} = $$
+    $$= |\alpha| \cdot \bigg\{r \in \RR_+\cup \{0\}\,\bigg|\,\big\{x\in X\,\big|\,|f(x)| > r\big\}\in \fN\bigg\}$$
+    By Fact \ref{fact:existence_of_essential_supremum} it follows that
     $$\lVert \alpha \cdot f\rVert_{\mathrm{ess}} = |\alpha|\cdot \lVert f\rVert_{\mathrm{ess}}$$
     for every $\alpha \in \mathbb{K}\setminus \{0\}$. For $\alpha = 0$ this also holds for trivial reasons. Hence \textbf{(1)} is proved.
 
     Suppose that $f,g:X\ra \mathrm{K}$ are measurable functions. Assume that $r\in \RR_+$ is such that
     $$\lVert f \rVert_{\mathrm{ess}} + \lVert g \rVert_{\mathrm{ess}} < r$$
     We may pick $r_f,r_g\in \RR_+$ such that $r_f + r_g = r$ and $\lVert f \rVert_{\mathrm{ess}} < r_f$ and $\lVert g \rVert_{\mathrm{ess}} < r_g$. Then
-    $$\{x\in X\,\big|\,|(f + g)(x)| \geq r \big\} \subseteq \big\{x\in X\,\big|\,|f(x)| + |g(x)| \geq r_f + r_g \big\} \subseteq $$
-    $$\subseteq \big\{x\in X\,\big|\,|f(x)|  \geq r_f\big\} \cup \big\{x\in X\,\big|\,|g(x)|  \geq r_g\big\}$$
+    $$\{x\in X\,\big|\,|(f + g)(x)| > r \big\} \subseteq \big\{x\in X\,\big|\,|f(x)| + |g(x)| > r_f + r_g \big\} \subseteq $$
+    $$\subseteq \big\{x\in X\,\big|\,|f(x)|  > r_f\big\} \cup \big\{x\in X\,\big|\,|g(x)|  > r_g\big\}$$
     Since $\lVert f \rVert_{\mathrm{ess}} < r_f$ and $\lVert g \rVert_{\mathrm{ess}} < r_g$, we deduce that
-    $$\nu\left(\big\{x\in X\,\big|\,|f(x)|  \geq r_f\big\}\right) = \nu\left(\big\{x\in X\,\big|\,|g(x)|\geq r_g\big\}\right) = 0$$
+    $$\big\{x\in X\,\big|\,|f(x)|  > r_f\big\},\,\big\{x\in X\,\big|\,|g(x)| > r_g\big\}\in \fN$$
     This implies that
-    $$\nu\left(\{x\in X\,\big|\,|(f + g)(x)| \geq r\big\}\right) = 0$$
-    and thus $\lVert f + g\rVert_{\mathrm{ess}} < r$. This proves that
+    $$\{x\in X\,\big|\,|(f + g)(x)| > r\big\} \in \fN$$
+    according to the fact that $\fN$ is $\sigma$-ideal in $\Sigma$. Thus $\lVert f + g\rVert_{\mathrm{ess}} \leq r$. This proves that
     $$\lVert f + g \rVert_{\mathrm{ess}} \leq \lVert f \rVert_{\mathrm{ess}} + \lVert g \rVert_{\mathrm{ess}}$$
     if right hand side is finite. Clearly the inequality holds if the right hand side is infinite. This completes the proof of \textbf{(2)}.
 \end{proof}
@@ -594,31 +612,31 @@ In this section we denote by $\mathbb{K}$ either $\RR$ or $\CC$ with their usual
 \begin{definition}
     Let $f:X\ra \mathbb{K}$ be a measurable function. If
     $$\lVert f \rVert_{\mathrm{ess}} \in \RR$$
-    then $f$ is \textit{essentially bounded with respect to $\nu$} or shortly \textit{$\nu$-essentially bounded}.
+    then $f$ is \textit{essentially bounded with respect to $\fN$} or shortly \textit{$\fN$-essentially bounded}.
 \end{definition}
 \noindent
-According to Proposition \ref{proposition:essential_supremum_is_a_seminorm} the set of all $\mathbb{K}$-valued and $\nu$-essentially bounded functions is a seminormed space over $\mathbb{K}$ with respect to seminorm $\lVert-\rVert_{\mathrm{ess}}$.
+According to Proposition \ref{proposition:essential_supremum_is_a_seminorm} the set of all $\mathbb{K}$-valued and $\fN$-essentially bounded functions is a seminormed space over $\mathbb{K}$ with respect to seminorm $\lVert-\rVert_{\mathrm{ess}}$.
 
 \begin{definition}
-    The seminormed space of all $\mathbb{K}$-valued and $\nu$-essentially bounded functions is denoted by $L^{\infty}(\nu,\mathbb{K})$ and is called \textit{the Lebesgue space of $\nu$-essentially bounded $\mathbb{K}$-valued functions}.
+    The seminormed space of all $\mathbb{K}$-valued and $\nu$-essentially bounded functions is denoted by $L^{\infty}(\fN,\mathbb{K})$ and is called \textit{the Lebesgue space of $\fN$-essentially bounded $\mathbb{K}$-valued functions}.
 \end{definition}
 \noindent
-For every $f \in L^{\infty}(\nu,\mathbb{K})$ define
+For every $f \in L^{\infty}(\fN,\mathbb{K})$ define
 $$B_f = \big\{x \in X\,\big|\,|f(x)| \leq \lVert f \rVert_{\mathrm{ess}}\big\}$$
 and $f_b = \mathbb{1}_{B_f}\cdot f \in B(\Sigma,\mathbb{K})$.
 
 \begin{theorem}\label{theorem:canonical_isometry_of_quotients}
     Consider a set
-    $$\cN = \big\{f\in L^{\infty}(\nu,\mathbb{K})\,\big|\,f\mbox{ is $\nu$-almost equal to zero}\big\}$$
+    $$\cN = \big\{f\in L^{\infty}(\fN,\mathbb{K})\,\big|\,f\mbox{ is equal to zero outside of some set in }\fN\big\}$$
     Then the following assertions hold.
     \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
         \item $\cN\cap B(\Sigma,\mathbb{K})$ is a closed $\mathbb{K}$-linear subspace of $B(\Sigma, \mathbb{K})$.
-        \item The canonical inclusion $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\nu,\mathbb{K})$ induces a bijective isometry
-              $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \cong L^{\infty}(\nu,\mathbb{K})/\cN$$
+        \item The canonical inclusion $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\fN,\mathbb{K})$ induces a bijective isometry
+              $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \cong L^{\infty}(\fN,\mathbb{K})/\cN$$
               of normed spaces over $\mathbb{K}$.
         \item The inverse of the isometry described above is given by formula
               $$f + \cN \mapsto f_b + \left(\cN \cap B(\Sigma, \mathbb{K})\right)$$
-              for $f \in L^{\infty}(\nu,\mathbb{K})$.
+              for $f \in L^{\infty}(\fN,\mathbb{K})$.
     \end{enumerate}
 \end{theorem}
 \noindent
@@ -636,44 +654,44 @@ We first prove result which is useful in clarifying the main argument.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
-    Since $B(\Sigma,\mathbb{K})$ is a $\mathbb{K}$-linear subspace of $L^{\infty}(\nu,\mathbb{K})$, we derive that $\cN\cap B(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of $B(\Sigma,\mathbb{K})$. Suppose next that $\{f_n\}_{n \in \NN}$ is a sequence of elements in $\cN\cap B(\Sigma,\mathbb{K})$ which is convergent to $f \in B(\Sigma,\mathbb{K})$ with respect to $\lVert - \rVert_{\infty}$. Since $\{f_n\}_{n\in \NN}$ is pointwise convergent to $f$, we derive that
+    Since $B(\Sigma,\mathbb{K})$ is a $\mathbb{K}$-linear subspace of $L^{\infty}(\fN,\mathbb{K})$, we derive that $\cN\cap B(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of $B(\Sigma,\mathbb{K})$. Suppose next that $\{f_n\}_{n \in \NN}$ is a sequence of elements in $\cN\cap B(\Sigma,\mathbb{K})$ which is convergent to $f \in B(\Sigma,\mathbb{K})$ with respect to $\lVert - \rVert_{\infty}$. Since $\{f_n\}_{n\in \NN}$ is pointwise convergent to $f$, we derive that
     $$\big\{x\in X\,\big|\,f(x) \neq 0\big\} \subseteq \bigcup_{n\in \NN}\big\{x\in X\,\big|\,f_n(x) \neq 0\big\}$$
-    Clearly the right hand side is a set in $\Sigma$ with measure $\nu$ equal to zero. Thus $f$ is zero $\nu$-almost everywhere. This shows that $f \in \cN$ and the proof of \textbf{(1)} is completed.
+    The right hand side is a set in $\fN$ due to the fact that $\fN$ is $\sigma$-ideal of $\Sigma$. Thus $f$ is zero outside of a set in $\fN$. This shows that $f \in \cN$ and the proof of \textbf{(1)} is completed.
 
     Note that the map
-    $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\nu,\mathbb{K})/\cN$$
-    induced by $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\nu,\mathbb{K})$ is injective. Fix $f \in L^{\infty}(\nu,\mathbb{K})$. Then $f_b$ and $f$ are equal $\nu$-almost everywhere and $\lVert f \rVert_{\mathrm{ess}} = \lVert f_b\rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty}$. This implies that
+    $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\fN,\mathbb{K})/\cN$$
+    induced by $B(\Sigma, \mathbb{K})\hookrightarrow L^{\infty}(\fN,\mathbb{K})$ is injective. Fix $f \in L^{\infty}(\fN,\mathbb{K})$. Then $f_b$ and $f$ are equal outside some set in $\fN$ and $\lVert f \rVert_{\mathrm{ess}} = \lVert f_b\rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty}$. This implies that
     $$f_b + \cN = f + \cN$$
     and
     $$\inf_{g \in \cN} \lVert f + g \rVert_{\mathrm{ess}} = \lVert f \rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\mathrm{ess}} = \lVert f_b \rVert_{\infty} =  \inf_{g \in \cN \cap B(\Sigma, \mathbb{K})}\lVert f_b + g\rVert_{\infty}$$
-    where the last equality follows from Lemma \ref{lemma:special_bounded_representative_has_minimal_uniform_norm}. This holds for arbitrary $f \in L^{\infty}(\nu,\mathbb{K})$. Therefore, we derive that
-    $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\nu,\mathbb{K})/\cN$$
+    where the last equality follows from Lemma \ref{lemma:special_bounded_representative_has_minimal_uniform_norm}. This holds for arbitrary $f \in L^{\infty}(\fN,\mathbb{K})$. Therefore, we derive that
+    $$B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right) \ra L^{\infty}(\fN,\mathbb{K})/\cN$$
     is a surjective isometry of normed spaces over $\mathbb{K}$ and its inverse is given by formula presented in \textbf{(3)}. Hence \textbf{(2)} and \textbf{(3)} hold.
 \end{proof}
 
 \begin{corollary}\label{corollary:L_infty_is_complete}
-    The space $L^{\infty}(\nu,\mathbb{K})$ is a complete space with respect to norm $\lVert - \rVert_{\mathrm{ess}}$.
+    The space $L^{\infty}(\fN,\mathbb{K})$ is a complete space with respect to norm $\lVert - \rVert_{\mathrm{ess}}$.
 \end{corollary}
 \begin{proof}
-    Theorem \ref{theorem:canonical_isometry_of_quotients} implies that $L^{\infty}(\nu,\mathbb{K})/\cN$ is a Banach space over $\mathbb{K}$. From this we deduce that $L^{\infty}(\nu,\mathbb{K})$ is complete.
+    Theorem \ref{theorem:canonical_isometry_of_quotients} implies that $L^{\infty}(\fN,\mathbb{K})/\cN$ is a Banach space over $\mathbb{K}$. From this we deduce that $L^{\infty}(\fN,\mathbb{K})$ is complete.
 \end{proof}
 \noindent
-Consider now the subspace $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ of $\mathrm{ba}(\Sigma, \mathbb{K})$ which consists of all charges $\mu$ such that $\mu(A) = 0$ for every $A \in \Sigma$ that also satisfy $\nu(A) = 0$. Clearly $\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of $\mathrm{ba}(\Sigma, \mathbb{K})$ and hence a normed subspace of $\mathrm{ba}(\Sigma, \mathbb{K})$ with respect to total variation norm.
+Consider now the subspace $\mathrm{ba}_{\ll \fN}(\Sigma, \mathbb{K})$ of $\mathrm{ba}(\Sigma, \mathbb{K})$ which consists of all charges $\mu$ such that $\mu(A) = 0$ for every $A \in \fN$. Clearly $\mathrm{ba}_{\ll \fN}(\Sigma, \mathbb{K})$ is a $\mathbb{K}$-linear subspace of $\mathrm{ba}(\Sigma, \mathbb{K})$ and hence a normed subspace of $\mathrm{ba}(\Sigma, \mathbb{K})$ with respect to total variation norm.
 
 \begin{corollary}[Fichtenholz-Kantorovich]\label{corollary:functionals_for_L_infinity}
     The map
-    $$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_X f_b\,d\mu\right) \in L^{\infty}(\nu,\mathbb{K})^*$$
+    $$\mathrm{ba}_{\ll \fN}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_X f_b\,d\mu\right) \in L^{\infty}(\fN,\mathbb{K})^*$$
     is a bijective isometry of normed spaces over $\mathbb{K}$.
 \end{corollary}
 \begin{proof}
     Let $\mu:\Sigma \ra \mathbb{K}$ be a bounded charge. Then
     $$\int_Xf\,d\mu = 0$$
-    for every $f \in \cN \cap B(\Sigma,\mathbb{K})$ if and only if $\mu \in \mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K})$. From this fact and from Theorem \ref{theorem:fichtenholz_kantorovich_for_bounded_functions} we infer that there is a bijective isometry
-    $$\mathrm{ba}_{\ll \nu}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_Xf\,d\mu\right) \in
+    for every $f \in \cN \cap B(\Sigma,\mathbb{K})$ if and only if $\mu \in \mathrm{ba}_{\ll \fN}(\Sigma, \mathbb{K})$. From this fact and from Theorem \ref{theorem:fichtenholz_kantorovich_for_bounded_functions} we infer that there is a bijective isometry
+    $$\mathrm{ba}_{\ll \fN}(\Sigma, \mathbb{K}) \ni \mu \mapsto \left(f \mapsto \int_Xf \,d\mu\right) \in
         \bigg(B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)\bigg)^*$$
     According to Theorem \ref{theorem:canonical_isometry_of_quotients} the formula
-    $$L^{\infty}(\nu,\mathbb{K})/\cN \ni f + \cN \mapsto f_b + \cN \in B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)$$
-    gives rise to a bijective isometry. Combining these two results with obvious identification of $L^{\infty}(\nu,\mathbb{K})^*$ with $\left(L^{\infty}(\nu,\mathbb{K})/\cN\right)^*$ completes the proof of the corollary.
+    $$L^{\infty}(\fN,\mathbb{K})/\cN \ni f + \cN \mapsto f_b + \cN \in B(\Sigma,\mathbb{K})/\left(\cN\cap B(\Sigma,\mathbb{K})\right)$$
+    gives rise to a bijective isometry. Combining these two results with obvious identification of $L^{\infty}(\fN,\mathbb{K})^*$ with $\left(L^{\infty}(\fN,\mathbb{K})/\cN\right)^*$ completes the proof of the corollary.
 \end{proof}
 
 
