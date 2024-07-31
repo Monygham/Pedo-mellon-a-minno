@@ -1,0 +1,689 @@
+% !TeX root = ../Local_and_Functional_Analysis/Topological_spaces.tex
+% arara: indent: {overwrite: yes, silent: yes}
+\input ../pree.tex
+
+\begin{document}
+
+\title{Topological spaces}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+These notes contain introductory material on topological spaces. Our approach to foundations of this subject follows method presented in \cite{kuratowski1922operation} and generalized by Eduardo \v{C}ech. This enable us to introduce pretopological spaces.
+
+The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps.  
+
+\section{Preclosure operators and pretopological spaces}
+
+\begin{definition}
+	Let $X$ be a set and let $\bd{c}$ be an operator defined on the family of all subsets of $X$. Suppose that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $\bd{c}\left(\emptyset\right) = \emptyset$
+		\item $A\subseteq \bd{c}(A)$ for every subset $A$ of $X$.
+		\item $\bd{c}\left(A \cup B\right) = \bd{c}(A)\cup \bd{c}(B)$ for all subsets $A, B$ of $X$.
+	\end{enumerate}
+	Then $\bd{c}$ is \textit{a preclosure operator on $X$}.
+\end{definition}
+
+
+\begin{fact}\label{fact:preclosure_operator_is_monotone}
+	Let $X$ be a set and let $\bd{c}$ be a preclosure operator on $X$. If $A\subseteq B$ are subsets of $X$, then $\bd{c}(A) \subseteq \bd{c}(B)$.
+\end{fact}
+\begin{proof}
+	We have $B = A\cup \left(B\setminus A\right)$ and thus
+	$$\bd{c}(A) \subseteq \bd{c}(A) \cup \bd{c}\left(B\setminus A\right) = \bd{c}\left(A \cup \left(B\setminus A\right) \right) = \bd{c}(B)$$
+	This completes the proof.
+\end{proof}
+
+\begin{definition}
+	A set $X$ together with a preclosure operator is \textit{a pretopological space}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ and $Y$ be pretopological spaces. Suppose that $\bd{c},\bd{d}$ are preclosure operators on $X,Y$, respectively. A map $f:X\ra Y$ such that $f\left(\bd{c}(A)\right) \subseteq \bd{d}\left(f(A)\right)$ for every subset $A$ of $X$ is \textit{a continuous map}.
+\end{definition}
+
+\begin{fact}\label{fact:composition_of_continuous_maps_is_continuous}
+	Let $f:X \ra Y$ and $g:Y \ra Z$ be continuous maps of pretopological spaces. Then $g\cdot f:X\ra Z$ is a continuous map.
+\end{fact}
+\begin{proof}
+	Let $\bd{c},\bd{d}$ and $\bd{e}$ be preclosure operators on $X,Y$ and $Z$, respectively. Pick a subset $A$ of $X$. Then
+	$$\left(g\cdot f\right)\left(\bd{c}(A)\right) = g\left(f\left(\bd{c}(A)\right)\right) \subseteq g\left(\bd{d}\left(f(A)\right)\right) \subseteq \bd{e}\left(g\left(f(A)\right)\right) = \bd{e}\left(\left(g\cdot f\right)(A)\right)$$
+	and hence $f$ is continuous.
+\end{proof}
+\noindent
+According to Fact \ref{fact:composition_of_continuous_maps_is_continuous} there exists a category $\PreTop$ of pretopological spaces and continuous maps.
+
+\begin{definition}
+	Let $X$ be a pretopological space with preclosure operator $\bd{c}$. A subset $F$ of $X$ is \textit{closed} if $\bd{c}(F) = F$.
+\end{definition}
+
+\begin{proposition}\label{proposition:closed_subsets_of_pretopological_space}
+	Let $X$ be a pretopological space. Then the class of all closed subsets of $X$ is closed under arbitrary intersections and finite unions. In particular, $\emptyset, X$ are closed subsets of $X$.
+\end{proposition}
+\begin{proof}
+	Let $\bd{c}$ be a preclosure operator of $X$ and let $\bd{Fix}(\bd{c})$ be the class of closed sets in $X$.
+
+	Moreover, if $F_1,...F_n \in \bd{Fix}(\bd{c})$ for some $n \in \NN_+$, then
+	$$\bd{c}\left(F_1 \cup ... \cup F_n\right) = \bd{c}(F_1) \cup ... \cup \bd{c}(F_n) = F_1 \cup ...\cup F_n$$
+	and hence $F_1 \cup ... \cup F_n \in \bd{Fix}(\bd{c})$. Thus $\bd{Fix}(\bd{c})$ is closed under finite unions.
+
+	Suppose that $\bd{F} \subseteq \bd{Fix}(\bd{c})$. Fact \ref{fact:preclosure_operator_is_monotone} implies that
+	$$\bd{c}\left(\bigcap_{F\in \bd{F}}F\right) \subseteq \bd{c}(F)$$
+	for every $F \in \bd{F}$. Thus we have
+	$$\bigcap_{F \in \bd{F}}F \subseteq \bd{c}\left(\bigcap_{F\in \bd{F}}F\right) \subseteq \bigcap_{F\in \bd{F}}\bd{c}(F) = \bigcap_{F\in \bd{F}}F$$
+	and hence the intersection of sets in $\bd{F}$ is also a set in $\bd{Fix}(\bd{c})$. This proves that $\bd{Fix}(\bd{c})$ is closed under arbitrary intersections.
+\end{proof}
+
+\section{Closure operators and topological spaces}
+
+\begin{definition}
+	Let $X$ be a set and let $\bd{c}$ be an operator on the family of all subsets of $X$. Suppose that
+	$$\bd{c}\left(\bd{c}(A)\right) = \bd{c}(A)$$
+	for every subset $A$ of $X$. Then $\bd{c}$ is \textit{idempotent}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a set and let $\bd{c}$ be a preclosure operator on $X$. If $\bd{c}$ is idempotent, then $\bd{c}$ is \textit{a closure operator}.
+\end{definition}
+\noindent
+The next theorem describes closure operators in terms of certain families of sets.
+
+\begin{theorem}\label{theorem:Kuratowski_closure_is_induced_by_a_closed_set_family}
+	Let $X$ be a set. Consider
+	$$\cF = \big\{\bd{F}\,\big|\,\bd{F}\subseteq \cP(X)\mbox{ such that }\emptyset,X\in \bd{F}\mbox{ and }\bd{F}\mbox{ is closed under finite unions and arbitrary intersections}\big\}$$
+	and
+	$$\cC = \big\{\bd{c}\,\big|\,\bd{c}\mbox{ is a closure operator on }X\big\}$$
+	Then
+	$$\cF \ni \bd{F} \mapsto \left(A \mapsto \bigcap_{F\in \bd{F},\,A\subseteq F}F\right) \in \cC$$
+	is a bijection with inverse
+	$$\cC \ni \bd{c} \mapsto \big\{F\,\big|\,F\subseteq X\mbox{ and }\bd{c}(F) = F\big\} \in \cF$$
+\end{theorem}
+\noindent
+For convenience we prove essential part of the theorem in the following separate result.
+
+\begin{lemma}\label{lemma:closed_sets_give_rise_to_closure_operator}
+	Let $X$ be a set and let $\bd{F}$ be a family of its subsets which is closed under finite unions and arbitrary intersections. Let $\bd{c}$ be an operator given by formula
+	$$\bd{c}(A) = \bigcap_{F\in \bd{F},\,A\subseteq F}F$$
+	for every subset $A$ of $X$. Then $\bd{c}$ is a closure operator and $\bd{F}$ is the class of closed sets with respect to $\bd{c}$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Clearly $\bd{c}(\emptyset) = \emptyset$ and $A\subseteq \bd{c}(A)$ for every subset $A$ of $X$.
+
+	Fix subset $A$ of $X$. Since $\bd{c}(A) \in \bd{F}$ and $\bd{c}\left(\bd{c}(A)\right)$ is the smallest set in $\bd{F}$ that contains $\bd{c}(A)$, we derive that
+	$$\bd{c}(A) = \bd{c}\left(\bd{c}(A)\right)$$
+	Hence $\bd{c}$ is idempotent.
+
+	Next suppose that $A,B$ are subsets of $X$. Since $\bd{c}\left(A\cup B\right)$ is the smallest set in $\bd{F}$ that contains $A\cup B$ and both $\bd{c}(A),\bd{c}(B)$ are in $\bd{F}$, we derive that
+	$$\bd{c}\left(A\cup B\right) \subseteq \bd{c}(A) \cup \bd{c}(B)$$
+	Indeed, $A\cup B \subseteq \bd{c}(A) \cup \bd{c}(B)$ and right hand side is a set in $\bd{F}$ according to the fact that $\bd{F}$ is closed under finite unions.
+	On the other hand $\bd{c}$ clearly preserves $\subseteq$ and hence
+	$$\bd{c}(A)\cup \bd{c}(B) \subseteq \bd{c}\left(A\cup B\right)$$
+	Therefore, $\bd{c}$ preserves unions. This completes the proof of the claim that $\bd{c}$ is a closure operator.
+
+	Let $\bd{Fix}(\bd{c})$ be the class of closed sets with respect to $\bd{c}$. Clearly $\bd{F} \subseteq \bd{Fix}(\bd{c})$. On the other hand if $H \in \bd{Fix}(\bd{c})$, then
+	$$H = \bd{c}(H) = \bigcap_{F\in \bd{F},\,H\subseteq F}F \in \bd{F}$$
+	and hence $H \in \bd{F}$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	By Proposition \ref{proposition:closed_subsets_of_pretopological_space} and Lemma \ref{lemma:closed_sets_give_rise_to_closure_operator} both mappings are well defined. Moreover, Lemma \ref{lemma:closed_sets_give_rise_to_closure_operator} proves that $\cF \ra \cC$ composed with $\cC \ra \cF$ is $1_{\cF}$.
+
+	Now we pick closure operator $\bd{c}$ on $X$ and a subset $A$ of $X$. Let $F$ be a closed set with respect to $\bd{c}$ such that $A\subseteq F$. Then $\bd{c}(A) \subseteq \bd{c}(F) = F$. Since $\bd{c}$ is idempotent, we derive that $\bd{c}(A)$ is a closed set with respect to $\bd{c}$. Hence
+	$$\bd{c}(A) = \bigcap_{F\in \bd{Fix}(\bd{c}),\,A\subseteq F}F$$
+	where $\bd{Fix}(\bd{c})$ is the class of closed sets with respect to $\bd{c}$. This proves that $\cC \ra \cF$ composed with $\cF \ra \cC$ is $1_{\cC}$.
+\end{proof}
+\noindent
+Now we elevate Theorem \ref{theorem:Kuratowski_closure_is_induced_by_a_closed_set_family} to isomorphism of categories. For this we introduce the following three categories.
+
+We define $\Top_1$ as a full subcategory of $\PreTop$ which consists of pretopological spaces with idempotent preclosure operators.
+
+Next we define $\Top_2$. An object of $\Top_2$ consists of a set $X$ together with a family $\bd{F}$ of subsets of $X$ that is closed under finite unions and arbitrary intersections. Since empty unions and intersections are allowed, we have $\emptyset,X \in \bd{F}$. Morphisms in $\Top_2$ between a set $X$ with family $\bd{F}$ and a set $Y$ with family $\bd{G}$ are maps $f:X\ra Y$ such that $f^{-1}(G) \in \bd{F}$ for every $G \in \bd{G}$.
+
+The last category is $\Top_3$. An object of $\Top_3$ consists of a set $X$ together with a family $\tau$ of subsets of $X$ that is closed under finite intersections and arbitrary unions. As above, since empty intersections and unions are allowed, we have $\emptyset, X \in \tau$. Morphisms in $\Top_3$ between a set $X$ with family $\tau$ and a set $Y$ with family $\theta$ are maps $f:X\ra Y$ such that $f^{-1}(V) \in \tau$ for every $V \in \theta$.
+
+We also introduce certain maps between object classes of these categories.
+
+If $X$ together with $\bd{c}$ is an object of $\Top_1$, then $X$ together with closed sets of $\bd{c}$ is an object of $\Top_2$ by Proposition \ref{proposition:closed_subsets_of_pretopological_space}.
+
+If $X$ together with $\bd{F}$ is an object of $\Top_2$, then we define $\tau$ as a family of all complements in $X$ of subsets in $\bd{F}$. Then $X$ together with $\tau$ is an object of $\Top_3$.
+
+Now we state our main result.
+
+\begin{theorem}\label{theorem:Kuratowski_closure_spaces_spaces_with_closed_families_topological_spaces_isomorphic_categories}
+	Maps of classes described above give rise to functors
+	$$\Top_1 \ra \Top_2,\,\Top_2 \ra \Top_3$$
+	which induce identities on classes of morphisms. These functors are isomorphism of categories.
+\end{theorem}
+\begin{proof}
+	Let $X$ and $Y$ be objects in $\Top_1$ with closure operators $\bd{c}$ and $\bd{d}$, respectively. Let $f:X\ra Y$ be a morphism in $\Top_1$ between these objects. Fix a closed set $G$ with respect to $\bd{d}$. Then we have
+	$$f\left(\bd{c}\left(f^{-1}(G)\right)\right) \subseteq \bd{d}\left(f\left(f^{-1}(G)\right)\right) \subseteq \bd{d}(G) = G$$
+	and hence $\bd{c}\left(f^{-1}(G)\right) \subseteq f^{-1}(G)$. This implies that $f^{-1}(G)$ is a closed set in $X$. Thus $\Top_1 \ra \Top_2$ is a functor.
+
+	By Theorem \ref{theorem:Kuratowski_closure_is_induced_by_a_closed_set_family} this functor is bijective on objects.
+
+	Let $X$ and $Y$ be objects in $\Top_1$ with closure operators $\bd{c}$ and $\bd{d}$, respectively. Let $f:X\ra Y$ be a map such that $f^{-1}(G)$ is a closed subset with respect to $\bd{c}$ for every closed set $G$ with respect to $\bd{d}$. Fix a subset $A$ of $X$. Let $G$ be the set $\bd{d}(f(A))$. Then $G$ is closed with respect to $\bd{d}$. Hence $f^{-1}(G)$ is closed with respect to $\bd{c}$. Since $A \subseteq f^{-1}(G)$, we derive that $\bd{c}(A) \subseteq f^{-1}(G)$. Thus
+	$$f\left(\bd{c}(A)\right) \subseteq G = \bd{d}\left(f(A)\right)$$
+	and hence $f:X\ra Y$ is a morphism in $\Top_1$. This proves that $\Top_1 \ra \Top_2$ is also bijective on morphisms.
+
+	Combining all these results we infer that $\Top_1 \ra \Top_2$ is an isomorphism of categories.
+
+	The fact that $\Top_2 \ra \Top_3$ give rise to a functor bijective on objects and morphisms is left for the reader as an exercise. 
+
+	This completes the proof of the theorem.
+\end{proof}
+\noindent
+According to Theorem \ref{theorem:Kuratowski_closure_spaces_spaces_with_closed_families_topological_spaces_isomorphic_categories} from now on we identify categories $\Top_1$, $\Top_2$ and $\Top_3$. We denote the result of this identification by $\Top$. Note that $\Top$ is a full subcategory of $\PreTop$.
+
+\begin{definition}
+	\textit{A topological space} is an object of $\Top$.
+\end{definition}
+
+\begin{definition}
+	An isomorphism in $\Top$ is \textit{a homeomorphism}.
+\end{definition}
+
+\section{Topological spaces as reflective subcategory in pretopological spaces}
+
+\begin{definition}
+	Let $X$ be a pretopological space with preclosure $\bd{c}$ and let $A$ be a subset of $X$. Suppose that $\bd{cl}(A)$ is the smallest closed set in $X$ that contains $A$. Then $\bd{cl}(A)$ is \textit{the closure of $A$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:topological_spaces_are_reflective_subcategory_of_pretopological_spaces}
+	Let $X$ be a pretopological space with preclosure $\bd{c}$. Then $\bd{cl}$ is a closure operator on $X$.
+
+	Let $T(X)$ be the topological space with the same underlying set as $X$ and with $\bd{cl}$ as its closure operator. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item The identity on the underlying set of $X$ gives rise to a continuous map $\eta_{X}:X \ra T(X)$.
+		\item For every topological space $Y$ and for every continuous map $f:X \ra Y$ there exists a unique continuous map $g:T(X) \ra Y$ such that the triangle
+		      \begin{center}
+			      \begin{tikzpicture}
+				      [description/.style={fill=white,inner sep=2pt}]
+				      \matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex]
+				      { X    & Y                        \\
+				        T(X) & \\} ;
+				      \path[->,line width=0.8pt,font=\scriptsize]
+				      (m-1-1) edge node[above] {$ f $} (m-1-2)
+				      (m-1-1) edge node[left] {$ \eta_{X} $} (m-2-1);
+				      \path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+				      (m-2-1) edge node[right = 2pt, below = 2pt] {$ g $} (m-1-2);
+			      \end{tikzpicture}
+		      \end{center}
+		      is commutative.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	By Proposition \ref{proposition:closed_subsets_of_pretopological_space} family of closed sets is closed under finite unions and arbitrary intersections. Thus by Theorem \ref{theorem:Kuratowski_closure_is_induced_by_a_closed_set_family} operator $\bd{cl}$ on $X$ is a closure operator on $X$. This proves first part of the theorem.
+
+	For every subset $A$ of $X$ we have $A \subseteq \bd{cl}(A)$ and $\bd{cl}(A)$ is closed in $X$. Fact \ref{fact:preclosure_operator_is_monotone} implies that
+	$$\bd{c}(A) \subseteq \bd{c}\left(\bd{cl}(A)\right) = \bd{cl}(A)$$
+	Since this holds for each subset $A$ of $X$, we derive that $\eta_{X}$ is a continuous map. This proves \textbf{(1)}.
+
+	Now suppose that $Y$ is some topological space and $f:X \ra Y$ is a continuous map. Let $\bd{d}$ be the closure operator on $Y$. Fix a closed subset $G$ of $Y$ and consider $F = f^{-1}(G)$. We have
+	$$f\left(\bd{c}(F)\right) \subseteq \bd{d}\left(f(F)\right) \subseteq \bd{d}\left(G\right) = G$$
+	and hence
+	$$\bd{c}\left(F\right) \subseteq f^{-1}(G) = F$$
+	This implies that $F$ is closed in $X$ and hence it is closed in $T(X)$. Thus $f^{-1}$ maps closed sets in $Y$ to closed sets in $T(X)$. Hence $f$ can be considered as a continuous map $T(X) \ra Y$. We denote this continuous map by $g$. Then
+	$$g\cdot \eta_{\bd{c}} = f$$
+	and according to the fact that $\eta_{X}$ is identity on $X$ we derive that $g$ is unique. This completes the proof of \textbf{(2)}.
+\end{proof}
+
+\begin{corollary}\label{corollary:top_is_reflective_in_pretop}
+	$\Top$ is a reflective subcategory of $\PreTop$.
+\end{corollary}
+\begin{proof}
+	It is immediate consequence of Theorem \ref{theorem:topological_spaces_are_reflective_subcategory_of_pretopological_spaces}.
+\end{proof}
+
+
+\section{Open subsets, bases and interior}
+\noindent
+The aim of this section is to introduce standard topological terminology.
+
+\begin{definition}
+	Let $X$ be a topological space. A complement of a closed set in $X$ is \textit{an open set in $X$}. The collection of all open subsets of $X$ is \textit{a topology of $X$}.
+\end{definition}
+\noindent
+The following notion is very useful.
+
+\begin{definition}
+	Let $X$ be a topological space and let $\cB$ be a family consisting of open sets in $X$. Suppose that for every open subset $U$ of $X$ and for every $x \in U$ there exists $B \in \cB$ such that $x \in B$ and $B \subseteq U$. Then $\cB$ is \textit{a base of topology of $X$}.
+\end{definition}
+
+\begin{fact}\label{fact:bases_of_topology}
+	Let $X$ be a set and let $\cB$ be a family of subsets of $X$. Assume that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item For every $x \in X$ there exists $B \in \cB$ such that $x \in B$.
+		\item If $B_1,B_2 \in \cB$ and $x \in B_1 \cap B_2$, then there exists $B \in \cB$ such that $x\in B$ and $B \subseteq B_1 \cap B_2$.
+	\end{enumerate}
+	Then family
+	$$\big\{U\,\big|\,U\mbox{ is a union of sets in }\cB\big\}$$
+	is a topology on $X$ and $\cB$ is a base for this topology.
+\end{fact}
+\begin{proof}
+	Left for the reader.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a topological space. Let $x$ be a point of $X$ and let $U$ be an open subset that contains $x$. Then $U$ is \textit{an open neighborhood of $x$}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a topological space. Let $x$ be a point of $X$ and let $\cB_x$ be a family of open neighborhoods of $x$. Assume that for every open neighborhood $U$ of $x$ there exists $B \in \cB_x$ such that $B\subseteq U$. Then $\cB_x$ is \textit{a neighborhood base at $x$}.
+\end{definition}
+\noindent
+Finally we need operation related to closure of the subset.
+
+\begin{definition}
+	Let $A$ be a subset of a topological space. Suppose that $\bd{int}(A)$ is the largest open subset contained in $A$. Then $\bd{int}(A)$ is \textit{the interior of $A$}.
+\end{definition}
+
+\begin{fact}\label{fact:relation_between_closure_and_interior}
+	Let $X$ be a topological space and let $A$ be its a subset. Then
+	$$\bd{int}(A) = X\setminus \bd{cl}\left(X\setminus A\right)$$
+\end{fact}
+\begin{proof}
+	Note that $X\setminus \bd{cl}\left(X\setminus A\right)$ is an open subset contained in $A$.
+
+	Suppose next that $U$ is an open subset such that $U \subseteq A$. Then
+	$$\bd{cl}\left(X\setminus A\right) \subseteq X\setminus U$$
+	This shows that $U \subseteq X\setminus \bd{cl}\left(X\setminus A\right)$. Hence $U \subseteq X\setminus \bd{cl}\left(X\setminus A\right)$. This completes the proof.
+\end{proof}
+\noindent
+Finally it is useful to have local version of continuity of a map.
+
+\begin{definition}
+	Let $X, Y$ be topological spaces, let $f:X\ra Y$ be a map and let $x$ be a point in $X$. Then $f$ is \textit{continuous at $x$} if for every open neighborhood $V$ of $f(x)$ in $Y$ there exists an open neighborhood $U$ of $x$ in $X$ such that $f(U) \subseteq V$.
+\end{definition}
+
+\begin{fact}\label{fact:function_continuous_at_each_point_is_continuous}
+	Let $X, Y$ be a topological spaces and let $f:X\ra Y$ be a map. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $f$ is continuous at each $x \in X$.
+		\item $f$ is continuous.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Left for the reader.
+\end{proof}
+
+
+\section{Topology introduced by family of maps}
+\noindent
+In this section we discuss two different methods of generating topologies by families of maps.
+
+\begin{theorem}\label{theorem:topology_induced_on_domain_of_a_family_of_maps}
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of some topological space $Y_f$. Let $\cB_{\cF}$ be a family consisting of subsets of $X$ of the form
+	$$\bigcap_{f\in F}f^{-1}(V_f)$$
+	where $F$ is a finite subset of $\cF$ and $V_f$ is open subset of $Y_f$ for each $f\in F$. Then $\cB_{\cF}$ is a base of some topology on $X$.
+
+	Consider $X$ as a topological space with topology generated by $\cB_{\cF}$. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item Each $f \in \cF$ is a continuous map $X \ra Y_f$.
+		\item Let $Z$ be a topological space and let $g:Z\ra X$ be a map of sets such that $f\cdot g:Z\ra Y_f$ is continuous map for every $f \in \cF$. Then $g$ is continuous.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Note that $B_{\cF}$ is closed under finite intersections and union of all sets in $\cB_{\cF}$ is $X$. By Fact \ref{fact:bases_of_topology} the family $\cB_{\cF}$ generates a topology on $X$. This proves the first part of the theorem.
+
+	For every $f \in \cF$ and every open subset $V$ of $Y_f$ we have $f^{-1}(V) \in \cB_{\cF}$. Hence $f$ is a continuous map with respect to topology on $X$ generated by $\cB_{\cF}$. This completes the proof of \textbf{(1)}.
+
+	Now we prove \textbf{(2)}. Fix finite subset $F$ of $\cF$ and open subsets $V_f$ of $Y_f$ for each $f\in F$. Then
+	$$g^{-1}\left(\bigcap_{f\in F}f^{-1}(V_f)\right) = \bigcap_{f \in F}\left(f\cdot g\right)^{-1}(V_f)$$
+	is an open subset of $Z$. Thus preimages of sets in $\cB_{\cF}$ under $g$ are open in $Z$. Since $\cB_{\cF}$ is a base of the topology on $X$, we derive that $g$ is a continuous map.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of some topological space $Y_f$. Let $\cB_{\cF}$ be a family consisting of subsets of $X$ of the form
+	$$\bigcap_{f\in F}f^{-1}(V_f)$$
+	where $F$ is a finite subset of $\cF$ and $V_f$ is open in $Y_f$ for each $f\in F$. Topology on $X$ with $\cB_{\cF}$ as its base is \textit{the topology induced by $\cF$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:limits_in_category_of_topological_spaces}
+	Let $\cI$ be a small category and let $F:\cI \ra \Top$ be a functor. Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$ such that $(X,\cF)$ is a limiting cone over the composition of $F$ with the forgetful functor $\Top \ra \Set$. Consider $X$ as a topological space with topology induced by $\cF$. Then $X$ together with $\cF$ form a limiting cone over $F$.
+\end{corollary}
+\begin{proof}
+	Follows immediately from Theorem \ref{theorem:topology_induced_on_domain_of_a_family_of_maps}.
+\end{proof}
+
+\begin{definition}
+	Let $i:X\hookrightarrow Y$ be an injective continuous map of topological spaces. Suppose that the topology on $X$ is induced by $i$. Then $i$ is \textit{an immersion of topological spaces}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a topological space and let $Z$ be a subset of $X$. Then the topology on $Z$ induced by the inclusion $Z \hookrightarrow X$ is \textit{the subspace topology on $Z$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:topology_induced_on_codomain_of_a_family_of_maps}
+	Let $X$ be a set and let $\cF$ be a family of maps with codomain in $X$. Suppose that for every $f \in \cF$ its domain is the underlying set of some topological space $Y_f$. Let $\tau_{\cF}$ be a family
+	$$\big\{U\,\big|\,U\mbox{ is a subset of }X\mbox{ and }f^{-1}(U)\mbox{ is open in }Y_f\mbox{ for every }f\in \cF\big\}$$
+	Then $\tau_{\cF}$ is a topology on $X$. Consider $X$ as a topological space with topology $\tau_{\cF}$. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item Each $f \in \cF$ is a continuous map $Y_f \ra X$.
+		\item Let $Z$ be a topological space and let $g:X\ra Z$ be a map of sets such that $g\cdot f:Y_f\ra Z$ is continuous map for every $f \in \cF$. Then $g$ is continuous.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	By definition $\tau_{\cF}$ is closed under finite intersections and arbitrary unions. Hence $\tau_{\cF}$ is a topology on $X$.
+
+	For every $f \in \cF$ and every subset $U \in \tau_{\cF}$ we have $f^{-1}(U)$ is open in $Y_f$. Hence $f$ is a continuous map where $X$ is considered as a topological space with respect to $\tau_{\cF}$. This proves \textbf{(1)}.
+
+	Now we prove \textbf{(2)}. Pick open subset $V$ of $Z$. Then
+	$$f^{-1}\left(g^{-1}(V)\right) = \left(g\cdot f\right)^{-1}(V)$$
+	is open in $Y_f$ for each $f \in \cF$. Hence $g^{-1}(V) \in \tau_{\cF}$ and this proves the assertion.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a set and let $\cF$ be a family of maps with codomain in $X$. Suppose that for every $f \in \cF$ its domain is the underlying set of some topological space $Y_f$. Let $\tau_{\cF}$ be a family
+	$$\big\{U\,\big|\,U\mbox{ is a subset of }X\mbox{ and }f^{-1}(U)\mbox{ is open in }Y_f\mbox{ for every }f\in \cF\big\}$$
+	Then $\tau_{\cF}$ is \textit{the topology induced by $\cF$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:colimits_in_category_of_topological_spaces}
+	Let $\cI$ be a small category and let $F:\cI \ra \Top$ be a functor. Let $X$ be a set and let $\cF$ be a family of maps with codomain in $X$ such that $(X,\cF)$ is a colimiting cocone over the composition of $F$ with the forgetful functor $\Top \ra \Set$. Consider $X$ as a topological space with topology induced by $\cF$. Then $X$ together with $\cF$ form a colimiting cocone over $F$.
+\end{corollary}
+\begin{proof}
+	Follows immediately from Theorem \ref{theorem:topology_induced_on_codomain_of_a_family_of_maps}.
+\end{proof}
+
+\begin{definition}
+	Let $q:X \ra Y$ be a surjective continuous map of topological spaces. Suppose that the topology on $Y$ is induced by $q$. Then $q$ is \textit{a quotient map of topological spaces}.
+\end{definition}
+
+\section{Monomorphisms and epimorphism in $\Top$}
+\noindent
+We begin by classifying monomorphisms and epimorphisms in $\Top$.
+
+\begin{proposition}\label{proposition:monomorphisms_in_topological_spaces}
+	Let $f:X\ra Y$ be a continuous map. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $f$ is a monomorphism in $\Top$.
+		\item $f$ is injective.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Let $f:X\ra Y$ be a morphism in some category. Then
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{ X & X                                   \\
+			  X & Y          \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ 1_X $} (m-1-2)
+			(m-1-1) edge node[left] {$  1_X $} (m-2-1)
+			(m-1-2) edge node[right] {$ f $} (m-2-2)
+			(m-2-1) edge node[below] {$ f $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	is a cartesian square if and only if $f$ is a monomorphisms. Combination of this result with Corollary \ref{corollary:limits_in_category_of_topological_spaces}, which implies that the forgetful functor $\Top \ra \Set$ creates limits, completes the proof.
+\end{proof}
+
+\begin{proposition}\label{proposition:epimorphisms_in_topological_spaces}
+	Let $f:X\ra Y$ be a continuous map. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $f$ is an epimorphism in $\Top$.
+		\item $f$ is surjective.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Let $f:X\ra Y$ be a morphism in some category. Then
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{ X & Y                                   \\
+			  Y & Y          \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ f $} (m-1-2)
+			(m-1-1) edge node[left] {$  f $} (m-2-1)
+			(m-1-2) edge node[right] {$ 1_Y $} (m-2-2)
+			(m-2-1) edge node[below] {$ 1_Y $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	is a cocartesian square if and only if $f$ is an epimorphisms. Combination of this result with Corollary \ref{corollary:colimits_in_category_of_topological_spaces}, which implies that the forgetful functor $\Top \ra \Set$ creates colimits, completes the proof.
+\end{proof}
+\noindent
+Next we consider regular monomorphisms and epimorphisms in $\Top$.
+
+\begin{proposition}\label{proposition:regular_monomorphisms_are_immersions}
+	Let $f:X\ra Y$ be a continuous map and let
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{ X & Y                                          \\
+			  Y & Y\cup_XY          \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ f $} (m-1-2)
+			(m-1-1) edge node[left] {$  f $} (m-2-1)
+			(m-1-2) edge node[right] {$ u_1 $} (m-2-2)
+			(m-2-1) edge node[below] {$ u_2 $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	be a cofiber-coproduct. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $f$ is a regular monomorphism in $\Top$.
+		\item $f$ is a kernel of $(u_1,u_2)$ in $\Top$.
+		\item $f$ is an immersion of topological spaces.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	The implication $\textbf{(i)} \Rightarrow \textbf{(ii)}$ holds in every category. By definition we have $\textbf{(ii)} \Rightarrow \textbf{(i)}$. Hence $\textbf{(i)}\Leftrightarrow \textbf{(ii)}$.
+
+	On the other hand Theorem \ref{theorem:topology_induced_on_domain_of_a_family_of_maps} asserts that $f$ is an immersion of topological spaces if and only if $f$ is a kernel of $(u_1,u_2)$. Therefore, $\textbf{(ii)}\Leftrightarrow \textbf{(iii)}$ and this completes the proof.
+\end{proof}
+
+\begin{proposition}\label{proposition:regular_epimorphisms_are_quotients}
+	Let $f:X\ra Y$ be a continuous map and let
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{ X\times_YX & X                                   \\
+			  X          & Y          \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ pr_1 $} (m-1-2)
+			(m-1-1) edge node[left] {$  pr_2 $} (m-2-1)
+			(m-1-2) edge node[right] {$ f $} (m-2-2)
+			(m-2-1) edge node[below] {$ f $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	be a fiber-product. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $f$ is a regular epimorphism in $\Top$.
+		\item $f$ is a cokernel of $(pr_1,pr_2)$ in $\Top$.
+		\item $f$ is a quotient map of topological spaces.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	The implication $\textbf{(i)} \Rightarrow \textbf{(ii)}$ holds in every category. By definition we have $\textbf{(ii)} \Rightarrow \textbf{(i)}$. Hence $\textbf{(i)}\Leftrightarrow \textbf{(ii)}$.
+
+	On the other hand Theorem \ref{theorem:topology_induced_on_codomain_of_a_family_of_maps} asserts that $f$ is a quotient map of topological spaces if and only if $f$ is a cokernel of $(pr_1,pr_2)$. Therefore, $\textbf{(ii)}\Leftrightarrow \textbf{(iii)}$ and this completes the proof.
+\end{proof}
+
+\section{Closed and open mappings}
+
+\begin{definition}
+	Let $f:X \ra Y$ be a continuous map of topological spaces. Suppose that $f(U)$ is open in $Y$ for every open subset $U$ of $X$. Then $f$ is \textit{an open map}.
+\end{definition}
+
+\begin{fact}\label{fact:open_surjective_maps_are_quotient_maps}
+	Let $q:X \twoheadrightarrow Y$ be a surjective and open map of topological spaces. Then $q$ is a quotient map.
+\end{fact}
+\begin{proof}
+	Pick a subset $V$ of $Y$ and assume that $q^{-1}(V)$ is open in $X$. Then $V = q\left(q^{-1}(V)\right)$ is open in $Y$, since $q$ is open and surjective. This proves that $q$ is a quotient map.
+\end{proof}
+
+\begin{fact}\label{fact:open_injective_maps_are_immersions}
+	Let $i:X \hookrightarrow Y$ be an injective and open map of topological spaces. Then $i$ is an immersion.
+\end{fact}
+\begin{proof}
+	Pick an open subset $U$ of $X$. Then $i(U)$ is open in $Y$. Since $i$ is injective, we have $U = i^{-1}\left(i(U)\right)$. Thus $U$ is the preimage under $i$ of an open subset of $Y$.
+\end{proof}
+
+\begin{definition}
+	Let $f:X \ra Y$ be a continuous map of topological spaces. Suppose that $f(F)$ is closed in $Y$ for every closed subset $F$ in $X$. Then $f$ is \textit{a closed map}.
+\end{definition}
+
+\begin{fact}\label{fact:closed_surjective_maps_are_quotient_maps}
+	Let $q:X \twoheadrightarrow Y$ be a surjective and closed map of topological spaces. Then $q$ is a quotient map.
+\end{fact}
+\begin{proof}
+	Pick a subset $V$ of $Y$ and assume that $q^{-1}(V)$ is open in $X$. Then $X\setminus q^{-1}(V)$ is closed in $X$ and hence $q\left(X\setminus q^{-1}(V)\right)$ is closed in $Y$. Next $V = Y \setminus q\left(X\setminus q^{-1}(V)\right)$ according to the fact that $q$ is surjective. Thus $V$ is open in $Y$. This proves that $q$ is a quotient map.
+\end{proof}
+
+\begin{fact}\label{fact:closed_injective_maps_are_immersions}
+	Let $i:X \hookrightarrow Y$ be an injective and closed map of topological spaces. Then $i$ is an immersion.
+\end{fact}
+\begin{proof}
+	Pick an open subset $U$ of $X$. Then $i(X\setminus U)$ is closed in $Y$. Since $i$ is injective, we have $U = i^{-1}\left(Y\setminus i(X\setminus U)\right)$. Thus $U$ is the preimage under $i$ of an open subset of $Y$.
+\end{proof}
+
+\section{Quasi-compact spaces}
+\noindent
+In this section we introduce one of the most important classes of topological spaces.
+
+\begin{definition}
+	Let $X$ be a topological space and let $\cU$ be a family of open subsets of $X$. Suppose that the union of $\cU$ is $X$. Then $\cU$ is \textit{an open cover of $X$}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a topological space and let $\cU, \cV$ be open covers of $X$ such that $\cV \subseteq \cU$. Then $\cV$ is \textit{a subcover of $\cU$}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a topological space and let $\cF$ be a family of closed subsets of $X$. Suppose that every finite subfamily of $\cF$ has nonempty intersection. Then $\cF$ is \textit{a centered family of closed subsets of $X$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:quasi-compactness_in_terms_of_open_covers_and_closed_intersections}
+	Let $X$ be a topological space. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item Every open cover of $X$ has a finite subcover.
+		\item Every centered family of closed subsets in $X$ has nonempty intersection.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	We prove $\textbf{(i)}\Rightarrow \textbf{(ii)}$. Fix a centered family $\cF$ of closed subsets of $X$. Consider
+	$$\cU = \big\{X\setminus F\,\big|\,F\in \cF\big\}$$
+	Since $\cF$ is centered, we derive that every finite subfamily $\cV \subseteq \cU$ is not an open cover of $X$. Hence $\cU$ is not an open cover of $X$ by \textbf{(i)}. It follows that the intersection of $\cF$ is nonempty.
+
+	Now we prove $\textbf{(ii)}\Rightarrow \textbf{(i)}$. For this assume that $\cU$ is an open cover of $X$. Consider
+	$$\cF = \big\{X\setminus U\,\big|\,U \in \cU\big\}$$
+	Clearly the intersection of $\cF$ is empty. Thus by \textbf{(ii)} family $\cF$ is not centered. Hence there exists a finite subfamily $\bd{F} \subseteq \cF$ with empty intersection. Then
+	$$\cV = \big\{U\,\big|\,X\setminus U \in \bd{F}\big\}$$
+	is a finite subcover of $\cU$.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a topological space such that every open cover of $X$ has finite subcover. Then $X$ is \textit{a quasi-compact space}.
+\end{definition}
+
+\begin{theorem}[Mrówka-Kuratowski]\label{theorem:Kuratowski_Mrowka_theorem}
+	Let $X$ be a topological space. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $X$ is quasi-compact.
+		\item Let $Y$ be a topological space. Then the projection $\pi:X\times Y \ra Y$ is a closed map.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Suppose that $X$ is a quasi-compact. Let $Y$ be a topological space $Y$ and let $\pi:X\times Y \ra Y$ be the projection. Suppose that $F \subseteq X \times Y$ is a closed subset. Next pick $y \in Y\setminus \pi(F)$. Then $X\times \{y\}$ does not intersect $F$. Since $F$ is closed in $X\times Y$, for every $x \in X$ there exists open neighborhood $U_x$ of $x$ in $X$ and an open neighborhood $V_x$ of $y$ in $Y$ such that $U_x\times V_x$ does not intersect $F$. Next note that $\{U_x\}_{x\in X}$ is an open cover of $X$. Since $X$ is quasi-compact, there exists $n \in \NN_+$ and $x_1,...,x_n \in X$ such that
+	$$X = \bigcup_{i=1}^nU_{x_i}$$
+	Now we define
+	$$V = \bigcap_{i=1}^nV_{x_i}$$
+	Then $V$ is an open neighborhood of $y$ in $Y$ such that $\pi^{-1}(V) \cap F = \emptyset$. Thus $V \cap \pi(F) = \emptyset$. Since $y \in Y\setminus \pi(F)$ is arbitrary, we derive that $Y\setminus \pi(F)$ is open subset of $Y$. Therefore, $\pi(F)$ is closed in $Y$. This proves that $\pi$ is a closed map. Hence we deduce $\textbf{(i)} \Rightarrow \textbf{(ii)}$.
+
+	Now suppose that \textbf{(ii)} holds. Let $\cF$ be a family of closed subsets in $X$. Assume that the intersection of $\cF$ is empty. We construct a topological space $\tilde{X}$. As a set $\tilde{X}$ is a disjoint union of $X$ and a singleton $\{\infty\}$. Its topology is
+	$$\tau = \big\{U\subseteq \tilde{X}\,\big|\,U\subseteq X\mbox{ or }U\cap X\mbox{ contains a finite intersection of sets in }\cF\big\}$$
+	We left for the reader to verify that $\tau$ is a topology on $\tilde{X}$. Next we define
+	$$\Delta = \bigcup_{x\in X}\bd{cl}\left(\{x\}\right)\times \{x\} \subseteq X\times \tilde{X}$$
+	We claim that $\Delta$ is a closed subset of $X \times \tilde{X}$. Pick $(x,z) \in \left(X\times \tilde{X}\right)\setminus \Delta$ with $z \in X$. Then $x \not \in \bd{cl}\left(\{z\}\right)$ and hence there exists an open neighborhood $W$ of $x$ in $X$ such that $W\cap \{z\} = \emptyset$. Then $W\times \left(X\setminus W\right)$ is an open neighborhood of $(x,z)$ in $X\times \tilde{X}$ which does not intersect $\Delta$. Suppose $(x,\infty) \not \in \Delta$ for some $x \in X$. Since the intersection of $\cF$ is empty, there exists a finite intersection $F$ of sets in $\cF$ such that $x \not \in F$. Then $F$ is closed in $X$ and $\{\infty\}\cup F$ is an open neighborhood of $\infty$ in $\tilde{X}$. Thus $\left(X\setminus F\right) \times \left(\{\infty\}\cup F\right)$ is an open neighborhood of $(\infty, x)$ in $X\times \tilde{X}$ which does not intersect $\Delta$. This completes the proof of the claim. Since the projection $\pi:X\times \tilde{X} \ra \tilde{X}$ is a closed map and $\Delta$ is closed in $X\times \tilde{X}$, we derive $\pi(\Delta)$ is closed in $\tilde{X}$. We deduce that $X = \pi(\Delta)$ is a closed subset of $\tilde{X}$. This implies that there exists an open neighborhood of $\infty$ in $\tilde{X}$ which does not intersect $X$. Therefore, some finite intersection of sets in $\cF$ is empty. Hence $\cF$ is not centered. By Proposition \ref{proposition:quasi-compactness_in_terms_of_open_covers_and_closed_intersections} this proves that $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+\begin{proposition}\label{proposition:quasi-compact_spaces_are_preserved_by_continuous_images}
+	Let $X$ be a quasi-compact space and let $q:X\twoheadrightarrow Y$ be a surjective continuous map. Then $Y$ is quasi-compact.
+\end{proposition}
+\begin{proof}
+	Let $\cU$ be an open cover of $Y$. Then $\{q^{-1}(U)\,\big|\,U \in \cU\big\}$ is an open cover of $X$. Since $X$ is quasi-compact, there exists finite subcover $\cV$ of $\cU$ such that $\big\{q^{-1}(U)\,\big|\,U\in \cV\big\}$ is an open cover of $X$. Then $\cV$ is an open cover of $Y$. This proves that $Y$ is quasi-compact.
+\end{proof}
+
+
+\section{Universally closed maps}
+
+\begin{definition}
+	A continuous map $f:X\ra Y$ of topological spaces is \textit{universally closed} if every base change of $f$ is a closed map.
+\end{definition}
+
+\begin{theorem}\label{theorem:characterization_of_universally_closed_maps}
+	Let $f:X\ra Y$ be a continuous map of topological spaces. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $f$ is a closed map such that $f^{-1}(y)$ is quasi-compact for every $y \in Y$.
+		\item $f$ is universally closed.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Assume that \textbf{(i)} holds. Consider a cartesian square
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{ X\times_YZ & X                                   \\
+			  Z          & Y          \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ g' $} (m-1-2)
+			(m-1-1) edge node[left] {$  f' $} (m-2-1)
+			(m-1-2) edge node[right] {$ f $} (m-2-2)
+			(m-2-1) edge node[below] {$ g $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	and let $F$ be a closed subset of $X\times_YZ$. Fix $z \not \in f'(F)$. Note that $g'$ induces a homeomorphism between $f^{-1}(g(z))$ and $f'^{-1}(z)$. Hence $f^{-1}(g(z))\times \{z\}$ does not intersect $F$. In particular, $f'^{-1}(z)$ is quasi-compact. For every $x \in f^{-1}(g(z))$ there exists an open neighborhood $U_x$ of $x$ in $X$ and an open neighborhood $V_x$ of $z$ in $Z$ such that $g'^{-1}(U_x)\cap f'^{-1}(V_x)$ does not intersect $F$. Then
+	$$f'^{-1}(z)  \subseteq \bigcup_{x\in f^{-1}(g(z))}g'^{-1}(U_x)\cap f'^{-1}(V_x)$$
+	Since $f'^{-1}(z)$ is quasi-compact, there exist $n\in \NN_+$ and $x_1,...,x_n \in f^{-1}(g(z))$ such that
+	$$f'^{-1}(z)  \subseteq \bigcup_{i=1}^n g'^{-1}(U_{x_i})\cap f'^{-1}(V_{x_i})$$
+	Let $V$ be the intersection of $V_{x_1},...,V_{x_n}$ and let $U$ be the union of $U_{x_1},...,U_{x_n}$. Then $V$ is an open neighborhood of $z$ in $Z$ and we have
+	$$f'^{-1}(z) \subseteq \bigcup_{i=1}^n g'^{-1}(U_{x_i})\cap f'^{-1}(V) = g'^{-1}(U) \cap f'^{-1}(V)$$
+	and $g'^{-1}(U)\cap f'^{-1}(V)$ does not intersect $F$. It follows that $f^{-1}(g(z))$ is a subset of $U$. Now we consider $W = Y\setminus f(X\setminus U)$. Since $f$ is closed, we derive that $W$ is an open neighborhood of $g(z)$ in $Y$. Clearly $f^{-1}(W) \subseteq U$. Note that $g^{-1}(W)$ is an open neighborhood of $z$ in $Z$ and
+	$$f'^{-1}\left(g^{-1}(W)\cap V\right) \subseteq f'^{-1}\left(g^{-1}(W)\right)\cap f'^{-1}(V) = g'^{-1}\left(f^{-1}(W)\right) \cap f'^{-1}(V) \subseteq g'^{-1}(U)\cap f'^{-1}(V)$$
+	Hence $f'^{-1}\left(g^{-1}(W)\cap V\right)$ does not intersect $F$. Thus $g^{-1}(W)\cap V$ is an open neighborhood of $z$ in $Z$ which does not intersect $f'(F)$. Since $z \not \in f'(F)$ is arbitrary, we derive that $f'(F)$ is a closed subset of $Z$. Thus $f'$ is closed and hence $f$ is universally closed. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$ holds.
+
+	Suppose that $f$ is universally closed. Then clearly $f$ is closed. Fix $y \in Y$ and let $Z$ be an arbitrary topological space. Let $Z \ra Y$ be the continuous map that sends each point of $Z$ to $y$. Then square
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{ f^{-1}(y)\times Z & X                                   \\
+			  Z          & Y          \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$  $} (m-1-2)
+			(m-1-1) edge node[left] {$  \pi $} (m-2-1)
+			(m-1-2) edge node[right] {$ f $} (m-2-2)
+			(m-2-1) edge node[below] {$  $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	in which $\pi$ is the projection is a cartesian square. It follows that $\pi$ is closed. Theorem \ref{theorem:Kuratowski_Mrowka_theorem} implies that $f^{-1}(y)$ is quasi-compact. Therefore, $f$ is closed with quasi-compact fibers. Hence $f$ is universally closed. This proves that $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+
+\begin{proposition}\label{proposition:quasi_compactness_is_preserved_by_preimage_of_universally_closed_maps}
+	Let $f:X\ra Y$ be a universally closed map and let $Z$ be a quasi-compact subspace of $Y$. Then $f^{-1}(Z)$ is quasi-compact.
+\end{proposition}
+\begin{proof}
+	By applying the base change along inclusion $Z \hookrightarrow Y$ we may assume that $Y$ is quasi-compact and that our goal is to prove that $X$ is quasi-compact. Let $\cF$ be a centered family of closed subsets on $X$. Suppose that $\tilde{\cF}$ is the family of all finite intersections of members of $\cF$. Since $f$ is closed, we derive that 
+	$$\big\{f(F)\,\big|\,F\in \tilde{\cF}\big\}$$
+	is a centered family of closed subsets in $Y$. Since $Y$ is quasi-compact, there exists $y \in Y$ such that $y \in f(F)$ for every $F \in \tilde{\cF}$. Hence $F\cap f^{-1}(y) \neq \emptyset$ for every $F \in \tilde{\cF}$. This proves that 
+	$$\big\{F\cap f^{-1}(y)\,\big|\,F\in \cF\big\}$$
+	is a centered family of closed subsets of $f^{-1}(y)$. Since $f^{-1}(y)$ is quasi-compact by Theorem \ref{theorem:characterization_of_universally_closed_maps}, we derive that the intersection of $\cF$ is nonempty. Thus $X$ is quasi-compact. This completes the proof.
+\end{proof}
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+
+\end{document}
+
