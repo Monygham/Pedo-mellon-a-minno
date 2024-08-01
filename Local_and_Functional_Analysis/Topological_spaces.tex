@@ -693,11 +693,11 @@ In this section we introduce one of the most important classes of topological sp
 	Let $X$ be a topological space and let $Z$ be a connected subspace of $X$. Then $\bd{cl}(Z)$ is connected.
 \end{fact}
 \begin{proof}
-	Suppose that $U, V$ are open and disjoint subsets of $\bd{cl}(Z)$. Assume also that $\bd{cl}(Z) \subseteq U\cup V$. Since $Z$ is connected subspace of $X$, we derive that $Z$ is contained in exactly one of the sets $U$ or $V$. Suppose without loss of generality that $Z$ is contained in $U$. Then $Z \subseteq \bd{cl}(Z) \setminus V$ and hence $\bd{cl}(Z) \subseteq \bd{cl}(Z)\setminus V$. This implies that $V$ is empty. Thus $\bd{cl}(Z)$ is connected.
+	Suppose that $U, V$ are open and disjoint subsets of $\bd{cl}(Z)$. Assume also that $\bd{cl}(Z) \subseteq U\cup V$. Since $Z$ is connected, we derive that $Z$ is contained in exactly one of the sets $U$ or $V$. Suppose without loss of generality that $Z$ is contained in $U$. Then $Z \subseteq \bd{cl}(Z) \setminus V$ and hence $\bd{cl}(Z) \subseteq \bd{cl}(Z)\setminus V$. This implies that $V$ is empty. Thus $\bd{cl}(Z)$ is connected.
 \end{proof}
 
 \begin{fact}\label{fact:union_of_pointed_connected_spaces_is_connected}
-	Let $X$ be a topological space and let $\{Z_i\}_{i\in I}$ be a family of connected subspaces of $X$ with nonempty intersection. Then the union of $\{Z_i\}_{i\in I}$ is a connected subspace of $X$.
+	Let $X$ be a topological space and let $\{Z_i\}_{i\in I}$ be a family of connected subspaces of $X$ with nonempty intersection. Then the union of $\{Z_i\}_{i\in I}$ is connected.
 \end{fact}
 \begin{proof}
 	Let $Z$ be the union of $\{Z_i\}_{i\in I}$ and let $z$ be the point in their intersection. Let $U,V$ be open and disjoint subsets of $Z$ such that $Z \subseteq U\cup V$. Assume without loss of generality that $z \in U$. Then $Z_i \subseteq U\cup V$ and $z\in Z_i\cap U$ for every $i\in I$. Since $Z_i$ is connected, we derive that $Z_i\subseteq U$ for every $i \in I$. Thus $Z \subseteq U$ and $V$ is empty.
