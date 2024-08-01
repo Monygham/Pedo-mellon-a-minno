@@ -1,0 +1,178 @@
+% !TeX root = ../Local_and_Functional_Analysis/Filters_in_topology.tex
+% arara: indent: {overwrite: yes, silent: yes}
+\input ../pree.tex
+
+\begin{document}
+
+\title{Filters in topology}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In these short notes we study filters of subsets with their applications to topological spaces. Filters were introduced in \cite{cartan1937filters} as an effective tool in studying general topological spaces. Here we recapitulate some of Cartan's results. In particular, we give a concise proof of Tychonoff's theorem on compact spaces. For introduction to topological spaces we refer to \cite{topological_spaces_monygham}.
+
+\section{Filters}
+
+\begin{definition}
+	Let $X$ be a set and let $\cF$ be a nonempty family of subsets of $X$. Assume that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+		\item $\cF$ is closed under finite intersections.
+		\item If $F_1$ and $F_2$ are subsets of $X$ such that $F_1 \in \cF$ and $F_1\subseteq F_2$, then $F_2 \in \cF$.
+	\end{enumerate}
+	Then $\cF$ is \textit{a filter on $X$}.
+\end{definition}
+\noindent
+We note the following fact.
+
+\begin{fact}\label{fact:filters_are_closed_under_intersections}
+	Let $X$ be a set and let $\{\cF_i\}_{i\in I}$ be a family of filters on $X$. Then
+	$$\bigcap_{i\in I}\cF_i$$
+	is a filter on $X$.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a set and let $\cF$ be a filter on $X$. Assume that $\emptyset \not \in \cF$. Then $\cF$ is \textit{proper}.
+\end{definition}
+\noindent
+Filters are functorial as it is displayed in the following notion.
+
+\begin{definition}
+	Let $\cF$ be a filter on a set $X$ and let $f:X\ra Y$ be a map of sets. Then a filter
+	$$f(\cF) = \big\{Z \subseteq Y\,\big|\,\mbox{ there exists }F\in \cF\mbox{ such that }f(F)\subseteq Z\big\}$$
+	on $Y$ is \textit{the image of $\cF$ under $f$}.
+\end{definition}
+\noindent
+Let us note the following result.
+
+\begin{fact}\label{fact:image_of_a_proper_filter_is_proper}
+	Let $\cF$ be a filter on a set $X$ and let $f:X\ra Y$ be a map of sets. If $\cF$ is proper, then $f(\cF)$ is proper.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+\noindent
+Now we introduce the notion of ultrafilter and prove its properties.
+
+\begin{definition}
+	Let $X$ be a set and let $\cF$ be a proper filter on $X$. Suppose that $\cF$ is maximal with respect to inclusion among proper filters on $X$. Then $\cF$ is \textit{an ultrafilter on $X$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:ultrafilter_contains_either_subset_or_its_complement}
+	Let $X$ be a set and let $\cF$ be a proper filter on $X$. The following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+		\item $\cF$ is an ultrafilter on $X$.
+		\item For each subset $F$ of $X$ either $F \in \cF$ or $X\setminus F \in \cF$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Assume that $\cF$ is an ultrafilter and let $F$ be a subset of $X$. Suppose that $F\not \in \cF$. Then the smallest filter containing $\{F\}\cup \cF$, which exists according to Fact \ref{fact:filters_are_closed_under_intersections}, is not a proper filter. This implies that there exists $F' \in \cF$ such that $F\cap F' = \emptyset$. Since $F'\subseteq X\setminus F$ and $\cF$ is a filter, we derive that $X\setminus F \in \cF$. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
+	Suppose that for each subset $F$ of $X$ either $F \in \cF$ or $X\setminus F \in \cF$. Consider a filter $\tilde{\cF}$ such that $\cF \subsetneq \tilde{\cF}$. If $F \in \tilde{\cF}\setminus \cF$, then $X\setminus F \in \cF$ and hence $\emptyset = F\cap \left(X\setminus F\right) \in \tilde{\cF}$. This implies that $\tilde{\cF}$ is not a proper filter. Thus $\cF$ is an ultrafilter on $X$. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+\begin{corollary}\label{corollary:ultrafilters_are_preserved_by_images}
+	Let $f:X\ra Y$ be a map of sets and let $\cF$ be an ultrafilter of subsets of $X$. Then $f(\cF)$ is an ultrafilter.
+\end{corollary}
+\begin{proof}
+	Filter $f(\cF)$ is proper according to Fact \ref{fact:image_of_a_proper_filter_is_proper}. Fix a subset $F$ of $Y$. By Proposition \ref{proposition:ultrafilter_contains_either_subset_or_its_complement} either $f^{-1}(F) \in \cF$ or $f^{-1}(Y\setminus F) \in \cF$. Thus either $F \in f(\cF)$ or $Y\setminus F \in f(\cF)$. Proposition \ref{proposition:ultrafilter_contains_either_subset_or_its_complement} implies that $f(\cF)$ is an ultrafilter.
+\end{proof}
+\noindent
+The following result uses axiom of choice.
+
+\begin{proposition}\label{proposition:existence_of_ultrafilters}
+	Let $X$ be a set and let $\cF$ be a proper filter on $X$. Then there exists an ultrafilter $\tilde{\cF}$ on $X$ such that $\cF \subseteq \tilde{\cF}$.
+\end{proposition}
+\begin{proof}
+	Consider the family
+	$$\bd{F} = \big\{\cG\,\big|\,\cG\mbox{ is a proper filter on }X\mbox{ and }\cF \subseteq \cG\big\}$$
+	Note that $\bd{F}$ is nonempty because $\cF \in \bd{F}$. The inclusion of filters introduces partial order on $\bd{F}$ and if $\mathrm{L}\subseteq \bd{F}$ is a linearly ordered subset, then
+	$$\bigcup \mathrm{L}$$
+	is a proper filter. Hence each chain in $\left(\bd{F},\subseteq\right)$ admits an upper bound. Zorn's lemma implies that $\left(\bd{F},\subseteq\right)$ has a maximal element $\tilde{\cF}$. Clearly $\tilde{\cF}$ is an ultrafilter on $X$ and $\cF \subseteq \tilde{\cF}$.
+\end{proof}
+
+\section{Filters and convergence in topological spaces}
+
+\begin{definition}
+	Let $X$ be a topological space and let $\cF$ be a proper filter on $X$. Consider a point $x$ in $X$. Suppose that for every open neighborhood $U$ of $x$ we have $U \in \cF$. Then $\cF$ \textit{converges to $x$ in $X$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:characterization_of_continuous_maps_in_terms_of_filters}
+	Let $X,Y$ be topological spaces and let $f:X\ra Y$ be a map of sets. Let $x$ be a point in $X$. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+		\item $f$ is continuous at $x$.
+		\item If $\cF$ is a proper filter on $X$ convergent to $x$, then $f(\cF)$ converges to $f(x)$.
+		\item If $\cF$ is an ultrafilter on $X$ convergent to $x$, then $f(\cF)$ converges to $f(x)$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Suppose that $f$ is a continuous at $x$. Fix a proper filter $\cF$ on $X$ convergent to $x$. Fix an open neighborhood $V$ of $f(x)$ in $Y$. Since $f$ is continuous at $x$, there exists an open neighborhood $U$ of $x$ such that $f(U) \subseteq V$. Note that $U \in \cF$ and hence $V \in f(\cF)$. Since $V$ is arbitrary open neighborhood of $f(x)$ in $Y$, we derive that $f(\cF)$ converges to $f(x)$ in $Y$. This proves the implication $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
+	The implication $\textbf{(ii)}\Rightarrow \textbf{(iii)}$ follows from definition of an ultrafilter.
+
+	Suppose now that \textbf{(iii)} holds. Consider an open neighborhood $V$ of $f(x)$ in $Y$. Assume that for every open neighborhood $U$ of $x$ in $X$ the set $U\setminus f^{-1}(V)$ is nonempty. Let $\cF$ be a filter generated by all sets of the form $U\setminus f^{-1}(V)$ where $U$ is an open neighborhood of $x$. Then $\cF$ is a proper filter on $X$. Next by Proposition \ref{proposition:existence_of_ultrafilters} there exists an ultrafilter $\tilde{\cF}$ on $X$ which contains $\cF$. Since $\cF$ converges to $x$ in $X$, we derive that $\tilde{\cF}$ converges to $x$ in $X$. Thus $f(\tilde{\cF})$ converges to $f(x)$ in $Y$. Note that
+	$$f\left(X\setminus f^{-1}(V)\right) \in f(\tilde{\cF})$$
+	This implies that $Y\setminus V \in f(\tilde{\cF})$ and hence $V \not \in f(\tilde{\cF})$. It follows that the filter $f(\tilde{\cF})$ cannot converge to $f(x)$ in $Y$. We arrive at contradiction. This means that there exists an open neighborhood $U$ of $x$ in $X$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$. We infer $\textbf{(iii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
+\begin{theorem}\label{theorem:quasi_compact_in_terms_of_ultrafilters}
+	Let $X$ be a topological space. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+		\item Each ultrafilter on $X$ is convergent to some point of $X$.
+		\item $X$ is a quasi-compact topological space.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Suppose that \textbf{(i)} holds. Pick a centered family $\cF$ of closed subsets of $X$. By Proposition \ref{proposition:existence_of_ultrafilters} there exists an ultrafilter $\tilde{\cF}$ that contains $\cF$. According to \textbf{(i)} ultrafilter $\tilde{\cF}$ is convergent to some point $x$ in $X$. Then for every open neighborhood $U$ of $x$ we have $U \in \tilde{\cF}$. In particular, $U\cap F \neq \emptyset$ for every $F\in \cF$ and for every open neighborhood $U$ of $x$ in $X$. This implies that $x \in F$ for every $F\in \cF$. Thus $\cF$ has nonempty intersection and this implies that $X$ is quasi-compact. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
+	Assume that $X$ is quasi-compact and suppose that $\cF$ is an ultrafilter on $X$. Suppose that $\cF$ is not convergent. Then for every $x \in X$ there exists open neighborhood $U_x$ of $x$ in $X$ such that $U_x \not \in \cF$. Since $X$ is quasi-compact, we deduce that there exist $n\in \NN_+$ and $x_1,...,x_n \in X$ such that
+	$$X = \bigcup_{i=1}^nU_{x_i}$$
+	According to Proposition \ref{proposition:ultrafilter_contains_either_subset_or_its_complement} we derive that $X \setminus U_x \in \cF$ for every $x \in X$. Hence
+	$$\bigcap_{i=1}^n\left(X\setminus U_{x_i}\right) \in \cF$$
+	On the other hand we have
+	$$\bigcap_{i=1}^n\left(X\setminus U_{x_i}\right) = X \setminus \bigcup_{i=1}^nU_{x_i} = \emptyset$$
+	This is contradiction. Thus the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
+\end{proof}
+
+\section{Tychonoff's theorem}
+\noindent
+The following result is a celebrated theorem due to Tychonoff.
+
+\begin{theorem}\label{theorem:Tychonoff_theorem}
+	Let $\big\{X_i\big\}_{i\in I}$ be a family of quasi-compact topological spaces. Then the product
+	$$\prod_{i\in I}X_i$$
+	is quasi-compact.
+\end{theorem}
+\begin{proof}
+	We denote $\prod_{i\in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X \ra X_i$ the canonical projection onto $i$-th factor. Suppose that $X_i$ is quasi-compact for every $i\in I$. Pick an ultrafilter $\cF$ on $X$. Fix $i$ in $I$. According to Corollary \ref{corollary:ultrafilters_are_preserved_by_images} the filter $pr_i(\cF)$ is an ultrafilter. Since $X_i$ is quasi-compact, we derive that $pr_i(\cF)$ is convergent to some point $x_i \in X_i$. Let $x$ be a point of $X$ such that $pr_i(x) = x_i$ for each $i\in I$. Fix finite subset $\{i_1,...,i_n\}\subseteq I$. Consider open neighborhood $U_j$ of $x_{i_j}$. Then $U_{i_j}\in pr_{i_j}(\cF)$ for each $j$ and hence $pr_{i_j}^{-1}(U_{i_j}) \in \cF$ for each $j$. Since $\cF$ is a filter, we derive that
+	$$\prod_{j=1}^nU_{i_j}\times \prod_{i\in I \setminus \{i_1,...,i_n\}}X_i = \bigcap_{j=1}^n pr^{-1}_{i_j}(U_{i_j}) \in \cF$$
+	This implies that $\cF$ is convergent to $x$ in $X$. Thus every ultrafilter in $X$ is convergent and hence Theorem \ref{theorem:quasi_compact_in_terms_of_ultrafilters} shows that $X$ is quasi-compact.
+\end{proof}
+
+\begin{theorem}\label{theorem:Tychonoff_theorem_converse}
+	Let $\big\{X_i\big\}_{i\in I}$ be a family of nonempty topological spaces. If the product
+	$$\prod_{i\in I}X_i$$
+	is quasi-compact, then $X_i$ is quasi-compact for every $i\in I$.
+\end{theorem}
+\begin{proof}
+	We denote $\prod_{i\in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X \ra X_i$ the canonical projection onto $i$-th factor. Assume that $X$ is quasi-compact. Since $X_i \neq \emptyset$ for every $i\in I$, we derive that $pr_i:X\ra X_i$ is a continuous and surjective map for every $i\in I$. Hence for each $i\in I$ space $X_i$ is quasi-compact as an image of a quasi-compact space under continuous map.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+\end{document}
