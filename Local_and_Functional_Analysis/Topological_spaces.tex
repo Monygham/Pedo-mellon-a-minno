@@ -12,7 +12,7 @@
 \noindent
 These notes contain introductory material on topological spaces. Our approach to foundations of this subject follows method presented in \cite{kuratowski1922operation} and generalized by Eduardo \v{C}ech. This enable us to introduce pretopological spaces.
 
-The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps.  
+The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps. Final section discusses connected topological spaces.
 
 \section{Preclosure operators and pretopological spaces}
 
@@ -169,7 +169,7 @@ Now we state our main result.
 
 	Combining all these results we infer that $\Top_1 \ra \Top_2$ is an isomorphism of categories.
 
-	The fact that $\Top_2 \ra \Top_3$ give rise to a functor bijective on objects and morphisms is left for the reader as an exercise. 
+	The fact that $\Top_2 \ra \Top_3$ give rise to a functor bijective on objects and morphisms is left for the reader as an exercise.
 
 	This completes the proof of the theorem.
 \end{proof}
@@ -348,7 +348,7 @@ In this section we discuss two different methods of generating topologies by fam
 \end{proof}
 
 \begin{definition}
-	Let $i:X\hookrightarrow Y$ be an injective continuous map of topological spaces. Suppose that the topology on $X$ is induced by $i$. Then $i$ is \textit{an immersion of topological spaces}.
+	Let $i:X\hookrightarrow Y$ be an injective continuous map of topological spaces. Suppose that the topology on $X$ is induced by $i$. Then $i$ is \textit{an embedding of topological spaces}.
 \end{definition}
 
 \begin{definition}
@@ -447,7 +447,7 @@ We begin by classifying monomorphisms and epimorphisms in $\Top$.
 \noindent
 Next we consider regular monomorphisms and epimorphisms in $\Top$.
 
-\begin{proposition}\label{proposition:regular_monomorphisms_are_immersions}
+\begin{proposition}\label{proposition:regular_monomorphisms_are_embeddings}
 	Let $f:X\ra Y$ be a continuous map and let
 	\begin{center}
 		\begin{tikzpicture}
@@ -466,13 +466,13 @@ Next we consider regular monomorphisms and epimorphisms in $\Top$.
 	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 		\item $f$ is a regular monomorphism in $\Top$.
 		\item $f$ is a kernel of $(u_1,u_2)$ in $\Top$.
-		\item $f$ is an immersion of topological spaces.
+		\item $f$ is an embedding of topological spaces.
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
 	The implication $\textbf{(i)} \Rightarrow \textbf{(ii)}$ holds in every category. By definition we have $\textbf{(ii)} \Rightarrow \textbf{(i)}$. Hence $\textbf{(i)}\Leftrightarrow \textbf{(ii)}$.
 
-	On the other hand Theorem \ref{theorem:topology_induced_on_domain_of_a_family_of_maps} asserts that $f$ is an immersion of topological spaces if and only if $f$ is a kernel of $(u_1,u_2)$. Therefore, $\textbf{(ii)}\Leftrightarrow \textbf{(iii)}$ and this completes the proof.
+	On the other hand Theorem \ref{theorem:topology_induced_on_domain_of_a_family_of_maps} asserts that $f$ is an embedding of topological spaces if and only if $f$ is a kernel of $(u_1,u_2)$. Therefore, $\textbf{(ii)}\Leftrightarrow \textbf{(iii)}$ and this completes the proof.
 \end{proof}
 
 \begin{proposition}\label{proposition:regular_epimorphisms_are_quotients}
@@ -516,8 +516,8 @@ Next we consider regular monomorphisms and epimorphisms in $\Top$.
 	Pick a subset $V$ of $Y$ and assume that $q^{-1}(V)$ is open in $X$. Then $V = q\left(q^{-1}(V)\right)$ is open in $Y$, since $q$ is open and surjective. This proves that $q$ is a quotient map.
 \end{proof}
 
-\begin{fact}\label{fact:open_injective_maps_are_immersions}
-	Let $i:X \hookrightarrow Y$ be an injective and open map of topological spaces. Then $i$ is an immersion.
+\begin{fact}\label{fact:open_injective_maps_are_embeddings}
+	Let $i:X \hookrightarrow Y$ be an injective and open map of topological spaces. Then $i$ is an embedding.
 \end{fact}
 \begin{proof}
 	Pick an open subset $U$ of $X$. Then $i(U)$ is open in $Y$. Since $i$ is injective, we have $U = i^{-1}\left(i(U)\right)$. Thus $U$ is the preimage under $i$ of an open subset of $Y$.
@@ -534,8 +534,8 @@ Next we consider regular monomorphisms and epimorphisms in $\Top$.
 	Pick a subset $V$ of $Y$ and assume that $q^{-1}(V)$ is open in $X$. Then $X\setminus q^{-1}(V)$ is closed in $X$ and hence $q\left(X\setminus q^{-1}(V)\right)$ is closed in $Y$. Next $V = Y \setminus q\left(X\setminus q^{-1}(V)\right)$ according to the fact that $q$ is surjective. Thus $V$ is open in $Y$. This proves that $q$ is a quotient map.
 \end{proof}
 
-\begin{fact}\label{fact:closed_injective_maps_are_immersions}
-	Let $i:X \hookrightarrow Y$ be an injective and closed map of topological spaces. Then $i$ is an immersion.
+\begin{fact}\label{fact:closed_injective_maps_are_embeddings}
+	Let $i:X \hookrightarrow Y$ be an injective and closed map of topological spaces. Then $i$ is an embedding.
 \end{fact}
 \begin{proof}
 	Pick an open subset $U$ of $X$. Then $i(X\setminus U)$ is closed in $Y$. Since $i$ is injective, we have $U = i^{-1}\left(Y\setminus i(X\setminus U)\right)$. Thus $U$ is the preimage under $i$ of an open subset of $Y$.
@@ -652,8 +652,8 @@ In this section we introduce one of the most important classes of topological sp
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
 			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
-			{ f^{-1}(y)\times Z & X                                   \\
-			  Z          & Y          \\} ;
+			{ f^{-1}(y)\times Z & X                                 \\
+			  Z                 & Y          \\} ;
 			\path[->,line width=0.8pt,font=\scriptsize]
 			(m-1-1) edge node[above] {$  $} (m-1-2)
 			(m-1-1) edge node[left] {$  \pi $} (m-2-1)
@@ -669,15 +669,54 @@ In this section we introduce one of the most important classes of topological sp
 	Let $f:X\ra Y$ be a universally closed map and let $Z$ be a quasi-compact subspace of $Y$. Then $f^{-1}(Z)$ is quasi-compact.
 \end{proposition}
 \begin{proof}
-	By applying the base change along inclusion $Z \hookrightarrow Y$ we may assume that $Y$ is quasi-compact and that our goal is to prove that $X$ is quasi-compact. Let $\cF$ be a centered family of closed subsets on $X$. Suppose that $\tilde{\cF}$ is the family of all finite intersections of members of $\cF$. Since $f$ is closed, we derive that 
+	By applying the base change along inclusion $Z \hookrightarrow Y$ we may assume that $Y$ is quasi-compact and that our goal is to prove that $X$ is quasi-compact. Let $\cF$ be a centered family of closed subsets on $X$. Suppose that $\tilde{\cF}$ is the family of all finite intersections of members of $\cF$. Since $f$ is closed, we derive that
 	$$\big\{f(F)\,\big|\,F\in \tilde{\cF}\big\}$$
-	is a centered family of closed subsets in $Y$. Since $Y$ is quasi-compact, there exists $y \in Y$ such that $y \in f(F)$ for every $F \in \tilde{\cF}$. Hence $F\cap f^{-1}(y) \neq \emptyset$ for every $F \in \tilde{\cF}$. This proves that 
+	is a centered family of closed subsets in $Y$. Since $Y$ is quasi-compact, there exists $y \in Y$ such that $y \in f(F)$ for every $F \in \tilde{\cF}$. Hence $F\cap f^{-1}(y) \neq \emptyset$ for every $F \in \tilde{\cF}$. This proves that
 	$$\big\{F\cap f^{-1}(y)\,\big|\,F\in \cF\big\}$$
 	is a centered family of closed subsets of $f^{-1}(y)$. Since $f^{-1}(y)$ is quasi-compact by Theorem \ref{theorem:characterization_of_universally_closed_maps}, we derive that the intersection of $\cF$ is nonempty. Thus $X$ is quasi-compact. This completes the proof.
 \end{proof}
 
+\section{Connected spaces}
 
+\begin{definition}
+	Let $X$ be a topological space. Suppose that for any pair $U, V$ of open, nonempty and disjoint subsets in $X$ their union is a proper subset of $X$. Then $X$ is \textit{a connected space}.
+\end{definition}
 
+\begin{proposition}\label{proposition:connected_spaces_are_preserved_under_continuous_images}
+	Let $X$ be a connected space and let $q:X\twoheadrightarrow Y$ be a continuous and surjective map. Then $Y$ is connected.
+\end{proposition}
+\begin{proof}
+	Suppose that $U,V$ are open, nonempty and disjoint subsets of $Y$. Then $q^{-1}(U),q^{-1}(V)$ are open, nonempty and disjoint subsets of $X$. Since $X$ is connected, we derive that $q^{-1}(U) \cup q^{-1}(V) \neq X$. The fact that $q$ is surjective implies that $U \cup V \neq Y$. Thus $Y$ is connected.
+\end{proof}
+
+\begin{fact}\label{fact:connected_subsets_are_preserved_by_closure}
+	Let $X$ be a topological space and let $Z$ be a connected subspace of $X$. Then $\bd{cl}(Z)$ is connected.
+\end{fact}
+\begin{proof}
+	Suppose that $U, V$ are open and disjoint subsets of $\bd{cl}(Z)$. Assume also that $\bd{cl}(Z) \subseteq U\cup V$. Since $Z$ is connected subspace of $X$, we derive that $Z$ is contained in exactly one of the sets $U$ or $V$. Suppose without loss of generality that $Z$ is contained in $U$. Then $Z \subseteq \bd{cl}(Z) \setminus V$ and hence $\bd{cl}(Z) \subseteq \bd{cl}(Z)\setminus V$. This implies that $V$ is empty. Thus $\bd{cl}(Z)$ is connected.
+\end{proof}
+
+\begin{fact}\label{fact:union_of_pointed_connected_spaces_is_connected}
+	Let $X$ be a topological space and let $\{Z_i\}_{i\in I}$ be a family of connected subspaces of $X$ with nonempty intersection. Then the union of $\{Z_i\}_{i\in I}$ is a connected subspace of $X$.
+\end{fact}
+\begin{proof}
+	Let $Z$ be the union of $\{Z_i\}_{i\in I}$ and let $z$ be the point in their intersection. Let $U,V$ be open and disjoint subsets of $Z$ such that $Z \subseteq U\cup V$. Assume without loss of generality that $z \in U$. Then $Z_i \subseteq U\cup V$ and $z\in Z_i\cap U$ for every $i\in I$. Since $Z_i$ is connected, we derive that $Z_i\subseteq U$ for every $i \in I$. Thus $Z \subseteq U$ and $V$ is empty.
+\end{proof}
+
+\begin{definition}
+	A topological space that is not connected is \textit{disconnected}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a topological space and let $Z$ be a connected subspace of $X$ such that there is no connected subspace of $X$ containing $Z$. Then $Z$ is \textit{a connected component of $X$}.
+\end{definition}
+
+\begin{corollary}\label{corollary:space_is_a_union_of_its_connected_components_which_are_closed}
+	Let $X$ be a topological space. The every connected component of $X$ is closed and $X$ is the disjoint union of its connected components.
+\end{corollary}
+\begin{proof}
+	Follows immediately from Fact \ref{fact:connected_subsets_are_preserved_by_closure} and Fact \ref{fact:union_of_pointed_connected_spaces_is_connected}.
+\end{proof}
 
 
 \small
