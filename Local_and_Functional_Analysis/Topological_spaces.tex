@@ -12,7 +12,7 @@
 \noindent
 These notes contain introductory material on topological spaces. Our approach to foundations of this subject follows method presented in \cite{kuratowski1922operation} and generalized by Eduardo \v{C}ech. This enable us to introduce pretopological spaces.
 
-The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps. Final section discusses connected topological spaces.
+The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps. Next we introduce dense subsets and prove interesting Hewitt-Marczewski-Pondiczery theorem. In the next section we discuss connected topological spaces and their connected components. Final section is devoted to important classes of Hausdorff, completely regular and normal spaces. Here we prove Urysohn lemma and Tietze extension theorem. 
 
 \section{Preclosure operators and pretopological spaces}
 
@@ -23,7 +23,7 @@ The first section is devoted to \v{C}ech approach to pretopological spaces. Here
 		\item $A\subseteq \bd{c}(A)$ for every subset $A$ of $X$.
 		\item $\bd{c}\left(A \cup B\right) = \bd{c}(A)\cup \bd{c}(B)$ for all subsets $A, B$ of $X$.
 	\end{enumerate}
-	Then $\bd{c}$ is \textit{a preclosure operator on $X$}.
+	Then $\bd{c}$ is a \textit{preclosure operator on $X$}.
 \end{definition}
 
 
@@ -37,11 +37,11 @@ The first section is devoted to \v{C}ech approach to pretopological spaces. Here
 \end{proof}
 
 \begin{definition}
-	A set $X$ together with a preclosure operator is \textit{a pretopological space}.
+	A set $X$ together with a preclosure operator is a \textit{pretopological space}.
 \end{definition}
 
 \begin{definition}
-	Let $X$ and $Y$ be pretopological spaces. Suppose that $\bd{c},\bd{d}$ are preclosure operators on $X,Y$, respectively. A map $f:X\ra Y$ such that $f\left(\bd{c}(A)\right) \subseteq \bd{d}\left(f(A)\right)$ for every subset $A$ of $X$ is \textit{a continuous map}.
+	Let $X$ and $Y$ be pretopological spaces. Suppose that $\bd{c},\bd{d}$ are preclosure operators on $X,Y$, respectively. A map $f:X\ra Y$ such that $f\left(\bd{c}(A)\right) \subseteq \bd{d}\left(f(A)\right)$ for every subset $A$ of $X$ is a \textit{continuous map}.
 \end{definition}
 
 \begin{fact}\label{fact:composition_of_continuous_maps_is_continuous}
@@ -177,17 +177,17 @@ Now we state our main result.
 According to Theorem \ref{theorem:Kuratowski_closure_spaces_spaces_with_closed_families_topological_spaces_isomorphic_categories} from now on we identify categories $\Top_1$, $\Top_2$ and $\Top_3$. We denote the result of this identification by $\Top$. Note that $\Top$ is a full subcategory of $\PreTop$.
 
 \begin{definition}
-	\textit{A topological space} is an object of $\Top$.
+	A \textit{topological space} is an object of $\Top$.
 \end{definition}
 
 \begin{definition}
-	An isomorphism in $\Top$ is \textit{a homeomorphism}.
+	An isomorphism in $\Top$ is a \textit{homeomorphism}.
 \end{definition}
 
 \section{Topological spaces as reflective subcategory in pretopological spaces}
 
 \begin{definition}
-	Let $X$ be a pretopological space with preclosure $\bd{c}$ and let $A$ be a subset of $X$. Suppose that $\bd{cl}(A)$ is the smallest closed set in $X$ that contains $A$. Then $\bd{cl}(A)$ is \textit{the closure of $A$}.
+	Let $X$ be a pretopological space with preclosure $\bd{c}$ and let $A$ be a subset of $X$. Suppose that $\bd{cl}(A)$ is the smallest closed set in $X$ that contains $A$. Then $\bd{cl}(A)$ is the \textit{closure} of $A$.
 \end{definition}
 
 \begin{theorem}\label{theorem:topological_spaces_are_reflective_subcategory_of_pretopological_spaces}
@@ -242,13 +242,13 @@ According to Theorem \ref{theorem:Kuratowski_closure_spaces_spaces_with_closed_f
 The aim of this section is to introduce standard topological terminology.
 
 \begin{definition}
-	Let $X$ be a topological space. A complement of a closed set in $X$ is \textit{an open set in $X$}. The collection of all open subsets of $X$ is \textit{a topology of $X$}.
+	Let $X$ be a topological space. A complement of a closed set in $X$ is \textit{an open set in $X$}. The collection of all open subsets of $X$ is a \textit{topology} of $X$.
 \end{definition}
 \noindent
 The following notion is very useful.
 
 \begin{definition}
-	Let $X$ be a topological space and let $\cB$ be a family consisting of open sets in $X$. Suppose that for every open subset $U$ of $X$ and for every $x \in U$ there exists $B \in \cB$ such that $x \in B$ and $B \subseteq U$. Then $\cB$ is \textit{a base of topology of $X$}.
+	Let $X$ be a topological space and let $\cB$ be a family consisting of open sets in $X$. Suppose that for every open subset $U$ of $X$ and for every $x \in U$ there exists $B \in \cB$ such that $x \in B$ and $B \subseteq U$. Then $\cB$ is a \textit{base} of topology of $X$.
 \end{definition}
 
 \begin{fact}\label{fact:bases_of_topology}
@@ -266,7 +266,7 @@ The following notion is very useful.
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a topological space. Let $x$ be a point of $X$ and let $U$ be an open subset that contains $x$. Then $U$ is \textit{an open neighborhood of $x$}.
+	Let $X$ be a topological space. Let $x$ be a point of $X$ and let $U$ be an open subset that contains $x$. Then $U$ is an \textit{open neighborhood} of $x$.
 \end{definition}
 
 \begin{definition}
@@ -276,7 +276,7 @@ The following notion is very useful.
 Finally we need operation related to closure of the subset.
 
 \begin{definition}
-	Let $A$ be a subset of a topological space. Suppose that $\bd{int}(A)$ is the largest open subset contained in $A$. Then $\bd{int}(A)$ is \textit{the interior of $A$}.
+	Let $A$ be a subset of a topological space. Suppose that $\bd{int}(A)$ is the largest open subset contained in $A$. Then $\bd{int}(A)$ is the \textit{interior} of $A$.
 \end{definition}
 
 \begin{fact}\label{fact:relation_between_closure_and_interior}
@@ -294,7 +294,7 @@ Finally we need operation related to closure of the subset.
 Finally it is useful to have local version of continuity of a map.
 
 \begin{definition}
-	Let $X, Y$ be topological spaces, let $f:X\ra Y$ be a map and let $x$ be a point in $X$. Then $f$ is \textit{continuous at $x$} if for every open neighborhood $V$ of $f(x)$ in $Y$ there exists an open neighborhood $U$ of $x$ in $X$ such that $f(U) \subseteq V$.
+	Let $X, Y$ be topological spaces, let $f:X\ra Y$ be a map and let $x$ be a point in $X$. Then $f$ is \textit{continuous at} $x$ if for every open neighborhood $V$ of $f(x)$ in $Y$ there exists an open neighborhood $U$ of $x$ in $X$ such that $f(U) \subseteq V$.
 \end{definition}
 
 \begin{fact}\label{fact:function_continuous_at_each_point_is_continuous}
@@ -337,7 +337,7 @@ In this section we discuss two different methods of generating topologies by fam
 \begin{definition}
 	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of some topological space $Y_f$. Let $\cB_{\cF}$ be a family consisting of subsets of $X$ of the form
 	$$\bigcap_{f\in F}f^{-1}(V_f)$$
-	where $F$ is a finite subset of $\cF$ and $V_f$ is open in $Y_f$ for each $f\in F$. Topology on $X$ with $\cB_{\cF}$ as its base is \textit{the topology induced by $\cF$}.
+	where $F$ is a finite subset of $\cF$ and $V_f$ is open in $Y_f$ for each $f\in F$. Topology on $X$ with $\cB_{\cF}$ as its base is the \textit{topology induced by} $\cF$.
 \end{definition}
 
 \begin{corollary}\label{corollary:limits_in_category_of_topological_spaces}
@@ -348,11 +348,11 @@ In this section we discuss two different methods of generating topologies by fam
 \end{proof}
 
 \begin{definition}
-	Let $i:X\hookrightarrow Y$ be an injective continuous map of topological spaces. Suppose that the topology on $X$ is induced by $i$. Then $i$ is \textit{an embedding of topological spaces}.
+	Let $i:X\hookrightarrow Y$ be an injective continuous map of topological spaces. Suppose that the topology on $X$ is induced by $i$. Then $i$ is an \textit{embedding} of topological spaces.
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a topological space and let $Z$ be a subset of $X$. Then the topology on $Z$ induced by the inclusion $Z \hookrightarrow X$ is \textit{the subspace topology on $Z$}.
+	Let $X$ be a topological space and let $Z$ be a subset of $X$. Then the topology on $Z$ induced by the inclusion $Z \hookrightarrow X$ is the \textit{subspace topology} on $Z$.
 \end{definition}
 
 \begin{theorem}\label{theorem:topology_induced_on_codomain_of_a_family_of_maps}
@@ -377,7 +377,7 @@ In this section we discuss two different methods of generating topologies by fam
 \begin{definition}
 	Let $X$ be a set and let $\cF$ be a family of maps with codomain in $X$. Suppose that for every $f \in \cF$ its domain is the underlying set of some topological space $Y_f$. Let $\tau_{\cF}$ be a family
 	$$\big\{U\,\big|\,U\mbox{ is a subset of }X\mbox{ and }f^{-1}(U)\mbox{ is open in }Y_f\mbox{ for every }f\in \cF\big\}$$
-	Then $\tau_{\cF}$ is \textit{the topology induced by $\cF$}.
+	Then $\tau_{\cF}$ is the \textit{topology induced} by $\cF$.
 \end{definition}
 
 \begin{corollary}\label{corollary:colimits_in_category_of_topological_spaces}
@@ -388,8 +388,36 @@ In this section we discuss two different methods of generating topologies by fam
 \end{proof}
 
 \begin{definition}
-	Let $q:X \ra Y$ be a surjective continuous map of topological spaces. Suppose that the topology on $Y$ is induced by $q$. Then $q$ is \textit{a quotient map of topological spaces}.
+	Let $q:X \ra Y$ be a surjective continuous map of topological spaces. Suppose that the topology on $Y$ is induced by $q$. Then $q$ is a \textit{quotient map} of topological spaces.
 \end{definition}
+
+\section{Examples}
+\noindent
+In this section we give some elementary examples of topological spaces.
+
+\begin{example}\label{example:real_line_and_its_products}
+	Let $\RR$ be a real number field. Then family of open intervals in $\RR$ satisfies conditions specified in Fact \ref{fact:bases_of_topology} and hence it is base of some topology on $\RR$. Let $n \in \NN$ be a natural number. Then $\RR^n$ as the product of $n$-copies of $\RR$ admits the product topology. This product topology is the \textit{natural topology} on $\RR^n$.
+\end{example}
+\noindent
+Unless otherwise stated, from now on for every $n \in \NN$ every subset of $\RR^n$ is assumed to be a topological space with respect to subspace of the natural topology on $\RR^n$. Note that vector space operations on $\RR^n$ and field operations on $\RR$ are continuous with respect to natural topology.
+
+\begin{example}\label{example:complex_numbers}
+	Let $\CC$ be a complex numbers field. Then as a real vector space $\CC = \RR \oplus \RR\sqrt{-1}$ and hence $\CC$ is also a topological space with respect to natural topology on $\RR^2$. Let $n \in \NN$ be a natural number. Then $\CC^n$ as the product of $n$-copies of $\CC$ admits the product topology. This product topology is the \textit{natural topology} on $\CC^n$.
+\end{example}
+\noindent
+Unless otherwise stated, from now on for every $n \in \NN$ every subset of $\CC^n$ is assumed to be a topological space with respect to subspace of the natural topology on $\CC^n$. Note that vector space operations on $\CC^n$ and field operations on $\CC$ are continuous with respect to natural topology. Moreover, natural topologies on $\CC^n$ and $\RR^{2n}$ coincide under the canonical identification of these spaces.
+
+\begin{example}\label{example:discrete_topology}
+	Let $D$ be a set. We equip $D$ with topology such that all subsets of $D$ are open. This is the \textit{discrete topology} on $D$.
+\end{example}
+
+\begin{example}\label{example:Cantor_space}
+	Let $\{0,1\}$ be a discrete topological space on two points and let $\kappa$ be a cardinal number. Then $\{0,1\}^{\kappa}$ i.e. a product of $\kappa$-copies of $\{0,1\}$ is the \textit{Cantor cube of weight} $\kappa$.
+\end{example}
+
+\begin{example}\label{example:indiscrete_topology}
+	Let $X$ be a set. Then $\{\emptyset, X\}$ is a topology on $X$. We call it the \textit{indiscrete topology} on $X$.
+\end{example}
 
 \section{Monomorphisms and epimorphism in $\Top$}
 \noindent
@@ -506,7 +534,7 @@ Next we consider regular monomorphisms and epimorphisms in $\Top$.
 \section{Closed and open mappings}
 
 \begin{definition}
-	Let $f:X \ra Y$ be a continuous map of topological spaces. Suppose that $f(U)$ is open in $Y$ for every open subset $U$ of $X$. Then $f$ is \textit{an open map}.
+	Let $f:X \ra Y$ be a continuous map of topological spaces. Suppose that $f(U)$ is open in $Y$ for every open subset $U$ of $X$. Then $f$ is an \textit{open map}.
 \end{definition}
 
 \begin{fact}\label{fact:open_surjective_maps_are_quotient_maps}
@@ -524,7 +552,7 @@ Next we consider regular monomorphisms and epimorphisms in $\Top$.
 \end{proof}
 
 \begin{definition}
-	Let $f:X \ra Y$ be a continuous map of topological spaces. Suppose that $f(F)$ is closed in $Y$ for every closed subset $F$ in $X$. Then $f$ is \textit{a closed map}.
+	Let $f:X \ra Y$ be a continuous map of topological spaces. Suppose that $f(F)$ is closed in $Y$ for every closed subset $F$ in $X$. Then $f$ is a \textit{closed map}.
 \end{definition}
 
 \begin{fact}\label{fact:closed_surjective_maps_are_quotient_maps}
@@ -546,15 +574,15 @@ Next we consider regular monomorphisms and epimorphisms in $\Top$.
 In this section we introduce one of the most important classes of topological spaces.
 
 \begin{definition}
-	Let $X$ be a topological space and let $\cU$ be a family of open subsets of $X$. Suppose that the union of $\cU$ is $X$. Then $\cU$ is \textit{an open cover of $X$}.
+	Let $X$ be a topological space and let $\cU$ be a family of open subsets of $X$. Suppose that the union of $\cU$ is $X$. Then $\cU$ is an \textit{open cover} of $X$.
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a topological space and let $\cU, \cV$ be open covers of $X$ such that $\cV \subseteq \cU$. Then $\cV$ is \textit{a subcover of $\cU$}.
+	Let $X$ be a topological space and let $\cU, \cV$ be open covers of $X$ such that $\cV \subseteq \cU$. Then $\cV$ is a \textit{subcover} of $\cU$.
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a topological space and let $\cF$ be a family of closed subsets of $X$. Suppose that every finite subfamily of $\cF$ has nonempty intersection. Then $\cF$ is \textit{a centered family of closed subsets of $X$}.
+	Let $X$ be a topological space and let $\cF$ be a family of closed subsets of $X$. Suppose that every finite subfamily of $\cF$ has nonempty intersection. Then $\cF$ is a \textit{centered family} of closed subsets of $X$.
 \end{definition}
 
 \begin{proposition}\label{proposition:quasi-compactness_in_terms_of_open_covers_and_closed_intersections}
@@ -577,7 +605,7 @@ In this section we introduce one of the most important classes of topological sp
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a topological space such that every open cover of $X$ has finite subcover. Then $X$ is \textit{a quasi-compact space}.
+	Let $X$ be a topological space such that every open cover of $X$ has finite subcover. Then $X$ is a \textit{quasi-compact} space.
 \end{definition}
 
 \begin{theorem}[Mrówka-Kuratowski]\label{theorem:Kuratowski_Mrowka_theorem}
@@ -607,7 +635,6 @@ In this section we introduce one of the most important classes of topological sp
 \begin{proof}
 	Let $\cU$ be an open cover of $Y$. Then $\{q^{-1}(U)\,\big|\,U \in \cU\big\}$ is an open cover of $X$. Since $X$ is quasi-compact, there exists finite subcover $\cV$ of $\cU$ such that $\big\{q^{-1}(U)\,\big|\,U\in \cV\big\}$ is an open cover of $X$. Then $\cV$ is an open cover of $Y$. This proves that $Y$ is quasi-compact.
 \end{proof}
-
 
 \section{Universally closed maps}
 
@@ -676,10 +703,47 @@ In this section we introduce one of the most important classes of topological sp
 	is a centered family of closed subsets of $f^{-1}(y)$. Since $f^{-1}(y)$ is quasi-compact by Theorem \ref{theorem:characterization_of_universally_closed_maps}, we derive that the intersection of $\cF$ is nonempty. Thus $X$ is quasi-compact. This completes the proof.
 \end{proof}
 
+\section{Dense subsets and Hewitt-Marczewski-Pondiczery theorem}
+
+\begin{definition}
+	Let $X$ be a topological space and let $D$ be a subset of $X$. Suppose that $\bd{cl}(D)$ coincides with $X$. Then $D$ is a \textit{dense} subset of $X$.
+\end{definition}
+
+\begin{fact}\label{fact:image_of_a_dense_subset_under_a_continuous_map_with_dense_image_is_dense}
+	Let $f:X\ra Y$ be a continuous map of topological spaces and let $D$ be a dense subset of $X$. If $f(X)$ is dense in $Y$, then $f(D)$ is dense in $Y$.
+\end{fact}
+\begin{proof}
+	Since $f$ is continuous and $D$ is dense in $X$, we derive that
+	$$f(X) = f\left(\bd{cl}(D)\right) \subseteq \bd{cl}\left(f(D)\right)$$
+	On the other hand $f\left(X\right)$ is dense in $Y$. This implies that $f(D)$ is dense in $Y$.
+\end{proof}
+
+\begin{theorem}[Hewitt-Marczewski-Pondiczery]\label{theorem:Hewitt_Marczewski_Pondiczery}
+	Let $\{X_i\}_{i \in I}$ be a family of topological spaces and let $\kappa$ be an infinite cardinal number. Suppose that $I$ is of cardinality at most $2^{\kappa}$ and space $X_i$ has dense subset of cardinality at most $\kappa$ for every $i \in I$. Then $\prod_{i \in I}X_i$ has dense subset of cardinality $\kappa$.
+\end{theorem}
+\begin{proof}
+	Let $S$ and $D$ be sets of cardinality $\kappa$. For every set $F$ let $2^F$ denote the family of all subsets of $F$. Define $\cS$ as a family of all pairs $(F,f)$ such that $F$ is a finite subset of $S$ and $f:2^F \ra D$ is a function. Next for each $(F,f) \in \cS$ we define an element of $x_{F,f} \in D^{2^S}$ such that
+	$$x_{F,f}(T) = f(T\cap F)$$
+	where $T$ is a subset of $S$. We consider $D$ as a topological space with discrete topology and we claim that $\{x_s\}_{s\in \cS}$ is a dense subset of $D^{2^S}$. Recall that by Theorem \ref{theorem:topology_induced_on_domain_of_a_family_of_maps} an open base of $D^{2^S}$ consists of sets of the form
+	$$\big\{x\in D^{2^S}\,\big|\,x(T_1)=d_1,...,x(T_n)=d_n\big\}$$
+	where $T_1,...,T_n$ are pairwise distinct subsets of $S$ and $d_1,...,d_n$ are points in $D$ for some $n\in \NN_+$. In order to prove that $\{x_s\}$ is dense in $D^{2^S}$ it suffices to prove that it intersects every subset of the base described above. Fix pairwise distinct subsets $T_1,...,T_n$ of $S$ and $d_1,...,d_n\in D$ for some $n\in \NN_+$. Since $T_1,...,T_n$ are pairwise distinct, there exists a finite subset $F$ of $S$ such that
+	$$T_1\cap F,...,T_n\cap F$$
+	are pairwise distinct. Pick an arbitrary function $f:2^F \ra D$ such that $f(T_i\cap F) = d_i$ for all $i \in \{1,...,n\}$. Now $(F,f)$ is an element of $\cS$ and
+	$$x_{F,f} \in \big\{x\in D^{2^S}\,\big|\,x(T_1)=d_1,...,x(T_n)=d_n\big\}$$
+	This proves the claim. Since $\{x_s\}_{s\in \cS}$ is of cardinality $\kappa$, we derive that $D^{2^S}$ admits a dense subset of cardinality $\kappa$.
+
+	Now we can prove the main statement. Since $I$ is of cardinality at most $2^{\kappa}$, there exists an injective map $I \hookrightarrow 2^S$. Hence there exists a surjective continuous map $D^{2^S} \twoheadrightarrow D^I$. Fact \ref{fact:image_of_a_dense_subset_under_a_continuous_map_with_dense_image_is_dense} together with the part of the proof presented above implies that $D^I$ admits dense subset of cardinality at most $\kappa$. According to assumptions for each $i \in I$ there exists a map $f_i:D\ra X_i$ such that $f_i(D)$ is dense in $X_i$. By definition of the topology on $D$ each $f_i$ is a continuous map. By easy application of Theorem \ref{theorem:topology_induced_on_domain_of_a_family_of_maps} the map
+	$$\prod_{i\in I}f_i:D^{I} \ra \prod_{i \in I}X_i$$
+	is continuous and its image in $\prod_{i \in I}X_i$ is dense. Since $D^I$ admits a dense subset of cardinality at most $\kappa$, invoking Fact \ref{fact:image_of_a_dense_subset_under_a_continuous_map_with_dense_image_is_dense} we deduce that $\prod_{i \in I}X_i$ also admits a dense subset of cardinality at most $\kappa$. This completes the proof.
+\end{proof}
+\noindent
+Now we use Hewitt-Marczewski-Pondiczery theorem to obtain interesting result in set theory.
+
+
 \section{Connected spaces}
 
 \begin{definition}
-	Let $X$ be a topological space. Suppose that for any pair $U, V$ of open, nonempty and disjoint subsets in $X$ their union is a proper subset of $X$. Then $X$ is \textit{a connected space}.
+	Let $X$ be a topological space. Suppose that for any pair $U, V$ of open, nonempty and disjoint subsets in $X$ their union is a proper subset of $X$. Then $X$ is a \textit{connected} space.
 \end{definition}
 
 \begin{proposition}\label{proposition:connected_spaces_are_preserved_under_continuous_images}
@@ -708,7 +772,7 @@ In this section we introduce one of the most important classes of topological sp
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a topological space and let $Z$ be a connected subspace of $X$ such that there is no connected subspace of $X$ containing $Z$. Then $Z$ is \textit{a connected component of $X$}.
+	Let $X$ be a topological space and let $Z$ be a connected subspace of $X$ such that there is no connected subspace of $X$ containing $Z$. Then $Z$ is a \textit{connected component} of $X$.
 \end{definition}
 
 \begin{corollary}\label{corollary:space_is_a_union_of_its_connected_components_which_are_closed}
@@ -717,6 +781,153 @@ In this section we introduce one of the most important classes of topological sp
 \begin{proof}
 	Follows immediately from Fact \ref{fact:connected_subsets_are_preserved_by_closure} and Fact \ref{fact:union_of_pointed_connected_spaces_is_connected}.
 \end{proof}
+
+\section{Hausdorff and normal spaces}
+
+\begin{definition}
+	Let $X$ be a topological space. Suppose that for every pair $x_1,x_2$ of distinct points in $X$ there exists open neighborhoods $U_1$ and $U_2$ of $x_1$ and $x_2$, respectively, such that $U_1\cap U_2 =\emptyset$. Then $X$ is a \textit{Hausdorff} space.
+\end{definition}
+
+\begin{remark}\label{remark:each_subspace_of_Hausdorff_space_is_Hausdorff}
+	Every subspace of a Hausdorff space is Hausdorff.
+\end{remark}
+
+\begin{example}\label{example:real_and_complex_affine_spaces_are_Hausdorff_for_natural_topology}
+	For every $n \in \NN$ spaces $\RR^n$ and $\CC^n$ are Hausdorff topological spaces.
+\end{example}
+
+\begin{fact}\label{fact:continuous_functions_that_coincide_on_dense_subsets_and_have_Hausdorff_targets_are_equal}
+	Let $f_1,f_2:X\ra Y$ be continuous maps of topological spaces and let $Y$ be a Hausdorff topological space. Let $D$ be a dense subset of $X$. Suppose that the restrictions of $f_1, f_2$ to $D$ are equal. Then $f_1$ and $f_2$ coincide.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a Hausdorff topological space. Suppose that for every $x \in X$ and every closed subset $F$ of $X$ does not containing $x$ there exists a continuous function $f:X\ra [0,1]$ such that
+	$$f_{\mid F} = 0,\,f(x) = 1$$
+	Then $X$ is a \textit{completely regular} space.
+\end{definition}
+
+\begin{fact}\label{fact:characterization_of_completely_regular_spaces}
+	Let $X$ be a topological space. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $X$ is completely regular.
+		\item The topology of $X$ is induced by some family of real valued functions on $X$.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a Hausdorff topological space. Suppose that for every pair $F_1,F_2$ of disjoint and closed subsets of $X$ there exist open and disjoint subsets $U_1,U_2$ of $X$ such that $F_i \subseteq U_i$ for $i=1,2$. Then $X$ is a \textit{normal} space.
+\end{definition}
+\noindent
+Next two results show significance of normal spaces.
+
+\begin{theorem}[Urysohn]\label{theorem:Urysohn_lemma}
+	Let $X$ be a normal space. Let $F_1,F_2$ be disjoint and closed subsets of $X$. Then there exists a continuous map $f:X\ra [0,1]$ such that $f_{\mid F_1} = 0$ and $f_{\mid F_2} = 1$.
+\end{theorem}
+\begin{proof}
+	Let $\QQ_2$ be the set of all dyadic rationals i.e. $r \in \QQ_2$ if and only if $r \in \QQ$ and there exists $n \in \NN$ such that $2^n\cdot r \in \NN$. We construct a family $\{U_r\}_{r \in \QQ_2\cap [0,1]}$ of open subsets in $X$ such that
+	$$F_1 \subseteq U_{r_1}\subseteq \bd{cl}(U_{r_1}) \subseteq U_{r_2} \subseteq X\setminus F_2$$
+	for all $r_1,r_2\in \QQ_2\cap [0,1]$ with $r_1 \leq r_2$. Our construction is recursive. By normality of $X$ there are open subsets $U_0, U_1$ such that
+	$$F_1 \subseteq U_0 \subseteq \bd{cl}(U_0) \subseteq U_1 \subseteq X\setminus F_2$$
+	Fix $n \in \NN$ and suppose that $U_r$ are constructed for all $r \in \QQ_2\cap [0,1]$ such that $2^n\cdot r \in \NN$. Since $X$ is normal, there exists open subset $U_{\frac{2k + 1}{2^{n+1}}}$ such that
+	$$\bd{cl}\left(U_{\frac{k}{2^n}}\right) \subseteq U_{\frac{2k + 1}{2^{n+1}}} \subseteq \bd{cl}\left(U_{\frac{2k + 1}{2^{n+1}}}\right) \subseteq U_{\frac{k+1}{2^n}}$$
+	for all $k = 0,1,...,2^n - 1$. This constructs $U_r$ for all $r \in \QQ_2\cap [0,1]$ for which $2^{n+1}\cdot r \in \NN$. Hence the family is constructed. Now we define a function $f:X\ra [0,1]$ by formula
+	$$f(x) = \inf \big\{r\in \QQ_2\,\big|\,x\in U_r\big\}$$
+	for $x \in U_1$ and $f(x) = 1$ for all $x \not \in U_1$. Pick now $\alpha \in (0, 1)$. Then
+	$$f^{-1}\big([0,\alpha)\big) = \bigcup_{r \in \QQ_2\cap [0,\alpha)}U_r$$
+				and
+			$$f^{-1}\big((\alpha, 1]\big) = X\setminus \bigcap_{r\in \QQ_2\cap (\alpha, 1]}\bd{cl}\left(U_r\right)$$
+	This implies that $f$ is continuous. Clearly $f_{\mid F_1} = 0$ and $f_{\mid F_2} = 1$.
+\end{proof}
+
+\begin{theorem}[Tietze]\label{theorem:Tietze_extension_theorem}
+	Let $X$ be a normal space and let $F$ be a closed subset of $X$. If $f:F\ra [0,1]$ is a continuous function, then there exists a continuous function $\tilde{f}:X\ra [0,1]$ such that $\tilde{f}_{\mid F} = f$.
+\end{theorem}
+\noindent
+For the proof we need the following result.
+
+\begin{lemma}\label{lemma:Weierstrass_criterion}
+	Let $X$ be a topological space and let $\{f_n\}_{n\in \NN}$ be a sequence of real valued, continuous functions on $X$. Suppose that there exists a sequence $\{a_n\}_{n \in \NN}$ of positive reals such that the inequality 
+	$$0 \leq f_n(x) \leq a_n$$
+	holds for every $x \in X$ and every $n \in \NN$. Assume that the series 
+	$$\sum_{n \in \NN}a_n$$
+	is convergent. Then formula  
+	$$\sum_{n\in \NN}f_n(x)$$
+	for $x \in X$ represents a well defined real valued, continuous function on $X$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Clearly 
+	$$0 \leq \sum_{n\in \NN}f_n(x) \leq \sum_{n\in \NN}a_n$$
+	for each $x \in X$. Hence the function $f$ given by formula
+	$$f(x) = \sum_{n \in \NN}f_n(x)$$
+	for each $x \in X$ is well defined and real valued.
+	
+	Pick $\epsilon > 0$ and $x \in X$. There exists $m \in \NN$ such that
+	$$2 \cdot \sum_{n=m + 1}^{+\infty}a_n < \frac{\epsilon}{2}$$
+	Since the function 
+	$$X\ni x \mapsto \sum_{n=0}^mf_n(x) \in \RR$$
+	is continuous, there exists an open neighborhood $U$ of $x$ such that 
+	$$\bigg|\sum_{n=0}^mf_n(x) - \sum_{n=0}^mf_n(z)\bigg| < \frac{\epsilon}{2}$$
+	for every $z \in U$. Then
+	$$|f(x) - f(z)| \leq \bigg|\sum_{n=0}^mf_n(x) - \sum_{n=0}^mf_n(z)\bigg| + \sum_{n=m+1}^{+\infty}f_n(x) + \sum_{n=m+1}^{+\infty}f_n(z) \leq $$
+	$$\leq \bigg|\sum_{n=0}^mf_n(x) - \sum_{n=0}^mf_n(z)\bigg| + \sum_{n=m+1}^{+\infty}a_n + \sum_{n=m+1}^{+\infty}a_n < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+	for every $z \in U$. Hence $f$ is continuous at $x$. By Fact \ref{fact:function_continuous_at_each_point_is_continuous} we deduce that $f$ is continuous. 
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	We construct a sequence of real valued, continuous functions $\{f_n\}_{n\in \NN}$ on $X$, We require for each $m \in \NN$ that
+	$$\bigg|f(x) - \sum_{n=0}^mf_n(x)\bigg| \leq \frac{1}{3^{m}}$$
+	for every $x\in F$ and 
+	$$0 \leq f_m(x) \leq \frac{2}{3^m}$$
+	for every $x \in X$. The construction is recursive. We set $f_0 = 0$. Suppose that $f_0,...,f_m$ are constructed for some $m \in \NN$. Pick
+	$$F_1 = \left(f - \sum_{n=0}^m{f_n}_{\mid F}\right)^{-1}\left(\left[0, \frac{1}{3^{m+1}}\right]\right)$$
+	and
+	$$F_2 = \left(f - \sum_{n=0}^m{f_n}_{\mid F}\right)^{-1}\left(\left[\frac{2}{3^{m+1}}, \frac{1}{3^{m}}\right]\right)$$
+	Note that $F_1, F_2 \subseteq X$ are closed and disjoint subsets. Hence by Theorem \ref{theorem:Urysohn_lemma} there exists a continuous function $g_{m+1}:X \ra [0,1]$ such that ${g_{m+1}}_{\mid F_1} = 0$ and ${g_{m+1}}_{\mid F_2} = 1$. We set 
+	$$f_{m+1} = \frac{1}{3^{m+1}}\cdot \left(g_{m+1} + 1\right)$$
+	Note that $f_{m+1}$ satisfies the required inequalities. Hence the sequence $\{f_n\}_{n \in \NN}$ is constructed. 
+
+	Lemma \ref{lemma:Weierstrass_criterion} implies that the function $\tilde{f}:X\ra [0,1]$ given by formula
+	$$\tilde{f}(x) = \sum_{n \in \NN}f_n(x)$$
+	for every $x \in X$ is continuous. Clearly
+	$$|f(x) - \tilde{f}(x)| = \lim_{m \ra +\infty}\bigg|f(x) - \sum_{n=0}^mf_n(x)\bigg| = 0$$
+	for every $x \in F$. Thus $f = \tilde{f}_{\mid F}$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \small
