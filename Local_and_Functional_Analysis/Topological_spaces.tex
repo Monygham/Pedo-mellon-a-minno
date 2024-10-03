@@ -12,7 +12,7 @@
 \noindent
 These notes contain introductory material on topological spaces. Our approach to foundations of this subject follows method presented in \cite{kuratowski1922operation} and generalized by Eduardo \v{C}ech. This enable us to introduce pretopological spaces.
 
-The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps. Next we introduce dense subsets and prove interesting Hewitt-Marczewski-Pondiczery theorem. In the next section we discuss connected topological spaces and their connected components. Final section is devoted to important classes of Hausdorff, completely regular and normal spaces. Here we prove Urysohn lemma and Tietze extension theorem. 
+The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps. Next we introduce dense subsets and prove interesting Hewitt-Marczewski-Pondiczery theorem. In the next section we discuss connected topological spaces and their connected components. Final section is devoted to important classes of Hausdorff, completely regular and normal spaces. Here we prove Urysohn lemma and Tietze extension theorem.
 
 \section{Preclosure operators and pretopological spaces}
 
@@ -852,45 +852,45 @@ Next two results show significance of normal spaces.
 For the proof we need the following result.
 
 \begin{lemma}\label{lemma:Weierstrass_criterion}
-	Let $X$ be a topological space and let $\{f_n\}_{n\in \NN}$ be a sequence of real valued, continuous functions on $X$. Suppose that there exists a sequence $\{a_n\}_{n \in \NN}$ of positive reals such that the inequality 
+	Let $X$ be a topological space and let $\{f_n\}_{n\in \NN}$ be a sequence of real valued, continuous functions on $X$. Suppose that there exists a sequence $\{a_n\}_{n \in \NN}$ of positive reals such that the inequality
 	$$0 \leq f_n(x) \leq a_n$$
-	holds for every $x \in X$ and every $n \in \NN$. Assume that the series 
+	holds for every $x \in X$ and every $n \in \NN$. Assume that the series
 	$$\sum_{n \in \NN}a_n$$
-	is convergent. Then formula  
+	is convergent. Then formula
 	$$\sum_{n\in \NN}f_n(x)$$
-	for $x \in X$ represents a well defined real valued, continuous function on $X$. 
+	for $x \in X$ represents a well defined real valued, continuous function on $X$.
 \end{lemma}
 \begin{proof}[Proof of the lemma]
-	Clearly 
+	Clearly
 	$$0 \leq \sum_{n\in \NN}f_n(x) \leq \sum_{n\in \NN}a_n$$
 	for each $x \in X$. Hence the function $f$ given by formula
 	$$f(x) = \sum_{n \in \NN}f_n(x)$$
 	for each $x \in X$ is well defined and real valued.
-	
+
 	Pick $\epsilon > 0$ and $x \in X$. There exists $m \in \NN$ such that
 	$$2 \cdot \sum_{n=m + 1}^{+\infty}a_n < \frac{\epsilon}{2}$$
-	Since the function 
+	Since the function
 	$$X\ni x \mapsto \sum_{n=0}^mf_n(x) \in \RR$$
-	is continuous, there exists an open neighborhood $U$ of $x$ such that 
+	is continuous, there exists an open neighborhood $U$ of $x$ such that
 	$$\bigg|\sum_{n=0}^mf_n(x) - \sum_{n=0}^mf_n(z)\bigg| < \frac{\epsilon}{2}$$
 	for every $z \in U$. Then
 	$$|f(x) - f(z)| \leq \bigg|\sum_{n=0}^mf_n(x) - \sum_{n=0}^mf_n(z)\bigg| + \sum_{n=m+1}^{+\infty}f_n(x) + \sum_{n=m+1}^{+\infty}f_n(z) \leq $$
 	$$\leq \bigg|\sum_{n=0}^mf_n(x) - \sum_{n=0}^mf_n(z)\bigg| + \sum_{n=m+1}^{+\infty}a_n + \sum_{n=m+1}^{+\infty}a_n < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
-	for every $z \in U$. Hence $f$ is continuous at $x$. By Fact \ref{fact:function_continuous_at_each_point_is_continuous} we deduce that $f$ is continuous. 
+	for every $z \in U$. Hence $f$ is continuous at $x$. By Fact \ref{fact:function_continuous_at_each_point_is_continuous} we deduce that $f$ is continuous.
 \end{proof}
 
 \begin{proof}[Proof of the theorem]
 	We construct a sequence of real valued, continuous functions $\{f_n\}_{n\in \NN}$ on $X$, We require for each $m \in \NN$ that
 	$$\bigg|f(x) - \sum_{n=0}^mf_n(x)\bigg| \leq \frac{1}{3^{m}}$$
-	for every $x\in F$ and 
+	for every $x\in F$ and
 	$$0 \leq f_m(x) \leq \frac{2}{3^m}$$
 	for every $x \in X$. The construction is recursive. We set $f_0 = 0$. Suppose that $f_0,...,f_m$ are constructed for some $m \in \NN$. Pick
 	$$F_1 = \left(f - \sum_{n=0}^m{f_n}_{\mid F}\right)^{-1}\left(\left[0, \frac{1}{3^{m+1}}\right]\right)$$
 	and
 	$$F_2 = \left(f - \sum_{n=0}^m{f_n}_{\mid F}\right)^{-1}\left(\left[\frac{2}{3^{m+1}}, \frac{1}{3^{m}}\right]\right)$$
-	Note that $F_1, F_2 \subseteq X$ are closed and disjoint subsets. Hence by Theorem \ref{theorem:Urysohn_lemma} there exists a continuous function $g_{m+1}:X \ra [0,1]$ such that ${g_{m+1}}_{\mid F_1} = 0$ and ${g_{m+1}}_{\mid F_2} = 1$. We set 
+	Note that $F_1, F_2 \subseteq X$ are closed and disjoint subsets. Hence by Theorem \ref{theorem:Urysohn_lemma} there exists a continuous function $g_{m+1}:X \ra [0,1]$ such that ${g_{m+1}}_{\mid F_1} = 0$ and ${g_{m+1}}_{\mid F_2} = 1$. We set
 	$$f_{m+1} = \frac{1}{3^{m+1}}\cdot \left(g_{m+1} + 1\right)$$
-	Note that $f_{m+1}$ satisfies the required inequalities. Hence the sequence $\{f_n\}_{n \in \NN}$ is constructed. 
+	Note that $f_{m+1}$ satisfies the required inequalities. Hence the sequence $\{f_n\}_{n \in \NN}$ is constructed.
 
 	Lemma \ref{lemma:Weierstrass_criterion} implies that the function $\tilde{f}:X\ra [0,1]$ given by formula
 	$$\tilde{f}(x) = \sum_{n \in \NN}f_n(x)$$
