@@ -493,14 +493,14 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 	Let $X$ be a uniform space. Then there exist a complete uniform space $\tilde{X}$ and an embedding $X \hookrightarrow \tilde{X}$ of uniform spaces with dense image.
 \end{theorem}
 \begin{proof}m
-	Theorem \ref{theorem:each_uniform_structure_is_induced_by_pseudometrics} asserts that there exists a family $\Phi$ of pseudometrics on $X$ which induce its uniform structure. For each $\rho \in \Phi$ let $X_{\rho}$ be pseudometric space having the same underlying set as $X$ together with $\rho$ as its pseudometric. By Theorem \ref{theorem:completion_for_pseudometric_spaces} there exists a complete pseudometric space $\tilde{X}_{\rho}$ and an injective isometry $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ with dense image. Since the identity on the underlying set of $X$ is a uniform map $X \ra X_{\rho}$, we can compose it with $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ and get a uniform map $i_{\rho}:X \hookrightarrow \tilde{X}_{\rho}$. Note that $\{i_{\rho}\}_{\rho\in \Phi}$ is a family of maps that induce on the underlying set of $X$ precisely the uniform structure induced by the family $\Phi$. Hence $\{i_{\rho}\}_{\rho \in \Phi}$ induce the original unifomity on $X$. It follows that the injective uniform map
+	Theorem \ref{theorem:each_uniform_structure_is_induced_by_pseudometrics} asserts that there exists a family $\Phi$ of pseudometrics on $X$ which induce its uniform structure. For each $\rho \in \Phi$ let $X_{\rho}$ be pseudometric space having the same underlying set as $X$ together with $\rho$ as its pseudometric. By Theorem \ref{theorem:completion_for_pseudometric_spaces} there exists a complete pseudometric space $\tilde{X}_{\rho}$ and an injective isometry $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ with dense image. Since the identity on the underlying set of $X$ is a uniform map $X \ra X_{\rho}$, we can compose it with $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ and get a uniform map $i_{\rho}:X \hookrightarrow \tilde{X}_{\rho}$. Note that $\{i_{\rho}\}_{\rho\in \Phi}$ is a family of maps that induce the same uniform structure as $\Phi$. Hence $\{i_{\rho}\}_{\rho \in \Phi}$ induce the uniform strucure of $X$. It follows that the injective uniform map
 	\begin{center}
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
 			\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em,text height=1.5ex, text depth=0.25ex]
 			{ X    & \prod_{\rho \in \Phi}\tilde{X}_{\rho}                        \\} ;
 			\path[right hook->,line width=0.8pt,font=\scriptsize]
-				(m-1-1) edge node[above] {$ \langle i_{\rho}\rangle_{\rho \in \Phi} $} (m-1-2);
+			(m-1-1) edge node[above] {$ \langle i_{\rho}\rangle_{\rho \in \Phi} $} (m-1-2);
 		\end{tikzpicture}
 	\end{center}
 	is an embedding of uniform spaces. Since $\prod_{\rho \in \Phi}\tilde{X}_{\rho}$ is complete by Theorems \ref{theorem:completeness_for_pseudometric_spaces_is_equivalent_to_convergence_of_Cauchy_sequences} and \ref{theorem:product_of_complete_spaces_is_complete}, we derive that $X$ can be embedded into a complete uniform space. Next Theorem \ref{theorem:completeness_is_inheritied_by_closed_subspaces} imply that $X$ can be embedded into a complete uniform space as a dense subspace.
