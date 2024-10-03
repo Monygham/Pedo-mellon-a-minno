@@ -1,0 +1,519 @@
+% !TeX root = ../Local_and_Functional_Analysis/Uniform_spaces.tex
+% arara: indent: {overwrite: yes, silent: yes}
+\input ../pree.tex
+
+\begin{document}
+\title{Uniform spaces}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+These notes are devoted to uniform spaces. Uniform spaces are important objects designed to formalize notion of uniformly continuous map. The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform strucutre induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence obtain that each uniform structure is induced by some family of pseudometrics. Then we explain how each uniform structure produces completely regular topology. In the following section we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic examples of uniform spaces. We also prove that each uniform space can be embedded as a dense subsapce into a complete uniform space.
+
+Throughout the notes we assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}. In these notes we use the following notation. Let $X$ be a set and let $U, V$ be binary relations on $X$. Suppose that $Z$ is a subset of $X$. Then we define
+$$U \cdot V = \big\{(x_1,x_2) \in X\times X\,\big|\,\mbox{ there exists }x\in X\mbox{ such that }(x_1, x)\in U\mbox{ and }(x,x_2)\in V\big\}$$
+and
+$$U(Z) = \big\{x \in X\,\big|\,\mbox{ there exists }z\in Z\mbox{ such that }(x, z)\in U\big\}$$
+
+
+\section{Uniform spaces and uniform maps}
+
+\begin{definition}
+	Let $X$ be a set and let $\fU$ be a nonempty family of reflexive and symmetric relations on $X$. Suppose that the following assertions are satisfied.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item If $U \in \fU$ and $W$ is a reflexive and symmetric relation on $X$ such that $U \subseteq W$, then $W \in \fU$.
+		\item If $U,W \in \fU$, then also $U\cap W \in \fU$.
+		\item If $U \in \fU$, then there exists $W \in \fU$ such that $W\cdot W \subseteq U$.
+	\end{enumerate}
+	Then $\fU$ is a \textit{uniform structure} on $X$.
+\end{definition}
+
+\begin{example}\label{example:discrete_uniform_structure}
+	Let $X$ be a set and let $\fD_X$ be the family of all reflexive and symmetric relations on $X$. Then $\fD_X$ is a uniform structure on $X$. We call it the \textit{discrete} uniform structure on $X$.
+\end{example}
+
+\begin{definition}
+	A set together with a uniform structure is a \textit{uniform space}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a uniform space with respect to uniform structure $\fU$. Then each member of $\fU$ is an \textit{entourage of the diagonal} in $X$.
+\end{definition}
+
+\begin{definition}
+	Let $X$ and $Y$ be uniform spaces. Suppose that $f:X\ra Y$ is a map of sets such that $\left(f\times f\right)^{-1}(V)$ is an entourage of the diagonal in $X$ for every entourage $V$ of the diagonal in $Y$. Then $f$ is a \textit{uniform map}.
+\end{definition}
+
+\begin{fact}\label{fact:composition_of_uniform_maps_is_uniform_map}
+	Let $f:X \ra Y$ and $g:Y \ra Z$ be uniform maps. Then $g\cdot f:X\ra Z$ is a uniform map.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+\noindent
+Let $\Unif$ be the category having uniform spaces as objects and uniform maps as morphisms. Fact \ref{fact:composition_of_uniform_maps_is_uniform_map} asserts that $\Unif$ and the functor $\Unif \ra \Set$ that forgets about uniform structure are well defined.
+
+\begin{theorem}\label{theorem:uniformity_induced_by_family_of_maps}
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Let $\cB_{\cF}$ be a family consisting of sets of the form
+	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f)$$
+	where $F$ is a finite subset of $F$ and $V_f$ is an entourage of the diagonal in $Y_f$. Next define
+	$$\fU_{\cF} = \big\{U\in \fD_X\,\big|\,\mbox{there exists }W\in \cB_{\cF}\mbox{ such that }W \subseteq U\big\}$$
+	Then $\fU_{\cF}$ is a uniform structure on $X$. Consider $X$ as a uniform space with respect to $\fU_{\cF}$. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item Each $f \in \cF$ is a uniform map $X \ra Y_f$.
+		\item Let $Z$ be a uniform space and let $g:Z\ra X$ be a map of sets such that $f\cdot g:Z\ra Y_f$ is a uniform map for every $f\in \cF$. Then $g$ is a uniform map.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Note that $\fU_{\cF}$ is a nonempty family consisting of reflexive and symmetric relations on $X$.
+
+	Suppose that $U,W$ are reflexive and symmetric relations on $X$. Assume tha $U\subseteq W$ and $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
+	Thus also
+	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq W$$
+	and hence $W \in \fU_{\cF}$.
+
+	Assume that $U,W \in \fU_{\cF}$. Then there exist finite subsets $F_U,F_W$ of $\cF$, an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F_U$ and entourage $T_f$ of the diagonal in $Y_f$ for each $f\in F_W$ such that
+	$$\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \subseteq U,\,\bigcap_{f\in F_W}\left(f\times f\right)^{-1}(T_f)\subseteq W$$
+	Then
+	$$\left(\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \right) \cap \left(\bigcap_{f \in F_W}\left(f\times f\right)^{-1}(T_f)\right)\subseteq U\cap W$$
+	and this implies that $U\cap W \in \fU_{\cF}$.
+
+	Next suppose that $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
+	For each $f \in F$ pick an entourage $T_f$ of the diagonal in $Y_f$ such that $T_f\cdot T_f \subseteq V_f$. Then
+	$$W = \bigcap_{f \in F}\left(f\times f\right)^{-1}(T_f) \in \fU_{\cF}$$
+	and $W\cdot W \subseteq U$.
+
+	Thus $\fU_{\cF}$ is a uniform structure. From now on we consider $X$ as a uniform space with respect to $\fU_{\cF}$.
+
+	By definition $f:X\ra Y_f$ is a uniform map for every $f\in \cF$. Hence \textbf{(1)} holds.
+
+	Now we prove \textbf{(2)}. Fix $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
+	Since $f\cdot g:Z\ra Y_f$ is uniform map for each $f \in F$, we derive that
+	$$\left(g\times g\right)^{-1}\left(\bigcap_{f\in F}\left(f\times f\right)^{-1}\left(V_f\right)\right) = \bigcap_{f\in F}\left((f\cdot g)\times (f\cdot g)\right)^{-1}(V_f)$$
+	is an entourage of the diagonal in $Z$. Moreover, we have
+	$$\left(g\times g\right)^{-1}\left(\bigcap_{f\in F}\left(f\times f\right)^{-1}\left(V_f\right)\right) \subseteq \left(g\times g\right)^{-1}(U)$$
+	This proves that $(g\times g)^{-1}(U)$ is an entourage of the diagonal in $Z$ and completes the proof of \textbf{(2)}.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Then $\fU_{\cF}$ defined in the theorem above is the uniform structure \textit{induced} by $\cF$.
+\end{definition}
+
+\begin{corollary}\label{corollary:limits_in_category_of_uniform_spaces}
+	Let $\cI$ be a small category and let $F:\cI \ra \Unif$ be a functor. Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$ such that $(X,\cF)$ is a limiting cone over the composition of $F$ with the forgetful functor $\Unif \ra \Set$. Consider $X$ as a uniform space with the uniform structure induced by $\cF$. Then $X$ together with $\cF$ form a limiting cone over $F$.
+\end{corollary}
+\begin{proof}
+	Follows immediately from Theorem \ref{theorem:uniformity_induced_by_family_of_maps}.
+\end{proof}
+
+\begin{definition}
+	Let $i:X \hookrightarrow Y$ be an injective uniform map. Suppose that uniform structure on $X$ is induced by $i$. Then $i$ is an \textit{embedding of uniform spaces}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a uniform space and let $Z$ be a subset of $X$. Then the uniform structure induced on $Z$ by the inclusion $Z\hookrightarrow X$ is the \textit{subspace uniformity} on $Z$.
+\end{definition}
+
+\section{Uniform spaces and families of pseudometrics}
+\noindent
+We start by proving uniform version of Urysohn lemma, which (as it will be demonstrated later) is important result describing topologies related to uniform structures.
+
+\begin{theorem}[Urysohn lemma]\label{theorem:Urysohn_lemma}
+	Let $X$ be a set and let $U$ be a reflexive and symmetric relation on $X$. Suppose that $\{U_n\}_{n\in \NN}$ is a sequence of reflexive and symmetric relations on $X$ such that
+	$$U_{n+1}\cdot U_{n+1} \subseteq U_n$$
+	for all $n \in \NN$ and $U_0 = U$. Fix a subset $Z$ of $X$. Then there exists a map $f: X\ra \RR$ such that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $0\leq f(x) \leq 1$ for every $x \in X$.
+		\item $f(x) = 0$ for $x \in Z$ and $f(x) = 1$ for $x \not \in U(Z)$.
+		\item If $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then
+		      $$|f(x_1) - f(x_2)| \leq \frac{1}{2^n}$$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	For each reflexive and symmetric relation $W$ on $X$ we set $W^{1} = W$ and $W^0 = \Delta_X$.
+
+	Consider the set
+	$$\QQ_2 = \bigg\{\frac{k}{2^n}\,\bigg|\,n\in \NN_+\mbox{ and }k\in \NN\cap [0,2^{n} - 1]\bigg\}$$
+	Then $\QQ_2 \subseteq [0,1]$ is a dense subset and for every $r \in \QQ_2$ there exists a unique expansion
+	$$\sum_{n=1}^{+\infty}\frac{\epsilon_n(r)}{2^n}$$
+	where $\epsilon_n(r) \in \{0,1\}$ for all $n\in \NN_+$ and $\epsilon_n(r) = 0$ for all sufficiently large $n \in \NN_+$. Next for every $r \in \QQ_2$ we define
+	$$W_r = ... \cdot U_n^{\epsilon_n(r)}\cdot ...\cdot U_2^{\epsilon_2(r)}\cdot U_1^{\epsilon_1(r)}$$
+	If $r_1 \leq r_2$ are two numbers in $\QQ_2$, then $W_{r_1}\subseteq W_{r_2} \subseteq U$. We define $f:X\ra \RR$ by formula
+	$$f(x) = \begin{cases}
+			\inf \big\{r\in \QQ_2\,\big|\,x\in W_r(Z)\big\} & \mbox{ if }x \in \bigcup_{r\in \QQ_2}W_r(Z)      \\
+			1                                               & \mbox{ if }x\not \in \bigcup_{r \in \QQ_2}W_r(Z) \\
+		\end{cases}
+	$$
+	It is straightforward that $f$ satisfies \textbf{(1)} and \textbf{(2)}.
+
+	Fix $(x_1,x_2) \in U_{n+1}$. Assume that $x_1 \in W_{1 - \frac{1}{2^{n}}}(Z)$. Then there exists the smallest $k \in \NN$ satisfying $0 \leq k \leq 2^{n+1} -2$ such that $x_1 \in W_{\frac{k}{2^{n+1}}}(Z)$ and thus
+	$$\frac{k - 1}{2^{n+1}} \leq f(x_1)$$
+	Note that $U_{n+1}\cdot W_{\frac{k}{2^{n+1}}}(Z) \subseteq W_{\frac{k + 1}{2^{n+1}}}(Z)$ and thus $x_2 \in W_{\frac{k + 1}{2^{n + 1}}}(Z)$. Hence
+	$$f(x_2) \leq \frac{k + 1}{2^{n+1}} \leq \frac{k - 1}{2^{n+1}} + \frac{1}{2^{n}}\leq f(x_1) + \frac{1}{2^n}$$
+	Assume now that $x_1 \not \in W_{1 - \frac{1}{2^{n}}}(Z)$. Then
+	$$f(x_2) \leq 1 = \left(1 - \frac{1}{2^n}\right) + \frac{1}{2^{n}} \leq f(x_1) + \frac{1}{2^n}$$
+	This proves that in any case
+	$$f(x_2) \leq f(x_1) + \frac{1}{2^n}$$
+	By symmetry we derive that
+	$$f(x_1) \leq f(x_2) + \frac{1}{2^n}$$
+	Since $(x_1, x_2)$ is arbitrary pair in $U_{n + 1}$, we derive that \textbf{(3)} holds.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a set and let $\rho:X\times X \ra \RR_+\cup \{0\}$ be a function. Suppose that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $\rho(x, x) = 0$ for every $x \in X$.
+		\item $\rho(x_1, x_2) = \rho(x_2, x_1)$ for every $x_1,x_2 \in X$.
+		\item $\rho(x_1, x_3) \leq \rho(x_1, x_2) + \rho(x_2, x_3)$ for $x_1,x_2,x_3 \in X$.
+	\end{enumerate}
+	Then $\rho$ is a \textit{pseudometric} on $X$.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a set and let $\rho$ be a pseudometric on $X$. Suppose that $\rho(x_1,x_2) = 0$ implies $x_1 = x_2$ for all $x_1,x_2 \in X$. Then $\rho$ is a \textit{metric} on $X$.
+\end{definition}
+\noindent
+Let $X$ be a set and let $\rho$ be a pseudometric on $X$. Fix a number $\epsilon \in \RR_+$. Then the set
+$$\Delta_{\rho, \epsilon} = \big\{(x_1,x_2) \in X\times X\,\big|\,\rho(x_1, x_2) \leq \epsilon \big\}$$
+is a reflexive and symmetric relation on $X$.
+
+\begin{fact}\label{fact:unifrom_structures_induced_by_families_of_pseudometrics}
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Let $\fU_{\Phi}$ be a family consisting of all $U\in \fD_X$ such that $U$ contains some finite intersection of sets $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$. Then $\fU_{\Phi}$ is a uniform structure on $X$.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Then $\fU_{\Phi}$ is the uniform structure \textit{induced} by $\Phi$.
+\end{definition}
+
+\begin{example}\label{example:natural_uniform_structure_on_reals}
+	The uniform structure induced by the metric
+	$$\RR\times \RR \ni (\alpha, \beta) \mapsto |\alpha - \beta| \in \RR_+\cup \{0\}$$
+	is the \textit{natural} uniform structure on $\RR$. From now on $\RR$ is always assumed to be uniform space with respect to the natural uniform structure.
+\end{example}
+\noindent
+Now we prove that every uniform structure is induced by some family of pseudometrics.
+
+\begin{theorem}\label{theorem:each_uniform_structure_is_induced_by_pseudometrics}
+	Let $X$ be a uniform space. Then the uniform structure on $X$ is induced by a family of pseudometrics $\Phi$ on $X$.
+\end{theorem}
+\begin{proof}
+	Denote the uniform structure on $X$ by $\fU$. Let $U \in \fU$. Pick a sequence $\{U_n\}_{n\in \NN}$ of members of $\fU$ such that
+	$$U_{n+1}\cdot U_{n+1} \subseteq U_n$$
+	for all $n \in \NN$ and $U_0 = U$. Note that $\{U_n\}_{n\in \NN}$ exists since $\fU$ is a uniform structure. For each $x \in X$ consider a function $f_x:X\ra \RR$ such that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $0\leq f_x(y) \leq 1$ for every $y \in X$.
+		\item $f_x(x) = 0$ and $f_x(y) = 1$ for $y \not \in U(x)$.
+		\item If $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then
+		      $$|f_x(x_1) - f_x(x_2)| \leq \frac{1}{2^n}$$
+	\end{enumerate}
+	By Theorem \ref{theorem:Urysohn_lemma} function $f_x$ exists for each $x \in X$. Now define $\rho_U:X\times X\ra \RR_+\cup \{0\}$ by formula
+	$$\rho_U(x_1,x_2) = \sup_{x\in X}|f_x(x_1) - f_x(x_2)|$$
+	Clearly $\rho_U$ is a pseudometric on $X$. Moreover, if $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then
+	$$\rho_U(x_1,x_2) \leq \frac{1}{2^n}$$
+	Form this we deduce that $\Delta_{\rho_U, \epsilon} \in \fU$ for every $\epsilon \in \RR_+$ and $\Delta_{\rho_U, 1}\subseteq U$. Thus $\fU$ is induced by $\Phi = \{\rho_U\}_{U \in \fU}$.
+\end{proof}
+\noindent
+It is useful to describe how uniform maps can be expressed in terms of families of pseudometrics.
+
+\begin{fact}\label{fact:uniform_maps_in_terms_of_pseudometrics}
+	Let $X$ and $Y$ be uniform spaces and let $f:X\ra Y$ be a map of sets. Suppose that $\Phi$ and $\Theta$ are families of pseudometrics on $X$ and $Y$ which induce their uniform structures. Then the following are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $f$ is a uniform map.
+		\item For every $\epsilon \in \RR_+$ and every $\theta \in \Theta$ there exist $n \in \NN_+$, $\rho_1,...,\rho_n \in \Phi$ and $\delta_1,...,\delta_n \in \RR_+$ such that
+		      $$\rho_1(x_1,x_2) \leq \delta_1,...,\rho_n(x_1, x_2) \leq \delta_n$$
+		      imply that $\theta(x_1,x_2) \leq \epsilon$ for all $x_1,x_2 \in X$.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\section{Topology induced by uniform structure}
+
+\begin{definition}
+	Let $X$ be a uniform space. A subset $O$ of $X$ is \textit{open} if for every $x$ in $O$ there exists an entourage $U$ of the diagonal in $X$ such that $U(x) \subseteq O$.
+\end{definition}
+
+\begin{fact}\label{fact:topology_induced_by_uniform_structure}
+	Let $X$ be a uniform space. Then family of open subsets in $X$ is a topology.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a uniform space. Then the topology induced by open subsets in $X$ is the topology \textit{induced} by uniform structure on $X$.
+\end{definition}
+
+\begin{fact}\label{fact:topology_induced_by_uniformity_is_functorial}
+	Let $f:X \ra Y$ be a uniform map. Then $f$ is continuous map with respect to topologies induced by uniform structures of $X$ and $Y$.
+\end{fact}
+\begin{proof}
+	Pick open subset $O$ in $Y$. For every $y \in O$ let $V_y$ be an entourage of the diagonal in $Y$ such that in $V_y(y) \subseteq O$. Then
+	$$f^{-1}(O) = \bigcup_{x \in f^{-1}(O)}\left(f\times f\right)^{-1}(V_{f(x)})\left(f(x)\right))$$
+	and hence $f^{-1}(O)$ is an open subset in $X$. This completes the proof.
+\end{proof}
+
+\begin{corollary}\label{corollary:uniform_spaces_are_completely_regular}
+	Let $X$ be a uniform space. Then $X$ is completely regular with respect to induced topology.
+\end{corollary}
+\begin{proof}
+	Suppose that $x$ is a point in $X$ and $F$ is a closed subset in $X$ which does not contain $x$. There exists an entourage $U$ of the diagonal in $X$ such that $U(x)$ is disjoint with $F$. Theorem \ref{theorem:Urysohn_lemma} implies that there exists a uniform map $f:X\ra \RR$ such that $f(X) \subseteq [0,1]$, $f(x) = 0$ and $f_{\mid F} = 1$. Fact \ref{fact:topology_induced_by_uniformity_is_functorial} asserts that $f$ is continuous with respect to induced topologies. This proves that $X$ is completely regular topological space.
+\end{proof}
+
+\begin{corollary}\label{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter}
+	Let $X$ be a uniform space and let $U$ be an entourage of the diagonal in $X$. Then for every $x \in X$ there exists open neighborhood $O$ of $x$ such that $O \subseteq U(x)$.
+\end{corollary}
+\begin{proof}
+	According to Theorem \ref{theorem:Urysohn_lemma} there exists a uniform map $f:X\ra \RR$ such that $f(X) \subseteq [0,1]$, $f(x) = 0$ and $f_{\mid X\setminus U(x)} = 1$. Next $f$ is continuous by Fact \ref{fact:topology_induced_by_uniformity_is_functorial} and hence $f^{-1}\left([0,1)\right)$ satisfies the statement.
+\end{proof}
+\noindent
+According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the topology induced by uniformity gives rise to a functor $\Unif \ra \Top$. Its composition with the forgetful functor $\Top \ra \Set$ gives rise to the forgetful functor $\Unif \ra \Set$.
+
+\begin{theorem}\label{theorem:uniformity_induced_by_family_of_maps_induces_topology_induced_by_family}
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f\in \cF$ its codomain is the underlying  set of a uniform space $Y_f$. We consider $X$ as uniform space with uniform structure induced by $\cF$. Let $Z$ be a topological space and let $g:Z\ra X$ be a map of sets such that $f \cdot g$ is continuous for every $f \in \cF$. Then $g$ is continuous.
+\end{theorem}
+\begin{proof}
+	Pick $z \in Z$ and let $O$ be an open neighborhood of $g(z)$ in $X$. By definition there exists an entourage $U$ of the diagonal in $X$ such that $U\left(g(z)\right) \subseteq O$. Recall (Theorem \ref{theorem:uniformity_induced_by_family_of_maps}) that there exist a finite set $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
+	By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} for every $f \in F$ there exists open neighborhood $O_f$ of $z$ in $Z$ such that
+	$$\left(f\cdot g\right)\left(O_f\right) \subseteq V_f\bigg(\left(f\cdot g\right)(z)\bigg)$$
+	Then
+	$$g\left(\bigcap_{f\in F}O_f\right) \subseteq \bigcap_{f\in F}\bigg(\left(f\times f\right)^{-1}(V_f)\big(g(z)\big)\bigg) = \bigg(\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f)\bigg)\left(g(z)\right) \subseteq U\left(g(z)\right)$$
+	Thus
+	$$g\left(\bigcap_{f\in F}O_f\right) \subseteq O$$
+	and hence $g$ is continuous at $z$. Since $z$ is an arbitrary point in $Z$, the proof is completed.
+\end{proof}
+
+\begin{corollary}\label{corollary:topology_induced_by_uniformity_functor_preserves_small_limits}
+	The functor $\Unif \ra \Top$ creates small limits.
+\end{corollary}
+\begin{proof}
+	Follows from Corollary \ref{corollary:limits_in_category_of_uniform_spaces}, Theorem \ref{theorem:uniformity_induced_by_family_of_maps_induces_topology_induced_by_family} and description of small limits in $\Top$.
+\end{proof}
+
+\begin{corollary}\label{corollary:topology_induced_by_uniformity_functor_preserves_subspaces}
+	Let $i:X\hookrightarrow Y$ be an embedding of uniform spaces. Then $i$ is an embedding of topological spaces induced by uniform structures.
+\end{corollary}
+\begin{proof}
+	Follows from Theorem \ref{theorem:uniformity_induced_by_family_of_maps_induces_topology_induced_by_family} and definition of topological embeddings.
+\end{proof}
+
+\section{Hausdorff and complete uniform spaces}
+\noindent
+In this section we introduce two important classes of uniform spaces.
+
+\begin{definition}
+	Let $X$ be a uniform space such that the intersection of all entourages of the diagonal in $X$ coincides with $\Delta_X$. Then $X$ is a \textit{Hausdorff} uniform space.
+\end{definition}
+
+\begin{fact}\label{fact:Hausdorff_uniform_space_is_Hausdorff_as_a_topological_space}
+	Let $X$ be a uniform space. Then the following are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $X$ is a Hausdorff uniform space.
+		\item $X$ is a Hausdorff topological space.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Suppose that $X$ is a Hausdorff uniform space. Fix distinct points $x_1,x_2 \in X$ and suppose that $U$ is an entourage of the diagonal in $X$ such that $(x_1,x_2) \not \in U$. Such entourage exists because $X$ is Hausdorff. Then $U(x_1)\cap U(x_2) = \emptyset$ and Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} implies that $X$ is Hausdorff as a topological space. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
+	Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Assume that $X$ is Hausdorff as a topological space. Fix distinct points $x_1,x_2 \in X$ and pick open neighborhoods $x_1 \in O_1$ and $x_2 \in O_2$ which are disjoint. There exists entourage $U$ of the diagonal in $X$ such that $U(x_1) \subseteq O_1$ and $U(x_2) \subseteq O_2$. It follows that $(x_1,x_2) \not \in U$. Since pair $(x_1,x_2) \not \in \Delta_X$ is arbitrary, we derive that $X$ is Hausdorff as a uniform space.
+\end{proof}
+\noindent
+Now we define Cauchy filters and complete spaces.
+
+\begin{definition}
+	Let $X$ be a uniform space and let $\cF$ be a filter on $X$. Suppose that for every entourage $U$ of the diagonal in $X$ there exists $F \in \cF$ such that $F\times F \subseteq U$. Then $\cF$ is a \textit{Cauchy} filter on $X$.
+\end{definition}
+
+\begin{fact}\label{fact:Cauchy_filters_are_preserved_by_uniform_maps}
+	Let $f:X\ra Y$ be a uniform map of uniform spaces and let $\cF$ be a Cauchy filter on $X$. Then $f(\cF)$ is a Cauchy filter on $Y$.
+\end{fact}
+\begin{proof}
+	Pick an entourage $V$ of the diagonal in $Y$. Since $f$ is a uniform map, there exists an entourage $U$ of the diagonal in $X$ such that $\left(f\times f\right)(U) \subseteq V$. Now $\cF$ is a Cauchy filter in $X$. Hence there exists $F \in \cF$ such that $F\times F \subseteq U$. Thus
+	$$f(F)\times f(F) \subseteq \left(f\times f\right)(U) \subseteq V$$
+	and clearly $f(F) \in f(\cF)$. This proves that $f(\cF)$ is a Cauchy filter in $Y$.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a uniform space such that every Cauchy filter in $X$ is convergent. Then $X$ is \textit{complete}.
+\end{definition}
+\noindent
+We shall now prove a series of results on complete uniform spaces, which are generalizations of some better known results regarding sets with pseudometrics.
+
+\begin{theorem}\label{theorem:completeness_is_inheritied_by_closed_subspaces}
+	Let $X$ be a complete uniform space and let $Z$ be its closed subspace. Then $Z$ is complete.
+\end{theorem}
+\begin{proof}
+	Let $\cF$ be a Cauchy filter on $Z$. Consider its image $\tilde{\cF}$ under the inclusion $Z\hookrightarrow X$. Then $\tilde{\cF}$ is a Cauchy filter by Fact \ref{fact:Cauchy_filters_are_preserved_by_uniform_maps}. Since $X$ is complete, we derive that $\tilde{\cF}$ converges to some point $x \in X$. Using the fact that $\tilde{\cF}$ is the image of $\cF$ under the inclusion $Z\hookrightarrow X$, we derive that each open neighborhood of $x$ in $X$ has nonempty intersection with $Z$ i.e. $x\in \bd{cl}(Z)$. Since $Z$ is closed in $X$, we infer that $x \in Z$.
+\end{proof}
+
+\begin{theorem}\label{theorem:extension_of_densely_defined_uniform_maps_with_complete_target}
+	Let $X$ be a uniform space and let $Z$ be a dense subset of $X$. Let $Y$ be a complete uniform space and let $f:Z\ra Y$ be a uniform map. Then there exist a uniform map $\tilde{f}:X\ra Y$ such that $\tilde{f}_{\mid Z} = f$. If $Y$ is Hausdorff, then $\tilde{f}$ is unique.
+\end{theorem}
+\begin{proof}
+	For a point $x$ in $X$ we define
+	$$\cF_x = \big\{F\subseteq Z\,\big|\,O\cap Z \subseteq F\mbox{ for some open neighborhood }O\mbox{ of }x\mbox{ in }X\big\}$$
+	Then $\cF_x$ is a Cauchy filter in $Z$. By Fact \ref{fact:Cauchy_filters_are_preserved_by_uniform_maps} the filter $f(\cF_x)$ is Cauchy on $Y$. Hence it is convergent. If $x \in Z$, then one of its limits is $f(x)$. We define $\tilde{f}(x)$ to be arbitrary limit of $f(\cF_x)$ if $x \in X\setminus Z$ and we set $\tilde{f}(x) = f(x)$ for $x \in Z$. Then $\tilde{f}:X\ra Y$ is a map such that $\tilde{f}_{\mid Z} = f$. To complete the existence part of the theorem it suffices to prove that $\tilde{f}$ is a uniform map. For this pick an entourage $V$ of the diagonal in $Y$. Let $W$ be an entourage of the diagonal in $Y$ and let $U$ be an entourage of the diagonal in $X$ such that
+	$$\left(f\times f\right)\left(\left(\underbrace{U\cdot U \cdot U}_{3\,\mathrm{times}}\right)\cap \left(Z\times Z\right)\right) \subseteq W,\,\underbrace{W\cdot W \cdot W}_{3\,\mathrm{times}} \subseteq V$$
+	Fix now $(x_1,x_2) \in U$. According to Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} set
+	$$F = U\left(\{x_1,x_2\}\right)\cap Z$$
+	is an element of $\cF_{x_1}\cap \cF_{x_2}$. From $(x_1,x_2) \in U$ we deduce that $F\times F \subseteq \underbrace{U\cdot U\cdot U}_{3\,\mathrm{times}}$. Hence
+	$$f(F)\times f(F) \subseteq W$$
+	Filter $f(\cF_{x_i})$ converges to $x_i$ for $i=1,2$. Hence there exists $y_i \in f(F)$ such that $y_i \in W\left(\tilde{f}(x_i)\right)$ for $i = 1, 2$. We derive that
+	$$\left(\tilde{f}(x_1),y_1\right) \in W,\,\left(y_2,\tilde{f}(x_2)\right) \in W,\,(y_1,y_2) \in W$$
+	Thus $\left(\tilde{f}(x_1),\tilde{f}(x_2)\right) \in \underbrace{W\cdot W\cdot W}_{3\,\mathrm{times}}$ and hence $\left(\tilde{f}(x_1),\tilde{f}(x_2)\right) \in V$. This proves that
+	$$\left(\tilde{f}\times \tilde{f}\right)(U) \subseteq V$$
+	and therefore, $\tilde{f}$ is a uniform map.
+
+	Now if $Y$ is a Hausdorff uniform space, then by Fact \ref{fact:Hausdorff_uniform_space_is_Hausdorff_as_a_topological_space} it is also a Hausdorff topological space. By Fact \ref{fact:topology_induced_by_uniformity_is_functorial} maps $\tilde{f}, f$ are continuous. Since $Z$ is dense in $X$ and $\tilde{f}_{\mid Z} = f$, we derive that $\tilde{f}$ is unique.
+\end{proof}
+
+\begin{theorem}\label{theorem:complete_in_Hausdorff_is_closed}
+	Let $X$ be a Hausdorff uniform space and let $Z$ be a complete subspace of $X$. Then $Z$ is closed.
+\end{theorem}
+\begin{proof}
+	We may replace $X$ by $\bd{cl}(Z)$. Hence without loss of generality we may assume that $Z$ is dense in $X$. Our goal is to prove that $Z$ coincides with $X$. Theorem \ref{theorem:extension_of_densely_defined_uniform_maps_with_complete_target} shows that the map $1_Z:Z\ra Z$ can be uniquely extended to a uniform map $r:X \ra Z$. Let $i:Z \hookrightarrow X$ be the inclusion. Then $r\cdot i = 1_Z$ i.e. $r$ is the retraction. We have $\left(i\cdot r\right)\cdot i = i = 1_X\cdot i$. Since $Z$ is dense in $X$ and $X$ is Hausdorff, we can cancel $i$ and obtain that $i\cdot r = 1_X$. This proves that $r$ and $i$ are mutually inverse uniform maps. Thus $Z = X$ and hence the proof is completed.
+\end{proof}
+\noindent
+Now we prove interesting version of Tychonoff's theorem for complete uniform spaces.
+
+\begin{theorem}\label{theorem:product_of_complete_spaces_is_complete}
+	Let $\{X_i\}_{i \in I}$ be a family of complete uniform spaces. Then the product
+	$$\prod_{i \in I}X_i$$
+	is a complete uniform space.
+\end{theorem}
+\begin{proof}
+	We denote $\prod_{i \in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X\ra X_i$ the canonical projection onto $i$-th factor. Suppose that $X_i$ is complete for every $i \in I$. Pick a Cauchy filter $\cF$ on $X$. Fix $i$ in $I$. According to Fact \ref{fact:Cauchy_filters_are_preserved_by_uniform_maps} the filter $pr_i(\cF)$ is Cauchy on $X_i$. Since $X_i$ is complete, we derive that $pr_i(\cF)$ is convergent to some point $x_i \in X_i$. Let $x$ be a point of $X$ such that $pr_i(x) = x_i$ for each $i \in I$. Fix finite subset $\{i_1,...,i_n\}\subseteq I$. Consider open neighborhood $O_{i_j}$ of $x_{i_j}$. Then $O_{i_j}\in pr_{i_j}(\cF)$ for each $j$ and hence $pr_{i_j}^{-1}(O_{i_j}) \in \cF$ for each $j$. Since $\cF$ is a filter, we derive that
+	$$\prod_{j=1}^nO_{i_j}\times \prod_{i\in I \setminus \{i_1,...,i_n\}}X_i = \bigcap_{j=1}^n pr^{-1}_{i_j}(O_{i_j}) \in \cF$$
+	Now Corollary \ref{corollary:topology_induced_by_uniformity_functor_preserves_small_limits} implies that $X$ is a topological product of $\{X_i\}_{i\in I}$. Thus $\cF$ is convergent to $x$ in $X$. Thus every Cauchy filter on $X$ is convergent and hence $X$ is complete.
+\end{proof}
+
+\section{Complete pseudometric spaces and completion}
+
+\begin{definition}
+	A set equipped with pseudometric is a \textit{pseudometric space}. If the pseudometric is a metric, then it is a \textit{metric space}.
+\end{definition}
+
+\begin{definition}
+	Let $X,Y$ be a pseudometric spaces and let $f:X\ra Y$ be a map. Let $\rho$ and $\delta$ be pseudometrics on $X$ and $Y$, respectively. Suppose that
+	$$\delta\left(f(x_1),f(x_2)\right) = \rho(x_1,x_2)$$
+	for all $x_1,x_2 \in X$. Then $f$ is an \textit{isometry}.
+\end{definition}
+
+\begin{corollary}\label{corollary:isometries_are_uniform_maps}
+	Let $f:X\ra Y$ be an isometry of pseudometric spaces. Then $f$ is a uniform map.
+\end{corollary}
+\begin{proof}
+	This is an immediate consequence of Fact \ref{fact:uniform_maps_in_terms_of_pseudometrics}.
+\end{proof}
+
+\begin{definition}
+	A pseudometric space is complete if uniform structure induced by its pseudometric is complete.
+\end{definition}
+
+\begin{example}\label{example:real_line_is_complete}
+	$\RR$ is complete pseudometric space.
+\end{example}
+
+\begin{definition}
+	Let $X$ be a pseudometric space and let $\rho$ be its pseudometric. A sequence $\{x_n\}_{n \in \NN}$ of elements of $X$ is \textit{Cauchy} if for every $\epsilon > 0$ there exists $k \in \NN$ such that for all $n,m \geq k$ the inequality
+	$$\rho(x_n,x_m) \leq \epsilon$$
+	is satisfied.
+\end{definition}
+\noindent
+We need the following notion of convergence for sequences in topological spaces.
+
+\begin{definition}
+	Let $X$ be a topological space and let $\{x_n\}_{n \in \NN}$ be a sequence of its points. Suppose that there exists $x$ in $X$ such that for every open neighborhood $O$ of $x$ there exists $k \in \NN$ such that $x_n \in O$ for all $n \geq k$. Then $\{x_n\}_{n\in \NN}$ \textit{converges} to $x$.
+\end{definition}
+
+
+\begin{theorem}\label{theorem:completeness_for_pseudometric_spaces_is_equivalent_to_convergence_of_Cauchy_sequences}
+	Let $x$ be a pseudometric space and let $\rho$ be its pseudometric. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $X$ is complete.
+		\item Every Cauchy sequence in $X$ is convergent.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	We prove that $\textbf{(i)} \Rightarrow \textbf{(ii)}$. Let $\{x_n\}_{n \in \NN}$ be a Cauchy sequence in $X$. Consider a family
+	$$\cF = \big\{F\subseteq X\,\big|\,\mbox{ there exists }k\in \NN\mbox{ such that }x_n \in F\mbox{ for all }n\geq k\big\}$$
+	Then $\cF$ is a Cauchy filter on $X$. According to \textbf{(i)} filter $\cF$ is convergent to some point $x$ in $X$. This implies that $\{x_n\}_{n \in \NN}$ is convergent to $x$ in $X$. Hence each Cauchy sequence in $X$ is convergent.
+
+	Suppose that $\textbf{(ii)}$ holds and let $\cF$ be a Cauchy filter on $X$. Pick a nonincreasing sequence $\{F_n\}_{n\in \NN}$ of subsets in $\cF$ such that
+	$$F_n \times F_n \subseteq \Delta_{\rho, \frac{1}{2^n}}$$
+	For each $n \in \NN$ we pick $x_n \in F_n$. Then $\{x_n\}_{n \in \NN}$ is a Cauchy sequence on $X$. Hence $\{x_n\}_{n \in \NN}$ is convergent to some point $x$ in $X$. Fix arbitrary $\epsilon > 0$. Pick $n \in \NN$ such that
+	$$\rho(x_n,x) \leq \frac{\epsilon}{2},\,\frac{1}{2^n} \leq \frac{\epsilon}{2}$$
+	Then $F_n \subseteq \Delta_{\rho, \epsilon}(x)$. Hence $\Delta_{\rho, \epsilon}(x) \in \cF$. This proves that $\cF$ is convergent to $x$. Therefore, $X$ is complete and hence $\textbf{(ii)}\Rightarrow \textbf{(ii)}$.
+\end{proof}
+
+
+\begin{theorem}\label{theorem:completion_for_pseudometric_spaces}
+	Let $X$ be a pseudometric space. Then there exist a complete pseudometric space $\tilde{X}$ and an injective isometry $X \hookrightarrow \tilde{X}$ with dense image.
+\end{theorem}
+\begin{proof}
+	We denote by $\rho$ the pseudometric on $X$.
+
+	We define $\tilde{X}$ to be a set of all Cauchy sequences in $X$. If $\bd{x} \in \tilde{X}$, then we denote by $\bd{x}(n)$ the $n$-th element of $\bd{x}$ for $n \in \NN$.
+
+	Now let $\bd{x}, \bd{y} \in \tilde{X}$. Note that
+	$$|\rho\left(\bd{x}(n),\bd{y}(n)\right) - \rho\left(\bd{x}(m),\bd{y}(m)\right)| \leq \rho\left(\bd{x}(n),\bd{x}(m)\right)) + \rho\left(\bd{y}(n),\bd{y}(m)\right)$$
+	for all $n,m \in \NN$. Hence $\{\rho\left(\bd{x}(n),\bd{y}(n)\right)\}_{n \in \NN}$ is convergent sequence in $\RR$ by Example \ref{example:real_line_is_complete}. We define
+	$$\tilde{\rho}(\bd{x},\bd{y}) = \lim_{n\ra +\infty}\rho\left(\bd{x}(n),\bd{y}(n)\right)$$
+	Then $\tilde{X}$ together with $\tilde{\rho}$ is a pseudometric space.
+
+	Next for each $x \in X$ we define $i(x) \in \tilde{X}$ to be constant Cauchy sequence with value $x$. Then $i:X \hookrightarrow \tilde{X}$ is an injective isometry.
+
+	Pick now $\bd{x} \in \tilde{X}$. For each $\epsilon > 0$ there exists $k \in \NN$ such that
+	$$\rho\left(\bd{x}(n), \bd{x}(m)\right) \leq \epsilon$$
+	for $n,m \geq k$. Hence for each $\epsilon > 0$ there exists $k \in \NN$ such that
+	$$\tilde{\rho}\left(i(\bd{x}(k)), \bd{x}\right) \leq \epsilon$$
+	This proves that $i(X)$ is dense in $\tilde{X}$.
+
+	It remains to verify that $\tilde{X}$ is complete pseudometric space. Let $\{\bd{x}_n\}_{n \in \NN}$ be a Cauchy sequence in $\tilde{x}$. For each $n \in \NN$ there exists $x_n \in X$ such that
+	$$\tilde{\rho}\left(i(x_n), \bd{x}_n\right) \leq \frac{1}{2^n}$$
+	It follows that $\bd{x} = \{x_n\}_{n \in \NN}$ is a Cauchy sequence in $X$. We have
+	$$\lim_{n\ra +\infty}\tilde{\rho}\left(\tilde{j}(x_n),\bd{x}\right) = 0$$
+	and hence
+	$$\lim_{n\ra +\infty}\tilde{\rho}\left(\bd{x}_n,\bd{x}\right) = 0$$
+	Thus $\{\bd{x}_n\}_{n \in \NN}$ converges to $\bd{x}$ in $\tilde{X}$.
+\end{proof}
+\noindent
+Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove general result regarding arbitrary uniform spaces.
+
+\begin{theorem}\label{theorem:completion_for_uniform_spaces}
+	Let $X$ be a uniform space. Then there exist a complete uniform space $\tilde{X}$ and an embedding $X \hookrightarrow \tilde{X}$ of uniform spaces with dense image.
+\end{theorem}
+\begin{proof}
+	Theorem \ref{theorem:each_uniform_structure_is_induced_by_pseudometrics} asserts that there exists a family $\Phi$ of pseudometrics on $X$ which induce its uniform structure. For each $\rho \in \Phi$ let $X_{\rho}$ be pseudometric space having the same underlying set as $X$ together with $\rho$ as its pseudometric. By Theorem \ref{theorem:completion_for_pseudometric_spaces} there exists a complete pseudometric space $\tilde{X}_{\rho}$ and an injective isometry $i_{\rho}:X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ with dense image. We consider $i_{\rho}$ as a uniform map $X \hookrightarrow \tilde{X}_{\rho}$. Then $\{i_{\rho}\}_{\rho\in \Phi}$ is a family of maps that induce on the underlying set of $X$ precisely the uniform structure induced by the family $\Phi$. Hence $\{i_{\rho}\}_{\rho \in \Phi}$ induce the original unifomity of $X$. It follows that the uniform map
+	$$\langle i_{\rho} \rangle_{\rho \in \Phi}:X\hookrightarrow \prod_{\rho \in \Phi}\tilde{X}_{\rho}$$
+	is an embedding of uniform spaces. Since $\prod_{\rho \in \Phi}\tilde{X}_{\rho}$ is complete by Theorem \ref{theorem:completeness_for_pseudometric_spaces_is_equivalent_to_convergence_of_Cauchy_sequences} and Theorem \ref{theorem:product_of_complete_spaces_is_complete}, we derive that $X$ can be embedded into a complete uniform space. Next Theorem \ref{theorem:completeness_is_inheritied_by_closed_subspaces} imply that $X$ can be embedded into a complete uniform space as a dense subspace.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+\end{document}
+
