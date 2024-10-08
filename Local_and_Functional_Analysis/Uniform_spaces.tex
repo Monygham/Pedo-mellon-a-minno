@@ -181,7 +181,7 @@ Let $X$ be a set and let $\rho$ be a pseudometric on $X$. Fix a number $\epsilon
 $$\Delta_{\rho, \epsilon} = \big\{(x_1,x_2) \in X\times X\,\big|\,\rho(x_1, x_2) \leq \epsilon \big\}$$
 is a reflexive and symmetric relation on $X$.
 
-\begin{fact}\label{fact:unifrom_structures_induced_by_families_of_pseudometrics}
+\begin{fact}\label{fact:uniform_structures_induced_by_families_of_pseudometrics}
 	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Let $\fU_{\Phi}$ be a family consisting of all $U\in \fD_X$ such that $U$ contains some finite intersection of sets $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$. Then $\fU_{\Phi}$ is a uniform structure on $X$.
 \end{fact}
 \begin{proof}
@@ -396,7 +396,20 @@ Now we prove interesting version of Tychonoff's theorem for complete uniform spa
 	Now Corollary \ref{corollary:topology_induced_by_uniformity_functor_preserves_small_limits} implies that $X$ is a topological product of $\{X_i\}_{i\in I}$. Thus $\cF$ is convergent to $x$ in $X$. Thus every Cauchy filter on $X$ is convergent and hence $X$ is complete.
 \end{proof}
 
-\section{Complete pseudometric spaces and completion}
+\begin{theorem}\label{theorem:complete_and_nonempty_product_implies_each_factor_is_complete}
+	Let $\big\{X_i\big\}_{i\in I}$ be a family of nonempty uniform spaces. If the product
+	$$\prod_{i\in I}X_i$$
+	is complete, then $X_i$ is complete for every $i\in I$.
+\end{theorem}
+\begin{proof}
+	We denote $\prod_{i\in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X \ra X_i$ the canonical projection onto $i$-th factor. Assume that $X$ is complete. Fix some $j \in I$ and let $\cF$ be a Cauchy filter on $X_j$. Since $X_i$ are nonempty for $i \in I$, by invoking axiom of choice there exists 
+	$$\hat{x} \in \prod_{i \in I\setminus \{j\}}X_i$$
+	Consider
+	$$\tilde{\cF} = \big\{\tilde{F} \subseteq X\,\big|\,\mbox{ there exists }F\in \cF\mbox{ such that }\{\tilde{x}\}\times F \subseteq \tilde{F}\big\}$$
+	Then $\tilde{\cF}$ is a Cauchy filter on $X$ . Since $X$ is complete, $\tilde{\cF}$ converges to some $x \in X$. Hence $\cF = pr_j(\tilde{\cF})$ converges to $pr_j(x) \in X_j$. This implies that $X_j$ is complete and the theorem is proved.
+\end{proof}
+
+\section{Pseudometric spaces and completion}
 
 \begin{definition}
 	A set equipped with pseudometric is a \textit{pseudometric space}. If the pseudometric is a metric, then it is a \textit{metric space}.
@@ -492,8 +505,8 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 \begin{theorem}\label{theorem:completion_for_uniform_spaces}
 	Let $X$ be a uniform space. Then there exist a complete uniform space $\tilde{X}$ and an embedding $X \hookrightarrow \tilde{X}$ of uniform spaces with dense image.
 \end{theorem}
-\begin{proof}m
-	Theorem \ref{theorem:each_uniform_structure_is_induced_by_pseudometrics} asserts that there exists a family $\Phi$ of pseudometrics on $X$ which induce its uniform structure. For each $\rho \in \Phi$ let $X_{\rho}$ be pseudometric space having the same underlying set as $X$ together with $\rho$ as its pseudometric. By Theorem \ref{theorem:completion_for_pseudometric_spaces} there exists a complete pseudometric space $\tilde{X}_{\rho}$ and an injective isometry $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ with dense image. Since the identity on the underlying set of $X$ is a uniform map $X \ra X_{\rho}$, we can compose it with $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ and get a uniform map $i_{\rho}:X \hookrightarrow \tilde{X}_{\rho}$. Note that $\{i_{\rho}\}_{\rho\in \Phi}$ is a family of maps that induce the same uniform structure as $\Phi$. Hence $\{i_{\rho}\}_{\rho \in \Phi}$ induce the uniform strucure of $X$. It follows that the injective uniform map
+\begin{proof}
+	Theorem \ref{theorem:each_uniform_structure_is_induced_by_pseudometrics} asserts that there exists a family $\Phi$ of pseudometrics on $X$ which induce its uniform structure. For each $\rho \in \Phi$ let $X_{\rho}$ be pseudometric space having the same underlying set as $X$ together with $\rho$. By Theorem \ref{theorem:completion_for_pseudometric_spaces} there exists a complete pseudometric space $\tilde{X}_{\rho}$ and an injective isometry $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ with dense image. Since the identity on the underlying set of $X$ is a uniform map $X \ra X_{\rho}$, we can compose it with $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ and get a uniform map $i_{\rho}:X \hookrightarrow \tilde{X}_{\rho}$. Note that $\{i_{\rho}\}_{\rho\in \Phi}$ is a family of maps that induce the same uniform structure as $\Phi$. Hence $\{i_{\rho}\}_{\rho \in \Phi}$ induce the uniform strucure of $X$. It follows that the injective uniform map
 	\begin{center}
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
@@ -504,6 +517,32 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 		\end{tikzpicture}
 	\end{center}
 	is an embedding of uniform spaces. Since $\prod_{\rho \in \Phi}\tilde{X}_{\rho}$ is complete by Theorems \ref{theorem:completeness_for_pseudometric_spaces_is_equivalent_to_convergence_of_Cauchy_sequences} and \ref{theorem:product_of_complete_spaces_is_complete}, we derive that $X$ can be embedded into a complete uniform space. Next Theorem \ref{theorem:completeness_is_inheritied_by_closed_subspaces} imply that $X$ can be embedded into a complete uniform space as a dense subspace.
+\end{proof}
+
+\section{Totally bounded uniform spaces}
+
+\begin{definition}
+	Let $X$ be a uniform space and let $\fU$ be an entourage of the diagonal in $X$. A set $S$ of $X$ such that
+	$$X = \bigcup_{x\in S}\fU(x)$$
+	is a \textit{net of radius $\fU$}.
+
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a uniform space. If for every entourage $\fU$ of the diagonal in $X$ there exists a finite net of radius $\fU$, then $X$ is \textit{totally bounded}.
+\end{definition}
+
+\begin{theorem}\label{theorem:product_of_totally_bounded_spaces_is_totally_bounded}
+	Let $\{X_i\}_{i \in I}$ be a family of totally bounded uniform spaces. Then the product
+	$$\prod_{i \in I}X_i$$
+	is a totally bounded uniform space.
+\end{theorem}
+\begin{proof}
+	We denote $\prod_{i \in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X\ra X_i$ the canonical projection onto $i$-th factor. Without loss of generality we may assume that $X_i$ are nonempty for all $i \in I$. Suppose that $X_i$ is totally bounded for every $i \in I$. Fix a finite set $F$ of $I$ and for each $i \in F$ consider an entourage $\fU_i$ of the diagonal in $X_i$. Next for each $i \in F$ there exists a finite net $S_i$ of radius $\fU_i$ in $X_i$. Let $\hat{x}$ be a point in $\prod_{i \in I\setminus F}X_i$. Next consider
+	$$S = \{\hat{x}\}\times \prod_{i \in F}S_i$$
+	It is easy to verify that $S$ is a finite net of radius
+$$\bigcap_{i \in F}\left(pr_i\times pr_i\right)^{-1}(\fU_i)$$
+in $X$. Since by Corollary \ref{corollary:limits_in_category_of_uniform_spaces} entourages of the form described above generate the uniform structure on $X$, we derive that $X$ is totally bounded.
 \end{proof}
 
 
