@@ -522,15 +522,32 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 \section{Totally bounded uniform spaces}
 
 \begin{definition}
-	Let $X$ be a uniform space and let $\fU$ be an entourage of the diagonal in $X$. A set $S$ of $X$ such that
-	$$X = \bigcup_{x\in S}\fU(x)$$
-	is a \textit{net of radius $\fU$}.
-
+	Let $X$ be a uniform space and let $U$ be an entourage of the diagonal in $X$. A set $S$ of $X$ such that
+	$$X = \bigcup_{x\in S}U(x)$$
+	is a \textit{net of radius $U$}.
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a uniform space. If for every entourage $\fU$ of the diagonal in $X$ there exists a finite net of radius $\fU$, then $X$ is \textit{totally bounded}.
+	Let $X$ be a uniform space. If for every entourage $U$ of the diagonal in $X$ there exists a finite net of radius $U$, then $X$ is \textit{totally bounded}.
 \end{definition}
+
+\begin{theorem}\label{theorem:totally_bounded_is_inherited_by_subspaces}
+	Let $X$ be a totally bounded uniform space and let $Z$ be a subspace of $X$. Then $Z$ is totally bounded.
+\end{theorem}
+\begin{proof}
+	Fix an entourage $U$ of the diagonal in $X$. Consider an entourage $W$ of the diagonal in $X$ such that $W\cdot W \subseteq U$. Let $S$ be a finite net of radius $W$ in $X$. Consider
+	$$R = \big\{s \in S\,\big|\,W(s)\cap Z \neq \emptyset\big\}$$
+	For each $r\in R$ we pick $z(r) \in W(r)\cap Z$. Next we consider $T = \{z(r)\,|\,r\in R\}$. Then $T$ is a finite net of radius $U$ in $Z$. This proves that $Z$ is totally bounded.
+\end{proof}
+
+\begin{theorem}\label{theorem:surjective_image_of_totally_bounded_space_is_totally_bounded}
+	Let $X$ be a totally bounded uniform space and let $f:X\ra Y$ be a surjective uniform map. Then $Y$ is totally bounded.   
+\end{theorem}
+\begin{proof}
+	Fix an entourage $V$ of the diagonal in $Y$. Consider an entourage $U$ of the diagonal in $X$ such that $\left(f\times f\right)\left(U\right) \subseteq V$. Next pick a finite net $S$ inn $X$ with radius $U$. Then 
+	$$Y = \bigcup_{x\in S}V\left(f(x)\right)$$
+	and hence $Y$ is totally bounded.
+\end{proof}
 
 \begin{theorem}\label{theorem:product_of_totally_bounded_spaces_is_totally_bounded}
 	Let $\{X_i\}_{i \in I}$ be a family of totally bounded uniform spaces. Then the product
@@ -538,10 +555,10 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 	is a totally bounded uniform space.
 \end{theorem}
 \begin{proof}
-	We denote $\prod_{i \in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X\ra X_i$ the canonical projection onto $i$-th factor. Without loss of generality we may assume that $X_i$ are nonempty for all $i \in I$. Suppose that $X_i$ is totally bounded for every $i \in I$. Fix a finite set $F$ of $I$ and for each $i \in F$ consider an entourage $\fU_i$ of the diagonal in $X_i$. Next for each $i \in F$ there exists a finite net $S_i$ of radius $\fU_i$ in $X_i$. Let $\hat{x}$ be a point in $\prod_{i \in I\setminus F}X_i$. Next consider
+	We denote $\prod_{i \in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X\ra X_i$ the canonical projection onto $i$-th factor. Without loss of generality we may assume that $X_i$ are nonempty for all $i \in I$. Suppose that $X_i$ is totally bounded for every $i \in I$. Fix a finite set $F$ of $I$ and for each $i \in F$ consider an entourage $U_i$ of the diagonal in $X_i$. Next for each $i \in F$ there exists a finite net $S_i$ of radius $U_i$ in $X_i$. Let $\hat{x}$ be a point in $\prod_{i \in I\setminus F}X_i$. Next consider
 	$$S = \{\hat{x}\}\times \prod_{i \in F}S_i$$
 	It is easy to verify that $S$ is a finite net of radius
-$$\bigcap_{i \in F}\left(pr_i\times pr_i\right)^{-1}(\fU_i)$$
+$$\bigcap_{i \in F}\left(pr_i\times pr_i\right)^{-1}(U_i)$$
 in $X$. Since by Corollary \ref{corollary:limits_in_category_of_uniform_spaces} entourages of the form described above generate the uniform structure on $X$, we derive that $X$ is totally bounded.
 \end{proof}
 
