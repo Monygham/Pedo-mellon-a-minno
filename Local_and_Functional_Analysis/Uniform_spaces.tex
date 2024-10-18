@@ -306,10 +306,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	Follows from Theorem \ref{theorem:uniformity_induced_by_family_of_maps_induces_topology_induced_by_family} and definition of topological embeddings.
 \end{proof}
 
-\section{Hausdorff and complete uniform spaces}
-\noindent
-In this section we introduce two important classes of uniform spaces.
-
+\section{Hausdorff uniform spaces}
 \begin{definition}
 	Let $X$ be a uniform space such that the intersection of all entourages of the diagonal in $X$ coincides with $\Delta_X$. Then $X$ is a \textit{Hausdorff} uniform space.
 \end{definition}
@@ -326,8 +323,10 @@ In this section we introduce two important classes of uniform spaces.
 
 	Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Assume that $X$ is Hausdorff as a topological space. Fix distinct points $x_1,x_2 \in X$ and pick open neighborhoods $x_1 \in O_1$ and $x_2 \in O_2$ which are disjoint. There exists entourage $U$ of the diagonal in $X$ such that $U(x_1) \subseteq O_1$ and $U(x_2) \subseteq O_2$. It follows that $(x_1,x_2) \not \in U$. Since pair $(x_1,x_2) \not \in \Delta_X$ is arbitrary, we derive that $X$ is Hausdorff as a uniform space.
 \end{proof}
+
+\section{Cauchy filters and complete uniform spaces}
 \noindent
-Now we define Cauchy filters and complete spaces.
+In this section we introduce important class of uniform spaces.
 
 \begin{definition}
 	Let $X$ be a uniform space and let $\cF$ be a filter on $X$. Suppose that for every entourage $U$ of the diagonal in $X$ there exists $F \in \cF$ such that $F\times F \subseteq U$. Then $\cF$ is a \textit{Cauchy} filter on $X$.
@@ -342,11 +341,18 @@ Now we define Cauchy filters and complete spaces.
 	and clearly $f(F) \in f(\cF)$. This proves that $f(\cF)$ is a Cauchy filter in $Y$.
 \end{proof}
 
+\begin{fact}\label{fact:Cauchy_filter_with_accumultation_point_is_convergent}
+	Let $X$ be a uniform space and let $\cF$ be a Cauchy filter on $X$. Let $x$ be a point in $X$. If $x$ is an accumulation point of $\cF$, then $\cF$ is convergent to $x$.
+\end{fact}
+\begin{proof}
+	Pick an entourage $U$ of the diagonal in $X$ and let $W$ be an entourage of the diagonal in $X$ such that $W\cdot W \subseteq U$. Then there exists $F \in \cF$ such that $F\times F \subseteq W$ and $F\cap W(x)\neq \emptyset$. It follows that $F\subseteq U(x)$. This implies that $U(x) \in \cF$ and hence $\cF$ is convergent to $x$.
+\end{proof}
+
 \begin{definition}
 	Let $X$ be a uniform space such that every Cauchy filter in $X$ is convergent. Then $X$ is \textit{complete}.
 \end{definition}
 \noindent
-We shall now prove a series of results on complete uniform spaces, which are generalizations of some better known results regarding sets with pseudometrics.
+We shall now prove a series of results on complete uniform spaces, which are generalizations of some better known results regarding metric spaces.
 
 \begin{theorem}\label{theorem:completeness_is_inheritied_by_closed_subspaces}
 	Let $X$ be a complete uniform space and let $Z$ be its closed subspace. Then $Z$ is complete.
@@ -402,7 +408,7 @@ Now we prove interesting version of Tychonoff's theorem for complete uniform spa
 	is complete, then $X_i$ is complete for every $i\in I$.
 \end{theorem}
 \begin{proof}
-	We denote $\prod_{i\in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X \ra X_i$ the canonical projection onto $i$-th factor. Assume that $X$ is complete. Fix some $j \in I$ and let $\cF$ be a Cauchy filter on $X_j$. Since $X_i$ are nonempty for $i \in I$, by invoking axiom of choice there exists 
+	We denote $\prod_{i\in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X \ra X_i$ the canonical projection onto $i$-th factor. Assume that $X$ is complete. Fix some $j \in I$ and let $\cF$ be a Cauchy filter on $X_j$. Since $X_i$ are nonempty for $i \in I$, by invoking axiom of choice there exists
 	$$\hat{x} \in \prod_{i \in I\setminus \{j\}}X_i$$
 	Consider
 	$$\tilde{\cF} = \big\{\tilde{F} \subseteq X\,\big|\,\mbox{ there exists }F\in \cF\mbox{ such that }\{\tilde{x}\}\times F \subseteq \tilde{F}\big\}$$
@@ -541,10 +547,10 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 \end{proof}
 
 \begin{theorem}\label{theorem:surjective_image_of_totally_bounded_space_is_totally_bounded}
-	Let $X$ be a totally bounded uniform space and let $f:X\ra Y$ be a surjective uniform map. Then $Y$ is totally bounded.   
+	Let $X$ be a totally bounded uniform space and let $f:X\ra Y$ be a surjective uniform map. Then $Y$ is totally bounded.
 \end{theorem}
 \begin{proof}
-	Fix an entourage $V$ of the diagonal in $Y$. Consider an entourage $U$ of the diagonal in $X$ such that $\left(f\times f\right)\left(U\right) \subseteq V$. Next pick a finite net $S$ inn $X$ with radius $U$. Then 
+	Fix an entourage $V$ of the diagonal in $Y$. Consider an entourage $U$ of the diagonal in $X$ such that $\left(f\times f\right)\left(U\right) \subseteq V$. Next pick a finite net $S$ inn $X$ with radius $U$. Then
 	$$Y = \bigcup_{x\in S}V\left(f(x)\right)$$
 	and hence $Y$ is totally bounded.
 \end{proof}
@@ -558,10 +564,26 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 	We denote $\prod_{i \in I}X_i$ by $X$. For each $i$ in $I$ we denote by $pr_i:X\ra X_i$ the canonical projection onto $i$-th factor. Without loss of generality we may assume that $X_i$ are nonempty for all $i \in I$. Suppose that $X_i$ is totally bounded for every $i \in I$. Fix a finite set $F$ of $I$ and for each $i \in F$ consider an entourage $U_i$ of the diagonal in $X_i$. Next for each $i \in F$ there exists a finite net $S_i$ of radius $U_i$ in $X_i$. Let $\hat{x}$ be a point in $\prod_{i \in I\setminus F}X_i$. Next consider
 	$$S = \{\hat{x}\}\times \prod_{i \in F}S_i$$
 	It is easy to verify that $S$ is a finite net of radius
-$$\bigcap_{i \in F}\left(pr_i\times pr_i\right)^{-1}(U_i)$$
-in $X$. Since by Corollary \ref{corollary:limits_in_category_of_uniform_spaces} entourages of the form described above generate the uniform structure on $X$, we derive that $X$ is totally bounded.
+	$$\bigcap_{i \in F}\left(pr_i\times pr_i\right)^{-1}(U_i)$$
+	in $X$. Since by Corollary \ref{corollary:limits_in_category_of_uniform_spaces} entourages of the form described above generate the uniform structure on $X$, we derive that $X$ is totally bounded.
 \end{proof}
+\noindent
+Finally we are able to give criterion of quasi-compactness in terms of uniform structures.
 
+\begin{theorem}\label{theorem:quasi_compact_uniform_spaces_are_equivalent_to_complete_and_totally_bounded}
+	Let $X$ be a uniform space. Then the following are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $X$ is quasi-compact topological space.
+		\item $X$ is complete and totally bounded.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Suppose that \textbf{(i)} holds. Fix a Cauchy filter $\cF$ on $X$. Since $X$ is quasi-compact, each proper filter on $X$ admits an accumulation point. In particular, $\cF$ admits an accumulation point. According to Fact \ref{fact:Cauchy_filter_with_accumultation_point_is_convergent} we infer that $\cF$ is convergent. Thus $X$ is complete. Pick now an entourage $U$ of the diagonal in $X$. Then
+	$$X = \bigcup_{x\in X}U(x)$$
+	By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} combined with the fact that $X$ is quasi-compact we derive that there exists a finite subset $S \subseteq X$ which is a net on $X$ of radius $U$. Thus $X$ is totally bounded. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
+	Assume that $X$ is complete and totally bounded. Let $\cF$ be an ultrafilter on $X$. Fix an entourage $U$ of the diagonal in $X$ and let $W$ be an entourage of the diagonal in $X$ such that $W\cdot W \subseteq U$. Since $X$ is totally bounded there exists a finite net $S$ on $X$ with radius $W$. From the fact that $\cF$ is an ultrafilter, we deduce that there is $s \in S$ such that $W(s) \in \cF$. Note that $W(s)\times W(s) \subseteq U$. This proves that $\cF$ is a Cauchy filter on $X$. By completeness of $X$ we infer that $\cF$ is convergent. Thus $X$ is quasi-compact and the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
+\end{proof}
 
 
 
