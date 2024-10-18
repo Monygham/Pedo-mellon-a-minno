@@ -118,15 +118,24 @@ The following result uses axiom of choice.
 	This implies that $Y\setminus V \in f(\tilde{\cF})$ and hence $V \not \in f(\tilde{\cF})$. It follows that the filter $f(\tilde{\cF})$ cannot converge to $f(x)$ in $Y$. We arrive at contradiction. This means that there exists an open neighborhood $U$ of $x$ in $X$ such that $U \subseteq f^{-1}(V)$. This proves that $f$ is continuous at $x$. We infer $\textbf{(iii)}\Rightarrow \textbf{(i)}$.
 \end{proof}
 
+\begin{definition}
+	Let $X$ be a topological space and let $\cF$ be a proper filter on $X$. Consider a point $x$ in $X$. Suppose that for every open neighborhood $U$ of $x$ and every $F \in \cF$ we have $F\cap U \neq \emptyset$. Then $x$ is an \textit{accumulation point} of $\cF$.
+\end{definition}
+
 \begin{theorem}\label{theorem:quasi_compact_in_terms_of_ultrafilters}
 	Let $X$ be a topological space. Then the following assertions are equivalent.
 	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
 		\item Each ultrafilter on $X$ is convergent to some point of $X$.
+		\item Each proper filter on $X$ admits an accumulation point.
 		\item $X$ is a quasi-compact topological space.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Suppose that \textbf{(i)} holds. Pick a centered family $\cF$ of closed subsets of $X$. By Proposition \ref{proposition:existence_of_ultrafilters} there exists an ultrafilter $\tilde{\cF}$ that contains $\cF$. According to \textbf{(i)} ultrafilter $\tilde{\cF}$ is convergent to some point $x$ in $X$. Then for every open neighborhood $U$ of $x$ we have $U \in \tilde{\cF}$. In particular, $U\cap F \neq \emptyset$ for every $F\in \cF$ and for every open neighborhood $U$ of $x$ in $X$. This implies that $x \in F$ for every $F\in \cF$. Thus $\cF$ has nonempty intersection and this implies that $X$ is quasi-compact. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+	Suppose that \textbf{(i)} holds. Let $\cF$ be a proper filter on $X$. By Proposition \ref{proposition:existence_of_ultrafilters} there exists an ultrafilter $\tilde{\cF}$ that contains $\cF$. By assumption $\tilde{\cF}$ is convergent to some point $x$ of $X$. Then $x$ is an accumulation point of $\cF$. Hence $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+
+	Assume that \textbf{(ii)}. Pick a centered family $\cF$ of closed subsets of $X$. Define
+	$$\tilde{\cF} = \big\{F\,\big|\,F\mbox{ contains some finite intersection of sets in }\cF\big\}$$
+	Then $\tilde{\cF}$ is a proper filter on $X$. By assumption $\tilde{\cF}$ admits an accumulation point – say $x\in X$. Pick now $F \in \cF$. Then for every open neighborhood $U$ of $x$ we have $U\cap F \neq \emptyset$. Since $F$ is closed in $X$, we derive that $x\in F$. Thus $x$ is contained in the intersection of $\cF$. This implies that $X$ is quasi-compact. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(iii)}$.
 
 	Assume that $X$ is quasi-compact and suppose that $\cF$ is an ultrafilter on $X$. Suppose that $\cF$ is not convergent. Then for every $x \in X$ there exists open neighborhood $U_x$ of $x$ in $X$ such that $U_x \not \in \cF$. Since $X$ is quasi-compact, we deduce that there exist $n\in \NN_+$ and $x_1,...,x_n \in X$ such that
 	$$X = \bigcup_{i=1}^nU_{x_i}$$
@@ -134,7 +143,7 @@ The following result uses axiom of choice.
 	$$\bigcap_{i=1}^n\left(X\setminus U_{x_i}\right) \in \cF$$
 	On the other hand we have
 	$$\bigcap_{i=1}^n\left(X\setminus U_{x_i}\right) = X \setminus \bigcup_{i=1}^nU_{x_i} = \emptyset$$
-	This is contradiction. Thus the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
+	This is contradiction. Thus the implication $\textbf{(iii)}\Rightarrow \textbf{(i)}$ holds.
 \end{proof}
 
 \section{Tychonoff's theorem}
