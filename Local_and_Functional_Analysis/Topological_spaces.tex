@@ -12,7 +12,7 @@
 \noindent
 These notes contain introductory material on topological spaces. Our approach to foundations of this subject follows method presented in \cite{kuratowski1922operation} and generalized by Eduardo \v{C}ech. This enable us to introduce pretopological spaces.
 
-The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we mainly introduce standard terminology for studying topological space. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss quasi-compact spaces, which are the most important topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we introduce relative version of quasi-compactness by characterizing universally closed maps. Next we introduce dense subsets and prove interesting Hewitt-Marczewski-Pondiczery theorem. In the next section we discuss connected topological spaces and their connected components. Final section is devoted to important classes of Hausdorff, completely regular and normal spaces. Here we prove Urysohn lemma and Tietze extension theorem.
+The first section is devoted to \v{C}ech approach to pretopological spaces. Here we define preclosure operator and study its basic properties. In the next section we follow \cite{kuratowski1922operation} and define closure operators and topological spaces. Our aim here is to prove that three distinct methods of introducing topology give rise to isomorphic categories and thus can be identified. In the third section we prove result to the effect that topological spaces form a reflective subcategory of pretopological spaces. In the forth section we introduce standard terminology for studying topological space. Then we give some basic examples of topological spaces. Next two sections are devoted to important topics of generating topology by families of maps and to identify (regular) monomorphisms and (regular) epimorphisms in category of topological spaces. Then we study important classes of open and closed maps. In the ninth section we discuss Kolmogorov quotients. Tenth section introduces quasi-compact spaces, which are the most important class of topological spaces. In this section we prove Kuratowski-Mrówka theorem. In the following section we study relative version of quasi-compactness by characterizing universally closed maps. Next we discuss dense subsets and prove Hewitt-Marczewski-Pondiczery theorem. In the next section we study connectivity. Final section is devoted to important classes of Hausdorff, completely regular and normal spaces. Here we prove Urysohn lemma and Tietze extension theorem.
 
 \section{Preclosure operators and pretopological spaces}
 
@@ -308,6 +308,33 @@ Finally it is useful to have local version of continuity of a map.
 	Left for the reader.
 \end{proof}
 
+\section{Examples}
+\noindent
+In this section we give some elementary examples of topological spaces.
+
+\begin{example}\label{example:real_line_and_its_products}
+	Let $\RR$ be a real number field. Then family of open intervals in $\RR$ satisfies conditions specified in Fact \ref{fact:bases_of_topology} and hence it is base of some topology on $\RR$. Let $n \in \NN$ be a natural number. Then $\RR^n$ as the product of $n$-copies of $\RR$ admits the product topology. This product topology is the \textit{natural topology} on $\RR^n$.
+\end{example}
+\noindent
+Unless otherwise stated, from now on for every $n \in \NN$ every subset of $\RR^n$ is assumed to be a topological space with respect to subspace of the natural topology on $\RR^n$. Note that vector space operations on $\RR^n$ and field operations on $\RR$ are continuous with respect to natural topology.
+
+\begin{example}\label{example:complex_numbers}
+	Let $\CC$ be a complex numbers field. Then as a real vector space $\CC = \RR \oplus \RR\sqrt{-1}$ and hence $\CC$ is also a topological space with respect to natural topology on $\RR^2$. Let $n \in \NN$ be a natural number. Then $\CC^n$ as the product of $n$-copies of $\CC$ admits the product topology. This product topology is the \textit{natural topology} on $\CC^n$.
+\end{example}
+\noindent
+Unless otherwise stated, from now on for every $n \in \NN$ every subset of $\CC^n$ is assumed to be a topological space with respect to subspace of the natural topology on $\CC^n$. Note that vector space operations on $\CC^n$ and field operations on $\CC$ are continuous with respect to natural topology. Moreover, natural topologies on $\CC^n$ and $\RR^{2n}$ coincide under the canonical identification of these spaces.
+
+\begin{example}\label{example:discrete_topology}
+	Let $D$ be a set. We equip $D$ with topology such that all subsets of $D$ are open. This is the \textit{discrete topology} on $D$.
+\end{example}
+
+\begin{example}\label{example:Cantor_space}
+	Let $\{0,1\}$ be a discrete topological space on two points and let $\kappa$ be a cardinal number. Then $\{0,1\}^{\kappa}$ i.e. a product of $\kappa$-copies of $\{0,1\}$ is the \textit{Cantor cube of weight} $\kappa$.
+\end{example}
+
+\begin{example}\label{example:indiscrete_topology}
+	Let $X$ be a set. Then $\{\emptyset, X\}$ is a topology on $X$. We call it the \textit{indiscrete topology} on $X$.
+\end{example}
 
 \section{Topology introduced by family of maps}
 \noindent
@@ -390,34 +417,6 @@ In this section we discuss two different methods of generating topologies by fam
 \begin{definition}
 	Let $q:X \ra Y$ be a surjective continuous map of topological spaces. Suppose that the topology on $Y$ is induced by $q$. Then $q$ is a \textit{quotient map} of topological spaces.
 \end{definition}
-
-\section{Examples}
-\noindent
-In this section we give some elementary examples of topological spaces.
-
-\begin{example}\label{example:real_line_and_its_products}
-	Let $\RR$ be a real number field. Then family of open intervals in $\RR$ satisfies conditions specified in Fact \ref{fact:bases_of_topology} and hence it is base of some topology on $\RR$. Let $n \in \NN$ be a natural number. Then $\RR^n$ as the product of $n$-copies of $\RR$ admits the product topology. This product topology is the \textit{natural topology} on $\RR^n$.
-\end{example}
-\noindent
-Unless otherwise stated, from now on for every $n \in \NN$ every subset of $\RR^n$ is assumed to be a topological space with respect to subspace of the natural topology on $\RR^n$. Note that vector space operations on $\RR^n$ and field operations on $\RR$ are continuous with respect to natural topology.
-
-\begin{example}\label{example:complex_numbers}
-	Let $\CC$ be a complex numbers field. Then as a real vector space $\CC = \RR \oplus \RR\sqrt{-1}$ and hence $\CC$ is also a topological space with respect to natural topology on $\RR^2$. Let $n \in \NN$ be a natural number. Then $\CC^n$ as the product of $n$-copies of $\CC$ admits the product topology. This product topology is the \textit{natural topology} on $\CC^n$.
-\end{example}
-\noindent
-Unless otherwise stated, from now on for every $n \in \NN$ every subset of $\CC^n$ is assumed to be a topological space with respect to subspace of the natural topology on $\CC^n$. Note that vector space operations on $\CC^n$ and field operations on $\CC$ are continuous with respect to natural topology. Moreover, natural topologies on $\CC^n$ and $\RR^{2n}$ coincide under the canonical identification of these spaces.
-
-\begin{example}\label{example:discrete_topology}
-	Let $D$ be a set. We equip $D$ with topology such that all subsets of $D$ are open. This is the \textit{discrete topology} on $D$.
-\end{example}
-
-\begin{example}\label{example:Cantor_space}
-	Let $\{0,1\}$ be a discrete topological space on two points and let $\kappa$ be a cardinal number. Then $\{0,1\}^{\kappa}$ i.e. a product of $\kappa$-copies of $\{0,1\}$ is the \textit{Cantor cube of weight} $\kappa$.
-\end{example}
-
-\begin{example}\label{example:indiscrete_topology}
-	Let $X$ be a set. Then $\{\emptyset, X\}$ is a topology on $X$. We call it the \textit{indiscrete topology} on $X$.
-\end{example}
 
 \section{Monomorphisms and epimorphism in $\Top$}
 \noindent
@@ -567,6 +566,38 @@ Next we consider regular monomorphisms and epimorphisms in $\Top$.
 \end{fact}
 \begin{proof}
 	Pick an open subset $U$ of $X$. Then $i(X\setminus U)$ is closed in $Y$. Since $i$ is injective, we have $U = i^{-1}\left(Y\setminus i(X\setminus U)\right)$. Thus $U$ is the preimage under $i$ of an open subset of $Y$.
+\end{proof}
+
+\section{Topologically indistinguishable points and Kolmogorov quotient}
+
+\begin{definition}
+	Let $X$ be a topological space and let $x_1,x_2$ are points of $X$. If classes of open neighborhoods of $x_1$ and $x_2$ coincide, then $x_1$ and $x_2$ are \textit{topologically indistinguishable}.
+\end{definition}
+
+\begin{fact}\label{fact:topological_indistinguishability_is_equivalence}
+	Let $X$ be a topological space. Then topological indistinguishability is an equivalence relation on $X$.
+\end{fact}
+\begin{proof}
+	Left for the reader.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a topological space. A quotient map $q:X\twoheadrightarrow \tilde{X}$ with respect to topological indistinguishability is a \textit{Kolmogorov quotient} of $X$.
+\end{definition}
+
+
+\begin{proposition}\label{proposition:Kolmogorov_quotients_induce_bijection_on_lattices_of_open_sets}
+	Let $X$ be a topological space and let $q:X\twoheadrightarrow \tilde{X}$ be a Kolmogorov quotient of $X$. The map $U \mapsto q(U)$ is a bijection between the family of open sets of $X$ and the family of open sets of $\tilde{X}$.
+\end{proposition}
+\begin{proof}
+	Let $U$ be an open set of $X$. If $x_1$ and $x_2$ are topologically indistinguishable points of $X$, then $x_1 \in U$ if and only if $x_2 \in U$. It follows that $U$ is the union of equivalence classes for topological indistinguishability. Hence $q(U)$ is an open subset of $\tilde{X}$ and $U = q^{-1}(q(U))$. This completes the proof.
+\end{proof}
+
+\begin{corollary}\label{corollary:Kolmogorov_quotient_is_open}
+	Let $X$ be a topological space. Then a Kolmogorov quotient of $X$ is an open map.
+\end{corollary}
+\begin{proof}
+	Follows immediately from Proposition \ref{proposition:Kolmogorov_quotients_induce_bijection_on_lattices_of_open_sets}.
 \end{proof}
 
 \section{Quasi-compact spaces}
@@ -898,11 +929,6 @@ For the proof we need the following result.
 	$$|f(x) - \tilde{f}(x)| = \lim_{m \ra +\infty}\bigg|f(x) - \sum_{n=0}^mf_n(x)\bigg| = 0$$
 	for every $x \in F$. Thus $f = \tilde{f}_{\mid F}$.
 \end{proof}
-
-
-
-
-
 
 
 

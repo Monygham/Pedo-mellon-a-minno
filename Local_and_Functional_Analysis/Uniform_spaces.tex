@@ -9,7 +9,7 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous map. The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. We also prove that quasi-compactness for uniform spaces is equivalent to completeness and total boundedness. 
+These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous map. The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. We also prove that quasi-compactness for uniform spaces is equivalent to completeness and total boundedness.
 
 Throughout the notes we assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}. In these notes we use the following notation. Let $X$ be a set and let $U, V$ be binary relations on $X$. Suppose that $Z$ is a subset of $X$. Then we define
 $$U \cdot V = \big\{(x_1,x_2) \in X\times X\,\big|\,\mbox{ there exists }x\in X\mbox{ such that }(x_1, x)\in U\mbox{ and }(x,x_2)\in V\big\}$$
@@ -307,6 +307,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 \end{proof}
 
 \section{Hausdorff uniform spaces}
+
 \begin{definition}
 	Let $X$ be a uniform space such that the intersection of all entourages of the diagonal in $X$ coincides with $\Delta_X$. Then $X$ is a \textit{Hausdorff} uniform space.
 \end{definition}
@@ -322,6 +323,40 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	Suppose that $X$ is a Hausdorff uniform space. Fix distinct points $x_1,x_2 \in X$ and suppose that $U$ is an entourage of the diagonal in $X$ such that $(x_1,x_2) \not \in U$. Such entourage exists because $X$ is Hausdorff. Then $U(x_1)\cap U(x_2) = \emptyset$ and Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} implies that $X$ is Hausdorff as a topological space. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
 	Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Assume that $X$ is Hausdorff as a topological space. Fix distinct points $x_1,x_2 \in X$ and pick open neighborhoods $x_1 \in O_1$ and $x_2 \in O_2$ which are disjoint. There exists entourage $U$ of the diagonal in $X$ such that $U(x_1) \subseteq O_1$ and $U(x_2) \subseteq O_2$. It follows that $(x_1,x_2) \not \in U$. Since pair $(x_1,x_2) \not \in \Delta_X$ is arbitrary, we derive that $X$ is Hausdorff as a uniform space.
+\end{proof}
+
+
+\begin{theorem}\label{theorem:Kolmogorov_quotients_of_uniform_spaces}
+	Let $X$ be a uniform space. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item The intersection of all entourages of the diagonal in $X$ is the relation of topological indistinguishability on $X$.
+		\item Let $q:X\twoheadrightarrow \tilde{X}$ be a quotient map with respect to topological indistinguishability. Then the family
+			$$\big\{V \in \fD_{\tilde{X}}\,\big|\,\left(q\times q\right)^{-1}(V)\mbox{ is an entourage of the diagonal in }X\big\}$$
+		      is a uniform structure in $\tilde{X}$ which makes $q$ into a uniform map.
+	        \item $q$ induces uniform structure on $X$. 
+		\item $q$ is a Kolmogorov quotient of $X$.
+	      \item $\tilde{X}$ is a Hausdorff uniform space.
+		\item If $Y$ is a Hausdorff uniform space and $g:X\ra Y$ is a uniform map, then there exists a unique uniform map $f:\tilde{X} \ra Y$ such that $g = f \cdot q$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	We denote by $\Delta_t$ the relation of topological indistinguishability on $X$ and let $\fU$ be the uniform structure on $X$.
+
+	Let $x$ be a point in $X$. Suppose that $z \in X$ is a point such that $(z, x) \in U$ for every $U \in \fU$. By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} this is equivalent to the fact that every open neighborhood of $x$ is an open neighborhood of $z$. This implies that \textbf{(1)} holds.
+
+	Let $\tilde{\fU}$ be a family described in \textbf{(2)}. Note that $\tilde{\fU}$ is closed under finite intersections and is upward closed in $\fD_{\tilde{X}}$. Next pick $U \in \fU$. Then there exists $W \in \fU$ such that 
+	$$W\cdot W \cdot W \subseteq U$$
+	Next we define $V = \left(q\times q\right)\left(\Delta_t\cdot W\cdot \Delta_t\right)$. Then 
+	$$\left(q\times q\right)^{-1}(V) = \Delta_t\cdot W\cdot \Delta_t \subseteq U$$
+	by \textbf{(1)}. Hence $V \in \tilde{\fU}$ and $\left(q\times q\right)^{-1}(V)\subseteq U$. This implies \textbf{(2)} and simultaneously completes the proof of \textbf{(3)}.
+
+	Let $O$ be an open subset of $\tilde{X}$. Then for each $x \in O$ there exists $U_x \in \fU$ such that $U_x(x)\subseteq O$. Next for each $x \in O$ there exists according to \textbf{(3)} an entourage $V_x \in \tilde{\fU}$ such that $\left(q\times q\right)^{-1}(V_x) \subseteq U_x$. Then 
+	$$q(O) = q\left(\bigcup_{x\in O}\left(q\times q\right)^{-1}(V_x)(x)\right) = \bigcup_{x \in O}V_x\left(q(x)\right)$$
+	and hence $q(O)$ is open in $\tilde{X}$. This proves that $q$ is an open map and hence it is a Kolmogorov quotient of $X$. Hence we derive \textbf{(4)}.
+
+	Now \textbf{(5)} follows from \textbf{(4)} and Corollary \ref{corollary:uniform_spaces_are_completely_regular}.
+
+	Assertion \textbf{(6)} is immediate consequence of the definition of $q$. 
 \end{proof}
 
 \section{Cauchy filters and complete uniform spaces}
@@ -415,6 +450,25 @@ Now we prove interesting version of Tychonoff's theorem for complete uniform spa
 	Then $\tilde{\cF}$ is a Cauchy filter on $X$ . Since $X$ is complete, $\tilde{\cF}$ converges to some $x \in X$. Hence $\cF = pr_j(\tilde{\cF})$ converges to $pr_j(x) \in X_j$. This implies that $X_j$ is complete and the theorem is proved.
 \end{proof}
 
+\begin{theorem}\label{theorem:completeness_is_preserved_and_reflected_by_Kolmogorov_quotients}
+	Let $X$ be a uniform space and let $q:X\twoheadrightarrow \tilde{X}$ be a Kolmogorov quotient. Then the following are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $X$ is complete.
+		\item $\tilde{X}$ is complete. 
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	According to \textbf{(3)} of Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} if $\tilde{\cF}$ is a Cauchy filter on $\tilde{X}$, then 
+	$$q^{-1}\left(\tilde{\cF}\right) = \big\{F\,\big|\,q^{-1}(\tilde{F}) \subseteq F\mbox{ for some }\tilde{F}\in \tilde{\cF}\big\}$$
+	is a Cauchy filter on $X$ such that $q\left(q^{-1}\left(\tilde{\cF}\right)\right) = \tilde{\cF}$. 
+
+	Let $\cF$ be an arbitrary proper filter on $X$. Since $q$ is a Kolmogorov quotient, we derive that $\cF$ is convergent if and only if $q(\cF)$ is convergent.
+	
+	Suppose that $X$ is complete and pick a Cauchy filter $\tilde{\cF}$ on $\tilde{X}$. Since $q^{-1}\left(\tilde{\cF}\right)$ is a Cauchy filter on $X$, we derive by completeness of $X$ that $q^{-1}\left(\tilde{\cF}\right)$ converges. Thus also $\tilde{\cF} = q\left(q^{-1}\left(\tilde{\cF}\right)\right)$ converges in $\tilde{X}$. This shows that $\textbf{(i)}\Rightarrow \textbf{(ii)}$ holds.
+
+	Assume now that $\tilde{X}$ is complete. Let $\cF$ be a Cauchy filter on $X$. Then $q(\cF)$ is a Cauchy filter on $\tilde{X}$ by Fact \ref{fact:Cauchy_filters_are_preserved_by_uniform_maps}. Hence $q(\cF)$ is convergent. Thus $\cF$ is convergent. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
+\end{proof}
+
 \section{Pseudometric spaces and completion}
 
 \begin{definition}
@@ -456,7 +510,7 @@ We need the following notion of convergence for sequences in topological spaces.
 
 
 \begin{theorem}\label{theorem:completeness_for_pseudometric_spaces_is_equivalent_to_convergence_of_Cauchy_sequences}
-	Let $x$ be a pseudometric space and let $\rho$ be its pseudometric. Then the following assertions are equivalent.
+	Let $X$ be a pseudometric space and let $\rho$ be its pseudometric. Then the following assertions are equivalent.
 	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 		\item $X$ is complete.
 		\item Every Cauchy sequence in $X$ is convergent.
@@ -476,54 +530,62 @@ We need the following notion of convergence for sequences in topological spaces.
 
 
 \begin{theorem}\label{theorem:completion_for_pseudometric_spaces}
-	Let $X$ be a pseudometric space. Then there exist a complete pseudometric space $\tilde{X}$ and an injective isometry $X \hookrightarrow \tilde{X}$ with dense image.
+	Let $X$ be a pseudometric space. Then there exist a complete pseudometric space $\overline{X}$ and an injective isometry $X \hookrightarrow \overline{X}$ with dense image.
 \end{theorem}
 \begin{proof}
 	We denote by $\rho$ the pseudometric on $X$.
 
-	We define $\tilde{X}$ to be a set of all Cauchy sequences in $X$. If $\bd{x} \in \tilde{X}$, then we denote by $\bd{x}(n)$ the $n$-th element of $\bd{x}$ for $n \in \NN$.
+	We define $\overline{X}$ to be a set of all Cauchy sequences in $X$. If $\bd{x} \in \overline{X}$, then we denote by $\bd{x}(n)$ the $n$-th element of $\bd{x}$ for $n \in \NN$.
 
-	Now let $\bd{x}, \bd{y} \in \tilde{X}$. Note that
+	Now let $\bd{x}, \bd{y} \in \overline{X}$. Note that
 	$$|\rho\left(\bd{x}(n),\bd{y}(n)\right) - \rho\left(\bd{x}(m),\bd{y}(m)\right)| \leq \rho\left(\bd{x}(n),\bd{x}(m)\right)) + \rho\left(\bd{y}(n),\bd{y}(m)\right)$$
 	for all $n,m \in \NN$. Hence $\{\rho\left(\bd{x}(n),\bd{y}(n)\right)\}_{n \in \NN}$ is convergent sequence in $\RR$ by Example \ref{example:real_line_is_complete}. We define
-	$$\tilde{\rho}(\bd{x},\bd{y}) = \lim_{n\ra +\infty}\rho\left(\bd{x}(n),\bd{y}(n)\right)$$
-	Then $\tilde{X}$ together with $\tilde{\rho}$ is a pseudometric space.
+	$$\overline{\rho}(\bd{x},\bd{y}) = \lim_{n\ra +\infty}\rho\left(\bd{x}(n),\bd{y}(n)\right)$$
+	Then $\overline{X}$ together with $\overline{\rho}$ is a pseudometric space.
 
-	Next for each $x \in X$ we define $i(x) \in \tilde{X}$ to be constant Cauchy sequence with value $x$. Then $i:X \hookrightarrow \tilde{X}$ is an injective isometry.
+	Next for each $x \in X$ we define $i(x) \in \overline{X}$ to be constant Cauchy sequence with value $x$. Then $i:X \hookrightarrow \overline{X}$ is an injective isometry.
 
-	Pick now $\bd{x} \in \tilde{X}$. For each $\epsilon > 0$ there exists $k \in \NN$ such that
+	Pick now $\bd{x} \in \overline{X}$. For each $\epsilon > 0$ there exists $k \in \NN$ such that
 	$$\rho\left(\bd{x}(n), \bd{x}(m)\right) \leq \epsilon$$
 	for $n,m \geq k$. Hence for each $\epsilon > 0$ there exists $k \in \NN$ such that
-	$$\tilde{\rho}\left(i(\bd{x}(k)), \bd{x}\right) \leq \epsilon$$
-	This proves that $i(X)$ is dense in $\tilde{X}$.
+	$$\overline{\rho}\left(i(\bd{x}(k)), \bd{x}\right) \leq \epsilon$$
+	This proves that $i(X)$ is dense in $\overline{X}$.
 
-	It remains to verify that $\tilde{X}$ is complete pseudometric space. Let $\{\bd{x}_n\}_{n \in \NN}$ be a Cauchy sequence in $\tilde{x}$. For each $n \in \NN$ there exists $x_n \in X$ such that
-	$$\tilde{\rho}\left(i(x_n), \bd{x}_n\right) \leq \frac{1}{2^n}$$
+	It remains to verify that $\overline{X}$ is complete pseudometric space. Let $\{\bd{x}_n\}_{n \in \NN}$ be a Cauchy sequence in $\overline{x}$. For each $n \in \NN$ there exists $x_n \in X$ such that
+	$$\overline{\rho}\left(i(x_n), \bd{x}_n\right) \leq \frac{1}{2^n}$$
 	It follows that $\bd{x} = \{x_n\}_{n \in \NN}$ is a Cauchy sequence in $X$. We have
-	$$\lim_{n\ra +\infty}\tilde{\rho}\left(\tilde{j}(x_n),\bd{x}\right) = 0$$
+	$$\lim_{n\ra +\infty}\overline{\rho}\left(\overline{j}(x_n),\bd{x}\right) = 0$$
 	and hence
-	$$\lim_{n\ra +\infty}\tilde{\rho}\left(\bd{x}_n,\bd{x}\right) = 0$$
-	Thus $\{\bd{x}_n\}_{n \in \NN}$ converges to $\bd{x}$ in $\tilde{X}$.
+	$$\lim_{n\ra +\infty}\overline{\rho}\left(\bd{x}_n,\bd{x}\right) = 0$$
+	Thus $\{\bd{x}_n\}_{n \in \NN}$ converges to $\bd{x}$ in $\overline{X}$.
 \end{proof}
 \noindent
 Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove general result regarding arbitrary uniform spaces.
 
 \begin{theorem}\label{theorem:completion_for_uniform_spaces}
-	Let $X$ be a uniform space. Then there exist a complete uniform space $\tilde{X}$ and an embedding $X \hookrightarrow \tilde{X}$ of uniform spaces with dense image.
+	Let $X$ be a uniform space. Then there exist a complete uniform space $\overline{X}$ and an embedding $X \hookrightarrow \overline{X}$ of uniform spaces with dense image.
 \end{theorem}
 \begin{proof}
-	Theorem \ref{theorem:each_uniform_structure_is_induced_by_pseudometrics} asserts that there exists a family $\Phi$ of pseudometrics on $X$ which induce its uniform structure. For each $\rho \in \Phi$ let $X_{\rho}$ be pseudometric space having the same underlying set as $X$ together with $\rho$. By Theorem \ref{theorem:completion_for_pseudometric_spaces} there exists a complete pseudometric space $\tilde{X}_{\rho}$ and an injective isometry $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ with dense image. Since the identity on the underlying set of $X$ is a uniform map $X \ra X_{\rho}$, we can compose it with $X_{\rho} \hookrightarrow \tilde{X}_{\rho}$ and get a uniform map $i_{\rho}:X \hookrightarrow \tilde{X}_{\rho}$. Note that $\{i_{\rho}\}_{\rho\in \Phi}$ is a family of maps that induce the same uniform structure as $\Phi$. Hence $\{i_{\rho}\}_{\rho \in \Phi}$ induce the uniform strucure of $X$. It follows that the injective uniform map
+	Theorem \ref{theorem:each_uniform_structure_is_induced_by_pseudometrics} asserts that there exists a family $\Phi$ of pseudometrics on $X$ which induce its uniform structure. For each $\rho \in \Phi$ let $X_{\rho}$ be pseudometric space having the same underlying set as $X$ together with $\rho$. By Theorem \ref{theorem:completion_for_pseudometric_spaces} there exists a complete pseudometric space $\overline{X}_{\rho}$ and an injective isometry $X_{\rho} \hookrightarrow \overline{X}_{\rho}$ with dense image. Since the identity on the underlying set of $X$ is a uniform map $X \ra X_{\rho}$, we can compose it with $X_{\rho} \hookrightarrow \overline{X}_{\rho}$ and get a uniform map $i_{\rho}:X \hookrightarrow \overline{X}_{\rho}$. Note that $\{i_{\rho}\}_{\rho\in \Phi}$ is a family of maps that induce the same uniform structure as $\Phi$. Hence $\{i_{\rho}\}_{\rho \in \Phi}$ induce the uniform strucure of $X$. It follows that the injective uniform map
 	\begin{center}
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
 			\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em,text height=1.5ex, text depth=0.25ex]
-			{ X    & \prod_{\rho \in \Phi}\tilde{X}_{\rho}                        \\} ;
+			{ X    & \prod_{\rho \in \Phi}\overline{X}_{\rho}                        \\} ;
 			\path[right hook->,line width=0.8pt,font=\scriptsize]
 			(m-1-1) edge node[above] {$ \langle i_{\rho}\rangle_{\rho \in \Phi} $} (m-1-2);
 		\end{tikzpicture}
 	\end{center}
-	is an embedding of uniform spaces. Since $\prod_{\rho \in \Phi}\tilde{X}_{\rho}$ is complete by Theorems \ref{theorem:completeness_for_pseudometric_spaces_is_equivalent_to_convergence_of_Cauchy_sequences} and \ref{theorem:product_of_complete_spaces_is_complete}, we derive that $X$ can be embedded into a complete uniform space. Next Theorem \ref{theorem:completeness_is_inheritied_by_closed_subspaces} imply that $X$ can be embedded into a complete uniform space as a dense subspace.
+	is an embedding of uniform spaces. Since $\prod_{\rho \in \Phi}\overline{X}_{\rho}$ is complete by Theorems \ref{theorem:completeness_for_pseudometric_spaces_is_equivalent_to_convergence_of_Cauchy_sequences} and \ref{theorem:product_of_complete_spaces_is_complete}, we derive that $X$ can be embedded into a complete uniform space. Next Theorem \ref{theorem:completeness_is_inheritied_by_closed_subspaces} imply that $X$ can be embedded into a complete uniform space as a dense subspace.
 \end{proof}
+
+\begin{corollary}\label{corollary:completion_for_Hausdorff_spaces}
+	Let $X$ be a Hausdorff uniform space. Then there exist a complete Hausdorff uniform space $\overline{X}$ and an embedding $X\hookrightarrow \overline{X}$ of uniform spaces with dense image. 
+\end{corollary}
+\begin{proof}
+	By Theorem \ref{theorem:completion_for_uniform_spaces} there exists a complete uniform space $\hat{X}$ and an embedding $i:X\hookrightarrow \hat{X}$ of uniform spaces with dense image. Let $q:\hat{X}\twoheadrightarrow \overline{X}$ be a Kolmogorov quotient of $\hat{X}$. Then Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} asserts that $\overline{X}$ is a complete Hausdorff uniform space. Denote $q\cdot i$ by $j$. Then $j:X\hookrightarrow \overline{X}$ is a uniform map. Moreover, by \textbf{(3)} of Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} map $j$ induces uniform structure on $X$. Since $X$ is Hausdorff, we derive that $i$ maps distinct points of $X$ to topologically distinguishable points in $\hat{X}$. Hence $j$ is injective. It follows that $j$ is an embedding of uniform spaces. Since $i(X)$ is dense in $\hat{X}$, the image of $j$ is dense in $\overline{X}$.  
+\end{proof}
+
 
 \section{Totally bounded uniform spaces}
 
