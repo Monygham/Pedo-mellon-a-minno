@@ -20,13 +20,13 @@ $$U(Z) = \big\{x \in X\,\big|\,\mbox{ there exists }z\in Z\mbox{ such that }(x, 
 \section{Uniform spaces and uniform maps}
 
 \begin{definition}
-	Let $X$ be a set and let $\fU$ be a nonempty family of reflexive and symmetric relations on $X$. Suppose that the following assertions are satisfied.
+	Let $X$ be a set and let $N$ be a nonempty family of reflexive and symmetric relations on $X$. Suppose that the following assertions are satisfied.
 	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
-		\item If $U \in \fU$ and $W$ is a reflexive and symmetric relation on $X$ such that $U \subseteq W$, then $W \in \fU$.
-		\item If $U,W \in \fU$, then also $U\cap W \in \fU$.
-		\item If $U \in \fU$, then there exists $W \in \fU$ such that $W\cdot W \subseteq U$.
+		\item If $U \in N$ and $W$ is a reflexive and symmetric relation on $X$ such that $U \subseteq W$, then $W \in N$.
+		\item If $U,W \in N$, then also $U\cap W \in N$.
+		\item If $U \in N$, then there exists $W \in N$ such that $W\cdot W \subseteq U$.
 	\end{enumerate}
-	Then $\fU$ is a \textit{uniform structure} on $X$.
+	Then $N$ is a \textit{uniform structure} on $X$.
 \end{definition}
 
 \begin{example}\label{example:discrete_uniform_structure}
@@ -38,7 +38,7 @@ $$U(Z) = \big\{x \in X\,\big|\,\mbox{ there exists }z\in Z\mbox{ such that }(x, 
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a uniform space with respect to uniform structure $\fU$. Then each member of $\fU$ is an \textit{entourage of the diagonal} in $X$.
+	Let $X$ be a uniform space with respect to uniform structure $N$. Then each member of $N$ is an \textit{entourage of the diagonal} in $X$.
 \end{definition}
 
 \begin{definition}
@@ -58,39 +58,39 @@ Let $\Unif$ be the category having uniform spaces as objects and uniform maps as
 	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Let $\cB_{\cF}$ be a family consisting of sets of the form
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f)$$
 	where $F$ is a finite subset of $F$ and $V_f$ is an entourage of the diagonal in $Y_f$. Next define
-	$$\fU_{\cF} = \big\{U\in \fD_X\,\big|\,\mbox{there exists }W\in \cB_{\cF}\mbox{ such that }W \subseteq U\big\}$$
-	Then $\fU_{\cF}$ is a uniform structure on $X$. Consider $X$ as a uniform space with respect to $\fU_{\cF}$. Then the following assertions hold.
+	$$N_{\cF} = \big\{U\in \fD_X\,\big|\,\mbox{there exists }W\in \cB_{\cF}\mbox{ such that }W \subseteq U\big\}$$
+	Then $N_{\cF}$ is a uniform structure on $X$. Consider $X$ as a uniform space with respect to $N_{\cF}$. Then the following assertions hold.
 	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 		\item Each $f \in \cF$ is a uniform map $X \ra Y_f$.
 		\item Let $Z$ be a uniform space and let $g:Z\ra X$ be a map of sets such that $f\cdot g:Z\ra Y_f$ is a uniform map for every $f\in \cF$. Then $g$ is a uniform map.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Note that $\fU_{\cF}$ is a nonempty family consisting of reflexive and symmetric relations on $X$.
+	Note that $N_{\cF}$ is a nonempty family consisting of reflexive and symmetric relations on $X$.
 
-	Suppose that $U,W$ are reflexive and symmetric relations on $X$. Assume tha $U\subseteq W$ and $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Suppose that $U,W$ are reflexive and symmetric relations on $X$. Assume tha $U\subseteq W$ and $U \in N_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	Thus also
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq W$$
-	and hence $W \in \fU_{\cF}$.
+	and hence $W \in N_{\cF}$.
 
-	Assume that $U,W \in \fU_{\cF}$. Then there exist finite subsets $F_U,F_W$ of $\cF$, an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F_U$ and entourage $T_f$ of the diagonal in $Y_f$ for each $f\in F_W$ such that
+	Assume that $U,W \in N_{\cF}$. Then there exist finite subsets $F_U,F_W$ of $\cF$, an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F_U$ and entourage $T_f$ of the diagonal in $Y_f$ for each $f\in F_W$ such that
 	$$\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \subseteq U,\,\bigcap_{f\in F_W}\left(f\times f\right)^{-1}(T_f)\subseteq W$$
 	Then
 	$$\left(\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \right) \cap \left(\bigcap_{f \in F_W}\left(f\times f\right)^{-1}(T_f)\right)\subseteq U\cap W$$
-	and this implies that $U\cap W \in \fU_{\cF}$.
+	and this implies that $U\cap W \in N_{\cF}$.
 
-	Next suppose that $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Next suppose that $U \in N_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	For each $f \in F$ pick an entourage $T_f$ of the diagonal in $Y_f$ such that $T_f\cdot T_f \subseteq V_f$. Then
-	$$W = \bigcap_{f \in F}\left(f\times f\right)^{-1}(T_f) \in \fU_{\cF}$$
+	$$W = \bigcap_{f \in F}\left(f\times f\right)^{-1}(T_f) \in N_{\cF}$$
 	and $W\cdot W \subseteq U$.
 
-	Thus $\fU_{\cF}$ is a uniform structure. From now on we consider $X$ as a uniform space with respect to $\fU_{\cF}$.
+	Thus $N_{\cF}$ is a uniform structure. From now on we consider $X$ as a uniform space with respect to $N_{\cF}$.
 
 	By definition $f:X\ra Y_f$ is a uniform map for every $f\in \cF$. Hence \textbf{(1)} holds.
 
-	Now we prove \textbf{(2)}. Fix $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Now we prove \textbf{(2)}. Fix $U \in N_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	Since $f\cdot g:Z\ra Y_f$ is uniform map for each $f \in F$, we derive that
 	$$\left(g\times g\right)^{-1}\left(\bigcap_{f\in F}\left(f\times f\right)^{-1}\left(V_f\right)\right) = \bigcap_{f\in F}\left((f\cdot g)\times (f\cdot g)\right)^{-1}(V_f)$$
@@ -100,7 +100,7 @@ Let $\Unif$ be the category having uniform spaces as objects and uniform maps as
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Then $\fU_{\cF}$ defined in the theorem above is the uniform structure \textit{induced} by $\cF$.
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Then $N_{\cF}$ defined in the theorem above is the uniform structure \textit{induced} by $\cF$.
 \end{definition}
 
 \begin{corollary}\label{corollary:limits_in_category_of_uniform_spaces}
@@ -182,14 +182,14 @@ $$\Delta_{\rho, \epsilon} = \big\{(x_1,x_2) \in X\times X\,\big|\,\rho(x_1, x_2)
 is a reflexive and symmetric relation on $X$.
 
 \begin{fact}\label{fact:uniform_structures_induced_by_families_of_pseudometrics}
-	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Let $\fU_{\Phi}$ be a family consisting of all $U\in \fD_X$ such that $U$ contains some finite intersection of sets $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$. Then $\fU_{\Phi}$ is a uniform structure on $X$.
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Let $N_{\Phi}$ be a family consisting of all $U\in \fD_X$ such that $U$ contains some finite intersection of sets $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$. Then $N_{\Phi}$ is a uniform structure on $X$.
 \end{fact}
 \begin{proof}
 	Left for the reader as an exercise.
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Then $\fU_{\Phi}$ is the uniform structure \textit{induced} by $\Phi$.
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Then $N_{\Phi}$ is the uniform structure \textit{induced} by $\Phi$.
 \end{definition}
 
 \begin{example}\label{example:natural_uniform_structure_on_reals}
@@ -204,9 +204,9 @@ Now we prove that every uniform structure is induced by some family of pseudomet
 	Let $X$ be a uniform space. Then the uniform structure on $X$ is induced by a family of pseudometrics $\Phi$ on $X$.
 \end{theorem}
 \begin{proof}
-	Denote the uniform structure on $X$ by $\fU$. Let $U \in \fU$. Pick a sequence $\{U_n\}_{n\in \NN}$ of members of $\fU$ such that
+	Denote the uniform structure on $X$ by $N$. Let $U \in N$. Pick a sequence $\{U_n\}_{n\in \NN}$ of members of $N$ such that
 	$$U_{n+1}\cdot U_{n+1} \subseteq U_n$$
-	for all $n \in \NN$ and $U_0 = U$. Note that $\{U_n\}_{n\in \NN}$ exists since $\fU$ is a uniform structure. For each $x \in X$ consider a function $f_x:X\ra \RR$ such that the following assertions hold.
+	for all $n \in \NN$ and $U_0 = U$. Note that $\{U_n\}_{n\in \NN}$ exists since $N$ is a uniform structure. For each $x \in X$ consider a function $f_x:X\ra \RR$ such that the following assertions hold.
 	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 		\item $0\leq f_x(y) \leq 1$ for every $y \in X$.
 		\item $f_x(x) = 0$ and $f_x(y) = 1$ for $y \not \in U(x)$.
@@ -217,7 +217,7 @@ Now we prove that every uniform structure is induced by some family of pseudomet
 	$$\rho_U(x_1,x_2) = \sup_{x\in X}|f_x(x_1) - f_x(x_2)|$$
 	Clearly $\rho_U$ is a pseudometric on $X$. Moreover, if $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then
 	$$\rho_U(x_1,x_2) \leq \frac{1}{2^n}$$
-	Form this we deduce that $\Delta_{\rho_U, \epsilon} \in \fU$ for every $\epsilon \in \RR_+$ and $\Delta_{\rho_U, 1}\subseteq U$. Thus $\fU$ is induced by $\Phi = \{\rho_U\}_{U \in \fU}$.
+	Form this we deduce that $\Delta_{\rho_U, \epsilon} \in N$ for every $\epsilon \in \RR_+$ and $\Delta_{\rho_U, 1}\subseteq U$. Thus $N$ is induced by $\Phi = \{\rho_U\}_{U \in N}$.
 \end{proof}
 \noindent
 It is useful to describe how uniform maps can be expressed in terms of families of pseudometrics.
@@ -331,33 +331,37 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 		\item The intersection of all entourages of the diagonal in $X$ is the relation of topological indistinguishability on $X$.
 		\item Let $q:X\twoheadrightarrow \tilde{X}$ be a quotient map with respect to topological indistinguishability. Then the family
-			$$\big\{V \in \fD_{\tilde{X}}\,\big|\,\left(q\times q\right)^{-1}(V)\mbox{ is an entourage of the diagonal in }X\big\}$$
+		      $$\big\{V \in \fD_{\tilde{X}}\,\big|\,\left(q\times q\right)^{-1}(V)\mbox{ is an entourage of the diagonal in }X\big\}$$
 		      is a uniform structure in $\tilde{X}$ which makes $q$ into a uniform map.
-	        \item $q$ induces uniform structure on $X$. 
+		\item $q$ induces uniform structure on $X$.
 		\item $q$ is a Kolmogorov quotient of $X$.
-	      \item $\tilde{X}$ is a Hausdorff uniform space.
+		\item $\tilde{X}$ is a Hausdorff uniform space.
 		\item If $Y$ is a Hausdorff uniform space and $g:X\ra Y$ is a uniform map, then there exists a unique uniform map $f:\tilde{X} \ra Y$ such that $g = f \cdot q$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	We denote by $\Delta_t$ the relation of topological indistinguishability on $X$ and let $\fU$ be the uniform structure on $X$.
+	We denote by $\Delta_t$ the relation of topological indistinguishability on $X$ and let $N$ be the uniform structure on $X$.
 
-	Let $x$ be a point in $X$. Suppose that $z \in X$ is a point such that $(z, x) \in U$ for every $U \in \fU$. By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} this is equivalent to the fact that every open neighborhood of $x$ is an open neighborhood of $z$. This implies that \textbf{(1)} holds.
+	Let $x$ be a point in $X$. Suppose that $z \in X$ is a point such that $(z, x) \in U$ for every $U \in N$. By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} this is equivalent to the fact that every open neighborhood of $x$ is an open neighborhood of $z$. This implies that \textbf{(1)} holds.
 
-	Let $\tilde{\fU}$ be a family described in \textbf{(2)}. Note that $\tilde{\fU}$ is closed under finite intersections and is upward closed in $\fD_{\tilde{X}}$. Next pick $U \in \fU$. Then there exists $W \in \fU$ such that 
+	Let $\tilde{N}$ be a family described in \textbf{(2)}. Note that $\tilde{N}$ is closed under finite intersections and is upward closed in $\fD_{\tilde{X}}$. Next pick $U \in N$. Then there exists $W \in N$ such that
 	$$W\cdot W \cdot W \subseteq U$$
-	Next we define $V = \left(q\times q\right)\left(\Delta_t\cdot W\cdot \Delta_t\right)$. Then 
+	Next we define $V = \left(q\times q\right)\left(\Delta_t\cdot W\cdot \Delta_t\right)$. Then
 	$$\left(q\times q\right)^{-1}(V) = \Delta_t\cdot W\cdot \Delta_t \subseteq U$$
-	by \textbf{(1)}. Hence $V \in \tilde{\fU}$ and $\left(q\times q\right)^{-1}(V)\subseteq U$. This implies \textbf{(2)} and simultaneously completes the proof of \textbf{(3)}.
+	by \textbf{(1)}. Hence $V \in \tilde{N}$ and $\left(q\times q\right)^{-1}(V)\subseteq U$. This implies \textbf{(2)} and simultaneously completes the proof of \textbf{(3)}.
 
-	Let $O$ be an open subset of $\tilde{X}$. Then for each $x \in O$ there exists $U_x \in \fU$ such that $U_x(x)\subseteq O$. Next for each $x \in O$ there exists according to \textbf{(3)} an entourage $V_x \in \tilde{\fU}$ such that $\left(q\times q\right)^{-1}(V_x) \subseteq U_x$. Then 
+	Let $O$ be an open subset of $\tilde{X}$. Then for each $x \in O$ there exists $U_x \in N$ such that $U_x(x)\subseteq O$. Next for each $x \in O$ there exists according to \textbf{(3)} an entourage $V_x \in \tilde{N}$ such that $\left(q\times q\right)^{-1}(V_x) \subseteq U_x$. Then
 	$$q(O) = q\left(\bigcup_{x\in O}\left(q\times q\right)^{-1}(V_x)(x)\right) = \bigcup_{x \in O}V_x\left(q(x)\right)$$
 	and hence $q(O)$ is open in $\tilde{X}$. This proves that $q$ is an open map and hence it is a Kolmogorov quotient of $X$. Hence we derive \textbf{(4)}.
 
 	Now \textbf{(5)} follows from \textbf{(4)} and Corollary \ref{corollary:uniform_spaces_are_completely_regular}.
 
-	Assertion \textbf{(6)} is immediate consequence of the definition of $q$. 
+	Assertion \textbf{(6)} is immediate consequence of the definition of $q$.
 \end{proof}
+
+\begin{definition}
+	Let $X$ be a uniform space and let $q:X\twoheadrightarrow \tilde{X}$ be a uniform map constructed above. Then $q$ is a \textit{uniform Kolmogorov quotient} of $X$.
+\end{definition}
 
 \section{Cauchy filters and complete uniform spaces}
 \noindent
@@ -450,20 +454,20 @@ Now we prove interesting version of Tychonoff's theorem for complete uniform spa
 	Then $\tilde{\cF}$ is a Cauchy filter on $X$ . Since $X$ is complete, $\tilde{\cF}$ converges to some $x \in X$. Hence $\cF = pr_j(\tilde{\cF})$ converges to $pr_j(x) \in X_j$. This implies that $X_j$ is complete and the theorem is proved.
 \end{proof}
 
-\begin{theorem}\label{theorem:completeness_is_preserved_and_reflected_by_Kolmogorov_quotients}
-	Let $X$ be a uniform space and let $q:X\twoheadrightarrow \tilde{X}$ be a Kolmogorov quotient. Then the following are equivalent.
+\begin{theorem}\label{theorem:completeness_is_preserved_and_reflected_by_uniform_Kolmogorov_quotients}
+	Let $X$ be a uniform space and let $q:X\twoheadrightarrow \tilde{X}$ be a uniform Kolmogorov quotient. Then the following are equivalent.
 	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 		\item $X$ is complete.
-		\item $\tilde{X}$ is complete. 
+		\item $\tilde{X}$ is complete.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	According to \textbf{(3)} of Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} if $\tilde{\cF}$ is a Cauchy filter on $\tilde{X}$, then 
+	According to \textbf{(3)} of Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} if $\tilde{\cF}$ is a Cauchy filter on $\tilde{X}$, then
 	$$q^{-1}\left(\tilde{\cF}\right) = \big\{F\,\big|\,q^{-1}(\tilde{F}) \subseteq F\mbox{ for some }\tilde{F}\in \tilde{\cF}\big\}$$
-	is a Cauchy filter on $X$ such that $q\left(q^{-1}\left(\tilde{\cF}\right)\right) = \tilde{\cF}$. 
+	is a Cauchy filter on $X$ such that $q\left(q^{-1}\left(\tilde{\cF}\right)\right) = \tilde{\cF}$.
 
 	Let $\cF$ be an arbitrary proper filter on $X$. Since $q$ is a Kolmogorov quotient, we derive that $\cF$ is convergent if and only if $q(\cF)$ is convergent.
-	
+
 	Suppose that $X$ is complete and pick a Cauchy filter $\tilde{\cF}$ on $\tilde{X}$. Since $q^{-1}\left(\tilde{\cF}\right)$ is a Cauchy filter on $X$, we derive by completeness of $X$ that $q^{-1}\left(\tilde{\cF}\right)$ converges. Thus also $\tilde{\cF} = q\left(q^{-1}\left(\tilde{\cF}\right)\right)$ converges in $\tilde{X}$. This shows that $\textbf{(i)}\Rightarrow \textbf{(ii)}$ holds.
 
 	Assume now that $\tilde{X}$ is complete. Let $\cF$ be a Cauchy filter on $X$. Then $q(\cF)$ is a Cauchy filter on $\tilde{X}$ by Fact \ref{fact:Cauchy_filters_are_preserved_by_uniform_maps}. Hence $q(\cF)$ is convergent. Thus $\cF$ is convergent. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$.
@@ -580,10 +584,10 @@ Using Theorem \ref{theorem:completion_for_pseudometric_spaces} we now prove gene
 \end{proof}
 
 \begin{corollary}\label{corollary:completion_for_Hausdorff_spaces}
-	Let $X$ be a Hausdorff uniform space. Then there exist a complete Hausdorff uniform space $\overline{X}$ and an embedding $X\hookrightarrow \overline{X}$ of uniform spaces with dense image. 
+	Let $X$ be a Hausdorff uniform space. Then there exist a complete Hausdorff uniform space $\overline{X}$ and an embedding $X\hookrightarrow \overline{X}$ of uniform spaces with dense image.
 \end{corollary}
 \begin{proof}
-	By Theorem \ref{theorem:completion_for_uniform_spaces} there exists a complete uniform space $\hat{X}$ and an embedding $i:X\hookrightarrow \hat{X}$ of uniform spaces with dense image. Let $q:\hat{X}\twoheadrightarrow \overline{X}$ be a Kolmogorov quotient of $\hat{X}$. Then Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} asserts that $\overline{X}$ is a complete Hausdorff uniform space. Denote $q\cdot i$ by $j$. Then $j:X\hookrightarrow \overline{X}$ is a uniform map. Moreover, by \textbf{(3)} of Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} map $j$ induces uniform structure on $X$. Since $X$ is Hausdorff, we derive that $i$ maps distinct points of $X$ to topologically distinguishable points in $\hat{X}$. Hence $j$ is injective. It follows that $j$ is an embedding of uniform spaces. Since $i(X)$ is dense in $\hat{X}$, the image of $j$ is dense in $\overline{X}$.  
+	By Theorem \ref{theorem:completion_for_uniform_spaces} there exists a complete uniform space $\hat{X}$ and an embedding $i:X\hookrightarrow \hat{X}$ of uniform spaces with dense image. Let $q:\hat{X}\twoheadrightarrow \overline{X}$ be a uniform Kolmogorov quotient of $\hat{X}$. Then Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} asserts that $\overline{X}$ is a complete Hausdorff uniform space. Denote $q\cdot i$ by $j$. Then $j:X\hookrightarrow \overline{X}$ is a uniform map. Moreover, by \textbf{(3)} of Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} map $j$ induces a uniform structure on $X$. Since $X$ is Hausdorff, we derive that $i$ maps distinct points of $X$ to topologically distinguishable points in $\hat{X}$. Hence $j$ is injective. It follows that $j$ is an embedding of uniform spaces. Since $i(X)$ is dense in $\hat{X}$, the image of $j$ is dense in $\overline{X}$.
 \end{proof}
 
 
@@ -646,6 +650,235 @@ Finally we are able to give criterion of quasi-compactness in terms of uniform s
 
 	Assume that $X$ is complete and totally bounded. Let $\cF$ be an ultrafilter on $X$. Fix an entourage $U$ of the diagonal in $X$ and let $W$ be an entourage of the diagonal in $X$ such that $W\cdot W \subseteq U$. Since $X$ is totally bounded there exists a finite net $S$ on $X$ with radius $W$. From the fact that $\cF$ is an ultrafilter, we deduce that there is $s \in S$ such that $W(s) \in \cF$. Note that $W(s)\times W(s) \subseteq U$. This proves that $\cF$ is a Cauchy filter on $X$. By completeness of $X$ we infer that $\cF$ is convergent. Thus $X$ is quasi-compact and the implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ holds.
 \end{proof}
+
+
+\section{Topological groups}
+
+\begin{definition}
+	Let $G$ be a group together with a topology such that group operations are continuous. Then $G$ is a \textit{topological group}.
+\end{definition}
+\noindent
+Let $G$ be a topological group. For a subset $S$ of $G$ we define
+$$S^{-1} = \big\{x^{-1}\,\big|\,x\in S\,\big\}$$
+
+\begin{definition}
+	A subset $S$ of a topological group $G$ is \textit{symmetric} if $S$ and $S^{-1}$ coincide.
+\end{definition}
+
+\begin{fact}\label{fact:symmetric_neighborhoods_of_unit_generate_base}
+	Let $G$ be a topological group. Then every open neighborhood of identity in $G$ contains open and symmetric neighborhood of identity.
+\end{fact}
+\begin{proof}
+	Let $O$ be an open neighborhood of identity. Since $(-)^{-1}:G\ra G$ is continuous, there exists open neighborhood $O$ of identity such that $O' \subseteq O$ and $O'^{-1} \subseteq O$. Then $O' \cap O'^{-1}$ is symmetric and open neighborhood of identity contained in $O$.
+\end{proof}
+
+\begin{fact}\label{fact:closure_of_identity}
+	Let $G$ be a topological group.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+		\item The intersection of all open neighborhoods of identity in $G$ is the closure of identity in $G$.
+		\item The closure of identity in $G$ is the smallest closed subgroup of $G$ and it is normal.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Let $1$ denote the identity element of $G$. We use Fact \ref{fact:symmetric_neighborhoods_of_unit_generate_base}. We have $x \in \bd{cl}(\{1\})$ if and only if for every open and symmetric neighborhood $O$ of $1$ in $G$ we have $1 \in Ox$. This is equivalent with $x \in O$ for every open and symmetric neighborhood $O$ of $1$ in $G$. Hence \textbf{(1)} holds.
+
+	The assertion \textbf{(2)} is left for the reader.
+\end{proof}
+
+\begin{theorem}\label{theorem:quotients_of_topological_groups}
+	Let $G$ be a topological group and let $N$ be its normal subgroup. Consider the quotient map $q:G\twoheadrightarrow G/N$ in the category of groups and equip $G/N$ with quotient topology. Then the following assertions holds.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+		\item $q$ is an open map.
+		\item $G/N$ is a topological group and $q$ is a homomorphism of groups.
+		\item Let $f:G\ra H$ be a continuous homomorphism of topological groups and suppose that $N \subseteq \Ker(f)$. Then there exists a unique continuous homomorphism $g:G/N\ra H$ such that $g\cdot q = f$.
+		\item $N$ is a closed in $G$ if and ony if $G/N$ is Hausdorff.
+	\end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need the following result.
+
+\begin{lemma}\label{lemma:Hausdorff_topological_groups}
+	Let $G$ be a topological group. Then $G$ is Hausdorff if and only if identity subgroup of $G$ is closed.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	If $G$ is Hausdorff, then each singleton subset of $G$ is closed. Hence identity subgroup of $G$ is closed.
+
+	Conversely, assume that identity subgroup in $G$ is closed. Pick two distinct elements $g_1,g_2 \in G$. Since $G$ is a topological group, the map
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em,text height=1.5ex, text depth=0.25ex]
+			{ G\times G     & G\times G & G \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ 1_G\times (-)^{-1} $} (m-1-2)
+			(m-1-2) edge node[above] {$ \cdot_G $} (m-1-3);
+		\end{tikzpicture}
+	\end{center}
+	is continuous. Hence there exists an open neighborhood $O$ of identity in $G$ such that $g_1g_2^{-1}\not \in OO^{-1}$. Then
+	$$Og_1\cap Og_2 = \emptyset$$
+	Thus $G$ is Hausdorff.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	Fix an open subset $Q$ of $G$, then the set
+	$$q^{-1}\left(q\left(Q\right)\right) = QN$$
+	is open. According to the fact that $q:G \twoheadrightarrow G/N$ is a quotient topological map, we infer that $q(Q)$ is open in $G/N$. Hence $q$ is an open map and the proof of \textbf{(1)} is completed.
+
+	Since $q$ is open, we derive that $q\times q$ is open. Since squares
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex]
+			{ G \times G     & G   & G   & G                            \\
+			  G/N \times G/N & G/N & G/N & G/N \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ \cdot_{G} $} (m-1-2)
+			(m-1-1) edge node[left] {$ q\times q $} (m-2-1)
+			(m-1-2) edge node[right] {$ q $} (m-2-2)
+			(m-2-1) edge node[below] {$ \cdot_{G/N} $} (m-2-2)
+			(m-1-3) edge node[above] {$ (-)^{-1}_{G} $} (m-1-4)
+			(m-1-3) edge node[left] {$ q $} (m-2-3)
+			(m-1-4) edge node[right] {$ q $} (m-2-4)
+			(m-2-3) edge node[below] {$ (-)^{-1}_{G/N} $} (m-2-4);
+		\end{tikzpicture}
+	\end{center}
+	are commutative, we deduce that the addition $\cdot_{G/N}:G/N \times G/N \ra G/N$ and the inverse map $(-)^{-1}_{G/N}:G/N\ra G/N$ are continuous. Therefore, $G/N$ is a topological group. It follows that $q$ is a morphism of topological groups and hence \textbf{(2)} holds.
+
+	The assertion \textbf{(3)} describes the universal property which follows easily from \textbf{(2)} and the fact that $q$ is a topological quotient.
+
+	For \textbf{(4)} observe that
+	$$N\mbox{ is closed subgroup of }G\,\Leftrightarrow\,\mbox{identity subgroup of }G/N\mbox{ is closed }$$
+	Thus it suffices to prove that
+	$$\mbox{ identity subgroup of }G/N\mbox{ is closed }\,\Leftrightarrow\,G/N\mbox{ is a Hausdorff topological space}$$
+	but this is a consequence of Lemma \ref{lemma:Hausdorff_topological_groups}.
+\end{proof}
+
+\section{Uniform structures on topological groups}
+
+\begin{fact}\label{fact:left_uniform_structure_on_topological_group}
+	Let $G$ be a topological group. For every open and symmetric neighborhood $O$ of identity in $G$ we define
+	$$L_O = \big\{(g_1,g_2)\in G\times G\,\big|\,g_1^{-1}g_2 \in O\big\}$$
+	The collection
+	$$\big\{U \in \fD_G\,\big|\,\mbox{there exists open and symmetric neighborhood }O\mbox{ of identity in }G\mbox{ such that }L_O\subseteq U\big\}$$
+	is uniform structure on $G$.
+\end{fact}
+\begin{proof}
+	Note that $L_O$ is reflexive and symmetric relation on $G$ for every open and symmetric neighborhood $O$ of identity in $G$. Next it is clear that the collection in the statement is closed under finite intersections and is upward closed in $\fD_G$. Pick $U$ in the collection. Then there exists open and symmetric neighborhood $O$ of identity in $G$ such that $L_O\subseteq U$. Since the multiplication $G\times G\ra G$ is continuous, there exists an open neighborhood $O'$ of unit in $G$ such that $O'O' \subseteq O$. By Fact \ref{fact:symmetric_neighborhoods_of_unit_generate_base} we may assume that $O'$ is symmetric. Hence $W = L_{O'}$ is in the collection and $W\cdot W \subseteq U$.
+\end{proof}
+
+\begin{definition}
+	Let $G$ be a topological group. Then the uniform structure introduced above is \textit{left uniform structure} on $G$.
+\end{definition}
+
+\begin{proposition}\label{proposition:left_uniform_structure_on_topological_group}
+	Let $G$ be a topological group. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item Left uniform structure induces the topology on $G$.
+		\item For every $g \in G$ the map $G\ni x \mapsto gx \in G$ is uniform with respect to left uniform structure on $G$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Suppose that $O$ is an open and symmetric neighborhood of identity in $G$. Then
+	$$L_O(x) = xO^{-1} = xO$$
+	for every $x \in G$. Hence $Q \subseteq G$ is open set in topology induced by left uniform structure if and only if
+	$$Q = \bigcup_{x\in Q}xO_x$$
+	where $O_x$ is an open and symmetric neighborhood of the identity in the original topology of $G$ for each $x \in Q$. Fact \ref{fact:symmetric_neighborhoods_of_unit_generate_base} implies that left uniform structure on induces the original topology on $G$. This completes the proof of \textbf{(1)}.
+
+	For $g \in G$ we denote by $l_g$ the map $G \ni x \mapsto gx \in G$. Then
+	$$\left(l_g\times l_g\right)^{-1}(L_O) = L_O$$
+	for every open and symmetric neighborhood $O$ of identity in $G$. Thus $l_g$ is uniform with respect to left uniform structure on $G$. Hence \textbf{(2)} holds.
+\end{proof}
+
+\begin{fact}\label{fact:each_continuous_homomorphism_is_uniform_with_respect_to_left_uniformity}
+	Let $f:G\ra H$ be a continuous homomorphism of topological groups. Then $f$ is uniformly continuous with respect to left uniform structures on $G$ and $H$. Moreover, if $f$ is a topological embedding, then it is also a uniform embedding with respect to left uniform structures.
+\end{fact}
+\begin{proof}
+	Let $O$ be an open and symmetric neighborhood of identity on $H$. Then
+	$$\left(f\times f\right)^{-1}(L_O) = \big\{(g_1, g_2) \in G\times G\,\big|\,f(g_1)^{-1}f(g_2) \in O\big\} = L_{f^{-1}(O)}$$
+	Thus $f$ is a uniform map. It also follows that if $f$ is a topological embedding, then it is a uniform embedding with respect to left uniform structures.
+\end{proof}
+
+\begin{corollary}\label{corollary:uniform_Kolmogorov_quotients_of_topological_groups}
+	Let $G$ be a topological group and let $q:G\twoheadrightarrow \tilde{G}$ be the quotient of $G$ with respect to the closure of identity in $G$. If $\tilde{G}$ and $G$ are considered with their left uniform structures, then $q$ is a uniform Kolmogorov quotient.
+\end{corollary}
+\begin{proof}
+	We denote by $1$ the identity of $G$. It follows from Fact \ref{fact:closure_of_identity} that intersection of $L_O$ for all open and symmetric neighborhoods $O$ of identity in $G$ consists of $(g_1,g_2) \in G\times G$ such that $g_1g_2^{-1} \in \bd{cl}\left(\{1\}\right)$. Pick an open and symmetric neighborhood $O$ of identity in $G$. Then $q(O)$ is an open and symmetric neighborhood of identity in $G$ and moreover, $q^{-1}(q(O)) = O$. Thus
+	$$\left(q \times q\right)^{-1}(L_{q(O)}) = L_O$$
+	Hence by assertion \textbf{(3)} of Theorem \ref{theorem:Kolmogorov_quotients_of_uniform_spaces} we derive that $q$ is a uniform Kolmogorov quotient of $G$.
+\end{proof}
+
+\begin{remark}\label{remark:right_uniform_structure}
+	Let $G$ be a topological group. For every open and symmetric neighborhood $O$ of identity in $G$ we define
+	$$R_O = \big\{(g_1,g_2)\in G\times G\,\big|\,g_1g_2^{-1} \in O\big\}$$
+	The collection
+	$$\big\{U \in \fD_G\,\big|\,\mbox{there exists open and symmetric neighborhood }O\mbox{ of identity in }G\mbox{ such that }R_O\subseteq U\big\}$$
+	is a uniform structure on $G$. It is called \textit{right uniform structure} on $G$. Analogical version of results in this section hold for right uniform structures. We left details for the reader.
+\end{remark}
+
+\section{Abelian topological groups}
+\noindent
+For abelian groups we use additive notation.
+
+\begin{proposition}\label{proposition:abelian_topological_groups_are_uniform_groups}
+	Let $A$ be an abelian topological group. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item Left and right uniform structure on $A$ coincide.
+		\item Group operations on $A$ are uniform maps.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Left for the reader.
+\end{proof}
+\noindent
+From now when discussing uniform structures and uniform maps in the context of abelian topological groups unless otherwise stated we consider left uniform structures (which coincide with right uniform structures according to Proposition \ref{proposition:abelian_topological_groups_are_uniform_groups}.
+
+\begin{definition}
+	Let $A$ be an abelian topological group. If $A$ is complete with respect to its uniform structure, then $A$ is \textit{complete}.
+\end{definition}
+
+\begin{theorem}\label{theorem:completion_of_topological_group}
+	Let $A$ be a Hausdorff abelian topological group. There exists a complete Hausdorff abelian topological group $\overline{A}$ and a continuous embedding of topological groups $A \hookrightarrow \overline{A}$ with dense image.
+\end{theorem}
+\begin{proof}
+	From Corollary \ref{corollary:completion_for_Hausdorff_spaces} there exists an embedding of uniform spaces $i:A\hookrightarrow \overline{A}$ with dense image such that $\overline{A}$ is Hausdorff and complete. Let $+_A:A\times A\ra A$ be the addition on $A$. Then the map
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=4em, column sep=2em,text height=1.5ex, text depth=0.25ex]
+			{ A\times A     & A & \overline{A}                      \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ +_A $} (m-1-2);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-1-2) edge node[above] {$ i $} (m-1-3);
+		\end{tikzpicture}
+	\end{center}
+	is uniform. By Theorem \ref{theorem:extension_of_densely_defined_uniform_maps_with_complete_target} it can be uniquely extended to the uniform map $+_{\overline{A}}:\overline{A}\times \overline{A} \ra \overline{A}$. Since $i:A \hookrightarrow \overline{A}$ has dense image and $+_A$ is associative and commutative, we derive that $+_{\overline{A}}$ is associative and commutative. Similarly we prove other group axioms for $\overline{A}$. Thus $\overline{A}$ admits a unique structure of complete abelian topological group. Moreover, $i$ is a homomorphism of abelian groups with respect to this structure. According to Fact \ref{fact:each_continuous_homomorphism_is_uniform_with_respect_to_left_uniformity} we derive that $i$ is a continuous embedding. This completes the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
