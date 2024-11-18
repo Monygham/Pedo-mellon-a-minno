@@ -9,9 +9,9 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous map. The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. We also prove that quasi-compactness for uniform spaces is equivalent to completeness and total boundedness.
+These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous map. The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. Finally we characterize quasi-compactness for uniform spaces in terms of completeness and total boundedness.
 
-Throughout the notes we assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}. In these notes we use the following notation. Let $X$ be a set and let $U, V$ be binary relations on $X$. Suppose that $Z$ is a subset of $X$. Then we define
+We assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}. Throughout the notes we use the following notation. Let $X$ be a set and let $U, V$ be binary relations on $X$. Suppose that $Z$ is a subset of $X$. Then we define
 $$U \cdot V = \big\{(x_1,x_2) \in X\times X\,\big|\,\mbox{ there exists }x\in X\mbox{ such that }(x_1, x)\in U\mbox{ and }(x,x_2)\in V\big\}$$
 and
 $$U(Z) = \big\{x \in X\,\big|\,\mbox{ there exists }z\in Z\mbox{ such that }(x, z)\in U\big\}$$
@@ -20,13 +20,13 @@ $$U(Z) = \big\{x \in X\,\big|\,\mbox{ there exists }z\in Z\mbox{ such that }(x, 
 \section{Uniform spaces and uniform maps}
 
 \begin{definition}
-	Let $X$ be a set and let $N$ be a nonempty family of reflexive and symmetric relations on $X$. Suppose that the following assertions are satisfied.
+	Let $X$ be a set and let $\fU$ be a nonempty family of reflexive and symmetric relations on $X$. Suppose that the following assertions are satisfied.
 	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
-		\item If $U \in N$ and $W$ is a reflexive and symmetric relation on $X$ such that $U \subseteq W$, then $W \in N$.
-		\item If $U,W \in N$, then also $U\cap W \in N$.
-		\item If $U \in N$, then there exists $W \in N$ such that $W\cdot W \subseteq U$.
+		\item If $U \in \fU$ and $W$ is a reflexive and symmetric relation on $X$ such that $U \subseteq W$, then $W \in \fU$.
+		\item If $U,W \in \fU$, then also $U\cap W \in \fU$.
+		\item If $U \in \fU$, then there exists $W \in \fU$ such that $W\cdot W \subseteq U$.
 	\end{enumerate}
-	Then $N$ is a \textit{uniform structure} on $X$.
+	Then $\fU$ is a \textit{uniform structure} on $X$.
 \end{definition}
 
 \begin{example}\label{example:discrete_uniform_structure}
@@ -38,7 +38,7 @@ $$U(Z) = \big\{x \in X\,\big|\,\mbox{ there exists }z\in Z\mbox{ such that }(x, 
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a uniform space with respect to uniform structure $N$. Then each member of $N$ is an \textit{entourage of the diagonal} in $X$.
+	Let $X$ be a uniform space with respect to uniform structure $\fU$. Then each member of $\fU$ is an \textit{entourage of the diagonal} in $X$.
 \end{definition}
 
 \begin{definition}
@@ -58,39 +58,39 @@ Let $\Unif$ be the category having uniform spaces as objects and uniform maps as
 	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Let $\cB_{\cF}$ be a family consisting of sets of the form
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f)$$
 	where $F$ is a finite subset of $F$ and $V_f$ is an entourage of the diagonal in $Y_f$. Next define
-	$$N_{\cF} = \big\{U\in \fD_X\,\big|\,\mbox{there exists }W\in \cB_{\cF}\mbox{ such that }W \subseteq U\big\}$$
-	Then $N_{\cF}$ is a uniform structure on $X$. Consider $X$ as a uniform space with respect to $N_{\cF}$. Then the following assertions hold.
+	$$\fU_{\cF} = \big\{U\in \fD_X\,\big|\,\mbox{there exists }W\in \cB_{\cF}\mbox{ such that }W \subseteq U\big\}$$
+	Then $\fU_{\cF}$ is a uniform structure on $X$. Consider $X$ as a uniform space with respect to $\fU_{\cF}$. Then the following assertions hold.
 	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 		\item Each $f \in \cF$ is a uniform map $X \ra Y_f$.
 		\item Let $Z$ be a uniform space and let $g:Z\ra X$ be a map of sets such that $f\cdot g:Z\ra Y_f$ is a uniform map for every $f\in \cF$. Then $g$ is a uniform map.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Note that $N_{\cF}$ is a nonempty family consisting of reflexive and symmetric relations on $X$.
+	Note that $\fU_{\cF}$ is a nonempty family consisting of reflexive and symmetric relations on $X$.
 
-	Suppose that $U,W$ are reflexive and symmetric relations on $X$. Assume tha $U\subseteq W$ and $U \in N_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Suppose that $U,W$ are reflexive and symmetric relations on $X$. Assume tha $U\subseteq W$ and $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	Thus also
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq W$$
-	and hence $W \in N_{\cF}$.
+	and hence $W \in \fU_{\cF}$.
 
-	Assume that $U,W \in N_{\cF}$. Then there exist finite subsets $F_U,F_W$ of $\cF$, an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F_U$ and entourage $T_f$ of the diagonal in $Y_f$ for each $f\in F_W$ such that
+	Assume that $U,W \in \fU_{\cF}$. Then there exist finite subsets $F_U,F_W$ of $\cF$, an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F_U$ and entourage $T_f$ of the diagonal in $Y_f$ for each $f\in F_W$ such that
 	$$\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \subseteq U,\,\bigcap_{f\in F_W}\left(f\times f\right)^{-1}(T_f)\subseteq W$$
 	Then
 	$$\left(\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \right) \cap \left(\bigcap_{f \in F_W}\left(f\times f\right)^{-1}(T_f)\right)\subseteq U\cap W$$
-	and this implies that $U\cap W \in N_{\cF}$.
+	and this implies that $U\cap W \in \fU_{\cF}$.
 
-	Next suppose that $U \in N_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Next suppose that $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	For each $f \in F$ pick an entourage $T_f$ of the diagonal in $Y_f$ such that $T_f\cdot T_f \subseteq V_f$. Then
-	$$W = \bigcap_{f \in F}\left(f\times f\right)^{-1}(T_f) \in N_{\cF}$$
+	$$W = \bigcap_{f \in F}\left(f\times f\right)^{-1}(T_f) \in \fU_{\cF}$$
 	and $W\cdot W \subseteq U$.
 
-	Thus $N_{\cF}$ is a uniform structure. From now on we consider $X$ as a uniform space with respect to $N_{\cF}$.
+	Thus $\fU_{\cF}$ is a uniform structure. From now on we consider $X$ as a uniform space with respect to $\fU_{\cF}$.
 
 	By definition $f:X\ra Y_f$ is a uniform map for every $f\in \cF$. Hence \textbf{(1)} holds.
 
-	Now we prove \textbf{(2)}. Fix $U \in N_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Now we prove \textbf{(2)}. Fix $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	Since $f\cdot g:Z\ra Y_f$ is uniform map for each $f \in F$, we derive that
 	$$\left(g\times g\right)^{-1}\left(\bigcap_{f\in F}\left(f\times f\right)^{-1}\left(V_f\right)\right) = \bigcap_{f\in F}\left((f\cdot g)\times (f\cdot g)\right)^{-1}(V_f)$$
@@ -100,7 +100,7 @@ Let $\Unif$ be the category having uniform spaces as objects and uniform maps as
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Then $N_{\cF}$ defined in the theorem above is the uniform structure \textit{induced} by $\cF$.
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Then $\fU_{\cF}$ defined in the theorem above is the uniform structure \textit{induced} by $\cF$.
 \end{definition}
 
 \begin{corollary}\label{corollary:limits_in_category_of_uniform_spaces}
@@ -182,14 +182,14 @@ $$\Delta_{\rho, \epsilon} = \big\{(x_1,x_2) \in X\times X\,\big|\,\rho(x_1, x_2)
 is a reflexive and symmetric relation on $X$.
 
 \begin{fact}\label{fact:uniform_structures_induced_by_families_of_pseudometrics}
-	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Let $N_{\Phi}$ be a family consisting of all $U\in \fD_X$ such that $U$ contains some finite intersection of sets $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$. Then $N_{\Phi}$ is a uniform structure on $X$.
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Let $\fU_{\Phi}$ be a family consisting of all $U\in \fD_X$ such that $U$ contains some finite intersection of sets $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$. Then $\fU_{\Phi}$ is a uniform structure on $X$.
 \end{fact}
 \begin{proof}
 	Left for the reader as an exercise.
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Then $N_{\Phi}$ is the uniform structure \textit{induced} by $\Phi$.
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Then $\fU_{\Phi}$ is the uniform structure \textit{induced} by $\Phi$.
 \end{definition}
 
 \begin{example}\label{example:natural_uniform_structure_on_reals}
@@ -204,9 +204,9 @@ Now we prove that every uniform structure is induced by some family of pseudomet
 	Let $X$ be a uniform space. Then the uniform structure on $X$ is induced by a family of pseudometrics $\Phi$ on $X$.
 \end{theorem}
 \begin{proof}
-	Denote the uniform structure on $X$ by $N$. Let $U \in N$. Pick a sequence $\{U_n\}_{n\in \NN}$ of members of $N$ such that
+	Denote the uniform structure on $X$ by $\fU$. Let $U \in \fU$. Pick a sequence $\{U_n\}_{n\in \NN}$ of members of $\fU$ such that
 	$$U_{n+1}\cdot U_{n+1} \subseteq U_n$$
-	for all $n \in \NN$ and $U_0 = U$. Note that $\{U_n\}_{n\in \NN}$ exists since $N$ is a uniform structure. For each $x \in X$ consider a function $f_x:X\ra \RR$ such that the following assertions hold.
+	for all $n \in \NN$ and $U_0 = U$. Note that $\{U_n\}_{n\in \NN}$ exists since $\fU$ is a uniform structure. For each $x \in X$ consider a function $f_x:X\ra \RR$ such that the following assertions hold.
 	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
 		\item $0\leq f_x(y) \leq 1$ for every $y \in X$.
 		\item $f_x(x) = 0$ and $f_x(y) = 1$ for $y \not \in U(x)$.
@@ -217,7 +217,7 @@ Now we prove that every uniform structure is induced by some family of pseudomet
 	$$\rho_U(x_1,x_2) = \sup_{x\in X}|f_x(x_1) - f_x(x_2)|$$
 	Clearly $\rho_U$ is a pseudometric on $X$. Moreover, if $(x_1,x_2) \in U_{n+1}$ for some $n \in \NN$, then
 	$$\rho_U(x_1,x_2) \leq \frac{1}{2^n}$$
-	Form this we deduce that $\Delta_{\rho_U, \epsilon} \in N$ for every $\epsilon \in \RR_+$ and $\Delta_{\rho_U, 1}\subseteq U$. Thus $N$ is induced by $\Phi = \{\rho_U\}_{U \in N}$.
+	Form this we deduce that $\Delta_{\rho_U, \epsilon} \in \fU$ for every $\epsilon \in \RR_+$ and $\Delta_{\rho_U, 1}\subseteq U$. Thus $\fU$ is induced by $\Phi = \{\rho_U\}_{U \in \fU}$.
 \end{proof}
 \noindent
 It is useful to describe how uniform maps can be expressed in terms of families of pseudometrics.
@@ -340,17 +340,17 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	We denote by $\Delta_t$ the relation of topological indistinguishability on $X$ and let $N$ be the uniform structure on $X$.
+	We denote by $\Delta_t$ the relation of topological indistinguishability on $X$ and let $\fU$ be the uniform structure on $X$.
 
-	Let $x$ be a point in $X$. Suppose that $z \in X$ is a point such that $(z, x) \in U$ for every $U \in N$. By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} this is equivalent to the fact that every open neighborhood of $x$ is an open neighborhood of $z$. This implies that \textbf{(1)} holds.
+	Let $x$ be a point in $X$. Suppose that $z \in X$ is a point such that $(z, x) \in U$ for every $U \in \fU$. By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} this is equivalent to the fact that every open neighborhood of $x$ is an open neighborhood of $z$. This implies that \textbf{(1)} holds.
 
-	Let $\tilde{N}$ be a family described in \textbf{(2)}. Note that $\tilde{N}$ is closed under finite intersections and is upward closed in $\fD_{\tilde{X}}$. Next pick $U \in N$. Then there exists $W \in N$ such that
+	Let $\tilde{\fU}$ be a family described in \textbf{(2)}. Note that $\tilde{\fU}$ is closed under finite intersections and is upward closed in $\fD_{\tilde{X}}$. Next pick $U \in \fU$. Then there exists $W \in \fU$ such that
 	$$W\cdot W \cdot W \subseteq U$$
 	Next we define $V = \left(q\times q\right)\left(\Delta_t\cdot W\cdot \Delta_t\right)$. Then
 	$$\left(q\times q\right)^{-1}(V) = \Delta_t\cdot W\cdot \Delta_t \subseteq U$$
-	by \textbf{(1)}. Hence $V \in \tilde{N}$ and $\left(q\times q\right)^{-1}(V)\subseteq U$. This implies \textbf{(2)} and simultaneously completes the proof of \textbf{(3)}.
+	by \textbf{(1)}. Hence $V \in \tilde{\fU}$ and $\left(q\times q\right)^{-1}(V)\subseteq U$. This implies \textbf{(2)} and simultaneously completes the proof of \textbf{(3)}.
 
-	Let $O$ be an open subset of $\tilde{X}$. Then for each $x \in O$ there exists $U_x \in N$ such that $U_x(x)\subseteq O$. Next for each $x \in O$ there exists according to \textbf{(3)} an entourage $V_x \in \tilde{N}$ such that $\left(q\times q\right)^{-1}(V_x) \subseteq U_x$. Then
+	Let $O$ be an open subset of $\tilde{X}$. Then for each $x \in O$ there exists $U_x \in \fU$ such that $U_x(x)\subseteq O$. Next for each $x \in O$ there exists according to \textbf{(3)} an entourage $V_x \in \tilde{\fU}$ such that $\left(q\times q\right)^{-1}(V_x) \subseteq U_x$. Then
 	$$q(O) = q\left(\bigcup_{x\in O}\left(q\times q\right)^{-1}(V_x)(x)\right) = \bigcup_{x \in O}V_x\left(q(x)\right)$$
 	and hence $q(O)$ is open in $\tilde{X}$. This proves that $q$ is an open map and hence it is a Kolmogorov quotient of $X$. Hence we derive \textbf{(4)}.
 
