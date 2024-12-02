@@ -137,9 +137,9 @@ In this section we introduce uniform structures on topological groups and study 
 	Let $G$ be a topological group. Then the following assertions hold.
 	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 		\item Left uniform structure induces the topology on $G$.
-		\item For every $g \in G$ the map
-		      $$G\ni x \mapsto gx \in G$$
-		      is uniform with respect to left uniform structure on $G$.
+		\item For every $g \in G$ maps
+		      $$G\ni x \mapsto gx \in G,\,G\ni x \mapsto xg \in G$$
+		      are uniform with respect to left uniform structure on $G$.
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -149,9 +149,9 @@ In this section we introduce uniform structures on topological groups and study 
 	$$Q = \bigcup_{x\in Q}xO_x$$
 	where $O_x$ is an open and symmetric neighborhood of the identity in the original topology of $G$ for each $x \in Q$. Fact \ref{fact:symmetric_neighborhoods_of_unit_generate_base} implies that left uniform structure on induces the original topology on $G$. This completes the proof of \textbf{(1)}.
 
-	For $g \in G$ we denote by $l_g$ the map $G \ni x \mapsto gx \in G$. Then
-	$$\left(l_g\times l_g\right)^{-1}(L_O) = L_O$$
-	for every open and symmetric neighborhood $O$ of identity in $G$. Thus $l_g$ is uniform with respect to left uniform structure on $G$. Hence \textbf{(2)} holds.
+	For $g \in G$ we denote by $l_g$ and $r_g$ maps $G \ni x \mapsto gx \in G$ and $G \ni x \mapsto xg \in G$, respectively. Then
+	$$\left(l_g\times l_g\right)^{-1}(L_O) = L_O,\,\left(r_g \times r_g\right)^{-1}(L_O) = L_{gOg^{-1}}$$
+	for every open and symmetric neighborhood $O$ of identity in $G$. Thus $l_g$ and $r_g$ are uniform with respect to left uniform structure on $G$. Hence \textbf{(2)} holds.
 \end{proof}
 
 \begin{fact}\label{fact:each_continuous_homomorphism_is_uniform_with_respect_to_left_uniformity}
