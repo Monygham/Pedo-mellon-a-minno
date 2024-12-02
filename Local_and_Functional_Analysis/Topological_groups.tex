@@ -18,6 +18,14 @@ In the first section we introduce topological groups and study their basic prope
 \begin{definition}
 	A group together with a topology such that group operations are continuous is a \textit{topological group}.
 \end{definition}
+
+\begin{definition}
+	Let $G,H$ be a topological groups. A map $f:G\ra H$ which is continuous homomorphism is a \textit{morphism} of topological groups.
+\end{definition}
+
+\begin{definition}
+	Let $i:G\hookrightarrow H$ be a morphism of topological groups and a topological embedding. Then $i$ is an \textit{embedding} of topological groups.
+\end{definition}
 \noindent
 Let $G$ be a topological group. For a subset $S$ of $G$ we define
 $$S^{-1} = \big\{x^{-1}\,\big|\,x\in S\,\big\}$$
@@ -166,7 +174,7 @@ In this section we introduce uniform structures on topological groups and study 
 \end{proof}
 
 \begin{corollary}\label{corollary:topological_groups_embeddings_is_uniform_embedding}
-	Let $i:G\hookrightarrow H$ be a continuous homomorphism of topological groups and a topological embedding. Then $i$ is a uniform embedding with respect to left uniformities on $G$ and $H$.
+	Let $i:G\hookrightarrow H$ be an embedding of topological groups. Then $i$ is a uniform embedding with respect to left uniformities on $G$ and $H$.
 \end{corollary}
 \begin{proof}
 	Since $i$ is a topological embedding, the map $O\mapsto f^{-1}(O)$ defined which takes open and symmetric neighborhoods of $H$ to open and syummetric neighborhoods of $G$ is surjective. By Fact \ref{fact:each_continuous_homomorphism_is_uniform_with_respect_to_left_uniformity} we derive
@@ -190,6 +198,18 @@ In this section we introduce uniform structures on topological groups and study 
 	$$\big\{U \in \fD_G\,\big|\,\mbox{there exists open and symmetric neighborhood }O\mbox{ of identity in }G\mbox{ such that }R_O\subseteq U\big\}$$
 	is a uniform structure on $G$. It is called \textit{right uniform structure} on $G$. Analogical version of results in this section hold for right uniform structures. We left details for the reader.
 \end{remark}
+
+\begin{fact}\label{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures}
+	Let $G$ be a topological group. Then $(-)^{-1}:G\ra G$ is a uniform map between left and right uniformities on $G$.
+\end{fact}
+
+\begin{definition}
+	Let $G$ be a topological group and let $\cF$ be a filter on $G$. If $\cF$ is Cauchy with respect to left (right) uniform structure on $G$, then $\cF$ is \textit{left} (\textit{right}) Cauchy.
+\end{definition}
+
+\begin{definition}
+	Let $G$ be a topological group which is complete with respect to its left (right) uniform structure. Then $G$ is \textit{left} (\textit{right}) complete.
+\end{definition}
 
 \section{Abelian topological groups}
 \noindent
@@ -255,15 +275,58 @@ From now when discussing uniform structures and uniform maps in the context of a
 \end{proof}
 
 
+\section{Completions of topological groups}
+\noindent
+First we need to prove the following result.
+
+\begin{proposition}\label{proposition:multiplication_preserves_one_sided_Cauchy_filters}
+	Let $G$ be a topological group. Then the multiplication $G\times G\ra G$ sends left (right) Cauchy filters on $G\times G$ to left (right) Cauchy filters.
+\end{proposition}
+\begin{proof}
+	We prove proposition for left uniform structures.
+
+	Let $\cF$ be a left Cauchy filter in $G\times G$ and let $O$ be an open and symmetric neighborhood of $G$. Let $\cF_l$ and $\cF_r$ be images of $\cF$ under left and right projections $G\times G\ra G$. Then $\cF_l$ and $\cF_r$ are left Cauchy filters on $G$. Fix open and symmetric neighborhood $Q$ of $G$ such that $QQQ \subseteq O$. There exists $F_r \in \cF_r$ such that
+	$$F_r \times F_r \subseteq L_Q$$
+	Next fix $x \in F_r$. Next there exists $F_l \in \cF_l$ such that
+	$$F_l\times F_l \subseteq L_{xQx^{-1}}$$
+	Define $F = F_l\times F_r$ and $F \in \cF$. Pick $(l_1,r_1),(l_2,r_2) \in F$. Then
+	$$(l_1r_1)^{-1}(l_2r_2) = r_1^{-1}(l_1^{-1}l_2)r_2 = (r_1^{-1}x)x^{-1}(l_1^{-1}l_2)x(x^{-1}r_2) \subseteq Qx^{-1}\left(xQx^{-1}\right)xQ = QQQ \subseteq O$$
+	Hence the preimage of $L_O$ under the multiplication of $G$ contains $F \times F$. It follows that the image of $\cF$ under the multiplication of $G$ is a Cauchy filter on $G$.
+\end{proof}
+
+\begin{definition}
+	Let $G$ be a topological group. A left (right) complete group $\overline{G}$ and an embedding $G \hookrightarrow \overline{G}$ of topological groups with dense image is a \textit{left} (\textit{right}) group completion of $G$.
+\end{definition}
+
+\begin{theorem}\label{theorem:criterion_for_existence_of_one_sided_completions}
+	Let $G$ be a topological group. Then the following are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+		\item $G$ admits left (right) completion.
+		\item Left Cauchy filters and right Cauchy filters on $G$ coincide.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Suppose that $G$ admits left completion $i:G \hookrightarrow \overline{G}$. Let $\cF$ be a left Cauchy filter on $G$. We define
+	$$\cF^{-1} = \big\{F^{-1}\,\big|\,F\in \cF\big\}$$
+	Then there exists a continuous map $\overline{G}\ra \overline{G}$ such that the diagram
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{  G            & G                                                          \\
+			   \overline{G} & \overline{G}                      \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ (-)^{-1} $} (m-1-2)
+			(m-2-1) edge node[below] {$  $} (m-2-2);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[left] {$ i $} (m-2-1)
+			(m-1-2) edge node[right] {$ i $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. From the commutativity it follows that $i(\cF^{-1})$ is convergent in $\overline{G}$. Since $\overline{G}$ is left complete and $i$ is an embedding of uniform spaces (Corollary \ref{corollary:topological_groups_embeddings_is_uniform_embedding}), we derive that $\cF^{-1}$ is a left Cauchy filter on $G$. According to Fact \ref{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures} the map $(-)^{-1}$ induces bijection between left and right Cauchy filters on $G$. Thus $\cF$ is a right Cauchy filter on $G$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
 
-
-
-
-
-
-
-
+\end{proof}
 
 
 
