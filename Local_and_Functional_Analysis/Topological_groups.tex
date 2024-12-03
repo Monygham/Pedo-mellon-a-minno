@@ -214,6 +214,27 @@ In this section we introduce uniform structures on topological groups and study 
 	Let $G$ be a topological group which is complete with respect to its left (right) uniform structure. Then $G$ is \textit{left} (\textit{right}) complete.
 \end{definition}
 
+\begin{remark}\label{remark:join_of_uniform_structures}
+	Let $X$ be a set and let $\fU_1$ and $\fU_2$ be uniform structures on $X$. Then
+	$$\fU_1\vee \fU_2 = \big\{U \in \fD_X\,\big|\,U_1\cap U_2\subseteq U\mbox{ for some }U_1\in \fU_1\mbox{ and }U_2\in \fU_2\big\}$$
+is a uniform structure on $X$, which is the least upper bound of $\fU_1$ and $\fU_2$ in the partially ordered set of uniform structures on $X$.
+\end{remark}
+
+\begin{definition}
+	Let $G$ be a topological group. Then the least upper bound of left and right uniform structures on $G$ is the \textit{two-sided} uniform structure on $G$.
+\end{definition}
+
+\begin{definition}
+	Let $G$ be a topological group and let $\cF$ be a filter on $G$. If $\cF$ is Cauchy with respect to two-sided unifomr structure on $G$, then $\cF$ is \textit{two-sided} Cauchy.
+\end{definition}
+
+\begin{fact}\label{fact:two_sided_Cauchy_filters}
+	Let $G$ be a topological group and let $\cF$ be a filter on $G$. Then $\cF$ is a two-sided Cauchy filter on $G$ if and only if it is both left and right Cauchy filter on $G$.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
 \section{Completions of topological groups}
 \noindent
 First we need to prove the following result.
