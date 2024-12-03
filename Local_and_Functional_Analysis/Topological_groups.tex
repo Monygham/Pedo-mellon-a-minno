@@ -202,6 +202,9 @@ In this section we introduce uniform structures on topological groups and study 
 \begin{fact}\label{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures}
 	Let $G$ be a topological group. Then $(-)^{-1}:G\ra G$ is a uniform map between left and right uniformities on $G$.
 \end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
 
 \begin{definition}
 	Let $G$ be a topological group and let $\cF$ be a filter on $G$. If $\cF$ is Cauchy with respect to left (right) uniform structure on $G$, then $\cF$ is \textit{left} (\textit{right}) Cauchy.
@@ -210,70 +213,6 @@ In this section we introduce uniform structures on topological groups and study 
 \begin{definition}
 	Let $G$ be a topological group which is complete with respect to its left (right) uniform structure. Then $G$ is \textit{left} (\textit{right}) complete.
 \end{definition}
-
-\section{Abelian topological groups}
-\noindent
-As usual for abelian groups we use additive notation.
-
-\begin{proposition}\label{proposition:abelian_topological_groups_are_uniform_groups}
-	Let $A$ be an abelian topological group. Then the following assertions hold.
-	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
-		\item Left and right uniform structure on $A$ coincide.
-		\item Group operations on $A$ are uniform maps.
-	\end{enumerate}
-\end{proposition}
-\begin{proof}
-	Left for the reader.
-\end{proof}
-\noindent
-From now when discussing uniform structures and uniform maps in the context of abelian topological groups we consider them with left uniform structures (which coincide with right uniform structures according to Proposition \ref{proposition:abelian_topological_groups_are_uniform_groups}).
-
-\begin{definition}
-	Let $A$ be an abelian topological group. Then $A$ is \textit{complete} if it is complete as the uniform space.
-\end{definition}
-
-\begin{theorem}\label{theorem:completion_of_topological_group}
-	Let $A$ be a Hausdorff abelian topological group. There exists a complete Hausdorff abelian topological group $\overline{A}$ and a continuous embedding of topological groups $A \hookrightarrow \overline{A}$ with dense image.
-\end{theorem}
-\begin{proof}
-	General results on uniform spaces show that there exists an embedding of uniform spaces $i:A\hookrightarrow \overline{A}$ with dense image such that $\overline{A}$ is a Hausdorff complete uniform space. Let $+_A:A\times A\ra A$ be the addition on $A$ and let $(-)^{-1}_A:A\ra A$ be the map taking opposite element. Both these maps are uniform by Proposition \ref{proposition:abelian_topological_groups_are_uniform_groups}. By results on extension of uniform maps there exist unique uniform maps $+_{\overline{A}}:\overline{A}\times \overline{A}\ra \overline{A}$ and $(-)^{-1}_{\overline{A}}:\overline{A}\ra \overline{A}$ such that the diagrams
-	\begin{center}
-		\begin{tikzpicture}
-			[description/.style={fill=white,inner sep=2pt}]
-			\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em,text height=1.5ex, text depth=0.25ex]
-			{ A\times A                        & A            &  & A            & A                                                          \\
-			  \overline{A} \times \overline{A} & \overline{A} &  & \overline{A} & \overline{A}                      \\} ;
-			\path[->,line width=0.8pt,font=\scriptsize]
-			(m-1-1) edge node[above] {$ +_A $} (m-1-2)
-			(m-2-1) edge node[below] {$ +_{\overline{A}} $} (m-2-2)
-			(m-1-4) edge node[above] {$ (-)^{-1}_A $} (m-1-5)
-			(m-2-4) edge node[below] {$ (-)^{-1}_{\overline{A}} $} (m-2-5);
-			\path[right hook->,line width=0.8pt,font=\scriptsize]
-			(m-1-1) edge node[left] {$ i\times i $} (m-2-1)
-			(m-1-2) edge node[right] {$ i $} (m-2-2)
-			(m-1-4) edge node[left] {$ i $} (m-2-4)
-			(m-1-5) edge node[right] {$ i $} (m-2-5);
-		\end{tikzpicture}
-	\end{center}
-	are commutative. Next $i$ has dense image, all maps considered above are continuous and $\overline{A}$ is Hausdorff. Thus $+_{\overline{A}}$ and $-_{\overline{A}}$ make $\overline{A}$ into an abelian topological group and $i$ into a homomorphism of groups.
-
-	Next let $\hat{A}$ be $\overline{A}$ with left unifrom structure. Then $\hat{A}$ and $\overline{A}$ are isomorphic topological groups. Since $i$ is a continuous embedding, we may consider it as a continuous embedding $A\hookrightarrow \hat{A}$. According to Corollary \ref{corollary:topological_groups_embeddings_is_uniform_embedding} we may consider $i$ as an embedding $j:A\hookrightarrow \hat{A}$ of uniform spaces. By general result on extension of uniform maps there exists a unique uniform map $h:\hat{A}\ra \overline{A}$ such that the triangle
-	\begin{center}
-		\begin{tikzpicture}
-			[description/.style={fill=white,inner sep=2pt}]
-			\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
-			{ \hat{A} &   & \overline{A}           \\
-			          & A & \\} ;
-			\path[->,line width=0.8pt,font=\scriptsize]
-			(m-1-1) edge node[above] {$ h $} (m-1-3);
-			\path[right hook->,line width=0.8pt,font=\scriptsize]
-			(m-2-2) edge node[left = 3pt, below = 1pt] {$ j $} (m-1-1)
-			(m-2-2) edge node[right = 3pt, below = 1pt] {$ i $} (m-1-3);
-		\end{tikzpicture}
-	\end{center}
-	is commutative. It follows that $h$ is the identity set theoretically. It follows that if $\cF$ is a Cauchy filter on $\hat{A}$, then it is also Cauchy on $\overline{A}$. Thus it is convergent in $\overline{A}$ and hence also in $\hat{A}$. This shows that $\hat{A}$ is complete.
-\end{proof}
-
 
 \section{Completions of topological groups}
 \noindent
@@ -299,11 +238,12 @@ First we need to prove the following result.
 \end{definition}
 
 \begin{theorem}\label{theorem:criterion_for_existence_of_one_sided_completions}
-	Let $G$ be a topological group. Then the following are equivalent.
+	Let $G$ be a topological group. Consider the following assertions.
 	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
-		\item $G$ admits left (right) completion.
+		\item $G$ admits left completion.
 		\item Left Cauchy filters and right Cauchy filters on $G$ coincide.
 	\end{enumerate}
+	Then $\emph{\textbf{(i)}} \Rightarrow \emph{\textbf{(ii)}}$ and if $G$ is Hausdorff, then $\emph{\textbf{(ii)}} \Rightarrow \emph{\textbf{(i)}}$.
 \end{theorem}
 \begin{proof}
 	Suppose that $G$ admits left completion $i:G \hookrightarrow \overline{G}$. Let $\cF$ be a left Cauchy filter on $G$. We define
@@ -325,7 +265,51 @@ First we need to prove the following result.
 	\end{center}
 	is commutative. From the commutativity it follows that $i(\cF^{-1})$ is convergent in $\overline{G}$. Since $\overline{G}$ is left complete and $i$ is an embedding of uniform spaces (Corollary \ref{corollary:topological_groups_embeddings_is_uniform_embedding}), we derive that $\cF^{-1}$ is a left Cauchy filter on $G$. According to Fact \ref{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures} the map $(-)^{-1}$ induces bijection between left and right Cauchy filters on $G$. Thus $\cF$ is a right Cauchy filter on $G$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
-
+	Suppose now that left and right Cauchy filters on $G$ coincide and $G$ is Hausdorff. Let $\overline{G}$ be a Hausdorff and complete uniform space and $i:G\hookrightarrow \overline{G}$ be a uniform embedding with dense image where $G$ is considered with its left uniform structure. Note that $\overline{G}$ is regular topological space. Since $(-)^{-1}_G:G\ra G$ sends left Cauchy filters on left Cauchy filters by assumption and by general result on extension of uniform maps described in \cite{Uniform_Spaces}, we derive that there exists a unique continuous map $(-)^{-1}_{\overline{G}}$ such that the square
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{  G            & G                                                          \\
+			   \overline{G} & \overline{G}                      \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ (-)^{-1}_G $} (m-1-2)
+			(m-2-1) edge node[below] {$ (-)^{-1}_{\overline{G}}  $} (m-2-2);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[left] {$ i $} (m-2-1)
+			(m-1-2) edge node[right] {$ i $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. Next by Proposition \ref{proposition:multiplication_preserves_one_sided_Cauchy_filters} the multiplication $\cdot_G:G\times G \ra G$ sends left Cauchy filters on $G\times G$ onto left Cauchy filters on $G$. According to general resutl on extension of continuous maps in \cite{Filters_in_topology} there exists a unique continuous map $\cdot_{\overline{G}}$ such that the square
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em,text height=1.5ex, text depth=0.25ex]
+			{ G\times G                        & G                                     \\
+			  \overline{G} \times \overline{G} & \overline{G} \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ \cdot_G $} (m-1-2)
+			(m-2-1) edge node[below] {$ \cdot_{\overline{G}} $} (m-2-2);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[left] {$ i\times i $} (m-2-1)
+			(m-1-2) edge node[right] {$ i $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Let $\tilde{G}$ be the topological group $\overline{G}$ with its left uniform structure. Map $i$ is an embedding of topological groups and hence $i$ may be viewed as an embedding of uniform spaces $j:G\hookrightarrow \tilde{G}$. By general result (\cite{Uniform_Spaces}) on extension of uniform maps there exists a unique uniform map $\tilde{G}\ra \overline{G}$ such that the triangle
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
+			{ \tilde{G} &   & \overline{G}           \\
+			            & G & \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$  $} (m-1-3);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-2-2) edge node[left = 3pt, below = 1pt] {$ j $} (m-1-1)
+			(m-2-2) edge node[right = 3pt, below = 1pt] {$ i $} (m-1-3);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. It follows that $\tilde{G}\ra \overline{G}$ is the identity on sets. Fix a left Cauchy filter $\cF$ on the topological group $\overline{G}$. By definition $\cF$ is a Cauchy filter on $\tilde{G}$ and, since the uniform map $\tilde{G}\ra \overline{G}$ is the identity on sets, we infer that $\cF$ is a Cauchy filter on $\overline{G}$. By construction $\overline{G}$ is a complete uniform space. Thus $\cF$ is convergent in $\overline{G}$. Therefore, $\overline{G}$ is a left complete group. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$ under the assumption that $G$ is Hausdorff.
 \end{proof}
 
 
