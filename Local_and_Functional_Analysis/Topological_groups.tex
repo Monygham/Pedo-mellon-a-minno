@@ -9,9 +9,9 @@
 
 \section{Introduction}
 \noindent
-In these notes we study topological groups which are very important objects in analysis. We heavily use \cite{Topological_Spaces} and \cite{Uniform_Spaces}.
+In these notes we study topological groups which are very important objects in analysis. We depend \cite{Topological_Spaces}, \cite{Filters_in_topology} and \cite{Uniform_Spaces}.
 
-In the first section we introduce topological groups and study their basic properties. Next section studies left and right uniform structures on topological groups and their relation to topological notions. The last section is devoted to abelian topological groups and their completions.
+In the first section we introduce topological groups and study their topological properties. Next section studies left and right uniform structures on topological groups and their relation to topological notions. We also introduce two-sided uniform structures and study their properties. The last section is devoted to completions of topological groups.
 
 \section{Topological groups}
 
@@ -217,12 +217,19 @@ In this section we introduce uniform structures on topological groups and study 
 \begin{remark}\label{remark:join_of_uniform_structures}
 	Let $X$ be a set and let $\fU_1$ and $\fU_2$ be uniform structures on $X$. Then
 	$$\fU_1\vee \fU_2 = \big\{U \in \fD_X\,\big|\,U_1\cap U_2\subseteq U\mbox{ for some }U_1\in \fU_1\mbox{ and }U_2\in \fU_2\big\}$$
-is a uniform structure on $X$, which is the least upper bound of $\fU_1$ and $\fU_2$ in the partially ordered set of uniform structures on $X$.
+	is a uniform structure on $X$, which is the least upper bound of $\fU_1$ and $\fU_2$ in the partially ordered set of uniform structures on $X$. Note that if $\fU_1$ and $\fU_2$ induce some topologies on $X$, then $\fU_1\vee \fU_2$ induce the least upper bound of these two topologies in the partial order of all topologies on $X$.
 \end{remark}
 
 \begin{definition}
 	Let $G$ be a topological group. Then the least upper bound of left and right uniform structures on $G$ is the \textit{two-sided} uniform structure on $G$.
 \end{definition}
+
+\begin{fact}\label{fact:inverse_is_an_automorphism_of_two_sided_uniform_structures}
+	Let $G$ be a topological group. Then $(-)^{-1}:G\ra G$ is a uniform map with respect to two-sided uniform structure on $G$.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
 
 \begin{definition}
 	Let $G$ be a topological group and let $\cF$ be a filter on $G$. If $\cF$ is Cauchy with respect to two-sided unifomr structure on $G$, then $\cF$ is \textit{two-sided} Cauchy.
@@ -234,6 +241,10 @@ is a uniform structure on $X$, which is the least upper bound of $\fU_1$ and $\f
 \begin{proof}
 	Left for the reader as an exercise.
 \end{proof}
+
+\begin{definition}
+	Let $G$ be a topological group which is complete with respect to its two-sided uniform structure. Then $G$ is \textit{two-sided} complete.
+\end{definition}
 
 \section{Completions of topological groups}
 \noindent
@@ -286,7 +297,7 @@ First we need to prove the following result.
 	\end{center}
 	is commutative. From the commutativity it follows that $i(\cF^{-1})$ is convergent in $\overline{G}$. Since $\overline{G}$ is left complete and $i$ is an embedding of uniform spaces (Corollary \ref{corollary:topological_groups_embeddings_is_uniform_embedding}), we derive that $\cF^{-1}$ is a left Cauchy filter on $G$. According to Fact \ref{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures} the map $(-)^{-1}$ induces bijection between left and right Cauchy filters on $G$. Thus $\cF$ is a right Cauchy filter on $G$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
-	Suppose now that left and right Cauchy filters on $G$ coincide and $G$ is Hausdorff. Let $\overline{G}$ be a Hausdorff and complete uniform space and $i:G\hookrightarrow \overline{G}$ be a uniform embedding with dense image where $G$ is considered with its left uniform structure. Note that $\overline{G}$ is regular topological space. Since $(-)^{-1}_G:G\ra G$ sends left Cauchy filters on left Cauchy filters by assumption and by general result on extension of uniform maps described in \cite{Uniform_Spaces}, we derive that there exists a unique continuous map $(-)^{-1}_{\overline{G}}$ such that the square
+	Suppose now that left and right Cauchy filters on $G$ coincide and $G$ is Hausdorff. Let $\overline{G}$ be a Hausdorff and complete uniform space and $i:G\hookrightarrow \overline{G}$ be a uniform embedding with dense image where $G$ is considered with its left uniform structure. Note that $\overline{G}$ is a regular topological space. Since $(-)^{-1}_G:G\ra G$ sends left Cauchy filters to left Cauchy filters by assumption and by the general result on extension of continuous maps described in \cite{Filters_in_topology}, we derive that there exists a unique continuous map $(-)^{-1}_{\overline{G}}$ such that the square
 	\begin{center}
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
@@ -301,7 +312,7 @@ First we need to prove the following result.
 			(m-1-2) edge node[right] {$ i $} (m-2-2);
 		\end{tikzpicture}
 	\end{center}
-	is commutative. Next by Proposition \ref{proposition:multiplication_preserves_one_sided_Cauchy_filters} the multiplication $\cdot_G:G\times G \ra G$ sends left Cauchy filters on $G\times G$ onto left Cauchy filters on $G$. According to general resutl on extension of continuous maps in \cite{Filters_in_topology} there exists a unique continuous map $\cdot_{\overline{G}}$ such that the square
+	is commutative. Next by Proposition \ref{proposition:multiplication_preserves_one_sided_Cauchy_filters} the multiplication $\cdot_G:G\times G \ra G$ sends left Cauchy filters on $G\times G$ onto left Cauchy filters on $G$. Again the general result on extension of continuous maps in \cite{Filters_in_topology} there exists a unique continuous map $\cdot_{\overline{G}}$ such that the square
 	\begin{center}
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
@@ -316,7 +327,7 @@ First we need to prove the following result.
 			(m-1-2) edge node[right] {$ i $} (m-2-2);
 		\end{tikzpicture}
 	\end{center}
-	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Let $\tilde{G}$ be the topological group $\overline{G}$ with its left uniform structure. Map $i$ is an embedding of topological groups and hence $i$ may be viewed as an embedding of uniform spaces $j:G\hookrightarrow \tilde{G}$. By general result (\cite{Uniform_Spaces}) on extension of uniform maps there exists a unique uniform map $\tilde{G}\ra \overline{G}$ such that the triangle
+	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Let $\tilde{G}$ be the topological group $\overline{G}$ with its left uniform structure. Map $i$ is an embedding of topological groups and hence $i$ may be viewed as an embedding of uniform spaces $j:G\hookrightarrow \tilde{G}$. By the general result (\cite{Uniform_Spaces}) on extension of uniform maps there exists a unique uniform map $\tilde{G}\ra \overline{G}$ such that the triangle
 	\begin{center}
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
@@ -334,10 +345,60 @@ First we need to prove the following result.
 \end{proof}
 
 
+\begin{definition}
+	Let $G$ be a topological group. A two-sided complete group $\overline{G}$ and an embedding $G \hookrightarrow \overline{G}$ of topological groups with dense image is a \textit{two-sided} group completion of $G$.
+\end{definition}
 
-
-
-
+\begin{theorem}\label{theorem:two_sided_completion_always_exists}
+	Let $G$ be a Hausdorff topological group. Then $G$ admits two-sided completion.
+\end{theorem}
+\begin{proof}
+	Let $\overline{G}$ be a Hausdorff and complete uniform space and $i:G\hookrightarrow \overline{G}$ be a uniform embedding with dense image where $G$ is considered with its two-sided uniform structure. Note that $\overline{G}$ is a regular topological space. By Fact \ref{fact:inverse_is_an_automorphism_of_two_sided_uniform_structures} and by general result on extension of uniform maps described in \cite{Uniform_Spaces} we infer that there exists a unique uniform map $(-)^{-1}_{\overline{G}}$ such that the square
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em,text height=1.5ex, text depth=0.25ex]
+			{  G            & G                                                          \\
+			   \overline{G} & \overline{G}                      \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ (-)^{-1}_G $} (m-1-2)
+			(m-2-1) edge node[below] {$ (-)^{-1}_{\overline{G}}  $} (m-2-2);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[left] {$ i $} (m-2-1)
+			(m-1-2) edge node[right] {$ i $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. Next by Proposition \ref{proposition:multiplication_preserves_one_sided_Cauchy_filters} the multiplication $\cdot_G:G\times G \ra G$ sends left Cauchy filters on $G\times G$ onto left Cauchy filters on $G$. By symmetry it also sends right Cauchy filters to right Cauchy filters. Fact \ref{fact:two_sided_Cauchy_filters} implies that $\cdot_{G}$ sends two-sided Cauchy filters to two-sided Cauchy filters. According to the general result on extension of continuous maps in \cite{Filters_in_topology} there exists a unique continuous map $\cdot_{\overline{G}}$ such that the square
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em,text height=1.5ex, text depth=0.25ex]
+			{ G\times G                        & G                                     \\
+			  \overline{G} \times \overline{G} & \overline{G} \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ \cdot_G $} (m-1-2)
+			(m-2-1) edge node[below] {$ \cdot_{\overline{G}} $} (m-2-2);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[left] {$ i\times i $} (m-2-1)
+			(m-1-2) edge node[right] {$ i $} (m-2-2);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Let $\tilde{G}$ be the topological group $\overline{G}$ with its two-sided uniform structure. Map $i$ is an embedding of topological groups and hence $i$ may be viewed (Fact \ref{corollary:topological_groups_embeddings_is_uniform_embedding} and symmetric result on right uniformity) as an embedding of uniform spaces $j:G\hookrightarrow \tilde{G}$. By the general result (\cite{Uniform_Spaces}) on extension of uniform maps there exists a unique uniform map $\tilde{G} \ra \overline{G}$ such that the triangle
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
+			{ \tilde{G} &   & \overline{G}           \\
+			            & G & \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$  $} (m-1-3);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-2-2) edge node[left = 3pt, below = 1pt] {$ j $} (m-1-1)
+			(m-2-2) edge node[right = 3pt, below = 1pt] {$ i $} (m-1-3);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. It follows that $\tilde{G} \ra \overline{G}$ is the identity on sets. Fix a two-sided Cauchy filter $\cF$ on the topological group $\overline{G}$. By definition $\cF$ is a Cauchy filter on $\tilde{G}$ and, since the uniform map $\tilde{G}\ra \overline{G}$ is the identity on sets, we infer that $\cF$ is a Cauchy filter on $\overline{G}$. By construction $\overline{G}$ is a complete uniform space. Thus $\cF$ is convergent in $\overline{G}$. Therefore, $\overline{G}$ is a two-sided complete group. This completes the proof.
+\end{proof}
 
 
 
