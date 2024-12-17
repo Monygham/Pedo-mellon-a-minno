@@ -41,17 +41,17 @@ $$S^{-1} = \big\{x^{-1}\,\big|\,x\in S\,\big\}$$
 	Since $(-)^{-1}:G\ra G$ is homeomorphism, $O \cap O^{-1}$ is symmetric and open neighborhood of identity contained in $O$.
 \end{proof}
 
-\begin{fact}\label{fact:closure_of_identity}
-	Let $G$ be a topological group and let $1$ be its identity element. Then the following assertions hold.
+\begin{fact}\label{fact:closures_in_topological_groups}
+	Let $G$ be a topological group and let $\cO$ be the family of all open and symmetric neighborhoods of identity in $G$. Then the following assertions hold.
 	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
-		\item The intersection of all open neighborhoods of identity in $G$ is $\bd{cl}\left(\{1\}\right)$.
-		\item $\bd{cl}\left(\{1\}\right)$ is the smallest closed subgroup of $G$ and it is normal.
+		\item Let $A$ be the subset of $G$. Then
+			$$\bd{cl}(A) = \bigcap_{O \in \cO}OA = \bigcap_{O \in \cO}OAO = \bigcap_{O \in \cO}AO$$
+		\item If $H$ is a subgroup of $G$, then $\bd{cl}(H)$ is a subgroup of $G$.
+		\item If $H$ is a normal subgroup of $G$, then $\bd{cl}(H)$ is a normal subgroup of $G$.
 	\end{enumerate}
 \end{fact}
 \begin{proof}
-	We use Fact \ref{fact:symmetric_neighborhoods_of_unit_generate_base}. We have $x \in \bd{cl}(\{1\})$ if and only if for every open and symmetric neighborhood $O$ of $1$ in $G$ we have $1 \in Ox$. This is equivalent with $x \in O$ for every open and symmetric neighborhood $O$ of $1$ in $G$. Hence \textbf{(1)} holds.
-
-	The assertion \textbf{(2)} is left for the reader.
+	Left for the reader as an exercise.
 \end{proof}
 
 \begin{theorem}\label{theorem:quotients_of_topological_groups}
@@ -186,7 +186,7 @@ In this section we introduce uniform structures on topological groups and study 
 	Let $G$ be a topological group and let $q:G\twoheadrightarrow \tilde{G}$ be the quotient of $G$ with respect to the closure of identity in $G$. If $\tilde{G}$ and $G$ are considered with their left uniform structures, then $q$ is a uniform Kolmogorov quotient.
 \end{corollary}
 \begin{proof}
-	We denote by $1$ the identity of $G$. It follows from Fact \ref{fact:closure_of_identity} that intersection of $L_O$ for all open and symmetric neighborhoods $O$ of identity in $G$ consists of $(g_1,g_2) \in G\times G$ such that $g_1g_2^{-1} \in \bd{cl}\left(\{1\}\right)$. Pick an open and symmetric neighborhood $O$ of identity in $G$. Then $q(O)$ is an open and symmetric neighborhood of identity in $\tilde{G}$ and such that $q^{-1}(q(O)) = O$. Thus
+	We denote by $1$ the identity of $G$. It follows from Fact \ref{fact:closures_in_topological_groups} that intersection of $L_O$ for all open and symmetric neighborhoods $O$ of identity in $G$ consists of $(g_1,g_2) \in G\times G$ such that $g_1g_2^{-1} \in \bd{cl}\left(\{1\}\right)$. Pick an open and symmetric neighborhood $O$ of identity in $G$. Then $q(O)$ is an open and symmetric neighborhood of identity in $\tilde{G}$ such that $q^{-1}(q(O)) = O$. Thus
 	$$\left(q \times q\right)^{-1}(L_{q(O)}) = L_O$$
 	Hence we derive that $q$ is a uniform Kolmogorov quotient of $G$.
 \end{proof}
