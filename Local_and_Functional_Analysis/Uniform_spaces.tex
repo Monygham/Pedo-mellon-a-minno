@@ -9,13 +9,11 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous map. The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. Finally we characterize quasi-compactness for uniform spaces in terms of completeness and total boundedness.
+These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous maps. 
 
-We assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}. Throughout the notes we use the following notation. Let $X$ be a set and let $U, V$ be binary relations on $X$. Suppose that $Z$ is a subset of $X$. Then we define
-$$U \cdot V = \big\{(x_1,x_2) \in X\times X\,\big|\,\mbox{ there exists }x\in X\mbox{ such that }(x_1, x)\in U\mbox{ and }(x,x_2)\in V\big\}$$
-and
-$$U(Z) = \big\{x \in X\,\big|\,\mbox{ there exists }z\in Z\mbox{ such that }(x, z)\in U\big\}$$
+The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. Finally we characterize quasi-compactness for uniform spaces in terms of completeness and total boundedness.
 
+We assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}. Throughout the notes we use the following notation. Let $X$ be a set and let $U, V$ be binary relations on $X$. Then $U \cdot V$ denotes the binary relation on $X$ such that $(x_1,x_2) \in U\cdot V$ if there exists $x\in X$ such that $(x_1, x)\in U$ and $(x,x_2)\in V$. Let $Z$ be a subset of $X$. Then $U(Z)$ denotes the subset of $X$ such that $x \in U(Z)$ if there exists $z\in Z$ such that $(x, z)\in U$.
 
 \section{Uniform spaces and uniform maps}
 
@@ -257,7 +255,7 @@ It is useful to describe how uniform maps can be expressed in terms of families 
 \end{fact}
 \begin{proof}
 	Pick open subset $O$ in $Y$. For every $y \in O$ let $V_y$ be an entourage of the diagonal in $Y$ such that in $V_y(y) \subseteq O$. Then
-	$$f^{-1}(O) = \bigcup_{x \in f^{-1}(O)}\left(f\times f\right)^{-1}(V_{f(x)})\left(f(x)\right))$$
+	$$f^{-1}(O) = \bigcup_{x \in f^{-1}(O)}\left(f\times f\right)^{-1}(V_{f(x)})\left(x\right)$$
 	and hence $f^{-1}(O)$ is an open subset in $X$. This completes the proof.
 \end{proof}
 
@@ -265,7 +263,7 @@ It is useful to describe how uniform maps can be expressed in terms of families 
 	Let $X$ be a uniform space. Then $X$ is completely regular with respect to induced topology.
 \end{corollary}
 \begin{proof}
-	Suppose that $x$ is a point in $X$ and $F$ is a closed subset in $X$ which does not contain $x$. There exists an entourage $U$ of the diagonal in $X$ such that $U(x)$ is disjoint with $F$. Theorem \ref{theorem:Urysohn_lemma} implies that there exists a uniform map $f:X\ra \RR$ such that $f(X) \subseteq [0,1]$, $f(x) = 0$ and $f_{\mid F} = 1$. Fact \ref{fact:topology_induced_by_uniformity_is_functorial} asserts that $f$ is continuous with respect to induced topologies. This proves that $X$ is completely regular topological space.
+	Suppose that $x$ is a point in $X$ and $F$ is a closed subset in $X$ which does not contain $x$. There exists an entourage $U$ of the diagonal in $X$ such that $U(x)$ is disjoint with $F$. Theorem \ref{theorem:Urysohn_lemma} implies that there exists a uniform map $f:X\ra \RR$ such that $f(X) \subseteq [0,1]$, $f(x) = 0$ and $f_{\mid F} = 1$. Fact \ref{fact:topology_induced_by_uniformity_is_functorial} asserts that $f$ is continuous with respect to induced topologies. This proves that $X$ is completely regular.
 \end{proof}
 
 \begin{corollary}\label{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter}
@@ -281,7 +279,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f\in \cF$ its codomain is the underlying  set of a uniform space $Y_f$. We consider $X$ as uniform space with uniform structure induced by $\cF$. Let $Z$ be a topological space and let $g:Z\ra X$ be a map of sets such that $f \cdot g$ is continuous for every $f \in \cF$. Then $g$ is continuous.
 \end{theorem}
 \begin{proof}
-	Pick $z \in Z$ and let $O$ be an open neighborhood of $g(z)$ in $X$. By definition there exists an entourage $U$ of the diagonal in $X$ such that $U\left(g(z)\right) \subseteq O$. Recall (Theorem \ref{theorem:uniformity_induced_by_family_of_maps}) that there exist a finite set $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Pick $z \in Z$ and let $O$ be an open neighborhood of $g(z)$ in $X$. By definition there exists an entourage $U$ of the diagonal in $X$ such that $U\left(g(z)\right) \subseteq O$. By Theorem \ref{theorem:uniformity_induced_by_family_of_maps} there exist a finite set $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} for every $f \in F$ there exists open neighborhood $O_f$ of $z$ in $Z$ such that
 	$$\left(f\cdot g\right)\left(O_f\right) \subseteq V_f\bigg(\left(f\cdot g\right)(z)\bigg)$$
@@ -300,7 +298,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 \end{proof}
 
 \begin{corollary}\label{corollary:topology_induced_by_uniformity_functor_preserves_subspaces}
-	Let $i:X\hookrightarrow Y$ be an embedding of uniform spaces. Then $i$ is an embedding of topological spaces induced by uniform structures.
+	Let $i:X\hookrightarrow Y$ be an embedding of uniform spaces. Then $i$ is an embedding of topological spaces.
 \end{corollary}
 \begin{proof}
 	Follows from Theorem \ref{theorem:uniformity_induced_by_family_of_maps_induces_topology_induced_by_family} and definition of topological embeddings.
@@ -314,13 +312,13 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 
 \begin{fact}\label{fact:Hausdorff_uniform_space_is_Hausdorff_as_a_topological_space}
 	Let $X$ be a uniform space. Then the following are equivalent.
-	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
 		\item $X$ is a Hausdorff uniform space.
 		\item $X$ is a Hausdorff topological space.
 	\end{enumerate}
 \end{fact}
 \begin{proof}
-	Suppose that $X$ is a Hausdorff uniform space. Fix distinct points $x_1,x_2 \in X$ and suppose that $U$ is an entourage of the diagonal in $X$ such that $(x_1,x_2) \not \in U$. Such entourage exists because $X$ is Hausdorff. Then $U(x_1)\cap U(x_2) = \emptyset$ and Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} implies that $X$ is Hausdorff as a topological space. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+	Suppose that $X$ is a Hausdorff uniform space. Fix distinct points $x_1,x_2 \in X$ and suppose that $U$ is an entourage of the diagonal in $X$ such that $(x_1,x_2) \not \in U$. Such entourage exists because $X$ is Hausdorff. Let $W$ be an entourage of the diagonal in $X$ such that $W\cdot W \subseteq U$. Then it is clear that $W(x_1)\cap W(x_2) = \emptyset$ and Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} implies that $X$ is Hausdorff as a topological space. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
 	Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Assume that $X$ is Hausdorff as a topological space. Fix distinct points $x_1,x_2 \in X$ and pick open neighborhoods $x_1 \in O_1$ and $x_2 \in O_2$ which are disjoint. There exists entourage $U$ of the diagonal in $X$ such that $U(x_1) \subseteq O_1$ and $U(x_2) \subseteq O_2$. It follows that $(x_1,x_2) \not \in U$. Since pair $(x_1,x_2) \not \in \Delta_X$ is arbitrary, we derive that $X$ is Hausdorff as a uniform space.
 \end{proof}
@@ -330,7 +328,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	Let $X$ be a uniform space. Then the following assertions hold.
 	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 		\item The intersection of all entourages of the diagonal in $X$ is the relation of topological indistinguishability on $X$.
-		\item Let $q:X\twoheadrightarrow \tilde{X}$ be a quotient map with respect to topological indistinguishability. Then the family
+		\item Let $q:X\twoheadrightarrow \tilde{X}$ be the quotient map with respect to topological indistinguishability. Then the family
 		      $$\big\{V \in \fD_{\tilde{X}}\,\big|\,\left(q\times q\right)^{-1}(V)\mbox{ is an entourage of the diagonal in }X\big\}$$
 		      is a uniform structure in $\tilde{X}$ which makes $q$ into a uniform map.
 		\item $q$ induces uniform structure on $X$.
@@ -342,7 +340,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 \begin{proof}
 	We denote by $\Delta_t$ the relation of topological indistinguishability on $X$ and let $\fU$ be the uniform structure on $X$.
 
-	Let $x$ be a point in $X$. Suppose that $z \in X$ is a point such that $(z, x) \in U$ for every $U \in \fU$. By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} this is equivalent to the fact that every open neighborhood of $x$ is an open neighborhood of $z$. This implies that \textbf{(1)} holds.
+	Let $x_1, x_2$ be points in $X$. Suppose that $(x_1, x_2) \in U$ for every $U \in \fU$. By Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} this is equivalent to the fact that every open neighborhood of $x_1$ is an open neighborhood of $x_2$. This implies that \textbf{(1)} holds.
 
 	Let $\tilde{\fU}$ be a family described in \textbf{(2)}. Note that $\tilde{\fU}$ is closed under finite intersections and is upward closed in $\fD_{\tilde{X}}$. Next pick $U \in \fU$. Then there exists $W \in \fU$ such that
 	$$W\cdot W \cdot W \subseteq U$$
@@ -350,7 +348,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	$$\left(q\times q\right)^{-1}(V) = \Delta_t\cdot W\cdot \Delta_t \subseteq U$$
 	by \textbf{(1)}. Hence $V \in \tilde{\fU}$ and $\left(q\times q\right)^{-1}(V)\subseteq U$. This implies \textbf{(2)} and simultaneously completes the proof of \textbf{(3)}.
 
-	Let $O$ be an open subset of $\tilde{X}$. Then for each $x \in O$ there exists $U_x \in \fU$ such that $U_x(x)\subseteq O$. Next for each $x \in O$ there exists according to \textbf{(3)} an entourage $V_x \in \tilde{\fU}$ such that $\left(q\times q\right)^{-1}(V_x) \subseteq U_x$. Then
+	Let $O$ be an open subset of $X$. Then for each $x \in O$ there exists $U_x \in \fU$ such that $U_x(x)\subseteq O$. Next for each $x \in O$ there exists according to \textbf{(3)} an entourage $V_x \in \tilde{\fU}$ such that $\left(q\times q\right)^{-1}(V_x) \subseteq U_x$. Then
 	$$q(O) = q\left(\bigcup_{x\in O}\left(q\times q\right)^{-1}(V_x)(x)\right) = \bigcup_{x \in O}V_x\left(q(x)\right)$$
 	and hence $q(O)$ is open in $\tilde{X}$. This proves that $q$ is an open map and hence it is a Kolmogorov quotient of $X$. Hence we derive \textbf{(4)}.
 
@@ -360,7 +358,7 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a uniform space and let $q:X\twoheadrightarrow \tilde{X}$ be a uniform map constructed above. Then $q$ is a \textit{uniform Kolmogorov quotient} of $X$.
+	Let $X$ be a uniform space and let $q:X\twoheadrightarrow \tilde{X}$ be the uniform map constructed above. Then $q$ is the \textit{uniform Kolmogorov quotient} of $X$.
 \end{definition}
 
 \section{Cauchy filters and complete uniform spaces}
