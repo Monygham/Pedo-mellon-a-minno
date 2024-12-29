@@ -9,13 +9,21 @@
 
 \section{Introduction}
 \noindent
-These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous maps. 
+These notes are devoted to uniform spaces, which are important analytic objects designed to formalize notion of uniformly continuous maps. We assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}.
 
-The first section introduces uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. In the next section we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. Finally we characterize quasi-compactness for uniform spaces in terms of completeness and total boundedness.
+After introducing notation we introduce uniform spaces and uniform maps. We discuss their category and introduce the notion of uniform structure induced by family of maps. Next we prove uniform version of Urysohn lemma and as a consequence we obtain that each uniform structure is induced by a family of pseudometrics. Then we explain how each uniform structure induces completely regular topology. In the following sections we introduce important classes of Hausdorff and complete uniform spaces. Then we discuss pseudometric and metric spaces, which are the most important and basic classes of uniform spaces. We also prove that each uniform space can be embedded as a dense subspace into a complete uniform space. Next we introduce totally bounded uniform spaces and investigate their properties. Finally we characterize quasi-compactness for uniform spaces in terms of completeness and total boundedness.
 
-We assume that reader is familiar with our notes on topological spaces \cite{Topological_spaces} and filters \cite{Filters_in_topology}. Throughout the notes we use the following notation. Let $X$ be a set and let $U, V$ be binary relations on $X$. Then $U \cdot V$ denotes the binary relation on $X$ such that $(x_1,x_2) \in U\cdot V$ if there exists $x\in X$ such that $(x_1, x)\in U$ and $(x,x_2)\in V$. Let $Z$ be a subset of $X$. Then $U(Z)$ denotes the subset of $X$ such that $x \in U(Z)$ if there exists $z\in Z$ such that $(x, z)\in U$.
+\section{Notation}
 
-\section{Uniform spaces and uniform maps}
+Throughout the notes we use the following notation. 
+
+Let $X$ be a set and let $U, V$ be binary relations on $X$. Then $U \cdot V$ denotes the binary relation on $X$ such that $(x_1,x_2) \in U\cdot V$ if there exists $x\in X$ such that $(x_1, x)\in U$ and $(x,x_2)\in V$. 
+
+Let $Z$ be a subset of $X$ and let $U$ be a binary relation on $X$. Then $U(Z)$ denotes the subset of $X$ such that $x \in U(Z)$ if there exists $z\in Z$ such that $(x, z)\in U$. 
+
+Finally $\Delta_X$ denotes the diagonal of a set $X$ i.e. the set of pairs $(x,x)$ for $x \in X$.
+
+\section{Uniform structures and uniform spaces}
 
 \begin{definition}
 	Let $X$ be a set and let $\fU$ be a nonempty family of reflexive and symmetric relations on $X$. Suppose that the following assertions are satisfied.
@@ -40,6 +48,24 @@ We assume that reader is familiar with our notes on topological spaces \cite{Top
 \end{definition}
 
 \begin{definition}
+	Let $X$ be a uniform space and let $\fB$ be a family of entourages of the diagonal in $X$. Suppose that every entourage $U$ of the diagonal in $X$ contains some $V\in \fB$. Then $\fB$ is a \textit{base} of uniform structure on $X$.
+\end{definition}
+
+\begin{fact}\label{fact:base_of_uniformity}
+		Let $X$ be a set and let $\fB$ be a family of reflexive and symmetric relations on $X$. Suppose that the following assertions are satisfied.
+		\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item If $V_1,V_2 \in \fB$, then there exists $V \in \fB$ such that $V \subseteq V_1\cap V_2$.
+		\item If $V \in \fB$, then there exists $W \in \fB$ such that $W\cdot W \subseteq V$.
+	\end{enumerate}
+	Then $\fB$ is a \textit{base} of a unique uniform structure on $X$.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\section{Uniform maps}
+
+\begin{definition}
 	Let $X$ and $Y$ be uniform spaces. Suppose that $f:X\ra Y$ is a map of sets such that $\left(f\times f\right)^{-1}(V)$ is an entourage of the diagonal in $X$ for every entourage $V$ of the diagonal in $Y$. Then $f$ is a \textit{uniform map}.
 \end{definition}
 
@@ -55,40 +81,30 @@ Let $\Unif$ be the category having uniform spaces as objects and uniform maps as
 \begin{theorem}\label{theorem:uniformity_induced_by_family_of_maps}
 	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Let $\cB_{\cF}$ be a family consisting of sets of the form
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f)$$
-	where $F$ is a finite subset of $F$ and $V_f$ is an entourage of the diagonal in $Y_f$. Next define
-	$$\fU_{\cF} = \big\{U\in \fD_X\,\big|\,\mbox{there exists }W\in \cB_{\cF}\mbox{ such that }W \subseteq U\big\}$$
-	Then $\fU_{\cF}$ is a uniform structure on $X$. Consider $X$ as a uniform space with respect to $\fU_{\cF}$. Then the following assertions hold.
+	where $F$ is a finite subset of $F$ and $V_f$ is an entourage of the diagonal in $Y_f$. Then $\fB_{\cF}$ is a uniformity base on $X$.
+
+	Consider $X$ as a uniform space with base $\fB_{\cF}$. Then the following assertions hold.
 	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
 		\item Each $f \in \cF$ is a uniform map $X \ra Y_f$.
 		\item Let $Z$ be a uniform space and let $g:Z\ra X$ be a map of sets such that $f\cdot g:Z\ra Y_f$ is a uniform map for every $f\in \cF$. Then $g$ is a uniform map.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Note that $\fU_{\cF}$ is a nonempty family consisting of reflexive and symmetric relations on $X$.
+	Note that $\fB_{\cF}$ is a family consisting of reflexive and symmetric relations on $X$. 
 
-	Suppose that $U,W$ are reflexive and symmetric relations on $X$. Assume tha $U\subseteq W$ and $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
-	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
-	Thus also
-	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq W$$
-	and hence $W \in \fU_{\cF}$.
+	Assume that $V_1,V_2 \in \fB_{\cF}$. Then $V_1\cap V_2 \in \fB_\cF$ by definition.
 
-	Assume that $U,W \in \fU_{\cF}$. Then there exist finite subsets $F_U,F_W$ of $\cF$, an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F_U$ and entourage $T_f$ of the diagonal in $Y_f$ for each $f\in F_W$ such that
-	$$\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \subseteq U,\,\bigcap_{f\in F_W}\left(f\times f\right)^{-1}(T_f)\subseteq W$$
-	Then
-	$$\left(\bigcap_{f\in F_U}\left(f\times f\right)^{-1}(V_f) \right) \cap \left(\bigcap_{f \in F_W}\left(f\times f\right)^{-1}(T_f)\right)\subseteq U\cap W$$
-	and this implies that $U\cap W \in \fU_{\cF}$.
-
-	Next suppose that $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
-	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
+	Next suppose that $V \in \fB_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	$$V = \bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f)$$
 	For each $f \in F$ pick an entourage $T_f$ of the diagonal in $Y_f$ such that $T_f\cdot T_f \subseteq V_f$. Then
-	$$W = \bigcap_{f \in F}\left(f\times f\right)^{-1}(T_f) \in \fU_{\cF}$$
-	and $W\cdot W \subseteq U$.
+	$$W = \bigcap_{f \in F}\left(f\times f\right)^{-1}(T_f) \in \fB_{\cF}$$
+	and $W\cdot W \subseteq V$.
 
-	Thus $\fU_{\cF}$ is a uniform structure. From now on we consider $X$ as a uniform space with respect to $\fU_{\cF}$.
+	Thus $\fB_{\cF}$ is a base of some uniform structure on $X$. From now on we consider $X$ as a uniform space with this uniform structure.
 
 	By definition $f:X\ra Y_f$ is a uniform map for every $f\in \cF$. Hence \textbf{(1)} holds.
 
-	Now we prove \textbf{(2)}. Fix $U \in \fU_{\cF}$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
+	Now we prove \textbf{(2)}. Fix $U$ an entourage of the diagonal in $X$. Then there exist finite subset $F$ of $\cF$ and an entourage $V_f$ of the diagonal in $Y_f$ for each $f\in F$ such that
 	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f) \subseteq U$$
 	Since $f\cdot g:Z\ra Y_f$ is uniform map for each $f \in F$, we derive that
 	$$\left(g\times g\right)^{-1}\left(\bigcap_{f\in F}\left(f\times f\right)^{-1}\left(V_f\right)\right) = \bigcap_{f\in F}\left((f\cdot g)\times (f\cdot g)\right)^{-1}(V_f)$$
@@ -98,7 +114,9 @@ Let $\Unif$ be the category having uniform spaces as objects and uniform maps as
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Then $\fU_{\cF}$ defined in the theorem above is the uniform structure \textit{induced} by $\cF$.
+	Let $X$ be a set and let $\cF$ be a family of maps with domain in $X$. Suppose that for every $f \in \cF$ its codomain is the underlying set of a uniform space $Y_f$. Let $\cB_{\cF}$ be a family consisting of sets of the form
+	$$\bigcap_{f\in F}\left(f\times f\right)^{-1}(V_f)$$
+	where $F$ is a finite subset of $F$ and $V_f$ is an entourage of the diagonal in $Y_f$. Then uniform structure on $X$ having $\fB_{\cF}$ as its base is the uniform structure \textit{induced} by $\cF$.
 \end{definition}
 
 \begin{corollary}\label{corollary:limits_in_category_of_uniform_spaces}
@@ -132,27 +150,27 @@ We start by proving uniform version of Urysohn lemma, which (as it will be demon
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	For each reflexive and symmetric relation $W$ on $X$ we set $W^{1} = W$ and $W^0 = \Delta_X$.
+	For each reflexive and symmetric relation $V$ on $X$ we set $V^{1} = V$ and $V^0 = \Delta_X$.
 
 	Consider the set
-	$$\QQ_2 = \bigg\{\frac{k}{2^n}\,\bigg|\,n\in \NN_+\mbox{ and }k\in \NN\cap [0,2^{n} - 1]\bigg\}$$
+	$$\QQ_2 = \bigg\{\frac{k}{2^n}\,\bigg|\,n\in \NN_+\mbox{ and }k\in \NN\cap (0,2^{n}) \bigg\}$$
 	Then $\QQ_2 \subseteq [0,1]$ is a dense subset and for every $r \in \QQ_2$ there exists a unique expansion
 	$$\sum_{n=1}^{+\infty}\frac{\epsilon_n(r)}{2^n}$$
 	where $\epsilon_n(r) \in \{0,1\}$ for all $n\in \NN_+$ and $\epsilon_n(r) = 0$ for all sufficiently large $n \in \NN_+$. Next for every $r \in \QQ_2$ we define
 	$$W_r = ... \cdot U_n^{\epsilon_n(r)}\cdot ...\cdot U_2^{\epsilon_2(r)}\cdot U_1^{\epsilon_1(r)}$$
 	If $r_1 \leq r_2$ are two numbers in $\QQ_2$, then $W_{r_1}\subseteq W_{r_2} \subseteq U$. We define $f:X\ra \RR$ by formula
 	$$f(x) = \begin{cases}
-			\inf \big\{r\in \QQ_2\,\big|\,x\in W_r(Z)\big\} & \mbox{ if }x \in \bigcup_{r\in \QQ_2}W_r(Z)      \\
-			1                                               & \mbox{ if }x\not \in \bigcup_{r \in \QQ_2}W_r(Z) \\
+		\inf \big\{r\in \QQ_2\,\big|\,x\in W_r(Z)\big\} & \mbox{ if }x \in \bigcup_{r\in \QQ_2} W_r(Z)      \\
+		1                                               & \mbox{ if }x\not \in \bigcup_{r\in \QQ_2} W_r(Z) \\
 		\end{cases}
 	$$
 	It is straightforward that $f$ satisfies \textbf{(1)} and \textbf{(2)}.
 
-	Fix $(x_1,x_2) \in U_{n+1}$. Assume that $x_1 \in W_{1 - \frac{1}{2^{n}}}(Z)$. Then there exists the smallest $k \in \NN$ satisfying $0 \leq k \leq 2^{n+1} -2$ such that $x_1 \in W_{\frac{k}{2^{n+1}}}(Z)$ and thus
+	Fix $(x_1,x_2) \in U_{n+1}$. Assume that $x_1 \in W_{1 - \frac{1}{2^{n+1}}}(Z)$. Then there exists the smallest $k \in \NN$ satisfying $1 \leq k \leq 2^{n+1} - 1$ such that $x_1 \in W_{\frac{k}{2^{n+1}}}(Z)$ and thus
 	$$\frac{k - 1}{2^{n+1}} \leq f(x_1)$$
 	Note that $U_{n+1}\cdot W_{\frac{k}{2^{n+1}}}(Z) \subseteq W_{\frac{k + 1}{2^{n+1}}}(Z)$ and thus $x_2 \in W_{\frac{k + 1}{2^{n + 1}}}(Z)$. Hence
 	$$f(x_2) \leq \frac{k + 1}{2^{n+1}} \leq \frac{k - 1}{2^{n+1}} + \frac{1}{2^{n}}\leq f(x_1) + \frac{1}{2^n}$$
-	Assume now that $x_1 \not \in W_{1 - \frac{1}{2^{n}}}(Z)$. Then
+	Assume now that $x_1 \not \in W_{1 - \frac{1}{2^n}}(Z)$. Then
 	$$f(x_2) \leq 1 = \left(1 - \frac{1}{2^n}\right) + \frac{1}{2^{n}} \leq f(x_1) + \frac{1}{2^n}$$
 	This proves that in any case
 	$$f(x_2) \leq f(x_1) + \frac{1}{2^n}$$
@@ -174,20 +192,18 @@ We start by proving uniform version of Urysohn lemma, which (as it will be demon
 \begin{definition}
 	Let $X$ be a set and let $\rho$ be a pseudometric on $X$. Suppose that $\rho(x_1,x_2) = 0$ implies $x_1 = x_2$ for all $x_1,x_2 \in X$. Then $\rho$ is a \textit{metric} on $X$.
 \end{definition}
-\noindent
-Let $X$ be a set and let $\rho$ be a pseudometric on $X$. Fix a number $\epsilon \in \RR_+$. Then the set
-$$\Delta_{\rho, \epsilon} = \big\{(x_1,x_2) \in X\times X\,\big|\,\rho(x_1, x_2) \leq \epsilon \big\}$$
-is a reflexive and symmetric relation on $X$.
 
 \begin{fact}\label{fact:uniform_structures_induced_by_families_of_pseudometrics}
-	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Let $\fU_{\Phi}$ be a family consisting of all $U\in \fD_X$ such that $U$ contains some finite intersection of sets $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$. Then $\fU_{\Phi}$ is a uniform structure on $X$.
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Then the family of finite intersections of sets 
+	$$\Delta_{\rho, \epsilon} = \big\{(x_1,x_2) \in X\times X\,\big|\,\rho(x_1, x_2) \leq \epsilon \big\}$$
+for $\rho \in \Phi$ and $\epsilon \in \RR_+$ is a base of some uniformity on $X$.
 \end{fact}
 \begin{proof}
 	Left for the reader as an exercise.
 \end{proof}
 
 \begin{definition}
-	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. Then $\fU_{\Phi}$ is the uniform structure \textit{induced} by $\Phi$.
+	Let $X$ be a set and let $\Phi$ be a family of pseudometrics on $X$. The uniform structure having as a base all finite intersections of sets of the form $\Delta_{\rho, \epsilon}$ for $\rho \in \Phi$ and $\epsilon \in \RR_+$ is \textit{induced} by $\Phi$.
 \end{definition}
 
 \begin{example}\label{example:natural_uniform_structure_on_reals}
@@ -236,7 +252,7 @@ It is useful to describe how uniform maps can be expressed in terms of families 
 \section{Topology induced by uniform structure}
 
 \begin{definition}
-	Let $X$ be a uniform space. A subset $O$ of $X$ is \textit{open} if for every $x$ in $O$ there exists an entourage $U$ of the diagonal in $X$ such that $U(x) \subseteq O$.
+	Let $X$ be a uniform space. A subset $O$ of $X$ is \textit{open} if for every $x\in O$ there exists an entourage $U$ of the diagonal in $X$ such that $U(x) \subseteq O$.
 \end{definition}
 
 \begin{fact}\label{fact:topology_induced_by_uniform_structure}
@@ -318,9 +334,9 @@ According to Fact \ref{fact:topology_induced_by_uniformity_is_functorial} the to
 	\end{enumerate}
 \end{fact}
 \begin{proof}
-	Suppose that $X$ is a Hausdorff uniform space. Fix distinct points $x_1,x_2 \in X$ and suppose that $U$ is an entourage of the diagonal in $X$ such that $(x_1,x_2) \not \in U$. Such entourage exists because $X$ is Hausdorff. Let $W$ be an entourage of the diagonal in $X$ such that $W\cdot W \subseteq U$. Then it is clear that $W(x_1)\cap W(x_2) = \emptyset$ and Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} implies that $X$ is Hausdorff as a topological space. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+	Suppose that $X$ is a Hausdorff uniform space. Fix distinct points $x_1,x_2 \in X$ and suppose that $U$ is an entourage of the diagonal in $X$ such that $(x_1,x_2) \not \in U$. Such entourage exists because $X$ is Hausdorff. Let $W$ be an entourage of the diagonal in $X$ such that $W\cdot W \subseteq U$. Then it is clear that $W(x_1)\cap W(x_2) = \emptyset$ and Corollary \ref{corollary:balls_centered_in_a_given_point_form_generate_a_neighborhood_filter} implies that $X$ is a Hausdorff topological space. This proves that $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
-	Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Assume that $X$ is Hausdorff as a topological space. Fix distinct points $x_1,x_2 \in X$ and pick open neighborhoods $x_1 \in O_1$ and $x_2 \in O_2$ which are disjoint. There exists entourage $U$ of the diagonal in $X$ such that $U(x_1) \subseteq O_1$ and $U(x_2) \subseteq O_2$. It follows that $(x_1,x_2) \not \in U$. Since pair $(x_1,x_2) \not \in \Delta_X$ is arbitrary, we derive that $X$ is Hausdorff as a uniform space.
+	Now we prove that $\textbf{(ii)}\Rightarrow \textbf{(i)}$. Assume that $X$ is a Hausdorff topological space. Fix distinct points $x_1,x_2 \in X$ and pick open neighborhoods $x_1 \in O_1$ and $x_2 \in O_2$ which are disjoint. There exists entourage $U$ of the diagonal in $X$ such that $U(x_1) \subseteq O_1$ and $U(x_2) \subseteq O_2$. It follows that $(x_1,x_2) \not \in U$. Since pair $(x_1,x_2) \not \in \Delta_X$ is arbitrary, we derive that $X$ is a Hausdorff uniform space.
 \end{proof}
 
 
