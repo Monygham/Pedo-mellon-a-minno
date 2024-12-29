@@ -47,7 +47,7 @@ $$S^{-1} = \big\{x^{-1}\,\big|\,x\in S\,\big\}$$
 		\item Let $A$ be the subset of $G$. Then
 		      $$\bd{cl}(A) = \bigcap_{O \in \cO}OA = \bigcap_{O \in \cO}OAO = \bigcap_{O \in \cO}AO$$
 		\item If $H$ is a subgroup of $G$, then $\bd{cl}(H)$ is a subgroup of $G$.
-		\item If $H$ is a normal subgroup of $G$, then $\bd{cl}(H)$ is a normal subgroup of $G$.
+		\item If $N$ is a normal subgroup of $G$, then $\bd{cl}(N)$ is a normal subgroup of $G$.
 	\end{enumerate}
 \end{fact}
 \begin{proof}
@@ -129,12 +129,14 @@ In this section we introduce uniform structures on topological groups and study 
 \begin{fact}\label{fact:left_uniform_structure_on_topological_group}
 	Let $G$ be a topological group. For every open and symmetric neighborhood $O$ of identity in $G$ we define
 	$$L_O = \big\{(g_1,g_2)\in G\times G\,\big|\,g_1^{-1}g_2 \in O\big\}$$
-	The collection
-	$$\big\{U \in \fD_G\,\big|\,L_O\subseteq U\mbox{ for some open and symmetric neighborhood }O\mbox{ of identity in }G\big\}$$
-	is uniform structure on $G$.
+	The collection of $L_O$ for all open and symmetric neighborhoods of identity in $G$ is a base of the uniform structure on $G$, 
 \end{fact}
 \begin{proof}
-	Note that $L_O$ is reflexive and symmetric relation on $G$ for every open and symmetric neighborhood $O$ of identity in $G$. Next it is clear that the collection in the statement is closed under finite intersections and is upward closed in $\fD_G$. Pick $U$ in the collection. Then there exists open and symmetric neighborhood $O$ of identity in $G$ such that $L_O\subseteq U$. Since the multiplication $G\times G\ra G$ is continuous, there exists an open neighborhood $Q$ of unit in $G$ such that $QQ \subseteq O$. By Fact \ref{fact:symmetric_neighborhoods_of_unit_generate_base} we may assume that $Q$ is symmetric. Hence $L_Q\cdot L_Q \subseteq L_O\subseteq U$.
+	Note that $L_O$ is reflexive and symmetric relation on $G$ for every open and symmetric neighborhood $O$ of identity in $G$. 
+
+	Next it is clear that $L_{O_1}\cap L_{O_2} = L_{O_1\cap O_2}$ for open and symmetric neighborhoods $O_1,O_2$ of identity in $G$. 
+	
+	Pick open and symmetric neighborhood $O$ of identity in $G$. Since the multiplication $G\times G\ra G$ is continuous, there exists an open neighborhood $Q$ of unit in $G$ such that $QQ \subseteq O$. By Fact \ref{fact:symmetric_neighborhoods_of_unit_generate_base} we may assume that $Q$ is symmetric. Hence $L_Q\cdot L_Q \subseteq L_O$.
 \end{proof}
 
 \begin{definition}
@@ -186,7 +188,7 @@ In this section we introduce uniform structures on topological groups and study 
 	Let $G$ be a topological group and let $q:G\twoheadrightarrow \tilde{G}$ be the quotient of $G$ with respect to the closure of identity in $G$. If $\tilde{G}$ and $G$ are considered with their left uniform structures, then $q$ is a uniform Kolmogorov quotient.
 \end{corollary}
 \begin{proof}
-	We denote by $1$ the identity of $G$. It follows from Fact \ref{fact:closures_in_topological_groups} that intersection of $L_O$ for all open and symmetric neighborhoods $O$ of identity in $G$ consists of $(g_1,g_2) \in G\times G$ such that $g_1g_2^{-1} \in \bd{cl}\left(\{1\}\right)$. Pick an open and symmetric neighborhood $O$ of identity in $G$. Then $q(O)$ is an open and symmetric neighborhood of identity in $\tilde{G}$ such that $q^{-1}(q(O)) = O$. Thus
+	We denote by $1$ the identity of $G$. It follows from Fact \ref{fact:closures_in_topological_groups} that the relation of topological indistinguishability on $G$ is given by cosets of normal subgroup $\bd{cl}\left(\{1\}\right) \subseteq G$. Pick an open and symmetric neighborhood $O$ of identity in $G$. Then $q(O)$ is an open and symmetric neighborhood of identity in $\tilde{G}$ such that $q^{-1}(q(O)) = O$. Thus
 	$$\left(q \times q\right)^{-1}(L_{q(O)}) = L_O$$
 	Hence we derive that $q$ is a uniform Kolmogorov quotient of $G$.
 \end{proof}
@@ -194,9 +196,7 @@ In this section we introduce uniform structures on topological groups and study 
 \begin{remark}\label{remark:right_uniform_structure}
 	Let $G$ be a topological group. For every open and symmetric neighborhood $O$ of identity in $G$ we define
 	$$R_O = \big\{(g_1,g_2)\in G\times G\,\big|\,g_1g_2^{-1} \in O\big\}$$
-	The collection
-	$$\big\{U \in \fD_G\,\big|\,\mbox{there exists open and symmetric neighborhood }O\mbox{ of identity in }G\mbox{ such that }R_O\subseteq U\big\}$$
-	is a uniform structure on $G$. It is called \textit{right uniform structure} on $G$. Analogical version of results in this section hold for right uniform structures. We left details for the reader.
+	The collection of $R_O$ for all open and symmetric neighborhoods of identity in $G$ is a base of the \textit{right uniform structure} on $G$.
 \end{remark}
 
 \begin{fact}\label{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures}
@@ -248,7 +248,35 @@ In this section we introduce uniform structures on topological groups and study 
 
 \section{Completions of topological groups}
 \noindent
-First we need to prove the following result.
+In this section we prove two important theorems concerning completions of topological groups. We start by proving two results.
+
+\begin{proposition}\label{proposition:Hausdorff_uniform_structure_is_determined_by_dense_subspace}
+	Let $A$ be a uniform space and let $X$ be a set containing $A$. Then there exists at most one Hausdorff uniform structure on $X$ such that the inclusion $A\hookrightarrow X$ is uniform embeddings with dense image.
+\end{proposition}
+\begin{proof}
+	Let $\fU_1$,$\fU_2$ be Hausdorff uniform structures on $X$ such that $A\hookrightarrow (X,\fU_1)$ and $A \hookrightarrow (X.\fU_2)$ are uniform embeddings with dense image. Replacing $\fU_2$ by $\fU_1\vee \fU_2$ we may assume that $\fU_1$ is contained in $\fU_2$. It follows that $1_X$ is the uniform map $(X,\fU_2)\ra (X,\fU_1)$. Let $j_i:(X,\fU_i)\hookrightarrow \overline{X}_i$ be Hausdorff completions of $(X,\fU_i)$ for $i=1,2$. There exists a unique uniform map $\overline{X}_1\dashrightarrow \overline{X}_2$ such that the diagram
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=0.8em,text height=1.5ex, text depth=0.25ex]
+			{ \overline{X}_2 &       & \overline{X}_1                                                          \\
+			  (X,\fU_2)      &       & (X,\fU_1)                      \\
+                                         &   A   &                           \\} ;
+				\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
+	(m-1-1) edge node[above] {$  $} (m-1-3);
+			\path[->,line width=0.8pt,font=\scriptsize]
+
+			(m-2-1) edge node[above] {$ 1_X $} (m-2-3);
+			\path[right hook->,line width=0.8pt,font=\scriptsize]
+			(m-2-1) edge node[left] {$ j_2 $} (m-1-1)
+			(m-2-3) edge node[right] {$ j_1 $} (m-1-3)
+
+			(m-3-2) edge node[left] {$  $} (m-2-1)
+			(m-3-2) edge node[right] {$  $} (m-2-3);
+		\end{tikzpicture}
+	\end{center}
+	is commutative. Since vertical maps are uniform embeddings with dense images, we derive that both $A\hookrightarrow \overline{X}_1$ and $A\hookrightarrow \overline{X}_2$ are Hausdorff completions. Thus the top horizontal arrow is an isomorphism of uniform spaces. It follows that $1_X:(X,\fU_2)\ra (X,\fU_1)$ is an isomorphism of uniform spaces. Hence $\fU_1$ and $\fU_2$ coincide. 
+\end{proof}
 
 \begin{proposition}\label{proposition:multiplication_preserves_one_sided_Cauchy_filters}
 	Let $G$ be a topological group. Then the multiplication $G\times G\ra G$ sends left (right) Cauchy filters on $G\times G$ to left (right) Cauchy filters.
@@ -295,7 +323,7 @@ First we need to prove the following result.
 			(m-1-2) edge node[right] {$ i $} (m-2-2);
 		\end{tikzpicture}
 	\end{center}
-	is commutative. From the commutativity it follows that $i(\cF^{-1})$ is convergent in $\overline{G}$. Since $\overline{G}$ is left complete and $i$ is an embedding of uniform spaces (Corollary \ref{corollary:topological_groups_embeddings_is_uniform_embedding}), we derive that $\cF^{-1}$ is a left Cauchy filter on $G$. According to Fact \ref{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures} the map $(-)^{-1}$ induces bijection between left and right Cauchy filters on $G$. Thus $\cF$ is a right Cauchy filter on $G$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
+	is commutative. From the commutativity it follows that $i(\cF^{-1})$ is convergent in $\overline{G}$. Since $\overline{G}$ is left complete and $i$ is an embedding of uniform spaces by Corollary \ref{corollary:topological_groups_embeddings_is_uniform_embedding}, we derive that $\cF^{-1}$ is a left Cauchy filter on $G$. According to Fact \ref{fact:inverse_is_an_isomorphism_of_left_and_right_uniform_structures} the map $(-)^{-1}$ induces bijection between left and right Cauchy filters on $G$. Thus $\cF$ is a right Cauchy filter on $G$. This completes the proof of $\textbf{(i)}\Rightarrow \textbf{(ii)}$.
 
 	Suppose now that left and right Cauchy filters on $G$ coincide and $G$ is Hausdorff. Let $\overline{G}$ be a Hausdorff and complete uniform space and $i:G\hookrightarrow \overline{G}$ be a uniform embedding with dense image where $G$ is considered with its left uniform structure. Note that $\overline{G}$ is a regular topological space. Since $(-)^{-1}_G:G\ra G$ sends left Cauchy filters to left Cauchy filters by assumption and by the general result on extension of continuous maps described in \cite{Filters_in_topology}, we derive that there exists a unique continuous map $(-)^{-1}_{\overline{G}}$ such that the square
 	\begin{center}
@@ -327,21 +355,7 @@ First we need to prove the following result.
 			(m-1-2) edge node[right] {$ i $} (m-2-2);
 		\end{tikzpicture}
 	\end{center}
-	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Let $\tilde{G}$ be the topological group $\overline{G}$ with its left uniform structure. Map $i$ is an embedding of topological groups and hence $i$ may be viewed as an embedding of uniform spaces $j:G\hookrightarrow \tilde{G}$. By the general result (\cite{Uniform_Spaces}) on extension of uniform maps there exists a unique uniform map $\tilde{G}\ra \overline{G}$ such that the triangle
-	\begin{center}
-		\begin{tikzpicture}
-			[description/.style={fill=white,inner sep=2pt}]
-			\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
-			{ \tilde{G} &   & \overline{G}           \\
-			            & G & \\} ;
-			\path[->,line width=0.8pt,font=\scriptsize]
-			(m-1-1) edge node[above] {$  $} (m-1-3);
-			\path[right hook->,line width=0.8pt,font=\scriptsize]
-			(m-2-2) edge node[left = 3pt, below = 1pt] {$ j $} (m-1-1)
-			(m-2-2) edge node[right = 3pt, below = 1pt] {$ i $} (m-1-3);
-		\end{tikzpicture}
-	\end{center}
-	is commutative. It follows that $\tilde{G}\ra \overline{G}$ is the identity on sets. Fix a left Cauchy filter $\cF$ on the topological group $\overline{G}$. By definition $\cF$ is a Cauchy filter on $\tilde{G}$ and, since the uniform map $\tilde{G}\ra \overline{G}$ is the identity on sets, we infer that $\cF$ is a Cauchy filter on $\overline{G}$. By construction $\overline{G}$ is a complete uniform space. Thus $\cF$ is convergent in $\overline{G}$. Therefore, $\overline{G}$ is a left complete group. This completes the proof of $\textbf{(ii)}\Rightarrow \textbf{(i)}$ under the assumption that $G$ is Hausdorff.
+	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Finally the uniform structure on $\overline{G}$ is the left uniform structure of topological group $\overline{G}$ by Proposition \ref{proposition:Hausdorff_uniform_structure_is_determined_by_dense_subspace}.
 \end{proof}
 
 
@@ -383,21 +397,10 @@ First we need to prove the following result.
 			(m-1-2) edge node[right] {$ i $} (m-2-2);
 		\end{tikzpicture}
 	\end{center}
-	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Let $\tilde{G}$ be the topological group $\overline{G}$ with its two-sided uniform structure. Map $i$ is an embedding of topological groups and hence $i$ may be viewed (Fact \ref{corollary:topological_groups_embeddings_is_uniform_embedding} and symmetric result on right uniformity) as an embedding of uniform spaces $j:G\hookrightarrow \tilde{G}$. By the general result (\cite{Uniform_Spaces}) on extension of uniform maps there exists a unique uniform map $\tilde{G} \ra \overline{G}$ such that the triangle
-	\begin{center}
-		\begin{tikzpicture}
-			[description/.style={fill=white,inner sep=2pt}]
-			\matrix (m) [matrix of math nodes, row sep=3em, column sep=2em,text height=1.5ex, text depth=0.25ex]
-			{ \tilde{G} &   & \overline{G}           \\
-			            & G & \\} ;
-			\path[->,line width=0.8pt,font=\scriptsize]
-			(m-1-1) edge node[above] {$  $} (m-1-3);
-			\path[right hook->,line width=0.8pt,font=\scriptsize]
-			(m-2-2) edge node[left = 3pt, below = 1pt] {$ j $} (m-1-1)
-			(m-2-2) edge node[right = 3pt, below = 1pt] {$ i $} (m-1-3);
-		\end{tikzpicture}
-	\end{center}
-	is commutative. It follows that $\tilde{G} \ra \overline{G}$ is the identity on sets. Fix a two-sided Cauchy filter $\cF$ on the topological group $\overline{G}$. By definition $\cF$ is a Cauchy filter on $\tilde{G}$ and, since the uniform map $\tilde{G}\ra \overline{G}$ is the identity on sets, we infer that $\cF$ is a Cauchy filter on $\overline{G}$. By construction $\overline{G}$ is a complete uniform space. Thus $\cF$ is convergent in $\overline{G}$. Therefore, $\overline{G}$ is a two-sided complete group. This completes the proof.
+	is commutative. Now since $i$ has dense image and $G$ is a topological group and $\overline{G}$ is Hausdorff, we deduce that $\overline{G}$ is a topological group with operations $\cdot_{\overline{G}}$ and $(-)^{-1}_{\overline{G}}$. Moreover, $i$ is an embedding of topological groups. Finally the uniform structure on $\overline{G}$ is the two-sided uniform structure of topological group $\overline{G}$ by Proposition \ref{proposition:Hausdorff_uniform_structure_is_determined_by_dense_subspace}.
+
+
+
 \end{proof}
 
 
