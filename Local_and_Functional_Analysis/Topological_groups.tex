@@ -251,17 +251,17 @@ In this section we introduce uniform structures on topological groups and study 
 In this section we prove two important theorems concerning completions of topological groups. We start by proving two results, which are of independent interest.
 
 \begin{proposition}\label{proposition:Hausdorff_uniform_structure_is_determined_by_dense_subspace}
-	Let $A$ be a uniform space and let $X$ be a set containing $A$. Then there exists at most one Hausdorff uniform structure on $X$ such that the inclusion $A\hookrightarrow X$ is uniform embeddings with dense image.
+	Let $Z$ be a uniform space and let $X$ be a set containing $Z$. Then there exists at most one Hausdorff uniform structure on $X$ such that the inclusion $Z\hookrightarrow X$ is uniform embedding with dense image.
 \end{proposition}
 \begin{proof}
-	Let $\fU_1$,$\fU_2$ be Hausdorff uniform structures on $X$ such that $A\hookrightarrow (X,\fU_1)$ and $A \hookrightarrow (X.\fU_2)$ are uniform embeddings with dense image. Replacing $\fU_2$ by $\fU_1\vee \fU_2$ we may assume that $\fU_1$ is contained in $\fU_2$. It follows that $1_X$ is the uniform map $(X,\fU_2)\ra (X,\fU_1)$. Let $j_i:(X,\fU_i)\hookrightarrow \overline{X}_i$ be Hausdorff completions of $(X,\fU_i)$ for $i=1,2$. There exists a unique uniform map $\overline{X}_1\dashrightarrow \overline{X}_2$ such that the diagram
+	Let $\fU_1$,$\fU_2$ be Hausdorff uniform structures on $X$ such that $Z\hookrightarrow (X,\fU_1)$ and $Z \hookrightarrow (X.\fU_2)$ are uniform embeddings with dense image. Replacing $\fU_2$ by $\fU_1\vee \fU_2$ we may assume that $\fU_1$ is contained in $\fU_2$. It follows that $1_X$ is the uniform map $(X,\fU_2)\ra (X,\fU_1)$. Let $j_i:(X,\fU_i)\hookrightarrow \overline{X}_i$ be Hausdorff completions of $(X,\fU_i)$ for $i=1,2$. There exists a unique uniform map $\overline{X}_1\dashrightarrow \overline{X}_2$ such that the diagram
 	\begin{center}
 		\begin{tikzpicture}
 			[description/.style={fill=white,inner sep=2pt}]
 			\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=0.8em,text height=1.5ex, text depth=0.25ex]
 			{ \overline{X}_2 &   & \overline{X}_1         \\
 			  (X,\fU_2)      &   & (X,\fU_1)                  \\
-			                 & A & \\} ;
+			                 & Z & \\} ;
 			\path[densely dotted,->,line width=0.8pt,font=\scriptsize]
 			(m-1-1) edge node[above] {$  $} (m-1-3);
 			\path[->,line width=0.8pt,font=\scriptsize]
@@ -275,7 +275,7 @@ In this section we prove two important theorems concerning completions of topolo
 			(m-3-2) edge node[right] {$  $} (m-2-3);
 		\end{tikzpicture}
 	\end{center}
-	is commutative. Since vertical maps are uniform embeddings with dense images, we derive that both $A\hookrightarrow \overline{X}_1$ and $A\hookrightarrow \overline{X}_2$ are Hausdorff completions. Thus the top horizontal arrow is an isomorphism of uniform spaces. It follows that $1_X:(X,\fU_2)\ra (X,\fU_1)$ is an isomorphism of uniform spaces. Hence $\fU_1$ and $\fU_2$ coincide.
+	is commutative. Since vertical maps are uniform embeddings with dense images, we derive that both $Z \hookrightarrow \overline{X}_1$ and $Z\hookrightarrow \overline{X}_2$ are Hausdorff completions. Thus the top horizontal arrow is an isomorphism of uniform spaces. It follows that $1_X:(X,\fU_2)\ra (X,\fU_1)$ is an isomorphism of uniform spaces. Hence $\fU_1$ and $\fU_2$ coincide.
 \end{proof}
 
 \begin{proposition}\label{proposition:multiplication_preserves_one_sided_Cauchy_filters}
@@ -288,7 +288,7 @@ In this section we prove two important theorems concerning completions of topolo
 	$$F_r \times F_r \subseteq L_Q$$
 	Next fix $x \in F_r$. Next there exists $F_l \in \cF_l$ such that
 	$$F_l\times F_l \subseteq L_{xQx^{-1}}$$
-	Define $F = F_l\times F_r$ and $F \in \cF$. Pick $(l_1,r_1),(l_2,r_2) \in F$. Then
+	Define $F = F_l\times F_r$ and note that $F \in \cF$. Pick $(l_1,r_1),(l_2,r_2) \in F$. Then
 	$$(l_1r_1)^{-1}(l_2r_2) = r_1^{-1}(l_1^{-1}l_2)r_2 = (r_1^{-1}x)x^{-1}(l_1^{-1}l_2)x(x^{-1}r_2) \subseteq Qx^{-1}\left(xQx^{-1}\right)xQ = QQQ \subseteq O$$
 	Hence the preimage of $L_O$ under the multiplication of $G$ contains $F \times F$. It follows that the image of $\cF$ under the multiplication of $G$ is a Cauchy filter on $G$.
 \end{proof}
