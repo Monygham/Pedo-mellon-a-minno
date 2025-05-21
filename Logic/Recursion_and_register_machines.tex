@@ -1,0 +1,1044 @@
+% arara: indent: {overwrite: yes, silent: yes}
+\documentclass[10pt]{amsart}
+\input ../pree.tex
+
+\begin{document}
+
+\title{Recursive functions and register machines}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+Our goal in these notes is twofold: first, to rigorously explicate what constitutes an effective procedure, enabling us to study such procedures and deduce their essential properties and limitations; second, to introduce an abstract framework for a class of rudimentary, assembly-like languages known as register machines.
+
+\section{Notions related to partial functions on natural numbers}
+\noindent
+This section introduces terminology used in throughout the notes.
+
+By numbers we mean natural numbers. The set of all numbers is $\NN$. Note that $\NN$ is well ordered by the standard relation $\leq$. By initial interval of $\NN$ we mean initial segment with respect to $\leq$.
+
+If $k \in \NN$, then the set of $k$-tuples of numbers is the Cartesian product $\NN^k$. We denote $k$-tuples of numbers by vector notation $\vec{x}$ and refer to the number $k$ as the length of $\vec{x}$. In the case $k = 0$ the set $\NN^0$ contains a unique element: the empty tuple.
+
+\begin{definition}
+	Let $k\in \NN$. Let $f$ be a function with domain a subset of $\NN^k$ and taking values in $\NN$. Then $f$ is a \textit{$k$-ary partial function}.
+\end{definition}
+
+\begin{definition}
+	A \textit{partial function} is a $k$-ary partial function for some $k \in \NN$.
+\end{definition}
+
+\begin{definition}
+	Let $f$ be a $k$-ary partial function. If $\vec{x} \in \NN^k$ is in the domain of $f$, then we say that $f$ is \textit{defined at $\vec{x}$}.
+\end{definition}
+
+\begin{remark}\label{remark:up_and_down_arrows_for_arguments_of_definition}
+	Let $f$ be a $k$-ary partial function and let $\vec{x} \in \NN^k$. We write $f(\vec{x})\downarrow$ to denote that $f$ is defined at $\vec{x}$. If $f$ is not defined at $\vec{x}$, then we use $f(\vec{x})\uparrow$.
+\end{remark}
+
+\begin{definition}
+	Let $k\in \NN$ and let $f$ be a $k$-ary partial function such that $f(\vec{x})\downarrow$ for every $\vec{x} \in \NN^k$. Then $f$ is called a \textit{$k$-ary total function}.
+\end{definition}
+
+\begin{definition}
+	Let $g$ be a $k$-ary partial function and let $f_1,...,f_k$ be $n$-ary partial functions. Consider all $\vec{x} \in \NN^n$ such that $f_1(\vec{x})\downarrow,...,f_k(\vec{x})\downarrow$ and $g\big(f_1(\vec{x}),...,f_k(\vec{x})\big)\downarrow$. Then the map
+	$$\vec{x} \mapsto g\big(f_1(\vec{x}),...,f_k(\vec{x})\big)$$
+	defines a well defined $n$-ary partial function. We refer to this partial function as the \textit{composition of $g$ with $f_1,...,f_k$}.
+\end{definition}
+
+\begin{definition}
+	Let $g$ be a $(k + 2)$-ary partial function and let $f$ be a $k$-ary partial function for some $k \in \NN$. Fix $\vec{x} \in \NN^k$. We define $h(\vec{x},y)$ for numbers $y$ in some initial interval of $\NN$. We set
+	$$h(\vec{x},0) = f(\vec{x})$$
+	if $f(\vec{x})\downarrow$. Now suppose that $h(\vec{x},y)\downarrow$ for some number $y$ and that $g\big(\vec{x}, y, h\left(\vec{x},y\right)\big)\downarrow$. Then we set
+	$$h(\vec{x}, y + 1) = g\big(\vec{x}, y, h\left(\vec{x},y\right)\big)$$
+	Then $h$ is a $(k+1)$-ary partial function obtained by \textit{primitive recursion} from $g$ and $f$.
+\end{definition}
+
+\begin{definition}
+	Let $g$ be a $(k + 1)$-ary partial function for some $k \in \NN$. Fix $\vec{x} \in \NN^k$. Suppose that there exists number $t$ such that
+	$$g\left(\vec{x},0\right)\downarrow,g\left(\vec{x},1\right)\downarrow,...,g\left(\vec{x},t - 1\right)\downarrow$$
+	are defined, nonzero numbers and $g(\vec{x},t) = 0$. Then we define $\mu_y \big[g\left(\vec{x},y\right) = 0\big] = t$. If such number $t$ does not exists, then $\mu_y \big[g\left(\vec{x},y\right) = 0\big]$ is undefined. This gives rise to a $k$-ary partial function $\mu_y \big[g(\vec{x}, y) = 0\big]$. The function $\mu_y \big[g(\vec{x}, y) = 0\big]$ is the result of \textit{unbounded minimization} of $g$.
+\end{definition}
+
+\section{Primitive recursive functions}
+
+\begin{definition}
+	The function $x \mapsto x + 1$ is the \textit{successor} function.
+\end{definition}
+
+\begin{definition}
+	The class of \textit{primitive recursive functions} is the smallest class of partial functions such that the following conditions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item The zero $k$-ary total function is primitive recursive for every $k \in \NN$.
+		\item The successor function is primitive recursive.
+		\item Let $k,n\in \NN$ and $1\leq k \leq n$. The $n$-ary function
+		      $$I^k_n(x_1,...,x_n) = x_k$$
+		      is primitive recursive.
+		\item Let $k,n \in \NN$. If $g$ is a $k$-ary primitive recursive function and $f_1,...,f_k$ are $n$-ary primitive recursive functions, then the composition of $g$ and $f_1,...,f_k$ is a primitive recursive function.
+		\item Let $k \in \NN$. If $g$ is a $(k+1)$-ary primitive recursive function and $f$ is a $k$-ary primitive recursive function, then also the function obtained by primitive recursion from $g$ and $f$ is primitive recursive.
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}\label{proposition:all_primitive_recursive_functions_are_total}
+	All primitive recursive functions are total.
+\end{proposition}
+\begin{proof}
+	Note that the class of total functions is closed under composition and primitive recursion. Since the class of primitive recursive functions is defined by this operations, it follows that all primitive recursive functions are total.
+\end{proof}
+\noindent
+The remainder of this section is devoted to proving that most well-known total functions are primitive recursive.
+
+\begin{proposition}\label{proposition:all_constant_functions_are_primitive_recursive}
+	Let $k \in \NN$. Then all $k$-ary total constant functions are primitive recursive.
+\end{proposition}
+\begin{proof}
+	Let $c$ be a number. By composing the succesor function with itself $c$-times we obtain the function $x \mapsto x + c$, which is primitive recursive. Next by composing this function with the zero $k$-ary function, we derive the $k$-ary total constant function with $c$ as the only value. Hence this function is also primitive recursive. This completes the proof.
+\end{proof}
+
+\begin{proposition}\label{proposition:addition_is_primitive_recursive}
+	The addition function $(x,y) \mapsto x + y$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Note that $I^1_1$ is the identity function. Hence identity is primitive recursive. Similarly the function $(x,y,z) \mapsto z + 1$ is primitive recursive. Indeed, it is the composition of $I^3_3$ and the successor. Next the function $(x,y) \mapsto x + y$ is obtained by primitive recursion from the two functions described above. Hence it is primitive recursive and the proof is completed.
+\end{proof}
+
+\begin{proposition}\label{proposition:multiplication_is_primitive_recursive}
+	The multiplication function $(x,y) \mapsto x\cdot y$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Note that the function $(x,y,z)\mapsto z + x$ is the composition of addition function with $I^3_1$ and $I^3_3$. Hence it is primitive recursive by Proposition \ref{proposition:addition_is_primitive_recursive}. Next observe that the function $(x,y)\mapsto x\cdot y$ is obtained by primitive recursion from $(x,y,z) \mapsto x + z$ and the identity function. Hence it is primitive recursive and this completes the proof.
+\end{proof}
+
+\begin{proposition}\label{proposition:power_function_is_primitive_recursive}
+	The exponential function $(x,y) \mapsto x^y$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Note that the function $(x,y,z) \mapsto z\cdot x$ is the composition of multiplication with $I^3_1$ and $I^3_3$. Hence it is primitive recursive by Proposition \ref{proposition:multiplication_is_primitive_recursive}. Now the function $(x, y) \mapsto x^y$ is obtained by primitive recursion from $(x,y,z) \mapsto z\cdot x$ and constant unary function with value $1$. Since both these functions are primitive recursive, the proof is completed.
+\end{proof}
+
+\begin{definition}
+	The function
+	$$x \mapsto \begin{cases}
+			x - 1 & \mbox{ if }x > 0 \\
+			0     & \mbox{ if }x = 0 \\
+		\end{cases}$$
+	is the \textit{predecessor} function.
+\end{definition}
+
+\begin{proposition}\label{proposition:predecessor_function_is_primitive_recursive}
+	The predecessor function is primitive recursive.
+\end{proposition}
+\begin{proof}
+	The predecessor function is obtained by primitive recursion from $I^2_1$ and the zero nullary function. Hence it is primitive recursive.
+\end{proof}
+
+\begin{definition}
+	The $2$-ary function
+	$$x \dotminus y = \begin{cases}
+			x - y & \mbox{ if }x > y   \\
+			0     & \mbox{ otherwise }
+		\end{cases}$$
+	is the \textit{monus} function.
+\end{definition}
+
+\begin{proposition}\label{proposition:monus_function_is_primitive_recursive}
+	The monus function is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Note that the function $(x,y,z) \mapsto z\dotminus 1$ is the composition of the predecessor with $I^3_3$. By Proposition \ref{proposition:predecessor_function_is_primitive_recursive} it is primitive recursive. The monus function is obtained from $(x,y,z)\mapsto z \dotminus 1$ and the identity by primitive recursion. Thus it is primitive recursive.
+\end{proof}
+
+\begin{proposition}\label{proposition:fold_mechanism_for_sum_and_product_is_primitive_recursive}
+	Let $k\in \NN$ and let $f$ be a $(k+1)$-ary primitive recursive function. Then functions given by formulas
+	$$(\vec{x},y)\mapsto \sum_{z < y}f(\vec{x},z),\,(\vec{x},y) \mapsto \prod_{z < y}f(\vec{x},z)$$
+	are primitive recursive.
+\end{proposition}
+\begin{proof}
+	We prove the result for sum. The proof for product is analogous.
+
+	First observe that the function $(\vec{x},y,z) \mapsto f(\vec{x},y)$ is the composition of $f$ and $I^{k+2}_1,...,I^{k+2}_{k+1}$. Hence it is primitive recursive. Next note that the function $(\vec{x},y,z) \mapsto z + f(\vec{x},y)$ is primitive recursive as the composition of addition which is primitive recursive by Proposition \ref{proposition:addition_is_primitive_recursive} with the function described above and $I^{k+2}_{k+2}$. Finally the function
+	$$(\vec{x},y)\mapsto \sum_{z < y}f(\vec{x},z)$$
+	is obtained by primitive recursion from the function described above and the $k$-ary zero function.
+\end{proof}
+
+\begin{corollary}\label{corollary:fold_mechanism_for_sum_and_product_is_primitive_recursive}
+	Let $k\in \NN$ and let $f$ be a $(k + 1)$-ary primitive recursive function. Then functions given by formulas
+	$$(\vec{x},y)\mapsto \sum_{z \leq y}f(\vec{x},z),\,(\vec{x},y) \mapsto \prod_{z \leq y}f(\vec{x},z)$$
+	are primitive recursive.
+\end{corollary}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	The function
+	$$\mathrm{sign}(x) = \begin{cases}
+			1 & \mbox{ if }x > 0 \\
+			0 & \mbox{ if }x = 0 \\
+		\end{cases}$$
+	is the \textit{sign} function.
+\end{definition}
+
+\begin{proposition}\label{proposition:zero_indicator_is_primitive_recursive}
+	The sign function is primitive recursive.
+\end{proposition}
+\begin{proof}
+	The sign function is obtained by primitive recursion from the constant unary function with value $1$ and the unary zero function. Since both these functions are primitive recursive, we obtain the statement.
+\end{proof}
+
+\section{Primitive recursive relations}
+
+\begin{definition}
+	Let $k\in \NN$ and let $R$ be a function that assigns to each $\vec{x} \in \NN^k$ a proposition $R(\vec{x})$. Then $R$ is a \textit{$k$-ary relation}.
+\end{definition}
+
+\begin{remark}\label{remark:relation_can_be_identified_with_formula}
+	Let $k\in \NN$ and let $R$ be a $k$-ary relation. Then depending on the context $R(\vec{x})$ can denote either a proposition or a $k$-ary relation. This is reflects Frege's distinction between complete and incomplete symbols.
+\end{remark}
+
+\begin{remark}\label{remark:each_relation_represents_subset}
+	Let $k\in \NN$ and let $R$ be a $k$-ary relation. Then $R$ defines a subset
+	$$\big\{\vec{x}\in \NN^k\,\big|\,R(\vec{x})\big\} \subseteq \NN^k$$
+	This correspondence gives rise to a bijection between the class of all $k$-ary relations and the class of all subsets of $\NN^k$.
+\end{remark}
+
+\begin{definition}
+	Let $k \in \NN$ and let $R$ be a $k$-ary relation. The $k$-ary function
+	$$
+		\mathbb{1}_R\left(\vec{x}\right) = \begin{cases}
+			1 & \mbox{ if }R(\vec{x}) \\
+			0 & \mbox{ otherwise }    \\
+		\end{cases}
+	$$
+	is called the \textit{indicator function} of $R$.
+\end{definition}
+
+\begin{definition}
+	Let $k \in \NN$ and let $R$ be a $k$-ary relation. Suppose that the indicator function of $R$ is primitive recursive. Then $R$ is \textit{primitive recursive}.
+\end{definition}
+
+\begin{proposition}\label{proposition:primitive_recursive_relations_form_boolean_algebra}
+	Let $k\in \NN$ and let $R, S$ be $k$-ary primitive recursive relation. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+		\item $R(\vec{x})\vee S(\vec{x})$ is primitive recursive.
+		\item $R(\vec{x})\wedge S(\vec{x})$ is primitive recursive.
+		\item $\neg R(\vec{x})$ is primitive recursive.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	For the proof of \textbf{(1)} note that the function obtained by applying sign to the sum $\mathbb{1}_R + \mathbb{1}_{S}$ is primitive recursive. Since this function coincides with $\mathbb{1}_{R\cup S}$, we derive that \textbf{(1)} holds.
+
+	Since $\mathbb{1}_{R\cap S} = \mathbb{1}_{R}\cdot \mathbb{1}_S$, we deduce that \textbf{(2)} holds.
+
+	Let $\mathbb{1}_{\NN^k}$ be a constant $k$-ary function with value $1$. By composing monus function with $\mathbb{1}_{\NN^k}, \mathbb{1}_R$ we deduce that $$\mathbb{1}_{\NN^k\setminus R} = \mathbb{1}_{\NN^k} \dotminus \mathbb{1}_R$$
+	is primitive recursive. This proves \textbf{(3)}.
+\end{proof}
+
+\begin{proposition}\label{proposition:bounded_quantifiers_are_primitive_recursive}
+	Let $k\in \NN$ and let $R$ be a $(k + 1)$-ary primitive recursive relation. Then the following $(k+1)$-ary relations
+	$$\forall_{t < y}\,R(\vec{x},t),\,\forall_{t \leq y}\,R(\vec{x},t),\,\exists_{t < y}\,R(\vec{x},t),\,\exists_{t \leq y}R(\vec{x},t)$$\
+	are primitive recursive.
+\end{proposition}
+\begin{proof}
+	This follows immediately from Proposition \ref{proposition:fold_mechanism_for_sum_and_product_is_primitive_recursive} and Corollary \ref{corollary:fold_mechanism_for_sum_and_product_is_primitive_recursive} combined with the fact that sign is primitive recursive. These imply that bounded quantification of primitive recursive relations produces primitive recursive relations.
+\end{proof}
+
+\begin{proposition}\label{proposition:order_relations_are_primitive_recursive}
+	The binary relations $x < y,\,x = y,\,x \leq y$ are primitive recursive.
+\end{proposition}
+\begin{proof}
+	The relation $x < y$ is primitive recursive because its indicator can be expressed according by combination of monus and sing which are primitive recursive functions. By Proposition \ref{proposition:primitive_recursive_relations_form_boolean_algebra} the relation $x \geq y$ is primitive recursive as well. Since $x \leq y$ is obtained  by swapping variables in $x \leq y$, it is also primitive recursive. Finally using Proposition \ref{proposition:primitive_recursive_relations_form_boolean_algebra} and the equivalence
+	$$\left(x \leq y\right)\wedge \left(y \leq x\right)\,\Leftrightarrow\,x=y$$
+	we conclude that $x = y$ is primitive recursive.
+\end{proof}
+\noindent
+Now we prove some useful results regarding primitive recursive relations and functions.
+
+\begin{proposition}\label{proposition:primitive_recursive_alternative_produces_primitive_recursive_function}
+	Let $k, n \in \NN$. Let $R_1,...,R_n$ be $k$-ary primitive recursive relations and let $f_1,...,f_n$ be $k$-ary primitive recursive functions. Suppose that for each $\vec{x} \in \NN^k$ exactly one
+	$$R_1(\vec{x}),...,R_n(\vec{x})$$
+	holds. Then the $k$-ary function defined by
+	$$\vec{x} \mapsto
+		\begin{cases}
+			f_1(\vec{x}) & \mbox{ if }R_1(\vec{x}) \\
+			...                                    \\
+			f_n(\vec{x}) & \mbox{ if }R_n(\vec{x}) \\
+		\end{cases}$$
+	is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Indeed, we have
+	$$f(\vec{x}) = f_1(\vec{x})\cdot \mathbb{1}_{R_1}(\vec{x}) + ... + f_n(\vec{x})\cdot \mathbb{1}_{R_n}(\vec{x})$$
+	for every $\vec{x} \in \NN^k$.
+\end{proof}
+
+\begin{definition}
+	Let $k \in \NN$ and let $R$ be a $(k + 1)$-ary relation. We define
+	$$\mu_{t < y}\,R\left(\vec{x},t\right) =
+		\begin{cases}
+			\min \{t\,|\,t < y\mbox{ and }R\left(\vec{x},t\right)\} & \mbox{ if }R\left(\vec{x},t\right)\mbox{ for some }t < y \\
+			y                                                       & \mbox{ otherwise }                                       \\
+		\end{cases}
+	$$
+	Then $\mu_{t < y}\,R\left(\vec{x},t\right)$ is said to be obtained by \textit{bounded minimization} from $R$.
+\end{definition}
+\noindent
+Finally we prove important result that bounded minimization of primitive recursive relation is primitive recursive.
+
+\begin{proposition}\label{proposition:bounded_minimization_is_primitive_recursive_if_relation_is_primitive_recursive}
+	Let $k \in \NN$ and let $R$ be a $(k + 1)$-ary primitive recursive relation. Then the function
+	$$(\vec{x},y)\mapsto \mu_{t < y}\,R\left(\vec{x},t\right)$$
+	is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Define a relation
+	$$N(\vec{x},t) = \forall_{z < t}\,\neg R\left(\vec{x},z\right)$$
+	which states that there are no $z$ such that $R(\vec{x},z)$ and $z < t$.
+	Then $N$ is the $(k+1)$-ary primitive recursive relation by Proposition \ref{proposition:bounded_quantifiers_are_primitive_recursive}.
+
+	Next define
+	$$S(\vec{x},t) = R(\vec{x},t)\wedge N(\vec{x},t)$$
+	which holds precisely when $t$ is the smallest $z$ such that $R(\vec{x},z)$. Hence $S$ is primitive recursive $(k+1)$-ary relation by Proposition \ref{proposition:primitive_recursive_relations_form_boolean_algebra}.
+
+	Now observe that
+	$$\mu_{t < y}\,R\left(\vec{x},t\right) = y\cdot \mathbb{1}_N\left(\vec{x},y\right) + \sum_{t < y}\mathbb{1}_{S}\left(\vec{x},t\right)\cdot t$$
+	for every $\vec{x} \in \NN^k$ and $y \in \NN$. This function is primitive recursive by Proposition \ref{proposition:fold_mechanism_for_sum_and_product_is_primitive_recursive}, the fact that sum is primitive recursive and our observations that $N,S$ are primitive recursive $(k + 1)$-ary relations.
+\end{proof}
+
+\section{Number theory and primitive recursion}
+\noindent
+In this section we focus on some elementary number-theoretic properties and their relation to primitive recursion.
+
+\begin{proposition}\label{proposition:divisibility_is_primitive_recursive}
+	The divisibility relation $y|x$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	By definition $y|x$ is
+	$$\exists_{z \leq x}\,z\cdot y = x$$
+	Hence it is primitive recursive by Proposition \ref{proposition:bounded_quantifiers_are_primitive_recursive}.
+\end{proof}
+
+\begin{proposition}\label{proposition:prime_numbers_are_primitive_recursive}
+	Let $\mathbb{P}(x)$ denote the property that $x$ is prime. Then $\mathbb{P}$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	By definition
+	$$\mathbb{P}(x) = \forall_{y \leq x}\,\big(\neg\left(y|x\right)\vee\left(y = 1\right)\vee \left(y = x\right)\big)$$
+	Hence it is primitive recursive by results of previous section.
+\end{proof}
+
+\begin{theorem}\label{theorem:prime_sequence_is_primitive_recursive}
+	Let $p_x$ denote the $x$-th prime number. Then the function
+	$$x \mapsto p_x$$
+	is primitive recursive.
+\end{theorem}
+\noindent
+For the proof we need some elementary result.
+
+\begin{lemma}\label{lemma:factorial_is_primitive_recursive}
+	The factorial function
+	$$x \mapsto x!$$
+	is primitive recursive.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	Consider the total $2$-ary function
+	$$f(x, y) = \mu_{t < y}\,\left(\left(x < t\right)\wedge \mathbb{P}(t)\right)$$
+	According to Proposition \ref{proposition:prime_numbers_are_primitive_recursive} and Proposition \ref{proposition:bounded_minimization_is_primitive_recursive_if_relation_is_primitive_recursive} we infer that $f$ is primitive recursive. By Lemma \ref{lemma:factorial_is_primitive_recursive} we derive that
+	$$g(x) = f(x,x!+2)$$
+	is primitive recursive. Note that $g(x)$ is the smallest prime number greater than $x$.
+
+	Now we have $p_0 = 2$ and
+	$$p_{x+1} = g(p_x)$$
+	for every $x$. Hence $x \mapsto p_x$ is obtained by primitive recursion from $g\cdot I^2_2$ and constant function equal to $2$. Therefore, it is primitive recursive.
+\end{proof}
+
+\begin{proposition}\label{proposition:prime_exponent_is_primitive_recursive}
+	For numbers $x,y$ we define
+	$$e_{p_y}(x) = \begin{cases}
+			\max \big\{t\,|\,p_y^t\mbox{ divides }x\big\} & \mbox{ if }x > 0 \\
+			0                                             & \mbox{ if }x = 0 \\
+		\end{cases}
+	$$
+	Then the function $(x,y) \mapsto e_{p_y}(x)$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Consider the $3$-ary relation
+	$$N(x,y,t) = \neg \left(p_y^t|x\right)$$
+	Then $N$ is primitive recursive by previous results. Note that
+	$$e_{p_y}(x) = \begin{cases}
+			\mu_{t < y}\,N(x,y,t) \dotminus 1 & \mbox{ if }x > 0   \\
+			0                                 & \mbox{ otherwise } \\
+		\end{cases}$$
+	Then results of the previous section and the fact that the monus is primitive recursive imply that $(x,y) \mapsto e_{p_y}(x)$ is primitive recursive.
+\end{proof}
+
+\section{Sequences as primitive recursive data structures}
+\noindent
+In this section we explore how finite sequences of natural numbers can be represented and manipulated within the framework of primitive recursive functions. We will define encoding schemes for sequences and demonstrate that common operations on sequences are primitive recursive.
+\begin{definition}
+	We define
+	$$\pmb{[}\vec{x}\pmb{]} = \begin{cases}
+			p_0^{1 + x_0}\cdot ...\cdot p_{k}^{1 + x_k} & \mbox{ if }\vec{x} = \left(x_0,...,x_k\right)\in \NN^{k + 1}\mbox{ for some }k \\
+			1                                           & \mbox{ if }\vec{x}\mbox{ is empty tuple}                                       \\
+		\end{cases}
+	$$
+	Then $\pmb{[}\vec{x}\pmb{]}$ is the \textit{sequence number of $\vec{x}$}.
+\end{definition}
+
+\begin{proposition}\label{proposition:tuple_codes_are_primitive_recursive}
+	Let $\mathrm{Seq}(x)$ denote that $x$ is the sequence number of some tuple. Then $\mathrm{Seq}$ is primitive recursive unary relation.
+\end{proposition}
+\begin{proof}
+	Consider binary relation
+	$$R(x,y) = \forall_{z \leq y}\bigg(\left(e_{p_z}(x) > 1\right)\vee\left(z = 0\right)\bigg)$$
+	which states that $e_{p_z}(x) > 1$ for all nonzero $z \leq y$. Hence $R$ is primitive recursive. Next consider binary relation
+	$$N(x,y) = \forall_{z < x}\bigg(\left(y < z\right)\wedge \neg\left(p_z|x\right)\bigg)$$
+	which states that $x$ is not divisible by $p_z$ for all $z$ such that $y < z < x$. Clearly $N$ is primitive recursive.
+
+	It follows that
+	$$\mathrm{Seq}(x) = \left(x > 0\right) \wedge \exists_{y < x}\bigg(R(x,y)\wedge N(x,y)\bigg)$$
+	Hence $\mathrm{Seq}(x)$	is primitive recursive.
+\end{proof}
+
+\begin{definition}
+	We define
+	$$\mathrm{lh}(x) = \begin{cases}
+			k & \mbox{ if }x = \pmb{[}\vec{x}\pmb{]}\mbox{ for some }\vec{x} \in \NN^k \\
+			0 & \mbox{ otherwise }                                                     \\
+		\end{cases}
+	$$
+	Then $\mathrm{lh}(x)$ is the \textit{length} of $x$.
+\end{definition}
+
+\begin{proposition}\label{proposition:length_is_primitive_recursive}
+	The function $x \mapsto \mathrm{lh}(x)$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Binary relation
+	$$\mathrm{PDiv}(x,z) = \left(z > 0\right)\wedge \left(p_z|x\right)$$
+	is primitive recursive. It follows that the function $x \mapsto \sum_{z < x}\mathbb{1}_{\mathrm{PDiv}}(x,z)$ is primitive recursive. Then
+	$$\mathrm{lh}(x) = \begin{cases}
+			\sum_{z < x}\mathbb{1}_{\mathrm{PDiv}}(x,z) & \mbox{ if }\mathrm{Seq}(x) \\
+			0                                           & \mbox{ otherwise }
+		\end{cases}$$
+	is primitive recursive and the proposition is proved.
+\end{proof}
+
+\begin{proposition}\label{proposition:sequence_element_access_is_primitive_recursive}
+	For numbers $x, y$ define
+	$$x[y] = \begin{cases}
+			x_y & \mbox{ if }x = \pmb{[}\vec{x}\pmb{]}\mbox{ for some }\vec{x}\in \NN^{k + 1}\mbox{ and }0 \leq y \leq k \\
+			0   & \mbox{ otherwise }                                                                                     \\
+		\end{cases}$$
+	Then the function $(x,y) \mapsto x[y]$ is primitive recursive.
+\end{proposition}
+\begin{proof}
+	We have
+	$$x[y] = \begin{cases}
+			e_{p_y}(x) \dotminus 1 & \mbox{ if }\mathrm{Seq}(x)\mbox{ and }0\leq y \leq \mathrm{lh}(x) \\
+			0                      & \mbox{ otherwise }                                                \\
+		\end{cases}$$
+	and hence the proposition follows.
+\end{proof}
+
+\begin{proposition}\label{proposition:sequence_encoding_is_primitive_recursive_function}
+	Let $k\in \NN$. Then the $k$-ary function
+	$$\NN^k\ni \vec{x} \mapsto \emph{\textbf{[}}\vec{x}\emph{\textbf{]}}\in \NN$$
+	is primitive recursive.
+\end{proposition}
+\begin{proof}
+	Left for the reader.
+\end{proof}
+
+\section{Register machines and programs}
+\noindent
+We now define abstract computing machine.
+
+\begin{definition}
+	A \textit{register machine} consists of the following components.
+	\begin{itemize}
+		\item A set of \textit{registers} numbered by elements of $\NN$. Each register is can store a number in $\NN$. If $r\in \NN$ is a register, then we denote by $c_r\in \NN$ its content.
+		\item A \textit{program counter} capable of storing a number in $\NN$. We denote its content by $pc$.
+		\item A \textit{halt} state.
+		\item Three types of \textit{instructions}.
+		      \begin{itemize}
+			      \item[] $\mathrm{INC}\,r$ for $r\in \NN$: This instruction increments $c_r$ and $pc$.
+			      \item[] $\mathrm{DEC}\,r$ for $r \in \NN$:
+				      \begin{itemize}
+					      \item[] If $c_r > 0$, then the instruction decrements $c_r$ and increments $pc$ by $2$.
+						      \item[]If $c_r = 0$, then the instruction increments $pc$.
+				      \end{itemize}
+			      \item[] $\mathrm{JUMP}\,q$ for $q \in \ZZ$:
+				      \begin{itemize}
+					      \item[] If $q > 0$, then the instruction increments $pc$ by $q$.
+					      \item[] If $q < 0$ and $|q| \leq pc$, then the instruction decrements $pc$ by $|q|$.
+					      \item[] If $q < 0$ and $pc < |q|$, then the instruction causes the machine to halt.
+				      \end{itemize}
+		      \end{itemize}
+	\end{itemize}
+\end{definition}
+
+\begin{remark}\label{remark:register_machine_is_cpu_with_ram}
+	The reader familiar with modern computers will recognize that a register machine is a mathematical model of a Harvard architecture central processing unit with random-access memory.
+\end{remark}
+
+\begin{definition}
+	A finite sequence of instructions is a \textit{register-machine program}.
+\end{definition}
+\noindent
+If $\cP$ is a register-machine program, then we denote by $\mathrm{lh}(\cP)$ the number of instructions in $\cP$. Moreover, if $0 \leq i < \mathrm{lh}(\cP)$, then $\cP[i]$ denotes $i$-th instruction in $\cP$.
+
+\begin{definition}
+	A \textit{state} of a register machine consists of all but finitely many registers storing zeros. Moreover, if the program counter is set to zero, then the state is \textit{initial}.
+\end{definition}
+
+\begin{definition}
+	Let $\cP$ be a register-machine program. Suppose that a register machine starts in some initial state. Then \textit{execution of $\cP$ starting from this initial state} follows iterative prcedure described below:
+	\begin{itemize}
+		\item[] At the beginning of each iteration the machine reads the content of the program counter.
+		\item[] If the content of program counter is smaller than $\mathrm{lh}(\cP)$, then the machine modifies contents of its registers and the program counter according to $\cP[pc]$. Note that $\cP[pc]$ may cause the machine to halt. If the instruction does not cause the machine to halt, then the next iteration begins.
+		\item[] If the content of program counter is greater or equal to $\mathrm{lh}(\cP)$, then the machine halts.
+	\end{itemize}
+\end{definition}
+
+\begin{remark}\label{remark:each_execution_either_halts_or_not}
+	Note that for every register-machine program and every initial state of registers execution of the program starting from this initial state may either continue indefinitely or halt at some iteration.
+\end{remark}
+\noindent
+We now provide examples of register-machine programs, which we use later as subprograms of larger programs.
+
+\begin{example}\label{example:clear_register_program}
+	We define $\mathrm{CLEAR}\,r$ for $r \in \NN$ as the following program.
+	\begin{itemize}
+		\item[] $\mathrm{DEC}\,r$
+		\item[] $\mathrm{JMP}\,2$
+		\item[] $\mathrm{JMP}\,-2$
+	\end{itemize}
+	Note that the effect of executing this program on a register machine is replacing the content of register $r$ by zero.
+\end{example}
+
+\begin{example}\label{example:move_register_program}
+	We define $\mathrm{MOV}\,r,s$ for distinct $r,s \in \NN$ as the following program.
+	\begin{itemize}
+		\item[] $\mathrm{CLEAR}\,s$
+		\item[] $\mathrm{DEC}\,r$
+		\item[] $\mathrm{JMP}\,3$
+		\item[] $\mathrm{INC}\,s$
+		\item[] $\mathrm{JMP}\,-3$
+	\end{itemize}
+	Note that the effect of executing this program on a register machine is twofold. First it replaces the content of register $s$ by the initial content of register $r$. Second it replaces the initial content of $r$ by zero.
+\end{example}
+
+\begin{example}\label{example:copy_with_temp_program}
+	We define $\mathrm{COPY}\,r,s,t$ for distinct $r,s,t\in \NN$ as the following program.
+	\begin{itemize}
+		\item[] $\mathrm{CLEAR}\,t$
+		\item[] $\mathrm{CLEAR}\,s$
+		\item[] $\mathrm{DEC}\,r$
+		\item[] $\mathrm{JMP}\,4$
+		\item[] $\mathrm{INC}\,t$
+		\item[]	$\mathrm{INC}\,s$
+		\item[] $\mathrm{JMP}\,-4$
+		\item[]	$\mathrm{MOV}\,t,r$
+	\end{itemize}
+	Note that the effect of executing this program on a register machine is threefold. First it replaces the content of register $s$ by the initial content of register $r$. It preserves the initial content of register $r$. Finally it replaces the content of register $t$ by zero.
+\end{example}
+\noindent
+Now we explain the relation between register-machine programs and partial functions.
+
+\begin{definition}
+	Let $\cP$ be a register-machine program and suppose that a register-machine with some initial state is given. Assume that $\cP$ is executed on the machine. If the machine halts with program counter equal to $\mathrm{lh}(\cP)$, then the execution \textit{terminates}.
+\end{definition}
+
+\begin{definition}
+	Let $\vec{x}\in \NN^k$ for some $k$ and let $r_1,...,r_k \in \NN$ be registers. Consider an initial state of a register machine given by $c_{r_i} = x_{i}$ for $i \in \{1,...,k\}$ and potentially some other registers storing nonzero numbers. As usual assume that the machines program counter is set to zero. Then the machine is \textit{initialized with $\vec{x}$ in registers $r_1,...,r_k$}.
+\end{definition}
+
+\begin{definition}
+	Let $\cP$ be a register-machine program and let $f$ be a $k$-ary partial function for some number $k$. Suppose that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item If $\vec{x}\in \NN^k$ is any tuple in the complement of the domain of $f$, then executing $\cP$ on a register machine initialized with $\vec{x}$ in registers $1,...,k$ and with all other registers storing zero results in the machine running indefinitely.
+		\item If $\vec{x} \in \NN^k$ is any $k$-tuple in the domain of $f$, then executing $\cP$ on a register machine initialized with $\vec{x}$ in registers $1,...,k$ and with all other registers storing zero terminates the execution and results in $f(\vec{x})$ stored in register $0$ upon termination.
+	\end{enumerate}
+	Then $f$ is \textit{register-computable} and $\cP$ \textit{computes} $f$.
+\end{definition}
+\noindent
+We prove now that some very basic functions are register-computable.
+
+\begin{fact}\label{fact:zero_constant_function_is_register_computable}
+	Let $k$ be a number. Then zero constant $k$-ary function is register-computable.
+\end{fact}
+\begin{proof}
+	Indeed, it is computed by the empty register-machine program.
+\end{proof}
+
+\begin{fact}\label{fact:successor_is_register_computable}
+	The successor function is register-computable.
+\end{fact}
+\begin{proof}
+	Indeed, the register-machine program
+	\begin{itemize}
+		\item[] $\mathrm{INC}\,1$
+		\item[] $\mathrm{MOV}\,1,0$
+	\end{itemize}
+	computes the successor function.
+\end{proof}
+
+\begin{fact}\label{fact:projections_are_register_computable}
+	Let $k,n$ be numbers. Then function $I^k_n$ is register-computable.
+\end{fact}
+\begin{proof}
+	Indeed, the register-machine program
+	\begin{itemize}
+		\item[] $\mathrm{MOV}\,k,0$
+	\end{itemize}
+	computes $I^k_n$.
+\end{proof}
+\noindent
+These are relatively simple examples. To demonstrate that the class of register-computable functions includes more complex functions, we introduce the generalized notion of function computation.
+
+\begin{definition}
+	Let $\cP$ be a register-machine program and let $f$ be a $k$-ary partial function for some number $k$. Let $r_1,...,r_k, r$ be distinct registers of a register machine and let $l$ be a number. Suppose that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item If $\vec{x} \in \NN^k$ is in the complement of the domain of $f$, then a register machine initialized with $\vec{x}$ in registers $r_1,...,r_k$ and executing $\cP$ runs indefinitely.
+		\item If $\vec{x} \in \NN^k$ is any $k$-tuple in the domain of $f$, then execution of $\cP$ on a register machine initialized with $\vec{x}$ in registers $r_1,...,r_k$ terminates, preserves initial contents of registers $0,...,l-1$ (excluding $r$ if $r < l$) and stores $f(\vec{x})$ in register $r$ upon termination.
+	\end{enumerate}
+	Then $\cP$ \textit{computes $f$ from $r_1,...,r_k$ to $r$ preserving the first $l$ registers}.
+\end{definition}
+\noindent
+Now we prove very useful result.
+
+\begin{proposition}\label{proposition:register_computable_implies_register_computable_with_preservation_of_first_registers}
+	Let $f$ be a $k$-ary register-computable function for some number $k$. Then for every distinct registers $r_1,...,r_k,r$ and every number $l$ there exists a register-machine program that computes $f$ from $r_1,...,r_k$ to $r$ preserving the first $l$ registers.
+\end{proposition}
+\begin{proof}
+	Suppose that $\cP$ is a register-machine program that computes $f$. Our goal is to construct a register-machine program $\mathcal{Q}$ that computes $f$ from $r_1,...,r_k$ to $r$ and preserves the first $l$ registers.
+
+	Note that $\cP$ is by definition a finite sequence of instructions. Suppose that $M \in \NN$ is greater than $r_1,...,r_k,r,l$ and all registers occurring in instructions of $\cP$.
+
+	Having defined these numbers we construct $\mathcal{Q}$. We proceed in stages. Each stage is a register-machine subprogram and $\mathcal{Q}$ is the concatenation of these subprograms.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $\mathrm{MOV}\,i,M + i$ for $i=0,...,M-1$.
+		\item $\mathrm{COPY}\,M+r_i,i,0$ for $i=1,...,k$.
+		\item $\cP$
+		\item $\mathrm{MOV}\,0,r$
+		\item $$\begin{cases}
+				      \mathrm{MOV}\,M + i,i\mbox{ for }i=0,...,l-1                                & \mbox{ if }r \geq l \\
+				      \mathrm{MOV}\,M + i,i\mbox{ for }i=0,...,l-1\mbox{ with }r\mbox{ excluded } & \mbox{ if }r < l    \\
+			      \end{cases}$$
+	\end{enumerate}
+	We now analyze $\mathcal{Q}$ and show that it satisfies the statement. Fix $\vec{x} \in \NN^k$. Assume that a register machine is initialized with $\vec{x}$ in registers $r_1,...,r_k$. We execute $\mathcal{Q}$ on the machine. After \textbf{(1)} and \textbf{(2)} all registers $0,...,M - 1$ are zero except that $\vec{x}$ is stored in registers $1,...,k$. Next \textbf{(3)} is executing $\cP$. We have two options which we analyze separately.
+	\begin{itemize}
+		\item Assume that $\cP$ runs indefinitely when the machine is initialized with $\vec{x}$ in registers $1,...,k$ and all other registers storing zero. By the definition of $M$ and considering that registers $0,...,M-1$ store zeros except for registers $1,...,k$ which store $\vec{x}$ we infer that \textbf{(3)} runs indefinitely.
+		\item Assume that $\cP$ terminates when the machine is initialized with $\vec{x}$ in registers $1,...,k$ and all other registers storing zero. By the definition of $M$ and considering that registers $0,...,M-1$ store zeros except for registers $1,...,k$ which store $\vec{x}$ we infer that \textbf{(3)} results in $f(\vec{x})$ in register $0$. Moreover, the program counter points to \textbf{(4)} upon termination of \textbf{(3)}. Next \textbf{(4)} moves $f(\vec{x})$ to register $r$. Finally \textbf{(5)} recovers the initial contents of the first $l$ registers except for $r$ if $r < l$.
+	\end{itemize}
+	This completes the proof.
+\end{proof}
+\noindent
+Now we use the proposition above to prove that class of register-computable functions is closed under certain operations.
+
+\begin{proposition}\label{proposition:register_computable_functions_closed_under_composition}
+	The class of register-computable functions is closed under composition.
+\end{proposition}
+\begin{proof}
+	Fix numbers $k,n$. Let $g$ be a $k$-ary register-computable function and let $f_1,...,f_k$ be $n$-ary register-computable functions. Let $h$ be the composition of $g$ with $f_1,...,f_k$. Our goal is to prove that $h$ is register-computable.
+
+	For every $i = 1,...,k$ let $\cP_i$ be a register-machine program that computes $f_i$ from
+	$$\underbrace{n\cdot (i-1) + 1,...,n\cdot i}_{\mathrm{consecutive\,numbers}}$$
+	to $n\cdot k + i$ preserving the first $n\cdot k + k + 1$ registers.
+
+	Next let $\cP$ be a register-machine program that computes $g$ from
+	$$\underbrace{n\cdot k + 1,...,n\cdot k + k}_{\mathrm{consecutive\,numbers}}$$
+	to $0$.
+
+	These programs exist according to Proposition \ref{proposition:register_computable_implies_register_computable_with_preservation_of_first_registers}.
+
+	Consider now the following register-machine program.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $\mathrm{COPY}\,j,n\cdot i + j,0$ for $j = 1,...,n$ for $i = 1,...,k - 1$.
+		\item $\cP_1,...,\cP_k$
+		\item $\cP$
+	\end{enumerate}
+	Suppose that the register machine is initialized with $\vec{x} \in \NN^{n}$ stored in registers $1,...n$. Then \textbf{(1)} results in
+	$$\left(\underbrace{\vec{x},...,\vec{x}}_{k\mathrm{\,times}}\right)$$
+	stored in registers $1,...,n\cdot k$. Now we need to distinguish three cases.
+	\begin{itemize}
+		\item All $f_1(\vec{x}),...,f_k(\vec{x})$ and $g\left(f_1(\vec{x}),...,f_k(\vec{x})\right)$ are defined. Then \textbf{(2)} terminates with each $f_i(\vec{x})$ stored in register $n\cdot k + i$ for $i = 1,...,k$. Next the machine executes \textbf{(3)}, which also terminates and results in
+		      $$h(\vec{x}) = g\left(f_1(\vec{x}),...,f_k(\vec{x})\right)$$
+		      stored in register $0$.
+		\item  All $f_1(\vec{x}),...,f_k(\vec{x})$ are defined but $g\left(f_1(\vec{x}),...,f_k(\vec{x})\right)$ is undefined. Then \textbf{(2)} terminates and upon termination $f_i(\vec{x})$ is stored in register $n\cdot k + i$ for $i = 1,...,k$. Next the machine executes \textbf{(3)}, which runs indefinitely.
+		\item At least one of $f_1(\vec{x}),...,f_k(\vec{x})$ is undefined. Then \textbf{(2)} runs indefinitely.
+	\end{itemize}
+	This completes the proof.
+\end{proof}
+
+\begin{proposition}\label{proposition:register-computable_functions_closed_under_primitive_recursion}
+	The class of register-computable functions is closed under primitive recursion.
+\end{proposition}
+\begin{proof}
+	Fix a number $k$. Let $f$ be a $k$-ary register computable partial function and let $g$ be a $(k + 2)$-ary register-computable partial function. Suppose that $h$ is obtained by primitive recursion from $g$ and $f$. Our goal is to construct a register-machine program which computes $h$.
+
+	Let $\cP$ be a register-machine program that computes $f$ from $1,...,k$ to register $k + 3$ by preserving the first $k + 4$ registers. Similarly let $\mathcal{Q}$ be a register-machine program that computes $g$ from $\underbrace{1,...,k}_{\mathrm{consecutive\,registers}},k+2,k+3$ to register $k + 4$ while preserving the first $k + 4$ registers. Both these programs exist according to Proposition \ref{proposition:register_computable_implies_register_computable_with_preservation_of_first_registers}.
+
+	Consider now the following register-machine program.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $\cP$
+		\item $\mathrm{DEC}\,k + 1$
+		\item $\mathrm{JMP}\,\mathrm{lh}(\mathcal{Q}) + 4$
+		\item $\mathcal{Q}$
+		\item $\mathrm{INC}\,k + 2$
+		\item $\mathrm{MOV}\,k + 4,k + 3$
+		\item $\mathrm{JMP}\,-2 - \mathrm{lh}(\mathcal{Q}) - 2$
+		\item $\mathrm{MOV}\,k+3,0$
+	\end{enumerate}
+	We now analyze this program and show that it satisfies the statement.
+
+	First we analyze the subprogram consisting of block \textbf{(2)}-\textbf{(7)}. Suppose that $\vec{x}\in \NN^k$ is stored in registers $1,...,k$, the number $t \in \NN$ is stored in register $k + 1$, the number $s \in \NN$ in register $k + 2$ and $h(\vec{x},s)$ in register $k + 3$. Moreover, suppose the program counter is points to instruction \textbf{(5)}. We distinguish three cases.
+	\begin{itemize}
+		\item Assume that $t > 0$ and $h(\vec{x},s + 1)$ is defined. The instruction \textbf{(2)} decrements the content of register $k + 1$ and execution continues at \textbf{(4)}. That is the machine executes $\mathcal{Q}$. Since $h(\vec{x},s + 1)$ is defined, it follows that $g\big(\vec{x},s,h\left(\vec{x},s\right)\big)$ is defined and $\mathcal{Q}$ terminates. Upon its termination $h(\vec{x},s+1)$ is stored in register $k + 4$ and the first $k + 4$ registers are preserved. The program counter points to \textbf{(5)}. Hence instructions \textbf{(5)},\textbf{(6)} are executed. This results in the following state:
+		      \begin{itemize}
+			      \item[] $\vec{x}$ is stored in registers $1,...,k$,
+			      \item[] $t - 1$ is stored in register $k + 1$,
+			      \item[] $s + 1$ is stored in register $k + 2$,
+			      \item[] $h(\vec{x}, s + 1)$ is stored in register $k + 3$.
+		      \end{itemize}
+		      Finally \textbf{(7)} is executed and the program counter points to \textbf{(2)}.
+		\item Assume that $t > 0$ and $h(\vec{x},s + 1)$ is undefined. Then \textbf{(2)} decrements the content of register $k + 1$ and execution continues at \textbf{(4)}. That is the machine executes $\mathcal{Q}$. Since $h(\vec{x},s + 1)$ is undefined, this implies that $g\big(\vec{x},s,h\left(\vec{x},s\right)\big)$ is undefined. Thus $\mathcal{Q}$ runs indefinitely. Hence \textbf{(4)} causes the machine to run indefinitely.
+		\item Assume that $t = 0$. Then \textbf{(3)} is executed and the program counter jumps to \textbf{(8)}.
+	\end{itemize}
+
+	Now fix $\vec{x} \in \NN^k$ and $y\in \NN$. Assume that a register machine is initialized with $\vec{x}$ in registers $1,...,k$ and with $y$ in register $k + 1$. We now execute the program. If $f$ is not defined for $\vec{x}$, then \textbf{(1)} runs indefinitely and $h(\vec{x},0)$ is undefined. Thus we may assume that $f$ is defined for $\vec{x}$, then \textbf{(1)} terminates and $h(\vec{x},0) = f(\vec{x})$ is stored in register $k + 3$. Moreover, the first $k + 4$-registers are preserved. From our analysis of the subprogram consisting of the code block \textbf{(2)}-\textbf{(7)} we infer the following. Either $h(\vec{x},y)$ is undefined and then \textbf{(4)} runs indefinitely or $h(\vec{x},y)$ is defined and then the execution of subprogram results in $h(\vec{x},y)$ stored in register $k + 3$ and the program counter pointing to \textbf{(8)}. In the latter case $h(\vec{x},y)$ is moved to register $0$ and the whole program terminates.
+\end{proof}
+
+\begin{proposition}\label{proposition:register-computable_functions_closed_under_unbounded_minimization}
+	The class of register-computable functions is closed under unbounded minimization.
+\end{proposition}
+\begin{proof}
+	Fix a number $k$. Let $g$ be a $(k + 1)$-ary register computable partial function. Suppose that $f$ is the result of unbounded minimization of $g$. Our goal is to construct a register-machine program which computes $f$.
+
+	Let $\cP$ be a register-machine program that computes $g$ from $1,...,k,k+1$ to register $k + 2$ by preserving the first $k + 2$ registers. This program exists according to Proposition \ref{proposition:register_computable_implies_register_computable_with_preservation_of_first_registers}.
+
+	Consider now the following register-machine program.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $\cP$
+		\item $\mathrm{DEC}\,k + 2$
+		\item $\mathrm{JMP}\,3$
+		\item $\mathrm{INC}\,k + 1$
+		\item $\mathrm{JMP}\,- 3 - \mathrm{lh}(\cP)$
+		\item $\mathrm{MOV}\,k+1,0$
+	\end{enumerate}
+	We now analyze this program and show that it satisfies the statement.
+
+	Suppose that $\vec{x} \in \NN^k$ is stored in registers $1,...,k$ and register $k + 1$ stores a number $t \in \NN$. Moreover, suppose that the program counter points to \textbf{(1)}. We distinguish three cases.
+	\begin{itemize}
+		\item Assume that $g(\vec{x},t)$ is defined and nonzero. Then the machine executes \textbf{(1)} that is program $\cP$. Since $g(\vec{x},t)$ is defined, the subprogram \textbf{(1)} terminates preserving the contents of the first $k + 2$ registers and stores $g(\vec{x},t)$ in the register $k + 2$. Next by assumption $g(\vec{x},t)$ is nonzero and thus \textbf{(2)} causes a jump to \textbf{(4)} which increments register $k + 1$. This results in the following state:
+		      \begin{itemize}
+			      \item[] $\vec{x}$ remains in registers $1,...,k$,
+			      \item[] $t + 1$ is stored in register $k + 1$
+		      \end{itemize}
+		      Finally \textbf{(5)} is executed and the program counter points again to \textbf{(1)}.
+		\item Assume that $g(\vec{x},t) = 0$. The machine executes \textbf{(1)} that is program $\cP$. Since $g(\vec{x},t)$ is defined, we derive that the subprogram \textbf{(1)} terminates and stores $g(\vec{x},t) = 0$ in register $k + 2$. Thus \textbf{(2)} increments the program counter and \textbf{(3)} is executed. This causes the machine to jump to \textbf{(6)}, which moves $t$ from register $k + 1$ to register $0$ and the program terminates.
+		\item Assume that $g(\vec{x},t)$ is undefined. Then the machine executes \textbf{(1)} that is program $\cP$. Since $g(\vec{x},t)$ is undefined, it runs indefinitely.
+	\end{itemize}
+	Suppose that the machine is initialized with $\vec{x} \in \NN^k$ in registers $1,...,k$. We use the analysis above to reason about the program's behavior.
+
+	If $f(\vec{x})$ is defined, then the program terminates and stores $f(\vec{x})$ in register $0$ upon termination.
+
+	Assume now that $f(\vec{x})$ is undefined. Then $t \mapsto g(\vec{x},t)$ is defined for some initial interval of $\NN$, but its range does not include zero.
+	\begin{itemize}
+		\item If the interval of definition is finite, then the program runs indefinitely with the program counter stuck at instructions within block \textbf{(1)}.
+		\item If $t \mapsto g(\vec{x},t)$ is defined for $t \in \NN$, then the entire program runs indefinitely.
+	\end{itemize}
+	This completes the proof.
+\end{proof}
+
+\section{G{\"o}del encoding and Kleene's T predicate}
+\noindent
+In this section we introduce core ideas in theory of computation and logic.
+
+\begin{definition}
+	The numbers
+	\begin{align*}
+		 & \#\,\mathrm{INC}\,r = \textbf{[}1, r\textbf{]}                         \\
+		 & \#\,\mathrm{DEC}\,r = \textbf{[}2, r\textbf{]}                         \\
+		 & \#\,\mathrm{JMP}\,q = \begin{cases}
+			                         \textbf{[}3, q\textbf{]}   & \mbox{ if }q \geq 0 \\
+			                         \textbf{[}4, |q|\textbf{]} & \mbox{ if }q < 0    \\
+		                         \end{cases}
+	\end{align*}
+	are \textit{G{\"o}del number} of register machine instructions.
+\end{definition}
+
+\begin{definition}
+	Let $\cP$ be a register machine program. Then the number
+	$$\#\cP = \textbf{[}\#\,\cP[0],...,\#\,\cP[\mathrm{lh}(\cP) - 1]\textbf{]}$$
+	is the \textit{G{\"o}del number} of $\cP$.
+\end{definition}
+
+\begin{definition}
+	Let
+	$$c_0,c_1,c_2,....,c_k,...$$
+	be contents of registers describing a state of some register machine. A \textit{memory number} of the state is
+	$$2^{c_0}\cdot 3^{c_1}\cdot 5^{c_2}\cdot ...\cdot p_{k}^{c_{k}}\cdot ...$$
+	Note that this number is well defined according to the fact that all but finitely many $c_k = 0$.
+\end{definition}
+\noindent
+Encodings defined above are primitive recursive according to the following result.
+
+\begin{fact}\label{fact:godel_encodings_are_primitive_recursive}
+	Unary relations
+	\begin{align*}
+		 & \mathrm{Ins}(x) = x\mbox{ is the G{\"o}del number of some register machine instruction} \\
+		 & \mathrm{Prog}(x) = x\mbox{ is the G{\"o}del number of some register machine program}    \\
+	\end{align*}
+	are primitive recursive.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+\noindent
+Using G{\"o}del and memory numbers we can define functions which describe operation of register machine.
+
+We begin with the following function.
+$$\mathrm{mem}(c, m) = \begin{cases}
+		m\cdot p_{c[1]}            & \mbox{ if }
+		\mathrm{Ins}(c)\mbox{ and }c[0] = 1
+		\\
+		\lfloor m /p_{c[1]}\rfloor & \mbox{ if }\mathrm{Ins}(c)\mbox{ and }c[0] = 2\mbox{ and }e_{p_{c[1]}}(m) > 0 \\
+		m                          & \mbox{ otherwise }                                                            \\
+	\end{cases}$$
+Note that $\mathrm{mem}$ is primitive recursive.
+
+\begin{proposition}\label{proposition:memory_function}
+	Let $c$ be the G{\"o}del number of some instruction and let $m$ be the memory number of a state of some register machine. Then $\mathrm{mem}(c,m)$ is the memory number of the state obtained after executing instruction encoded by $c$ on the state of a register machine described by $m$.
+\end{proposition}
+\begin{proof}
+	Follows immediately from the definition of $\mathrm{mem}$.
+\end{proof}
+\noindent
+Next we define
+$$\mathrm{pc}(pc, e, m) = \begin{cases}
+		pc                    & \mbox{ if }\mathrm{Prog}(e)\mbox{ and }pc \geq \mathrm{lh}(e)                                                         \\
+		pc + 1                & \mbox{ if }
+		\mathrm{Prog}(e)\mbox{ and }pc < \mathrm{lh}(e)\mbox{ and }e[pc][0] = 1
+		\\
+		pc + 2                & \mbox{ if }\mathrm{Prog}(e)\mbox{ and }pc < \mathrm{lh}(e)\mbox{ and }e[pc][0] = 2\mbox{ and }e_{p_{e[pc][1]}}(m) > 0 \\
+		pc + 1                & \mbox{ if }\mathrm{Prog}(e)\mbox{ and }pc < \mathrm{lh}(e)\mbox{ and }e[pc][0] = 2\mbox{ and }e_{p_{e[pc][1]}}(m) = 0 \\
+		pc + e[pc][1]         & \mbox{ if }\mathrm{Prog}(e)\mbox{ and }pc < \mathrm{lh}(e)\mbox{ and }e[pc][0] = 3                                    \\
+		pc \dotminus e[pc][1] & \mbox{ if }\mathrm{Prog}(e)\mbox{ and }pc < \mathrm{lh}(e)\mbox{ and }e[pc][0] = 4\mbox{ and }pc \geq e[pc][1]        \\
+		\mathrm{lh}(e)        & \mbox{ otherwise }                                                                                                    \\
+	\end{cases}$$
+Clearly $\mathrm{pc}$ is a primitive recursive function.
+
+\begin{proposition}\label{proposition:program_counter_function}
+	Let $e$ be the G{\"o}del number of some register-machine program and let $m$ be the memory number of some register-machine state. Then $\mathrm{pc}(pc,e,m)$ is the content of the program counter after executing $pc$-th instruction of a program encoded by $e$ on the state of a register machine described by $m$.
+\end{proposition}
+\begin{proof}
+	Follows immediately from the definition of $\mathrm{pc}$.
+\end{proof}
+\noindent
+Next we define $\mathrm{snap}(e,m,t)$ for numbers $e,m,t$. We set
+$$\mathrm{snap}(e,m,0) = \pmb{[}0,m\pmb{]}$$
+Suppose now that $\mathrm{snap}(e,m,t)$ is defined for some $e,m,t$. Then we set
+$$\mathrm{snap}(e,m,t + 1) = $$
+$$=\pmb{\big[}\mathrm{pc}\big(\mathrm{snap}(e,m,t)[0],e,\mathrm{snap}(e,m,t)[1]\big),\mathrm{mem}\big(e[\mathrm{snap}(e,m,t)[0]],\mathrm{snap}(e,m,t)[1]\big)\pmb{\big]}$$
+Note that the function
+$$(e,m,t,z) \mapsto \pmb{\big[}\mathrm{pc}\big(z[0],e,z[1]\big),\mathrm{mem}\big(e[z[0]],z[1]\big)\pmb{\big]}$$
+is primitive recursive. Since $\mathrm{snap}$ is obtained by primitive recursion from the function above and the function $(e,m,0)\mapsto \pmb{[}0,m\pmb{]}$, we derive that $\mathrm{snap}$ is primitive recursive.
+
+\begin{proposition}\label{proposition:snapshot_of_machine_function}
+	Let $e$ be the G{\"o}del number of some register-machine program and let $m$ be the memory number of some state. Then $\mathrm{snap}(e,m,t)$ is the sequence number
+	$$\pmb{[}\mathrm{program\,counter},\mathrm{memory\,number}\pmb{]}$$
+	after $t$-iterations of execution of register-machine program encoded by $e$ on a machine with inital state described by $m$.
+\end{proposition}
+\begin{proof}
+	The proof goes by induction on $t$. Inductive step is a consequence of the definition of $\mathrm{snap}$, Proposition \ref{proposition:memory_function} and Proposition \ref{proposition:program_counter_function}.
+\end{proof}
+\noindent
+Next for $k$-tuple $\vec{x} = (x_1,...,x_k)$ we define
+$$\mathrm{memorize}(\vec{x}) = {p_1}^{x_1}\cdot ...\cdot p_k^{x_k}$$
+It follows that $\mathrm{memorize}$ is a primitive recursive $k$-ary function.
+
+\begin{proposition}\label{proposition:memorize_function}
+	Let $k$ be a number and let $\vec{x}$ be a $k$-tuple. Then $\mathrm{memorize}(\vec{x})$ is the memory number of the state of a register machine with $\vec{x}$ in registers $1,...,k$ and all other registers storing zeros.
+\end{proposition}
+\begin{proof}
+	Follows from the definition of memory numbers.
+\end{proof}
+\noindent
+Fix $k \in \NN$. We define
+$$T_k(e,s,\vec{x}) = $$
+$$=\mathrm{Seq}(s)\wedge \mathrm{Prog}(e)\wedge \big(0 < \mathrm{lh}(s)\big) \wedge \forall_{t < \mathrm{lh}(s)}\,\bigg(s[t] = \mathrm{snap}(e,\mathrm{memorize}(\vec{x}),t)\bigg)\wedge $$
+$$\wedge \forall_{t < \mathrm{lh}(s) \dotminus 1}\,\bigg(s[t][0] < \mathrm{lh}(e)\bigg)\wedge \big(s[\mathrm{lh}(s)\dotminus 1][0] = \mathrm{lh}(e)\big) $$
+for $e,s\in \NN$ and $\vec{x} \in \NN^k$.
+
+\section{Universal functions and Kleene normal form}
+\noindent
+In this section we prove theorems which are at heart of computability theory.
+
+
+\begin{theorem}\label{theorem:Kleene_normal_form_snapshot_form}
+	Let $f$ be a $k$-ary partial recursive function and let $e$ be the G{\"o}del number of a register-machine program that computes $f$.
+\end{theorem}
+
+\begin{definition}
+	Let $k$ be a number and let $\cC$ be a class of $k$-ary partial functions. Consider a $(k+1)$-ary partial function $\Phi$. Suppose that the following assertions hold.
+	for every $k$-ary partial recursive function $f$ there exists number $e$ such that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item For every function $f \in \cC$ there exists a number $e$ such that
+		      $$\big\{\vec{x}\in \NN^k\,\big|\,\Phi(e,\vec{x})\downarrow\big\} = \big\{\vec{x}\in \NN^k\,\big|\,f(\vec{x})\downarrow\big\}$$
+		      and
+		      $$\Phi(e,\vec{x}) = f(\vec{x})$$
+		      for every $\vec{x} \in \NN^k$ for which $f(\vec{x})$ is defined.
+		\item For every number $e$ the $k$-ary partial function
+		      $$\vec{x} \mapsto \Phi(e,\vec{x})$$
+		      is contained in $\cC$.
+	\end{enumerate}
+	Then $\Phi$ is a \textit{universal} for $\cC$.
+\end{definition}
+
+
+\begin{theorem}[universal function]\label{theorem:universal_recursive_function}
+	Let $k$ be a number. Then there exists a $(k+1)$-ary partial function $\Phi$ such that the following holds.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $\Phi$ is recursive.
+		\item $\Phi$ is universal for $k$-ary partial recursive functions.
+		\item $\Phi$ is universal for $k$-ary partial register-computable functions.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	We define
+	$$\Phi(e,\vec{x}) = e_2\bigg(\mathrm{snap}\bigg(e,\mathrm{memorize}(\vec{x}),\mu_{t}\big[\mathrm{lh}(e) \dotminus \mathrm{snap}(e,\mathrm{memorize}(\vec{x}),t)[0] = 0\big]\bigg)[1]\bigg)$$
+	Then $\Phi$ is $(k+1)$-ary partial recursive function.
+
+	Since every partial recursive function is register-machine computable, we infer that $\Phi$ is $(k+1)$-ary partial recursive function. Fix number $e$. Then definition of recursive functions and Proposition \ref{proposition:register_computable_functions_closed_under_composition} imply that a $k$-ary partial function
+	$$\vec{x} \mapsto \Phi(e, \vec{x})$$
+	is both recursive and register-computable.
+
+	Suppose now that $f$ is a $k$-ary partial register-computable function. Let $\cP$ be a register-machine program that computes $f$ and let $e = \#\cP$ be its G{\"o}del number.
+	Consider two cases.
+	\begin{itemize}
+		\item[] $f(\vec{x})\downarrow$ does not hold. Then
+			$$0 \leq \mathrm{snap}\big(e,\mathrm{memorize}(\vec{x}),t\big) < \mathrm{lh}(e)$$
+			for all $t \in \NN$. In particular, $\Phi(e,\vec{x})$ is undefined.
+		\item[] $f(\vec{x})$ is defined. Then combining Proposition \ref{proposition:snapshot_of_machine_function} and Proposition \ref{proposition:memorize_function} we infer that $\Phi(e,\vec{x})$ is the content of register $0$ when $\cP$ terminates execution which starts with $\vec{x}$ in registers $1,...,k$ and all the other registers set to zero. By definition the content of register $0$ upon termination is $f(\vec{x})$. Hence $f(\vec{x}) = \Phi(e,\vec{x})$.
+	\end{itemize}
+	This proves that $\Phi$ is universal for $k$-ary register-computable functions. Thus it is also universal for $k$-ary recursive functions.
+\end{proof}
+
+\begin{corollary}\label{corollary:register_computable_are_recursive}
+	Classes of register-computable and register functions coincide.
+\end{corollary}
+
+\begin{corollary}\label{corollary:normal_form_Kleene}
+\end{corollary}
+
+
+
+
+
+
+\section{Rudimentary and $\exists$-rudimentary relations}
+\noindent
+In this section we introduce important class of formulas expressing arithmetical relations.
+
+\begin{definition}
+	First order language with the signature consisting of the following symbols:
+	\begin{itemize}
+	\item[] the constant $0$
+	\item[] binary relation symbols $=, <$
+	\item[] unary function symbol $S$
+	\item[] $2$-ary function symbols $+,\cdot$
+	\end{itemize}
+	is the \textit{language of arithmetic}.
+\end{definition}
+The intended model of the language of arithmetic is 
+$$\fN = \left(\NN,0,s,<,+,\cdot\right)$$
+with the usual meaning of $0,<,+,\cdot$ and $s$ denoting the succesor function $s(n) = n + 1$ for every $n \in \NN$. 
+
+\begin{remark}\label{remark:bounded_quantifiers_notation}
+	Let $\phi$ be a first order formula in the language of arithmetic and let $x,y$ be variables. Then we introduce the following notation
+	$$x \leq y \equiv \left(x = y\right) \vee \left(x < y\right)$$
+	$$\forall_{x < y}\,\phi \equiv \forall_x\,\big(\left(x < y\right)\wedge \phi\big)$$
+	$$\forall_{x \leq y}\,\phi \equiv \forall_x\,\big(\left(x \leq y\right)\wedge \phi\big)$$
+	$$\exists_{x < y}\,\phi \equiv \exists_x\,\big(\left(x < y\right)\wedge \phi\big)$$
+	$$\exists_{x \leq y}\,\phi \equiv \exists_x\,\big(\left(x \leq y\right)\wedge \phi\big)$$
+\end{remark}
+
+\begin{definition}
+	The class of \textit{rudimentary formulas} is the smallest class of formulas in the language of arithmetic such that the following conditions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item Every atomic formula is rudimentary.
+		\item If $\phi,\psi$ are rudimentary formulas, then
+			$$\phi \wedge \psi,\phi \vee \psi$$
+			are rudimentary.
+		\item If $\phi$ is a rudimentary formula, then $\neg \phi$ is rudimentary.
+		\item if $\phi$ is a rudimentary formula and $x,y$ are variables, then also
+			$$\forall_{x < y}\,\phi,\,\exists_{x < y}\phi$$
+			are rudimentary.
+	\end{enumerate}
+\end{definition}
+
+\begin{fact}\label{fact:all_bounded_quantifier_are_rudimentary}
+	Let $\phi$ be a rudimentary formula and let $x,y$ be variables. Then formulas
+	$$\forall_{x \leq y}\,\phi,\,\exists_{x \leq y}\,\phi$$
+	are rudimentary.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	Let $\phi$ be a rudimentary formula and let $x$ be a variable. Then 
+	$$\forall_x\,\phi$$
+	is a \textit{$\exists$-rudimentary} formula.
+\end{definition}
+
+\begin{remark}
+	Let $n \in \NN$. Then the term
+	$$\underbrace{S...S}_{n\,\mathrm{times}}(0)$$
+	of the language of arithmetic is denoted by $\overline{n}$. If $\phi$ is a formula in the language of arithmetic with free variables $x_1,...,x_k$ and $n_1,...,n_k\in \NN$, then 
+	$$\phi^{x_1,...,x_k}_{\overline{n}_1,...,\overline{n}_k}$$
+	is denoted by $\phi(\overline{n}_1,...,\overline{n}_k)$.
+\end{remark}
+
+\begin{definition}
+	Let $R \subseteq \NN^k$ be a $k$-ary relation. Suppose that there exists rudimentary formula $\phi$ with $k$ distinct free variables such that 
+	$$R(n_1,...,n_k)\,\Leftrightarrow\,\fN\vdash \phi(n_1,...,n_k)$$
+	for all $n_1,...,n_k \in \NN$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
