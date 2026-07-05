@@ -1,0 +1,897 @@
+% arara: indent: {overwrite: yes, silent: yes}
+\documentclass[10pt]{amsart}
+\input ../pree.tex
+
+\begin{document}
+
+\title{Systems of first-order logic}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In these notes we present first-order logic from syntactic and proof-theoretic perspective. After discussing syntax of first-order languages we introduce a Hilbert-style deductive system for minimal logic and its extensions by propositional axiom schemata. A key property of the system is that it has modus ponens as the unique inference rule. All other logical behavior is encoded via axiom schemata. In fourth section we establish basic meta-theorems. Next sections are devoted to conservative extensions of first-order theories. We discuss three such extensions: relation symbols, indefinite descriptions of individuals, definite descriptions for functions. In the last section we introduce intuitionistic and classical logic.  
+
+Throughout these notes we fix five elements
+$$\perp, \ra, \wedge, \vee, \forall, \exists$$
+and we call them \textit{logical constants}. Meta-theoretic equality is denoted by $\equiv$.
+
+\section{First-order languages and their syntax}
+
+\begin{definition}
+	A \textit{signature} consists of the following data.
+	\begin{itemize}
+		\item A collection of \textit{$n$-ary relation symbols} for every positive natural number $n$.
+		\item A collection of \textit{$n$-ary function symbols} for every natural number $n$.
+		\item Optionally it may contain the \textit{equality symbol} $=$.
+	\end{itemize}
+	Moreover, nullary function symbols are called \textit{constants}.
+\end{definition}
+
+\begin{definition}
+	A \textit{first-order language} consists of a signature (potentially with equality) and an infinite collection of variables.
+\end{definition}
+\noindent
+In what follows we fix a first-order language $\cL$.
+
+\begin{definition}
+	Words over the alphabet consisting of parentheses, logical constants, the signature of $\cL$ and variables of $\cL$ are \textit{expressions} of $\cL$.
+\end{definition}
+
+\begin{definition}
+	The collection \textit{terms} of $\cL$ is the smallest collection of expressions of $\cL$ such that the following conditions holds.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item Every variable of $\cL$ is a term.
+		\item If $t_1,...,t_n$ are terms of $\cL$ and $f$ is $n$-ary function symbol, then $ft_1...t_n$ is a term of $\cL$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	An \textit{atomic formula} of $\cL$ is an expression of $\cL$ of the following two forms.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $t_1 = t_2$ for terms $t_1,t_2$ of $\cL$ if the equality is included of $\cL$.
+		\item $rt_1...t_n$ where $r$ is an $n$-ary relation symbol and $t_1, ...,t_n$ are terms of $\cL$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	The class of \textit{formulas} of $\cL$ is the smallest class of expressions of $\cL$ such that the following conditions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item Every atomic formula is a formula of $\cL$.
+		\item $\perp$ is a formula of $\cL$.
+		\item If $\phi$ and $\psi$ are formulas of $\cL$, then
+		      $$(\phi\ra \psi),\,(\phi \wedge \psi),\,(\phi \vee \psi)$$
+		      are formulas of $\cL$.
+		\item If $x$ is a variable and $\phi$ is a formula of $\cL$, then
+		      $$\forall_x\,\phi,\,\exists_x\,\psi$$
+		      are formulas of $\cL$.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}\label{remark:negation_and_equivalence}
+	Let $\phi,\psi$ be formulas of $\cL$. Then we define
+	$$(\neg \phi) \equiv (\phi \ra \perp),\,(\phi \leftrightarrow \psi) \equiv \left((\phi \ra \psi) \wedge (\psi \ra \phi)\right)$$
+\end{remark}
+\noindent
+The following results study the determinacy of syntax of $\cL$.
+
+\begin{theorem}\label{theorem:unique_readability_of_initial_segments}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item Let $t$ be a term of $\cL$ and let $s$ be its proper segment. If $s$ is a term of $\cL$, then $s$ coincides with $t$.
+		\item Let $\gamma$ be a formula of $\cL$ and let $\theta$ be its initial proper segment. If $\theta$ is a formula of $\cL$, then $\theta$ coincides with $\gamma$.
+	\end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need some additional result.
+
+\begin{lemma}\label{lemma:left_and_right_parentheses_match_in_formula}
+	Let $\theta$ be a formula of $\cL$. Then numbers of occurrences of left parentheses and right parentheses in $\theta$ are the same.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Follows by straightforward induction on the complexity $\theta$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	The proof of \textbf{(1)} goes by the induction on the complexity of $t$.
+	\begin{itemize}
+		\item If $t$ is a variable, then the assertion holds.
+		\item Suppose that $t$ is of the form $ft_1...t_n$ where $f$ is $n$-ary function symbol of $\cL$ and $t_1,...,t_n$ are terms of $\cL$. Since $s$ is a term, it is nonempty. Hence $s$ starts with $f$. It follows that $s$ is of the form $fs_1...s_n$ for some terms $s_1,...,s_n$ of $\cL$. Suppose that $s_i$ coincides with $t_i$ for $i < j$ for some $j < n$. Then either $s_j$ is a proper segment of $t_j$ or $t_j$ is a proper segment of $s_j$. In either case the induction assumption implies that $s_j$ coincides with $t_j$. This proves that $s_i$ coincides with $t_i$ for all $i \leq n$. Therefore, $s$ and $t$ coincide.
+	\end{itemize}
+
+	The proof of \textbf{(2)} goes by the induction on the complexity of $\gamma$.
+  \begin{itemize}
+		\item If $\gamma$ is $\perp$, then the assertion holds.
+		\item Suppose that $\gamma$ is of the form $rt_1...t_n$ where $r$ is $n$-ary relation symbol of $\cL$ and $t_1,...,t_n$ are terms of $\cL$. Since $\theta$ is a formula of $\cL$, it is nonempty. Hence $\theta$ starts with $r$. It follows that $\theta$ is of the form $rs_1...s_n$ for some terms $s_1,...,s_n$ of $\cL$. Suppose that $s_i$ coincides with $t_i$ for $i < j \leq n$. Then either $s_j$ is a proper segment of $t_j$ or $t_j$ is a proper segment of $s_j$. In either case by Lemma \textbf{(1)} it follows that $s_j$ coincides with $t_j$. This proves that $s_i$ coincides with $t_i$ for all $i \leq n$. Therefore, $\theta$ and $\gamma$ coincide.
+		\item Suppose that $\gamma$ is of the form $t_1 = t_2$ for some terms $t_1,t_2$ of $\cL$. Then $\theta$ is of the form $t_1 = s$ for some term $s$ of $\cL$. Since $s$ is an initial segment of $t_2$, we derive by \textbf{(1)} that $s$ and $t_2$ coincide and hence $\theta$ coincides with $\gamma$.
+		\item Suppose that $\gamma$ has one of forms
+		      $$(\phi \ra \psi),\,(\phi \wedge \psi),\,(\phi \vee \psi)$$
+		      for some formulas $\phi,\psi$ of $\cL$. Then according to Lemma \ref{lemma:left_and_right_parentheses_match_in_formula} we infer that $\theta$ coincides with $\gamma$.
+		\item Suppose that $\gamma$ is of the form $\forall_x\,\phi$ for some variable $x$ and formula $\phi$ of $\cL$. Then $\theta$ is of the form $\forall_x\,\psi$ for a formula $\psi$ of $\cL$. Thus $\psi$ is an initial segment of $\phi$. Hence by induction hypothesis $\psi$ coincides with $\phi$. Therefore, $\theta$ coincides with $\gamma$. Analogical argument works if $\gamma$ is of the form $\exists_x\,\phi$ for some variable $x$ and formula $\phi$ of $\cL$.
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}[Unique readability of terms and formulas]\label{theorem:unique_readability_of_terms_and_formulas}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item Let $t$ be a term of $\cL$. Then either $t$ is a variable or there exists a unique $n$-ary function symbol $f$ and unique terms $t_1,...,t_n$ such that
+		      $$t = ft_1...t_n$$
+		      for some $n \in \NN$.
+		\item Let $\gamma$ be an atomic formula of $\cL$. Then either there are unique terms $t_1,t_2$ of $\cL$ such that $\gamma$ is $t_1 = t_2$ or there exists a unique $n$-ary relation symbol $r$ and unique terms $t_1,...,t_n$ such that $\gamma$ is $rt_1...t_n$ for some $n\in \NN$.
+		\item Let $\gamma$ be a formula of $\cL$. Then precisely one of the assertions hold.
+		      \begin{itemize}
+			      \item $\gamma$ is atomic.
+			      \item $\gamma$ is $\perp$.
+			      \item $\gamma$ is $(\phi \ra \psi)$ for unique formulas $\phi, \psi$ of $\cL$.
+			      \item $\gamma$ is $(\phi \wedge \psi)$ for unique formulas $\phi,\psi$ of $\cL$.
+			      \item $\gamma$ is $(\phi \vee \psi)$ for unique formulas $\phi,\psi$ of $\cL$.
+			      \item $\gamma$ is $\forall_x\,\phi$ for a unique variable $x$ and a unique formula $\phi$ of $\cL$.
+			      \item $\gamma$ is $\exists_x\,\phi$ for a unique variable $x$ and a unique formula $\phi$ of $\cL$.
+		      \end{itemize}
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Note that \textbf{(1)} is straightforward if term is a variable. Suppose that
+	$$ft_1 ...t_n \equiv gs_1 ...s_m$$
+	where $f$ is an $n$-ary function symbol, $g$ is $m$-ary function symbol and $t_1,...,t_n,s_1,...,s_m$ are terms. Then $f$ coincides with $g$ and thus $n$ equals $m$. Next assume that $t_i$ coincides with $s_i$ for $i < j \leq n$. Then either $t_j$ is an initial segment of $s_j$ or $s_j$ is an initial segment of $t_j$. In either case Theorem \ref{theorem:unique_readability_of_initial_segments} implies that $t_j$ coincides with $s_j$. This proves that $t_i$ coincides with $s_i$ for all $i=1,...,n$. This completes the proof of \textbf{(1)}.
+
+	For the proof of \textbf{(2)} note that each atomic formula either starts with relational symbol or from function symbol. Moreover, this two cases are exclusive. In the first case the proof is analogical to the one of \textbf{(1)}. Suppose that an atomic formula starts with function symbol. Then it must contain the equality sign. Suppose that
+	$$t_1 = t_2,\,s_1 = s_2$$
+	are two representations of the same atomic formula for terms $t_1,t_2,s_1,s_2$ of $\cL$. Either $t_1$ is an initial segment of $s_1$ or $s_1$ is an initial segment of $t_1$. In either case Theorem \ref{theorem:unique_readability_of_initial_segments} shows that $t_1$ and $s_1$ coincide. Next either $t_2$ is an initial segment of $s_2$ or $s_2$ is an initial segment of $t_2$. In either case Theorem \ref{theorem:unique_readability_of_initial_segments} shows that $t_2$ and $s_2$ coincide. This proves \textbf{(2)}.
+
+	Now we prove \textbf{(3)}. We have five exclusive cases.
+	\begin{itemize}
+		\item $\gamma$ is atomic.
+		\item $\gamma$ is $\perp$.
+		\item $\gamma$ starts with left parentheses. Suppose that
+		      $$\left(\phi_1 \circ_1 \psi_1\right)\equiv \gamma \equiv \left(\phi_2 \circ_2 \psi_2\right)$$
+		      where $\circ_1,\,\circ_2$ are propositional connectives $\rightarrow,\wedge,\vee$ and $\phi_1,\phi_2,\psi_1,\psi_2$ are formulas of $\cL$. Then either $\phi_1$ is initial segment of $\phi_2$ or $\phi_2$ is initial segment of $\phi_1$. In either case by Theorem \ref{theorem:unique_readability_of_initial_segments} we deduce that $\phi_1$ coincides with $\phi_2$. Hence $\circ_1$ coincides with $\circ_2$ and $\psi_1$ coincides with $\psi_2$.
+		\item $\gamma$ is $\forall_x\,\phi$ for a unique variable $x$ and a unique formula $\phi$ of $\cL$.
+		\item $\gamma$ is $\exists_x\,\phi$ for a unique variable $x$ and a unique formula $\phi$ of $\cL$.
+	\end{itemize}
+	This completes the proof.
+\end{proof}
+
+\begin{definition}
+	We define collection $\bd{Fr}(\gamma)$ of variables for every formula $\gamma$ of $\cL$. If $\gamma$ is an atomic formula, then $\bd{Fr}(\gamma)$ consists of all variables occurring in $\gamma$. If $\gamma$ is $\perp$, then $\bd{Fr}(\gamma)$ is empty. If $\gamma$ is of the form
+	$$(\phi \ra \psi),(\phi \wedge \psi),(\phi \vee \psi)$$
+	for some formulas $\phi,\psi$ of $\cL$, then $\bd{Fr}(\gamma)$ is the union ot $\bd{Fr}(\phi)$ and $\bd{Fr}(\psi)$. Finally if $\gamma$ is of the form
+	$$\forall x\,\phi,\,\exists_x\,\phi$$
+	for some formula $\phi$ of $\cL$, then $\bd{Fr}(\gamma)$ is $\bd{Fr}(\phi)$ with $x$ removed. The elements of $\bd{Fr}(\gamma)$ are \textit{free variables} of $\gamma$.
+\end{definition}
+
+\begin{definition}
+	Let $\sigma$ be a formula of $\cL$. If $\bd{Fr}(\sigma)$ is empty, then $\sigma$ is a \textit{sentence} of $\cL$.
+\end{definition}
+\noindent
+Now we describe central notion of substitutability and the procedure of substitution.
+
+\begin{definition}
+	Let $x$ be a variable and let $t,s$ be terms of $\cL$. Then $t[s/x]$ is the term of $\cL$ obtained by replacing each occurrence of $x$ in $t$ by $s$. We say that $t[s/x]$ is obtained by \textit{substitution} of $x$ by $s$ in $t$.
+\end{definition}
+
+\begin{definition}
+	Let $x$ be a variable and let $t$ be a term of $\cL$. We define \textit{substitutability} of $t$ for $x$ in a formula $\gamma$ of $\cL$ as follows.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item If $\gamma$ is an atomic formula, then $t$ is substitutable for $x$ in $\gamma$.
+		\item If $\gamma$ is $\perp$, then $t$ is substitutable for $x$ in $\gamma$.
+		\item If $\gamma$ has one of the forms
+		      $$(\phi \ra  \psi),(\phi \wedge \psi),(\phi \vee \psi)$$
+		      for some formulas $\phi,\psi$ of $\cL$, then $t$ is substitutable for $x$ in $\gamma$ if and only if $t$ is substitutable for $x$ in $\phi$ and $t$ is substitutable for $x$ in $\psi$.
+		\item If $\gamma$ has one of the forms
+		      $$\forall_y\,\phi,\exists_y\,\phi$$
+		      for a formula $\phi$ of $\cL$ and a variable $y$ distinct from $x$, then $t$ is substitutable for $x$ in $\gamma$ if and only if $t$ is substitutable for $x$ in $\phi$ and $y$ does not occur in $t$.
+		\item If $\gamma$ has one of the forms
+		      $$\forall_x\,\phi,\exists_x\,\phi$$
+		      for a formula $\phi$ of $\cL$, then $t$ is substitutable for $x$ in $\gamma$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Let $x$ be a variable and let $t$ be a term of $\cL$. Suppose that $t$ is substitutable for $x$ in $\gamma$. Then we define a formula $\gamma[t/x]$ of $\cL$ as follows.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item If $\gamma$ is an atomic formula, then $\gamma[t/x]$ is obtained from $\gamma$ by replacing each occurrence of variable $x$ by $t$.
+		\item If $\gamma$ is $\perp$, then $\gamma[t/x]$ is $\perp$.
+		\item If $\gamma$ has form
+		      $$(\phi \ra \psi),(\phi \wedge \psi),(\phi \vee \psi)$$
+		      for some formulas $\phi,\psi$ of $\cL$, then $\gamma[t/x]$ is
+		      $$(\phi[t/x] \ra \psi[t/x]),(\phi[t/x] \wedge \psi[t/x]),(\phi[t/x] \vee \psi[t/x])$$
+		\item If $\gamma$ has form
+		      $$\forall_y\,\phi,\exists_y\,\phi$$
+		      for a formula $\phi$ of $\cL$ and a variable $y$ distinct from $x$, then $\gamma[t/x]$ is
+		      $$\forall_y\,\phi[t/x],\exists_y\,\phi[t/x]$$
+		\item If $\gamma$ has form
+		      $$\forall_x\,\phi,\exists_x\,\phi$$
+		      for a formula $\phi$ of $\cL$, then $\gamma[t/x]$ coincides with $\gamma$.
+	\end{enumerate}
+	We say that $\gamma[t/x]$ is obtained by \textit{substitution} of $x$ by $t$ in $\gamma$.
+\end{definition}
+
+\section{Hilbert-style deductive systems for propositional extensions of minimal logic}
+\noindent
+Fix a first-order language $\cL$. We describe a proof system for the collection of formulas of $\cL$. This proof system serves as a basis for further developments of intuitionistic and classical logics. 
+
+\begin{definition}
+	The following are \textit{quantifier axiom schemas} for first-order logic.
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item \textbf{Universal instantiation.}
+		      $$\forall_x\,\phi \ra \phi[t/x]$$
+		      for every formula $\phi$ of $\cL$ and every term $t$ of $\cL$ that is substitutable in $\phi$ for $x$.
+		\item \textbf{Universal generalization.}
+		      $$\phi \ra \forall_x\,\phi$$
+		      for every formula $\phi$ of $\cL$ and a variable $x$ which is not free in $\phi$.
+		\item \textbf{Distributivity of the universal quantifier.}
+		      $$\forall_x(\phi \ra \psi) \ra \left(\forall_x\,\phi \ra \forall_x\,\psi\right)$$
+		      for all formulas $\phi,\psi$ of $\cL$.
+		\item \textbf{Existential introduction.}
+		      $$\phi[t/x] \ra \exists_x\,\phi$$
+		      for every formula $\phi$ of $\cL$ and every term $t$ of $\cL$ that is substitutable in $\phi$ for $x$.
+		\item \textbf{Existential quantifier shift.}
+		      $$\forall_x\left(\phi \ra \psi\right) \ra \left(\exists_x\,\phi \ra \psi\right)$$
+		      for all formulas $\phi,\psi$ of $\cL$ such that $x$ is not free in $\psi$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	The following are \textit{propositional axiom schemas} of \textit{minimal logic}.
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item \textbf{Implication schemas:}
+		      \begin{itemize}
+			      \item[] $\phi \ra \left(\psi \ra \phi\right)$
+			      \item[] $\left(\phi \ra \left(\psi \ra \theta\right)\right) \ra \left(\left(\phi \ra \psi\right) \ra \left(\phi \ra \theta\right)\right)$
+		      \end{itemize}
+		\item \textbf{Conjunction schemas:}
+		      \begin{itemize}
+			      \item[] $(\phi \wedge \psi) \ra \phi$
+			      \item[] $(\phi \wedge \psi) \ra \psi$
+			      \item[] $\phi \ra \left(\psi \ra \left(\phi \wedge \psi\right)\right)$
+		      \end{itemize}
+		\item \textbf{Disjunction schemas:}
+		      \begin{itemize}
+			      \item[] $\phi \ra (\phi \vee \psi)$
+			      \item[] $\psi \ra (\phi \vee \psi)$
+			      \item[] $(\phi \ra \theta)\ra \left((\psi \ra \theta) \ra \left((\phi \vee \psi)\ra \theta\right)\right)$
+		      \end{itemize}
+	\end{enumerate}
+	In the axiom schemas $\phi,\psi$ and $\theta$ denote arbitrary formulas of $\cL$.
+\end{definition}
+
+\begin{definition}
+	Let $\cL$ be a first order language with identity. The \textit{axioms of identity} of $\cL$ are the following classes of formulas of $\cL$.
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item $t = t$ for every term $t$ of $\cL$.
+		\item $(t_1 = t_2 \ra t_2 = t_1)$ for all terms $t_1,t_2$ of $\cL$.
+		\item $\big(t_1 = t_2 \ra \left(t_2 = t_3\ra t_1 = t_2\right)\big)$ for all terms $t_1,t_2,t_3$ of $\cL$.
+		\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left(... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(ft_1...t_n = ft'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms of $\cL$ and $f$ is an $n$-ary function symbol of $\cL$.
+		\item $\underbrace{\left(t_1 = t'_1 \ra \left( t_2 = t'_2 \ra \left(... \ra (t_n = t'_n)...\right)\right)\right)}_{n\,\mathrm{symbols\,of\,equality}} \ra \left(rt_1...t_n \ra rt'_1...t'_n\right)$ where $t_1,...,t_n$ and $t'_1,...,t'_n$ are terms of $\cL$ and $r$ is an $n$-ary relation symbol of $\cL$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Let $\phi$ be a formula of $\cL$ and let $x_1,...,x_n$ be variables. Then a formula
+	$$\underbrace{\forall_{x_1} ...\forall_{x_n}}_{n\,\mathrm{quantifiers}} \phi$$
+	is called a \textit{generalization} of $\phi$.
+\end{definition}
+
+\begin{definition}
+	The axioms of minimal logic consist of:
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item all generalizations of quantifier axiom schemas,
+		\item all generalizations of propositional axiom schemas of minimal logic,
+		\item if $\cL$ contains identity, all generalizations of the identity axioms.
+	\end{enumerate}
+\end{definition}
+\noindent
+Having defined the axioms we now introduce the notion of a deduction. 
+
+\begin{definition}
+	Let $\Gamma$ be a collection of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. A \textit{deduction} of $\phi$ from $\Gamma$ is a sequence
+	$$D_1 , ..., D_n$$
+	of formulas of $\cL$ such that $D_n$ is $\phi$, each $D_k$ is either an axiom, an element of $\Gamma$ or there exist $i, j < k$ such that $D_j$ is of the form $(D_i \ra D_k)$.
+\end{definition}
+
+\begin{remark}\label{remark:modus_ponens}
+  Let $\phi, \psi$ be formulas of $\cL$. The rule that allows one to deduce $\psi$ from $\phi$ and $(\phi \ra \psi)$ is \textit{modus ponens}.
+\end{remark}
+
+\begin{definition}
+	Let $\Gamma$ be a collection of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. If there exists a deduction of $\phi$ from $\Gamma$, then $\phi$ is \textit{deducible} from $\Gamma$. This is also denoted by $\Gamma \vdash \phi$.
+\end{definition}
+
+\begin{definition}
+	Let $\phi$ be a formula of $\cL$. If $\phi$ is deducible in $\cL$ from the empty collection of formulas, then $\phi$ is a \textit{theorem} of minimal logic.
+\end{definition}
+
+\begin{remark}\label{remark:scope_of_system}
+  Unless otherwise stated all results of the next sections will hold for Hilbert-style deductive systems that extend the system for minimal logic by introducing new propositional axiom schemas and their generalizations.
+\end{remark}
+
+\section{Basic Metatheorems}
+\noindent
+Fix a first-order language $\cL$. In this section we prove basic results concerning the deductive systems introduced in the previous section. We start with elementary results.
+
+\begin{proposition}[monotonicity of $\vdash$]\label{proposition:monotonicity_of_deductive_system}
+	Let $\Gamma, \Delta$ be collections of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. Suppose that $\Gamma \vdash \phi$ and $\Gamma \subseteq \Delta$. Then $\Delta \vdash \phi$.
+\end{proposition}
+\begin{proof}
+	Every deduction of $\phi$ from $\Gamma$ is also a deduction of $\phi$ from $\Delta$.
+\end{proof}
+
+\begin{proposition}[compactness of $\vdash$]\label{proposition:compactness_of_deductive_system}
+	Let $\Gamma$ be a collection of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. Suppose that $\Gamma \vdash \phi$. Then there exists finite subset $\Delta$ of $\Gamma$ such that $\Delta \vdash \phi$.
+\end{proposition}
+\begin{proof}
+	Every deduction of $\phi$ from $\Gamma$ involves only finitely many formulas in $\Gamma$.
+\end{proof}
+
+\begin{proposition}[transitivity of $\vdash$]\label{proposition:transitivity_of_deductive_system}
+	Let $\Gamma, \Delta$ be collections of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. Suppose that $\Gamma \vdash \psi$ for every formula $\psi \in \Delta$ and $\Delta \vdash \phi$. Then $\Gamma \vdash \phi$.
+\end{proposition}
+\begin{proof}
+	By Proposition \ref{proposition:compactness_of_deductive_system} there exist finitely many formulas $\psi_1,...,\psi_m$ of $\Delta$ such that
+	$$\psi_1,...,\psi_m \vdash \phi$$
+	Now for each $i$ there exists a deduction of $\psi_i$ from $\Gamma$. We concatenate these deductions for $i = 1,...,m$ and further concatenate them with a deduction of $\phi$ from $\psi_1,...,\psi_m$. This yields a deduction of $\phi$ from $\Gamma$.
+\end{proof}
+
+\begin{fact}\label{fact:identity_law_in_logic}
+	Let $\phi$ be a formula of $\cL$. Then $\vdash \phi \ra \phi$ is a theorem of minimal logic.
+\end{fact}
+\begin{proof}
+	Consider the following sequence of formulas.
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item $\phi \ra (\phi \ra \phi)$
+		\item $\phi \ra \left(\left(\phi \ra \phi \right)\ra \phi\right)$
+		\item $\left(\phi \ra \left(\left(\phi \ra \phi \right)\ra \phi\right)\right) \ra \left(\left(\phi \ra \left(\phi \ra \phi\right)\right) \ra \left(\phi \ra \phi\right)\right)$
+		\item $\left(\phi \ra \left(\phi \ra \phi\right)\right) \ra \left(\phi \ra \phi\right)$
+		\item $\phi \ra \phi$
+	\end{enumerate}
+	Note that \textbf{1},\textbf{2},\textbf{3} are logical axioms. Next \textbf{4} is obtained by modus ponens from \textbf{2},\textbf{3}. Finally, \textbf{5} is also derived by modus ponens from \textbf{1},\textbf{4}. Thus the sequence above is a deduction of $\phi \ra \phi$ from empty collection of formulas.
+\end{proof}
+
+\begin{theorem}[deduction theorem]\label{theorem:deduction_theorem}
+	Let $\Gamma$ be a collection of formulas of $\cL$ and let $\phi, \psi$ be formulas of $\cL$. Then $\Gamma,\phi \vdash \psi$ if and only if $\Gamma \vdash \phi \ra \psi$.
+\end{theorem}
+\begin{proof}
+	Note that
+	$$\phi, \phi \ra \psi , \psi$$
+	is a deduction of $\psi$ from $\phi, \phi \ra \psi$. If $\Gamma \vdash \phi \ra \psi$, then by Proposition \ref{proposition:transitivity_of_deductive_system} we derive that $\Gamma,\phi \vdash \psi$.
+
+	Now suppose that $\Gamma,\phi \vdash \psi$. Let
+	$$D_1 , ..., D_n$$
+	be a deduction of $\psi$ from $\Gamma, \phi$. We prove that $\Gamma \vdash \phi \ra D_k$ for each $k$. The proof goes on induction on $k$. We consider the following cases.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $D_k$ is an axiom of $\cL$ or an element of $\Gamma$. Note that
+		      $$D_k \ra (\phi \ra D_k )$$
+		      is a propositional axiom of $\cL$. Hence
+		      $$D_k,D_k \ra (\phi \ra D_k),\phi \ra D_k$$
+		      is a deduction of $\phi \ra D_k$ from $\Gamma$.
+		\item $D_k$ is $\phi$. Then $(\phi \ra D_k)$ is a theorem of minimal logic by Fact \ref{fact:identity_law_in_logic} and hence it is deducible from $\Gamma$.
+		\item There exist $i, j < k$ such that $D_j$ is $(D_i \ra D_k)$. Note that
+		      $$\big(\phi \ra (D_i \ra D_k)\big) \ra \big((\phi \ra D_i ) \ra (\phi \ra D_k)\big)$$
+		      is an axiom of $\cL$ and hence one can write a deduction of $\phi \ra D_k$ from
+		      $$\phi \ra D_i,\phi \ra D_j$$
+		      By induction $\Gamma \vdash \phi \ra D_i$ and $\Gamma \vdash \phi \ra D_j$. Thus also $\Gamma \vdash \phi \ra D_k$ according to Proposition \ref{proposition:transitivity_of_deductive_system}.
+	\end{enumerate}
+	This proves that $\Gamma \vdash \phi \ra D_k$ for all $k$. Hence $\Gamma \vdash \phi \ra D_n$. Since $D_n$ is $\psi$, we derive that $\Gamma \vdash \phi \ra \psi$.
+\end{proof}
+
+\begin{theorem}[variable generalization]\label{theorem:variable_generalization_rule}
+	Let $\Gamma$ be a collection of formulas of $\cL$ and let $x$ be a variable which does not occur as a free variable in any formula in $\Gamma$. If $\Gamma \vdash \phi$ for some formula $\phi$ of $\cL$, then $\Gamma \vdash \forall_x\,\phi$.
+\end{theorem}
+\begin{proof}
+	Let
+	$$D_1,...,D_n$$
+	be a deduction of $\phi$ from $\Gamma$. We prove that for each $k$ there exists a deduction of $\forall_x\,D_k$ from $\Gamma$. For this we consider the following cases.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $D_k$ is an axiom. Since axioms are closed under generalizations, we derive that $\forall_x\,D_k$ is also an axiom. Hence $\Gamma \vdash \forall_x\,D_k$.
+		\item $D_k$ is an element of $\Gamma$. Then
+		      $$D_k,D_k \ra \forall_x\,D_k,\forall_x\,D_k$$
+		      is a deduction of $\forall_x\,D_k$ from $\Gamma$. Note that here we use the assumption that there are no formulas in $\Gamma$ in which $x$ occurs as a free variable. Indeed, from this assumption it follows that $D_k \ra \forall_x\,D_k$ is an instance of universal generalization schema.
+		\item There exist $i, j < k$ such that $D_j$ is $D_i \ra D_k$. Consider the sequence of formulas
+		      $$\forall_x\,D_i , \forall_x(D_i \ra D_k ) , \forall_x (D_i \ra D_k ) \ra (\forall_x\,D_i \ra \forall_x\,D_k) , \forall_x\,D_i \ra \forall_x\,D_k , \forall_x\,D_k$$
+		      If there are deductions of $\forall_x\,D_i$ and $\forall_x\,D_j$ that is $\forall_x(D_i \ra D_k)$ from $\Gamma$, then we add the sequence above to their concatenation in order to obtain a deduction of $\forall_x\,D_k$ from $\Gamma$.
+	\end{enumerate}
+	From \textbf{(1)}, \textbf{(2)} and \textbf{(3)} we derive that the assertion follows by induction on $k$. In particular, there exists a deduction of $\forall_x\,D_n$ that is $\forall_x\,\phi$ from $\Gamma$.
+\end{proof}
+\noindent
+Now we apply the above meta-theorems to present some theorems of minimal logic.
+
+\begin{proposition}[$\alpha$-equivalence]\label{proposition:alpha_equivalence}
+  Let $\phi$ be a formula of $\cL$ and let $y$ be a variable. Suppose that $y$ is substitutable for $x$ in $\phi$ and is not free in $\phi$. Then
+  $$\forall_x\,\phi \leftrightarrow \forall_y\,\phi[y/x],\,\exists_x\,\phi \leftrightarrow \exists_y\,\phi[y/x]$$
+  are theorems of minimal logic.
+\end{proposition}
+\begin{proof}
+  Note that
+  $$\forall_x\,\phi, \forall_x\,\phi \ra \phi[y/x], \phi[y/x]$$
+  is a deduction of $\phi[y/x]$ from $\forall_x\,\phi$ in $\cL$. By Theorem \ref{theorem:variable_generalization_rule} we infer that $\forall_x\,\phi \vdash \forall_y\,\phi[y/x]$ and by Theorem \ref{theorem:deduction_theorem} we obtain $\vdash \forall_x\,\phi \ra \forall_y\,\phi[y/x]$. Since $x$ is substitutable for $y$ in $\phi[y/x]$ and $\phi \equiv \phi[y/x][x/y]$, there is symmetry in $x$ and $y$ and hence 
+  $$\vdash \forall_y\,\phi[y/x] \ra \forall_x\,\phi$$\
+  This proves that the first formula is a theorem of minimal logic.
+
+  Since $\phi \ra \exists_y\,\phi[y/x]$ is an instance of existential introduction schema, we derive that 
+  $$\forall_x\left(\phi \ra \exists_y\,\phi[y/x]\right)$$
+  is an axiom of minimal logic. Applying existential quantifier shifting combined with modus ponens implies that 
+  $$\vdash \exists_x\,\phi \ra \exists_y\,\phi[y/x]$$
+  The other direction follows by symmetry between $y$ and $x$. Hence the second formula is a theorem of minimal logic.
+\end{proof}
+
+\begin{proposition}\label{proposition:commutativity_of_quantifiers}
+  Let $\phi$ be a formula of $\cL$ and let $x,y$ be variables. Then
+  $$\forall_x\forall_y\,\phi \leftrightarrow \forall_y\forall_x\,\phi,\,\exists_x\exists_y\,\phi \leftrightarrow \exists_y\exists_x\,\phi$$
+  are theorems of minimal logic.
+\end{proposition}
+\begin{proof}
+  Since $\forall_y\,\phi \ra \phi$ is an instance of universal instantiation, we derive that 
+  $$\forall_x\left(\forall_y\,\phi \ra \phi\right)$$
+  is an axiom of minimal logic. Thus by distributivity of universal quantifier we infer 
+  $$\vdash \forall_x\forall_y\,\phi \ra \forall_x\,\phi$$
+  By Theorem \ref{theorem:deduction_theorem} and Theorem \ref{theorem:variable_generalization_rule} we deduce that $\forall_x\forall_y\,\phi \vdash \forall_y\forall_x\phi$. We apply Theorem \ref{theorem:deduction_theorem} to obtain
+  $$\vdash \forall_x\forall_y\,\phi \ra \forall_y\forall_x\,\phi$$
+  Now the fact that the first formula is a theorem of minimal logic follows from symmetry between $x$ and $y$.
+
+  By instances of existential introduction $\phi \ra \exists_x\,\phi$ and $\exists_x\,\phi \ra \exists_y\exists_x\,\phi$. Hence
+  $$\vdash \phi \ra \exists_y\exists_x\,\phi$$
+  Theorem \ref{theorem:variable_generalization_rule} implies that
+  $$\vdash \forall_x\forall_y\left(\phi \ra \exists_y\exists_x\,\phi\right)$$
+  Next we apply existential quantifier shift twice to derive
+  $$\vdash \exists_x\exists_y\,\phi \leftrightarrow \exists_y\exists_x\,\phi$$
+  Now the fact that the second formula is a theorem of minimal logic follows from symmetry of $x$ and $y$.
+\end{proof}
+
+\section{Conservativity of definitional extensions by relational symbols}
+\noindent
+In this section we prove a meta-theoretical result that states that an extension of the original language by names for certain formulas is conservative with respect to the deductive system. First we need to rigorously define the concept of conservative extension.
+
+Let $\cL$ be a first-order language and let $\Gamma$ be a collection of formulas of $\cL$. If a formula $\phi$ of $\cL$ is deducible from $\Gamma$, then we write $\Gamma \vdash_{\cL} \phi$. This makes explicit that deductions consist of sequences of formulas of $\cL$.
+
+\begin{definition}
+	Let $\cL$ and $\cM$ be first-order languages. Suppose that the signature of $\cL$ is contained in that of $\cM$. Then $\cM$ is an \textit{extension} of $\cL$.
+\end{definition}
+
+\begin{definition}
+	Let $\cL$ be a first-order language and let $\cM$ be its extension. Let $\Gamma$ be a collection of formulas of $\cL$. Suppose that $\Delta$ is a collection of formulas of $\cM$ that contains $\Gamma$. Then $\Delta$ is an \textit{extension} of $\Gamma$.
+\end{definition}
+
+\begin{definition}
+	Let $\cL$ be a first-order language and let $\cM$ be its extension. Let $\Gamma$ be a collection of formulas of $\cL$ and let $\Delta$ be a collection of formulas of $\cM$ extending $\Gamma$. Suppose that for every formula $\phi$ of $\cL$ if $\Delta \vdash_{\cM} \phi$, then $\Gamma \vdash_{\cL} \phi$. Then $\Delta$ is a \textit{conservative} extension of $\Gamma$.
+\end{definition}
+\noindent
+
+\begin{theorem}\label{theorem:extension_by_relational_symbols_is_conserative}
+  Let $\cL$ be a first-order language and let $\cR$ be a family of formulas of $\cL$. Consider a first-order language $\cL[\cR]$ obtained from $\cL$ by adding a fresh distinct relational symbol $r_{\theta}$ for every formula $\theta$ in $\cR$. Moreover, the arity of $r_{\theta}$ is the number of free variables occurring in $\theta$.
+
+  Let $\Gamma$ be a collection of formulas of $\cL$. Let $\Gamma[\cR]$ be a collection of formulas of $\cL[\cR]$ obtained from $\Gamma$ by adding for each $\theta$ in $\cR$ a formula
+  $$\forall_{x_1}...\forall_{x_k}\left(\theta \leftrightarrow r_{\theta}x_1...,x_k\right)$$
+  where $x_1,...,x_k$ are all variables that occur as free in $\theta$.
+
+  Then $\Gamma[\cR]$ is a conservative extension of $\Gamma$.
+\end{theorem}
+\noindent
+For the proof we need the following result.
+
+\begin{lemma}\label{lemma:alphabetic_variant}
+	Let $\cL$ be a first-order language and let $V$ be a finite collection of variables of $\cL$. Let $\theta$ be a formula of $\cL$. Then there exists a formula $\alpha(\theta)$ of $\cL$ such that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+    \item $\alpha(\theta) \leftrightarrow \theta$ is a theorem of minimal logic.
+		\item The collection of bound variables of $\alpha(\theta)$ is disjoint from $V$.
+		\item $\theta$ and $\alpha(\theta)$ have the same collection of free variables.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	The construction of $\alpha(\theta)$ and the proof that it satisfies the assertions proceed by induction on the complexity of $\theta$.
+	\begin{itemize}
+    \item $\alpha(\perp)$ is $\perp$. The assertions holds in that case.
+		\item If $\theta$ is atomic, then we set $\alpha(\theta)$ to be $\theta$. The assertions are straightforward.
+		\item Suppose that $\theta$ has one of the forms
+		      $$(\theta_1 \ra \theta_2),\,(\theta_1 \wedge \theta_2),\,(\theta_1 \vee \theta_2)$$
+		      Then $\alpha(\theta)$ is of the form
+          $$\left(\alpha(\theta_1) \ra \alpha(\theta_2)\right),\,\left(\alpha(\theta_1) \wedge \alpha(\theta_2)\right),\,(\alpha(\theta_1) \vee \alpha(\theta_2))$$
+          respectively. If $\alpha(\theta_1)$ and $\alpha(\theta_2)$ satisfy the assertions, then $\alpha(\theta)$ also satisfies the assertions. Hence this case easily follows by induction.
+		\item If $\theta$ is of the form $\forall_x\,\eta$ for some variable $x$ and formula $\cL$, then we pick a variable $y \not \in V$ that does not occur in $\alpha(\eta)$ and we set
+      $$\alpha(\theta) \equiv \forall_y\,\alpha(\eta)[y/x]$$
+      Note that
+      $$\vdash_{\cL} \forall_x\,\eta \leftrightarrow \forall_x\,\alpha(\eta)$$
+      by the induction hypothesis and
+      $$\forall_x\,\alpha(\eta) \leftrightarrow \forall_y\,\alpha(\eta)[y/x]$$
+      is a theorem of minimal logic by Propositions \ref{proposition:alpha_equivalence}. Hence combining these two facts we infer
+      $$\vdash_{\cL} \forall_x\,\eta \leftrightarrow \forall_y\,\alpha(\eta)[y/x]$$
+      This proves that \textbf{(1)} holds. The assertions \textbf{(2)} and \textbf{(3)} are easy consequences of induction hypothesis.
+	\end{itemize}
+\end{proof}
+
+\begin{lemma}\label{lemma:single_definitional_extension_by_relation_symbol_is_conservative}
+	Let $\cL$ be a first-order language and let $\theta$ be a formula of $\cL$. Suppose that $x_1,...,x_l$ are all variables that occur as free in $\theta$. Consider a first-order language $\cL[r]$ obtained from $\cL$ by adding a fresh $l$-ary relational symbol $r$.
+
+  Let $\Gamma$ be a collection of formulas of $\cL$. Consider a collection $\Gamma[r]$ of formulas of $\cL[r]$ obtained from $\Gamma$ by adding a formula
+  $$\forall_{x_1}...\forall_{x_{l}}\left(\theta \leftrightarrow rx_1...,x_{l}\right)$$
+
+  Then $\Gamma[r]$ is a conservative extension of $\Gamma$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+  Let $\phi$ be a formula of $\cL$ and suppose that $\Gamma[r] \vdash_{\cL[r]} \phi$. Let 
+  $$D_1,...,D_n$$
+  be a deduction of $\phi$ from $\Gamma[r]$ in $\cL[r]$. Let $V$ be the collection of all variables occurring in formulas $D_1,...,D_n$.
+
+  Let $\alpha(\theta)$ be a formula of $\cL$ obtained from $\theta$ by means of Lemma \ref{lemma:alphabetic_variant}.
+
+	Next suppose that $\fU$ is a collection of all subformulas occurring in $D_1,...,D_n$. For each $\mu \in \fU$ we construct a formula $\mu^*$ of $\cL$. The construction proceeds by induction on the complexity of $\mu$.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item Suppose that $\mu$ is $\perp$, then $\mu^*$ is $\perp$.
+		\item Suppose that $\mu$ is an atomic formula in $\cL$, then $\mu^*$ is $\mu$.
+    \item Suppose that $\mu$ is of the form $rt_1...rt_l$ where $r$ is the newly introduced relation symbol and $t_1,...,t_l$ are terms of $\cL$. Then
+      $$\mu^* \equiv \alpha(\theta)[t_1/x_1,...,t_l/x_l]$$
+      Note that there is no issue with substitution because all variables occurring in $t_1,...,t_l$ are in $V$ and hence they are not bound by any quantifier in $\alpha(\theta)$. 
+		\item If $\mu$ has one of the forms
+		      $$(\mu_1 \ra \mu_2), (\mu_1 \wedge \mu_2), (\mu_1 \vee \mu_2)$$
+		      for some formulas $\mu_1,\mu_2$, then $\mu^*$ is
+		      $$(\mu_1^* \ra \mu_2^*), (\mu_1^* \wedge \mu_2^{*}), (\mu_1^{*} \vee \mu_2^{*})$$
+          respectively.
+		\item If $\mu$ has one of the forms 
+      $$\forall_x\,\eta, \exists_x\,\eta$$
+      for some formula $\nu$, then $\mu^*$ is
+		  $$\forall_x\,\eta^*, \exists_x\,\eta^*$$
+      respectively.
+	\end{enumerate}
+  Observe that if $\mu$ is in $\cL$, then $\mu^*$ and $\mu$ coincide.
+
+   Now we show that $D_1^*,...,D_n^*$ gives rise to a deduction of $\phi$ from $\Gamma$.
+
+  Suppose that $D_k$ is any axiom of $\cL[r]$. Since the translation $\mu \mapsto \mu^*$ preserves connectives, quantifiers and substitution, we derive that $D_k^*$ is an axiom of $\cL$.
+
+  Note also that
+  $$\bigg(\forall_{x_1}...\forall_{x_{l}}\left(\theta \leftrightarrow rx_1...x_l\right)\bigg)^* \equiv \forall_{x_1}...\forall_{x_{l}}\left(\theta \leftrightarrow \alpha(\theta)\right)$$
+    is a theorem of minimal logic by Lemma \ref{lemma:alphabetic_variant}.  
+
+  Finally, if $D_j \equiv (D_i \ra D_k)$ for some $i,j < k$, then $D_j^* \equiv (D_i^* \ra D_k^*)$.
+
+  Since $\mu \mapsto \mu^*$ preserves the formulas of $\cL$, it follows that $D_1^*,...,D_n^*$ is a deduction of $\phi$ from $\Gamma$ in $\cL$. Thus $\Gamma[r]$ is conservative extension of $\Gamma$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+  Suppose that $\Gamma[\cR] \vdash_{\cL[\cR]} \phi$ for some formula $\phi$ of $\cL$. Since in any deduction of $\phi$ from $\Gamma[\cR]$ in $\cL[\cR]$ only finitely many newly introduced relation symbols are used, we may assume that $\Gamma[r_{\theta_1},...,r_{\theta_n}] \vdash_{\cL[r_{\theta_1},...,r_{\theta_n}]}\phi$ where $\theta_1,...,\theta_n$ are formulas in $\cR$. By repeated application of Lemma \ref{lemma:single_definitional_extension_by_relation_symbol_is_conservative} we conclude $\Gamma \vdash_{\cL}\phi$. This completes the proof.
+\end{proof}
+
+\section{Constant elimination and indefinite descriptions of individuals}
+\noindent
+Let $c$ be a constant and let $\phi$ be a formula of the same first-order language. For a variable $x$ we denote by $\phi[x/c]$ the formula obtained by replacing each occurrence of $c$ in $\phi$ by $x$.
+
+\begin{theorem}[constant elimination]\label{theorem:constant_elimination_rule}
+	Let $\Gamma$ be a collection of formulas of a first-order language $\cL$. Consider a first-order language $\cL[c]$ obtained by adding a fresh constant $c$ to $\cL$. Suppose that $\Gamma \vdash_{\cL[c]} \phi$ for some formula $\phi$ of $\cL[c]$. Then $\Gamma \vdash_{\cL} \forall_x\,\phi[x/c]$ for every variable $x$ that does not occur in $\phi$.
+\end{theorem}
+\begin{proof}
+	By Proposition \ref{proposition:compactness_of_deductive_system} there exists a finite subcollection $\Xi$ of $\Gamma$ such that $\Xi \vdash \phi$. Suppose that
+	$$D_1,...,D_n$$
+	is a deduction of $\phi$ in $\cL[c]$ from $\Xi$. Suppose that $z$ is a variable which does not occur in any formula of $\Xi$ and in any formula among $D_1,...,D_n$. Since $c$ does not occur in any formula in $\Xi$, we infer that
+	$$D_1[z/c],...,D_n[z/c]$$
+	is a deduction of $\phi[z/c]$ in $\cL$ from $\Xi$. By Theorem \ref{theorem:variable_generalization_rule} we derive that $\Xi \vdash_{\cL} \forall_z\,\phi[z/c]$. Proposition \ref{proposition:monotonicity_of_deductive_system} implies that $\Gamma \vdash_{\cL} \forall_z\,\phi[z/c]$.
+
+	Fix a variable $x$ which does not occur in $\phi$. Then $x$ is substitutable in $\phi[z/c]$ for $z$ and
+	$$\phi[z/c][x/z] \equiv \phi[x/c]$$
+	Thus
+	$$\forall_z\,\phi[z/c],\,\forall_z\,\phi[z/c] \ra \phi[x/c],\,\phi[x/c]$$
+	is a deduction of $\phi[x/c]$ from $\forall_z\,\phi[z/c]$ in $\cL$. Since $x$ does not occur in $\phi[z/c]$, Theorem \ref{theorem:variable_generalization_rule} implies that
+	$$\forall_z\,\phi[z/c]\vdash_{\cL} \forall_x\,\phi[x/c]$$
+	Hence by Proposition \ref{proposition:transitivity_of_deductive_system} we obtain $\Gamma \vdash_{\cL} \forall_x\,\phi[x/c]$.
+\end{proof}
+Next we present some consequences of constant elimination. The next result is a formalization of Russell's theory of indefinite descriptions.
+
+\begin{theorem}\label{theorem:extension_by_indefinite_descriptions_for_individuals_is_conservative}
+  Let $\Gamma$ be a collection of formulas of a first-order language $\cL$. Let $\cC$ be a collection of formulas of $\cL$ such that $\Gamma \vdash_{\cL} \exists_{x_{\theta}}\,\theta$ for every $\theta$ in $\cC$ and some variable $x_{\theta}$ of $\cL$. 
+
+  Consider a first-order language $\cL[\cC]$ obtained from $\cL$ by adding a fresh constants $c_{\theta}$ to $\cL$ for each $\theta$ in $\cC$. Let $\Gamma[\cC]$ be a collection of formulas of $\cL[\cC]$ obtained from $\Gamma$ by adding $\theta[c_{\theta}/x_{\theta}]$ for each $\theta$ in $\cC$. 
+
+  Then $\Gamma[\cC]$ is a conservative extension of $\Gamma$.
+\end{theorem}
+\noindent
+The proof is based on the following result.
+
+\begin{lemma}\label{lemma:conservative_extension_by_indefinite_description_for_individual}
+	Let $\Gamma$ be a collection of formulas of a first-order language $\cL$. Let $\theta$ be a formula of $\cL$ and let $x$ be a variable such that $\Gamma \vdash_{\cL}\exists_x\,\theta$. 
+
+  Consider a first-order language $\cL[c]$ obtained from $\cL$ by adding a fresh constant $c$. Let $\Gamma[c]$ be a collection of formulas of $\cL[c]$ obtained from $\Gamma$ by adding a formula $\theta[c/x]$. 
+
+  Then $\Gamma[c]$ is a conservative extension of $\Gamma$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Suppose that $\phi$ is a formula of $\cL$ such that $\Gamma[c]\vdash_{\cL[c]}\phi$. According to the deduction theorem we have
+	$$\Gamma \vdash_{\cL[c]}\theta[c/x]\ra \phi$$
+	Fix a variable $y$ which does not occur in $\theta[c/x]\ra \phi$ and in $\theta$. Theorem \ref{theorem:constant_elimination_rule} together with the fact that $\phi$ is a formula of $\cL$ implies that
+	$$\Gamma \vdash_{\cL} \forall_y\left(\theta[c/x][y/c]\ra \phi\right)$$
+	Note that $\theta[c/x][y/c] \equiv \theta[y/x]$. Thus $\Gamma \vdash_{\cL} \forall_y\left(\theta[y/x] \ra \phi\right)$. Since
+	$$\forall_y\left(\theta[y/x] \ra \phi\right) \ra \exists_y\,\theta[y/x] \ra \phi$$
+	is an instance of existential quantifier shift, we infer that $\Gamma \vdash_{\cL} \exists_y\,\theta[y/x] \ra \phi$.
+
+	The formula $\theta \ra \exists_y\,\theta[y/x]$ is an instance of existential introduction. Hence $\forall_x\left(\theta \ra \exists_y\,\theta[y/x]\right)$
+	is an instance of axiom schema. According to another instance of existential quantifier shift we derive that
+	$$\vdash_{\cL}\exists_x\,\theta \ra \exists_y\,\theta[y/x]$$
+	Since $\Gamma \vdash_{\cL}\exists_x\,\theta$, we deduce that $\Gamma \vdash_{\cL} \exists_y\,\theta[y/x]$.
+
+	Combining
+	$$\Gamma \vdash_{\cL} \exists_y\,\theta[y/x]$$
+	with
+	$$\Gamma\vdash_{\cL} \exists_y\,\theta[y/x] \ra \phi$$
+	we infer $\Gamma \vdash_{\cL} \phi$. This proves that $\Gamma[c]$ is conservative extension of $\Gamma$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+  Suppose that $\Gamma[\cC] \vdash_{\cL[\cC]} \phi$ for some formula $\phi$ of $\cL$. Since in any deduction of $\phi$ from $\Gamma[\cC]$ in $\cL[\cC]$ only finitely many newly introduced constant symbols are used, we may assume that $\Gamma[c_{\theta_1},...,c_{\theta_n}] \vdash_{\cL[c_{\theta_1},...,c_{\theta_n}]}\phi$ where $\theta_1,...,\theta_n$ are formulas in $\cC$. By repeated application of Lemma \ref{lemma:conservative_extension_by_indefinite_description_for_individual} we conclude $\Gamma \vdash_{\cL}\phi$. This completes the proof.
+\end{proof}
+\noindent
+Now we present some applications of the theorem.
+
+\begin{remark}\label{remark:unique_existential_quantifier}
+  Let $\cL$ be a first-order language and let $\phi$ be a formula of $\cL$. Suppose that $y$ is a variable and that $y_1,y_2$ are variables substitutable for $y$ in $\phi$. Then we introduce the following shorthand
+  $$\exists!_y\,\phi \equiv \exists_y\,\phi \wedge \forall_{y_1}\forall_{y_2}\left((\phi[y_1/y]\wedge \phi[y_2/y]) \ra y_1 = y_2\right)$$
+\end{remark}
+
+\begin{proposition}\label{proposition:interplay_between_existential_quantifier_and_connectives_under_unique_existential_quantifier}
+	Let $\cL$ be a first-order language and let $\phi, \psi, \rho$ be formulas of $\cL$. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+    \item $\exists!_y\,\phi \vdash_{\cL} \exists_y\left((\psi \vee \rho)\wedge \phi\right) \leftrightarrow \left(\exists_y(\psi \wedge \phi) \vee \exists_y(\rho \wedge \phi)\right)$
+    \item $\exists!_y\,\phi \vdash_{\cL} \exists_y\left((\psi \wedge \rho)\wedge \phi\right) \leftrightarrow \left(\exists_y(\psi \wedge \phi) \wedge \exists_y(\rho \wedge \phi)\right)$
+    \item $\exists!_y\,\phi \vdash_{\cL} \exists_y\left((\psi \ra \rho) \wedge \phi\right) \leftrightarrow \left(\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi)\right)$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	We leave the proofs of \textbf{(1)} and \textbf{(2)} for the reader.
+
+	We prove the more difficult direction of the assertion \textbf{(3)} and leave the other part for the reader.
+
+  First we introduce two fresh constant symbols $c,d$ and extend $\cL$ to $\cL[c]$ and $\cL[c][d]$. We have
+	$$\exists!_y\,\phi,\phi[c/y],\phi[d/y] \vdash_{\cL[c][d]} c = d$$
+  Thus we have
+	$$\exists!_y\,\phi,\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi),\phi[c/y], \psi[c/y], \rho[d/y]\wedge \phi[d/y] \vdash_{\cL[c][d]} \rho[c/y]$$
+	Observe that
+	$$\exists!_y\,\phi,\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi),\phi[c/y],\psi[c/y] \vdash_{\cL[c]} \exists_y(\rho \wedge \phi)$$
+	We combine these two results with Theorem \ref{theorem:extension_by_indefinite_descriptions_for_individuals_is_conservative} to infer that
+  $$\exists!_y\,\phi,\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi),\phi[c/y],\psi[c/y] \vdash_{\cL[c]} \rho[c/y]$$
+	Thus
+	$$\exists!_y\,\phi,\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi),\phi[c/y] \vdash_{\cL[c]}\psi[c/y] \ra \rho[c/y]$$
+	by deduction theorem and derive
+	$$\exists!_y\,\phi,\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi),\phi[c/y] \vdash_{\cL[c]} \exists_y\left((\psi \ra \rho) \wedge \phi\right)$$
+	Since $\exists!_y\,\phi \vdash_{\cL}\exists_y\,\phi$, we apply Theorem \ref{theorem:extension_by_indefinite_descriptions_for_individuals_is_conservative} to derive that
+	$$\exists!_y\,\phi,\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi) \vdash_{\cL} \exists_y\left((\psi \ra \rho) \wedge \phi\right)$$
+	Finally, by deduction theorem we obtain
+  $$\exists!_y\,\phi \vdash_{\cL} \left(\exists_y(\psi \wedge \phi) \ra \exists_y(\rho \wedge \phi)\right) \ra \exists_y\left((\psi \ra \rho) \wedge \phi\right)$$
+\end{proof}
+
+\begin{proposition}\label{proposition:interplay_between_general_and_existential_quantifier_under_unique_existential_quantifer}
+	Let $\cL$ be a first-order language and let $\phi, \psi$ be formulas of $\cL$. Let $x$ be a variable that is not free in $\phi$. Then
+  $$\exists!_y\,\phi \vdash_{\cL} \forall_x\exists_y(\psi \wedge \phi) \leftrightarrow \exists_y\forall_x(\psi \wedge \phi)$$
+\end{proposition}
+\begin{proof}
+  We prove the more difficult part of the assertion and leave the other one for the reader.
+
+  First we introduce two fresh constant symbols $c,d$ and extend $\cL$ to $\cL[c]$ and $\cL[c][d]$. We have
+  $$\exists!_y\,\phi, \phi[c/y], \psi[d/y] \wedge \phi[d/y] \vdash_{\cL[c][d]} c = d$$
+  Thus
+  $$\exists!_y\,\phi, \phi[c/y], \psi[d/y] \wedge \phi[d/y] \vdash_{\cL[c][d]} \psi[c/y]$$
+  Since 
+  $$\exists!_y\,\phi, \forall_x\exists_y(\psi \wedge \phi), \phi[c/y] \vdash_{\cL[c]} \exists_y(\psi \wedge \phi)$$
+  by universal instantiation, we derive according to Theorem \ref{theorem:extension_by_indefinite_descriptions_for_individuals_is_conservative} that
+  $$\exists!_y\,\phi, \forall_x\exists_y(\psi \wedge \phi), \phi[c/y] \vdash_{\cL[c]} \psi[c/y]$$
+  Therefore, we obtain
+  $$\exists!_y\,\phi, \forall_x\exists_y(\psi \wedge \phi), \phi[c/y] \vdash_{\cL[c]} \psi[c/y] \wedge \phi[c/y]$$
+  Since $x$ is not free in $\phi$, variable generalization implies that
+  $$\exists!_y\,\phi, \forall_x\exists_y(\psi \wedge \phi), \phi[c/y] \vdash_{\cL[c]} \forall_x(\psi[c/y] \wedge \phi[c/y])$$
+  Next we use existential introduction to infer
+  $$\exists!_y\,\phi, \forall_x\exists_y(\psi \wedge \phi), \phi[c/y] \vdash_{\cL[c]} \exists_y\forall_x(\psi \wedge \phi)$$
+  Again by Theorem \ref{theorem:extension_by_indefinite_descriptions_for_individuals_is_conservative} we infer that
+  $$\exists!_y\,\phi, \forall_x\exists_y(\psi \wedge \phi) \vdash_{\cL} \exists_y\forall_x(\psi \wedge \phi)$$
+  and hence by deduction theorem
+  $$\exists!_y\,\phi \vdash_{\cL} \forall_x\exists_y(\psi \wedge \phi) \ra \exists_y\forall_x(\psi \wedge \phi)$$
+\end{proof}
+
+\section{Conservativity of definite descriptions}
+\noindent
+The goal of this section is to formalize a generalization of Russell's theory of definite descriptions.
+
+\begin{theorem}\label{theorem:extension_by_definite_descriptions_of_function_is_conserative}
+  Let $\Gamma$ be a collection of formulas of a first-order language $\cL$. Let $\cF$ be a family of formulas of $\cL$. Suppose that for every $\theta$ in $\cF$ there exists variable $y_{\theta}$ that occurs free in $\theta$ such that
+  $$\Gamma \vdash_{\cL} \forall_{x_1}...\forall_{x_l}\exists!_{y_{\theta}}\,\theta$$
+  where $x_1,...,x_l$ are the remaining free variables in $\theta$.
+
+  Consider a first-order language $\cL[\cF]$ obtained from $\cL$ by adding a fresh distinct $l$-ary function symbol $f_{\theta}$ for each $\theta$ in $\cL$. Let $\Gamma[\cF]$ be a collection of formulas of $\cL[\cF]$ obtained from $\Gamma$ by adding for each $\theta$ in $\cF$ a formula
+  $$\forall_{x_1}...\forall_{x_l}\left(\theta \leftrightarrow y_{\theta} = fx_1...x_l\right)$$
+
+  Then $\Gamma[\cF]$ is a conservative extension of $\Gamma$.
+\end{theorem}
+\noindent
+For the proof we need the following result.
+
+\begin{lemma}\label{lemma:extension_by_single_definite_description_of_function_is_conservative}
+	Let $\cL$ be a first-order language and let $\Gamma$ be a collection of formulas of $\cL$. Let $F$ be a $(l+1)$-ary relation symbol of $\cL$ for some natural number $l$. Suppose that $x_1,...,x_l,y_f$ are variables of $\cL$ such that
+  $$\Gamma \vdash_{\cL} \forall_{x_1}...\forall_{x_l}\exists!_{y_f}\,Fx_1...x_ly_f$$
+	Let $\cL[f]$ be the first-order language obtained from $\cL$ by adding a fresh $l$-ary function symbol $f$ and let $\Gamma[f]$ be a collection of formulas of $\cL[f]$ obtained from $\Gamma$ by adding
+	$$\forall_{x_1}...\forall_{x_{l}}\,Fx_1...x_lfx_1...x_l$$
+	Then $\Gamma[f]$ is a conservative extension of $\Gamma$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Suppose that $\phi$ is a formula of $\cL$ such that $\Gamma[f] \vdash_{\cL[f]}\phi$. Let
+	$$D_1,...,D_m$$
+	be a deduction of $\phi$ from $\Gamma[f]$ in $\cL[f]$. Let $V$ be the collection of all variables occurring in formulas $D_1,...,D_m$.
+
+	For each term $t$ occurring in $D_1,...,D_m$ we choose a unique variable $y_t$ distinct from all variables in $V$. Next suppose that $\fU$ is a collection of all terms and formulas occurring as subexpressions in $D_1,...,D_m$. For each $\mu \in \fU$ we construct a formula $\mu^*$ of $\cL$. The construction proceeds by induction on the complexity of $\mu$.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item Suppose that $\mu$ is a variable $x$, then $\mu^*$ is $y_{\mu} = x$.
+		\item Suppose that $\mu$ is a term of the form $g\mu_1...\mu_n$ where $g$ is an $n$-ary function symbol in $\cL$ and $\mu_1,...,\mu_n$ are terms. Then
+		      $$\mu^* \equiv \exists_{y_{\mu_1}}...\exists_{y_{\mu_n}}\big(y_\mu = gy_{\mu_1}...y_{\mu_n} \wedge \mu_1^* \wedge ... \wedge \mu_n^*\big)$$
+		\item Suppose that $\mu$ is a term of the form $f\mu_1...\mu_l$ where $\mu_1,...,\mu_l$ are terms. Then
+		      $$\mu^* \equiv  \exists_{y_{\mu_1}}...\exists_{y_{\mu_l}}\big(Fy_{\mu_1}...y_{\mu_l}y_\mu \wedge \mu_1^* \wedge ... \wedge \mu_l^*\big)$$
+		\item Suppose that $\mu$ is $\perp$, then $\mu^*$ is $\perp$.
+		\item Suppose that $\mu$ is an atomic formula of the form $r\mu_1...\mu_n$ where $r$ is an $n$-ary relation symbol and $\mu_1,...\mu_n$ are terms. Then
+      $$\mu^* \equiv \exists_{y_{\mu_1}}...\exists_{y_{\mu_n}}\left(ry_{\mu_1}...y_{\mu_n} \wedge \mu_1^*\wedge ... \wedge \mu_n^*\right)$$
+		\item If $\mu$ has one of the forms
+		      $$(\mu_1 \ra \mu_2), (\mu_1 \wedge \mu_2), (\mu_1 \vee \mu_2)$$
+		      for some formulas $\mu_1,\mu_2$, then $\mu^*$ is
+		      $$(\mu_1^* \ra \mu_2^*), (\mu_1^* \wedge \mu_2^{*}), (\mu_1^{*} \vee \mu_2^{*})$$
+          respectively.
+		\item If $\mu$ has one of the forms 
+      $$\forall_x\,\eta, \exists_x\,\eta$$
+      for some formula $\theta$, then $\mu^*$ is
+		  $$\forall_x\,\eta^*, \exists_x\,\eta^*$$
+      respectively.
+	\end{enumerate}
+The following assertions hold for every $\mu$ in $\fU$.
+	\begin{enumerate}[label=Fact \arabic*.]
+    \item If $\mu$ is a term and $x_1,...,x_n$ are all variables that occur in $\mu$, then $x_1,...,x_n,y_{\mu}$ are all free variables occurring in $\mu^*$.
+    \item If $\mu$ is a term of $\cL$, then $\vdash_{\cL} \mu^* \leftrightarrow y_{\mu} = \mu$.
+    \item If $\mu$ is a term, then $\mu^*$ is a functional formula in $\Gamma$ with respect to $y_{\mu}$.
+    \item If $\mu$ is a formula of $\cL$, then $\vdash_{\cL} \mu^* \leftrightarrow \mu$.
+		\item Suppose that $\mu$ is a term. If $s$ is a term in $\fU$ and $x$ is a variable such that $\mu[s/x]$ is in $\fU$, then
+      $$\Gamma \vdash_{\cL} \exists_y\left(\mu^*[y_{\mu[s/x]}/y_{\mu},y/x] \wedge s^*[y/y_s]\right) \leftrightarrow \mu[s/x]^*$$
+		      for every variable $y$ not in $V$ and distinct from $y_t$ for all terms $t$ in $\fU$.
+    \item Suppose that $\mu$ is a formula. If $s$ is a term in $\fU$ and $x$ is a variable such that $s$ is substitutable in $\mu$ for $x$ and $\mu[s/x]$ is in $\fU$, then
+      $$\Gamma \vdash_{\cL} \exists_y\left(\mu^*[y/x] \wedge s^*[y/y_s]\right) \leftrightarrow \mu[s/x]^*$$
+		      for every variable $y$ not in $V$ and distinct from $y_t$ for all terms $t$ in $\fU$.
+	\end{enumerate}
+  Proofs proceed by induction on the complexity of $\mu$. We leave (easier) proofs of Facts 1-4 for the reader. We prove Facts 5-6 together since they are closely related.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item If $\mu$ is a variable $x$, then we need to prove that
+      $$\Gamma \vdash_{\cL} \exists_y\left(y_s = y \wedge s^*[y/y_s]\right) \leftrightarrow s^*$$
+      The right hand side is a theorem of minimal logic. In particular, it can be deduced from $\Gamma$ in $\cL$.
+  	\item If $\mu$ is a variable $z$ distinct from $x$, then we need to prove that
+      $$\Gamma \vdash_{\cL} \exists_y\left(y_z = z \wedge s^*[y/y_s]\right) \leftrightarrow (y_z = z)$$
+      Since $s^*$ is a functional formula of $\Gamma$ with respect to $y_s$, $\Gamma \vdash_{\cL} \exists_y\,s^*[y/y_s]$. Combining this with
+      $$\vdash_{\cL}\exists_y\left(y_z = z \wedge s^*[y/y_s]\right) \leftrightarrow \left(y_z = z \wedge \exists_y\,s^*[y/y_s]\right)$$
+      proves the assertion.
+		\item Suppose that $\mu$ is of the form $g\mu_1...\mu_n$ where $g$ is an $n$-ary function symbol in $\cL$ and $\mu_1,...,\mu_n$ are terms. The proof is essentially identical to the one of the next case.
+		\item Suppose that $\mu$ is of the form $f\mu_1...\mu_l$ where $\mu_1,...,\mu_l$ are terms. Then the formula $\mu^*[y_{\mu[s/x]}/y_\mu,y/x]$ is
+		      $$\exists_{y_{\mu_1}}...\exists_{y_{\mu_l}}\big(Fy_{\mu_1}...y_{\mu_l}y_{\mu[s/x]} \wedge \mu_1^*[y/x] \wedge ... \wedge \mu_l^*[y/x]\big)$$
+		      We denote
+		      $$\nu \equiv Fy_{\mu_1}...y_{\mu_l}y_{\mu[s/x]} \wedge \mu_1^*[y/x] \wedge ... \wedge \mu_l^*[y/x]$$
+          Then application of Proposition \ref{proposition:alpha_equivalence} implies
+		      $$\vdash_{\cL}\exists_{y_{\mu_1}}...\exists_{y_{\mu_l}}\,\nu \leftrightarrow \exists_{y_{\mu_1[s/x]}}...\exists_{y_{\mu_l[s/x]}}\,\nu[y_{\mu_1[s/x]}/y_{\mu_1},...,y_{\mu_l[s/x]}/y_{\mu_l}]$$
+		      Since $y_{\mu_1[s/x]},...,y_{\mu_l[s/x]}$ are not free in $s^*[y/y_s]$, we derive that
+		      $$\exists_{y_{\mu_1[s/x]}}...\exists_{y_{\mu_l[s/x]}}\,\nu[y_{\mu_1[s/x]}/y_{\mu_1},...,y_{\mu_l[s/x]}/y_{\mu_l}] \wedge s^*[y/y_s] \leftrightarrow$$
+		      $$\leftrightarrow \exists_{y_{\mu_1[s/x]}}...\exists_{y_{\mu_l[s/x]}}\left(\nu[y_{\mu_1[s/x]}/y_{\mu_1},...,y_{\mu_l[s/x]}/y_{\mu_l}] \wedge s^*[y/y_s]\right)$$
+		      is a theorem of minimal logic. Since
+		      $$\nu[y_{\mu_1[s/x]}/y_{\mu_1},...,y_{\mu_l[s/x]}/y_{\mu_l}] \wedge s^*[y/y_s] \leftrightarrow$$
+		      $$\leftrightarrow Fy_{\mu_1[s/x]}...y_{\mu_l[s/x]}y_{\mu[s/x]} \wedge \bigwedge_{i=1}^k \left(\mu_i^*[y_{\mu_i[s/x]}/y_{\mu_i},y/x] \wedge s^*[y/y_s]\right)$$
+          is a theorem of minimal logic and $s^*$ is functional formula in $\Gamma$ with respect to $y_s$, we derive by Proposition \ref{proposition:interplay_between_existential_quantifier_and_connectives_under_unique_existential_quantifier} that
+		      $$\exists_y\left(\nu[y_{\mu_1[s/x]}/y_{\mu_1},...,y_{\mu_l[s/x]}/y_{\mu_l}] \wedge s^*[y/y_s]\right) \leftrightarrow$$
+		      $$\leftrightarrow Fy_{\mu_1[s/x]}...y_{\mu_l[s/x]}y_{\mu[s/x]} \wedge \bigwedge_{i=1}^k \exists_y\left(\mu_i^*[y_{\mu_i[s/x]}/y_{\mu_i},y/x] \wedge s^*[y/y_s]\right)$$
+		      is deducible from $\Gamma$ in $\cL$. By induction hypothesis
+		      $$\Gamma \vdash_{\cL}\exists_y\left(\mu_i^*[y_{\mu_i[s/x]}/y_{\mu_i},y/x] \wedge s^*[y/y_s]\right) \leftrightarrow \mu_i[s/x]^*$$
+		      for every $i=1,...,k$. Thus
+		      $$\Gamma \vdash_{\cL} \exists_y\left(\nu[y_{\mu_1[s/x]}/y_{\mu_1},...,y_{\mu_l[s/x]}/y_{\mu_l}] \wedge s^*[y/y_s]\right) \leftrightarrow$$
+		      $$\leftrightarrow Fy_{\mu_1[s/x]}...y_{\mu_l[s/x]}y_{\mu[s/x]} \wedge \bigwedge_{i=1}^k \mu_i[s/x]^*$$
+		      Note that
+		      $$\mu[s/x]^* \equiv \exists_{y_{\mu_1[s/x]}}...\exists_{y_{\mu_l[s/x]}}\left(Fy_{\mu_1[s/x]}...y_{\mu_l[s/x]}y_{\mu[s/x]} \wedge \bigwedge_{i=1}^k \mu_i[s/x]^*\right)$$
+          Combining all these results together and using Proposition \ref{proposition:commutativity_of_quantifiers} we infer
+		      $$\Gamma \vdash_{\cL} \exists_y\left(\mu^*[y_{\mu[s/x]}/y_\mu,y/x] \wedge s^*[y/y_s]\right) \leftrightarrow \mu[s/x]^*$$
+        \item Suppose that $\mu$ is an atomic formula of the form $r\mu_1...\mu_n$ where $r$ is an $n$-ary relation symbol and $\mu_1,...\mu_n$ are terms, then the proof is analogous to the above.
+        \item If $\mu$ has one of the forms
+		      $$(\mu_1 \ra \mu_2), (\mu_1 \wedge \mu_2), (\mu_1 \vee \mu_2)$$
+          for some formulas $\mu_1,\mu_2$, then the assertion for $\mu^*$ follows form Proposition \ref{proposition:interplay_between_existential_quantifier_and_connectives_under_unique_existential_quantifier}.
+        \item Suppose that $\mu$ is of the form $\forall_z\,\eta$ where $z$ is a variable distinct from $x$ and $\eta$ is in $\fU$. Since by assumption $s$ is substitutable in $\mu$ for $x$, we derive that $z$ does not occur in $s$. Hence $z$ does not occur in $s^*$ and
+          $$\vdash_{\cL} \exists_y\left(\forall_z\,\eta^*[y/x]\wedge s^*[y/y_s]\right) \leftrightarrow \exists_y\forall_z\left(\eta^*[y/x] \wedge s^*[y/y_s]\right)$$
+          Proposition \ref{proposition:interplay_between_general_and_existential_quantifier_under_unique_existential_quantifer} and the fact that $s^*$ is functional formula in $\Gamma$ with respect to $y_s$ imply that
+          $$\Gamma \vdash_{\cL} \exists_y\forall_z\left(\eta^*[y/x] \wedge s^*[y/y_s]\right) \leftrightarrow \forall_z\exists_y\left(\eta^*[y/x] \wedge s^*[y/y_s]\right)$$
+          Next by induction hypothesis we infer
+          $$\Gamma \vdash_{\cL} \forall_z\exists_y\left(\eta^*[y/x] \wedge s^*[y/y_s]\right) \leftrightarrow \forall_z\,\eta[s/x]^*$$
+          Combining all these facts we deduce that
+          $$\Gamma \vdash_{\cL} \exists_y\left(\forall_z\,\eta^*[y/x]\wedge s^*[y/y_s]\right) \leftrightarrow \forall_z\,\eta[s/x]^*$$
+          which is exactly
+          $$\Gamma \vdash_{\cL} \exists_y\left(\mu^*[y/x] \wedge s^*[y/y_s]\right) \leftrightarrow \mu[s/x]^*$$
+        \item If $\mu$ is of the form $\exists_z\,\eta$ where $z$ is a variable distinct from $x$ and $\eta$ is in $\fU$, then the assertion follows from Proposition \ref{proposition:commutativity_of_quantifiers}. The details are left for the reader.
+        \item If $\mu$ is has one of the forms
+          $$\forall_x\,\eta,\exists_x\,\eta$$
+          for some $\eta$ in $\fU$, then the assertion follows from the fact that $s^*$ is functional formula in $\Gamma$.
+	\end{enumerate}
+  
+  Suppose that $\mu$ is a formula in $\fU$. Assume that $s$ is a term in $\fU$ and $x$ is a variable such that $s$ is substitutable in $\mu$ for $x$ and $\mu[s/x]$ is in $\fU$. We combine Fact 6 with
+  $$\vdash_{\cL} \exists_y\left(\mu^*[y/x] \wedge s^*[y/y_s]\right) \ra \exists_x\,\mu^*$$
+  and
+  $$\vdash_{\cL} \forall_x\,\mu^* \ra \exists_y\left(\mu^*[y/x] \wedge s^*[y/y_s]\right)$$
+  for variable $y$ not in $V$ and distinct from $y_t$ for all terms $t$ in $\fU$. Thus we derive that
+  $$\Gamma \vdash_{\cL} \mu[s/x]^* \ra \exists_x\,\mu^*$$
+  and
+  $$\Gamma \vdash_{\cL} \forall_x\,\mu^* \ra \mu[x/s]^*$$
+  
+  Now we show that $D_1^*,...,D_m^*$ gives rise to a deduction of $\phi^*$ from $\Gamma$.
+
+  Suppose that $D_k$ is any axiom of $\cL[f]$. Since the translation $\mu \mapsto \mu^*$ preserves connectives and quantifiers, we deduce that $D_k^*$ is an axiom of $\cL$ provided that $D_k$ is not an instance of universal instantiation or existential introduction. On the other hand the consequence of Fact 6 presented above implies that $D_k^*$ is provable from $\Gamma$ if it is an instance of universal instantiation or existential introduction.
+
+  Note also that
+  $$\bigg(\forall_{x_1}...\forall_{x_{l}}\,Fx_1...x_lfx_1...x_{l}\bigg)^*  \equiv $$
+  $$\equiv \forall_{x_1}...\forall_{x_{l}}\exists_{y_{x_1}}...\exists_{y_{x_l}}\exists_{y_{fx_1...x_k}}\left(Fy_{x_1}...y_{x_l}y_{fx_1...x_{l}} \wedge y_{x_1} = x_1 \wedge ... \wedge y_{x_l} = x_l\right)$$
+is provable from $\Gamma$ in $\cL$. 
+
+  Finally, if $D_j \equiv (D_i \ra D_k)$ for some $i,j < k$, then $D_j^* \equiv (D_i^* \ra D_k^*)$.
+
+  It follows that
+  $$D_1^*,...,D_m^*$$
+  is a deduction of $\phi^*$ from consequences of $\Gamma$ in $\cL$. Hence $\Gamma \vdash_{\cL} \phi^*$. Since $\vdash_{\cL} \phi^* \leftrightarrow \phi$ according to Fact 4, we deduce that $\phi$ is deducible from $\Gamma$ in $\cL$.
+
+  Since $\phi$ is arbitrary formula of $\cL$ such that $\Gamma[f] \vdash_{\cL[f]} \phi$, this completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+  For each $\theta$ in $\cF$ we introduce fresh relation symbol $F_{\theta}$ of the arity equal to the number of free variables of $\theta$. The collection of these newly introduced relation symbols is denoted by $\cR$. Let $\cM$ be a first-order language obtained from $\cL[\cF]$ by adding $F_{\theta}$ for each $\theta$ in $\cF$. Next we define $\Delta$ to be the collection of formulas of $\cM$ obtained from $\Gamma$ by adding
+  $$\forall_{x_1}...\forall_{x_l}\forall_{y_{\theta}}\left(\theta \leftrightarrow F_{\theta}x_1...x_ly_{\theta}\right),\,\forall_{x_1}...\forall_{x_l}F_{\theta}x_1...x_lf_{\theta}x_1...x_l$$
+  for each $\theta$ in $\cF$. Above we assume that $x_1,...,x_l,y_{\theta}$ are all variables that occur free in $\theta$ and that 
+  $$\Gamma \vdash_{\cL} \forall_{x_1}...\forall_{x_l}\exists!_{y_{\theta}}\,\theta$$
+  for every $\theta$ in $\cF$.
+
+  Suppose that $\phi$ is a formula of $\cL$ such that $\Gamma[\cF] \vdash_{\cL[\cF]} \phi$. First note that if $\psi$ is a formula in $\Gamma[\cF]$, then $\Delta \vdash_{\cM}\psi$. Hence $\Delta \vdash_{\cM} \phi$. There are only finitely many newly introduced relation and function symbols which are involved in some fixed deduction of $\phi$ from $\Delta$ in $\cM$. Suppose that these are
+  $$F_{\theta_1},...,F_{\theta_n},f_{\theta_1},...,f_{\theta_n}$$
+  for some $\theta_1,...,\theta_n$ in $\cF$. First by repeated application of Lemma \ref{lemma:extension_by_single_definite_description_of_function_is_conservative} we may eliminate $f_{\theta_1},...,f_{\theta_n}$. Next by Theorem \ref{theorem:extension_by_relational_symbols_is_conserative} we derive that $\Gamma \vdash_{\cL}\phi$. Since $\phi$ is arbitrary formula of $\cL$ such that $\Gamma[\cF] \vdash_{\cL[\cF]} \phi$, the proof is completed.
+\end{proof}
+
+\section{Intuitionistic and classical logic}
+\noindent
+In this section we fix a first-order language $\cL$.
+
+\begin{definition}
+	If we add the following propositional axiom schema to the propositional axioms of minimal logic $\perp \ra \phi$ for every formula $\phi$ of $\cL$, we obtain the propositional axiom schemas of \textit{intuitionistic logic}.
+\end{definition}
+
+\begin{definition}
+	If we add the following propositional axiom schema to the propositional axioms of minimal logic $\left(\neg (\neg \phi)\right) \ra \phi$
+	for every formula $\phi$ of $\cL$, we obtain the propositional axiom schemas of \textit{classical logic}.
+\end{definition}
+
+\begin{fact}\label{fact:classical_amd_intuitionistic_are_stronger_than_minimal}
+	Let $\Gamma$ be a collection of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. If $\phi$ is deducible from $\Gamma$ in minimal system, then it is also deducible from $\Gamma$ in intuitionistic and classical systems.
+\end{fact}
+\begin{proof}
+	Follows immediately from definitions of minimal, intuitionistic and classical systems.
+\end{proof}
+\noindent
+Now we prove famous \textit{ex falso sequitur quodlibet}. It was first obtained by medieval logicians in classical scholastic period.
+
+\begin{fact}\label{fact:classical_logic_proves_ex_falso_sequitur_quodlibet}
+	Let $\phi$ be a formula of $\cL$. Then all generalizations of $\perp \ra \phi$ are provable in classical logic.
+\end{fact}
+\begin{proof}
+	Consider the following sequence of formulas of $\cL$.
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item $\perp$
+		\item $\perp \ra \left((\phi \ra \perp)\ra \perp\right)$
+		\item $(\phi \ra \perp)\ra \perp$
+		\item $\left((\phi \ra \perp)\ra \perp\right) \ra \phi$
+		\item $\phi$
+	\end{enumerate}
+	Note that \textbf{1} is an axiom. Next \textbf{3} is obtained by modus ponens from \textbf{1} and \textbf{2}. Observe that \textbf{4} is axiom of classical logic. Then \textbf{5} is obtained by modus ponens from \textbf{3}, \textbf{4}. Thus the sequence above is a deduction of $\phi$ from $\perp$ from in classical calculus. Applying Theorem \ref{theorem:deduction_theorem} we infer $\perp \ra \phi$ is deducible in classical logic. Next by Theorem \ref{theorem:variable_generalization_rule} we derive that all generalizations of $\perp \ra \phi$ are provable in classical logic. This completes the proof.
+\end{proof}
+
+\begin{corollary}\label{corollary:classical_logic_is_stronger_than_intuitionistic_logic}
+	Let $\Gamma$ be a collection of formulas of $\cL$ and let $\phi$ be a formula of $\cL$. If $\phi$ is deducible from $\Gamma$ in inutitionistic system, then it is also deducible from $\Gamma$ in classical system.
+\end{corollary}
+\begin{proof}
+	It is immediate consequence of Fact \ref{fact:classical_logic_proves_ex_falso_sequitur_quodlibet}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
