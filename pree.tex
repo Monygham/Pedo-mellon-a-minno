@@ -20,12 +20,17 @@
 }
 \usepackage{marginnote}
 \usepackage{mathrsfs} % fancy font
+\usepackage{float}
 \usepackage{tikz}          
 \usetikzlibrary{matrix,arrows}  % commutative diagrams
 \usetikzlibrary{graphs}    % petersen as you may know
 \usetikzlibrary{shapes,arrows} % control flow
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing}
 
-\usepackage[margin=10pt,font=normalsize,labelfont=bf, labelsep=endash]{caption}
+
+\usepackage[margin=7pt,font=normalsize,labelfont=bf, labelsep=endash]{caption}
 %\usepackage{bussproofs} % sequent calculus
 
 \usepackage{listings}
@@ -83,6 +88,21 @@ literate={ą}{{\k{a}}}1 {ę}{{\k{e}}}1 {ć}{{\'c}}1 {ł}{{\l}}1 {ń}{{\'n}}1 {ó
 \thm@postskip=2pt}
 \makeatother
 
+
+\newtheoremstyle{plaincustom}
+  {6pt}{6pt}
+  {\itshape}
+  {-0.3em}
+  {\bfseries}
+  {.}
+  {0.5em}
+  {
+    \thmname{#1}%
+    \thmnumber{ #2}%
+    \thmnote{\normalfont\space[#3]}%
+  }
+
+\theoremstyle{plaincustom}
 \newtheorem{theorem}{Theorem}[section]
 
 \newtheorem{corollary}[theorem]{Corollary}
@@ -242,7 +262,7 @@ literate={ą}{{\k{a}}}1 {ę}{{\k{e}}}1 {ć}{{\'c}}1 {ł}{{\l}}1 {ń}{{\'n}}1 {ó
 \newcommand{\GrQcoh}{\mathfrak{GrQcoh}}
 \newcommand{\ModQcoh}{\mathfrak{ModQcoh}}
 
-
+\newcommand{\ar}[1]{\mathrm{#1}} 
 \newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\ideal}[1]{\mathfrak{#1}}
