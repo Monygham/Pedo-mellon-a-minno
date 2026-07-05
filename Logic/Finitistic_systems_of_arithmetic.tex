@@ -1,0 +1,1682 @@
+% arara: indent: {overwrite: yes, silent: yes}
+\documentclass[10pt]{amsart}
+\input ../pree.tex
+
+\newcommand{\godel}[1]{\ulcorner #1 \urcorner}
+
+\newcommand{\mforall}{\boldsymbol{\forall}}
+\newcommand{\mexists}{\boldsymbol{\exists}}
+\newcommand{\mra}{\boldsymbol{\Rightarrow}}
+\newcommand{\mequiv}{\boldsymbol{\Leftrightarrow}}
+\newcommand{\mand}{\boldsymbol{\wedge}}
+\newcommand{\mor}{\boldsymbol{\vee}}
+\newcommand{\mneg}{\boldsymbol{\neg}}
+\newcommand{\mle}{\boldsymbol{<}}
+\newcommand{\mge}{\boldsymbol{>}}
+\newcommand{\mleq}{\boldsymbol{\leq}}
+\newcommand{\mgeq}{\boldsymbol{\geq}}
+\newcommand{\meq}{\boldsymbol{=}}
+\newcommand{\mneq}{\boldsymbol{\neq}}
+\newcommand{\mplus}{\boldsymbol{+}}
+\newcommand{\mdot}{\boldsymbol{\cdot}}
+
+\begin{document}
+
+\title{Primitive recursive arithmetic}
+\maketitle{}
+
+\section{Introduction}
+\noindent
+In these notes we develop primitive recursive arithmetic. Although our development can be fully formalized in the first-order logic, we adopt a style analogous to set theory textbooks: rigorous but expressed using natural-language arguments rather than syntactical intricacies. The main difference is that, unlike set theory, our universe of discourse consists of natural numbers rather than sets. Consequently, all the theories we introduce share the feature that the range of their quantifiers is the set of natural numbers. Following Quine’s principle that quantifying carries ontological commitment we are in these notes committed to the existence of natural numbers.
+
+\section{First-order logic}
+\noindent
+We denote object-language variables by
+$$n,m,k,...$$
+In these notes variables range over \textit{natural numbers}. We also use
+$$\rm{n},\rm{m},\rm{k},...$$
+to denote natural numbers at meta-level. For example we write $\vec{n}$ for a tuple $(n_{\rm{1}},...,n_{\rm{n}})$ of object-language variables of length $\rm{n}$, where $\rm{n}$ is some meta-level natural number.
+
+We operate within classical deductive system introduced in \cite{Systems_of_first_order_logic}. Free variables in formulas are treated as parameters. No implicit universal closure is ever assumed. We implicitly use alphabetic variants and do not bother with the usual issues related to substitution. Moreover, we apply conservativity results described in \cite{Systems_of_first_order_logic}. Specifically, if $\cL$ is a first-order language and $\Gamma$ is a collection of formulas of $\cL$, then we freely extend $\cL$ and $\Gamma$ as follows.
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=3.0em]
+  \item For every $\rm{n}$-tuple $\vec{n}$ of variables and a formula $\Phi(\vec{n})$ we may add a fresh $\rm{n}$-ary relation symbol $R$ to $\cL$ and extend $\Gamma$ by adding
+	      $$\mforall_{\vec{n}}\,\left(\Phi(\vec{n}) \mequiv R(\vec{n})\right)$$
+	\item For every $\rm{n}$-tuple $\vec{n}$ of variables and a formula $\Phi(\vec{n},m)$ such that
+	      $$\Gamma \vdash \mforall_{\vec{n}}\mexists!_m\,\Phi(\vec{n},m)$$
+	      we may add a fresh $\rm{n}$-ary function symbol $F$ to $\cL$ and extend $\Gamma$ by adding
+	      $$\mforall_{\vec{n}}\,\Phi(\vec{n},F(\vec{n}))$$
+	\item For every $\rm{n}$-tuple $\vec{n}$ of variables and a formula $\Phi(\vec{n},m)$ such that
+	      $$\Gamma \vdash \mexists_m\,\Phi(\vec{n},m)$$
+	      we may add a fresh constant symbol $c$ to $\cL$ and extend $\Gamma$ by adding $\Phi(\vec{n},c)$.
+\end{enumerate}
+\noindent
+In these notes a theorem, proposition, fact, lemma or corollary labeled by a collection of formulas $\Gamma$ denotes a statement derivable in $\Gamma$ and the accompanying proof is intended to be formalizable in $\Gamma$. Unlabeled theorems are meta-theorems.
+
+\section{The system of primitive recursive arithmetic}
+\noindent
+In this section we introduce the system $\mathrm{PRA}$. The language of $\mathrm{PRA}$ consists only of function symbols. It contains base symbols
+\begin{itemize}
+	\item[] \textbf{Zero symbols.}
+
+    $\underbrace{\bd{Z}_{\rm{k}}}_{\rm{k-ary}}$ for every arity $\rm{k}$. Also $\bd{Z}_{\rm{0}}$ is denoted by $0$.
+	\item[] \textbf{The successor.}
+
+		$\underbrace{\bd{S}}_{\mathrm{unary}}$
+	\item[] \textbf{Projection symbols.}
+
+    $\underbrace{\bd{I}^{\rm{i}}_{\rm{k}}}_{\rm{k-ary}}$ for every nonzero arity $\rm{k}$ and $\rm{1} \mleq \rm{i} \mleq k$.
+\end{itemize}
+and is defined inductively by the following operations.
+\begin{itemize}
+	\item[] \textbf{Composition.}
+
+    If $G$ is a $\rm{k}$-ary symbol and $F_{\rm{1}},...,F_{\rm{k}}$ are $\rm{m}$-ary symbols, then $\mathrm{comp}(G,F_{\rm{1}},...,F_{\rm{k}})$ is a $\rm{m}$-ary symbol. We say that $\mathrm{comp}(G,F_{\rm{1}},...,F_{\rm{k}})$ is obtained from $G,F_{\rm{1}},...,F_{\rm{k}}$ by \textit{composition}.
+	\item[] \textbf{Primitive recursion.}
+
+    If $G$ is $\rm{(k+2)}$-ary symbol and $F$ is a $\rm{k}$-ary symbol, then $\mathrm{prim}(G,F)$ is a $\rm{(k+1)}$-ary symbol. We say that $\mathrm{prim}(G,F)$ is obtained from $G,F$ by \textit{primitive recursion}.
+\end{itemize}
+
+\begin{definition}
+	Function symbols of the language of $\mathrm{PRA}$ are called \textit{primitive recursive} functions.
+\end{definition}
+
+The nonlogical axioms of $\mathrm{PRA}$ are universal closures of the following formulas.
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=3.0em]
+	\item $\bd{Z}_{\rm{k}}(\vec{n}) \meq 0$ for $\rm{k}$-tuple $\vec{n}$ of variables.
+	\item $\bd{S}(n) \mneq 0$
+  \item $\bd{I}^{\rm{i}}_{\rm{k}}(\vec{n}) \meq n_{\rm{i}}$ for $\rm{k}$-tuple $\vec{n}$ of variables and all $\rm{1} \mleq \rm{i} \mleq \rm{k}$.
+  \item If $G$ is a $\rm{k}$-ary symbol and $F_{\rm{1}},...,F_{\rm{k}}$ are $\rm{m}$-ary symbols, then
+    $$\mathrm{comp}(G,F_{\rm{1}},...,F_{\rm{k}})(\vec{n}) \meq G\left(F_{\rm{1}}(\vec{n}),...,F_{\rm{k}}(\vec{n})\right)$$
+	      for $\rm{m}$-tuple $\vec{n}$ of variables.
+      \item If $G$ is $\rm{(k+2)}$-ary symbol and $F$ is a $\rm{k}$-ary symbol, then
+	      $$\mathrm{prim}(G,F)(\vec{n},0) \meq F(\vec{n})$$
+	      and
+	      $$\mathrm{prim}(G,F)\left(\vec{n},S(m)\right) \meq G\left(\vec{n},m,\mathrm{prim}(G,F)(\vec{n},m)\right)$$
+	      where $\vec{n}$ is a $\rm{k}$-tuple of variables and $n$ is a variable distinct from $\vec{n}$.
+	\item \textbf{Induction axiom schema.}
+
+	      Suppose that $\Phi(\vec{n},m)$ is a quantifier-free formula in the language of $\mathrm{PRA}$. Then
+	      $$\big(\Phi(\vec{n},0) \mand \mforall_m\left(\Phi(\vec{n},m) \mra \Phi(\vec{n},S(m))\right)\big) \mra \mforall_m\,\Phi(\vec{n},m)$$
+\end{enumerate}
+\noindent
+In addition to this nonlogical axioms $\mathrm{PRA}$ has usual first-order axioms with identity.
+
+From now on unless otherwise stated formulas are always understood to be formulas of the language of $\mathrm{PRA}$.
+
+\section{Rudimentary results in primitive recursive arithmetic}
+\noindent
+The reader my find this section rather dry and tedious. The goal here is to show that the most rudimentary facts on natural numbers can be proved in $\mathrm{PRA}$. First we introduce familiar notation.
+
+\begin{definition}
+	$1 \meq \bd{S}(0),2 \meq \bd{S}(\bd{S}(0)),...$
+\end{definition}
+
+\begin{definition}
+	$\bd{P}(0) \meq 0,\,\bd{P}(\bd{S}(n)) \meq n$.
+\end{definition}
+
+\begin{corollary}[$\mathrm{PRA}$]\label{corollary:the_successor_is_injective}
+	The function $\bd{S}$ is injective.
+\end{corollary}
+\begin{proof}
+	If $\bd{S}(n) \meq \bd{S}(m)$, then $n \meq \bd{P}(\bd{S}(n)) \meq \bd{P}(\bd{S}(m)) \meq m$.
+\end{proof}
+
+\begin{corollary}[$\mathrm{PRA}$]\label{corollary:nonzero_is_successor}
+	If $n \mneq 0$, then there exists $m$ such that $\bd{S}(m) \meq n$.
+\end{corollary}
+\begin{proof}
+	We prove the assertion by induction on $n$. For $n \meq 0$ it is clear. Suppose that it holds for some $n$. Then
+	$$\bd{S}\left(\bd{P}\left(\bd{S}(n)\right)\right) \meq \bd{S}(n)$$
+	and hence it holds for $\bd{S}(n)$. Thus formula in question is universally valid.
+\end{proof}
+\noindent
+Next we introduce addition and multiplication.
+
+\begin{definition}
+	$n \mplus 0 \meq n,\,n \mplus \bd{S}(m) \meq \bd{S}(n \mplus m)$
+\end{definition}
+
+\begin{definition}
+	$n\mdot 0 \meq 0,\,n\mdot \bd{S}(m) \meq n\mdot m \mplus n$
+\end{definition}
+
+\begin{theorem}[$\mathrm{PRA}$]\label{theorem:basic_properties_of_addition_and_multiplication}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $n \mplus m \meq m \mplus n$
+		\item $(n \mplus m) \mplus k \meq n \mplus (m \mplus k)$
+		\item $n \mplus k \meq m \mplus k \mra n \meq m$
+		\item $n \mplus m \meq 0 \mra (n \meq 0 \mand m \meq 0)$
+		\item $n\mdot (m \mplus k) \meq x\mdot m \mplus n\mdot k$
+		\item $n\mdot m \meq m \mdot n$
+		\item $(n \mdot m) \mdot k \meq n \mdot (m \mdot k)$
+		\item $n\mdot m \meq 0 \mra (n \meq 0 \mand m \meq 0)$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	We leave the proof as the exercise.
+\end{proof}
+\noindent
+Now we introduce ordering relation.
+
+\begin{definition}
+	$n \mleq m \equiv \mexists_k\,m \meq k \mplus n$
+\end{definition}
+
+\begin{definition}
+	$n \mle m \equiv n\mleq m \mand n \mneq m$
+\end{definition}
+\noindent
+In order to prove that ordering relation is quantifier-free we need truncated subtraction function.
+
+\begin{definition}
+	$n\dotminus 0 \meq n,\,n\dotminus \bd{S}(m) \meq \bd{P}\left(n\dotminus m\right)$
+\end{definition}
+
+\begin{proposition}[$\mathrm{PRA}$]\label{proposition:truncated_subtraction_and_difference}
+	The following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $n \mleq m$
+		\item $m \meq (m \dotminus n) \mplus n$
+	\end{enumerate}
+\end{proposition}
+\noindent
+For the proof we need the following result.
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:basic_properties_of_truncated_subtraction}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $\bd{S}(m)\dotminus \bd{S}(n) \meq m \dotminus n$
+		\item $(k \mplus n) \dotminus n \meq k$ for every $n$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	The proof of \textbf{(1)} goes by induction on $n$. For base case we have
+	$$\bd{S}(m) \dotminus \bd{S}(0) \meq \bd{P}(\bd{S}(m)\dotminus 0) \meq \bd{P}(\bd{S}(m)) \meq m \meq m\dotminus 0$$
+	Suppose that the assertion holds for some $n$. Then
+	$$\bd{S}(m)\dotminus \bd{S}(\bd{S}(n)) \meq \bd{P}(\bd{S}(m) \dotminus \bd{S}(n)) \underbrace{\meq}_{\mathrm{induction\,hypothesis}}\bd{P}(m\dotminus n) \meq m \dotminus \bd{S}(n)$$
+	This proves that \textbf{(1)} holds.
+
+	The proof of \textbf{(2)} goes by induction on $n$. The base case is $k\dotminus 0 \meq k$ and this follows by definition of $\dotminus$. Suppose that $(k \mplus n)\dotminus n \meq k$ for some $n$. Then
+	$$\left(k \mplus \bd{S}(n)\right) \dotminus \bd{S}(n) \meq \bd{S}(k \mplus n) \dotminus \bd{S}(n) \underbrace{\meq}_{\textbf{(1)}}(k \mplus n) \dotminus n \underbrace{\meq}_{\mathrm{induction\,hypothesis}} k$$
+	This completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of the proposition]
+	Suppose that \textbf{(i)} holds. Then there exists $k$ such that $m \meq k \mplus n$. We have
+	$$k \underbrace{\meq}_{\mathrm{Lemma\,}\ref{lemma:basic_properties_of_truncated_subtraction}} (k \mplus n) \dotminus n \meq m \dotminus n$$
+	and hence $m \meq (m\dotminus n) \mplus n$. This is \textbf{(ii)}.
+
+	The implication $\textbf{(ii)}\Rightarrow \textbf{(i)}$ is obvious.
+\end{proof}
+
+\begin{theorem}[$\mathrm{PRA}$]\label{theorem:order_is_linear_and_compatible_with_addition_and_multiplication}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $0 \mleq n$
+		\item $n \mleq n$
+		\item $n \mle m \mequiv \mexists_k\left(k \mneq 0 \mand n \meq k \mplus n\right)$
+  	\item $\left(n \mleq m \mand m \mleq k\right) \mra n \mleq k$
+		\item $\left(n \mleq m \mor m \mleq x\right)$
+		\item $n \mleq m \mra x\mdot k \mleq m \mdot k$
+		\item $n \mleq m \mra n \mplus k \mleq m \mplus k$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	According to Proposition \ref{proposition:truncated_subtraction_and_difference} formula $n \mleq m$ is equivalent to a quantifier-free formula. We only prove assertion \textbf{(4)} and leave the rest for the reader. Fix $n$ as a parameter and prove by induction on $m$ that $n \mleq m$ or $m \mleq n$. Note that $0 \mleq n$ according to \textbf{(1)}. This proves the base case. Suppose that the assertion holds for some $m$. We consider cases.
+	\begin{itemize}
+		\item If $n \mleq m$, then there exists $z$ such that $m \meq k \mplus n$. Note that
+		      $$\bd{S}(m) \meq \bd{S}(k \mplus n) \underbrace{\meq}_{\mathrm{Theorem\,}\ref{theorem:basic_properties_of_addition_and_multiplication}} \bd{S}(n \mplus k) \meq n \mplus \bd{S}(k) \underbrace{\meq}_{\mathrm{Theorem\,}\ref{theorem:basic_properties_of_addition_and_multiplication}} \bd{S}(k) \mplus n$$
+		      and hence $n \mleq \bd{S}(m)$.
+		\item If $m \meq n$, then
+		      $$\bd{S}(m) \meq \bd{S}(n)  \meq n \mplus 1 \underbrace{\meq}_{\mathrm{Theorem\,}\ref{theorem:basic_properties_of_addition_and_multiplication}} 1 \mplus n$$
+		      and hence $n \mleq \bd{S}(m)$.
+		\item If $m \mleq n$ and $m \mneq n$, then by definition $m \mle n$. Hence by \textbf{(3)} there exists $k \mneq 0$ such that $n \meq k \mplus m$. Corollary \ref{corollary:nonzero_is_successor} implies that there exists $l$ such that $k \meq \bd{S}(l)$. Thus
+		      $$n \meq k \mplus m \meq \bd{S}(l) \mplus m \underbrace{\meq}_{\mathrm{Theorem\,}\ref{theorem:basic_properties_of_addition_and_multiplication}} m \mplus \bd{S}(l) \meq \bd{S}(m \mplus l) \underbrace{\meq}_{\mathrm{Theorem\,}\ref{theorem:basic_properties_of_addition_and_multiplication}} \bd{S}(l \mplus m) \meq l \mplus \bd{S}(m)$$
+		      This proves that $\bd{S}(m) \mleq n$.
+	\end{itemize}
+	Thus $n \mleq \bd{S}(m)$ or $\bd{S}(m) \mleq n$. Hence \textbf{(4)} follows by induction on $m$.
+\end{proof}
+
+\section{Primitive recursive formulas and characteristic functions}
+\noindent
+This section is devoted to important meta-theorems.
+
+Although it is very basic, it is worth noting, in order to make presentation rigorous that the composition of $\bd{S}$ and the zero function gives rise for every $\rm{k}$ to the constant $\rm{k}$-ary function that admits value $1$. By convention we denote this function by $1$ and assume that its use is clear from the context.
+
+\begin{definition}
+	$\mathrm{sign}(0) \meq 0,\,\mathrm{sign}(\bd{S}(n)) \meq 1$
+\end{definition}
+
+\begin{definition}
+	Let $\Phi(\vec{n})$ be a formula and let $C$ be a primitive recursive function. Suppose that
+	$$\mathrm{PRA}\vdash \mforall_{\vec{n}}\left(C(\vec{n}) \meq 0 \mor C(\vec{n}) \meq 1\right) \mand \mforall_{\vec{n}}\left(\Phi(\vec{n}) \mequiv C(\vec{n}) \meq 1\right)$$
+	Then $C$ is a \textit{characteristic function} of $\Phi(\vec{n})$.
+\end{definition}
+
+\begin{definition}
+	A formula $\Phi(\vec{n})$ that admits a characteristic function is \textit{primitive recursive}.
+\end{definition}
+
+\begin{theorem}\label{theorem:primitive_recursive_are_equivalent_to_quantifier_free}
+	Let $\Phi(\vec{n})$ be a formula. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item $\Phi(\vec{n})$ is primitive recursive.
+		\item There exists a quantifier-free formula $\Theta(\vec{n})$ such that
+		      $$\mathrm{PRA}\vdash \Phi(\vec{n}) \mequiv \Theta(\vec{n})$$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	The implication $\textbf{(i)} \Rightarrow \textbf{(ii)}$ is straightforward.
+
+	We construct a characteristic function $C_{\Phi}$ for every quantifier-free formula $\Phi(\vec{n})$. The construction goes by induction on the complexity of $\Phi(\vec{n})$.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $\Phi(\vec{n})$ is of the form $F_{\rm{1}}(\vec{n}) \meq F_{\rm{2}}(\vec{n})$ where $F_{\rm{1}},F_{\rm{2}}$ are function symbols. Then we define
+		      $$C_{\Phi}(\vec{n}) \meq 1 \dotminus \mathrm{sign}\big(F_{\rm{1}}(\vec{n}) \dotminus F_{\rm{2}}(\vec{n}) \mplus F_{\rm{2}}(\vec{n}) \dotminus F_{\rm{1}}(\vec{n})\big)$$
+		      Clearly the right hand side is defined in terms of composition from $\mathrm{sign},\mplus,\dotminus,F_{\rm{1}},F_{\rm{2}}$.
+
+		      We prove that $C_{\Phi}$ is a characteristic function for $\Phi(\vec{n})$. Clearly $C_{\Phi}(\vec{n}) \meq 0,1$ for all $\vec{n}$. Moreover, by definition of $\dotminus$ and $\mathrm{sign}$ the formula $C_{\Phi}(\vec{n}) \meq 1$ is equivalent to
+		      $$F_{\rm{1}}(\vec{n}) \dotminus F_{\rm{2}}(\vec{n}) \mplus F_{\rm{2}}(\vec{n}) \dotminus F_{\rm{1}}(\vec{n}) \meq 0$$
+		      By Proposition \ref{proposition:truncated_subtraction_and_difference} and Theorem \ref{theorem:order_is_linear_and_compatible_with_addition_and_multiplication} this last formula is provably equivalent in $\mathrm{PRA}$ to $F_{\rm{1}}(\vec{n}) \meq F_{\rm{2}}(\vec{n})$.
+
+		\item $\Phi(\vec{n})$ is $\Psi_{\rm{1}}(\vec{n}) \mor \Psi_{\rm{2}}(\vec{n})$ for formulas $\Psi_{\rm{1}}(\vec{n})$ and $\Psi_{\rm{2}}(\vec{n})$ with characteristic functions $C_{\Psi_{\rm{1}}}(\vec{n})$ and $C_{\Psi_{\rm{2}}}(\vec{n})$, respectively. Then
+		      $$C_{\Phi}(\vec{n}) \meq \mathrm{sign}\left(C_{\Psi_{\rm{1}}}(\vec{n}) \mplus C_{\Psi_{\rm{2}}}(\vec{n})\right)$$
+		      is a characteristic function of $\Phi(\vec{n})$.
+		\item $\Phi(\vec{n})$ is $\Psi_{\rm{1}}(\vec{n}) \mand \Psi_{\rm{2}}(\vec{n})$ for formulas $\Psi_{\rm{1}}(\vec{n})$ and $\Psi_{\rm{2}}(\vec{n})$ with characteristic functions $C_{\Psi_{\rm{1}}}(\vec{n})$ and $C_{\Psi_{\rm{2}}}(\vec{n})$, respectively. Then
+		      $$C_{\Phi}(\vec{n}) \meq C_{\Psi_{\rm{1}}}(\vec{n}) \mdot C_{\Psi_{\rm{2}}}(\vec{n})$$
+		      is a characteristic function of $\Phi(\vec{n})$.
+		\item $\Phi(\vec{n})$ is $\mneg \Psi(\vec{n})$ for some formula $\Psi(\vec{n})$ with characteristic function $C_{\Psi}(\vec{n})$. Then
+		      $$C_{\Phi}(\vec{n}) \meq 1 \dotminus C_{\Psi}(\vec{n})$$
+		      is a characteristic function of $\Phi(\vec{n})$.
+		\item $\Phi(\vec{n})$ is $\Psi_{\rm{1}}(\vec{n}) \mra \Psi_{\rm{2}}(\vec{n})$  for formulas $\Psi_{\rm{1}}(\vec{n})$ and $\Psi_{\rm{2}}(\vec{n})$ with characteristic functions $C_{\Psi_{\rm{1}}}(\vec{n})$ and $C_{\Psi_{\rm{2}}}(\vec{n})$, respectively. Since $\Psi_{\rm{1}}(\vec{n}) \mra \Psi_{\rm{2}}(\vec{n})$ is logically equivalent to $\left(\mneg \Psi_{\rm{1}}(\vec{n})\right) \mor \Psi_{\rm{2}}(\vec{n})$ this case reduces to previously considered cases.
+	\end{enumerate}
+	Thus each quantifier-free formula admits a characteristic function. Since the collection of formulas that admit characteristic functions is closed under equivalence in $\mathrm{PRA}$, we infer that the each formula provably equivalent in $\mathrm{PRA}$ to quantifier-free formula admits a characteristic function. This completes the proof of $\textbf{(ii)} \Rightarrow \textbf{(i)}$.
+\end{proof}
+
+\begin{corollary}\label{corollary:primitive_recursive_formulas_are_closed_under_connectives}
+	The collection of primitive recursive formulas is closed under $\mand, \mor, \mra, \neq$.
+\end{corollary}
+\begin{proof}
+	By Theorem \ref{theorem:primitive_recursive_are_equivalent_to_quantifier_free} primitive recursive formulas are provably equivalent in $\mathrm{PRA}$ to quantifier-free formulas. By definition quantifier-free fornulas are closed under $\mand, \mor, \mra, \neq$. Hence primitive recursive formulas are closed under $\mand, \mor, \mneg, \mra$.
+\end{proof}
+
+\begin{corollary}\label{corollary:definition_by_primitive_recursive_cases}
+  Let $F_{\rm{i}}$ be a $\rm{k}$-ary primitive recursive function for $\rm{i}\meq\rm{1},...,\rm{n}$. Suppose that $\vec{n}$ is a $\rm{k}$-tuple of variables. Let $\Phi_{\rm{i}}(\vec{n})$ be primitive recursive formulas for $\rm{i} \meq \rm{1},...,\rm{n}$ such that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $\mathrm{PRA}\vdash \mforall_{\vec{n}}\big(\Phi_{\rm{1}}(\vec{n}) \mor ... \mor \Phi_{\rm{n}}(\vec{n})\big)$
+    \item $\mathrm{PRA}\vdash \mforall_{\vec{n}}\big(\mneg \left(\Phi_{\rm{i}}(\vec{n})\mand \Phi_{\rm{j}}(\vec{n})\right)\big)$ for all $\rm{i} \mneq \rm{j}$ such that $\rm{i},\rm{j}\meq\rm{1},...,\rm{n}$.
+	\end{enumerate}
+	Then there exists $\rm{k}$-ary primitive recursive function $F$ such that
+	$$\mathrm{PRA} \vdash \mforall_{\vec{n}}\big(\Phi_{\rm{i}}(\vec{n}) \mra F(\vec{n}) \meq F_{\rm{i}}(\vec{n})\big)$$
+  for every $\rm{i}\meq\rm{1},...,\rm{n}$.
+\end{corollary}
+\begin{proof}
+  According to Theorem \ref{theorem:primitive_recursive_are_equivalent_to_quantifier_free} there exists a characteristic function $C_{\rm{i}}$ for $\Phi_{\rm{i}}(\vec{n})$ for $\rm{i}\meq\rm{1},...,\rm{n}$. We define
+	$$F(\vec{n}) \meq F_{\rm{1}}(\vec{n}) \mdot C_{\rm{1}}(\vec{n}) \mplus ... \mplus F_{\rm{n}}(\vec{n}) \mdot C_{\rm{n}}(\vec{n})$$
+	Then $F$ clearly satisfies the assertion.
+\end{proof}
+
+\section{Cummulative operators and bounded quantifiers}
+\noindent
+We introduce two basic operators.
+
+\begin{definition}
+	Let $F$ be a $\rm{(k + 1)}$-ary primitive recursive function. We define a \textit{cummulative sum}
+	$$(\vec{n},m) \mapsto \sum_{i \mle m}F(\vec{n},i)$$
+	by primitive recursion
+	$$\sum_{i \mle 0}F(\vec{n},i) \meq 0,\,\sum_{i \mle \bd{S}(m)}F(\vec{n},i) \meq F(\vec{n},m) \mplus \sum_{i \mle m}F(\vec{n},i)$$
+\end{definition}
+
+\begin{definition}
+	Let $F$ be a $\rm{(k + 1)}$-ary primitive recursive function. We define a \textit{cummulative product}
+	$$(\vec{n},m) \mapsto \prod_{i \mle m}F(\vec{n},i)$$
+	by primitive recursion
+	$$\prod_{i \mle 0}F(\vec{n},i) \meq 1,\,\prod_{i \mle \bd{S}(m)}F(\vec{n},i) \meq F(\vec{n},m)\mdot \prod_{i \mle m}F(\vec{n},i)$$
+\end{definition}
+
+\begin{remark}\label{remark:cummulative_operators_with_start_index}
+	Let $F$ be a $\rm{(k + 1)}$-ary primitive recursive function. Then we use the following notation
+	$$\sum_{k \mleq i \mle m}F(\vec{n},i) \equiv \sum_{i \mle m\dotminus k}F(\vec{n},i \mplus k),\,\prod_{k \mleq i \mle m}F(\vec{n},i) \meq \prod_{i \mle m \dotminus k}F(\vec{n}, i \mplus k)$$
+\end{remark}
+\noindent
+Next result establishes basic properties of cummulative operators.
+
+\begin{fact}\label{fact:basic_properties_of_cummulative_operators}
+	Let $F, G$ be $\rm{(k + 1)}$-ary primitive recursive functions.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $\mathrm{PRA}\vdash (k \mle m) \mra \sum_{i \mle m}F(\vec{n},i) \meq \sum_{i \mle k}F(\vec{n},i) \mplus \sum_{k \mleq i \mle m}F(\vec{n},i)$
+		\item $\mathrm{PRA}\vdash \sum_{i \mle m}F(\vec{n},i) \mplus \sum_{i \mle m}G(\vec{n},i) \meq \sum_{i \mle m}\left(F(\vec{n},i) \mplus G(\vec{n},i)\right)$
+		\item $\mathrm{PRA}\vdash (k \mle m) \mra \prod_{i \mle m}F(\vec{n},i) \meq \prod_{i \mle k}F(\vec{n},i) \mdot \prod_{k \mleq i \mle m}F(\vec{n},i)$
+		\item $\mathrm{PRA}\vdash \prod_{i \mle m}F(\vec{n},i) \mdot \prod_{i \mle m}G(\vec{n},i) \meq \prod_{i \mle m}\left(F(\vec{n},i) \mdot G(\vec{n},i)\right)$
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{remark}\label{remark:bounded_quantifiers}
+	We use the following notation
+	$$\mforall_{i \mle m}\,\Phi(\vec{n},i) \equiv \mforall_i\left(m \mleq i \mor \Phi(\vec{n},i)\right),\,\mexists_{i \mle m}\,\Phi(\vec{n},i) \equiv \mexists_i\left(i \mle m \mand \Phi(\vec{n},i)\right)$$
+	for every formula $\Phi(\vec{n},i)$.
+\end{remark}
+
+\begin{theorem}\label{theorem:primitive_recursive_formulas_are_closed_under_bounded_quantifiers}
+	Let $\Phi(\vec{n},i)$ be a primitive recursive formula. Then formulas
+	$$\mforall_{i \mle m}\,\Phi(\vec{n},i),\,\mexists_{i \mle m}\,\Phi(\vec{n},i)$$
+	are primitive recursive.
+\end{theorem}
+\noindent
+For the proof we need the following results.
+
+\begin{lemma}\label{lemma:bounded_universal_quantifiers_and_cummulative_products}
+	Let $F$ be a $\rm{(k + 1)}$-ary primitive recursive function. Then
+  $$\mathrm{PRA}\vdash \mforall_{i \mle m}\,F(\vec{n},i) \mge 0 \mequiv \left(k \mleq m \mra \prod_{i \mle k}F(\vec{n},i) \mge 0\right)$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Suppose that $F(\vec{n},i) \mge 0$ for every $i \mle m$. We prove
+	$$\left(k \mleq m \mra \prod_{i \mle k}F(\vec{n},i) \mge 0\right)$$
+	by induction on $k$. The base case is straightforward. Suppose that $k \mle m$ and $\prod_{i \mle k}F(\vec{n},i) \mge 0$. Then
+	$$\prod_{i \mle \bd{S}(k)}F(\vec{n},i) \meq F(\vec{n},k) \mdot \prod_{i \mle k}F(\vec{n},i) \underbrace{\mgeq}_{\mathrm{induction\,hypothesis}}F(\vec{n},k) \mdot 1 \meq F(\vec{n},k) \mge 0$$
+	and hence the assertion follows by induction.
+
+	Suppose that
+	$$\left(k \mleq m \mra \prod_{i \mle k}F(\vec{n},i) \mge 0\right)$$
+	holds. Pick $k \mle m$. Then
+	$$F(\vec{n},k)\mdot \prod_{i \mle k} F(\vec{n},i) \meq \prod_{i \mle \bd{S}(k)}F(\vec{n},i) \mge 0$$
+	Thus $F(\vec{n},k) \mge 0$. Therefore, $F(\vec{n},i) \mge 0$ for every $i \mle m$.
+\end{proof}
+
+\begin{lemma}\label{lemma:bounded_universal_quantifiers_and_cummulative_sums}
+	Let $F$ be a $\rm{(k + 1)}$-ary primitive recursive function. Then
+	$$\mathrm{PRA}\vdash \mforall_{i \mle m}\,F(\vec{n},i) \meq 0 \mequiv \left(k \mleq m \mra \sum_{i \mle k}\,F(\vec{n},i) \meq 0\right)$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Suppose that $F(\vec{n},i) \meq 0$ for every $i \mle m$. We prove
+	$$\left(k \mleq m \mra \sum_{i \mle k}F(\vec{n},i) \meq 0\right)$$
+	by induction on $k$. The base case is straightforward. Suppose that $k \mle m$ and $\sum_{i \mle k}F(\vec{n},i) \meq 0$. Then
+	$$\sum_{i \mle \bd{S}(k)}F(\vec{n},i) \meq F(\vec{n},k) \mplus \sum_{i \mle k}F(\vec{n},i) \underbrace{\meq}_{\mathrm{induction\,hypothesis}}F(\vec{n},k) \meq 0$$
+	and hence the assertion follows by induction.
+
+	Suppose that
+	$$\left(k \mleq m \mra \sum_{i \mle k}F(\vec{n},i) \meq 0\right)$$
+	holds. Pick $k \mle m$. Then
+	$$F(\vec{n},k) \mplus \sum_{i \mle k} F(\vec{n},i) \meq \sum_{i \mle \bd{S}(k)}F(\vec{n},i) \meq 0$$
+	Thus $F(\vec{n},k) \meq 0$. Therefore, $F(\vec{n},i) \meq 0$ for every $i \mle m$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	Let $C$ be a characteristic function of $\Phi(\vec{n},i)$.
+
+	According to Lemma \ref{lemma:bounded_universal_quantifiers_and_cummulative_products} we have $\mathrm{sign}\bigg(\prod_{i \mle m}C(\vec{n},i)\bigg) \meq 1$ if and only if $C(\vec{n},i) \meq 1$ for all $i \mle m$. Thus
+	$$(\vec{n},m) \mapsto \mathrm{sign}\bigg(\prod_{i \mle m}C(\vec{n},i)\bigg)$$
+	is a characteristic function of $\mforall_{i \mle m}\,\Phi(\vec{n},i)$.
+
+	According to Lemma \ref{lemma:bounded_universal_quantifiers_and_cummulative_sums} we have $\mathrm{sign}\bigg(\sum_{i \mle m}C(\vec{n},i)\bigg) \meq 1$ if and only if there exists $i \mle m$ such that $C(\vec{n},i) \meq 1$. Thus
+	$$(\vec{n},m) \mapsto \mathrm{sign}\bigg(\sum_{i \mle m}C(\vec{n},i)\bigg)$$
+	is a characteristic function of $\mexists_{i \mle m}\,\Phi(\vec{n},i)$.
+\end{proof}
+
+\section{Induction schemata and bounded minimum}
+\noindent
+Next meta-theorem establishes equivalence of schemata expressing versions of mathematical induction for primitive recursive formulas.
+
+\begin{theorem}\label{theorem:statements_equivalent_to_induction_axiom_schema_for_primitive_recursive_formulas}
+	The following schemata for primitive recursive formulas hold in $\mathrm{PRA}$.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}]
+		\item \emph{\textbf{Induction schema.}}
+		      $$\bigg(\Phi(\vec{n},0) \mand \mforall_m\left(\Phi(\vec{n},m) \mra \Phi(\vec{n},\bd{S}(m))\right)\bigg) \mra \mforall_m\,\Phi(\vec{n},m)$$
+		\item \emph{\textbf{Complete induction schema.}}
+		      $$\mforall_m\left(\mforall_{i \mle m}\,\Phi(\vec{n},i) \mra \Phi(\vec{n},m)\right) \mra \mforall_m\,\Phi(\vec{n},m)$$
+		\item \emph{\textbf{Minimum principle.}}
+		      $$\mexists_m\,\Phi(\vec{n},m) \mra \mexists_k\left(\Phi(\vec{n},k) \mand \mforall_m\left(\Phi(\vec{n},m) \mra k \mleq m\right)\right)$$
+		\item \emph{\textbf{Finite descent principle.}}
+		      $$\bigg(\mexists_m\,\Phi(\vec{n},m) \mand \mforall_{m}\left((\Phi(\vec{n},m) \mand m \mneq 0) \mra \mexists_{i \mle m}\,\Phi(\vec{n},i)\right)\bigg) \mra \Phi(\vec{n},0)$$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Theorem \ref{theorem:primitive_recursive_are_equivalent_to_quantifier_free} implies that \textbf{(i)} holds in $\mathrm{PRA}$. It suffices to prove that all schemata in the statement are equivalent in $\mathrm{PRA}$.
+
+	Suppose that \textbf{(i)} holds. Pick some primitive recursive formula $\Phi(\vec{n},i)$. Define a formula
+	$$\Psi(\vec{n},m) \equiv \mforall_{i \mle m}\,\Phi(\vec{n},i)$$
+	Then $\Psi(\vec{n},m)$ is primitive recursive according to Theorem \ref{theorem:primitive_recursive_formulas_are_closed_under_bounded_quantifiers}. Next assuming
+	$$\mforall_m\left(\mforall_{i \mle m}\,\Phi(\vec{n},i) \mra \Phi(\vec{n},m)\right)$$
+	we derive
+	$$\Psi(\vec{n},0) \mand \mforall_m\left(\Psi(\vec{n},m)\ra \Psi(\vec{n},\bd{S}(m)\right)$$
+	in $\mathrm{PRA}$. Since \textbf{(i)} holds, we infer that $\mforall_m\,\Psi(\vec{n},m)$. Thus $\mforall_m\mforall_{i \mle m}\,\Phi(\vec{n},i)$. Combining it with
+	$$\mforall_m\left(\mforall_{i \mle m}\,\Phi(\vec{n},i) \mra \Phi(\vec{n},m)\right)$$
+	and logical axiom
+	$$\mforall_m\left(\mforall_{i \mle m}\,\Phi(\vec{n},i) \mra \Phi(\vec{n},m)\right) \mra \left(\mforall_m\mforall_{i \mle m}\,\Phi(\vec{n},i) \mra \mforall_m\,\Phi(\vec{n},m)\right)$$
+	we infer that $\mforall_m\,\Phi(\vec{n},m)$. This proves that schema \textbf{(i)} implies schema \textbf{(ii)} in $\mathrm{PRA}$.
+
+	Fix a primitive recursive formula $\Phi(\vec{n},m)$ and suppose that $\mexists_m\,\Phi(\vec{n},m)$. Then it is not the case $\mforall_m\left(\mneg \Phi(\vec{n},m)\right)$. Note that $\mneg \Phi(\vec{n},m)$ is primitive recursive by Corollary \ref{corollary:primitive_recursive_formulas_are_closed_under_connectives}. If \textbf{(ii)} holds for $\mneg \Phi(\vec{n},m)$, then
+	$$\mforall_m\left(\mforall_{i \mle m}\left(\mneg \Phi(\vec{n},i)\right) \mra \left(\mneg \Phi(\vec{n},m)\right)\right)$$
+	is not the case. Let $z$ be such that
+	$$\left(\mneg \left(\mneg \Phi(\vec{n},k)\right)\right) \mand \mforall_{i \mle k}\left(\mneg \Phi(\vec{n},i)\right)$$
+	Then
+	$$\Phi(\vec{n},k) \mand \mforall_{i \mle k}\left(\mneg \Phi(\vec{n},i)\right)$$
+	Since
+	$$\mforall_{i \mle k}\left(\mneg \Phi(\vec{n},i)\right) \equiv \mforall_i\left(k \mleq i \mor \left(\mneg \Phi(\vec{n},i)\right)\right)$$
+	and
+	$$\left(k \mleq i \mor \left(\mneg \Phi(\vec{n},i)\right)\right) \mequiv \left(\Phi(\vec{n},i) \mra k \mleq i\right)$$
+	is a theorem of classical logic, we derive that
+	$$\Phi(\vec{n},k) \mand \mforall_m\left(\Phi(\vec{n},m) \mra k \mleq m\right)$$
+	This completes the proof that schema \textbf{(ii)} implies schema \textbf{(iii)}.
+
+	Next suppose that \textbf{(iii)} holds. Let $\Phi(\vec{n},m)$ be a primitive recursive formula such that
+	$$\mexists_m\,\Phi(\vec{n},m) \mand \mforall_m\left((\Phi(\vec{n},m) \mand m \mneq 0) \mra \mexists_{k \mle m}\,\Phi(\vec{n},k)\right)$$
+	Note that $\mexists_m\,\Phi(\vec{n},m)$ and \textbf{(iii)} imply that there exists $k$ such that
+	$$\Phi(\vec{n},k) \mand \mforall_m\left(\Phi(\vec{n},m) \mra k \mleq m\right)$$
+	Assume that $k \mneq 0$. Then $\mforall_m\left((\Phi(\vec{n},m) \mand m \mneq 0) \mra \mexists_{i \mle m}\,\Phi(\vec{n},i\right)$ implies that there exists $i \mle k$ such that $\Phi(\vec{n},i)$. Since $\mforall_m\left(\Phi(\vec{n},m) \mra k \mleq m\right)$, we derive that $k \mleq i$. Together with $\mathrm{PRA}$ this implies that $k \mle k$ and this is a contradiction. Thus $k \meq 0$ and
+	$$\big(\mexists_m\,\Phi(\vec{n},m) \mand \mforall_m\left((\Phi(\vec{n},m) \mand m \mneq 0) \mra \mexists_{i \mle m}\,\Phi(\vec{n},i)\right)\big) \mra \Phi(\vec{n},0)$$
+	Hence schema \textbf{(iii)} implies schema \textbf{(iv)} in $\mathrm{PRA}$.
+
+	Finally assume that schema \textbf{(iv)} holds. Suppose that $\Phi(\vec{n},m)$ is a primitive recursive formula such that
+	$$\Phi(\vec{n},0) \mand \mforall_m\left(\Phi(\vec{n},m) \mra \Phi(\vec{n},\bd{S}(m))\right)$$
+	Suppose that $\mneg \Phi(\vec{n},m)$ for some $m \mneq 0$. Then $\mathrm{PRA}$ proves that there exists $l$ such that $m \meq \bd{S}(l)$. It follows that $\Phi(\vec{n},l) \mra \Phi(\vec{n},\bd{S}(l))$. Combining this with $\mneg \Phi(\vec{n},m)$ we infer that $\mneg \Phi(\vec{n},l)$. Again invoking $\mathrm{PRA}$ we obtain
+	$$\left(\left(\mneg \Phi(\vec{n},m)\right) \mand m \mneq 0\right) \mra \mexists_{i \mle m}\left(\mneg \Phi(\vec{n},i)\right)$$
+	By variable generalization
+	$$\mforall_m\bigg(\left(\left(\mneg \Phi(\vec{n},m)\right) \mand m \mneq 0\right) \mra \mexists_{i \mle m}\left(\mneg \Phi(\vec{n},i)\right)\bigg)$$
+	Suppose now that $\mexists_m\left(\mneg \Phi(\vec{n},m)\right)$. Then
+	$$\mexists_m\left(\mneg \Phi(\vec{n},m)\right)\mand \mforall_m\bigg(\left(\left(\mneg \Phi(\vec{n},m)\right) \mand m \mneq 0\right) \mra \mexists_{i \mle m}\left(\mneg \Phi(\vec{n},i)\right)\bigg)$$
+	Since the negation of $\Phi(\vec{n},m)$ is primitive recursive by Corollary \ref{corollary:primitive_recursive_formulas_are_closed_under_connectives} and \textbf{(iv)} holds, we derive that $\mneg \Phi(\vec{n},0)$. This leads to contradiction with $\Phi(\vec{n},0)$. Thus it is not the case that $\mexists_m\left(\mneg \Phi(\vec{n},m)\right)$ and hence $\mforall_m\,\Phi(\vec{n},m)$. We deduce that schema \textbf{(iv)} implies schema \textbf{(i)} in $\mathrm{PRA}$.
+\end{proof}
+
+\begin{theorem}\label{theorem:existence_of_bounded_minimum_for_primitive_recursive_formula}
+	Let $\Phi(\vec{n},i)$ be a primitive recursive formula. Then there exists a primitive recursive function
+	$$(\vec{n},m) \mapsto \mu_{i \mle m}\big[\Phi(\vec{n},i)\big]$$
+	such that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}]
+		\item	$\mathrm{PRA}\vdash \mexists_{i \mle m}\,\Phi(\vec{n},i) \mra \bigg(\Phi\big(\vec{n},\mu_{i \mle m}\big[\Phi(\vec{n},i)\big]\big) \mand \mforall_{k}\left(\Phi(\vec{n},k) \mra \mu_{i \mle m}\big[\Phi(\vec{n},i)\big]\mleq k\right)\big)\bigg)$
+		\item $\mathrm{PRA}\vdash \bigg(\mneg \mexists_{i \mle m}\,\Phi(\vec{n},i)\bigg) \mra \mu_{i \mle m}\big[\Phi(\vec{n},i)\big] \meq m$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Note that formulas
+	$$\Psi(\vec{n},k) \meq \mforall_{i \mle k}\left(\mneg \Phi(\vec{n},i)\right) \mand \Phi(\vec{n},k),\,\Theta(\vec{n},m) \meq \mforall_{i \mle m}\left(\mneg \Phi(\vec{n},i)\right)$$
+	are primitive recursive by Corollary \ref{corollary:primitive_recursive_formulas_are_closed_under_connectives} and Theorem \ref{theorem:primitive_recursive_formulas_are_closed_under_bounded_quantifiers}. Let $C_{\Psi},C_{\Theta}$ be characteristic functions of $\Psi(\vec{n},k)$ and $\Theta(\vec{n},m)$, respectively. Then we set
+	$$\mu_{i \mle m}\big[\Phi(\vec{n},i)\big](\vec{n},m) \meq m\mdot C_{\Theta}(\vec{n},m) \mplus \sum_{k \mle m}k\mdot C_{\Psi}(\vec{n},k)$$
+	Clearly $\mu_{i \mle m}\big[\Phi(\vec{n},i)\big]$ is primitive recursive.
+
+	We work in $\mathrm{PRA}$ and prove \textbf{(1)} and \textbf{(2)}.
+
+	Suppose that there exists $i \mle m$ such that $\Phi(\vec{n},i)$. According to the minimum principle (Theorem \ref{theorem:statements_equivalent_to_induction_axiom_schema_for_primitive_recursive_formulas}) there exists the smallest $j$ such that $\Phi(\vec{n},j)$. Clearly $j \mle i$. Note that $\Psi(\vec{n},k)$ does not hold for all $k \mle j$ and $j \mle k$. Moreover, $\Theta(\vec{n},m)$ does not hold. Hence
+	$$\mu_{i \mle m}\big[\Phi(\vec{n},i)\big](\vec{n},m) \meq m\mdot C_{\Theta}(\vec{n},m) \mplus \sum_{i \mle m}i\mdot C_{\Psi}(\vec{n},i) \meq j\mdot C_{\Psi}(\vec{n},j) \meq j$$
+	This completes the proof of \textbf{(1)}.
+
+	Next assume that $\Phi(\vec{n},i)$ does not hold for all $i \mle m$. Then $\Psi(\vec{n},k)$ does not hold for all $k \mle m$ and $\Theta(\vec{n},m)$ holds. Hence
+	$$\mu_{i \mle m}\big[\Phi(\vec{n},i)\big](\vec{n},m) \meq m\mdot C_{\Theta}(\vec{n},m) \mplus \sum_{k \mle m}k\mdot C_{\Psi}(\vec{n},k) \meq m\mdot C_{\Theta}(\vec{n},m) \meq m$$
+	This proves \textbf{(2)}.
+\end{proof}
+
+\begin{definition}
+	Let $\Phi(\vec{n},i)$ be a primitive recursive formula. Then $\mu_{i \mle m}\big[\Phi(\vec{n},i)\big]$ is the \textit{bounded minimum} of $\Phi(\vec{n},i)$.
+\end{definition}
+
+\section{Elementary number theory in Primitive Recursive Arithmetic}
+\noindent
+In this section we develop substantial amount of elementary number theory in $\mathrm{PRA}$.
+
+\begin{definition}
+	$$n|m \equiv \mexists_k\,m \meq k\mdot n$$
+	If $n|m$, then $n$ \textit{divides} $m$ or $n$ is a \textit{divisor} of $m$.
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:divisibility_is_primitive_recursive_formula}
+	$n|m \mequiv \mexists_{k \mleq m}\,m \meq k \mdot n$
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	$$\mathrm{Prime}(n) \equiv 1 \mle n \mand \mforall_{m}\big(m|x \mra \left(m \meq 1 \mor m \meq n\right)\big)$$
+	If $\mathrm{Prime}(n)$, then $n$ is a \textit{prime}.
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:prime_is_primitive_recursive_formula}
+	$\mathrm{Prime}(n) \mequiv 1 \mle n \mand \mforall_{m \mle n}\,\left(m|n \mra m \meq 1\right)$
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{proposition}[$\mathrm{PRA}$]\label{proposition:every_nonzero_number_has_prime_divisor}
+	Let $n$ be greater than $1$. Then there exists prime $m$ such that $m|n$.
+\end{proposition}
+\begin{proof}
+	Fix $1 \mle n$. By Fact \ref{fact:divisibility_is_primitive_recursive_formula} formula
+	$$1 \mle m \mand m|n$$
+	is primitive recursive. Since $1 \mle n \mand n|n$, we apply the minimum principle to deduce that there exists the smallest $m$ such that $1 \mle m \mand m|n$. It suffices to prove that $m$ is prime. Suppose that $k$ is a divisor of $m$. If $1 \mle k \mle m$, then $k|n$ and this contradicts the minimality of $m$. Thus either $k \meq 1$ or $k \meq m$.
+\end{proof}
+\noindent
+Before proving the next very important theorem we need to introduce new primitive recursive function.
+
+\begin{definition}
+	$0! \meq 1,\,(n\mplus1)! \meq (n\mplus1)\mdot n!$
+\end{definition}
+
+\begin{theorem}[Euclid, $\mathrm{PRA}$]\label{theorem:prime_number_sequence}
+	There exists primitive recursive function $n \mapsto p_n$ such that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $p_n$ is prime for every $n$.
+		\item $p_n \mle p_{n\mplus1}$ for every $n$.
+		\item $n \mle p_n$ for every $n$.
+		\item For every prime $m$ there exists $n$ such that $p_n \meq m$.
+	\end{enumerate}
+\end{theorem}
+\noindent
+We first need to prove the following results.
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:factorial_is_common_divisor}
+	$1 \mleq m \mleq n \mra m|n!$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	We prove this by induction on $n$. The base case is clear. Suppose that the result holds for some $n$. Pick $m \mleq n \mplus 1$. If $m \mleq n$, then $m|n!$ by induction hypothesis and hence
+	$$m|(n\mplus1)\mdot n! \meq (n\mplus1)!$$
+	If $m \meq n \mplus 1$, then $(n\mplus1)! \meq m\mdot n!$.
+\end{proof}
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:prime_number_greater_than_given_number}
+	There exists a primitive recursive function $G$ such that $G(n)$ is the smallest prime number greater than $n$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	According to Proposition \ref{proposition:every_nonzero_number_has_prime_divisor} there exists prime $m$ such that $m|n! \mplus 1$. Clearly $m \mleq n! \mplus 1$. If $m \mleq n$, then $1\mleq m \mleq n$ and by Lemma \ref{lemma:factorial_is_common_divisor} we derive that $m|n!$. Hence
+	$$m|(n! \mplus 1) \dotminus n! \meq 1$$
+	This is contradiction. Thus $n \mle m \mleq n! \mplus 1$. Next we define
+	$$G(n) \meq \mu_{i \mle n! \mplus 2}\big[\mathrm{Prime}(i) \mand n \mle i\big]$$
+	According to Theorem \ref{theorem:existence_of_bounded_minimum_for_primitive_recursive_formula} it follows that $G$ is primitive recursive and $G(n)$ is the smallest prime number greater than $n$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	We define
+	$$p_0 \meq 2,\,p_{n\mplus1} \meq G(p_n)$$
+	where $G$ is primitive recursive function from Lemma \ref{lemma:prime_number_greater_than_given_number}. Since $n\mapsto p_n$ is obtained by primitive recursion, we derive that it is primitive recursive function. Clearly \textbf{(1)}, \textbf{(2)} and \textbf{(3)} hold.
+
+	Now we prove \textbf{(4)}. Let $m$ be a prime number. Since $m \mle p_m$, there exists the smallest $k \mleq m$ such that $m \mle p_k$. Note that $k \mneq 0$ and hence there exists $n$ such that $k \meq n \mplus 1$. Then $p_n \mleq m \mle p_{n\mplus1}$. If $p_n \mle m$, then
+	$$p_{n\mplus1} \meq G(p_n) \mleq m \mle p_{n\mplus1}$$
+	and hence contradiction. Thus $m \meq p_n$. This proves \textbf{(4)}.
+\end{proof}
+\noindent
+Next we prove Euclidean division theorem in $\mathrm{PRA}$.
+
+\begin{definition}
+	$\mathrm{div}(n,m) \meq \mu_{i \mle n}\big[x \mle (i \mplus 1)\mdot m\big]$
+\end{definition}
+
+\begin{definition}
+	$\mathrm{rem}(n,m) \meq n \dotminus \mathrm{div}(n,m)\mdot m$
+\end{definition}
+
+\begin{theorem}[Euclidean division theorem, $\mathrm{PRA}$]\label{theorem:euclidean_division_theorem}
+	If $m \mneq 0$, then
+	$$n \meq \mathrm{div}(n,m)\mdot m \mplus \mathrm{rem}(n,m)$$
+	and $\mathrm{rem}(n,m) \mle m$. Moreover, $\mathrm{div}(n,m)$ and $\mathrm{rem}(n,m)$ are unique with respect to these properties.
+\end{theorem}
+\begin{proof}
+	For $m \mneq 0$ we have $n \mle (n \mplus 1) \mdot m$ and hence there exists $i \mle n \mplus 1$ such that $n \mle (i \mplus 1)\mdot m$. According to Theorem \ref{theorem:existence_of_bounded_minimum_for_primitive_recursive_formula} the smallest $i$ such that $n \mle (i \mplus 1)\mdot m$ is $\mathrm{div}(n,m)$. It follows that
+	$$\mathrm{div}(n,m)\mdot m \mleq n \mle \left(\mathrm{div}(n,m) \mplus 1\right)\mdot m$$
+	Hence $n \meq \mathrm{div}(n,m)\mdot m \mplus \mathrm{rem}(n,m)$ and $\mathrm{rem}(n,m) \mle m$.
+
+	Assume that
+	$$q_{\rm{1}}\mdot m \mplus r_{\rm{1}} \meq q_{\rm{2}}\mdot m \mplus r_{\rm{2}}$$
+	for some $r_{\rm{1}},r_{\rm{2}} \mle m$. Without loss of generality we may assume that $r_{\rm{1}} \mleq r_{\rm{2}}$. Then there exists $r$ such that $r_{\rm{2}} \meq r \mplus r_{\rm{1}}$. Hence $q_{\rm{1}}\mdot m \meq q_{\rm{2}} \mdot m \mplus r$. It follows that $q_{\rm{2}} \mleq q_{\rm{1}}$ and there exists $q$ such that $q_{\rm{1}} \meq q_{\rm{2}} \mplus q$. Then $q\mdot m \meq r$. If $q \mneq 0$, then
+	$$m \mleq q\mdot m \meq r \mleq r_{\rm{2}} \mle m$$
+	This is a contradiction. Thus $q \meq 0$ and consequently $q_{\rm{1}} \meq q_{\rm{2}}$ and $r_{\rm{1}} \meq r_{\rm{2}}$.
+\end{proof}
+\noindent
+Now we prove B{\'e}zout theorem and Chinese remainder theorem in $\mathrm{PRA}$. Both these results are related to the notion of relatively prime numbers.
+
+\begin{definition}
+	$$n \perp m \equiv (n\mneq 0 \mand m \mneq 0)\mand \mforall_{k}\big(\left(k|n \mand k|m\right) \mra k \meq 1\big)$$
+	If $n \perp m$, then $n,m$ are \textit{relatively prime}.
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:relative_primeness_is_primitive_recursive}
+	$n \perp m \mequiv \bigg((n\mneq 0 \mand m \mneq 0)\mand \mforall_{k \mleq n}\big((k|n \mand k|m) \mra k \meq 1\big)\bigg)$
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{theorem}[B{\'e}zout theorem, $\mathrm{PRA}$]\label{theorem:bezout_theorem}
+	Let $n,m$ be relatively prime. Then there exist $a,b$ such that
+	$$a\mdot n \meq b\mdot m \mplus 1$$
+\end{theorem}
+\noindent
+The proof of B{\'e}zout theorem relies on two lemmas.
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:arithmetic_combination_side_does_not_matter}
+	Let $n,m$ be nonzero and let $z$ be fixed. The following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item There exist $a,b$ such that $a\mdot n \meq b\mdot m \mplus k$.
+		\item There exist $a,b$ such that $a\mdot n \mplus k \meq b\mdot m$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:arithmetic_combination_has_bounded_coefficients}
+	Let $n,m$ be nonzero and let $k$ be smaller then $n,m$. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=3.0em]
+		\item There exist $a,b$ such that $a\mdot n \meq b\mdot m \mplus k$.
+		\item There exist $a \mle m$ and $b \mle n$ such that $a\mdot n \meq b\mdot m \mplus k$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Fix nonzero $n,m$ and $k$ not greater than $n,m$. Suppose that $a\mdot n \meq b\mdot m \mplus k$. By Euclidean division theorem
+	$$a \meq q_a\mdot m \mplus r_a,\,b \meq q_b \mdot n \mplus r_b$$
+	for some $q_a,q_b$ and $r_a \mle m, r_b \mle n$. Thus
+	$$q_a \mdot (n\mdot m) \mplus r_a \mdot n \meq q_b\mdot (n\mdot m) \mplus r_b\mdot m \mplus k$$
+	Note that both $r_a \mdot n$ and $r_b \mdot m \mplus k$ are smaller than $n\mdot m$. According to the uniqueness assertion of Euclidean division theorem we derive that $q_a \meq q_b$ and $r_a\mdot n \meq r_b \mdot m \mplus k$. This completes the proof according to $r_a \mle m,r_b \mle n$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	We fix relatively prime $n,m$. Note that by definition $n,m$ are nonzero.
+
+	Euclidean division theorem implies that there exists $k \mge 0$ smaller than $n,m$ such that either
+	$$a\mdot n \meq b\mdot m \mplus k$$
+	or
+	$$a\mdot n \mplus k \meq b\mdot m$$
+	for some $a,b$. By Lemma \ref{lemma:arithmetic_combination_side_does_not_matter} it follows that there exists $k \mge 0$ smaller than $n,m$ such that
+	$$a\mdot n \meq b\mdot m \mplus k$$
+	for some $a,b$. Applying the minimum principle and Lemma \ref{lemma:arithmetic_combination_has_bounded_coefficients} we infer that there exists the smallest $k \mge 0$ such that $a\mdot n \meq b\mdot m \mplus k$ for some $a,b$.
+
+	By Euclidean division algorithm there are $q,r$ such that $m \meq q\mdot k \mplus r$ and $r \mle k$. Then
+	$$(q\mdot a)\mdot n \mplus r \meq (q\mdot b)\mdot m \mplus q\mdot k \mplus r \meq (q\mdot b \mplus 1)\mdot m$$
+	Lemma \ref{lemma:arithmetic_combination_side_does_not_matter} implies that $a\mdot n \meq b\mdot m \mplus r$ for some $a,b$. If $0 \mle r$, then we obtain a contradiction with the minimality of $k$. Hence $r$ is zero and $k$ divides $m$.
+
+	Similarly by Euclidean division algorithm there are $q,r$ such that $n \meq q \mdot k \mplus r$ and $r \mle k$. Moreover, by Lemma \ref{lemma:arithmetic_combination_side_does_not_matter} it follows that $a\mdot n \mplus k \meq b\mdot m$ for some $a,b$. Then
+	$$(q\mdot b) \mdot m \mplus r \meq (q\mdot a) \mdot n \mplus q\mdot k \mplus r \meq (q\mdot a \mplus 1)\mdot n$$
+	This shows that $a\mdot n \meq b\mdot m \mplus r$ for some $a,b$. If $r \mge 0$, then we obtain a contradiction with the minimality of $k$. Hence $r$ is zero and $k$ divides $n$.
+
+	Thus $k$ divides both $n$ and $m$. Since $n$ and $m$ are relatively prime, we infer that $k \meq 1$ and hence $a\mdot n \meq b\mdot m \mplus 1$ for some $a,b$.
+\end{proof}
+
+\begin{corollary}[Euclid's lemma, $\mathrm{PRA}$]\label{corollary:euclids_lemma}
+	$\left(n \perp m \mand n \perp k\right) \mra n \perp m \mdot k$
+\end{corollary}
+\begin{proof}
+	According to B{\'e}zout theorem \ref{theorem:bezout_theorem} there exist $a,b,c,d$ such that $a\mdot m \meq b\mdot n \mplus 1$ and $c\mdot k \meq d\mdot n \mplus 1$. Then
+	$$(a\mdot c)\mdot (m\mdot k) \meq (b\mdot d \mplus b \mplus d) \mdot n \mplus 1$$
+	Hence any common divisor of $m\mdot k$ and $n$ divides $1$. Thus $n$ and $m\mdot k$ are relatively prime.
+\end{proof}
+
+\begin{theorem}[Chinese remainder theorem, $\mathrm{PRA}$]\label{theorem:chinese_remainder_theorem}
+	Let $F,G$ be primitive recursive functions. Suppose that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $F(t)$ are pairwise relatively prime for all $i \mle m$
+		\item $G(i) \mle F(i)$ for all $i \mle m$.
+	\end{enumerate}
+	Then there exists $n \mle \prod_{i \mle m}F(i)$ such that
+	$$\mathrm{rem}\left(n,F(i)\right) \meq G(i)$$
+	for all $i \mle m$.
+\end{theorem}
+\noindent
+For the proof we need the following result
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:if_each_factor_is_relatively_prime_then_whole_product_too}
+	Let $F$ be a primitive recursive function and let $n$ be such that $n \perp F(i)$ for all $i \mle m$. Then
+	$$n \perp \prod_{i \mle m}F(i)$$
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	The proof goes by induction on $m$ by means of Corollary \ref{corollary:euclids_lemma}. The details are left for the reader.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	Note that the statement can be expressed by primitive recursive formula. We apply induction on $m$. The base case is straightforward. Next suppose that
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $F(i)$ are pairwise relatively prime for all $i \mle m \mplus 1$
+		\item $G(i) \mle F(i)$ for all $i \mle m \mplus 1$.
+	\end{enumerate}
+	Then by induction hypothesis there exists $k$ such that $k \mle \prod_{i \mle m}F(i)$ and
+	$$\mathrm{rem}\left(k,F(i)\right) \meq G(i)$$
+	for all $i \mle m$. We set
+	$$\tilde{k} \meq \prod_{i \mle m \mplus 1}F(i) \mplus k$$
+	Then
+	$$\mathrm{rem}\left(\tilde{k},F(i)\right) \meq G(i)$$
+	for all $i \mle m$ and $\tilde{k} \mgeq F(m) \mge G(m)$. By Lemma \ref{lemma:if_each_factor_is_relatively_prime_then_whole_product_too} and B{\'e}zout theorem \ref{theorem:bezout_theorem} there exists $a,b$ such that
+	$$a\mdot F(m) \meq b\mdot\prod_{i \mle m}F(i) \mplus 1$$
+	We set
+	$$\tilde{n} \meq a\mdot F(m) \mdot (\tilde{k} \dotminus G(m)) \mplus G(m)$$
+	Then
+	$$\mathrm{rem}\left(\tilde{n}, F(i)\right) \meq \mathrm{rem}\left(b\mdot (\tilde{k} \dotminus G(m)) \mdot \prod_{i \mle m}F(i) \mplus G(m) \mplus (\tilde{k} \dotminus G(m)), F(i)\right) =$$
+	$$= \mathrm{rem}\left(G(m) \mplus (\tilde{k} \dotminus G(m)), F(i)\right) \underbrace{=}_{\mathrm{Proposition}\,\ref{proposition:truncated_subtraction_and_difference}} \mathrm{rem}(\tilde{k},F(i)) \meq G(i)$$
+	for all $i \mle m$. Moreover, we have
+	$$\mathrm{rem}\left(\tilde{n}, F(m)\right) \meq \mathrm{rem}\left(a\mdot F(m) \mdot (\tilde{k} \dotminus G(m)) \mplus G(m), F(m)\right) \meq \mathrm{rem}(G(m), F(m)) \meq G(m)$$
+	Note that $n \meq \mathrm{rem}\left(\tilde{x},\prod_{i \mle m \mplus 1}F(i)\right)$ also satisfies these assertions and
+	$$n \mle \prod_{i \mle m \mplus 1}F(i)$$
+	This completes the proof.
+\end{proof}
+\noindent
+Finally, we prove fundamental theorem of arithmetic in $\mathrm{PRA}$.
+
+\begin{definition}
+	$n^0 \meq 1,\,n^{m\mplus1} \meq n\mdot n^m$
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:basic_properties_of_exponential}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $\left(n \mge 1 \mand m \mle k\right)  \mra n^m \mle n^k$
+		\item $n \mge 1 \mra \mforall_m\,m \mle n^m$
+		\item $n^m \mdot n^k \meq n^{m \mplus k}$
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{definition}
+	$\mathrm{exp}(n,m) \meq \mu_{i \mle n}\big[p_m^{i\mplus1}\nmid n\big]$
+\end{definition}
+\noindent
+First we note the following basic result.
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:exponent_is_the_largest_power_that_divides}
+	$n\mneq 0 \mra \left(p_m^i|n \mequiv i \mleq \mathrm{exp}(n,m)\right)$
+\end{fact}
+\begin{proof}
+	We have $n \mle p_m^n$ by Fact \ref{fact:basic_properties_of_exponential} and hence $p_m^n\nmid n$. Thus $\mathrm{exp}(n,m)$ is the smallest $i$ such that $p_m^{i\mplus1}\nmid n$. It follows that
+	$$p_m^{\mathrm{exp}(n,m)}|n,\,p_m^{\mathrm{exp}(n,m) \mplus 1}\nmid n$$
+	Next note that
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item If $p_m^i|n$, then $p_m^j|n$ for every $j \mleq i$.
+		\item If $p_m^i\nmid n$, then $p_m^j\nmid n$ for every $i \mleq j$.
+	\end{enumerate}
+	The assertion now follows from the combination of these observations.
+\end{proof}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:exponent_is_smaller_than_number}
+  $n \mneq 0 \mra \mforall_i\,\mathrm{exp}(n,i) \mle n$
+\end{fact}
+\begin{proof}
+  According to Fact \ref{fact:exponent_is_the_largest_power_that_divides} we infer that $p_i^{\mathrm{exp}(n,i)}|n$. Since $n \mneq 0$, we derive $p_i^\mathrm{exp}(n,i) \mleq n$. Combine this with Fact \ref{fact:basic_properties_of_exponential} to deduce that
+  $$\mathrm{exp}(n,i) \mle p_i^{\mathrm{exp}(n,i)} \mleq n$$
+  This completes the proof.
+\end{proof}
+
+\begin{theorem}[Unique prime factorization, $\mathrm{PRA}$]\label{theorem:unique_prime_factorization}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item If $F$ is a primitive recursive function, then
+		      $$\mathrm{exp}\left(\prod_{i \mle m}p_i^{F(i)},j\right) \meq \begin{cases}
+				      F(j) & \mbox{ if }j \mle m    \\
+				      0    & \mbox{ if }m \mleq j \\
+			      \end{cases}$$
+		\item If $1 \mleq n \mleq m$, then
+		      $$n \meq \prod_{i \mle m}p_i^{\mathrm{exp}(n,i)}$$
+	\end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need a series of lemmas.
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:prime_does_not_divide_power_of_some_other_prime}
+	$j\mneq i \mra p_j\nmid p_i^n$
+\end{lemma}
+\begin{proof}
+	We prove this by induction on $n$. The base case is clear. By induction hypothesis $p_j \nmid p_i^n$ for some $n$. Since $p_i$ is prime, we derive that $p_j \nmid p_i$. Hence $p_j \perp p_i^n$ and $p_j \perp p_i$. Corollary \ref{corollary:euclids_lemma} implies that $p_j \perp p_i^{n\mplus1}$ by Fact \ref{fact:basic_properties_of_exponential}. Thus $p_j \nmid p_i^{n\mplus1}$ and this completes the proof.
+\end{proof}
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:zero_exponent_implies_that_prime_does_not_divide}
+	Let $G$ be a primitive recursive function such that $G(j) \meq 0$. Then $p_j \nmid \prod_{i \mle m}p_i^{G(i)}$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	We prove this by induction on $m$. The base case is clear. By induction hypothesis $p_j \nmid \prod_{i \mle m}p_i^{G(i)}$ for some $m$. Note that Lemma \ref{lemma:prime_does_not_divide_power_of_some_other_prime} shows that $p_j \nmid p_m^{G(m)}$. Hence $p_j \perp \prod_{i \mle m}p_i^{G(i)}$ and $p_j \perp p_m^{G(m)}$. According to Corollary \ref{corollary:euclids_lemma}
+	$$p_j \perp \prod_{i \mle m \mplus 1}p_i^{G(i)}$$
+	Hence $p_j \nmid \prod_{i \mle m \mplus 1}p_i^{G(i)}$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	We set
+	$$G(i) \meq \begin{cases}
+			0    & \mbox{ if }i \meq j   \\
+			F(i) & \mbox{ otherwise }
+		\end{cases}$$
+	By Corollary \ref{corollary:definition_by_primitive_recursive_cases} we infer that $G$ is primitive recursive. Easy induction on $m$ shows that
+	$$
+		\prod_{i \mle m} p_i^{F(i)} =
+		\begin{cases}
+			\prod_{i \mle m} p_i^{G(i)}                  & \mbox{ if } m \mleq j \\[0.3em]
+			p_j^{F(j)} \mdot \prod_{i \mle m} p_i^{G(i)} & \mbox{ if } j \mle i    \\
+		\end{cases}
+	$$
+	Hence
+	$$\mathrm{exp}\left(\prod_{i \mle m}p_i^{F(i)},j\right) \meq \begin{cases}
+			\mathrm{exp}\left(\prod_{i \mle m}p_i^{G(i)}, j\right)                 & \mbox{ if }m \mleq j \\[0.3em]
+			\mathrm{exp}\left(p_j^{F(j)}\mdot \prod_{i \mle m}p_i^{G(i)}, j\right) & \mbox{ if }j \mle m    \\
+		\end{cases}
+	$$
+	Lemma \ref{lemma:zero_exponent_implies_that_prime_does_not_divide} implies that $p_j \nmid \prod_{i \mle m}p_i^{G(i)}$ for all $m$. Thus
+	$$\mathrm{exp}\left(\prod_{i \mle m}p_i^{F(i)},j\right) \meq \begin{cases}
+			0    & \mbox{ if }m \mleq j \\[0.3em]
+			F(j) & \mbox{ if }j \mle m    \\
+		\end{cases}
+	$$
+	This completes the proof of \textbf{(1)}.
+
+	Next we prove \textbf{(2)}. We prove the assertion by induction on $n$. The base case is straightforward. Suppose now that $n \mge 1$. We have two cases.
+	\begin{itemize}
+		\item $n$ is prime. Then $n \meq p_j$ for some $j \mle n$ according to Euclid's Theorem \ref{theorem:prime_number_sequence} and
+		      $$\mathrm{exp}(n,i) \meq \begin{cases}
+				      0 & \mbox{ if }i \mneq j \\
+				      1 & \mbox{ if }i \meq j    \\
+			      \end{cases}
+		      $$
+		      Easy induction shows that
+		      $$j \mle m \mra n \meq \prod_{i \mle m}p_i^{\mathrm{exp}(n,i)}$$
+		      Since $j \mle n$, we infer that
+		      $$n \mleq m \mra n \meq \prod_{i \mle m}p_i^{\mathrm{exp}(n,i)}$$
+		\item There are $1 \mle k,t \mle n$ such that $n \meq k\mdot l$. Pick $m$ no smaller than $n$. By induction hypothesis
+		      $$k \meq \prod_{i \mle m}p_i^{\mathrm{exp}(k,i)},\,l \meq \prod_{i \mle m}p_i^{\mathrm{exp}(l,i)}$$
+		      According to Fact \ref{fact:basic_properties_of_cummulative_operators} we infer
+		      $$n \meq k\mdot l \meq \prod_{i \mle m}p_i^{\mathrm{exp}(k,i) \mplus \mathrm{exp}(l,i)}$$
+		      Next \textbf{(1)} implies that $\mathrm{exp}(n,i) \meq \mathrm{exp}(k,i) \mplus \mathrm{exp}(l,i)$ for every $i \mle m$. Thus
+		      $$n \meq \prod_{i \mle m}p_i^{\mathrm{exp}(n,i)}$$
+	\end{itemize}
+	This proves \textbf{(2)}.
+\end{proof}
+
+\section{Formalization of sequences and course-of-values recursion}
+\noindent
+In this section we formalize finite sequences in $\mathrm{PRA}$ and prove important theorem on recursion scheme.
+
+\begin{definition}
+	$$\mathrm{Seq}(n) \equiv 1 \mleq n \mand \mexists_{m \mle n}\mforall_{i \mle n}\big(\left(i \mle m \mra 1 \mleq \mathrm{exp}(n,i)\right) \mand \left(m \mleq i \mra \mathrm{exp}(n,i) \meq 0\right)\big)$$
+	If $\mathrm{Seq}(n)$, then $n$ is a \textit{sequence}.
+\end{definition}
+
+\begin{definition}
+	$$\mathrm{lh}(n) \meq \begin{cases}
+			\mu_{m \mle n}\big[\mforall_{i \mle n}\left(m \mleq i \mra \mathrm{exp}(n,i) \meq 0\right)\big] & \mbox{ if }\mathrm{Seq}(n) \\
+			0                                                                                   & \mbox{ otherwise }
+		\end{cases}
+	$$
+	If $n$ is a sequence, then $\mathrm{lh}(n)$ is the \textit{length} of $n$.
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:properties_of_sequence_length}
+	Let $n$ be a sequence. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $\mathrm{lh}(n) \mle n$
+		\item $1 \mle \mathrm{exp}(n,i)$ for all $i \mle \mathrm{lh}(n)$.
+		\item $\mathrm{exp}(n,i) \meq 0$ for all $\mathrm{lh}(n) \mleq i$.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	We prove \textbf{(1)}. Note that $\mathrm{Seq}(n)$ implies $1 \mleq n$. Theorem \ref{theorem:unique_prime_factorization} implies
+	$$n \meq \prod_{i \mle n}p_i^{\mathrm{exp}(n,i)}$$
+	Uniqueness assertion of Theorem \ref{theorem:unique_prime_factorization} implies that $\mathrm{exp}(n,i) \meq 0$ for all $n \mleq i$. This proves that $\mathrm{lh}(n) \mle n$.
+
+	For the proof of \textbf{(2)}, \textbf{(3)} note that according to $\mathrm{Seq}(n)$ there exists $m$ such that
+	$$\left(i \mle m \mra 1 \mleq \mathrm{exp}(n,i)\right) \mand \left(m \mleq i \mra \mathrm{exp}(n,i) \meq 0\right)$$
+	for all $i \mle n$. Then $\mathrm{lh}(n) \meq m$ and the proof is completed.
+\end{proof}
+
+\begin{definition}
+	$$n_i \meq \begin{cases}
+			\mathrm{exp}(n,i) \dotminus 1 & \mbox{ if }\mathrm{Seq}(n) \\
+			0                             & \mbox{ otherwise }         \\
+		\end{cases}
+	$$
+	If $n$ is a sequence and $0 \mleq i \mle \mathrm{lh}(n)$, then $n_i$ is the \textit{$i$-th element} of $n$.
+\end{definition}
+
+\begin{corollary}[$\mathrm{PRA}$]\label{corollary:sequence_element_is_smaller_than_sequence_itself}
+  $\mathrm{Seq}(n) \mra \mforall_i\,n_i \mle n$
+\end{corollary}
+\begin{proof}
+  Follows immediately from Fact \ref{fact:exponent_is_smaller_than_number}.
+\end{proof}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:sequences_are_defined_by_their_elements}
+	$\mathrm{Seq}(n) \mra n \meq \prod_{i \mle \mathrm{lh}(n)}p_i^{1\mplus n_i}$
+\end{fact}
+\begin{proof}
+	From Fact \ref{fact:properties_of_sequence_length} we deduce that
+	$$\mathrm{exp}(n,i) \meq \begin{cases}
+			1 \mplus n_i & \mbox{ if }i \mle \mathrm{lh}(n)    \\
+			0        & \mbox{ if }\mathrm{lh}(n) \mleq i \\
+		\end{cases}$$
+	According to Theorem \ref{theorem:unique_prime_factorization} we infer the assertion.
+\end{proof}
+
+\begin{corollary}[$\mathrm{PRA}$]\label{corollary:extensionality_of_sequences}
+	$\left(\mathrm{Seq}(n) \mand \mathrm{Seq}(m)\right) \mra \big(n \meq m \mequiv \mforall_i\,n_i \meq m_i\big)$
+\end{corollary}
+\begin{proof}
+	This is immediate consequence of Fact \ref{fact:sequences_are_defined_by_their_elements}.
+\end{proof}
+
+\begin{remark}\label{remark:notation_for_sequences}
+  Suppose that $n$ is a sequence of length $k$. Then we write $n$ by the juxtaposition notation 
+  $$n_0...n_{k\dotminus 1}$$
+  Next assume that $m$ is another sequence of length $l$ and $n_i \meq m $ for some $0 \mleq i \mle k$. Then we write $n$ by the following notation with parentheses 
+  $$n_0...n_{i\dotminus 1}\left(m_0...m_{l\dotminus 1}\right)n_{i \mplus 1}...n_{k\dotminus 1}$$
+\end{remark}
+
+\begin{definition}
+	$$n \frown m \meq \begin{cases}
+			\prod_{i \mle \mathrm{lh}(n)}p_i^{1 \mplus n_i}\mdot \prod_{\mathrm{lh}(n) \mleq i \mle \mathrm{lh}(n) \mplus \mathrm{lh}(m)}p_i^{1 \mplus m_i} & \mbox{ if }\mathrm{Seq}(n)\mbox{ and }\mathrm{Seq}(m) \\[0.3em]
+			0                                                                                                                           & \mbox{ otherwise }
+		\end{cases}
+	$$
+	If $n$ and $m$ are sequences, then $n \frown m$ is their \textit{concatenation}.
+\end{definition}
+
+\begin{corollary}[$\mathrm{PRA}$]\label{corollary:characterization_of_sequence_concatenation}
+	Let $n,m$ be sequences. Then $n \frown m$ is the unique sequence such that the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $\mathrm{lh}(n\frown m) \meq \mathrm{lh}(n) \mplus \mathrm{lh}(m)$
+		\item $(n \frown m)_i \meq \begin{cases}
+				      n_i & \mbox{ if }i \mle \mathrm{lh}(n)                                      \\
+				      m_i & \mbox{ if }\mathrm{lh}(n) \mleq i \mle \mathrm{lh}(n) \mplus \mathrm{lh}(m) \\
+			      \end{cases}$
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	Follows from definition of $n \frown m$ and Fact \ref{fact:sequences_are_defined_by_their_elements}.
+\end{proof}
+
+\begin{corollary}[$\mathrm{PRA}$]\label{corollary:properties_of_sequence_concatenation}
+	The following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $1 \frown n \meq n \meq n \frown 1$ for every sequence $n$.
+		\item $(n \frown m) \frown k \meq x\frown (m \frown k)$
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	This is a consequence of Corollary \ref{corollary:characterization_of_sequence_concatenation}.
+\end{proof}
+
+\begin{definition}
+  $$n_{\mid i} = \begin{cases}
+  n_0...n_{i\dotminus 1}&\mbox{ if }1 < i \mle \mathrm{lh}(n)\\
+  1&\mbox{ if }\mathrm{Seq}(n)\mbox{ and }i \meq 0\\
+  0&\mbox{ otherwise }
+  \end{cases}$$
+\end{definition}
+
+\begin{definition}
+	$n \triangleright m \meq \begin{cases}
+			x \frown 2^{1 \mplus m} & \mbox{ if }\mathrm{Seq}(n) \\
+			0                  & \mbox{ otherwise }         \\
+		\end{cases}$
+\end{definition}
+
+\begin{definition}
+	Let $F$ be a $\rm{(k + 1)}$-ary primitive recursive function. We define
+  $$\tilde{F}(\vec{n},m) \meq F(\vec{n},0)...F(\vec{n},m \dotminus 1)$$
+  for every $m$ and every $\vec{n}$. Then $\tilde{F}$ is a \textit{course-of-values} function for $F$.
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:course_of_values_function}
+	Let $F$ be a $\rm{(k + 1)}$-ary primitive recursive function. Then $\tilde{F}(\vec{n},m)$ is a sequence of length $m$ and
+	$$\tilde{F}(\vec{n},m)_i \meq F(\vec{n},i)$$
+	for all $i \mle m$ and every $\vec{n}$. 
+\end{fact}
+\begin{proof}
+  This is a consequence of Theorem \ref{theorem:unique_prime_factorization}.
+\end{proof}
+
+\begin{proposition}[course-of-values recursion, $\mathrm{PRA}$]\label{proposition:course_of_values_recursion}
+	Let $F$ be a $\rm{k}$-ary primitive recursive and let $G$ be a $\rm{(k + 2)}$-ary primitive recursive function. Then there exists a $\rm{(k + 1)}$-ary primitive recursive function $H$ such that
+	$$H(\vec{n},0) \meq F(\vec{n}),\,H(\vec{n},m \mplus 1) \meq G\left(\vec{n},m,\tilde{H}(\vec{n},m \mplus 1)\right)$$
+	for every $\vec{n}$ and $m$.
+\end{proposition}
+\begin{proof}
+	We define
+	$$\ol{G}(\vec{n},m,k) \meq k \triangleright G(\vec{n},m,k),\,\ol{F}(\vec{n}) \meq 2^{1 \mplus F(\vec{n})}$$
+	Then $\ol{G}$ is a $\rm{(k + 2)}$-ary primitive recursive function and $\ol{F}$ is a $\rm{k}$-ary primitive recursive function. Let $\ol{H}$ be a function obtained by primitive recursion from $\ol{G}$ and $\ol{F}$. Then
+	$$\ol{H}(\vec{n},0) \meq 2^{1 \mplus F(\vec{n})},\,\ol{H}(\vec{n},m \mplus 1) \meq \ol{H}(\vec{n},m) \triangleright G\left(\vec{n},m,\ol{H}(\vec{n},m)\right)$$
+	for every $m$ and $\vec{n}$. Straightforward induction on $m$ implies that
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+		\item $\ol{H}(\vec{n},m)$ is a sequence of length $m \mplus 1$ for every $\vec{n}$ and $m$.
+		\item $\ol{H}(\vec{n},k)_i \meq \ol{H}(\vec{n},m)_i$ for all $i \mleq k \mleq m$.
+	\end{enumerate}
+	We define $H(\vec{n},m) \meq \ol{H}(\vec{n},m)_m$. Then \textbf{(1)} and \textbf{(2)} imply that $H$ is $\rm{(k + 1)}$-ary primitive recursive function and $\tilde{H}(\vec{n},m \mplus 1) \meq \ol{H}(\vec{n},m)$. Thus
+	$$H(\vec{n},0) \meq F(\vec{n}),\,H(\vec{n},m \mplus 1) \meq G\left(\vec{n},m,\tilde{H}(\vec{n},m \mplus 1)\right)$$
+	for every $\vec{n}$ and $m$.
+\end{proof}
+\noindent
+Next we study course-of-values recursion for primitive recursive formulas.
+
+\begin{definition}
+	Let $\Psi(\vec{n},m,k)$ be a primitive recursive formula. A primitive recursive formula $\Phi(\vec{n},m)$ with characteristic function $C_{\Phi}$ such that
+	$$\mathrm{PRA}\vdash \Phi(\vec{n},m) \mequiv \Psi\left(\vec{n},m,\widetilde{C_{\Phi}}(\vec{n},m)\right)$$
+	is obtained from $\Psi(\vec{n},m,k)$ by \textit{course-of-values recursion}.
+\end{definition}
+
+\begin{remark}\label{remark:all_course_of_values_formulas_are_equivalent}
+	Let $\Psi(\vec{n},m,k)$ be a primitive recursive formula. Then any two formulas obtained by course-of-values recursion from $\Psi(\vec{n},m,k)$ are provably equivalent in $\mathrm{PRA}$.
+\end{remark}
+
+\begin{corollary}\label{corollary:primitive_recursive_formulas_can_be_defined_by_course_of_values_recursion}
+	Let $\Psi(\vec{n},m,k)$ be a primitive recursive formula. Then there exists a formula obtained by course-of-values recursion from $\Psi(\vec{n},m,k)$.
+\end{corollary}
+\begin{proof}
+	Let $C_{\Psi}$ be a characteristic function of $\Psi(\vec{n},m,k)$. Then Proposition \ref{proposition:course_of_values_recursion} implies that there exists a primitive recursive function $C$ such that
+	$$C(\vec{n},0) \meq C_{\Psi}(\vec{n},0,1)$$
+	and
+	$$C(\vec{n},m \mplus 1) \meq C_{\Psi}\left(\vec{n},m \mplus 1,\tilde{C}(\vec{n},m \mplus 1)\right)$$
+	Then $\Phi(\vec{n},m) \equiv C(\vec{n},m) \meq 1$ is a primitive recursive formula that satisfies the assertion.
+\end{proof}
+
+\section{Formalization of first-order logic in Primitive Recursive Arithmetic}
+\noindent
+In this section we formalize in $\mathrm{PRA}$ our presentation of first-order logic in \cite{Systems_of_first_order_logic}. This is arithmetization of first-order meta-theory.
+
+\begin{definition}
+	We define \textit{logical constants}.
+  $$\perp \meq 3,\ra \meq 5,\wedge \meq 7,\vee \meq 9, \forall \meq 11, \exists \meq 13, = \meq 15$$
+\end{definition}
+
+\begin{definition}
+	A \textit{signature} consists of the following data.
+	\begin{itemize}
+		\item A primitive recursive formula $\mathrm{Rel}(r)$ and a primitive recursive function $\mathrm{arr}$ such that
+		      $$\mathrm{PRA}\vdash \mathrm{Rel}(r) \mra \left(20 \mle r \mand \mathrm{rem}(r,6) \meq 1\right),\,\mathrm{PRA}\vdash \mathrm{Rel}(r) \mra \mathrm{arr}(r) \mneq 0$$
+		      If $\mathrm{Rel}(r)$ holds, then $r$ is a \textit{relation symbol} and $\mathrm{arr}(r)$ is the \textit{arity} of $r$.
+		\item A primitive recursive formula $\mathrm{Fun}(f)$ and a primitive recursive function $\mathrm{arf}$ such that
+		      $$\mathrm{PRA}\vdash \mathrm{Fun}(f) \mra \left(20 \mle f \mand \mathrm{rem}(f,6) \meq 3\right)$$
+		      If $\mathrm{Fun}(f)$ holds, then $f$ is a \textit{function symbol} and $\mathrm{arf}(f)$ is the \textit{arity} of $f$.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	$$\mathrm{Var}(x) \equiv \left(10 \mle x \mand \mathrm{rem}(x,6) \meq 5\right)$$
+	If $\mathrm{Var}(x)$, then $x$ is a \textit{variable}.
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:signature_variables_parentheses_logical_symbols_and_sequences_are_pairwise_disjoint}
+	At most one of the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+		\item $n$ is a sequence.
+		\item $n$ is a logical constant.
+		\item $n$ is a relation symbol.
+		\item $n$ is a function symbol.
+		\item $n$ is a variable.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	Follows immediately from definitions and the fact that if $n$ is a sequence, then either $n \meq 1$ or $2|n$.
+\end{proof}
+
+\begin{definition}
+	We define $\mathrm{Term}(t)$ by course-of-values recursion on the structure of $t$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $t$ is a variable.
+    \item $t$ is a sequence of the form $ft_1...t_n$ for $n \mplus 1 = \mathrm{lh}(t)$, where $f$ is a $n$-ary function symbol and $\mathrm{Term}(t_i)$ holds for all $1 \mleq i \mleq n$.
+  \end{enumerate}
+  If $\mathrm{Term}(t)$, then $t$ is a \textit{term}.
+\end{definition}
+
+\begin{definition}
+  $\mathrm{Eq}(\phi)$ holds if $\phi$ is a sequence of the form $t_{\rm{1}}= t_{\rm{2}}$, where $t_{\rm{1}}$ and $t_{\rm{2}}$ are terms.
+	
+  If $\mathrm{Eq}(\phi)$, then $\phi$ is an \textit{equational formula}.
+\end{definition}
+
+\begin{definition}
+  $\mathrm{RelAtomic}(\phi)$ holds if either $\phi$ is $\perp$ or it is a sequence of the form $rt_1...t_n$ for $n \mplus 1 = \mathrm{lh}(\phi)$, where $r$ is $n$-ary relation symbol and $t_i$ is a term for every $1 \mleq i \mleq n$.
+
+  If $\mathrm{RelAtomic}(\phi)$, then $\phi$ is an \textit{relational formula}.
+\end{definition}
+
+\begin{definition}
+  $\mathrm{Atomic}(\phi)$ holds if either $\phi$ is relational formula or equational formula. 
+
+  If $\mathrm{Atomic}(\phi)$, then $\phi$ is an \textit{atomic formula}.
+\end{definition}
+
+\begin{remark}\label{remark:quantifier_notation}
+  Let $x$ be a variable. Then we write the sequences $\forall x$ and $\exists x$ as $\forall_x$ and $\exists_x$, respectively.
+\end{remark}
+
+\begin{definition}
+	Let $\mathrm{Form}(\phi)$ be a primitive recursive formula obtained by course-of-values recursion on the structure on $\phi$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $\phi$ is an atomic formula.
+    \item $\phi$ is a sequence of one of the forms
+      $$\phi_{\rm{1}}\wedge \phi_{\rm{2}},\,\phi_{\rm{1}}\vee \phi_{\rm{2}},\,\phi_{\rm{1}}\ra \phi_{\rm{2}}$$
+      and $\mathrm{Form}(\phi_{\rm{1}}),\mathrm{Form}(\phi_{\rm{2}})$ hold.
+    \item $\phi$ is a sequence of one of the forms
+      $$\forall_x\,\psi,\,\exists_x\,\psi$$
+      where $x$ is a variable and $\mathrm{Form}(\psi)$ holds.
+  \end{enumerate}
+	If $\mathrm{Form}(\phi)$, then $\phi$ is an \textit{formula}.
+\end{definition}
+
+\begin{definition}
+	Let $\mathrm{Var}(x,n)$ be a primitive recursive formula obtained by course-of-values recursion on the structure of $n$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $x$ is a variable and $n \meq x$.
+    \item $x$ is a variable and $n$ is a term of the form $ft_1...t_k$ for $k \mplus 1 = \mathrm{lh}(n)$ such that $\mathrm{Var}(x,t_i)$ for some $1 \mleq i \mleq k$.
+    \item $x$ is a variable and $n$ is a relational formula of the form $rt_1...t_k$ for $k \mplus 1 = \mathrm{lh}(n)$ such that $\mathrm{Var}(x,t_i)$ for some $1 \mleq i \mleq k$.
+    \item $x$ is a variable and $n$ is an equational formula of the form $t_{\rm{1}} = t_{\rm{2}}$ and either $\mathrm{Var}(x,t_{\rm{1}})$ or $\mathrm{Var}(x,t_{\rm{2}})$.
+    \item $x$ is a variable and $n$ is a formula of one of the forms
+      $$\phi_{\rm{1}}\wedge \phi_{\rm{2}},\,\phi_{\rm{1}} \vee \phi_{\rm{2}},\,\phi_{\rm{1}}\ra \phi_{\rm{2}}$$
+      and either $\mathrm{Var}(x,\phi_{\rm{1}})$ or $\mathrm{Var}(x,\phi_{\rm{2}})$.
+    \item $x$ is a variable and $n$ is a formula of one of the forms
+      $$\forall_y\,\psi,\,\exists_y\,\psi$$
+      and either $x = y$ or $\mathrm{Var}(x,\psi)$.
+  \end{enumerate}
+  If $\mathrm{Var}(x,n)$, then $x$ is a \textit{variable} in $n$.
+ \end{definition}
+
+\begin{definition}
+	Let $\mathrm{Free}(x,\phi)$ be a primitive recursive formula obtained by course-of-values recursion on the structure of $\phi$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $x$ is a variable and $\phi$ is an atomic formula and $\mathrm{Var}(x,\phi)$.
+    \item $x$ is a variable and $\phi$ is a formula of one of the forms
+      $$\phi_{\rm{1}}\wedge \phi_{\rm{2}},\,\phi_{\rm{1}} \vee \phi_{\rm{2}},\,\phi_{\rm{1}}\ra \phi_{\rm{2}}$$
+      and either $\mathrm{Free}(x,\phi_{\rm{1}})$ or $\mathrm{Free}(x,\phi_{\rm{2}})$.
+    \item $x$ is a variable and $\phi$ is a formula of one of the forms
+      $$\forall_y\,\psi,\,\exists_y\,\psi$$
+      and $x \neq y$ and $\mathrm{Free}(x,\psi)$.
+  \end{enumerate}
+  If $\mathrm{Free}(x,\phi)$, then $x$ is a \textit{free} variable in $\phi$. 
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:if_variable_is_free_in_expression_then_it_is_smaller_than_it}
+  The following assertions hold.
+  \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+    \item If $\mathrm{Free}(x,\phi)$, then $\mathrm{Var}(x,\phi)$.
+    \item If $\mathrm{Var}(x,n)$, then $x \mleq n$. 
+    \item If $\mathrm{Free}(x,\phi)$, then $x \mleq \phi$. 
+  \end{enumerate}
+\end{fact}
+\begin{proof}
+  The proof goes by complete induction schema of Theorem \ref{theorem:statements_equivalent_to_induction_axiom_schema_for_primitive_recursive_formulas}. The details are left for the reader.
+\end{proof}
+
+\begin{proposition}[$\mathrm{PRA}$]\label{proposition:sequence_of_free_variables}
+  There exists a primitive recursive function $\mathrm{free}$ such that $\mathrm{free}(n)$ is an increasing sequence of all free variables of $n$.
+\end{proposition}
+\begin{proof}
+  Let $G$ be a primitive recursive function given by 
+  $$G(n,m,k) \meq \begin{cases}
+    k \triangleright m &\mbox{ if }\mathrm{Free}(m,n)\\
+    k &\mbox{ otherwise }
+  \end{cases}$$
+  Then
+  $$H(n,0) \meq 1,\,H(n,m\mplus1) \meq G(n,m,H(n,m))$$
+  Then by easy induction we prove that $H(n,m)$ is an increasing sequence consists of all free variables $x$ of $n$ such that $x \mle m$. Next define $\mathrm{free}(n) \meq H(n,n \mplus 1)$. Then $\mathrm{free}(n)$ is increasing sequence of all free variables of $n$. 
+\end{proof}
+
+\begin{definition}
+  Let $\mathrm{Sub}(t,x,n)$ be a primitive recursive formula obtained by course-of-values recursion on the structure of $n$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $t$ is a term and $x$ is a variable and $n$ is term and $\mathrm{Var}(x,n)$.
+    \item $t$ is a term and $x$ is a variable and $n$ is an atomic formula and $\mathrm{Var}(x,n)$.
+    \item $t$ is a term and $x$ is a variable and $n$ is a formula of one of the forms
+      $$\phi_{\rm{1}}\wedge \phi_{\rm{2}},\,\phi_{\rm{1}} \vee \phi_{\rm{2}},\,\phi_{\rm{1}}\ra \phi_{\rm{2}}$$
+      and $\mathrm{Sub}(t,x,\phi_{\rm{1}})$ and $\mathrm{Sub}(t,x,\phi_{\rm{2}})$.
+    \item $t$ is a term and $x$ is a variable and $n$ is a formula of one of the forms
+      $$\forall_y\,\psi,\,\exists_y\,\psi$$
+      and $x \neq y$ and $\mathrm{Sub}(t,x,\psi)$.
+    \item $t$ is a term and $x$ is a variable and $n$ is a formula of one of the forms
+      $$\forall_x\,\psi,\,\exists_x\,\psi$$
+  \end{enumerate}
+If $\mathrm{Sub}(t,x,n)$, then $t$ is \textit{substitutable} for $x$ in $n$.
+\end{definition}
+
+\begin{definition}
+  Let $\mathrm{sub}$ be a primitive recursive function obtained by course-of-values recursion on the structure of $n$ as follows.
+  $$\mathrm{sub}(t,x,n) \meq \begin{cases}
+    x&\mbox{ if }\mathrm{Term}(t)\mand \mathrm{Var}(x)\mand \mathrm{Var}(n) \mand n \mneq x\\
+    t&\mbox{ if }\mathrm{Term}(t)\mand \mathrm{Var}(x)\mand n \meq x\\
+    n_0\mathrm{sub}(t,x,n_1)...\mathrm{sub}(t,x,n_{\mathrm{lh}(n) \dotminus 1}) &\mbox{ if }\mathrm{Term}(n)\mand \mathrm{lh}(n) \mge 0\\
+    \mathrm{sub}(t,x,n_0)=\mathrm{sub}(t,x,n_2)&\mbox{ if }\mathrm{Term}(t)\mand \mathrm{Var}(x) \mand \mathrm{Eq}(n)\\
+    n_0\mathrm{sub}(t,x,n_1)...\mathrm{sub}(t,x,n_{\mathrm{lh}(n)\dotminus 1})&\mbox{ if }\mathrm{Term}(t)\mand \mathrm{Var}(x) \mand \mathrm{RelAtomic}(n)\\
+    \mathrm{sub}(t,x,n_0)\wedge \mathrm{sub}(t,x,n_2)&\mbox{ if }\mathrm{Sub}(t,x,n) \mand n_1 \meq \wedge\\
+    \mathrm{sub}(t,x,n_0)\vee \mathrm{sub}(t,x,n_2)&\mbox{ if }\mathrm{Sub}(t,x,n) \mand n_1 \meq \vee\\
+    \mathrm{sub}(t,x,n_0)\ra \mathrm{sub}(t,x,n_2)&\mbox{ if }\mathrm{Sub}(t,x,n) \mand n_1 \meq \ra\\
+    \forall_{n_1}\,\mathrm{sub}(t,x,n_2)&\mbox{ if }\mathrm{Sub}(t,x,n)\mand n_0 \meq \forall \mand n_1 \mneq x\\
+    \exists_{n_1}\,\mathrm{sub}(t,x,n_2)&\mbox{ if }\mathrm{Sub}(t,x,n)\mand n_0 \meq \exists \mand n_1 \mneq x\\
+    n&\mbox{ if }\mathrm{Sub}(t,x,n) \mand n_0 \meq \forall \mand n_1 \meq x\\
+    n&\mbox{ if }\mathrm{Sub}(t,x,n) \mand n_0 \meq \exists \mand n_1 \meq x\\
+    0&\mbox{ otherwise }\\
+  \end{cases}$$
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:substitution_in_term_produces_term_and_substititution_in_formula_produces_formula}
+  The following assertions hold.
+  \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+    \item If $n$ is a term and $t$ is substitutable for $x$ in $n$, then $\mathrm{sub}(t,x,n)$ is a term.
+    \item If $n$ is a formula and $t$ is substitutable for $x$ in $n$, then $\mathrm{sub}(t,x,n)$ is a formula.
+  \end{enumerate}
+\end{fact}
+\begin{proof}
+ Follows from the definition and complete induction schema of Theorem \ref{theorem:statements_equivalent_to_induction_axiom_schema_for_primitive_recursive_formulas}.
+\end{proof}
+
+\begin{definition}
+$$
+\begin{aligned}[t]
+&\mathrm{PAxiom}(\phi) \equiv \mexists_{\phi_{\rm{1}},\phi_{\rm{2}},\phi_{\rm{3}} \mle \phi}\Bigl(\mathrm{Form}(\phi_{\rm{1}})\mand \mathrm{Form}(\phi_{\rm{2}}) \mand \mathrm{Form}(\phi_{\rm{3}}) \mand \Bigl(\\ 
+&\begin{aligned}[t]
+&\phi \meq \left(\left(\phi_{\rm{1}}\ra \left(\phi_{\rm{2}}\ra \phi_{\rm{3}}\right)\right)\ra \left(\left(\phi_{\rm{1}} \ra \phi_{\rm{2}}\right) \ra \left(\phi_{\rm{1}} \ra \phi_{\rm{3}}\right)\right)\right)\\
+&\mor \phi \meq \phi_{\rm{1}} \ra \left(\phi_{\rm{2}} \ra \phi_{\rm{1}}\right) \\
+&\mor \phi \meq \left(\phi_{\rm{1}} \wedge \phi_{\rm{2}}\right)\ra \phi_{\rm{1}} \mor \phi \meq \left(\phi_{\rm{1}} \wedge \phi_{\rm{2}}\right) \ra \phi_{\rm{2}}\\
+&\mor \phi \meq \phi_{\rm{1}} \ra \left(\phi_{\rm{2}} \ra \left(\phi_{\rm{1}} \wedge \phi_{\rm{2}}\right)\right)\\
+&\mor \phi \meq \phi_{\rm{1}} \ra \left(\phi_{\rm{1}} \vee \phi_{\rm{2}}\right) \mor \phi \meq \phi_{\rm{2}} \ra \left(\phi_{\rm{1}} \vee \phi_{\rm{2}}\right)\\
+&\mor \phi \meq \left(\phi_{\rm{1}} \ra \phi_{\rm{3}}\right) \ra \left(\left(\phi_{\rm{2}} \ra \phi_{\rm{3}}\right) \ra \left(\left(\phi_{\rm{1}} \vee \phi_{\rm{2}}\right)\ra \phi_{\rm{2}}\right)\right)\\
+&\mor \phi \meq \left(\left(\phi_{\rm{1}} \ra \perp\right) \ra \perp\right) \ra \phi_{\rm{1}}\, \Bigr)\Bigr)\\
+\end{aligned}
+\end{aligned}
+$$
+If $\mathrm{PAxiom}(\phi)$, then $\phi$ is a \textit{propositional axiom}.
+\end{definition}
+
+\begin{definition}
+$$
+\begin{aligned}[t]
+&\mathrm{QAxiom}(\phi) \equiv \mexists_{\phi_{\rm{1}},\phi_{\rm{2}},\phi_{\rm{3}},x,t \mle \phi}\Bigl(\mathrm{Form}(\phi_{\rm{1}})\mand \mathrm{Form}(\phi_{\rm{2}}) \mand \mathrm{Var}(x) \mand \mathrm{Term}(t) \mand \Bigl(\\ 
+&\begin{aligned}[t]
+&\phi \meq \forall_x \left(\phi_{\rm{1}} \ra \phi_{\rm{2}}\right) \ra \left(\forall_x\,\phi_{\rm{1}} \ra \forall_x\,\phi_{\rm{2}}\right)\\
+&\mor \bigl(\phi \meq \phi_{\rm{1}} \ra \forall_x\,\phi_{\rm{1}} \mand \mathrm{Free}(x,\phi_{\rm{1}})\bigr) \\
+&\mor \bigl(\phi \meq \forall_x\,\phi_{\rm{1}} \ra \mathrm{sub}(t,x,\phi_{\rm{1}}) \mand \mathrm{Sub}(t,x,\phi_{\rm{1}})\bigr)\\
+&\mor \bigl(\phi \meq \mathrm{sub}(t,x,\phi_{\rm{1}}) \ra \exists_x\,\phi_{\rm{1}} \mand \mathrm{Sub}(t,x,\phi_{\rm{1}})\bigr)\\
+&\mor \bigl(\phi \meq \forall_x\left(\phi_{\rm{1}} \ra \phi_{\rm{2}}\right) \ra \left(\exists_x\,\phi_{\rm{1}} \ra \phi_{\rm{2}}\right) \mand \left(\mneg \mathrm{Free}(x,\phi_{\rm{2}})\right)\bigr)\Bigr)\Bigr)\\
+\end{aligned}
+\end{aligned}
+$$
+If $\mathrm{QAxiom}(\phi)$, then $\phi$ is a \textit{quantifier axiom}.
+\end{definition}
+
+\begin{definition}
+$$
+\begin{aligned}[t]
+&\mathrm{EqAxiom}(\phi) \equiv \mexists_{t_{\rm{1}},t_{\rm{2}},t_{\rm{3}},x,t,\psi \mle \phi}\Bigl(\mathrm{Term}(t_{\rm{1}})\mand \mathrm{Term}(t_{\rm{2}}) \mand \mathrm{Term}(t_{\rm{3}}) \mand \\
+&\mathrm{Var}(x) \mand \mathrm{Term}(t) \mand \mathrm{Atomic}(\psi) \mand \Bigl(\\
+&\begin{aligned}[t]
+&\phi \meq t_{\rm{1}}=t_{\rm{1}}\\
+&\mor \phi \meq t_{\rm{1}} = t_{\rm{2}} \ra t_{\rm{2}} = t_{\rm{1}} \\
+&\mor \phi \meq t_{\rm{1}} = t_{\rm{2}} \ra \left(t_{\rm{2}} = t_{\rm{3}} \ra t_{\rm{1}} = t_{\rm{3}}\right)\\
+&\mor \phi \meq t_{\rm{1}} = t_{\rm{2}} \ra \mathrm{sub}(t_{\rm{1}},x,t) = \mathrm{sub}(t_{\rm{2}},x,t)\\
+&\mor \phi \meq t_{\rm{1}} = t_{\rm{2}} \ra \left(\mathrm{sub}(t_{\rm{1}},x,\psi) \ra \mathrm{sub}(t_{\rm{2}},x,\psi)\right)\,\Bigr)\Bigr)\\
+\end{aligned}
+\end{aligned}
+$$
+If $\mathrm{EqAxiom}(\phi)$, then $\phi$ is an \textit{equational axiom}.
+\end{definition}
+
+\begin{definition}
+  Let $\mathrm{Axiom}(\phi)$ be a primitive recursive formula obtained by course-of-values recursion on the structure of $\phi$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $\phi$ is a propositional axiom.
+    \item $\phi$ is a quantifier axiom.
+    \item $\phi$ is an equational axiom.
+    \item $\phi$ is a formula of the form $\forall_x\,\psi$ and $\mathrm{Axiom}(\psi)$ holds.
+  \end{enumerate}
+  If $\mathrm{Axiom}(\phi)$, then $\phi$ is a \textit{logical axiom}.
+\end{definition}
+
+\begin{definition}
+  $\mathrm{MP}\left(\phi,\psi,\rho\right) \equiv \mathrm{Form}(\phi) \mand \mathrm{Form}(\psi) \mand \rho \meq \phi \ra \psi$
+
+  If $\mathrm{MP}\left(\phi,\psi,\rho\right)$, then $\rho$ is obtained by \textit{modus ponens} from $\psi$ and $\psi$.
+\end{definition}
+
+\begin{definition}
+  Let $\gamma(n)$ be a formula of $\mathrm{PRA}$ such that
+  $$\mathrm{PRA} \vdash \gamma(n) \mra \mathrm{Form}(n)$$
+  Then $\gamma$ is a \textit{predicate on formulas}.
+\end{definition}
+
+\begin{definition}
+  Let $\gamma(n)$ be a predicate of formulas. Then we define
+  $$\mathrm{Proof}_{\gamma}(p) \equiv \mathrm{lh}(p) \mge 0 \mand \mforall_{i \mle \mathrm{lh}(p)}\bigl(\mathrm{Axiom}(p_i) \mor \gamma(p_i) \mor \mexists_{j,k \mle i}\,\mathrm{MP}(p_j,p_k,p_i)\bigr)$$
+  If $\mathrm{Proof}_{\gamma}(p)$, then $p$ is a \textit{proof} from $\gamma$. 
+ \end{definition}
+
+ \begin{definition}
+  Let $\gamma(n)$ be a predicate of formulas. Then we define
+  $$\mathrm{Prf}_{\gamma}(p,\phi) \equiv \mathrm{Form}(\phi) \mand \mathrm{Proof}_{\gamma}(p) \mand p[\mathrm{lh}(p)\dotminus 1] \meq \phi$$
+  If $\mathrm{Prf}_{\gamma}(p,\phi)$, then $p$ is a \textit{proof} of $\phi$ from $\gamma$.
+\end{definition}
+
+\begin{fact}\label{fact:proof_predicates_are_primitive_recursive_if_extralogical_axioms_are_primitive_recursive}
+  Let $\gamma(n)$ be a primitive recursive predicate of formulas. Then $\mathrm{Proof}_{\gamma}(p)$ and $\mathrm{Prf}_{\gamma}(p, \phi)$ are primitive recursive.
+\end{fact}
+\begin{proof}
+  Follows immediately from the definition.
+\end{proof}
+
+\begin{definition}
+  Let $\gamma(n)$ be a predicate of formulas. Then we define
+  $$\mathrm{Pr}_{\gamma}(\phi) \equiv \mexists_p\,\mathrm{Prf}_{\gamma}(p,\phi)$$
+  The formula $\mathrm{Pr}_{\gamma}(\phi)$ is the \textit{G{\"o}del provability predicate} for $\gamma$.
+\end{definition}
+
+\section{Formalization of some metalogical results}
+\noindent
+We demonstrate now strength of $\mathrm{PRA}$ as a meta-theory by proving important meta-logical results.
+
+\begin{definition}
+  Let $\gamma$ be a primitive recursive predicate of formulas. Then
+  $$
+  \begin{aligned}[t]
+  &\mathrm{ant}(p,i) = \mu_{j < i}\left[\mathrm{Proof}_{\gamma}(p) \mand i \mle \mathrm{lh}(p) \mand \mexists_{k < i}\,\mathrm{MP}\left(p_j,p_k,p_i\right)\right]\\
+  &\mathrm{cond}(p,i) = \mu_{k < i}\left[\mathrm{Proof}_{\gamma}(p) \mand \mathrm{ant}(p,i) < i \mand \mathrm{MP}\left(p_{\mathrm{ant}(p,i)},p_k,p_i\right)\right]\\
+  \end{aligned}
+  $$
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:structure_of_modus_ponens}
+  Let $\gamma$ be a predicate on formulas and let $p$ be a proof from $\gamma$. Fix $i \mle \mathrm{lh}(p)$. If neither $\gamma$ holds for $p_i$ nor $p_i$ is an axiom, then $\mathrm{ant}(p,i), \mathrm{cond}(p,i) \mle i$ and
+  $$p_{\mathrm{cond}(p,i)} \meq p_{\mathrm{ant}(p,i)} \ra p_i$$ 
+\end{fact}
+\begin{proof}
+  Left for the reader.
+\end{proof}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:provability_of_identity}
+  There exists a primitive recursive function $F$ such that if $\phi$ is a formula, then $F(\phi)$ is a proof of $\phi \ra \phi$.
+\end{fact}
+\begin{proof}
+  Fix a formula $\phi$. Consider formulas
+  \begin{align*}
+    &d_{\rm{0}}(\phi) \meq \phi \ra \left(\phi \ra \phi\right)\\
+    &d_{\rm{1}}(\phi) \meq \phi \ra \left(\left(\phi \ra \phi\right) \ra \phi\right)\\
+    &d_{\rm{2}}(\phi) \meq \left(\phi \ra \left(\left(\phi \ra \phi\right) \ra \phi\right)\right) \ra \left(\left(\phi \ra \left(\phi \ra \phi\right)\right) \ra \left(\phi \ra \phi\right)\right)\\
+    &d_{\rm{3}}(\phi) \meq \left(\phi \ra \left(\phi \ra \phi\right)\right) \ra \left(\phi \ra \phi\right)\\
+    &d_{\rm{4}}(n) \meq \phi \ra \phi\\
+  \end{align*}
+  Note that $d_{\rm{0}}(\phi)d_{\rm{1}}(\phi)d_{\rm{2}}(\phi)d_{\rm{3}}(\phi)d_{\rm{4}}(\phi)$ is a proof. Indeed, $d_{\rm{0}}(\phi),d_{\rm{1}}(\phi),d_{\rm{2}}(\phi)$ are propositional axioms, $d_{\rm{3}}(\phi)$ is obtained by modus ponens from $d_{\rm{2}}(\phi)$ and $d_{\rm{1}}(\phi)$, $d_{\rm{4}}(\phi)$ is obtained by modus ponens from $d_{\rm{3}}(\phi)$ and $d_{\rm{0}}(\phi)$. We define
+  $$F(\phi) \meq d_{\rm{0}}(\phi)d_{\rm{1}}(\phi)d_{\rm{2}}(\phi)d_{\rm{3}}(\phi)d_{\rm{4}}(\phi)$$
+  By construction $F$ satisfies the assertion.
+\end{proof}
+\noindent
+Let $\gamma(n)$ be a formulas predicate and let $\phi$ be a formula. We define
+$$\left(\gamma \cup \phi\right)(n) \equiv \gamma(n) \mor n \meq \phi$$
+We tacitly assume that writing symbol $\gamma \cup \phi$ entails that $\phi$ is a formula.
+
+\begin{theorem}[deduction theorem, $\mathrm{PRA}$]
+  Let $\gamma(n)$ be a primitive recursive predicate. Then the following assertions hold.
+ \begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=3.0em]
+   \item There exists a primitive recursive function $F$ such that if $p$ is a proof of $\psi$ from $\gamma \cup \phi$, then $F(p,\phi)$ is a proof of $\phi \ra \psi$.
+    \item There exists a primitive recursive function $G$ such that if $p$ is a proof of $\phi \ra \psi$ from $\gamma$, then $G(p,\phi)$ is a proof of $\psi$ from $\gamma \cup \phi$.
+  \end{enumerate}
+\end{theorem}
+\noindent
+For the proof we need some lemmas in which we construct some partial proofs.
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:case_of_axiom}
+  There exists a primitive recursive function $F$ such that if $\psi$ is an axiom and $\phi$ is a formula, then $F(\psi,\phi)$ is a proof of $\phi \ra \psi$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose that $\psi$ is an axiom and $\phi$ is a formula. Consider formulas
+  \begin{align*}
+    &d_{\rm{0}}(\psi) \meq \psi\\
+    &d_{\rm{1}}(\psi, \phi) \meq \psi \ra \left(\phi \ra \psi\right)\\
+    &d_{\rm{2}}(\psi, \phi) \meq \phi \ra \psi\\
+  \end{align*}
+  Note that $d_{\rm{0}}(\psi)d_{\rm{1}}(\psi, \phi)d_{\rm{2}}(\psi, \phi)$ is a proof. Indeed, $d_{\rm{0}}(\psi)$ is an axiom, $d_{\rm{1}}(\psi,\phi)$ is a propositional axiom and $d_{\rm{2}}(\psi,\phi)$ is obtained by modus ponens from $d_{\rm{1}}(\psi,\phi)$ and $d_{\rm{0}}(\psi)$. We define
+  $$F(\psi, \phi) \meq d_{\rm{0}}(\psi)d_{\rm{1}}(\psi,\phi)d_{\rm{2}}(\psi,\phi)$$
+  By construction $F$ satisfies the assertion.
+\end{proof}
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:case_of_gamma}
+  Let $\gamma(n)$ be a primitive recursive predicate on formulas. There exists a primitive recursive function $F$ such that if $\gamma(\psi)$ and $\phi$ is a formula, then $F(\psi,\phi)$ is a proof of $\phi \ra \psi$ from $\gamma$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose that $\gamma(\psi)$ holds and $\phi$ is a formula. Consider formulas
+  \begin{align*}
+    &d_{\rm{0}}(\psi) \meq \psi\\
+    &d_{\rm{1}}(\psi, \phi) \meq \psi \ra \left(\phi \ra \psi\right)\\
+    &d_{\rm{2}}(\psi, \phi) \meq \phi \ra \psi\\
+  \end{align*}
+  Note that $d_{\rm{0}}(\psi)d_{\rm{1}}(\psi,\phi)d_{\rm{2}}(\psi,\phi)$ is a proof from $\gamma$. Indeed, $\gamma\left(d_{\rm{0}}(\psi)\right)$ holds, $d_{\rm{1}}(\psi,\phi)$ is a propositional axiom and $d_{\rm{2}}(\psi,\phi)$ is obtained by modus ponens from $d_{\rm{1}}(\psi,\phi)$ and $d_{\rm{0}}(\psi)$. We define
+  $$F(\psi, \phi) \meq d_{\rm{0}}(\psi)d_{\rm{1}}(\psi,\phi)d_{\rm{2}}(\psi,\phi)$$
+  By construction $F$ satisfies the assertion.
+\end{proof}
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:case_of_modus_ponens}
+  There exists a primitive recursive function $F$ such that if $\mathrm{MP}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}})$ and $\phi$ is a formula, then $F(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},\phi)$ is a proof of $\phi \ra \psi_{\rm{3}}$ from $\phi \ra \psi_{\rm{1}},\phi \ra \psi_{\rm{2}}$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+  Suppose that $\mathrm{MP}\left(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}}\right)$ and $\phi$ is a formula. Consider formulas
+  \begin{align*}
+    &d_{\rm{0}}(\psi_{\rm{1}},\phi) \meq \phi \ra \psi_{\rm{1}}\\
+    &d_{\rm{1}}(\psi_{\rm{2}},\phi) \meq \phi \ra \psi_{\rm{2}}\\
+    &d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},\phi) \meq \left(\phi \ra \psi_{\rm{2}}\right) \ra \left(\left(\phi \ra \psi_{\rm{1}}\right) \ra \left(\phi \ra \psi_{\rm{3}}\right)\right)\\
+    &d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},\phi) \meq \left(\phi \ra \psi_{\rm{1}}\right) \ra \left(\phi \ra \psi_{\rm{3}}\right)\\
+    &d_{\rm{4}}(\psi_{\rm{3}},\phi) \meq \phi \ra \psi_{\rm{3}}\\
+  \end{align*}
+  Note that 
+  $$d_{\rm{0}}(\psi_{\rm{1}},\phi)d_{\rm{1}}(\psi_{\rm{2}},\phi)d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},\phi)d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},\phi)d_{\rm{4}}(\psi_{\rm{3}},\phi)$$
+  is a proof from $\phi \ra \psi_{\rm{1}},\phi \ra \psi_{\rm{2}}$. Indeed, $d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},\phi)$ is a propositional axiom by $\mathrm{MP}\left(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}}\right)$, $d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},\phi)$ is obtained from $d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},\phi)$ and $d_{\rm{1}}(\psi_{\rm{2}},\phi)$ by modus ponens, and finally, $d_{\rm{4}}(\psi_{\rm{3}},\phi)$ is obtained from $d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},\phi)$ and $d_{\rm{0}}(\psi_{\rm{1}},\phi)$ by modus ponens. We define
+  $$F(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},\phi) \meq d_{\rm{0}}(\psi_{\rm{1}},\phi)d_{\rm{1}}(\psi_{\rm{2}},\phi)d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},\phi)d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},\phi)d_{\rm{4}}(\psi_{\rm{3}},\phi)$$
+  By construction $F$ satisfies the assertion.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+  Let $\mathrm{id}$ be a primitive recursive function described by Fact \ref{fact:provability_of_identity}. Let $ax$ be a primitive recursive function descibed by Lemma \ref{lemma:case_of_axiom}. Let $\mathrm{ga}$ be a primitive recursive function described in Lemma \ref{lemma:case_of_gamma}. Let $\mathrm{mp}$ be a primitive recursive function described in Lemma \ref{lemma:case_of_modus_ponens}. We construct $F$ by course-of-values recursion on the structure of $p$. Suppose that $p$ is a proof from $\gamma \cup \phi$, $n = \mathrm{lh}(p) \dotminus 1$ and $p_n = \psi$. Then we set
+  $$F(p,\phi) \meq \begin{cases}
+    \mathrm{id}(\phi,\phi) &\mbox{ if }\mathrm{Prf}_{\gamma \cup \phi}(p,\psi) \mand \phi \meq \psi\\
+    \mathrm{ax}(\psi,\phi) &\mbox{ if }\mathrm{Prf}_{\gamma \cup \phi}(p,\psi) \mand \mathrm{Axiom}(\psi)\\
+    \mathrm{ga}(\psi,\phi) &\mbox{ if }\mathrm{Prf}_{\gamma \cup \phi}(p,\psi) \mand \gamma(\psi)\\
+    \end{cases}$$
+    and
+  $$F(p,\phi) \meq F(p_{\mid \mathrm{ant}(p,n) \mplus 1},\phi) \frown F(p_{\mid \mathrm{cond}(p,n) \mplus 1},\phi)\frown \mathrm{mp}(p_{\mathrm{ant}(p,n)},p_{\mathrm{cond}(p,n)},\psi,\phi)$$
+  if $\mathrm{ant}(p,n),\mathrm{cond}(p,m) < n$. Finally, if $p$ is not a proof from $\gamma \cup \phi$, then we set $F(p,\phi) \meq 0$. According to Fact \ref{fact:provability_of_identity} and Lemmas \ref{lemma:case_of_axiom}, \ref{lemma:case_of_gamma}, \ref{lemma:case_of_modus_ponens} we infer that if $p$ is a proof of $\psi$ from $\gamma \cup \phi$, then $F(p,\phi)$ is a proof of $\phi \ra \psi$ from $\gamma$. This proves \textbf{(1)}.
+
+    Next we define
+    $$G(p,\phi) =\begin{cases}
+      p\frown \phi\psi&\mbox{ if }\mathrm{Prf}_{\gamma}(p,\phi \ra \psi)\\
+     0&\mbox{ otherwise }\\
+    \end{cases}$$
+    where $\psi$ denotes $p[\mathrm{lh}(p) \dotminus 1]$. Clearly if $p$ is a proof of $\phi \ra \psi$ from $\gamma$, then $G(p,\phi)$ is a proof of $\psi$ from $\gamma\cup \phi$. This completes the proof of \textbf{(2)}.
+\end{proof}
+
+\begin{theorem}[variable generalization, $\mathrm{PRA}$]
+  Let $\gamma(n)$ be a primitive recursive predicate on formulas. Then there exists a primitive recursive function $F$ such that if $p$ is a proof of some formula $\phi$ from $\gamma$ and $x$ is a variable that is not free in any formula for which predicate $\gamma$ holds, then $F(p,x)$ is a proof of $\forall_x\,\phi$ from $\gamma$. 
+\end{theorem}
+\noindent
+For this meta-theorem we also need some constructions of proofs.
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:gamma_case_of_variable_generalization}
+  There exists a primitive recursive function $F$ such that if $\phi$ is a formula and $x$ is a variable that is not free in $\phi$, then $F(\phi,x)$ is a proof of $\forall_x\,\phi$ from $\phi$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose that $\phi$ is a formula and $x$ is not free in $\phi$. Consider formulas
+  \begin{align*}
+    &d_{\rm{0}}(\phi) \meq \phi\\
+    &d_{\rm{1}}(\phi,x) \meq \phi \ra \forall_x\,\phi\\
+    &d_{\rm{2}}(\phi,x) \meq \forall_x\,\phi\\
+  \end{align*}
+  Note that $d_{\rm{0}}(\phi)d_{\rm{1}}(\phi,x)d_{\rm{2}}(\phi,x)$ is a proof from $\phi$. Indeed, $d_{\rm{0}}(\phi) \meq \phi$, $d_{\rm{1}}(\phi,x)$ is a quantifier axiom, $d_{\rm{2}}(\phi,x)$ is obtained by modus ponens from $d_{\rm{1}}(\phi,x)$ and $d_{\rm{0}}(\phi)$. We define
+  $$F(\phi,x) \meq d_{\rm{0}}(\phi)d_{\rm{1}}(\phi,x)d_{\rm{2}}(\phi,x)$$
+  By construction $F$ satisfies the assertion.
+\end{proof}
+
+\begin{lemma}[$\mathrm{PRA}$]\label{lemma:modus_ponens_case_of_variable_generalization}
+  There exists a primitive recursive function $F$ such that if $\mathrm{MP}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}})$ and $x$ is a variable, then $F(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},x)$ is a proof of $\forall_x\,\psi_{\rm{3}}$ from $\forall_x\,\psi_{\rm{1}},\forall_x\,\psi_{\rm{2}}$. 
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+Suppose that $\mathrm{MP}\left(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}}\right)$ and $x$ is a variable. Consider formulas
+  \begin{align*}
+    &d_{\rm{0}}(\psi_{\rm{1}},x) \meq \forall_x\,\psi_{\rm{1}}\\
+    &d_{\rm{1}}(\psi_{\rm{2}},x) \meq \forall_x\,\psi_{\rm{2}}\\
+    &d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},x) \meq \forall_x\,\psi_{\rm{2}}\ra \left(\forall_x\,\psi_{\rm{1}} \ra \forall_x\,\psi_{\rm{3}}\right)\\
+    &d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},x) \meq \forall_x\,\psi_{\rm{1}} \ra \forall_x\,\psi_{\rm{3}}\\
+    &d_{\rm{4}}(\psi_{\rm{3}},x) \meq \forall_x\,\psi_{\rm{3}} \\
+  \end{align*}
+  Note that 
+  $$d_{\rm{0}}(\psi_{\rm{1}},x)d_{\rm{1}}(\psi_{\rm{2}},x)d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},x)d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},x)d_{\rm{4}}(\psi_{\rm{3}},x)$$
+  is a proof from $\forall x \psi_{\rm{1}},\forall x \psi_{\rm{2}}$. Indeed, $d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},x)$ is a quantifier axiom by $\mathrm{MP}\left(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}}\right)$, $d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},x)$ is obtained from $d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},x)$ and $d_{\rm{1}}(\psi_{\rm{2}},x)$ by modus ponens, and finally, $d_{\rm{4}}(\psi_{\rm{3}},x)$ is obtained from $d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},x)$ and $d_{\rm{0}}(\psi_{\rm{1}},x)$ by modus ponens. We define
+  $$F(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},x) \meq d_{\rm{0}}(\psi_{\rm{1}},x)d_{\rm{1}}(\psi_{\rm{2}},x)d_{\rm{2}}(\psi_{\rm{1}},\psi_{\rm{2}},\psi_{\rm{3}},x)d_{\rm{3}}(\psi_{\rm{1}},\psi_{\rm{3}},x)d_{\rm{4}}(\psi_{\rm{3}},x)$$
+  By construction $F$ satisifes the assertion.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+  Consider formula
+  $$\mathrm{Free}_{\gamma}(x) \equiv \gamma(n) \mra \mathrm{Free}(x,n)$$
+  Since $\gamma(n)$ is primitive recursive, we derive that $\mathrm{Free}_{\gamma}(x)$ is a primitive recursive formula. Note that $\mathrm{Free}_{\gamma}(x)$ if $x$ is not free in any formula for which predicate $\gamma$ holds.
+
+  Let $\mathrm{fr}$ be a primitive recursive function described by Lemma \ref{lemma:gamma_case_of_variable_generalization}. Let $\mathrm{mp}$ be a primitive recursive function descibed by Lemma \ref{lemma:modus_ponens_case_of_variable_generalization}.
+  Suppose that $x$ is not free in any formula for which $\gamma$ holds. We construct $F$ by course-of-values recursion on the structure on $p$. Let $p$ be a proof from $\gamma$ and let $n = \mathrm{lh}(p) \dotminus 1$ and let $\phi = p_n$. We define 
+  $$F(p,x) \meq \begin{cases}
+    \forall_x\,\phi &\mbox{ if }\mathrm{Axiom}(\phi)\\
+    \mathrm{fr}(\phi,x)&\mbox{ if }\gamma(\phi)\\
+  \end{cases}$$
+  and
+  $$F(p,x) \meq F(p_{\mid \mathrm{ant}(p,n) \mplus 1},x) \frown F(p_{\mid \mathrm{cond}(p,n) \mplus 1},x)\frown \mathrm{mp}(p_{\mathrm{ant}(p,n)},p_{\mathrm{cond}(p,n)},\phi,x)$$
+  if $\mathrm{ant}(p,n),\mathrm{cond}(p,n) < n$. Finally, we set $F(p,x) \meq 0$ for all other cases. According to Lemmas \ref{lemma:gamma_case_of_variable_generalization}, \ref{lemma:modus_ponens_case_of_variable_generalization} and the fact that axioms are closed under generalization we infer that if $p$ is a proof of $\phi$ from $\gamma$ and $x$ is not free in $\gamma$, then $F(p,x)$ is a proof of $\forall_x\,\phi$ from $\gamma$.
+ \end{proof}
+
+\section{First-order arithmetic and Tarski's schema}
+\noindent
+In this section we introduce specific first-order language related to natural numbers. In particular, we are interested in formalizing in $\mathrm{PRA}$ Tarski's satisfaction relation for some fragment of first-order arithmetic.
+
+\begin{definition}
+	The \textit{language of arithmetic} is the first order language with identity whose signature consists of the following symbols:
+	$$\underbrace{o}_{\mathrm{constant}},\underbrace{<}_{\mathrm{binary\,relation\,symbol}},\underbrace{s}_{\mathrm{unary\,function\,symbol}},\underbrace{+,\cdot}_{\mathrm{binary\,function\,symbols}}$$
+	We denote this language with $\bd{Ar}$.
+\end{definition}
+\noindent
+Next we formalize this language in $\mathrm{PRA}$. For this we set
+$$o \meq 21, s \meq 27, + \meq 33, \cdot \meq 39, < \meq 25$$
+and
+$$\mathrm{Rel}(r) \equiv r \meq 25,\,\mathrm{Func}(f) \equiv f \meq 21 \mor f \meq 27 \mor f \meq 33 \mor f \meq 39$$
+We also set
+$$\mathrm{arr}(25) \meq 2, \mathrm{arf}(21) \meq 0,\mathrm{arf}(27) \meq 1,\mathrm{arf}(33) \meq \mathrm{arf}(39) \meq 2$$
+and zero otherwise. We can apply all results and constructions of previous two sections. 
+
+\begin{remark}\label{remark:infix_notation_for_addition_and_multiplication}
+  The important caveat regarding applications of the constructions of previous two sections to $\bd{Ar}$ is that we write its relation and function symbols in infix notation. This is natural convention for this symbols, since they are $<,+,\cdot$. 
+\end{remark}
+
+\begin{remark}\label{remark:bounded_quantifiers_arithmetic_language}
+	Let $\phi$ be a formula of the language of arithmetic and $x,y$ be variables. Then we use notation
+  $$y \leq x \equiv y < x \vee y = x,\,\forall_{x < y}\,\phi \equiv \forall_x\left(y \leq x \vee \phi\right),\,\exists_{x < y}\,\phi \equiv \exists_x\left(x < y \wedge \phi\right)$$
+\end{remark}
+
+\begin{definition}
+  $\ol{0} \meq o,\,\ol{n \mplus 1} \meq s\ol{n}$
+
+  The value of $\ol{n}$ is a \textit{numeral}.
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:basic_properties_of_numerals}
+  $\mforall_n\,\mathrm{Term}(\ol{n}) \mand \mforall_n\,0 \mle n \mle \ol{n}$ 
+\end{fact}
+\begin{proof}
+  Easy induction on $n$.
+\end{proof}
+
+\begin{definition}
+  $\mathrm{Num}(n) \equiv \mexists_m\,\ol{m} \meq n$
+\end{definition}
+
+\begin{fact}[$\mathrm{PRA}$]\label{fact:being_a_numeral_is_primitive_recursive_formula}
+  $$\mathrm{Num}(n) \mequiv \exists_{m \mle n}\,\ol{m} \meq n$$ 
+\end{fact}
+\begin{proof}
+  Immediate consequence of Fact \ref{fact:basic_properties_of_numerals}.
+\end{proof}
+\noindent
+Our goal is to define Tarski's semantics for some type of formulas of $\bd{Ar}$. For this we need the notion of context of the evaluation or satisfaction.
+
+\begin{definition}
+  $\mathrm{Env}(e) \equiv \mathrm{Seq}(e) \mand \mforall_{i < \mathrm{lh}(e)}\big(e_i \meq 0 \mor \left(\mathrm{Var}(i) \mra \mathrm{Num}(e_i)\right)\big)$
+
+  If $\mathrm{Env}(e)$, then $e$ is an \textit{environment}.
+\end{definition}
+
+\begin{definition}
+  $$e[x/n] \meq \begin{cases}
+    \bigg(e_x \triangleright \ol{n}\bigg) \frown \left(e_{x+1}...e_{\mathrm{lh}(e) \dotminus 1}\right)&\mbox{ if }\mathrm{Env}(e) \mand \mathrm{Var}(x) \mand x < \mathrm{lh}(e)\\
+    0&\mbox{ otherwise }
+  \end{cases}
+  $$
+\end{definition}
+
+\begin{definition}
+  $$\mathrm{Env}(e,n) \equiv \mathrm{Env}(e) \mand n \mleq \mathrm{lh}(e) \mand \left(\mathrm{Term}(n) \mor \mathrm{Form}(n)\right) \mand \mforall_{x \mle \mathrm{lh}(e)}\left(\mathrm{Var}(x,n) \mra \mathrm{Num}(e_x)\right)$$
+  If $\mathrm{Env}(e,n)$, then $e$ is an \textit{environment} for $n$.
+\end{definition}
+\noindent
+We define evaluation of terms in the environment.
+
+\begin{definition}
+  Let $\mathrm{eval}$ be a primitive recursive function obtained by course-of-values recursion on the structure of $t$ as follows.
+  $$\mathrm{eval}(e,t) \meq \begin{cases}
+    e_t&\mbox{ if }\mathrm{Env}(e,t) \mand \mathrm{Var}(t)\\
+    \mathrm{eval}(e, t_1) \mplus 1&\mbox{ if }\mathrm{Env}(e,t) \mand \mathrm{Term}(t) \mand t_0 \meq s\\ 
+    \mathrm{eval}(e, t_0) \mplus \mathrm{eval}(e,t_2)&\mbox{ if }\mathrm{Env}(e,t) \mand \mathrm{Term}(t) \mand t_1 \meq +\\ 
+    \mathrm{eval}(e, t_0) \mdot \mathrm{eval}(e, t_2)&\mbox{ if }\mathrm{Env}(e,t) \mand \mathrm{Term}(t) \mand t_1 \meq \cdot\\
+    0&\mbox{ otherwise }\\
+  \end{cases}$$
+\end{definition}
+
+\begin{definition}
+  Let $\mathrm{Rud}(\phi)$ be a primitive recursive formula obtained by course-of-values recursion on the structure of $\phi$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $\phi$ is an atomic formula.
+    \item $\phi$ is a formula of one of the forms
+      $$\phi_{\rm{1}} \wedge \phi_{\rm{2}},\,\phi_{\rm{1}} \vee \phi_{\rm{2}},\,\phi_{\rm{1}} \ra \phi_{\rm{2}}$$
+      and $\mathrm{Rud}(\phi_{\rm{1}}),\mathrm{Rud}(\phi_{\rm{2}})$ hold.
+    \item $\phi$ is a formula of one of the forms 
+      $$\forall_{x < y}\,\psi,\,\exists_{x < y}\,\psi$$
+      and $\mathrm{Rud}(\psi)$ holds.
+  \end{enumerate}
+  If $\mathrm{Rud}(\phi)$ holds, then $\phi$ is a \textit{rudimentary} formula.
+\end{definition}
+\noindent
+Next we express Tarski's satisfaction schema for rudimentary formulas.
+
+\begin{definition}
+  Let $\mathrm{Sat}(e,\phi)$ be a primitive recursive formula obtained by course-of-values recursion on the structure of $\phi$ as follows.
+  \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=3.0em]
+    \item $\mathrm{Env}(e,\phi)$ holds and $\phi$ is a formula of the form 
+      $$t_{\rm{1}} = t_{\rm{2}}$$
+      and $t_{\rm{1}},t_{\rm{2}}$ are terms and $\mathrm{eval}(e,t_{\rm{1}}) \meq \mathrm{eval}(e,t_{\rm{2}})$.
+    \item $\mathrm{Env}(e,\phi)$ holds and $\phi$ is a formula of the form 
+      $$t_{\rm{1}} < t_{\rm{2}}$$
+      and $t_{\rm{1}},t_{\rm{2}}$ are terms and $\mathrm{eval}(e,t_{\rm{1}}) \mle \mathrm{eval}(e,t_{\rm{2}})$.
+    \item $\mathrm{Env}(e,\phi)$ holds and $\phi$ is a formula of one of the forms
+      $$\phi_{\rm{1}} \wedge \phi_{\rm{2}},\,\phi_{\rm{1}} \vee \phi_{\rm{2}},\,\phi_{\rm{1}}\ra \phi_{\rm{2}}$$
+      and $\mathrm{Rud}(\phi_{\rm{1}}),\mathrm{Rud}(\phi_{\rm{2}})$ hold and
+      $$\begin{aligned}[t]
+        &\mathrm{Sat}(e,\phi_{\rm{1}}) \mand \mathrm{Sat}(e,\phi_{\rm{2}}),\\
+        &\mathrm{Sat}(e,\phi_{\rm{1}}) \mor \mathrm{Sat}(e,\phi_{\rm{2}}),\\
+        &\mathrm{Sat}(e,\phi_{\rm{1}}) \mra \mathrm{Sat}(e,\phi_{\rm{2}}),\\
+      \end{aligned}$$
+    respectively.
+    \item $\mathrm{Env}(e,\phi)$ holds and $\phi$ is a formula of one of the forms
+      $$\forall_{x < y}\,\psi,\,\exists_{x < y}\,\psi$$
+      and $\mathrm{Rud}(\psi)$ holds and
+      $$\begin{aligned}[t]
+        &\mforall_{i < e_y}\,\mathrm{Sat}(e[y/i],\psi),\\
+        &\mexists_{i < e_y}\,\mathrm{Sat}(e[y/i],\psi),\\
+      \end{aligned}$$
+      respectively.
+ \end{enumerate}
+ If $\mathrm{Sat}(e,\phi)$, then a formula $\phi$ is \textit{satisfied} in environment $e$.
+\end{definition}
+\noindent
+We can also extend Tarski's schema to $\mexists$-rudimentary formulas. The complication is that the formula expressing satisfaction is no longer primitive recursive.
+
+\begin{definition}
+  $\mathrm{ExRud}(\phi)$ holds if $\phi$ is a formula of the form $\exists_x\,\psi$ and $\psi$ is rudimentary.
+
+  If $\mathrm{ExRud}(\phi)$ holds, then $\phi$ is an $\mexists$-\textit{rudimentary} formula.
+\end{definition}
+
+
+\begin{definition}
+  $\mathrm{ExSat}(e,\phi) \equiv \mathrm{Env}(e,\phi) \mand \mathrm{ExRud}(\phi) \mand \mexists_n\,\mathrm{Sat}(e[\phi_1/n],\phi_2)$
+\end{definition}
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+
+\end{document}
