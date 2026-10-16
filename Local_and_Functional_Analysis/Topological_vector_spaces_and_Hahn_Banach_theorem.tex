@@ -1,0 +1,499 @@
+% arara: indent: {overwrite: yes, silent: yes}
+\documentclass[10pt]{amsart}
+\input ../pree.tex
+
+
+\begin{document}
+
+\title{Topological vector spaces and Hahn-Banach theorem}
+\date{}
+\maketitle
+
+\section{Introduction}
+\noindent
+In these notes we study topological vector spaces. Among other things our goal is to prove various versions of Hahn-Banach theorem. We rely on results in notes \cite{Topological_Spaces}, \cite{Filters_in_topology}, \cite{Uniform_Spaces} and \cite{Topological_groups}.
+
+In first sections we introduce topological vector spaces over a field with absolute value and study their basic properties. Next we prove that all one-dimensional Hausdorff topological spaces are isomorphic. This result is used in the characterization of finite dimensional Hausdorff topological vector spaces over complete fields and in the proof of a theorem due to Riesz that all locally compact topological vector spaces are finite dimensional. Then we introduce seminormed spaces as the most important class of topological vector spaces. Mazur's theorem is the main topic of the following section. Next we introduce locally convex topological vector spaces and prove separation of convex sets for these spaces. We use Mazur's theorem and seminorms to deduce analytic version of Hahn-Banach theorem. In the final section we prove invariant version of analytic Hahn-Banach theorem.
+
+\section{Fields with absolute values}
+
+\begin{definition}
+	Let $\mathbb{K}$ be a field and let $|-|:\mathbb{K}\ra \RR_+\cup \{0\}$ be a function such that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+		\item $|\alpha| = 0$ if and only if $\alpha = 0$ for every $\alpha \in \mathbb{K}$.
+		\item $|\alpha\cdot \beta| = |\alpha|\cdot |\beta|$ for every $\alpha,\beta \in \mathbb{K}$.
+		\item $|\alpha + \beta|\leq |\alpha| + |\beta|$ for every $\alpha,\beta \in \mathbb{K}$.
+	\end{enumerate}
+	Then $\mathbb{K}$ together with $|-|$ is a field with \textit{absolute value}.
+\end{definition}
+
+\begin{example}\label{example:trivial_absolute_value}
+	Let $\mathbb{K}$ be a field. Then for each $\alpha \in \mathbb{K}$ define
+	$$|\alpha| = \begin{cases}
+			0 & \mbox{ if }\alpha = 0 \\
+			1 & \mbox{ otherwise}     \\
+		\end{cases}$$
+	Then $|-|$ is an absolute value on $\mathbb{K}$. It is the \textit{trivial} absolute value on $\mathbb{K}$.
+\end{example}
+\noindent
+Throughout the notes $\mathbb{K}$ is a field with absolute value $|-|$. Note that $|-|$ induces metric
+$$\mathbb{K}\times \mathbb{K} \ni \left(\alpha, \beta\right) \mapsto |\alpha - \beta|\in \RR_+\cup \{0\}$$
+In particular, $|-|$ induces topology on $\mathbb{K}$. We always consider $\mathbb{K}$ with this topology.
+
+\begin{fact}\label{fact:trivial_absolute_value_is_the_same_as_discrete_topology}
+	The topology on a field $\mathbb{K}$ with absolute value is discrete if and only if $|-|$ is trivial.
+\end{fact}
+\begin{proof}
+	It suffices to prove that if topology induced by absolute value $|-|$ is discrete, then $|-|$ is trivial. Suppose that there exists $\alpha \in \mathbb{K}$ such that $|\alpha| \not \in \{0,1\}$. Then $\alpha \neq 0$ and
+	$$|\alpha|\cdot \bigg|\frac{1}{\alpha}\bigg| = \bigg|\alpha \cdot \frac{1}{\alpha}\bigg| = |1| = 1$$
+	Hence either
+	$$|\alpha| < 1$$
+	or
+	$$\bigg|\frac{1}{\alpha}\bigg| < 1$$
+	Without loss of generality we may assume that $0 < |\alpha| < 1$. Then $\{\alpha^n\}_{n\in \NN}$ is a sequence of nonzero elements of $\mathbb{K}$ which converges to zero with respect to $|-|$. Thus the topology on $\mathbb{K}$ is not discrete.
+\end{proof}
+
+\begin{definition}
+	The set
+	$$\mathbb{D} = \big\{\alpha \in \mathbb{K}\,\big|\,|\alpha| \leq 1\big\}$$
+	is the \textit{closed unit disc} in $\mathbb{K}$.
+\end{definition}
+
+\begin{definition}
+	Suppose that every Cauchy sequence in $\mathbb{K}$ with respect to $|-|$ is convergent. Then $\mathbb{K}$ is a \textit{complete} field.
+\end{definition}
+
+\section{Topological vector spaces}
+\noindent
+In this section we introduce topological vector spaces and study their basic properties.
+
+\begin{definition}
+	Let $\fX$ be a vector space over $\mathbb{K}$ together with a topology such that the multiplication by scalars $\cdot_{\fX}:\mathbb{K}\times \fX \ra \fX$ and the addition $+_{\fX}:\fX\times \fX\ra \fX$ are continuous. Then $\fX$ is a \textit{topological vector space} over $\mathbb{K}$.
+\end{definition}
+
+\begin{fact}\label{fact:topological_vector_subspaces}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$ and let $\fZ$ be its $\mathbb{K}$-subspace. Then $\fZ$ with subspace topology is a topological vector space over $\mathbb{K}$.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{fact}\label{fact:supercircled_open_basis_at_zero}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$ and let $U$ be an open neighborhood of zero in $\fX$. Then there exists an open neighborhood $W$ of zero in $\fX$ such that $W \subseteq U$ and $W = \mathbb{D}\cdot W$.
+\end{fact}
+\begin{proof}
+	Since the multiplication by scalars $\mathbb{K}\times \fX \ra \fX$ is continuous, there exists an open neighborhood $V$ of zero in $\fX$ and a positive real number $r$ such that
+	$$W = \bigcup_{\alpha\in \mathbb{K},\,|\alpha| \leq r}\alpha \cdot V \subseteq U$$
+	Then $W$ is an open neighborhood of zero in $\fX$, $W\subseteq U$ and $W = \mathbb{D}\cdot W$.
+\end{proof}
+
+\begin{definition}
+	Let $\fX,\fY$ are topological vector spaces over $\mathbb{K}$. A map $f:\fX\ra \fY$ which is both continuous and $\mathbb{K}$-linear is a \textit{morphism} of topological vector spaces over $\mathbb{K}$.
+\end{definition}
+
+\begin{theorem}\label{theorem:quotients_of_topological_vector_spaces}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$ and let $\fU$ be its $\mathbb{K}$-subspace. Consider the quotient map $q:\fX\twoheadrightarrow \fX/\fU$ in the category of vector spaces over $\mathbb{K}$ and equip $\fX/\fU$ with the quotient topology induced by $q$. Then the following assertions holds.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+		\item $q$ is an open map.
+		\item $\fX/\fU$ is a topological vector space over $\mathbb{K}$ and $q$ is a morphism of topological vector spaces.
+		\item Let $f:\fX\ra \fY$ be a morphism of topological vector spaces over $\mathbb{K}$ such that $f\left(\fU\right) = 0$. Then there exists a unique morphism $g:\fX/\fU\ra \fY$ of topological vector spaces over $\mathbb{K}$ such that $f = g\cdot q$.
+		\item $\fU$ is a closed in $\fX$ if and ony if $\fX/\fU$ is a Hausdorff topological space.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	According to analogical result on topological groups from \cite{Topological_groups} assertions \textbf{(1)}, \textbf{(3)}, \textbf{(4)} hold.
+
+	It suffices to verify \textbf{(2)}. Since $q$ is open, we derive that $1_{\mathbb{K}}\times q$ and $q\times q$ are open. Since squares
+	\begin{center}
+		\begin{tikzpicture}
+			[description/.style={fill=white,inner sep=2pt}]
+			\matrix (m) [matrix of math nodes, row sep=4em, column sep=5em,text height=1.5ex, text depth=0.25ex]
+			{ \fX \times \fX         & \fX     & \mathbb{K} \times \fX     & \fX                            \\
+			  \fX/\fU \times \fX/\fU & \fX/\fU & \mathbb{K} \times \fX/\fU & \fX/\fU \\} ;
+			\path[->,line width=0.8pt,font=\scriptsize]
+			(m-1-1) edge node[above] {$ +_{\fX} $} (m-1-2)
+			(m-1-1) edge node[left] {$ q\times q $} (m-2-1)
+			(m-1-2) edge node[right] {$ q $} (m-2-2)
+			(m-2-1) edge node[below] {$ +_{\fX/\fU} $} (m-2-2)
+			(m-1-3) edge node[above] {$ \cdot_{\fX} $} (m-1-4)
+			(m-1-3) edge node[left] {$ 1_{\mathbb{K}}\times q $} (m-2-3)
+			(m-1-4) edge node[right] {$ q $} (m-2-4)
+			(m-2-3) edge node[below] {$ \cdot_{\fX/\fU} $} (m-2-4);
+		\end{tikzpicture}
+	\end{center}
+	are commutative, we deduce that the addition $+_{\fX/\fU}:\fX/\fU \times \fX/\fU \ra \fX/\fU$ and the multiplication of scalars $\cdot_{\fX/\fU}:\mathbb{K}\times \fX/\fU\ra \fX/\fU$ are continuous. Therefore, $\fX/\fU$ is a topological vector space over $\mathbb{K}$ and $q$ is a morphism of topological vector spaces over $\mathbb{K}$.
+\end{proof}
+
+\begin{remark}\label{remark:uniform_structures_on_topological_vector_spaces}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$. Since $\fX$ is an abelian topological group, its left, right and two-sided uniform structures coincide. Moreover, the multiplication of scalars $\mathbb{K}\times \fX\ra \fX$ is a continuous homomorphism of abelian topological groups and hence it is a uniform map. Thus each topological vector space over $\mathbb{K}$ carries canonical uniform structure and each morphism of such spaces is a uniform map.
+\end{remark}
+
+\begin{definition}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$ such that $\fX$ is complete with respect to its uniform structure. Then $\fX$ is \textit{complete}.
+\end{definition}
+
+
+\begin{corollary}\label{corollary:products_of_copies_of_field_are_complete}
+	Let $\mathbb{K}$ be a complete field and let $I$ be a set. Then the product $\mathbb{K}^I$ with its canonical structure of topological vector space over $\mathbb{K}$ is complete.
+\end{corollary}
+\begin{proof}
+	This is a direct consequence of Tychonoff's theorem for complete uniform spaces (for details see \cite{Uniform_Spaces}).
+\end{proof}
+
+\section{Finite dimensional topological vector spaces}
+
+\begin{fact}\label{fact:linear_morphisms_from_standard_finite_spaces_are_always_continuous}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$. Suppose that $f:\mathbb{K}^n \ra \fX$ is a $\mathbb{K}$-linear map for some $n\in \NN$. Then $f$ is continuous.
+\end{fact}
+\begin{proof}
+	Let $\{e_1,...,e_n\}$ be the canonical basis of $\mathbb{K}^n$. For every $i$ let $pr_i:\mathbb{K}^n\ra \mathbb{K}$ be the projection onto $i$-th axis and let $m_{i}:\mathbb{K}\ra \fX$ be the composition of the multiplication of scalars $\mathbb{K}\times \fX\ra \fX$ with the continuous embedding $\mathbb{K} \ni \alpha \mapsto \left(\alpha, f(e_i)\right) \in \mathbb{K}\times \fX$. Since $\mathrm{pr}_i$ and $m_{i}$ are continuous for each $i$, we derive that their compositions $m_{i}\cdot pr_i$ are also continuous. According to the fact that the addition $\fX\times \fX\ra \fX$ is continuous, we infer that the sum
+	$$\sum_{i=1}^n m_{i}\cdot pr_{i}$$
+	is continuous. This sum is equal to $f$. Thus $f$ is continuous.
+\end{proof}
+
+\begin{theorem}\label{theorem:line_topological_spaces}
+	Let $\fX$ be a one-dimensional topological vector space over $\mathbb{K}$. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+		\item If $\fX$ is Hausdorff and the absolute value on $\mathbb{K}$ is nontrivial, then every $\mathbb{K}$-linear isomorphism $\fX\ra \mathbb{K}$ is a homeomorphism.
+		\item If $\fX$ is not Hausdorff, then the topology on $\fX$ is indiscrete.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Assume that $\fX$ is Hausdorff. Let $f:\fX\ra \mathbb{K}$ be a $\mathbb{K}$-linear isomorphism. The topology on $\mathbb{K}$ is not discrete by Fact \ref{fact:trivial_absolute_value_is_the_same_as_discrete_topology}. Thus for each positive real number $r$ there exists nonzero $\gamma \in \mathbb{K}$ such that $|\gamma| < r$. Consider $x_{\gamma}$ in $\fX$ such that $f(x_{\gamma}) = \gamma$. It is unique element of $\fX$. Since $\fX$ is Hausdorff, by Fact \ref{fact:supercircled_open_basis_at_zero} there exists an open neighborhood $W$ of zero in $\fX$ such that $\mathbb{D}\cdot W = W$ and $x_{\gamma} \not \in W$. Then $\mathbb{D}\cdot f(W) = f(W)$ and $\gamma \not \in f(W)$.
+	This proves that $f(W)$ is a subset of
+	$$\big\{\alpha \in \mathbb{K}\,\big|\,|\alpha| < r\big\}$$
+	Therefore, $f$ is continuous at zero and hence $f$ is continuous. On the other hand map $f^{-1}:\mathbb{K}\ra \fX$ is continuous by Fact \ref{fact:linear_morphisms_from_standard_finite_spaces_are_always_continuous}. This means that $f$ is a homeomorphism.
+
+	Suppose now that $\fX$ is not Hausdorff. Theorem \ref{theorem:quotients_of_topological_vector_spaces} implies that zero subspace is not closed in $\fX$. Since in every topological vector space closure of a subspace is a subspace, we derive that $\fX$ is the closure of its zero subspace. This shows that $\fX$ is indiscrete.
+\end{proof}
+
+\begin{example}\label{example:one_dimensional_Hausdorff_space_nonisomorphic_to_line_for_field_with_discrete_abs_value}
+	Let $\mathbb{K}$ be field of real numbers with trivial absolute value and let $\RR$ be the set of all real numbers with the natural topology.  Then $\RR$ is one-dimensional topological vector space over $\mathbb{K}$, which is not isomorphic to $\mathbb{K}$.
+\end{example}
+
+\begin{corollary}\label{corollary:criteria_for_continuity_of_linear_functionals}
+	Suppose that absolute value on $\mathbb{K}$ is nontrivial. Let $f:\fX \ra \mathbb{K}$ be a $\mathbb{K}$-linear map between topological vector spaces over $\mathbb{K}$. Then the following are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+		\item $f$ is continuous.
+		\item $\Ker(f)$ is a closed subspace of $\fX$.
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	Follows immediately from Theorems \ref{theorem:quotients_of_topological_vector_spaces} and \ref{theorem:line_topological_spaces}.
+\end{proof}
+
+\begin{theorem}\label{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces}
+	Let $\mathbb{K}$ be a complete field with nontrivial absolute value and let $\fX$ be a topological vector space over $\mathbb{K}$. If $\fX$ is Hausdorff and of dimension $n$ over $\mathbb{K}$ for some $n\in \NN$, then $\fX$ is isomorphic with $\mathbb{K}^n$.
+\end{theorem}
+\begin{proof}
+	The proof goes on induction by $n\in \NN$. For $n = 0$ it is clear. Suppose that the result holds for $n \in \NN$. Assume that $\fX$ is a Hausdorff topological vector space over $\mathbb{K}$ of dimension $n + 1$. By induction each $n$-dimensional subspace of $\fX$ is isomorphic to $\mathbb{K}^n$ and hence by Corollary \ref{corollary:products_of_copies_of_field_are_complete} it is complete. Since complete subspaces of Hausdorff uniform spaces are closed, we deduce that all $n$-dimensional subspaces are closed in $\fX$. Corollary \ref{corollary:criteria_for_continuity_of_linear_functionals} implies that each $\mathbb{K}$-linear map $f:\fX\ra \mathbb{K}$ is continuous. Therefore, every $\mathbb{K}$-linear map $\Phi:\fX \ra \mathbb{K}^{n+1}$ is continuous. Next $\Phi^{-1}$ is continuous according to Fact \ref{fact:linear_morphisms_from_standard_finite_spaces_are_always_continuous}. Therefore, $\fX$ is isomorphic to $\mathbb{K}^{n+1}$ as a topological vector space over $\mathbb{K}$. The proof is completed.
+\end{proof}
+
+\begin{example}\label{example:two_dimensional_top_vec_space_over_rationals_which_is_not_square_of_rationals}
+	The subspace
+	$$\QQ + \sqrt{2}\cdot \QQ\subseteq \RR$$
+	is a two-dimensional Hausdorff topological vector space over $\QQ$. Note that each of its one-dimensional subspaces is dense. Hence
+	$$\QQ + \sqrt{2}\cdot \QQ \not \cong \QQ\times \QQ$$
+	as topological vector spaces over $\QQ$.
+\end{example}
+\noindent
+Now we are ready to present some consequences of results obtained in this section.
+
+\begin{corollary}\label{corollary:continuous_map_to_standard_finite_dimensional_is_open}
+	Let $\mathbb{K}$ be a complete field with nontrivial absolute value and let $\fX$ be a topological vector space over $\mathbb{K}$. Fix a number $n \in \NN$. Then every morphism $f:\fX\ra \mathbb{K}^n$ of topological vector spaces over $\mathbb{K}$ is open.
+\end{corollary}
+\begin{proof}
+	Note that $\Ker(f)$ is closed in $\fX$. Hence the quotient map $\fX/\Ker(f)$ is Hausdorff by Theorem \ref{theorem:quotients_of_topological_vector_spaces}. By Theorem \ref{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces} we derive that $\fX/\Ker(f) \cong \mathbb{K}^n$ as topological vector spaces over $\mathbb{K}$. Hence $f$ is the quotient map $q:\fX\ra \fX/\Ker(f)$ followed by an isomorphism $\fX/\Ker(f)\cong \mathbb{K}^n$ of topological vector spaces over $\mathbb{K}$. Theorem \ref{theorem:quotients_of_topological_vector_spaces} implies that $q$ is open. Therefore, $f$ is open.
+\end{proof}
+
+\begin{theorem}[Riesz]\label{theorem:locally_compact_hausdorff_tvs_are_finite_dimensional}
+	Let $\mathbb{K}$ be a field with nontrivial absolute value and let $\fX$ be a topological vector space over $\mathbb{K}$. Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+		\item If $\fX$ is locally compact and $\mathbb{K}$ is complete, then $\fX$ is finite dimensional.
+		\item If $\mathbb{K}$ is locally compact field and $\fX$ is Hausdorff and finite dimensional, then $\fX$ is locally compact.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Suppose that $\fX$ is locally compact. Then there exists a compact subset $K$ of $\fX$ which contains an open neighborhood of zero in $\fX$. By compactness of $K$ and fact that it contains open neighborhood of zero in $\fX$ we deduce that there exist a finite subset $S$ of $\fX$ such that
+	$$K \subseteq \bigcup_{s\in S}\left(s + \frac{1}{2}\cdot K\right)$$
+	Let $\cS$ be a $\mathbb{K}$-linear subspace of $\fX$ spanned by $S$. For each $n \in \NN$ we have
+	$$\frac{1}{2^n}\cdot K \subseteq \bigcup_{s\in S}\left(\frac{1}{2^n}\cdot s + \frac{1}{2^{n+1}}\cdot K\right)$$
+	and hence by easy induction we deduce
+	$$K \subseteq \cS + \frac{1}{2^n}\cdot K$$
+	for every $n \in \NN_+$. Fix now an open neighborhood $U$ of zero in $\fX$. Pick $n \in \NN_+$ such that
+	$$\frac{1}{2^n}\cdot K \subseteq U$$
+	Number $n$ exists due to compactness of $K$. Then
+	$$K \subseteq \cS + \frac{1}{2^n}\cdot K \subseteq \cS + U$$
+	This proves that $K \subseteq \bd{cl}(\cS)$. Since $\cS$ is finite dimensional and Hausdorff, Theorem \ref{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces} implies that $\cS$ is isomorphic to $\mathbb{K}^n$ for some $n \in \NN$. Corollary \ref{corollary:products_of_copies_of_field_are_complete} shows that $\cS$ is a complete topological vector space over $\mathbb{K}$. Thus $\cS$ is closed in $\fX$. Hence $K \subseteq \cS$. Since $K$ contains open neighborhood of zero in $\fX$, we derive that $\cS$ coincides with $\fX$. This proves \textbf{(1)}.
+
+	On the other hand if $\fX$ is finite dimensional and Hausdorff, then Theorem \ref{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces} shows that $\fX$ is isomorphic to $\mathbb{K}^n$ for some $n \in \NN$. Since $\mathbb{K}$ is locally compact, we derive that $\fX$ is locally compact. This completes the proof of \textbf{(2)}.
+\end{proof}
+
+\section{Seminormed and normed spaces}
+
+\begin{definition}
+	Let $\fX$ be a vector space over $\mathbb{K}$. Let $\lVert-\rVert:\fX \ra \RR_+ \cup \{0\}$ be a function such that the following assertions hold.
+	\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+		\item $\lVert 0 \rVert = 0$
+		\item $\lVert \alpha \cdot x\rVert = |\alpha|\cdot \lVert x\rVert$ for every $\alpha \in \mathbb{K}$ and $x \in \fX$.
+		\item $\lVert x_1 + x_2 \rVert \leq \lVert x_1 \rVert + \lVert x_2 \rVert$ for every $x_1,x_2 \in \fX$.
+	\end{enumerate}
+	Then $\lVert-\rVert$ is a \textit{seminorm} on $\fX$.
+\end{definition}
+
+\begin{definition}
+	Let $\fX$ be a vector space over $\mathbb{K}$ and let $\lVert - \rVert$ be a seminorm on $\fX$. Suppose that $\lVert x \rVert = 0$ if and only if $x = 0$ for every $x \in \fX$. Then $\lVert - \rVert$ is a \textit{norm} on $\fX$.
+\end{definition}
+
+\begin{definition}
+	A vector space $\fX$ over $\mathbb{K}$ together with a seminorm $\lVert - \rVert$ on $\fX$ is \textit{a seminormed space over $\mathbb{K}$}. If $\lVert - \rVert$ is a norm, then this structure is a \textit{normed space} over $\mathbb{K}$.
+\end{definition}
+
+\begin{fact}\label{fact:topology_induced_by_seminorm}
+	Let $\fX$ be a seminormed space over $\mathbb{K}$ with respect to $\lVert - \rVert$. Consider the function $\rho:\fX\times \fX \ra \RR_+\cup \{0\}$ given by formula
+	$$\rho(x_1,x_2) = \lVert x_1 - x_2 \rVert$$
+	for every $x_1, x_2\in \fX$. Then $\rho$ is a pseudometric and the topology induced by $\rho$ makes $\fX$ into a topological vector space over $\mathbb{K}$.
+
+	Moreover, $\rho$ is a metric if and only if $\lVert-\rVert$ is a norm.
+\end{fact}
+\begin{proof}
+	Left for the reader as an exercise.
+\end{proof}
+
+\begin{remark}\label{remark:topology_induced_by_seminorm_is_canonical}
+	Let $\fX$ be a seminormed space over $\mathbb{K}$ with respect to $\lVert - \rVert$. Then $\fX$ is implicitly considered a topological vector space over $\mathbb{K}$ and a pseudometric space with respect to the topology and the pseudometric induced by $\lVert - \rVert$.
+\end{remark}
+\noindent
+Often we consider several seminormed spaces at the same time. In these situations by abuse of notation we denote their seminorms by the same symbol – this should not cause confusion, since we can identify a seminorm by the type of the argument to which it is applied.
+
+\begin{theorem}\label{theorem:characterization_of_morphisms_of_seminormed_spaces}
+	Let $f:\fX \ra \fY$ be a $\mathbb{K}$-linear map between to seminormed space. Then the following assertions are equivalent.
+	\begin{enumerate}[label=\emph{\textbf{(\roman*)}}, leftmargin=*]
+		\item $f$ is continuous.
+		\item $f$ maps sequences convergent to zero in $\fX$ into sequences which are bounded in $\fY$.
+		\item The value
+		      $$\sup_{\{x\in \fX\,|\,\lVert x \rVert \leq 1\}}\lVert f(x)\rVert$$ is finite.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	The implications $\textbf{(i)}\Rightarrow \textbf{(ii)}$ and $\textbf{(iii)}\Rightarrow \textbf{(i)}$ are obvious.
+
+	Next assume \textbf{(ii)}. Suppose that there exists a sequence $\{x_n\}_{n\in \NN}$ such that $\lVert x_n \rVert \leq 1$ and $n + 1 \leq \lVert f(x_n) \rVert$ for all $n \in \NN$. Then
+	$$\left\{\frac{x_n}{\sqrt{n + 1}}\right\}_{n \in \NN_+}$$
+	is a sequence in $\fX$ that converges to zero. Hence by \textbf{(ii)} its image is bounded. This is contradiction. This implies that the value
+	$$\sup_{\{x\in \fX\,|\,\lVert x \rVert \leq 1\}}\lVert f(x)\rVert$$
+	is finite. Thus $\textbf{(ii)}\Rightarrow \textbf{(iii)}$.
+\end{proof}
+\noindent
+Now we study quotients of seminormed spaces.
+
+\begin{theorem}\label{theorem:quotients_of_seminormed_spaces}
+	Let $\fX$ be a seminormed space over $\mathbb{K}$ with respect to a seminorm $\lVert - \rVert$. Let $\fU$ be a $\mathbb{K}$-linear subspace. Consider the quotient map $q:\fX\twoheadrightarrow \fX/\fU$ in the category of vector spaces over $\mathbb{K}$ and define the map $\lVert-\rVert_{\fU}:\fX/\fU \ra \RR_+\cup \{0\}$ by formula
+	$$\lVert x + \fU \rVert_{\fX/\fU} = \inf_{u \in \fU}\lVert x + u \rVert$$
+	Then the following assertions hold.
+	\begin{enumerate}[label=\emph{\textbf{(\arabic*)}}, leftmargin=*]
+		\item $\fX/\fU$ is a seminormed space over $\mathbb{K}$ with respect to $\lVert-\rVert_{\fX/\fU}$.
+		\item $q:\fX\twoheadrightarrow \fX/\fU$ is an open map of topological spaces.
+		\item If $\fX$ is complete, then $\fX/\fU$ is complete with respect to $\lVert - \rVert_{\fX/\fU}$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Clearly $\lVert - \rVert_{\fX/\fU}$ is positively homogeneous. Next pick $x_1,x_2 \in \fX$. Then
+	$$\lVert x_1 + x_2 + \fU\rVert_{\fX/\fU} = \inf_{u_1,u_2 \in \fU} \lVert x_1 + u_1 + x_2 + u_2\rVert \leq \inf_{u_1,u_2 \in \fU}\left(\lVert x_1 + u_1\rVert + \lVert x_2 + u_2\rVert\right) =$$
+	$$=  \inf_{u_1\in \fU} \lVert x_1 + u_1\rVert + \inf_{u_2\in \fU} \lVert x_2 + u_2\rVert = \lVert x_1 + \fU\rVert_{\fX/\fU} + \lVert x_2 + \fU \rVert_{\fX/\fU}$$
+	and hence $\lVert - \rVert_{\fX/\fU}$ is a seminorm. This proves \textbf{(1)}.
+
+	Note that
+	$$\lVert q(x) \rVert_{\fX/\fU} \leq \lVert x \rVert$$
+	for every $x \in \fX$. Hence Theorem \ref{theorem:characterization_of_morphisms_of_seminormed_spaces} shows that $q$ is continuous. For every $r \in \RR_+$ define $U_r = \big\{x\in \fX\,\big|\,\lVert x \rVert < r\big\}$. We claim that
+	$$q\left(U_r\right) = \big\{y\in \fX/\fU\,\big|\,\lVert y \rVert_{\fX/\fU} < r\big\}$$
+	Clearly
+	$$q\left(U_r\right) \subseteq \big\{y\in \fX/\fU\,\big|\,\lVert y \rVert_{\fX/\fU} < r\big\}$$
+	Suppose that $\lVert y \rVert_{\fX/\fU} < r$ for some $y \in \fX/\fU$. Since $q$ is surjective, we derive that $q(x) = y$ for some $x \in \fX$. Thus $\left(x + \fU\right) \cap U_r\neq \emptyset$ and hence there exists $x \in U_r$ such that $q(x) = y$. This proves the claim. Now \textbf{(2)} easily follows.
+
+	Consider a sequence $\{y_n\}_{n \in \NN}$ of elements in $\fX/\fU$ such that
+	$$\sum_{n \in \NN} \lVert y_n \rVert_{\fX/\fU} \in \RR$$
+	For each $n \in \NN$ we pick $x_n \in \fX$ such that $q(x_n) = y_n$ and
+	$$\lVert y_n \rVert_{\fX/\fU} \leq \lVert x_n \rVert \leq \lVert y_n \rVert_{\fX/\fU} + \frac{1}{2^n}$$
+	Hence
+	$$\sum_{n \in \NN}\lVert x_n \rVert \in \RR$$
+	From the fact that $\fX$ is complete it follows that the series of elements of the sequence $\{x_n\}_{n\in \NN}$ is convergent in $\fX$. Then
+	$$q\left(\sum_{n \in \NN}x_n\right) = q\left(\lim_{N \ra +\infty}\sum_{n\leq N}x_n\right) = \lim_{N\ra +\infty}q\left(\sum_{n \leq N}x_n\right) = \lim_{N\ra +\infty}\sum_{n \leq N}y_n = \sum_{n \in \NN}y_n$$
+	It follows that $\lVert - \rVert_{\fX/\fU}$ is complete and it proves \textbf{(3)}.
+\end{proof}
+
+\begin{definition}
+	Let $\fX$ be a normed space over $\mathbb{K}$ with respect to a norm $\lVert - \rVert$. If $\fX$ is a complete topological vector space over $\mathbb{K}$, then $\fX$ is \textit{a Banach space over $\mathbb{K}$}.
+\end{definition}
+
+\section{Mazur's theorem}
+\noindent
+In this section assume that $\mathbb{K}$ is either real numbers field $\RR$ of complex numbers field $\CC$ with usual absolute values.
+
+\begin{theorem}[Mazur]\label{theorem:Mazurs_hyperplane_separation}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$ and let $U$ be an open and convex subset of $\fX$. Suppose that $\fU$ is a $\mathbb{K}$-subspace of $\fX$ such that $\fU$ does not intersect with $U$. Then there exists a $\mathbb{K}$-linear continuous map $f:\fX\ra \mathbb{K}$ such that $\fU \subseteq \Ker(f)$ and $0 \not \in f(U)$.
+\end{theorem}
+\noindent
+For the proof we need the following result.
+
+\begin{lemma}\label{lemma:two_dimensional_hyperplane_separation}
+	Let $\fX$ be a two-dimensional Hausdorff topological vector space over $\RR$ and let $U$ be an open and convex subset which does not contain zero of $\fX$. Then there exists one-dimensional subspace $L$ of $\fX$ which does not intersect $U$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Theorem \ref{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces} implies that we may assume that $\fX$ is $\RR^2$. Consider
+	$$S^1 = \big\{(x, y)\in \RR^2\,\big|\,x^2 + y^2 = 1\big\}$$
+	and a retraction $r:\RR^2\setminus \{0\} \ra S^1$ given by formula
+	$$r(x, y) = \bigg(\frac{x}{\sqrt{x^2 + y^2}},\frac{y}{\sqrt{x^2 + y^2}}\bigg)$$
+	Note that $r$ is an open map. Thus $\tilde{U} = r(U)$ is an open subset of $S^1$. Let $i:S^1\ra S^1$ be a homeomorphism given by formula $i(x, y) = (-x, -y)$. Since $U$ is convex and does not contain zero, sets $i(\tilde{U})$ and $\tilde{U}$ have empty intersection. According to the fact that $S^1$ is connected, we deduce that $i(\tilde{U}) \cup \tilde{U}$ is a proper subset of $S^1$. This is the case if and only if there exists $(x, y) \in S^1$ such that $(x, y) \not \in \tilde{U}$ and $(-x, -y) \not \in \tilde{U}$. Then one-dimensional subspace $\RR \cdot (x, y)$ of $\fX$ does not intersect $U$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	Assume first that $\mathbb{K}$ is $\RR$. By Zorn's lemma there exists maximal $\RR$-subspace $\fZ$ such that $\fU\subseteq \fZ$ and $\fZ$ does not intersect $U$. Since $U$ is open, we derive that $\bd{cl}(\fZ)$ does not intersect $U$. This shows that $\fZ$ is a closed subspace of $\fX$. Now consider the quotient map $q:\fX\twoheadrightarrow \fX/\fZ$. By Theorem \ref{theorem:quotients_of_topological_vector_spaces} space $\fX/\fZ$ is Hausdorff and $q(U)$ is an open set. Moreover, $q(U)$ does not intersect zero and is convex. Suppose that there exists two-dimensional $\RR$-subspace $\fY$ of $\fX/\fZ$. Applying Lemma \ref{lemma:two_dimensional_hyperplane_separation} to $\fY$ and $\fY\cap q(U)$ we deduce that there exists a one-dimensional $\RR$-subspace $L$ of $\fX/\fZ$ such that $L$ does not intersect $q(U)$. Then $q^{-1}(L)$ is $\RR$-subspace of $\fX$ strictly containing $\fZ$ which does not intersect $U$. This is contradiction with maximality of $\fZ$. Thus $\fX/\fZ$ contains no two-dimensional subspaces and hence it is one-dimensional. According to Theorem \ref{theorem:uniqueness_of_finite_dimensional_Hausdorff_top_vec_spaces} we have isomorphism $\phi:\fX/\fZ \ra \RR$ of topological vector spaces over $\RR$. The composition $f = \phi \cdot q$ satisfies the assertion of the theorem and this completes the proof for $\RR$.
+
+	Next assume that $\mathbb{K}$ is $\CC$. Since $\fX$ is a topological vector space over $\CC$, it is also topological vector space over $\RR$. Hence there exists an $\RR$-linear continuous map $\tilde{f}:\fX\ra \RR$ such that $\fU \subseteq \Ker(\tilde{f})$ and $0 \not \in \tilde{f}(U)$. Consider $f:\fX\ra \CC$ given by formula
+	$$f(x) = \tilde{f}(x) - \sqrt{-1}\cdot \tilde{f}\left(\sqrt{-1}\cdot x\right)$$
+	for $x$ in $\fX$. Then $f$ is a $\CC$-linear continuous map such that $\fU\subseteq \Ker(f)$ and $0\not \in f(U)$.
+\end{proof}
+\noindent
+The result above is often called geometric Hahn-Banach theorem.
+
+\section{Locally convex spaces and separation theorem}
+\noindent
+In this section assume that $\mathbb{K}$ is either real numbers field $\RR$ of complex numbers field $\CC$ with usual absolute values.
+
+\begin{definition}
+	Let $\fX$ be a topological vector space over $\mathbb{K}$. Suppose that every open neighborhood of zero in $\fX$ contains an open and convex neighborhood of zero. Then $\fX$ is \textit{a locally convex space over $\mathbb{K}$}.
+\end{definition}
+
+\begin{theorem}\label{theorem:separation_in_locally_convex_spaces}
+	Let $\fX$ be a locally convex space over $\RR$. Suppose that $K$ and $C$ are disjoint, nonempty, convex subsets of $\fX$ such that $K$ is quasi-compact and $C$ is closed in $\fX$. Then there exists a continuous $\RR$-linear map $f:\fX\ra \RR$ and a point $x \in \fX$ such that
+	$$f\left(K - x\right) \subseteq \RR_-,\,f\left(C - x\right)\subseteq \RR_+$$
+\end{theorem}
+\begin{proof}
+	For each $x \in K$ there exists open neighborhood $W_x$ of zero in $\fX$ such that
+	$$\left(x + W_x + W_x\right)\cap C = \emptyset$$
+	Since $K$ is quasi-compact, there are $x_1,...,x_n\in K$ such that
+	$$K \subseteq \bigcup_{i=1}^n\left(x_i + W_{x_i}\right)$$
+	Define
+	$$W = \bigcap_{i=1}^nW_{x_i}$$
+	Then $W$ is an open neighborhood of zero in $\fX$ such that $\left(K + W\right)\cap C = \emptyset$. Fix now an open and convex neighborhood of zero in $\fX$ such that $V \subseteq W$. Such set exists according to the fact that $\fX$ is locally convex. Note that
+	$$\left(K + V\right)\cap C = \emptyset$$
+	It follows that subset
+	$$U = \left(K + V\right) - C$$
+	of $\fX$ is open, convex and does not contain zero. Invoking Theorem \ref{theorem:Mazurs_hyperplane_separation} we get a continuous $\RR$-linear map $f:\fX \ra \RR$ such that $0 \not \in f\left(U\right)$. Corollary \ref{corollary:continuous_map_to_standard_finite_dimensional_is_open} implies that $f$ is an open map. It follows that $f\left(K + V\right),f\left(C\right)$ are disjoint intervals in $\RR$. Since $f(K)$ is a compact interval contained in an open interval $f(K + V)$, we deduce that there exists $x \in \fX$ such that $f(x)$ is strictly separating $f\left(K\right)$ and $f\left(C\right)$. Thus $f(K - x)$ and $f(C - x)$ are strictly separated by zero in $\RR$. Without loss of generality we may assume that $f(K - x) \subseteq \RR_-$ and $f(C - x)\subseteq \RR_+$.
+\end{proof}
+
+\section{Analytic Hahn-Banach theorem}
+
+\begin{definition}
+	Let $\fX$ be a vector space over $\RR$ and let $p:\fX\ra \RR$ be a map. Suppose that
+	$$p(x_1 + x_2)\leq p(x_1) + p(x_2)$$
+	for all $x_1,x_2\in \fX$ and
+	$$p(r\cdot x) = r\cdot p(x)$$
+	for each $x\in \fX$ and each $r\in \RR_+$. Then $p$ is \textit{a sublinear map}.
+\end{definition}
+
+\begin{theorem}[Hahn-Banach]\label{theorem:Hahn_Banach_real_case}
+	Let $\fX$ be a vector space over $\RR$ and let $p:\fX\ra \RR$ be a sublinear map. Suppose that $\fU$ is an $\RR$-subspace of $\fX$ and $f:\fU\ra \RR$ is an $\RR$-linear map such that $f(x) \leq p(x)$ for every $x$ in $\fU$. Then there exists an $\RR$-linear map $\tilde{f}:\fX \ra \RR$ such that $\tilde{f} \leq p$ and $\tilde{f}_{\mid \fU} = f$.
+\end{theorem}
+\noindent
+We need the following result, which shows that each sublinear map give rise to a seminorm.
+
+\begin{lemma}\label{lemma:sublinear_induces_seminorm_and_is_continuous_with_respect_to_it}
+	Let $\fX$ be a vector space over $\RR$ and let $p:\fX \ra \RR$ be a sublinear map. Consider $q:\fX \ra \RR$ given by formula
+	$$q(x) = \max\{p(x),p(-x)\}$$
+	for $x \in \fX$. Then $q$ is a seminorm on $\fX$ and $p$ is continuous with respect to $q$.
+\end{lemma}
+\begin{proof}[Proof of the lemma]
+	Note that $q$ is a sublinear map. Since
+	$$0\leq p(x) + p(-x)$$
+	for $x \in \fX$, we derive that the image of $q$ is $\RR_+\cup \{0\}$. Moreover, $q(x) = q(-x)$ for each $x$ in $\fX$. Therefore, $q$ is a seminorm on $\fX$. Observe that
+	$$|p(x_1) - p(x_2)|\leq q(x_1 - x_2)$$
+	and hence $p$ is continuous with respect to the topology induced by $q$ on $\fX$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+	By Lemma \ref{lemma:sublinear_induces_seminorm_and_is_continuous_with_respect_to_it} we may assume that $\fX$ is a topological vector space over $\RR$ and $p$ is a continuous map on $\fX$. Define
+	$$U = \big\{(x,r)\in \fX\times \RR\,\big|\,p(x) < r\big\},\,\fZ = \big\{(x,f(x))\in \fX\times \RR\,\big|\,x\in \fU\big\}$$
+	It follows that $U$ is a convex open subset of $\fX\times \RR$ and $\fZ$ is an $\RR$-subspace of $\fX\times \RR$ such that $U \cap \fZ = \emptyset$. By Theorem \ref{theorem:Mazurs_hyperplane_separation} there exists a codimension one $\RR$-linear subspace $\fM$ of $\fX\times \RR$ such that $\fZ \subseteq \fM$ and $U\cap \fM = \emptyset$. Let $\pi$ be the projection $\fX\times \RR\ra \fX$. It follows from the properties of $\fM$, that $\pi_{\mid \fM}:\fM\ra \fX$ is an $\RR$-linear isomorphism. Hence there exists an $\RR$-linear map $\tilde{f}:\fX \ra \RR$ such that
+	$$\fM = \big\{(x,\tilde{f}(x))\in \fX\times \RR\,\big|\,x \in \fX\big\}$$
+	Since $\fZ \subseteq \fM$, we deduce that $\tilde{f}_{\mid \fU} = f$. According to $U\cap \fW = \emptyset$, we have $\tilde{f} \leq p$. This completes the proof.
+\end{proof}
+
+\section{Invariant Hahn-Banach theorem}
+\noindent
+In this section we prove invariant version of Hahn-Banach theorem. This theorem appears implicitly in \cite[Chapitre II, \S3]{banach1979theorieoperationslineaires} and is related to the previous Banach's manuscript \cite{banach1923problemelameasure} in which the author shows the existence of translation invariant finitely additive extension of Lebesgue measure on real line.
+
+\begin{definition}
+	Let $\fX$ be a vector space over $\RR$ and let $\cG$ be a semigroup of $\RR$-linear endomorphisms of $\fX$. An $\RR$-linear subspace $\fU$ is \textit{$\fG$-invariant} if $g\left(\fU\right)\subseteq \fU$ for every $g\in \cG$.
+\end{definition}
+
+\begin{example}\label{example:whole_space_is_invariant}
+	Let $\fX$ be a vector space over $\RR$ and let $\cG$ be a semigroup of $\RR$-linear endomorphisms of $\fX$. Then by obvious reasons $\fX$ is $\cG$-invariant subspace.
+\end{example}
+
+\begin{definition}
+	Let $\fX$ be a vector space over $\RR$, let $\cG$ be a semigroup of $\RR$-linear endomorphisms of $\fX$ and let $\fU$ be a $\cG$-invariant subspace of $\fX$. An $\RR$-linear map $f:\fU\ra \RR$ is \textit{$\cG$-invariant} if
+	$$f\left(g(x)\right) = f(x)$$
+	for every $x\in \fU$ and $g\in \cG$.
+\end{definition}
+\noindent
+Now we are ready to state the result.
+
+\begin{theorem}\label{theorem:invariant_Hahn_Banach}
+	Let $\fX$ be a vector space over $\RR$ and let $\cG$ be a commutative semigroup of $\RR$-linear endomorphisms of $\fX$. Suppose that $p:\fX\ra \RR$ is a sublinear map such that
+	$$p\left(g(x)\right) \leq p(x)$$
+	for every $x \in \fX$ and $g \in \cG$. If $\fU$ is a $\cG$-invariant subspace of $\fX$ and $f:\fU\ra \RR$ is an $\RR$-linear and $\cG$-invariant map such that $f(x)\leq p(x)$ for all $x\in \fU$, then there exists an $\RR$-linear and $\cG$-invariant map $\tilde{f}:\fX \ra \RR$ such that $\tilde{f} \leq p$ and $\tilde{f}_{\mid \fU} = f$.
+\end{theorem}
+\noindent
+The proof presented below is an adaptation of the original Banach's proof from \cite[Chapitre II, \S3]{banach1979theorieoperationslineaires}.
+
+\begin{proof}
+	For each $x \in \fX$ we define
+	$$q(x) = \inf \bigg\{\frac{1}{n}\cdot p\bigg(\sum_{i=1}^ng_i(x)\bigg)\bigg|\,\mbox{ for some }n\in \NN_+\mbox{ and }g_1,...,g_n\in \cG\bigg\}$$
+	Fix $n\in \NN_+$ and $g_1,...,g_n\in \cG$. Then
+	$$\frac{1}{n}\cdot p\bigg(\sum_{i=1}^ng_i(x)\bigg)\geq -\frac{1}{n}\cdot p\bigg(\sum_{i=1}^n-g_i(x)\bigg) \geq -\frac{1}{n}\cdot \sum_{i=1}^np\left(g_i(-x)\right) \geq -\frac{1}{n}\cdot \sum_{i=1}^np\left(-x\right) = -p(-x)$$
+	and thus $q(x) \in \RR$ for every $x\in \fX$. Clearly $q(r\cdot x) = r\cdot q(x)$ for every $x\in \fX$ and $r\in \RR_+$. Suppose now that $x_1,x_2\in \fX$ and $\epsilon > 0$. Then there exist $n,m \in \NN_+$ and $g_1,...g_n,h_1,...,h_m \in \cG$ such that
+	$$\frac{1}{n}\cdot p\bigg(\sum_{i=1}^ng_i(x_1)\bigg) \leq q(x_1) + \epsilon,\,\frac{1}{m}\cdot p\bigg(\sum_{i=1}^m h_i(x_2)\bigg) \leq q(x_2) + \epsilon$$
+	Then
+	$$q(x_1 + x_2) \leq \frac{1}{n\cdot m}\cdot p\bigg(\sum_{i=1}^n\sum_{j=1}^m\left(g_i\cdot h_j\right)(x_1 + x_2)\bigg) \leq$$
+	$$\leq \frac{1}{n\cdot m}\cdot p\bigg(\sum_{i=1}^n\sum_{j=1}^m \left(g_i\cdot h_j\right)(x_1)\bigg) + \frac{1}{n\cdot m}\cdot p\bigg(\sum_{i=1}^n\sum_{j=1}^m\left(g_i\cdot h_j\right)(x_2)\bigg) \leq$$
+	$$\leq \frac{1}{n\cdot m}\cdot p\left(\sum_{j=1}^m h_j\left(\sum_{i=1}^n g_i\left(x_1\right)\right)\right) + \frac{1}{n\cdot m}\cdot p\left(\sum_{i=1}^n g_i\left(\sum_{j=1}^m h_j\left(x_2\right)\right)\right) \leq $$
+	$$\leq \frac{1}{n\cdot m}\cdot \sum_{j=1}^m p\left(h_j\left(\sum_{i=1}^n g_i\left(x_1\right)\right)\right) + \frac{1}{n\cdot m}\cdot \sum_{i=1}^n p\left(g_i\left(\sum_{j=1}^m h_j\left(x_2\right)\right)\right) \leq $$
+	$$\leq \frac{1}{n\cdot m}\cdot \sum_{j=1}^m p\left(\sum_{i=1}^n g_i\left(x_1\right)\right) + \frac{1}{n\cdot m}\cdot \sum_{i=1}^n p\left(\sum_{j=1}^m h_j\left(x_2\right)\right) \leq $$
+	$$\leq  \frac{1}{n}\cdot p\left(\sum_{i=1}^n g_i\left(x_1\right)\right) + \frac{1}{m}\cdot p\left(\sum_{j=1}^m h_j\left(x_2\right)\right) \leq q(x_1) + q(x_2) + 2\cdot \epsilon$$
+	Note that in order to prove the inequality above we used the fact that $\cG$ is commutative. We deduced that
+	$$q(x_1 + x_2) \leq q(x_1) + q(x_2) + 2\cdot \epsilon$$
+	for every $x_1,x_2\in \fX$ and $\epsilon > 0$. This proves that $q:\fX \ra \RR$ is a sublinear map.
+
+	We claim that
+	$$q\left(x - g(x)\right) = q\left(g(x) - x\right) = 0$$
+	for all $x\in \fX$ and for every $g\in \cG$. For this note that
+	$$q\left(x - g(x)\right) \leq \frac{1}{n}\cdot p\left(\sum_{i=1}^ng^i\left(x - g(x)\right)\right) = \frac{1}{n}\cdot p\left(g(x) - g^{n+1}(x)\right) \leq$$
+	$$\leq \frac{1}{n}\left(p\left(g(x)\right) + p\left(-g^{n+1}(x)\right)\right) \leq \frac{1}{n}\left(p(x) + p(-x)\right)$$
+	for every $n\in \NN_+$. Hence
+	$$q\left(x - g(x)\right) \leq 0$$
+	Similar argument shows that
+	$$q\left(g(x) - x\right) \leq 0$$
+	for all $x \in \fX$. Since $q$ is sublinear map, we derive
+	$$0 \leq q\left(x - g(x)\right) + q\left(g(x) - x\right)$$
+	and the claim is proved.
+
+	Observe that
+	$$f(x) = \frac{1}{n}\cdot \sum_{i=1}^nf\left(g_i(x)\right) = \frac{1}{n}\cdot f\left(\sum_{i=1}^ng_i(x)\right) \leq \frac{1}{n}\cdot p\left(\sum_{i=1}^ng_i(x)\right)$$
+	for every $x \in \fU$, $n\in \NN_+$ and $g_1,...,g_n\in \cG$. Hence $f(x) \leq q(x)$ for all $x\in \fU$. Now by Theorem \ref{theorem:Hahn_Banach_real_case} there exists an $\RR$-linear map $\tilde{f}:\fX\ra \RR$ such that $\tilde{f} \leq q$ and $\tilde{f}_{\mid \fU} = f$. Fix $x \in \fX$ and $g \in \cG$. Since
+	$$\tilde{f}\left(x - g(x)\right) \leq q\left(x - g(x)\right) = 0,\,\tilde{f}\left(g(x) - x\right) \leq q\left(g(x) - x\right) = 0$$
+	we derive that
+	$$\tilde{f}(x) = \tilde{f}\left(g(x)\right)$$
+	This shows that $\tilde{f}$ is $\cG$-invariant. Note that $q \leq p$ and thus $\tilde{f} \leq p$. Hence $\tilde{f}$ satisfies the assertion.
+\end{proof}
+
+
+
+
+\small
+\bibliographystyle{apalike}
+\bibliography{../zzz}
+
+
+\end{document}
